@@ -1,6 +1,107 @@
-/* Tailwind v3 is loaded via CDN in __root.tsx to match the design system from the source HTML. */
+@import "tailwindcss";
+
+@theme {
+  --color-on-secondary-fixed: #012200;
+  --color-on-primary-fixed-variant: #205031;
+  --color-surface: #f8faf8;
+  --color-on-secondary-fixed-variant: #2a4f21;
+  --color-surface-container-high: #e6e9e7;
+  --color-primary: #013619;
+  --color-inverse-surface: #2e3130;
+  --color-on-primary-fixed: #00210d;
+  --color-tertiary: #1b303d;
+  --color-surface-dim: #d8dad9;
+  --color-surface-bright: #f8faf8;
+  --color-surface-container-highest: #e1e3e1;
+  --color-tertiary-fixed: #cfe6f6;
+  --color-on-background: #191c1b;
+  --color-background: #f8faf8;
+  --color-secondary: #416837;
+  --color-secondary-container: #bfecae;
+  --color-on-tertiary-fixed-variant: #344956;
+  --color-on-primary: #ffffff;
+  --color-secondary-fixed: #c2efb1;
+  --color-on-tertiary-fixed: #061e29;
+  --color-primary-fixed: #baefc4;
+  --color-on-error: #ffffff;
+  --color-primary-container: #1d4d2e;
+  --color-primary-fixed-dim: #9fd3aa;
+  --color-surface-tint: #396847;
+  --color-on-error-container: #93000a;
+  --color-surface-variant: #e1e3e1;
+  --color-inverse-primary: #9fd3aa;
+  --color-surface-container: #eceeec;
+  --color-tertiary-fixed-dim: #b3cad9;
+  --color-tertiary-container: #324754;
+  --color-on-surface: #191c1b;
+  --color-on-primary-container: #8abd95;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-surface-variant: #414941;
+  --color-error-container: #ffdad6;
+  --color-outline-variant: #c1c9bf;
+  --color-secondary-fixed-dim: #a6d296;
+  --color-on-tertiary-container: #9eb5c4;
+  --color-on-secondary: #ffffff;
+  --color-surface-container-low: #f2f4f2;
+  --color-inverse-on-surface: #eff1ef;
+  --color-outline: #717971;
+  --color-on-tertiary: #ffffff;
+  --color-error: #ba1a1a;
+  --color-on-secondary-container: #456c3a;
+
+  --spacing-container-max: 1280px;
+  --spacing-gutter: 24px;
+  --spacing-margin-mobile: 20px;
+  --spacing-section-gap: 120px;
+  --spacing-margin-desktop: 60px;
+
+  --radius-DEFAULT: 1rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+
+  --font-label-bold: "Plus Jakarta Sans", sans-serif;
+  --font-body-md: "Plus Jakarta Sans", sans-serif;
+  --font-body-lg: "Plus Jakarta Sans", sans-serif;
+  --font-display-lg: "Plus Jakarta Sans", sans-serif;
+  --font-headline-md: "Plus Jakarta Sans", sans-serif;
+  --font-headline-lg-mobile: "Plus Jakarta Sans", sans-serif;
+  --font-headline-lg: "Plus Jakarta Sans", sans-serif;
+
+  --text-label-bold: 14px;
+  --text-label-bold--line-height: 1.2;
+  --text-label-bold--font-weight: 700;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 1.6;
+  --text-body-md--font-weight: 400;
+
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 1.6;
+  --text-body-lg--font-weight: 400;
+
+  --text-display-lg: 72px;
+  --text-display-lg--line-height: 1.1;
+  --text-display-lg--letter-spacing: -0.04em;
+  --text-display-lg--font-weight: 800;
+
+  --text-headline-md: 32px;
+  --text-headline-md--line-height: 1.3;
+  --text-headline-md--font-weight: 700;
+
+  --text-headline-lg-mobile: 36px;
+  --text-headline-lg-mobile--line-height: 1.2;
+  --text-headline-lg-mobile--font-weight: 700;
+
+  --text-headline-lg: 48px;
+  --text-headline-lg--line-height: 1.2;
+  --text-headline-lg--letter-spacing: -0.02em;
+  --text-headline-lg--font-weight: 700;
+}
+
+html { font-family: "Plus Jakarta Sans", system-ui, sans-serif; }
 
 .material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 .shadow-ambient {
@@ -10,3 +111,18 @@
   mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 }
+
+@keyframes pop-in {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+@keyframes fade-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.animate-pop-in { animation: pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.animate-fade-up { animation: fade-up 0.6s ease-out both; }
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
