@@ -158,7 +158,7 @@ const html = `<!-- TopNavBar -->
 </div>
 </footer>`;
 
-export const Route = createFileRoute("/donate")({
+export const Route = createFileRoute("/donate/")({
   head: () => ({ meta: [{ title: 'Donate — YAD' }] }),
   component: Page,
 });
