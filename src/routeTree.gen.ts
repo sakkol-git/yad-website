@@ -9,38 +9,190 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ProgramsRouteImport } from './routes/programs'
+import { Route as ImpactRouteImport } from './routes/impact'
+import { Route as GetInvolvedRouteImport } from './routes/get-involved'
+import { Route as DonateRouteImport } from './routes/donate'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DonateSuccessRouteImport } from './routes/donate.success'
+import { Route as DonateReviewRouteImport } from './routes/donate.review'
+import { Route as DonatePaymentRouteImport } from './routes/donate.payment'
+import { Route as DonateFlowRouteImport } from './routes/donate.flow'
 
+const ProgramsRoute = ProgramsRouteImport.update({
+  id: '/programs',
+  path: '/programs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactRoute = ImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GetInvolvedRoute = GetInvolvedRouteImport.update({
+  id: '/get-involved',
+  path: '/get-involved',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DonateRoute = DonateRouteImport.update({
+  id: '/donate',
+  path: '/donate',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DonateSuccessRoute = DonateSuccessRouteImport.update({
+  id: '/success',
+  path: '/success',
+  getParentRoute: () => DonateRoute,
+} as any)
+const DonateReviewRoute = DonateReviewRouteImport.update({
+  id: '/review',
+  path: '/review',
+  getParentRoute: () => DonateRoute,
+} as any)
+const DonatePaymentRoute = DonatePaymentRouteImport.update({
+  id: '/payment',
+  path: '/payment',
+  getParentRoute: () => DonateRoute,
+} as any)
+const DonateFlowRoute = DonateFlowRouteImport.update({
+  id: '/flow',
+  path: '/flow',
+  getParentRoute: () => DonateRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/donate': typeof DonateRouteWithChildren
+  '/get-involved': typeof GetInvolvedRoute
+  '/impact': typeof ImpactRoute
+  '/programs': typeof ProgramsRoute
+  '/donate/flow': typeof DonateFlowRoute
+  '/donate/payment': typeof DonatePaymentRoute
+  '/donate/review': typeof DonateReviewRoute
+  '/donate/success': typeof DonateSuccessRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/donate': typeof DonateRouteWithChildren
+  '/get-involved': typeof GetInvolvedRoute
+  '/impact': typeof ImpactRoute
+  '/programs': typeof ProgramsRoute
+  '/donate/flow': typeof DonateFlowRoute
+  '/donate/payment': typeof DonatePaymentRoute
+  '/donate/review': typeof DonateReviewRoute
+  '/donate/success': typeof DonateSuccessRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/donate': typeof DonateRouteWithChildren
+  '/get-involved': typeof GetInvolvedRoute
+  '/impact': typeof ImpactRoute
+  '/programs': typeof ProgramsRoute
+  '/donate/flow': typeof DonateFlowRoute
+  '/donate/payment': typeof DonatePaymentRoute
+  '/donate/review': typeof DonateReviewRoute
+  '/donate/success': typeof DonateSuccessRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/donate'
+    | '/get-involved'
+    | '/impact'
+    | '/programs'
+    | '/donate/flow'
+    | '/donate/payment'
+    | '/donate/review'
+    | '/donate/success'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/donate'
+    | '/get-involved'
+    | '/impact'
+    | '/programs'
+    | '/donate/flow'
+    | '/donate/payment'
+    | '/donate/review'
+    | '/donate/success'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/donate'
+    | '/get-involved'
+    | '/impact'
+    | '/programs'
+    | '/donate/flow'
+    | '/donate/payment'
+    | '/donate/review'
+    | '/donate/success'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  DonateRoute: typeof DonateRouteWithChildren
+  GetInvolvedRoute: typeof GetInvolvedRoute
+  ImpactRoute: typeof ImpactRoute
+  ProgramsRoute: typeof ProgramsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/programs': {
+      id: '/programs'
+      path: '/programs'
+      fullPath: '/programs'
+      preLoaderRoute: typeof ProgramsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impact': {
+      id: '/impact'
+      path: '/impact'
+      fullPath: '/impact'
+      preLoaderRoute: typeof ImpactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/get-involved': {
+      id: '/get-involved'
+      path: '/get-involved'
+      fullPath: '/get-involved'
+      preLoaderRoute: typeof GetInvolvedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/donate': {
+      id: '/donate'
+      path: '/donate'
+      fullPath: '/donate'
+      preLoaderRoute: typeof DonateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,12 +200,72 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/donate/success': {
+      id: '/donate/success'
+      path: '/success'
+      fullPath: '/donate/success'
+      preLoaderRoute: typeof DonateSuccessRouteImport
+      parentRoute: typeof DonateRoute
+    }
+    '/donate/review': {
+      id: '/donate/review'
+      path: '/review'
+      fullPath: '/donate/review'
+      preLoaderRoute: typeof DonateReviewRouteImport
+      parentRoute: typeof DonateRoute
+    }
+    '/donate/payment': {
+      id: '/donate/payment'
+      path: '/payment'
+      fullPath: '/donate/payment'
+      preLoaderRoute: typeof DonatePaymentRouteImport
+      parentRoute: typeof DonateRoute
+    }
+    '/donate/flow': {
+      id: '/donate/flow'
+      path: '/flow'
+      fullPath: '/donate/flow'
+      preLoaderRoute: typeof DonateFlowRouteImport
+      parentRoute: typeof DonateRoute
+    }
   }
 }
 
+interface DonateRouteChildren {
+  DonateFlowRoute: typeof DonateFlowRoute
+  DonatePaymentRoute: typeof DonatePaymentRoute
+  DonateReviewRoute: typeof DonateReviewRoute
+  DonateSuccessRoute: typeof DonateSuccessRoute
+}
+
+const DonateRouteChildren: DonateRouteChildren = {
+  DonateFlowRoute: DonateFlowRoute,
+  DonatePaymentRoute: DonatePaymentRoute,
+  DonateReviewRoute: DonateReviewRoute,
+  DonateSuccessRoute: DonateSuccessRoute,
+}
+
+const DonateRouteWithChildren =
+  DonateRoute._addFileChildren(DonateRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  DonateRoute: DonateRouteWithChildren,
+  GetInvolvedRoute: GetInvolvedRoute,
+  ImpactRoute: ImpactRoute,
+  ProgramsRoute: ProgramsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

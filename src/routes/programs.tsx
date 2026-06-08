@@ -1,0 +1,224 @@
+import { createFileRoute } from "@tanstack/react-router";
+
+const html = `<!-- TopNavBar (Shared Component) -->
+<nav class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-md transition-all duration-300" id="navbar">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-6 max-w-container-max mx-auto">
+<!-- Brand -->
+<a class="flex items-center gap-2 group" href="#">
+<span class="material-symbols-outlined text-primary text-[32px] group-hover:scale-110 transition-transform duration-300" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="font-headline-md text-headline-md font-bold text-primary tracking-tight">YAD</span>
+</a>
+<!-- Desktop Navigation -->
+<div class="hidden md:flex items-center gap-8 bg-surface-container-low/80 px-8 py-3 rounded-full border border-surface-container-highest shadow-sm backdrop-blur-md">
+<a class="text-on-surface-variant hover:text-primary font-label-bold text-label-bold transition-colors" href="/">Home</a>
+<a class="text-on-surface-variant hover:text-primary font-label-bold text-label-bold transition-colors" href="/about">About Us</a>
+<a class="text-secondary font-bold border-b-2 border-secondary pb-1 font-label-bold text-label-bold transition-colors" href="/programs">Features</a>
+<a class="text-on-surface-variant hover:text-primary font-label-bold text-label-bold transition-colors" href="/impact">Our Work</a>
+<a class="text-on-surface-variant hover:text-primary font-label-bold text-label-bold transition-colors" href="/get-involved">Contact</a>
+</div>
+<!-- Actions -->
+<div class="hidden md:flex items-center gap-4">
+<button class="px-6 py-2.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-bold text-label-bold hover:bg-secondary-fixed-dim hover:scale-105 transition-all duration-300 shadow-sm">Donate</button>
+<button class="px-6 py-2.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-bold text-label-bold hover:bg-tertiary-fixed-dim hover:scale-105 transition-all duration-300 shadow-sm">Join Us</button>
+</div>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-primary p-2 rounded-full hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+</div>
+</nav>
+<main class="pt-32 pb-section-gap">
+<!-- Hero Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-section-gap relative">
+<div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-24 relative z-10">
+<div class="lg:w-1/2 flex flex-col gap-6 items-start z-20">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary-fixed/30 text-primary-container font-label-bold text-label-bold border border-secondary-fixed/50 backdrop-blur-sm">
+<span class="material-symbols-outlined text-[18px]">volunteer_activism</span>
+                        Core Initiatives
+                    </div>
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-primary max-w-2xl leading-tight">
+                        Empowering Youth,<br/>
+<span class="text-secondary">Building Futures.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                        Our core programs are designed to provide holistic support, practical skills, and educational foundation to youth in need, fostering sustainable development in our communities.
+                    </p>
+<div class="flex flex-wrap items-center gap-4 mt-4">
+<button class="px-8 py-4 rounded-full bg-primary text-on-primary font-label-bold text-label-bold hover:bg-on-primary-fixed hover:scale-105 transition-all duration-300 shadow-lg shadow-primary/20 flex items-center gap-2 group">
+                            Explore Programs
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="px-8 py-4 rounded-full bg-transparent text-primary font-label-bold text-label-bold hover:bg-surface-container-low transition-all duration-300 flex items-center gap-2">
+<span class="material-symbols-outlined">play_circle</span>
+                            Watch Impact Video
+                        </button>
+</div>
+</div>
+<div class="lg:w-1/2 w-full relative">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary-fixed/20 to-tertiary-fixed/20 rounded-[3rem] blur-2xl transform -rotate-3 scale-105 z-0"></div>
+<img alt="Youth education and community building" class="relative z-10 w-full h-[500px] object-cover rounded-[3rem] ambient-shadow" data-alt="A vibrant, modern scene of diverse young students collaborating around a sleek table in a well-lit, contemporary educational space. Sunlight streams through large windows, illuminating lush indoor plants. The atmosphere is optimistic, nurturing, and energetic, reflecting sustainable development. High-key lighting, soft modern aesthetic, primary green and tertiary blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT1QTQxDJGcAVYl462QrQRfAjuuVHp_gAOT-nH4DnU8KFmSIsme3MXPENpYWTAPucYsEceeD5hQuRscSmXcP4WSlvX62dH1lkw1XyTh6HrTX01NeI_-gF_wQnjVUGsyH1S_CDQAmGaRqWrA5_wb9TAR4yh0EoUe0cc1uoJSTOm4hAaG2EllLCih_yso85hWCtJQdx2fR4yGzoOD_bDrKdhub4A4V-3FNBe81IaTh-Ysv3dF5G2vYLYWYl6dUqNmlOAU4HyYrNL7gk"/>
+<!-- Floating Stat Badge -->
+<div class="absolute -bottom-8 -left-8 glass-panel p-6 rounded-2xl z-20 ambient-shadow flex items-center gap-4 border border-white/40">
+<div class="w-14 h-14 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">groups</span>
+</div>
+<div>
+<p class="font-headline-md text-headline-md text-primary m-0 leading-none">5,000+</p>
+<p class="font-label-bold text-label-bold text-on-surface-variant m-0 mt-1">Youth Reached</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Program 1: Dormitory & Youth Training -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-section-gap">
+<div class="bg-surface-container-lowest rounded-[3rem] p-8 md:p-16 ambient-shadow relative overflow-hidden flex flex-col lg:flex-row items-center gap-16 border border-surface-container-low">
+<!-- Decorative element -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-secondary-fixed/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+<div class="lg:w-1/2 relative z-10">
+<div class="w-16 h-16 rounded-2xl bg-secondary-fixed flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-[32px]" style="font-variation-settings: 'FILL' 1;">home_work</span>
+</div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">Dormitory &amp; Youth Training Center</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 max-w-lg">
+                        Providing a safe, supportive living environment paired with intensive life-skills and vocational training. We ensure that vulnerable youth have the stability they need to focus on their personal and professional growth.
+                    </p>
+<div class="grid grid-cols-2 gap-6 mb-8">
+<div class="bg-surface p-4 rounded-xl border border-surface-container-high">
+<p class="font-headline-md text-headline-md text-secondary m-0">120</p>
+<p class="font-label-bold text-label-bold text-on-surface-variant m-0">Current Residents</p>
+</div>
+<div class="bg-surface p-4 rounded-xl border border-surface-container-high">
+<p class="font-headline-md text-headline-md text-secondary m-0">45</p>
+<p class="font-label-bold text-label-bold text-on-surface-variant m-0">Training Modules</p>
+</div>
+</div>
+<button class="flex items-center gap-2 text-primary font-label-bold text-label-bold group">
+                        Learn about the center
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
+</button>
+</div>
+<div class="lg:w-1/2 relative z-10">
+<img alt="Youth training center" class="w-full h-[400px] object-cover rounded-[2rem] shadow-lg" data-alt="A bright, airy dormitory and training center lounge area. Young adults are seen casually interacting and studying together in a modern, welcoming environment. The room features soft, rounded furniture in neutral tones with green accents, large windows letting in natural light, and a feeling of safety and community. High-key lighting, organic modern style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSTlvY3Z130WihkC8qYGBcnypzkq7Ioo0xJCzXxPkNvBV7G7CaifUoPHXU2x6QOb72Zb3wKnocH95KHzRsmNj781s4ZB4nCMlTNSvEJQ7dZOe5jGSYpuJ7bXuonZ-O0Wx4g_GMXOTmMPAI481_82gaq6yjsCn4HsegYuMV9zxZPlCkDEyEXQx81HzLcicoW_5sXYA_Sj_4Bu0-kVgBC3a_3DTmwQciGr8CN_DsZDj-PxG8PVfAOc2JKF22OahTm27MdIAHSU-hEjg"/>
+</div>
+</div>
+</section>
+<!-- Program 2: Digital Innovation (Asymmetric Layout) -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-section-gap">
+<div class="flex flex-col-reverse lg:flex-row items-center gap-16">
+<div class="lg:w-5/12 relative">
+<!-- Offset background shape -->
+<div class="absolute inset-0 bg-tertiary-fixed rounded-[3rem] transform -translate-x-6 translate-y-6 z-0"></div>
+<img alt="Digital Innovation Lab" class="relative z-10 w-full h-[450px] object-cover rounded-[2.5rem]" data-alt="A state-of-the-art digital innovation lab filled with young students focused on modern laptops and coding interfaces. The room is sleek and modern, utilizing white and soft blue aesthetics. Subtle ambient lighting highlights the technology, while the overall mood is energetic, focused, and forward-thinking. Modern corporate mixed with organic minimalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh5MVf0BbaOpjtMSJKuywS-u9RQKW1V3NB0PDyQ8SX5joHusuFExsnJBDBOV8W6w54D5HXP9Ki9yf02G4m3REQpMx5jZgWdxfibqRkH2jq1_eSDqQ8_aVNR8o2r-1egTjwmJtheXk4wsrav62x7XoIX88owJn_iBjkV5CI1i8mrYpVnvVhZUInIgSiHc6gm8GyH2McB_RXB5Ghap0EQ1kQpUeBvRolpPJJ2HFG8NmeICGsJPdQAjBVgB5PyqEU549SGJfihWL11_E"/>
+<!-- Floating feature card -->
+<div class="absolute top-1/2 -right-12 transform -translate-y-1/2 glass-panel p-5 rounded-2xl z-20 ambient-shadow border border-white/50 w-48 hidden lg:block">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-tertiary">code</span>
+<span class="font-label-bold text-label-bold text-on-surface">Tech Skills</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-2">
+<div class="bg-tertiary h-2 rounded-full w-4/5"></div>
+</div>
+</div>
+</div>
+<div class="lg:w-7/12 lg:pl-12">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-tertiary-fixed/30 text-tertiary font-label-bold text-label-bold border border-tertiary-fixed/50 mb-6">
+<span class="material-symbols-outlined text-[18px]">laptop_mac</span>
+                        Tech Focus
+                    </div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-6">Digital Innovation &amp; IT Labs</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                        Bridging the digital divide by providing access to modern technology and vital digital literacy skills. Our fully equipped IT labs serve as hubs for coding, digital marketing, and essential computer skills training.
+                    </p>
+<ul class="space-y-4 mb-8">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-0.5">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">3 Fully equipped IT laboratories across the region.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-0.5">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Comprehensive curriculum including basic IT to advanced programming.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-0.5">check_circle</span>
+<span class="font-body-md text-body-md text-on-surface">Partnered with local tech firms for direct internship pipelines.</span>
+</li>
+</ul>
+<button class="px-6 py-3 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-bold text-label-bold hover:bg-tertiary-fixed-dim hover:scale-105 transition-all duration-300">
+                        View Curriculum
+                    </button>
+</div>
+</div>
+</section>
+<!-- Program 3: Slum Community Education (Bento Grid Style) -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="text-center max-w-2xl mx-auto mb-12">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">Slum Community Education</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Taking education directly to where it's needed most. Our mobile tutoring programs and pop-up classrooms ensure no child is left behind due to geographical or economic barriers.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[500px]">
+<!-- Main Image Card -->
+<div class="md:col-span-7 lg:col-span-8 rounded-[2rem] overflow-hidden relative group">
+<img alt="Community Education" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A heartwarming scene of a mobile pop-up classroom in a community setting. Children are engaged in learning with volunteer tutors in an open, airy environment. Soft, warm sunlight filters through, creating an optimistic and hopeful mood. The style is documentary yet polished, emphasizing approachable and nurturing education. Earth tones with vibrant green accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4526IKjWcI4RJxk3qAgouc0eO9zhfnmt7MFArg78J_hTFCqTO2ZR9tktNeNQpS0LsRtTffds5I9lhRyWymnHkUyAfnGnKbXtQwhrj3g02Hh_HjRN-8Y_EGNqMYOtyP6EF74LDtsFh1j2aMfot9WGHodOHfg1bBSAUrwbv255RSS-KzGD4EgKIjBR4kn41JCukOQH8fEwGDbuXhcMWpFpmo4meR4rbksa0WL99LavckKa1bfA4zIAAgbrt1liWeZrU0uwtW0S4QJA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-8">
+<div class="bg-primary/90 backdrop-blur-sm w-fit p-3 rounded-xl mb-4">
+<span class="material-symbols-outlined text-white text-3xl">school</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-white mb-2">Mobile Tutoring Units</h3>
+<p class="font-body-md text-body-md text-surface-container-low max-w-lg">Reaching over 500 children weekly in marginalized areas with basic literacy and numeracy programs.</p>
+</div>
+</div>
+<!-- Stats/Info Cards -->
+<div class="md:col-span-5 lg:col-span-4 flex flex-col gap-6">
+<div class="bg-surface-container-low rounded-[2rem] p-8 h-1/2 flex flex-col justify-center border border-surface-container-high hover:-translate-y-1 transition-transform duration-300">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">menu_book</span>
+</div>
+<h4 class="font-label-bold text-label-bold text-primary">Tutoring Goals</h4>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Our goal is to integrate 80% of participating children into formal schooling systems within 12 months.</p>
+</div>
+<div class="bg-secondary-fixed rounded-[2rem] p-8 h-1/2 flex flex-col justify-center relative overflow-hidden group cursor-pointer hover:bg-secondary-fixed-dim transition-colors duration-300">
+<div class="relative z-10">
+<h4 class="font-headline-md text-headline-md text-on-secondary-fixed mb-2">Volunteer</h4>
+<p class="font-body-md text-body-md text-on-secondary-fixed-variant mb-4">Join our community educators team.</p>
+<span class="material-symbols-outlined text-on-secondary-fixed bg-white/30 p-2 rounded-full group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</div>
+<span class="material-symbols-outlined absolute -right-6 -bottom-6 text-[120px] text-white/20 transform -rotate-12 group-hover:rotate-0 transition-transform duration-500">diversity_3</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface-container-low rounded-t-lg mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-12 gap-8 w-full max-w-container-max mx-auto">
+<div class="flex flex-col items-center md:items-start gap-4">
+<a class="flex items-center gap-2" href="#">
+<span class="font-headline-md text-headline-md font-bold text-primary">YAD</span>
+</a>
+<p class="font-body-md text-body-md text-on-surface-variant text-center md:text-left">
+                    © 2024 Youth Advancement for Development (YAD). All rights reserved.
+                </p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Impact Report</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Careers</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Contact Us</a>
+</div>
+</div>
+</footer>`;
+
+export const Route = createFileRoute("/programs")({
+  head: () => ({ meta: [{ title: 'Programs — YAD' }] }),
+  component: Page,
+});
+
+function Page() {
+  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+}
