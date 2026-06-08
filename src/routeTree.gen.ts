@@ -51,24 +51,24 @@ const DonateIndexRoute = DonateIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const DonateSuccessRoute = DonateSuccessRouteImport.update({
-  id: '/success',
-  path: '/success',
-  getParentRoute: () => DonateRoute,
+  id: '/donate/success',
+  path: '/donate/success',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const DonateReviewRoute = DonateReviewRouteImport.update({
-  id: '/review',
-  path: '/review',
-  getParentRoute: () => DonateRoute,
+  id: '/donate/review',
+  path: '/donate/review',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const DonatePaymentRoute = DonatePaymentRouteImport.update({
-  id: '/payment',
-  path: '/payment',
-  getParentRoute: () => DonateRoute,
+  id: '/donate/payment',
+  path: '/donate/payment',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const DonateFlowRoute = DonateFlowRouteImport.update({
-  id: '/flow',
-  path: '/flow',
-  getParentRoute: () => DonateRoute,
+  id: '/donate/flow',
+  path: '/donate/flow',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -153,6 +153,10 @@ export interface RootRouteChildren {
   GetInvolvedRoute: typeof GetInvolvedRoute
   ImpactRoute: typeof ImpactRoute
   ProgramsRoute: typeof ProgramsRoute
+  DonateFlowRoute: typeof DonateFlowRoute
+  DonatePaymentRoute: typeof DonatePaymentRoute
+  DonateReviewRoute: typeof DonateReviewRoute
+  DonateSuccessRoute: typeof DonateSuccessRoute
   DonateIndexRoute: typeof DonateIndexRoute
 }
 
@@ -202,31 +206,31 @@ declare module '@tanstack/react-router' {
     }
     '/donate/success': {
       id: '/donate/success'
-      path: '/success'
+      path: '/donate/success'
       fullPath: '/donate/success'
       preLoaderRoute: typeof DonateSuccessRouteImport
-      parentRoute: typeof DonateRoute
+      parentRoute: typeof rootRouteImport
     }
     '/donate/review': {
       id: '/donate/review'
-      path: '/review'
+      path: '/donate/review'
       fullPath: '/donate/review'
       preLoaderRoute: typeof DonateReviewRouteImport
-      parentRoute: typeof DonateRoute
+      parentRoute: typeof rootRouteImport
     }
     '/donate/payment': {
       id: '/donate/payment'
-      path: '/payment'
+      path: '/donate/payment'
       fullPath: '/donate/payment'
       preLoaderRoute: typeof DonatePaymentRouteImport
-      parentRoute: typeof DonateRoute
+      parentRoute: typeof rootRouteImport
     }
     '/donate/flow': {
       id: '/donate/flow'
-      path: '/flow'
+      path: '/donate/flow'
       fullPath: '/donate/flow'
       preLoaderRoute: typeof DonateFlowRouteImport
-      parentRoute: typeof DonateRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -237,6 +241,10 @@ const rootRouteChildren: RootRouteChildren = {
   GetInvolvedRoute: GetInvolvedRoute,
   ImpactRoute: ImpactRoute,
   ProgramsRoute: ProgramsRoute,
+  DonateFlowRoute: DonateFlowRoute,
+  DonatePaymentRoute: DonatePaymentRoute,
+  DonateReviewRoute: DonateReviewRoute,
+  DonateSuccessRoute: DonateSuccessRoute,
   DonateIndexRoute: DonateIndexRoute,
 }
 export const routeTree = rootRouteImport
