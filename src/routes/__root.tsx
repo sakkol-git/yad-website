@@ -158,8 +158,6 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="light">
       <head>
-        <script dangerouslySetInnerHTML={{ __html: tailwindConfigScript }} />
-        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
         <HeadContent />
       </head>
       <body className="bg-surface text-on-surface font-body-md antialiased overflow-x-hidden">
