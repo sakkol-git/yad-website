@@ -1,6 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-const html = `<!-- TopNavBar -->
+<!-- TopNavBar -->
 <nav class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-md bg-transparent flat no shadows transition-all duration-300">
 <div class="flex justify-between items-center px-margin-desktop py-6 max-w-container-max mx-auto">
 <a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed" href="#">YAD</a>
@@ -137,13 +135,4 @@ const html = `<!-- TopNavBar -->
 <a class="text-on-surface-variant dark:text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors" href="#">Contact Us</a>
 </div>
 </div>
-</footer>`;
-
-export const Route = createFileRoute("/")({
-  head: () => ({ meta: [{ title: 'YAD — Youth Advancement for Development' }] }),
-  component: Page,
-});
-
-function Page() {
-  return <div dangerouslySetInnerHTML={{ __html: html }} />;
-}
+</footer>

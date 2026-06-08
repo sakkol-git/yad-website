@@ -1,0 +1,225 @@
+<!-- TopNavBar Component -->
+<header class="bg-surface/90 backdrop-blur-md text-primary font-body-md font-subheading sticky top-0 w-full z-50 transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-gutter py-4">
+<!-- Brand Logo -->
+<a class="font-headline-lg text-headline-lg font-bold text-primary flex items-center gap-2" href="#">
+<span class="material-symbols-outlined icon-fill text-secondary text-4xl">eco</span>
+                YAD
+            </a>
+<!-- Navigation Links (Hidden on mobile) -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80" href="/programs">Programs</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80" href="/impact">Impact</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80" href="#">Stories</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80" href="#">About</a>
+</nav>
+<!-- Actions -->
+<div class="hidden md:flex items-center gap-4">
+<button class="font-label-bold text-label-bold text-primary hover:opacity-80 transition-opacity px-6 py-3 rounded-full">
+                    Join Us
+                </button>
+<button class="font-label-bold text-label-bold bg-secondary text-on-secondary hover:opacity-90 transition-all hover:scale-105 px-8 py-3 rounded-full shadow-md">
+                    Donate
+                </button>
+</div>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-primary p-2">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="max-w-container-max mx-auto px-gutter md:px-margin-desktop py-12 md:py-20">
+<!-- Progress Indicator -->
+<div class="w-full max-w-3xl mx-auto mb-16">
+<div class="flex justify-between items-center relative">
+<!-- Progress Line Background -->
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-surface-container rounded-full z-0"></div>
+<!-- Active Progress Line -->
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-secondary rounded-full z-0 transition-all duration-500"></div>
+<!-- Step 1: Details (Completed) -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-label-bold text-label-bold shadow-md">
+<span class="material-symbols-outlined icon-fill text-xl">check</span>
+</div>
+<span class="font-label-bold text-label-bold text-secondary">Details</span>
+</div>
+<!-- Step 2: Payment (Completed) -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-label-bold text-label-bold shadow-md">
+<span class="material-symbols-outlined icon-fill text-xl">check</span>
+</div>
+<span class="font-label-bold text-label-bold text-secondary">Payment</span>
+</div>
+<!-- Step 3: Review (Active) -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-12 h-12 rounded-full bg-surface border-4 border-secondary text-secondary flex items-center justify-center font-label-bold text-label-bold shadow-lg scale-110">
+                        3
+                    </div>
+<span class="font-label-bold text-label-bold text-on-surface">Review</span>
+</div>
+</div>
+</div>
+<!-- Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+<!-- Left Column: Review Form -->
+<div class="lg:col-span-7 xl:col-span-8 flex flex-col gap-8">
+<div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">Review Your Donation</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Please review the details below before completing your contribution to Youth Advancement for Development.</p>
+</div>
+<!-- Details Card -->
+<div class="bg-surface-container-lowest rounded-xl ambient-shadow p-6 md:p-10 border border-surface-container-high relative overflow-hidden">
+<!-- Decorative subtle gradient blob -->
+<div class="absolute -top-20 -right-20 w-64 h-64 bg-secondary-container/30 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex justify-between items-center mb-8 pb-4 border-b border-surface-container">
+<h2 class="font-headline-md text-headline-md text-primary">Donation Summary</h2>
+<button class="text-secondary hover:text-primary transition-colors flex items-center gap-1 font-label-bold text-label-bold">
+<span class="material-symbols-outlined text-sm">edit</span>
+                            Edit
+                        </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+<!-- Donor Info Group -->
+<div class="flex flex-col gap-6">
+<div>
+<span class="block font-label-bold text-label-bold text-outline mb-1 uppercase tracking-wider text-xs">Donor Name</span>
+<span class="font-body-lg text-body-lg text-on-surface">Alex Mercer</span>
+</div>
+<div>
+<span class="block font-label-bold text-label-bold text-outline mb-1 uppercase tracking-wider text-xs">Email Address</span>
+<span class="font-body-lg text-body-lg text-on-surface">alex.mercer@example.com</span>
+</div>
+<div>
+<span class="block font-label-bold text-label-bold text-outline mb-1 uppercase tracking-wider text-xs">Frequency</span>
+<span class="inline-flex items-center gap-2 bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-bold text-label-bold text-sm">
+<span class="material-symbols-outlined text-sm">calendar_month</span>
+                                    Monthly
+                                </span>
+</div>
+</div>
+<!-- Payment Info Group -->
+<div class="flex flex-col gap-6">
+<div>
+<span class="block font-label-bold text-label-bold text-outline mb-1 uppercase tracking-wider text-xs">Payment Method</span>
+<div class="flex items-center gap-3">
+<div class="w-12 h-8 bg-surface-container-highest rounded flex items-center justify-center text-on-surface-variant font-label-bold text-xs">
+                                        VISA
+                                    </div>
+<span class="font-body-lg text-body-lg text-on-surface">•••• 4242</span>
+</div>
+</div>
+<div>
+<span class="block font-label-bold text-label-bold text-outline mb-1 uppercase tracking-wider text-xs">Billing Zip Code</span>
+<span class="font-body-lg text-body-lg text-on-surface">90210</span>
+</div>
+</div>
+</div>
+<!-- Consent Checkbox -->
+<div class="mt-10 pt-6 border-t border-surface-container">
+<label class="flex items-start gap-4 cursor-pointer group">
+<div class="relative flex items-center justify-center mt-1">
+<input checked="" class="peer appearance-none w-6 h-6 border-2 border-outline rounded text-secondary focus:ring-secondary focus:ring-offset-background checked:bg-secondary checked:border-secondary transition-all" type="checkbox"/>
+<span class="material-symbols-outlined text-on-secondary absolute text-sm opacity-0 peer-checked:opacity-100 pointer-events-none">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">
+                                I agree to cover the 3% transaction fee so that 100% of my donation goes directly to the programs.
+                            </span>
+</label>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col-reverse md:flex-row items-center justify-between gap-4 mt-4">
+<button class="w-full md:w-auto font-label-bold text-label-bold text-primary px-8 py-4 rounded-full border-2 border-surface-container-highest hover:bg-surface-container hover:border-surface-container transition-all text-center">
+                        Back
+                    </button>
+<button class="w-full md:w-auto font-label-bold text-label-bold bg-secondary text-on-secondary px-10 py-4 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 hover:bg-primary transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">lock</span>
+                        Confirm &amp; Pay $50.00
+                    </button>
+</div>
+<div class="text-center text-outline text-sm flex items-center justify-center gap-2 mt-2">
+<span class="material-symbols-outlined text-sm">verified_user</span>
+                    Secure 256-bit SSL encryption
+                </div>
+</div>
+<!-- Right Column: Sidebar Summary -->
+<div class="lg:col-span-5 xl:col-span-4 sticky top-32">
+<div class="bg-primary text-on-primary rounded-xl overflow-hidden ambient-shadow flex flex-col">
+<!-- Impact Image Header -->
+<div class="h-48 relative overflow-hidden bg-surface-tint">
+<img alt="Smiling youth outdoors in sunlight" class="w-full h-full object-cover opacity-80 mix-blend-luminosity" data-alt="A bright, high-quality environmental photograph of a diverse group of smiling youth planting saplings in a sunlit outdoor community garden. The lighting is warm and natural, casting soft shadows. The overall mood is optimistic, energetic, and actionable, perfectly aligning with a modern, hopeful visual aesthetic. The color palette emphasizes vibrant natural greens and earthy tones, complementing the primary branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnwrgfWNcALsmdbQV45Sp1vCrN6DM260f_7z-8tnv60Qy40ox0K2ZTHQqH1qfQEzrtFeTHIkunHkTFML8vuERdDsvHl_DfkHHN8CvPPRGHhpg-TM8xszO8wJtkha14r5AV7O-IcO5TAU-4y746UqvW3RHpLQV-7-32VsJEugTw_ZWOVA-rgcuXy5AaeXGogH0xOjx_7eLPckgUGTM4u81Rn8bfhOCe6vr-bRVmCSTwjlNrPfNgNHkexrDDQXdr3oyu2K2bdK9-gaw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent"></div>
+<div class="absolute bottom-4 left-6 right-6">
+<span class="inline-block bg-tertiary-container text-on-tertiary-container font-label-bold text-xs uppercase tracking-wide px-3 py-1 rounded-full mb-2 backdrop-blur-sm">Impact Summary</span>
+</div>
+</div>
+<div class="p-6 md:p-8 flex flex-col gap-6">
+<!-- Total Amount -->
+<div class="flex justify-between items-end border-b border-on-primary/20 pb-6">
+<span class="font-body-lg text-body-lg text-on-primary/80">Total Donation</span>
+<span class="font-headline-lg text-headline-lg font-bold text-secondary-container">$50<span class="text-2xl text-on-primary/60">.00</span></span>
+</div>
+<!-- Impact Message -->
+<div class="bg-primary-container rounded-lg p-5 flex items-start gap-4">
+<div class="bg-secondary text-on-secondary p-2 rounded-full shrink-0">
+<span class="material-symbols-outlined">psychiatry</span>
+</div>
+<p class="font-body-md text-body-md text-on-primary-container m-0">
+                                Your $50 monthly contribution provides essential learning materials for one student for an entire semester.
+                            </p>
+</div>
+<p class="font-body-md text-body-md text-on-primary/70 text-center italic mt-2">
+                            "Thank you for investing in our future leaders."
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="bg-primary text-on-primary font-body-sm font-headline-lg w-full rounded-t-lg mt-20 transition-opacity duration-200">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-container-max mx-auto px-gutter py-20">
+<!-- Brand Column -->
+<div class="col-span-1 md:col-span-1 flex flex-col gap-4">
+<span class="font-headline-lg text-headline-lg text-on-primary flex items-center gap-2">
+<span class="material-symbols-outlined icon-fill">eco</span>
+                    YAD
+                </span>
+<p class="text-on-primary/80 font-body-sm mt-2">Empowering youth through sustainable development and community-driven initiatives.</p>
+</div>
+<!-- Links Column 1 -->
+<div class="col-span-1 flex flex-col gap-3">
+<h4 class="font-label-bold text-label-bold uppercase tracking-wider text-secondary-container mb-2">Organization</h4>
+<a class="text-on-primary/80 hover:text-secondary-fixed transition-colors" href="/about">About Us</a>
+<a class="text-on-primary/80 hover:text-secondary-fixed transition-colors" href="#">Our Team</a>
+<a class="text-on-primary/80 hover:text-secondary-fixed transition-colors" href="#">Careers</a>
+</div>
+<!-- JSON Links mapped -->
+<div class="col-span-1 flex flex-col gap-3">
+<h4 class="font-label-bold text-label-bold uppercase tracking-wider text-secondary-container mb-2">Legal &amp; Resources</h4>
+<a class="text-on-primary/80 hover:text-secondary-fixed transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-primary/80 hover:text-secondary-fixed transition-colors" href="#">Terms of Service</a>
+<a class="text-on-primary/80 hover:text-secondary-fixed transition-colors" href="#">Annual Reports</a>
+<a class="text-on-primary/80 hover:text-secondary-fixed transition-colors" href="#">Contact Us</a>
+</div>
+<!-- Social/Action Column -->
+<div class="col-span-1 flex flex-col gap-4">
+<h4 class="font-label-bold text-label-bold uppercase tracking-wider text-secondary-container mb-2">Connect</h4>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container hover:bg-secondary hover:text-on-secondary transition-all" href="#">
+<span class="material-symbols-outlined">share</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container hover:bg-secondary hover:text-on-secondary transition-all" href="#">
+<span class="material-symbols-outlined">mail</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Copyright Banner -->
+<div class="border-t border-on-primary/10">
+<div class="max-w-container-max mx-auto px-gutter py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-on-primary/60">
+<span>© 2024 Youth Advancement for Development Organization. All rights reserved.</span>
+</div>
+</div>
+</footer>
