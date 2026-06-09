@@ -31,7 +31,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
   return (
     <footer className="bg-surface-container-highest dark:bg-primary/5 rounded-t-[1rem] mt-auto pt-20 pb-8 border-t-8 border-primary relative overflow-hidden">
       {/* Decorative subtle background element */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[150vw] max-w-[500px] aspect-square bg-primary/5 rounded-full blur-[60px] md:blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
 
       <div className="px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto relative z-10">
 
@@ -39,7 +39,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
 
           {/* Column 1: Brand & Mission */}
-          <div className="flex flex-col gap-6 lg:pr-8">
+          <div className="flex flex-col items-start text-left gap-6 lg:pr-8 pl-12 md:pl-0">
             <Link href="/" className="flex items-center gap-3 group w-fit">
               <div className="bg-surface p-2 rounded-2xl shadow-sm border border-outline-variant/30">
                 <Image
@@ -68,7 +68,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
           </div>
 
           {/* Column 2: Explore */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col items-start text-left gap-6 pl-12 md:pl-0">
             <h3 className="font-title-lg text-title-lg font-bold text-on-surface relative inline-block w-fit">
               Explore
               <span className="absolute -bottom-2 left-0 w-1/2 h-1 bg-primary rounded-full"></span>
@@ -82,7 +82,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
           </div>
 
           {/* Column 3: Get Involved */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col items-start text-left gap-6 pl-12 md:pl-0">
             <h3 className="font-title-lg text-title-lg font-bold text-on-surface relative inline-block w-fit">
               Get Involved
               <span className="absolute -bottom-2 left-0 w-1/2 h-1 bg-secondary rounded-full"></span>
@@ -96,7 +96,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
           </div>
 
           {/* Column 4: Contact Information */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col items-start text-left gap-6 pl-12 md:pl-0">
             <h3 className="font-title-lg text-title-lg font-bold text-on-surface relative inline-block w-fit">
               Contact Us
               <span className="absolute -bottom-2 left-0 w-1/2 h-1 bg-tertiary rounded-full"></span>
@@ -134,8 +134,8 @@ export default function Footer({ variant = "full" }: FooterProps) {
         <div className="w-full h-px bg-outline-variant/40 mb-8" />
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-4 text-center md:text-left">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 pl-12 md:pl-0">
+          <div className="flex flex-col md:flex-row items-start gap-2 md:gap-4 text-left">
             <p className="font-body-sm text-body-sm text-on-surface-variant font-medium">
               {COPYRIGHT_TEXT}
             </p>

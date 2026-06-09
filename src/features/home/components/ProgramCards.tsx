@@ -5,7 +5,7 @@ export function ProgramCards() {
   return (
     <section className="relative z-20 -mt-20 pb-section-gap px-margin-mobile md:px-margin-desktop">
 
-      <div className="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="w-full max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
         {/* Card 1 */}
         <Card className="bg-slate-200 backdrop-blur-xl border-white/20 hover:scale-[1.02] shadow-ambient">
           <CardContent className="flex flex-col items-center text-center p-8 pt-8">

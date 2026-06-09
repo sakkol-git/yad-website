@@ -5,8 +5,8 @@ import { Card, CardContent } from "@/components/ui/Card";
 export function CommunityVoices() {
   return (
     <section className="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low/50 relative overflow-hidden">
-      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-tertiary-container/30 rounded-full blur-3xl -z-10 -translate-y-1/2 -translate-x-1/2" />
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-secondary-container/20 rounded-full blur-3xl -z-10 translate-x-1/3 -translate-y-1/4" />
+      <div className="absolute top-1/2 left-0 w-[150vw] max-w-[500px] aspect-square bg-tertiary-container/30 rounded-full blur-3xl -z-10 -translate-y-1/2 -translate-x-1/2" />
+      <div className="absolute top-0 right-0 w-[180vw] max-w-[600px] aspect-square bg-secondary-container/20 rounded-full blur-3xl -z-10 translate-x-1/3 -translate-y-1/4" />
 
       <div className="max-w-container-max mx-auto text-center mb-16">
         <span className="text-tertiary font-label-bold text-label-bold tracking-wider uppercase mb-2 block">

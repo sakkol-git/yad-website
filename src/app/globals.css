@@ -20,7 +20,7 @@
   --color-secondary-container: #bfecae;
   --color-on-tertiary-fixed-variant: #344956;
   --color-on-primary: #ffffff;
-  --color-secondary-fixed: #c2efb1;
+  --color-secondary-fixed: #759169;
   --color-on-tertiary-fixed: #061e29;
   --color-primary-fixed: #baefc4;
   --color-on-error: #ffffff;
@@ -50,10 +50,10 @@
   --color-on-secondary-container: #456c3a;
 
   --spacing-container-max: 1280px;
-  --spacing-gutter: 24px;
-  --spacing-margin-mobile: 20px;
-  --spacing-section-gap: 120px;
-  --spacing-margin-desktop: 60px;
+  --spacing-gutter: clamp(16px, 3vw, 32px);
+  --spacing-margin-mobile: 16px;
+  --spacing-section-gap: clamp(64px, 8vw, 120px);
+  --spacing-margin-desktop: clamp(32px, 5vw, 64px);
 
   --radius-DEFAULT: 1rem;
   --radius-lg: 2rem;
@@ -75,24 +75,24 @@
   --text-body-md--line-height: 1.6;
   --text-body-md--font-weight: 400;
 
-  --text-body-lg: 18px;
+  --text-body-lg: clamp(16px, 1.5vw + 8px, 18px);
   --text-body-lg--line-height: 1.6;
   --text-body-lg--font-weight: 400;
 
-  --text-display-lg: 72px;
+  --text-display-lg: clamp(40px, 5vw + 16px, 72px);
   --text-display-lg--line-height: 1.1;
   --text-display-lg--letter-spacing: -0.04em;
   --text-display-lg--font-weight: 800;
 
-  --text-headline-md: 32px;
+  --text-headline-md: clamp(24px, 3vw + 8px, 32px);
   --text-headline-md--line-height: 1.3;
   --text-headline-md--font-weight: 700;
 
-  --text-headline-lg-mobile: 36px;
+  --text-headline-lg-mobile: clamp(28px, 4vw + 8px, 36px);
   --text-headline-lg-mobile--line-height: 1.2;
   --text-headline-lg-mobile--font-weight: 700;
 
-  --text-headline-lg: 48px;
+  --text-headline-lg: clamp(32px, 4vw + 16px, 48px);
   --text-headline-lg--line-height: 1.2;
   --text-headline-lg--letter-spacing: -0.02em;
   --text-headline-lg--font-weight: 700;
@@ -104,11 +104,15 @@ html {
 
 .material-symbols-outlined {
   font-family: "Material Symbols Outlined";
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
 }
 
 .icon-fill {
-  font-variation-settings: 'FILL' 1;
+  font-variation-settings: "FILL" 1;
 }
 
 .shadow-ambient {
@@ -145,12 +149,17 @@ html {
 }
 
 .soft-gradient {
-  background: linear-gradient(135deg, var(--color-surface-container-low) 0%, var(--color-surface-container-lowest) 50%, var(--color-secondary-container) 100%);
+  background: linear-gradient(135deg,
+      var(--color-surface-container-low) 0%,
+      var(--color-surface-container-lowest) 50%,
+      var(--color-secondary-container) 100%);
   opacity: 0.3;
 }
 
 .hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .hover-lift:hover {

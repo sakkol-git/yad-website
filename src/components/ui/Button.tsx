@@ -25,7 +25,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     
     const sizeClasses = {
       default: "h-12 px-6 py-3 font-label-bold text-[14px] tracking-wide rounded-xl",
-      sm: "h-10 px-4 py-2 font-label-bold text-[12px] tracking-wide rounded-lg",
+      sm: "min-h-[44px] px-4 py-2 font-label-bold text-[12px] tracking-wide rounded-lg",
       lg: "h-14 px-8 py-4 font-label-bold text-[16px] tracking-wide rounded-2xl",
       icon: "h-12 w-12 rounded-xl flex items-center justify-center",
     }
