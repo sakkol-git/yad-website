@@ -493,7 +493,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
       vision: "To empower rural villages to manage their resources sustainably and independently.",
       education: [
         "B.A. in Sociology, Royal University of Phnom Penh (Class of 2018)",
-        "Leadership in Community Development Certificate, Asian Institute of Technology",
+        "Leadership in Community Development Certificate, Asian Institute of the Technology",
       ],
       experience: [
         "Program Manager, Rural Water Initiative (2019 - Present)",
