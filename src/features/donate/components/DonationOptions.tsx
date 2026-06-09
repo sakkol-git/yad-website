@@ -1,8 +1,16 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 
 export function DonationOptions() {
+  const [selectedAmount, setSelectedAmount] = useState<number | "Custom">(50);
+
+  const amounts: (number | "Custom")[] = [25, 50, 100, "Custom"];
+
   return (
-    <section className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-section-gap">
+    <section id="options" className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-section-gap scroll-mt-24">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
         {/* Local Donations Card */}
         <div className="bg-surface-container-lowest rounded-xl p-8 md:p-12 ambient-shadow flex flex-col items-center text-center">
@@ -78,19 +86,25 @@ export function DonationOptions() {
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <button className="py-3 rounded-lg border-2 border-outline-variant text-on-surface-variant font-label-bold hover:border-secondary hover:text-secondary transition-colors focus:border-secondary focus:bg-secondary/5 focus:text-secondary outline-none">
-              $25
-            </button>
-            <button className="py-3 rounded-lg border-2 border-secondary bg-secondary/5 text-secondary font-label-bold transition-colors outline-none relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-3 h-3 bg-secondary rounded-bl-sm" />
-              $50
-            </button>
-            <button className="py-3 rounded-lg border-2 border-outline-variant text-on-surface-variant font-label-bold hover:border-secondary hover:text-secondary transition-colors focus:border-secondary focus:bg-secondary/5 focus:text-secondary outline-none">
-              $100
-            </button>
-            <button className="py-3 rounded-lg border-2 border-outline-variant text-on-surface-variant font-label-bold hover:border-secondary hover:text-secondary transition-colors focus:border-secondary focus:bg-secondary/5 focus:text-secondary outline-none">
-              Custom
-            </button>
+            {amounts.map((amount) => {
+              const isSelected = selectedAmount === amount;
+              return (
+                <button
+                  key={amount}
+                  onClick={() => setSelectedAmount(amount)}
+                  className={`py-3 rounded-lg border-2 font-label-bold transition-all outline-none relative overflow-hidden ${
+                    isSelected
+                      ? "border-secondary bg-secondary/5 text-secondary shadow-sm"
+                      : "border-outline-variant text-on-surface-variant hover:border-secondary/50 hover:text-secondary/80 focus:border-secondary focus:text-secondary"
+                  }`}
+                >
+                  {isSelected && (
+                    <div className="absolute top-0 right-0 w-3 h-3 bg-secondary rounded-bl-sm" />
+                  )}
+                  {typeof amount === "number" ? `$${amount}` : amount}
+                </button>
+              );
+            })}
           </div>
           <div className="space-y-4 flex-grow">
             <div>
@@ -115,9 +129,11 @@ export function DonationOptions() {
             </div>
           </div>
           <div className="mt-8">
-            <Button variant="secondary" size="lg" className="w-full rounded-full gap-2 shadow-md hover:scale-[1.02]">
-              <span className="material-symbols-outlined">credit_card</span>
-              Donate $50
+            <Button variant="secondary" size="lg" className="w-full rounded-full gap-2 shadow-md hover:scale-[1.02]" asChild>
+              <Link href={`/donate/flow?amount=${selectedAmount}`}>
+                <span className="material-symbols-outlined">credit_card</span>
+                Donate {typeof selectedAmount === "number" ? `$${selectedAmount}` : ""}
+              </Link>
             </Button>
             <div className="flex justify-center items-center gap-4 mt-6 text-on-surface-variant opacity-60">
               <span className="material-symbols-outlined text-3xl">lock</span>

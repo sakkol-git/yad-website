@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function DonateSuccessPage() {
   return (
-    <main className="flex-grow flex items-center justify-center p-gutter relative overflow-hidden min-h-screen">
+    <main className="flex-grow flex items-center justify-center p-gutter pt-32 pb-20 relative overflow-hidden min-h-[70vh]">
       {/* Abstract Background Elements */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary-fixed/20 blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-tertiary-fixed/20 blur-[120px] pointer-events-none" />

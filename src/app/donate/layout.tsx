@@ -1,4 +1,4 @@
-import DonateHeader from "@/components/layout/DonateHeader";
+import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 export default function DonateLayout({
@@ -8,11 +8,11 @@ export default function DonateLayout({
 }) {
   return (
     <div className="flex flex-col min-h-screen">
-      <DonateHeader />
+      <Navbar />
       <div id="main-content" className="flex-grow bg-surface-container-lowest">
         {children}
       </div>
-      <Footer variant="minimal" />
+      <Footer />
     </div>
   );
 }

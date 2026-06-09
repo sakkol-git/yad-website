@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 
 export default function DonateReviewPage() {
   return (
-    <main className="max-w-container-max mx-auto px-gutter md:px-margin-desktop py-12 md:py-20 mt-20">
-      <ProgressIndicator />
+    <main className="max-w-container-max mx-auto px-gutter md:px-margin-desktop pt-32 pb-20">
+      <ProgressIndicator currentStep={3} />
       <ReviewSummary />
     </main>
   );
