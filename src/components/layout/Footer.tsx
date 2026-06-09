@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FOOTER_LINKS } from "@/constants/navigation";
 import { COPYRIGHT_TEXT, SITE_TAGLINE, REGISTERED_TEXT } from "@/constants/site";
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { Facebook, Send, Mail, Phone, MapPin } from "lucide-react";
 
 interface FooterProps {
   variant?: "full" | "minimal" | "rich";
@@ -58,17 +58,11 @@ export default function Footer({ variant = "full" }: FooterProps) {
               {SITE_TAGLINE}
             </p>
             <div className="flex gap-3 mt-2">
-              <a href="#" className="p-2.5 rounded-full bg-surface hover:bg-primary hover:text-on-primary text-on-surface-variant shadow-sm border border-outline-variant/20 transition-all duration-300 hover:-translate-y-1">
+              <a href="https://www.facebook.com/profile.php?id=61571829685466" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full bg-surface hover:bg-primary hover:text-on-primary text-on-surface-variant shadow-sm border border-outline-variant/20 transition-all duration-300 hover:-translate-y-1">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="p-2.5 rounded-full bg-surface hover:bg-primary hover:text-on-primary text-on-surface-variant shadow-sm border border-outline-variant/20 transition-all duration-300 hover:-translate-y-1">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="p-2.5 rounded-full bg-surface hover:bg-primary hover:text-on-primary text-on-surface-variant shadow-sm border border-outline-variant/20 transition-all duration-300 hover:-translate-y-1">
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a href="#" className="p-2.5 rounded-full bg-surface hover:bg-primary hover:text-on-primary text-on-surface-variant shadow-sm border border-outline-variant/20 transition-all duration-300 hover:-translate-y-1">
-                <Linkedin className="w-5 h-5" />
+              <a href="https://t.me/Youthadvancementfordevelopment" target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full bg-surface hover:bg-primary hover:text-on-primary text-on-surface-variant shadow-sm border border-outline-variant/20 transition-all duration-300 hover:-translate-y-1">
+                <Send className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -108,30 +102,30 @@ export default function Footer({ variant = "full" }: FooterProps) {
               <span className="absolute -bottom-2 left-0 w-1/2 h-1 bg-tertiary rounded-full"></span>
             </h3>
             <div className="flex flex-col gap-5 mt-2">
-              <div className="flex items-start gap-3 group">
+              <a href="https://maps.app.goo.gl/5AhtYGNDRfVjH8cY8" target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 group">
                 <div className="bg-primary/10 p-2 rounded-lg group-hover:bg-primary group-hover:text-on-primary text-primary transition-colors">
                   <MapPin className="w-5 h-5" />
                 </div>
-                <span className="font-body-md text-body-md text-on-surface-variant pt-1">
-                  123 NGO Street, Phnom Penh, Cambodia
+                <span className="font-body-md text-body-md text-on-surface-variant group-hover:text-primary transition-colors pt-1">
+                  YAD Cambodia (View on Map)
                 </span>
-              </div>
-              <div className="flex items-center gap-3 group">
+              </a>
+              <a href="tel:+85599332289" className="flex items-center gap-3 group">
                 <div className="bg-primary/10 p-2 rounded-lg group-hover:bg-primary group-hover:text-on-primary text-primary transition-colors">
                   <Phone className="w-5 h-5" />
                 </div>
-                <span className="font-body-md text-body-md text-on-surface-variant">
-                  +855 23 456 789
+                <span className="font-body-md text-body-md text-on-surface-variant group-hover:text-primary transition-colors">
+                  (+855) 99 332 289
                 </span>
-              </div>
-              <div className="flex items-center gap-3 group">
+              </a>
+              <a href="mailto:jc.acekh@gmail.com" className="flex items-center gap-3 group">
                 <div className="bg-primary/10 p-2 rounded-lg group-hover:bg-primary group-hover:text-on-primary text-primary transition-colors">
                   <Mail className="w-5 h-5" />
                 </div>
-                <a href="mailto:info@yadcambodia.org" className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors">
-                  info@yadcambodia.org
-                </a>
-              </div>
+                <span className="font-body-md text-body-md text-on-surface-variant group-hover:text-primary transition-colors">
+                  jc.acekh@gmail.com
+                </span>
+              </a>
             </div>
           </div>
         </div>
