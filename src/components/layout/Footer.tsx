@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FOOTER_LINKS } from "@/constants/navigation";
-import { COPYRIGHT_TEXT } from "@/constants/site";
+import { COPYRIGHT_TEXT, SITE_TAGLINE, REGISTERED_TEXT } from "@/constants/site";
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 
 interface FooterProps {
   variant?: "full" | "minimal" | "rich";
@@ -28,42 +29,140 @@ export default function Footer({ variant = "full" }: FooterProps) {
   }
 
   return (
-    <footer className="bg-surface-container-low dark:bg-surface-container-highest rounded-t-lg mt-auto">
-      <div className="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-12 gap-8 w-full max-w-container-max mx-auto">
-        {/* Brand */}
-        <div className="flex flex-col items-center md:items-start gap-4">
-          <Link
-            href="/"
-            className="flex items-center gap-3 group"
-          >
-            <Image
-              src="/assets/Images/yad_logo.png"
-              alt="YAD Logo"
-              width={32}
-              height={32}
-              className="w-8 h-8 object-contain transition-transform duration-300 group-hover:scale-105"
-            />
-            <span className="font-headline-md text-headline-md font-bold text-primary">
-              YAD
-            </span>
-          </Link>
-          <p className="font-body-md text-body-md text-on-surface-variant text-center md:text-left">
-            {COPYRIGHT_TEXT}
-          </p>
+    <footer className="bg-surface-container-highest dark:bg-primary/5 rounded-t-[1rem] mt-auto pt-20 pb-8 border-t-8 border-primary relative overflow-hidden">
+      {/* Decorative subtle background element */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+
+      <div className="px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto relative z-10">
+
+        {/* Main 4-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+
+          {/* Column 1: Brand & Mission */}
+          <div className="flex flex-col gap-6 lg:pr-8">
+            <Link href="/" className="flex items-center gap-3 group w-fit">
+              <div className="bg-surface p-2 rounded-2xl shadow-sm border border-outline-variant/30">
+                <Image
+                  src="/assets/images/yad_logo.png"
+                  alt="YAD Logo"
+                  width={48}
+                  height={48}
+                  className="w-12 h-12 object-contain transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+              <span className="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">
+                YAD
+              </span>
+            </Link>
+            <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+              {SITE_TAGLINE}
+            </p>
+            <div className="flex gap-3 mt-2">
+              <a href="#" className="p-2.5 rounded-full bg-surface hover:bg-primary hover:text-on-primary text-on-surface-variant shadow-sm border border-outline-variant/20 transition-all duration-300 hover:-translate-y-1">
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a href="#" className="p-2.5 rounded-full bg-surface hover:bg-primary hover:text-on-primary text-on-surface-variant shadow-sm border border-outline-variant/20 transition-all duration-300 hover:-translate-y-1">
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a href="#" className="p-2.5 rounded-full bg-surface hover:bg-primary hover:text-on-primary text-on-surface-variant shadow-sm border border-outline-variant/20 transition-all duration-300 hover:-translate-y-1">
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a href="#" className="p-2.5 rounded-full bg-surface hover:bg-primary hover:text-on-primary text-on-surface-variant shadow-sm border border-outline-variant/20 transition-all duration-300 hover:-translate-y-1">
+                <Linkedin className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Column 2: Explore */}
+          <div className="flex flex-col gap-6">
+            <h3 className="font-title-lg text-title-lg font-bold text-on-surface relative inline-block w-fit">
+              Explore
+              <span className="absolute -bottom-2 left-0 w-1/2 h-1 bg-primary rounded-full"></span>
+            </h3>
+            <div className="flex flex-col gap-4 mt-2">
+              <Link href="/" className="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-all w-fit">Home</Link>
+              <Link href="/about" className="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-all w-fit">About Us</Link>
+              <Link href="/programs" className="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-all w-fit">Programs</Link>
+              <Link href="/impact" className="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-all w-fit">Our Impact</Link>
+            </div>
+          </div>
+
+          {/* Column 3: Get Involved */}
+          <div className="flex flex-col gap-6">
+            <h3 className="font-title-lg text-title-lg font-bold text-on-surface relative inline-block w-fit">
+              Get Involved
+              <span className="absolute -bottom-2 left-0 w-1/2 h-1 bg-secondary rounded-full"></span>
+            </h3>
+            <div className="flex flex-col gap-4 mt-2">
+              <Link href="/services" className="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-all w-fit">Services</Link>
+              <Link href="/event" className="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-all w-fit">Events</Link>
+              <Link href="/partner" className="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-all w-fit">Partners</Link>
+              <Link href="/get-involved" className="font-body-md text-body-md text-on-surface-variant hover:text-primary hover:translate-x-1 transition-all w-fit">Volunteer</Link>
+            </div>
+          </div>
+
+          {/* Column 4: Contact Information */}
+          <div className="flex flex-col gap-6">
+            <h3 className="font-title-lg text-title-lg font-bold text-on-surface relative inline-block w-fit">
+              Contact Us
+              <span className="absolute -bottom-2 left-0 w-1/2 h-1 bg-tertiary rounded-full"></span>
+            </h3>
+            <div className="flex flex-col gap-5 mt-2">
+              <div className="flex items-start gap-3 group">
+                <div className="bg-primary/10 p-2 rounded-lg group-hover:bg-primary group-hover:text-on-primary text-primary transition-colors">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <span className="font-body-md text-body-md text-on-surface-variant pt-1">
+                  123 NGO Street, Phnom Penh, Cambodia
+                </span>
+              </div>
+              <div className="flex items-center gap-3 group">
+                <div className="bg-primary/10 p-2 rounded-lg group-hover:bg-primary group-hover:text-on-primary text-primary transition-colors">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <span className="font-body-md text-body-md text-on-surface-variant">
+                  +855 23 456 789
+                </span>
+              </div>
+              <div className="flex items-center gap-3 group">
+                <div className="bg-primary/10 p-2 rounded-lg group-hover:bg-primary group-hover:text-on-primary text-primary transition-colors">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <a href="mailto:info@yadcambodia.org" className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors">
+                  info@yadcambodia.org
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Links */}
-        <div className="flex flex-wrap justify-center md:justify-end gap-6">
-          {FOOTER_LINKS.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300"
-            >
-              {link.label}
-            </Link>
-          ))}
+        {/* Divider */}
+        <div className="w-full h-px bg-outline-variant/40 mb-8" />
+
+        {/* Bottom Section */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-2 md:gap-4 text-center md:text-left">
+            <p className="font-body-sm text-body-sm text-on-surface-variant font-medium">
+              {COPYRIGHT_TEXT}
+            </p>
+            <span className="hidden md:inline text-outline-variant">•</span>
+            <p className="font-body-sm text-body-sm text-on-surface-variant">
+              {REGISTERED_TEXT}
+            </p>
+          </div>
+          <div className="flex items-center gap-6">
+            {FOOTER_LINKS.slice(0, 2).map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors font-medium"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
         </div>
+
       </div>
     </footer>
   );

@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/Button";
 
 const CAROUSEL_IMAGES = [
   {
-    src: "/assets/images/yad-1.png",
+    src: "/assets/images/yad-2.png",
     alt: "Energetic young Cambodian changemaker",
   },
   {
-    src: "/assets/images/yad-2.png",
+    src: "/assets/images/yad-1.png",
     alt: "Smiling children representing community hope",
   },
   {
