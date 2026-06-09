@@ -8,7 +8,7 @@ export function ImpactHero() {
         <Image
           alt="Lush green floating island with waterfalls and small wooden cabins against a bright sky, symbolizing a pristine, harmonious ecological future."
           className="w-full h-full object-cover object-right"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoLqoCSrowq2Yf-vb5xh4QQy0WD8shoo2Hre8iubOuxLqW30YajiVD0GdSBO7GvwzbM-U2dIjGn3ABUiQE2xo6vlEQRC5xcWbyMfV9p7xGcSVFD2wDqWoGZgmbu33H0MB396Q6V1lHVxUbyHZQrqIz6oYHOmTNZKtRTPAWCn2TCGt7-2NJlM3hvmdq-4JYSCjkYuIbxrjjVk2qWLYVe5qEO3OPaLFn4SMgGoG1Mxf3VyiSFbrxdBf_3wOutHWYIzC4xomqLmvAQ4w"
+          src="/assets/images/yad-1.png"
           fill
           sizes="100vw"
           priority

@@ -20,7 +20,7 @@ export function SlumEducation() {
           <Image
             alt="Community Education"
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4526IKjWcI4RJxk3qAgouc0eO9zhfnmt7MFArg78J_hTFCqTO2ZR9tktNeNQpS0LsRtTffds5I9lhRyWymnHkUyAfnGnKbXtQwhrj3g02Hh_HjRN-8Y_EGNqMYOtyP6EF74LDtsFh1j2aMfot9WGHodOHfg1bBSAUrwbv255RSS-KzGD4EgKIjBR4kn41JCukOQH8fEwGDbuXhcMWpFpmo4meR4rbksa0WL99LavckKa1bfA4zIAAgbrt1liWeZrU0uwtW0S4QJA"
+            src="/assets/images/yad-4.png"
             fill
             sizes="(max-width: 768px) 100vw, 67vw"
           />

@@ -44,7 +44,7 @@ export function ServicesHero() {
           <div className="relative w-full aspect-[4/3] md:aspect-[16/10] rounded-xl overflow-hidden shadow-ambient group">
             <Image
               alt="Traditional wooden Cambodian home elevated on stilts, surrounded by lush green tropical foliage"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrg827iRUMVKgUjj0v6eiXMTMVQBx6-eq22QYXPQFfAKb1CM5H3jGtaKFH3xy6bJOE_umwFQvSCwm4xU1ikTzWQTkTyai5OKFQ1eGiDoU7OJ0_2y62W6H5pCZQte4Y_6YB_5c-x_0L027g5YoX23BEjavgbEQv-JdSXIod_iQ9gOtJ7s_co7gBvxlc3Y1xQJMVnF62-_wBOvvV5CogeDHe3PonmkTcRZhJdcqDnLVo2NqfdRKlLf2c6PPZ5l2QrxsUTRTzFTRRXlk"
+              src="/assets/images/yad-1.png"
               fill
               sizes="(max-width: 1024px) 100vw, 58vw"
               className="object-cover transform transition-transform duration-700 group-hover:scale-105"

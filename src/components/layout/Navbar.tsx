@@ -18,10 +18,10 @@ export default function Navbar() {
         {/* Brand */}
         <Link
           href="/"
-          className="flex items-center gap-3 group"
+          className="flex items-center gap-2 group"
         >
           <Image
-            src="/assets/Images/yad_logo.png"
+            src="/assets/images/yad_logo.png"
             alt="YAD Logo"
             width={40}
             height={40}

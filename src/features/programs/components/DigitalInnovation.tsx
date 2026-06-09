@@ -11,7 +11,7 @@ export function DigitalInnovation() {
             <Image
               alt="Digital Innovation Lab"
               className="w-full h-full object-cover rounded-[2.5rem]"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh5MVf0BbaOpjtMSJKuywS-u9RQKW1V3NB0PDyQ8SX5joHusuFExsnJBDBOV8W6w54D5HXP9Ki9yf02G4m3REQpMx5jZgWdxfibqRkH2jq1_eSDqQ8_aVNR8o2r-1egTjwmJtheXk4wsrav62x7XoIX88owJn_iBjkV5CI1i8mrYpVnvVhZUInIgSiHc6gm8GyH2McB_RXB5Ghap0EQ1kQpUeBvRolpPJJ2HFG8NmeICGsJPdQAjBVgB5PyqEU549SGJfihWL11_E"
+              src="/assets/images/yad-7.png"
               fill
               sizes="(max-width: 1024px) 100vw, 42vw"
             />

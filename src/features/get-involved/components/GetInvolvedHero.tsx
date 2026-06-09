@@ -34,7 +34,7 @@ export function GetInvolvedHero() {
           <Image
             alt="Floating green island"
             className="w-full h-full object-cover object-center"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnyxH32U9MRIGnj1UOoT8q6NstDsgfB3uNB0YLWkcn-CD3WufeGDmy4ZatMIs3cnK_pN_hxobe8Q1IkDrmYL5iCHh1cJV0XxpMAE1TB_BnuXUdYhHW4mv98lE1Aic8A9lXj0j34eDkMHzGRa4b_AGE3KJgtK3ZkwMGryaa8JpMsPaTF5rY5C5Ww7DQSskk4Q9zoWBEtGaZaF25JOrrP0sF6dvMm0G6vHjuPoAmeDIcQmaMKOZKxr55in9rLChDeE5DScsWo_3zQGg"
+            src="/assets/images/yad-7.png"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             priority

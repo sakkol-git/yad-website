@@ -53,7 +53,7 @@ export function DormitoryProgram() {
           <Image
             alt="Youth training center"
             className="w-full h-full object-cover rounded-[2rem] shadow-lg"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSTlvY3Z130WihkC8qYGBcnypzkq7Ioo0xJCzXxPkNvBV7G7CaifUoPHXU2x6QOb72Zb3wKnocH95KHzRsmNj781s4ZB4nCMlTNSvEJQ7dZOe5jGSYpuJ7bXuonZ-O0Wx4g_GMXOTmMPAI481_82gaq6yjsCn4HsegYuMV9zxZPlCkDEyEXQx81HzLcicoW_5sXYA_Sj_4Bu0-kVgBC3a_3DTmwQciGr8CN_DsZDj-PxG8PVfAOc2JKF22OahTm27MdIAHSU-hEjg"
+            src="/assets/images/yad-6.png"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
           />

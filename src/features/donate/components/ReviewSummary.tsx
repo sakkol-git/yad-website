@@ -99,7 +99,7 @@ export function ReviewSummary() {
             <Image
               alt="Smiling youth outdoors in sunlight"
               className="w-full h-full object-cover opacity-80 mix-blend-luminosity"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnwrgfWNcALsmdbQV45Sp1vCrN6DM260f_7z-8tnv60Qy40ox0K2ZTHQqH1qfQEzrtFeTHIkunHkTFML8vuERdDsvHl_DfkHHN8CvPPRGHhpg-TM8xszO8wJtkha14r5AV7O-IcO5TAU-4y746UqvW3RHpLQV-7-32VsJEugTw_ZWOVA-rgcuXy5AaeXGogH0xOjx_7eLPckgUGTM4u81Rn8bfhOCe6vr-bRVmCSTwjlNrPfNgNHkexrDDQXdr3oyu2K2bdK9-gaw"
+              src="/assets/images/yad-1.png"
               fill
               sizes="(max-width: 1024px) 100vw, 33vw"
             />

@@ -9,7 +9,7 @@ export function ImpactPreview() {
             <Image
               alt="Cambodian youth collaborating"
               className="w-full h-full object-cover"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1FI8hQZUG2-8yfNWGZjApkMdYvun6YcLo8_IG2QLGPS1PunlyHDe29cu5MnDm9MuGtJTbd7fVogQiUhYegnPnjsObncwdVmQFCdtteLDcF9Pnde7Pw5M1n8Cm2CG4gdbEbhs7o4_AMiMaMoEPqT_8yZdALRkLVbsY6QdIePvNBGE44j3dU1VB2cE77qt81Ac9L3IpODiNHUYVAOP0rCXQ381f-w2kJ7p1n5mh3bArJ4X9BY85oWiDQxc0oRP7jNyeeGhnhyCyTcY"
+              src="/assets/images/yad-6.png"
               fill
               sizes="(max-width: 1024px) 100vw, 58vw"
             />

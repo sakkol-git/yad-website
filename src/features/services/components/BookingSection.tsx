@@ -207,7 +207,7 @@ export function BookingSection() {
               <div className="w-20 h-20 rounded-lg overflow-hidden shrink-0 relative">
                 <Image
                   alt="Interior of a minimalist Cambodian homestay room"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZwGX5ZAsdWSRfofX-w12XTVUXtC0YCuxFUMp-PFyEDQdyDLzp2V3a8vu0mPDoK-w78fKuVl7wQQyiX1uVaEPfLnqOjiGsoV5Ra0eI058E3breGDIuBIk8t5GHbo0jxej-r2yI9ssAXjGHAK82mvjKLmCpUwMKdIDUXtlJVNK0JnTas3z9Ie6JxPF5uTYM-dCBZI0yG50NLK2HhP2Q-DBAm_MojODlJcI-Nvs3ZcDCZhbiaI4rhdb4r5FOEINSQrELFIk6nwth9jk"
+                  src="/assets/images/yad-2.png"
                   fill
                   sizes="80px"
                   className="object-cover"

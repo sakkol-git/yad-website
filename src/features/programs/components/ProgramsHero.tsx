@@ -43,7 +43,7 @@ export function ProgramsHero() {
             <Image
               alt="Youth education and community building"
               className="w-full h-full object-cover rounded-[3rem] ambient-shadow"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT1QTQxDJGcAVYl462QrQRfAjuuVHp_gAOT-nH4DnU8KFmSIsme3MXPENpYWTAPucYsEceeD5hQuRscSmXcP4WSlvX62dH1lkw1XyTh6HrTX01NeI_-gF_wQnjVUGsyH1S_CDQAmGaRqWrA5_wb9TAR4yh0EoUe0cc1uoJSTOm4hAaG2EllLCih_yso85hWCtJQdx2fR4yGzoOD_bDrKdhub4A4V-3FNBe81IaTh-Ysv3dF5G2vYLYWYl6dUqNmlOAU4HyYrNL7gk"
+              src="/assets/images/yad-5.png"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               priority
