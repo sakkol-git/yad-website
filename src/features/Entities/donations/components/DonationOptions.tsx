@@ -6,140 +6,91 @@ import { Button } from "@/shared/components/ui/Button";
 
 export function DonationOptions() {
   const [selectedAmount, setSelectedAmount] = useState<number | "Custom">(50);
+  const [customAmount, setCustomAmount] = useState<string>("");
 
-  const amounts: (number | "Custom")[] = [25, 50, 100, "Custom"];
+  const amounts: (number | "Custom")[] = [25, 50, 100, 250, "Custom"];
+
+  const currentAmount = selectedAmount === "Custom" ? Number(customAmount) || 0 : selectedAmount;
 
   return (
     <section id="options" className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-section-gap scroll-mt-24">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
-        {/* Local Donations Card */}
-        <div className="bg-surface-container-lowest rounded-xl p-8 md:p-12 ambient-shadow flex flex-col items-center text-center">
-          <div className="w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center mb-6">
-            <span className="material-symbols-outlined text-on-secondary-container text-3xl">
-              qr_code_scanner
-            </span>
-          </div>
-          <h2 className="font-headline-md text-headline-md text-primary mb-4">
-            Local Support
-          </h2>
-          <p className="font-body-md text-body-md text-on-surface-variant mb-8">
-            Fast and secure donations via Bakong KHQR or direct bank transfer.
-          </p>
-          <div className="bg-surface-container rounded-lg p-6 w-full max-w-xs mb-8 flex flex-col items-center justify-center aspect-square border border-outline-variant/30 relative overflow-hidden group">
-            <div className="absolute inset-0 bg-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <span className="material-symbols-outlined text-primary/30 text-6xl mb-2">
-              qr_code_2
-            </span>
-            <p className="text-sm text-on-surface-variant font-label-bold">
-              KHQR Placeholder
+      <div className="max-w-3xl mx-auto bg-surface-container-lowest rounded-[2rem] p-8 md:p-12 shadow-xl border border-surface-variant/30 relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10">
+          <div className="text-center mb-10">
+            <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-surface shadow-sm">
+              <span className="material-symbols-outlined text-primary text-4xl">volunteer_activism</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-on-surface mb-4">
+              Make a Difference Today
+            </h2>
+            <p className="text-lg text-on-surface-variant max-w-xl mx-auto">
+              Your contribution empowers Cambodian youth through safe housing, education, and skills training. Choose your amount to begin.
             </p>
           </div>
-          <p className="font-label-bold text-label-bold text-secondary mb-6">
-            Scan to donate using any local banking app.
-          </p>
-          <div className="w-full text-left bg-surface-container-low p-6 rounded-lg">
-            <h3 className="font-label-bold text-label-bold text-primary mb-4 border-b border-outline-variant/20 pb-2">
-              Bank Details
-            </h3>
-            <div className="space-y-4">
-              <div>
-                <p className="text-sm text-on-surface-variant">ABA Bank</p>
-                <p className="font-label-bold text-on-surface">
-                  000 123 456
-                </p>
-              </div>
-              <div>
-                <p className="text-sm text-on-surface-variant">
-                  Acleda Bank
-                </p>
-                <p className="font-label-bold text-on-surface">
-                  1234-5678-9012
-                </p>
-              </div>
-              <div className="pt-2">
-                <p className="text-sm text-on-surface-variant">
-                  Account Name
-                </p>
-                <p className="font-label-bold text-on-surface">
-                  YAD Organization
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        {/* International Donations Card */}
-        <div className="bg-surface-container-lowest rounded-xl p-8 md:p-12 ambient-shadow flex flex-col">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-16 h-16 bg-tertiary-fixed rounded-full flex items-center justify-center">
-              <span className="material-symbols-outlined text-on-tertiary-fixed text-3xl">
-                public
-              </span>
-            </div>
+          <div className="space-y-8 max-w-xl mx-auto">
             <div>
-              <h2 className="font-headline-md text-headline-md text-primary">
-                Global Giving
-              </h2>
-              <p className="font-body-md text-body-md text-on-surface-variant">
-                Secure card payments via Stripe.
+              <label className="block text-sm font-bold text-on-surface-variant mb-3 text-center uppercase tracking-wider">
+                Select Donation Amount
+              </label>
+              <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
+                {amounts.map((amount) => {
+                  const isSelected = selectedAmount === amount;
+                  return (
+                    <button
+                      key={amount}
+                      onClick={() => setSelectedAmount(amount)}
+                      className={`py-4 rounded-xl border-2 font-bold transition-all outline-none relative overflow-hidden ${isSelected
+                          ? "border-primary bg-primary/10 text-primary shadow-sm scale-105"
+                          : "border-outline-variant/50 text-on-surface-variant hover:border-primary/50 hover:text-primary focus:border-primary focus:text-primary hover:bg-surface-container"
+                        }`}
+                    >
+                      {isSelected && (
+                        <div className="absolute top-0 right-0 w-3 h-3 bg-primary rounded-bl-lg" />
+                      )}
+                      {typeof amount === "number" ? `$${amount}` : amount}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {selectedAmount === "Custom" && (
+              <div className="animate-in fade-in slide-in-from-top-2 duration-300">
+                <label className="block text-sm font-bold text-on-surface-variant mb-2">
+                  Custom Amount (USD)
+                </label>
+                <div className="relative">
+                  <span className="absolute left-5 top-1/2 -translate-y-1/2 text-on-surface-variant font-bold text-lg">
+                    $
+                  </span>
+                  <input
+                    type="number"
+                    min="1"
+                    placeholder="Enter amount"
+                    value={customAmount}
+                    onChange={(e) => setCustomAmount(e.target.value)}
+                    className="w-full pl-10 pr-4 py-4 bg-surface-container rounded-xl border border-surface-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 text-on-surface text-lg font-bold transition-all outline-none placeholder:font-normal"
+                  />
+                </div>
+              </div>
+            )}
+
+            <div className="pt-8 border-t border-outline-variant/20">
+              <Button variant="primary" size="lg" className="w-full rounded-full py-7 text-[18px] font-bold gap-3 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all bg-primary text-on-primary" asChild>
+                <Link href={`/donate/flow?amount=${currentAmount}`}>
+                  Continue to Payment
+                  <span className="material-symbols-outlined text-[24px]">arrow_forward</span>
+                </Link>
+              </Button>
+              <p className="text-center text-sm text-on-surface-variant mt-6 flex items-center justify-center gap-2 font-medium">
+                <span className="material-symbols-outlined text-lg opacity-70">verified_user</span>
+                Secure payment options (Stripe, KHQR, Bank Transfer) available next.
               </p>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            {amounts.map((amount) => {
-              const isSelected = selectedAmount === amount;
-              return (
-                <button
-                  key={amount}
-                  onClick={() => setSelectedAmount(amount)}
-                  className={`py-3 rounded-lg border-2 font-label-bold transition-all outline-none relative overflow-hidden ${
-                    isSelected
-                      ? "border-secondary bg-secondary/5 text-secondary shadow-sm"
-                      : "border-outline-variant text-on-surface-variant hover:border-secondary/50 hover:text-secondary/80 focus:border-secondary focus:text-secondary"
-                  }`}
-                >
-                  {isSelected && (
-                    <div className="absolute top-0 right-0 w-3 h-3 bg-secondary rounded-bl-sm" />
-                  )}
-                  {typeof amount === "number" ? `$${amount}` : amount}
-                </button>
-              );
-            })}
-          </div>
-          <div className="space-y-4 flex-grow">
-            <div>
-              <label className="block text-sm font-label-bold text-on-surface mb-1">
-                Full Name
-              </label>
-              <input
-                className="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-secondary transition-all"
-                placeholder="Jane Doe"
-                type="text"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-label-bold text-on-surface mb-1">
-                Email Address
-              </label>
-              <input
-                className="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-on-surface focus:ring-2 focus:ring-secondary transition-all"
-                placeholder="jane@example.com"
-                type="email"
-              />
-            </div>
-          </div>
-          <div className="mt-8">
-            <Button variant="secondary" size="lg" className="w-full rounded-full gap-2 shadow-md hover:scale-[1.02]" asChild>
-              <Link href={`/donate/flow?amount=${selectedAmount}`}>
-                <span className="material-symbols-outlined">credit_card</span>
-                Donate {typeof selectedAmount === "number" ? `$${selectedAmount}` : ""}
-              </Link>
-            </Button>
-            <div className="flex justify-center items-center gap-4 mt-6 text-on-surface-variant opacity-60">
-              <span className="material-symbols-outlined text-3xl">lock</span>
-              <span className="text-sm font-label-bold">
-                Secured by Stripe
-              </span>
             </div>
           </div>
         </div>
