@@ -92,8 +92,8 @@ export default function Navbar() {
             </div>
           ) : (
             <div className="flex items-center gap-4 border-r border-surface-variant pr-6">
-              <Link href="/get-involved" className="text-on-surface-variant hover:text-primary font-medium transition-colors">
-                Join Us
+              <Link href="/donate" className="text-primary hover:text-secondary font-bold transition-colors">
+                Donate Now
               </Link>
             </div>
           )}
