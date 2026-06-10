@@ -1,6 +1,6 @@
-import { AboutHero } from "@/features/about/components/AboutHero";
-import { CorePurpose } from "@/features/about/components/CorePurpose";
-import { CommunityStructure } from "@/features/about/components/CommunityStructure";
+import { AboutHero } from "@/features/Static/content/components/AboutHero";
+import { CorePurpose } from "@/features/Static/content/components/CorePurpose";
+import { CommunityStructure } from "@/features/Entities/members/components/CommunityStructure";
 
 export default function AboutPage() {
   return (

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { ProgramsHero } from "@/features/programs/components/ProgramsHero";
-import { DormitoryProgram } from "@/features/programs/components/DormitoryProgram";
-import { DigitalInnovation } from "@/features/programs/components/DigitalInnovation";
-import { SlumEducation } from "@/features/programs/components/SlumEducation";
+import { ProgramsHero } from "@/features/Entities/programs/components/ProgramsHero";
+import { DormitoryProgram } from "@/features/Entities/programs/components/DormitoryProgram";
+import { DigitalInnovation } from "@/features/Entities/programs/components/DigitalInnovation";
+import { SlumEducation } from "@/features/Entities/programs/components/SlumEducation";
 
 export const metadata: Metadata = {
   title: "Programs",

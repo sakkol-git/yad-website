@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { ImpactHero } from "@/features/impact/components/ImpactHero";
-import { GlobalFootprint } from "@/features/impact/components/GlobalFootprint";
-import { VoicesOfImpact } from "@/features/impact/components/VoicesOfImpact";
-import { RadicalTransparency } from "@/features/impact/components/RadicalTransparency";
+import { ImpactHero } from "@/features/Static/content/components/ImpactHero";
+import { GlobalFootprint } from "@/features/Static/content/components/GlobalFootprint";
+import { VoicesOfImpact } from "@/features/Static/content/components/VoicesOfImpact";
+import { RadicalTransparency } from "@/features/Static/content/components/RadicalTransparency";
 
 export const metadata: Metadata = {
   title: "Impact & Stories",

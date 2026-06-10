@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>YAD Cambodia Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f2f4f2",
+                        "primary-fixed": "#baefc4",
+                        "on-tertiary-fixed": "#061e29",
+                        "on-surface-variant": "#414941",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#456c3a",
+                        "error-container": "#ffdad6",
+                        "secondary": "#416837",
+                        "on-surface": "#191c1b",
+                        "surface": "#f8faf8",
+                        "on-background": "#191c1b",
+                        "surface-bright": "#f8faf8",
+                        "secondary-container": "#bfecae",
+                        "on-primary": "#ffffff",
+                        "primary": "#013619",
+                        "tertiary-fixed-dim": "#b3cad9",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c1c9bf",
+                        "on-secondary-fixed-variant": "#2a4f21",
+                        "inverse-on-surface": "#eff1ef",
+                        "on-primary-container": "#8abd95",
+                        "on-error": "#ffffff",
+                        "background": "#f8faf8",
+                        "on-tertiary-container": "#9eb5c4",
+                        "on-primary-fixed": "#00210d",
+                        "inverse-primary": "#9fd3aa",
+                        "tertiary": "#1b303d",
+                        "outline": "#717971",
+                        "inverse-surface": "#2e3130",
+                        "surface-container-highest": "#e1e3e1",
+                        "tertiary-container": "#324754",
+                        "secondary-fixed": "#c2efb1",
+                        "surface-container": "#eceeec",
+                        "tertiary-fixed": "#cfe6f6",
+                        "on-primary-fixed-variant": "#205031",
+                        "primary-fixed-dim": "#9fd3aa",
+                        "surface-dim": "#d8dad9",
+                        "surface-container-high": "#e6e9e7",
+                        "on-secondary-fixed": "#012200",
+                        "surface-variant": "#e1e3e1",
+                        "surface-tint": "#396847",
+                        "primary-container": "#1d4d2e",
+                        "on-tertiary-fixed-variant": "#344956",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#a6d296",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "120px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "60px",
+                        "gutter": "24px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["36px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "display-lg": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-bold": ["14px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        .smooth-shadow { box-shadow: 0 4px 20px -2px rgba(1, 54, 25, 0.05); }
+    </style>
+</head>
+<body class="flex min-h-screen bg-background font-body-md text-body-md">
+<!-- Sidebar -->
+<nav class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest border-r border-outline-variant/30 z-50 flex flex-col shadow-sm">
+<div class="flex flex-col h-full py-8 px-6 space-y-6">
+<!-- Brand Area -->
+<div class="px-2 flex items-center gap-4">
+<img alt="YAD Cambodia Logo" class="w-12 h-12 rounded-full border border-outline-variant/50 object-cover shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHjAqOe1pCsf23j2fa6R5NSU63VUoOa7jsW89uTEQvs1yUKgnEJagYzwuMcajQFvzZyO6KCuN72hSmefPt6u87mMfDFjCLoeyWVipHmxwUYHEzBH9sHmR7_wpF0igKLWcgBjsd9mWHW9sz5pkxIcvlOyNlaax9VJR6HU4u8s9ktNM-Mco0rgi7EVJGoKBm0nBy1WKKpyzU4s5JGhmPk3vmE19fXZ6DU0BMorvpA1_gPTAh1gKs94-62ke5wsIO5jp8i--czPX1Is8"/>
+<div>
+<h1 class="text-[18px] font-bold text-primary leading-tight tracking-tight">YAD Cambodia</h1>
+<p class="text-[13px] text-on-surface-variant font-medium">Admin Portal</p>
+</div>
+</div>
+<!-- New Initiative CTA -->
+<button class="w-full bg-primary text-on-primary py-3 px-4 rounded-xl font-label-bold text-label-bold hover:bg-primary-container hover:text-on-primary-container transition-all shadow-md flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">add</span>
+                New Initiative
+            </button>
+<!-- Navigation Links -->
+<ul class="flex flex-col space-y-1.5 flex-grow overflow-y-auto pt-2">
+<!-- Active Item -->
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-secondary-container/30 text-secondary font-bold hover:bg-secondary-container/50 transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                        Overview
+                    </a>
+</li>
+<!-- Inactive Items -->
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors font-medium" href="#">
+<span class="material-symbols-outlined text-[22px]">group</span>
+                        Members
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors font-medium" href="#">
+<span class="material-symbols-outlined text-[22px]">account_tree</span>
+                        Programs
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors font-medium" href="#">
+<span class="material-symbols-outlined text-[22px]">home_work</span>
+                        Homestays
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors font-medium" href="#">
+<span class="material-symbols-outlined text-[22px]">volunteer_activism</span>
+                        Donations
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors font-medium" href="#">
+<span class="material-symbols-outlined text-[22px]">event</span>
+                        Events
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors font-medium" href="#">
+<span class="material-symbols-outlined text-[22px]">handshake</span>
+                        Partners
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 ml-72 flex flex-col min-h-screen">
+<!-- Top Navbar -->
+<header class="sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 px-8 py-4 flex justify-between items-center shadow-sm">
+<div class="flex items-center gap-2 text-sm font-medium text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">home</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-bold">Dashboard Overview</span>
+</div>
+<div class="flex items-center gap-6">
+<!-- Search -->
+<div class="relative hidden md:block group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/70 text-[20px]">search</span>
+<input class="bg-surface-container-low border border-outline-variant/30 rounded-full py-2 pl-10 pr-4 w-72 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all" placeholder="Search members, events, or programs..." type="text"/>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-2 border-l border-outline-variant/30 pl-6">
+<button class="relative p-2 rounded-full text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-surface"></span>
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[22px]">settings</span>
+</button>
+<img alt="Administrator Avatar" class="w-9 h-9 rounded-full border-2 border-surface-container object-cover ml-2 shadow-sm cursor-pointer hover:border-primary transition-colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD85sxnpvw-4_tiEFFqKW7i9akvBN6hIh_CHQwGq2ND-MGa0r79qg39lZtpX77pfx3Fuyul1Ytzs9HO22QnJLPoBw17iPDb2bDR1f7OT3871s5rKVvV8xJk7HlPyLY9Iat_3e6DYcHxWfCmTy3xbggfJhDOEMEkjAQXxcRfX60IBhb-VV2blzQQxPYREB5TPu2teeDXtMOj6ur2r340RpfvS_GZxScQT0oiuHIzwcKWsjhWiblWCn6Csvs92-huF46uctNOLNsYlFo"/>
+</div>
+</div>
+</header>
+<!-- Main Dashboard Canvas -->
+<main class="flex-1 p-8 xl:px-12 max-w-[1600px] w-full mx-auto">
+<!-- Page Header -->
+<div class="mb-8 flex flex-col md:flex-row md:justify-between md:items-end gap-4">
+<div>
+<h2 class="text-[32px] font-bold text-primary tracking-tight mb-1">Welcome back, Admin.</h2>
+<p class="text-on-surface-variant">Here's what's happening with YAD Cambodia today.</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container border border-outline-variant/30 text-on-surface px-5 py-2.5 rounded-xl font-label-bold text-sm hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span> Last 30 Days
+                    </button>
+<button class="bg-primary text-on-primary px-5 py-2.5 rounded-xl font-label-bold text-sm hover:bg-primary/90 transition-colors flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">download</span> Export Report
+                    </button>
+</div>
+</div>
+<!-- KPI Cards Grid (12-column system, 4 cols each on large screens) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<!-- KPI 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-6 smooth-shadow hover:-translate-y-1 transition-transform duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-xl bg-primary-container/30 text-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">groups</span>
+</div>
+<span class="bg-secondary-container/50 text-secondary px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +12%
+                        </span>
+</div>
+<p class="text-sm font-medium text-on-surface-variant mb-1">Total Members</p>
+<h3 class="text-3xl font-bold text-primary">2,450</h3>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-6 smooth-shadow hover:-translate-y-1 transition-transform duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container/30 text-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">account_tree</span>
+</div>
+<span class="bg-surface-variant text-on-surface-variant px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">horizontal_rule</span> 0%
+                        </span>
+</div>
+<p class="text-sm font-medium text-on-surface-variant mb-1">Active Programs</p>
+<h3 class="text-3xl font-bold text-primary">18</h3>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-6 smooth-shadow hover:-translate-y-1 transition-transform duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/30 text-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<span class="bg-secondary-container/50 text-secondary px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +5.4%
+                        </span>
+</div>
+<p class="text-sm font-medium text-on-surface-variant mb-1">Monthly Donations</p>
+<h3 class="text-3xl font-bold text-primary">$12,840</h3>
+</div>
+<!-- KPI 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-6 smooth-shadow hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
+<div class="absolute right-0 top-0 w-2 h-full bg-error"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="w-12 h-12 rounded-xl bg-error-container/50 text-error flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">home_work</span>
+</div>
+<span class="bg-error/10 text-error px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">priority_high</span> Action Needed
+                        </span>
+</div>
+<p class="text-sm font-medium text-on-surface-variant mb-1">Pending Homestays</p>
+<h3 class="text-3xl font-bold text-error">7</h3>
+</div>
+</div>
+<!-- Two Column Layout: Activity & Quick Actions -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left Side: Recent Activity (Spans 2 columns) -->
+<div class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-7 smooth-shadow">
+<div class="flex justify-between items-center mb-6 pb-4 border-b border-outline-variant/20">
+<h3 class="text-[20px] font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">history</span>
+                            Recent Activity
+                        </h3>
+<button class="text-sm font-bold text-secondary hover:text-primary transition-colors flex items-center gap-1">
+                            View All <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<div class="space-y-1">
+<!-- Activity Item -->
+<div class="flex items-start gap-4 p-3 rounded-xl hover:bg-surface-container/50 transition-colors group cursor-pointer">
+<div class="mt-1 w-10 h-10 rounded-full bg-primary-container/20 text-primary flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="text-sm font-medium text-on-surface">New member registration: <span class="font-bold text-primary">Sokha Chen</span></p>
+<span class="text-xs font-medium text-on-surface-variant bg-surface px-2 py-0.5 rounded-md">2 hrs ago</span>
+</div>
+<p class="text-sm text-on-surface-variant mt-1">Joined the <span class="font-medium text-secondary">"Youth Leadership"</span> program.</p>
+</div>
+</div>
+<!-- Activity Item -->
+<div class="flex items-start gap-4 p-3 rounded-xl hover:bg-surface-container/50 transition-colors group cursor-pointer">
+<div class="mt-1 w-10 h-10 rounded-full bg-secondary-container/30 text-secondary flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[20px]">volunteer_activism</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="text-sm font-medium text-on-surface">Donation received: <span class="font-bold text-secondary">$500</span></p>
+<span class="text-xs font-medium text-on-surface-variant bg-surface px-2 py-0.5 rounded-md">5 hrs ago</span>
+</div>
+<p class="text-sm text-on-surface-variant mt-1">From anonymous donor via website portal.</p>
+</div>
+</div>
+<!-- Activity Item -->
+<div class="flex items-start gap-4 p-3 rounded-xl hover:bg-surface-container/50 transition-colors group cursor-pointer bg-error/5 border border-error/10">
+<div class="mt-1 w-10 h-10 rounded-full bg-error-container/50 text-error flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[20px]">home_work</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="text-sm font-medium text-on-surface">Homestay Request: <span class="font-bold text-error">Family Vong</span></p>
+<span class="text-xs font-bold text-error bg-error-container/50 px-2 py-0.5 rounded-md">Action Required</span>
+</div>
+<p class="text-sm text-on-surface-variant mt-1">Awaiting approval for 3 guests. <a class="text-secondary hover:underline font-medium ml-1" href="#">Review request</a></p>
+</div>
+</div>
+<!-- Activity Item -->
+<div class="flex items-start gap-4 p-3 rounded-xl hover:bg-surface-container/50 transition-colors group cursor-pointer">
+<div class="mt-1 w-10 h-10 rounded-full bg-tertiary-container/20 text-tertiary flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[20px]">event_available</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<p class="text-sm font-medium text-on-surface">Event Concluded: <span class="font-bold text-tertiary">Siem Reap Clean-up</span></p>
+<span class="text-xs font-medium text-on-surface-variant bg-surface px-2 py-0.5 rounded-md">1 day ago</span>
+</div>
+<p class="text-sm text-on-surface-variant mt-1">120 volunteers participated. Ready for post-event report.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Quick Actions & System Health -->
+<div class="flex flex-col gap-6">
+<!-- Quick Actions -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-7 smooth-shadow">
+<h3 class="text-[18px] font-bold text-primary mb-5 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">bolt</span>
+                            Quick Actions
+                        </h3>
+<div class="grid grid-cols-2 gap-3">
+<button class="bg-surface border border-outline-variant/30 rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:border-primary hover:bg-surface-container-low transition-all group">
+<span class="material-symbols-outlined text-[28px] text-primary group-hover:-translate-y-1 transition-transform" style="font-variation-settings: 'FILL' 1;">group_add</span>
+<span class="text-xs font-bold text-on-surface">Add Member</span>
+</button>
+<button class="bg-surface border border-outline-variant/30 rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:border-tertiary hover:bg-surface-container-low transition-all group">
+<span class="material-symbols-outlined text-[28px] text-tertiary group-hover:-translate-y-1 transition-transform" style="font-variation-settings: 'FILL' 1;">event_note</span>
+<span class="text-xs font-bold text-on-surface">Create Event</span>
+</button>
+<button class="bg-surface border border-outline-variant/30 rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:border-secondary hover:bg-surface-container-low transition-all group">
+<span class="material-symbols-outlined text-[28px] text-secondary group-hover:-translate-y-1 transition-transform" style="font-variation-settings: 'FILL' 1;">request_quote</span>
+<span class="text-xs font-bold text-on-surface">Log Donation</span>
+</button>
+<button class="bg-error/5 border border-error/20 rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:bg-error/10 transition-all group relative">
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full animate-pulse"></span>
+<span class="material-symbols-outlined text-[28px] text-error group-hover:-translate-y-1 transition-transform" style="font-variation-settings: 'FILL' 1;">fact_check</span>
+<span class="text-xs font-bold text-error">Approvals</span>
+</button>
+</div>
+</div>
+<!-- System Health -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-6 smooth-shadow flex-1">
+<h3 class="text-[16px] font-bold text-on-surface mb-4">System Status</h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs font-medium mb-1">
+<span class="text-on-surface-variant">Storage Quota</span>
+<span class="text-primary">68%</span>
+</div>
+<div class="w-full bg-surface-variant rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 68%"></div>
+</div>
+</div>
+<div class="flex items-center gap-3 pt-2">
+<div class="w-8 h-8 rounded-full bg-secondary-container/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">All systems operational</p>
+<p class="text-xs text-on-surface-variant">Last synced 2 mins ago</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

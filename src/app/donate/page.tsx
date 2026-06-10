@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { DonateHero } from "@/features/donate/components/DonateHero";
-import { DonationOptions } from "@/features/donate/components/DonationOptions";
-import { DonationImpact } from "@/features/donate/components/DonationImpact";
+import { DonateHero } from "@/features/Entities/donations/components/DonateHero";
+import { DonationOptions } from "@/features/Entities/donations/components/DonationOptions";
+import { DonationImpact } from "@/features/Entities/donations/components/DonationImpact";
 
 export const metadata: Metadata = {
   title: "Donate",

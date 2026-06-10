@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { GetInvolvedHero } from "@/features/get-involved/components/GetInvolvedHero";
-import { ImpactPaths } from "@/features/get-involved/components/ImpactPaths";
-import { QuickFormSection } from "@/features/get-involved/components/QuickFormSection";
+import { GetInvolvedHero } from "@/features/Static/content/components/GetInvolvedHero";
+import { ImpactPaths } from "@/features/Static/content/components/ImpactPaths";
+import { QuickFormSection } from "@/features/Static/content/components/QuickFormSection";
 
 export const metadata: Metadata = {
   title: "Get Involved",

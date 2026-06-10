@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { ProgressIndicator } from "@/features/donate/components/ProgressIndicator";
-import { ReviewSummary } from "@/features/donate/components/ReviewSummary";
+import { ProgressIndicator } from "@/features/Entities/donations/components/ProgressIndicator";
+import { ReviewSummary } from "@/features/Entities/donations/components/ReviewSummary";
 
 export const metadata: Metadata = {
   title: "Review",

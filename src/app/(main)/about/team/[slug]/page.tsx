@@ -1,8 +1,25 @@
 import { notFound } from "next/navigation";
-import { getMemberBySlug, TEAM_MEMBERS } from "@/constants/team";
-import { MemberProfile } from "@/features/about/components/MemberProfile";
+import { MemberProfile } from "@/features/Entities/members/components/MemberProfile";
 import Link from "next/link";
 import { Metadata } from "next";
+import { MembersRepository } from "@/server/repositories/members";
+import { createStaticClient } from "@/shared/lib/supabase/server";
+import type { TeamMember } from "@/features/Entities/members/types/member.types";
+
+const membersRepo = new MembersRepository();
+
+function mapToTeamMember(row: any): TeamMember {
+  return {
+    id: row.id,
+    slug: row.slug || '',
+    category: row.type.toLowerCase(),
+    name: `${row.first_name} ${row.last_name}`.trim(),
+    role: row.role || '',
+    description: row.bio || '',
+    image: row.avatar_url || '',
+    profile: row.profile as any,
+  };
+}
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -10,30 +27,48 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
-  const member = getMemberBySlug(resolvedParams.slug);
+  const supabase = createStaticClient();
 
-  if (!member) {
+  try {
+    const memberRow = await membersRepo.getPublicMemberBySlug(supabase, resolvedParams.slug);
+    if (!memberRow) return { title: "Member Not Found" };
+
+    const member = mapToTeamMember(memberRow);
     return {
-      title: "Member Not Found",
+      title: `${member.name} | Youth Action for Development`,
+      description: `Learn more about ${member.name}, ${member.role} at Youth Action for Development.`,
     };
+  } catch {
+    return { title: "Member Not Found" };
   }
-
-  return {
-    title: `${member.name} | Youth Action for Development`,
-    description: `Learn more about ${member.name}, ${member.role} at Youth Action for Development.`,
-  };
 }
 
 // Generate static params for all known members at build time
 export async function generateStaticParams() {
-  return TEAM_MEMBERS.map((member) => ({
-    slug: member.slug,
-  }));
+  const supabase = createStaticClient();
+  try {
+    const slugs = await membersRepo.getAllPublicSlugs(supabase);
+    return slugs.map((row) => ({
+      slug: row.slug,
+    }));
+  } catch {
+    return [];
+  }
 }
 
 export default async function TeamMemberPage({ params }: PageProps) {
   const resolvedParams = await params;
-  const member = getMemberBySlug(resolvedParams.slug);
+  const supabase = createStaticClient();
+
+  let member: TeamMember | null = null;
+  try {
+    const memberRow = await membersRepo.getPublicMemberBySlug(supabase, resolvedParams.slug);
+    if (memberRow) {
+      member = mapToTeamMember(memberRow);
+    }
+  } catch (error) {
+    console.error("Error fetching member:", error);
+  }
 
   if (!member) {
     notFound();

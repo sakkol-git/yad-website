@@ -1,36 +1,84 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { Button } from "@/components/ui/Button";
-import { ProgressIndicator } from "@/features/donate/components/ProgressIndicator";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Donate",
-  description: "Complete your donation to YAD Cambodia.",
-};
+import { useState } from "react";
+import { Button } from "@/shared/components/ui/Button";
+import { ProgressIndicator } from "@/features/Entities/donations/components/ProgressIndicator";
+import { createDonationDraftAction } from "@/server/actions/donate.actions";
+import { createStripeCheckoutSession } from "@/server/actions/stripe.actions";
 
 export default function DonateFlowPage() {
+  const [amount, setAmount] = useState<number | "">("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const predefinedAmounts = [25, 50, 100];
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!amount || amount <= 0 || !firstName || !lastName || !email) {
+      alert("Please fill in all fields with valid information.");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // 1. Create Donation Draft in DB
+      const draftRes = await createDonationDraftAction(Number(amount), firstName, lastName, email);
+
+      if (!draftRes.success || !draftRes.data) {
+        throw new Error(draftRes.error || "Failed to create donation draft");
+      }
+
+      // 2. Create Stripe Checkout Session
+      const stripeRes = await createStripeCheckoutSession({
+        type: "donation",
+        referenceId: (draftRes.data as any).id,
+        amount: Number(amount),
+        customerEmail: email,
+      });
+
+      if (stripeRes.error || !stripeRes.url) {
+        throw new Error(stripeRes.error || "Failed to create checkout session");
+      }
+
+      // 3. Redirect to Stripe
+      window.location.href = stripeRes.url;
+
+    } catch (error: any) {
+      console.error(error);
+      alert(error.message || "Something went wrong. Please try again.");
+      setIsLoading(false);
+    }
+  };
+
+  const displayAmount = amount || 0;
+
   return (
     <main className="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-32 pb-20 flex flex-col lg:flex-row gap-gutter">
-      {/* Left Column: Checkout Flow */}
       <div className="w-full lg:w-2/3">
         <ProgressIndicator currentStep={1} />
 
         <div className="bg-surface-container-lowest rounded-xl ambient-shadow p-6 md:p-10 relative overflow-hidden">
-          {/* STEP 1: Amount & Contact */}
-          <div>
+          <form onSubmit={handleSubmit}>
             <h2 className="font-headline-md text-headline-md text-primary mb-6">
               Select Amount
             </h2>
             <div className="grid grid-cols-3 gap-4 mb-6">
-              <Button variant="outline" size="lg" className="border-transparent bg-surface-container hover:bg-surface-variant text-on-surface text-lg">
-                $25
-              </Button>
-              <Button variant="primary" size="lg" className="bg-primary-container text-on-primary-container ring-2 ring-primary border-transparent text-lg hover:bg-primary-container">
-                $50
-              </Button>
-              <Button variant="outline" size="lg" className="border-transparent bg-surface-container hover:bg-surface-variant text-on-surface text-lg">
-                $100
-              </Button>
+              {predefinedAmounts.map((preset) => (
+                <Button
+                  key={preset}
+                  type="button"
+                  variant={amount === preset ? "primary" : "outline"}
+                  onClick={() => setAmount(preset)}
+                  size="lg"
+                  className={amount === preset ? "bg-primary-container text-on-primary-container ring-2 ring-primary border-transparent text-lg hover:bg-primary-container" : "border-transparent bg-surface-container hover:bg-surface-variant text-on-surface text-lg"}
+                >
+                  ${preset}
+                </Button>
+              ))}
             </div>
             <div className="mb-8 relative">
               <span className="absolute left-4 top-1/2 -translate-y-1/2 font-body-lg text-body-lg text-on-surface-variant">
@@ -40,6 +88,9 @@ export default function DonateFlowPage() {
                 className="stripe-input pl-8"
                 placeholder="Custom Amount"
                 type="number"
+                min="1"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value ? Number(e.target.value) : "")}
               />
             </div>
 
@@ -56,6 +107,8 @@ export default function DonateFlowPage() {
                   placeholder="Jane"
                   required
                   type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
               </div>
               <div>
@@ -67,6 +120,8 @@ export default function DonateFlowPage() {
                   placeholder="Doe"
                   required
                   type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
               <div className="md:col-span-2">
@@ -78,25 +133,22 @@ export default function DonateFlowPage() {
                   placeholder="jane.doe@example.com"
                   required
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
 
             <div className="flex justify-end">
-              <Button variant="secondary" size="lg" className="rounded-full gap-2 hover:scale-105 px-8" asChild>
-                <Link href="/donate/payment">
-                  Continue to Payment{" "}
-                  <span className="material-symbols-outlined">
-                    arrow_forward
-                  </span>
-                </Link>
+              <Button type="submit" variant="secondary" size="lg" className="rounded-full gap-2 hover:scale-105 px-8" disabled={isLoading}>
+                {isLoading ? "Processing..." : "Proceed to Secure Checkout"}
+                {!isLoading && <span className="material-symbols-outlined">lock</span>}
               </Button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
 
-      {/* Right Column: Summary */}
       <div className="w-full lg:w-1/3 mt-8 lg:mt-0">
         <div className="sticky top-24 bg-surface-container-low rounded-xl p-8 border border-surface-variant relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-secondary-fixed opacity-20 rounded-bl-full -z-0" />
@@ -108,7 +160,7 @@ export default function DonateFlowPage() {
               Total
             </span>
             <span className="font-display-lg text-display-lg text-primary">
-              $50
+              ${displayAmount}
             </span>
           </div>
           <div className="space-y-4 relative z-10">
@@ -152,3 +204,4 @@ export default function DonateFlowPage() {
     </main>
   );
 }
+

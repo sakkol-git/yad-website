@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Donation Management - YAD Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-container-low": "#f2f4f2",
+                "primary-fixed": "#baefc4",
+                "on-tertiary-fixed": "#061e29",
+                "on-surface-variant": "#414941",
+                "on-tertiary": "#ffffff",
+                "on-secondary-container": "#456c3a",
+                "error-container": "#ffdad6",
+                "secondary": "#416837",
+                "on-surface": "#191c1b",
+                "surface": "#f8faf8",
+                "on-background": "#191c1b",
+                "surface-bright": "#f8faf8",
+                "secondary-container": "#bfecae",
+                "on-primary": "#ffffff",
+                "primary": "#013619",
+                "tertiary-fixed-dim": "#b3cad9",
+                "on-error-container": "#93000a",
+                "outline-variant": "#c1c9bf",
+                "on-secondary-fixed-variant": "#2a4f21",
+                "inverse-on-surface": "#eff1ef",
+                "on-primary-container": "#8abd95",
+                "on-error": "#ffffff",
+                "background": "#f8faf8",
+                "on-tertiary-container": "#9eb5c4",
+                "on-primary-fixed": "#00210d",
+                "inverse-primary": "#9fd3aa",
+                "tertiary": "#1b303d",
+                "outline": "#717971",
+                "inverse-surface": "#2e3130",
+                "surface-container-highest": "#e1e3e1",
+                "tertiary-container": "#324754",
+                "secondary-fixed": "#c2efb1",
+                "surface-container": "#eceeec",
+                "tertiary-fixed": "#cfe6f6",
+                "on-primary-fixed-variant": "#205031",
+                "primary-fixed-dim": "#9fd3aa",
+                "surface-dim": "#d8dad9",
+                "surface-container-high": "#e6e9e7",
+                "on-secondary-fixed": "#012200",
+                "surface-variant": "#e1e3e1",
+                "surface-tint": "#396847",
+                "primary-container": "#1d4d2e",
+                "on-tertiary-fixed-variant": "#344956",
+                "on-secondary": "#ffffff",
+                "error": "#ba1a1a",
+                "secondary-fixed-dim": "#a6d296",
+                "surface-container-lowest": "#ffffff"
+        },
+        "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "gutter": "24px",
+                "margin-desktop": "60px",
+                "section-gap": "120px",
+                "container-max": "1280px",
+                "margin-mobile": "20px"
+        },
+        "fontFamily": {
+                "display-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-lg-mobile": [
+                        "Plus Jakarta Sans"
+                ],
+                "label-bold": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-md": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-md": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-lg": [
+                        "Plus Jakarta Sans"
+                ]
+        },
+        "fontSize": {
+                "display-lg": [
+                        "72px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.04em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "36px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-bold": [
+                        "14px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "32px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(1, 54, 25, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased flex font-body-md text-body-md min-h-screen">
+<!-- SideNavBar -->
+<nav class="hidden md:flex h-screen w-72 flex-col fixed left-0 top-0 bg-surface dark:bg-inverse-surface bg-surface-container-low dark:bg-surface-container-lowest shadow-sm z-50">
+<div class="flex flex-col h-full py-8 px-6 space-y-4">
+<!-- Header/Brand -->
+<div class="mb-8 flex items-center gap-4 px-2">
+<div class="w-12 h-12 rounded-full overflow-hidden shrink-0">
+<img alt="YAD Cambodia Admin Profile" class="w-full h-full object-cover" data-alt="A clean, professional headshot or abstract modern logo representing a corporate administrative portal. Bright, inviting lighting. White background. energetic and nurturing vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3TF-k5pIeEP6PHj8iIscQ_8c8QKCmwE7_mCECvTOc8-gLoQpNYu3pJdsfm7bD8e_ezrqL8-JLON45b7I36pH33nRuekUjJyKZuGGKHR7VrOBWB9w3OcWZo_Txo5O9YiQYyGkwPtxv9pRx25EGRHSkoJR-xkB_TexjOwO1jrCwRRYuwFWlciKJqfC_5FML9pGXyBAk3ODaOaAH5cXA33sTDXMBCPnYd2K9SUVex8Dsn8RKD6ASm9LjYp7tFZ2W-xeE-_eCRD-wiac"/>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed truncate">YAD Cambodia</h1>
+<p class="text-label-bold font-label-bold text-on-surface-variant">Admin Portal</p>
+</div>
+</div>
+<!-- CTA -->
+<button class="mb-6 w-full py-3 px-4 bg-secondary text-on-secondary rounded-full font-label-bold text-label-bold hover:scale-[1.02] transition-transform shadow-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Initiative
+            </button>
+<!-- Navigation Links -->
+<div class="flex-1 flex flex-col gap-2 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed hover:scale-[1.02] hover:bg-surface-variant/50 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-bold text-label-bold">Dashboard Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed hover:scale-[1.02] hover:bg-surface-variant/50 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-bold text-label-bold">Member Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed hover:scale-[1.02] hover:bg-surface-variant/50 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="font-label-bold text-label-bold">Program Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed hover:scale-[1.02] hover:bg-surface-variant/50 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">home_work</span>
+<span class="font-label-bold text-label-bold">Homestay Bookings</span>
+</a>
+<!-- ACTIVE TAB -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer active:scale-95 transition-transform text-secondary font-bold border-r-4 border-secondary bg-secondary-container/20 dark:bg-secondary-container/10" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+<span class="font-label-bold text-label-bold">Donation Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed hover:scale-[1.02] hover:bg-surface-variant/50 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label-bold text-label-bold">Event Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed hover:scale-[1.02] hover:bg-surface-variant/50 transition-all duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">handshake</span>
+<span class="font-label-bold text-label-bold">Partner Management</span>
+</a>
+</div>
+<div class="mt-auto pt-6 border-t border-surface-variant/50">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-bold text-label-bold text-xs opacity-70">v2.4.1</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">logout</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="flex-1 md:ml-72 flex flex-col w-full relative">
+<!-- TopNavBar (Mobile mainly, but keeping structure for layout consistency if needed, though hidden on mobile here typically, we'll keep a basic top bar for search/profile on desktop) -->
+<header class="h-20 w-full px-margin-desktop bg-surface/80 backdrop-blur-md sticky top-0 z-40 flex items-center justify-between border-b border-surface-variant/30">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-md text-headline-md text-primary">Donation Management</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container rounded-full border-none focus:ring-2 focus:ring-secondary w-64 text-body-md font-body-md text-on-surface" placeholder="Search donors..." type="text"/>
+</div>
+<div class="flex gap-4 text-primary">
+<button class="hover:text-secondary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="hover:text-secondary transition-colors"><span class="material-symbols-outlined">settings</span></button>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="p-margin-desktop pt-8 pb-32 max-w-[1600px] mx-auto w-full flex flex-col lg:flex-row gap-gutter">
+<!-- Left Column: KPIs & Charts -->
+<div class="flex-1 flex flex-col gap-gutter">
+<!-- KPI Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- KPI 1 -->
+<div class="glass-card rounded-xl p-6 flex flex-col relative overflow-hidden group hover:scale-[1.02] transition-transform duration-300 cursor-default">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full blur-xl group-hover:bg-primary/10 transition-colors"></div>
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined">account_balance</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider text-xs">Total Raised</span>
+</div>
+<h3 class="font-display-lg text-[48px] font-extrabold text-primary mt-auto">$142,850</h3>
+<p class="text-secondary text-sm mt-2 flex items-center gap-1 font-label-bold">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> +12.5% this year
+                        </p>
+</div>
+<!-- KPI 2 -->
+<div class="glass-card rounded-xl p-6 flex flex-col relative overflow-hidden group hover:scale-[1.02] transition-transform duration-300 cursor-default">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-secondary/5 rounded-full blur-xl group-hover:bg-secondary/10 transition-colors"></div>
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider text-xs">Active Donors</span>
+</div>
+<h3 class="font-display-lg text-[48px] font-extrabold text-primary mt-auto">1,248</h3>
+<p class="text-secondary text-sm mt-2 flex items-center gap-1 font-label-bold">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> +42 new this month
+                        </p>
+</div>
+<!-- KPI 3 -->
+<div class="glass-card rounded-xl p-6 flex flex-col relative overflow-hidden group hover:scale-[1.02] transition-transform duration-300 cursor-default">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-tertiary/5 rounded-full blur-xl group-hover:bg-tertiary/10 transition-colors"></div>
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined">autorenew</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface-variant uppercase tracking-wider text-xs">Recurring Monthly</span>
+</div>
+<h3 class="font-display-lg text-[48px] font-extrabold text-primary mt-auto">$18,400</h3>
+<p class="text-secondary text-sm mt-2 flex items-center gap-1 font-label-bold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Highly stable
+                        </p>
+</div>
+</div>
+<!-- Main Chart Area -->
+<div class="glass-card rounded-xl p-8 flex-1 min-h-[400px] flex flex-col">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">Donation Trends</h3>
+<p class="text-on-surface-variant mt-1">Monthly breakdown for current fiscal year</p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface font-label-bold text-label-bold text-sm hover:bg-surface-variant transition-colors">Year</button>
+<button class="px-4 py-2 rounded-full bg-primary text-on-primary font-label-bold text-label-bold text-sm shadow-sm">Quarter</button>
+</div>
+</div>
+<!-- Faux Bar Chart Representation using Flexbox to avoid heavy external libraries in static HTML -->
+<div class="flex-1 flex items-end justify-between gap-2 md:gap-4 mt-auto border-b border-surface-variant/50 pb-2 relative h-64">
+<!-- Y-axis labels -->
+<div class="absolute left-0 top-0 h-full flex flex-col justify-between text-xs text-on-surface-variant/50 font-label-bold pb-2 -ml-8">
+<span>$30k</span>
+<span>$20k</span>
+<span>$10k</span>
+<span>$0</span>
+</div>
+<!-- Bars -->
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer z-10">
+<div class="w-full bg-primary/20 rounded-t-lg group-hover:bg-primary/40 transition-colors relative" style="height: 40%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded font-label-bold transition-opacity">$12k</div>
+</div>
+<span class="text-xs font-label-bold text-on-surface-variant">Jan</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer z-10">
+<div class="w-full bg-primary/20 rounded-t-lg group-hover:bg-primary/40 transition-colors relative" style="height: 55%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded font-label-bold transition-opacity">$16k</div>
+</div>
+<span class="text-xs font-label-bold text-on-surface-variant">Feb</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer z-10">
+<div class="w-full bg-primary/40 rounded-t-lg group-hover:bg-primary/60 transition-colors relative" style="height: 80%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded font-label-bold transition-opacity">$24k</div>
+</div>
+<span class="text-xs font-label-bold text-on-surface-variant">Mar</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer z-10">
+<div class="w-full bg-primary/20 rounded-t-lg group-hover:bg-primary/40 transition-colors relative" style="height: 45%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded font-label-bold transition-opacity">$14k</div>
+</div>
+<span class="text-xs font-label-bold text-on-surface-variant">Apr</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer z-10">
+<div class="w-full bg-secondary rounded-t-lg group-hover:bg-secondary/80 transition-colors relative" style="height: 95%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded font-label-bold transition-opacity">$28k</div>
+</div>
+<span class="text-xs font-label-bold text-primary font-bold">May</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer z-10">
+<div class="w-full bg-primary/20 rounded-t-lg group-hover:bg-primary/40 transition-colors relative" style="height: 30%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded font-label-bold transition-opacity">$9k</div>
+</div>
+<span class="text-xs font-label-bold text-on-surface-variant">Jun</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Recent Transactions Sidebar -->
+<div class="w-full lg:w-[400px] shrink-0 glass-card rounded-xl flex flex-col overflow-hidden h-[800px]">
+<!-- Sidebar Header -->
+<div class="p-6 border-b border-surface-variant/30 bg-surface/40 flex items-center justify-between">
+<div>
+<h3 class="font-headline-md text-[24px] font-bold text-primary">Recent Transactions</h3>
+<p class="text-on-surface-variant text-sm mt-1">Real-time donation feed</p>
+</div>
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<!-- Transaction List -->
+<div class="flex-1 overflow-y-auto p-4 flex flex-col gap-2 custom-scrollbar">
+<!-- Item 1 -->
+<div class="p-4 rounded-lg hover:bg-surface-variant/30 transition-colors flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-bold text-lg">JS</div>
+<div>
+<p class="font-label-bold text-on-surface">Jane Smith</p>
+<div class="flex items-center gap-2 mt-1">
+<p class="text-xs text-on-surface-variant">Today, 10:42 AM</p>
+<span class="flex items-center gap-1 text-[10px] font-bold text-primary"><span class="material-symbols-outlined text-[12px]">public</span> Stripe</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-bold text-secondary text-lg">+$500.00</p>
+<span class="inline-block px-2 py-0.5 rounded-full bg-tertiary-container/20 text-tertiary text-[10px] font-bold uppercase tracking-wider mt-1">One-time</span>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-4 rounded-lg hover:bg-surface-variant/30 transition-colors flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-bold text-lg">RK</div>
+<div>
+<p class="font-label-bold text-on-surface">Robert King</p>
+<div class="flex items-center gap-2 mt-1">
+<p class="text-xs text-on-surface-variant">Today, 09:15 AM</p>
+<span class="flex items-center gap-1 text-[10px] font-bold text-secondary"><span class="material-symbols-outlined text-[12px]">qr_code_scanner</span> Bakong</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-bold text-secondary text-lg">+$50.00</p>
+<span class="inline-block px-2 py-0.5 rounded-full bg-secondary-container/50 text-secondary text-[10px] font-bold uppercase tracking-wider mt-1">Monthly</span>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="p-4 rounded-lg hover:bg-surface-variant/30 transition-colors flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-dim text-on-surface-variant flex items-center justify-center font-label-bold text-lg">MC</div>
+<div>
+<p class="font-label-bold text-on-surface">Maria Garcia</p>
+<div class="flex items-center gap-2 mt-1">
+<p class="text-xs text-on-surface-variant">Yesterday</p>
+<span class="flex items-center gap-1 text-[10px] font-bold text-primary"><span class="material-symbols-outlined text-[12px]">public</span> Stripe</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-bold text-secondary text-lg">+$1,200.00</p>
+<span class="inline-block px-2 py-0.5 rounded-full bg-tertiary-container/20 text-tertiary text-[10px] font-bold uppercase tracking-wider mt-1">Corporate</span>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="p-4 rounded-lg hover:bg-surface-variant/30 transition-colors flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-dim text-on-surface-variant flex items-center justify-center font-label-bold text-lg">AL</div>
+<div>
+<p class="font-label-bold text-on-surface">Alex Lee</p>
+<div class="flex items-center gap-2 mt-1">
+<p class="text-xs text-on-surface-variant">Yesterday</p>
+<span class="flex items-center gap-1 text-[10px] font-bold text-secondary"><span class="material-symbols-outlined text-[12px]">qr_code_scanner</span> Bakong</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-bold text-secondary text-lg">+$25.00</p>
+<span class="inline-block px-2 py-0.5 rounded-full bg-secondary-container/50 text-secondary text-[10px] font-bold uppercase tracking-wider mt-1">Monthly</span>
+</div>
+</div>
+<!-- Item 5 -->
+<div class="p-4 rounded-lg hover:bg-surface-variant/30 transition-colors flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-bold text-lg">TP</div>
+<div>
+<p class="font-label-bold text-on-surface">Tech Partners LLC</p>
+<div class="flex items-center gap-2 mt-1">
+<p class="text-xs text-on-surface-variant">May 12, 2024</p>
+<span class="flex items-center gap-1 text-[10px] font-bold text-primary"><span class="material-symbols-outlined text-[12px]">public</span> Stripe</span>
+</div>
+</div>
+</div>
+<div class="text-right">
+<p class="font-label-bold text-secondary text-lg">+$5,000.00</p>
+<span class="inline-block px-2 py-0.5 rounded-full bg-tertiary-container/20 text-tertiary text-[10px] font-bold uppercase tracking-wider mt-1">Grant</span>
+</div>
+</div>
+</div>
+<!-- View All Footer -->
+<div class="p-4 bg-surface/60 border-t border-surface-variant/30">
+<button class="w-full py-3 rounded-full text-primary font-label-bold text-label-bold hover:bg-primary/5 transition-colors flex items-center justify-center gap-2">
+                        View All Transactions
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<style>
+        /* Lightweight custom scrollbar for the sidebar list */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: theme('colors.surface-variant');
+            border-radius: 10px;
+        }
+        .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+            background-color: theme('colors.outline-variant');
+        }
+    </style>
+</body></html>
