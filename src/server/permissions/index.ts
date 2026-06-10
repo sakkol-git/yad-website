@@ -18,14 +18,22 @@ export const requireAuth = async (supabase: SupabaseClient<Database>) => {
 
 export const requireRole = async (supabase: SupabaseClient<Database>, allowedRoles: string[]) => {
   const user = await requireAuth(supabase);
-  
-  // Example implementation assuming role is in user metadata or a roles table
-  const role = user.user_metadata?.role || 'user'; // Replace with actual role fetching logic
-  
+
+  let role = 'user';
+  const { data } = await supabase
+    .from('user_roles')
+    .select('role')
+    .eq('user_id', user.id)
+    .single();
+
+  if (data) {
+    role = (data as any).role;
+  }
+
   if (!allowedRoles.includes(role)) {
     throw new PermissionsError(`Forbidden: Requires one of roles: ${allowedRoles.join(', ')}`);
   }
-  
+
   return user;
 };
 
