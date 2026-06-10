@@ -33,6 +33,11 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
             </div>
 
             <div className="flex items-center gap-4">
+              <Link href="/" title="Back to Website" className="flex items-center gap-2 px-4 py-2 rounded-full border border-outline-variant/50 text-sm font-medium text-on-surface hover:bg-surface-container transition-all">
+                <span className="material-symbols-outlined text-[18px]">public</span>
+                <span className="hidden sm:inline">Website</span>
+              </Link>
+              
               <button className="relative p-2 rounded-full text-on-surface-variant hover:bg-surface-container hover:text-secondary transition-colors">
                 <span className="material-symbols-outlined text-[20px]">notifications</span>
               </button>
