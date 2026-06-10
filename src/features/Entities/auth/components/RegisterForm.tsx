@@ -7,8 +7,8 @@ interface RegisterFormProps {
 
 export function RegisterForm({ errorMsg, registerAction }: RegisterFormProps) {
   return (
-    <div className="min-h-screen bg-surface flex flex-col lg:flex-row">
-      {/* Left Side - Branding/Image (Desktop Only) */}
+    <div className="min-h-screen bg-surface flex flex-col lg:flex-row-reverse">
+      {/* Branding/Image (Right Side on Desktop due to flex-row-reverse) */}
       <div className="hidden lg:flex lg:w-1/2 bg-primary items-center justify-center p-12 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10">
           <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" className="w-full h-full object-cover">
@@ -23,7 +23,7 @@ export function RegisterForm({ errorMsg, registerAction }: RegisterFormProps) {
         </div>
       </div>
 
-      {/* Right Side - Form */}
+      {/* Form (Left Side on Desktop due to flex-row-reverse) */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-8 lg:p-12 overflow-y-auto">
         <div className="w-full max-w-md py-8">
           <div className="flex flex-col items-center mb-8">
