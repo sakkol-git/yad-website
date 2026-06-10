@@ -98,7 +98,7 @@ export default function Navbar() {
             </div>
           )}
           <Button variant="primary" className="rounded-full shadow-sm hover:scale-105" asChild>
-            <Link href="/donate">Donate</Link>
+            <Link href="/auth/login">Login</Link>
           </Button>
         </div>
 
