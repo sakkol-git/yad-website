@@ -252,7 +252,7 @@ export default function Navbar() {
               </div>
             )}
 
-            <Button variant="primary" size="lg" className="w-full rounded-full text-lg shadow-sm" asChild>
+            <Button variant="primary" size="lg" className="w-full text-lg shadow-sm" asChild>
               <Link href="/donate/flow">Donate Now</Link>
             </Button>
           </div>
