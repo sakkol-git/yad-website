@@ -104,11 +104,11 @@ export default function Navbar() {
         {/* Desktop Auth & CTA */}
         <div className="hidden lg:flex items-center gap-5">
           {isLoading ? (
-            <div className="w-24 h-10 bg-surface-variant/50 animate-pulse rounded-full" />
+            <div className="w-24 h-10 bg-surface-variant/50 animate-pulse rounded-lg" />
           ) : user ? (
             <div className="relative group">
               <button
-                className="flex items-center gap-2 px-4 py-2 rounded-full border border-surface-variant/50 bg-surface hover:bg-surface-container transition-all focus:outline-none focus:ring-2 focus:ring-primary text-sm font-medium text-on-surface"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-surface-variant/50 bg-surface hover:bg-surface-container transition-all focus:outline-none focus:ring-2 focus:ring-primary text-sm font-medium text-on-surface"
                 aria-haspopup="true"
               >
                 <span className="material-symbols-outlined text-[20px] text-primary">account_circle</span>
