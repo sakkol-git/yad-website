@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { createStripeCheckoutSession } from '@/server/actions/stripe.actions';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/shared/components/ui/Button';
 
 interface UserBookingsTableProps {
@@ -9,28 +8,10 @@ interface UserBookingsTableProps {
 }
 
 export function UserBookingsTable({ bookings }: UserBookingsTableProps) {
-  const [loadingId, setLoadingId] = useState<string | null>(null);
+  const router = useRouter();
 
-  const handlePayment = async (booking: any) => {
-    setLoadingId(booking.id);
-    try {
-      const res = await createStripeCheckoutSession({
-        type: 'booking',
-        referenceId: booking.id,
-        amount: booking.amount,
-      });
-
-      if (res.error || !res.url) {
-        throw new Error(res.error || "Failed to initiate payment");
-      }
-
-      window.location.href = res.url;
-    } catch (err: any) {
-      console.error(err);
-      alert(err.message || "Failed to start payment process. Please try again.");
-    } finally {
-      setLoadingId(null);
-    }
+  const handlePayment = (booking: any) => {
+    router.push(`/payment?id=${booking.id}&type=booking`);
   };
 
   return (
@@ -80,9 +61,8 @@ export function UserBookingsTable({ bookings }: UserBookingsTableProps) {
                           variant="primary" 
                           size="sm" 
                           onClick={() => handlePayment(booking)}
-                          disabled={loadingId === booking.id}
                         >
-                          {loadingId === booking.id ? 'Processing...' : 'Pay Now'}
+                          Pay Now
                         </Button>
                       )}
                     </td>

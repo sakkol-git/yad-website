@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -14,60 +14,86 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, role, isLoading } = useAuth();
 
+  // Automatically close mobile menu when navigating to a new route
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMenuOpen]);
+
   return (
     <nav
-      className="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-lg border-b border-surface-variant/50 transition-all duration-300"
+      className="fixed top-0 w-full z-50 bg-surface/95 backdrop-blur-md border-b border-surface-variant/40 shadow-sm transition-all duration-300"
       aria-label="Main navigation"
     >
-      <div className="flex justify-between items-center px-4 md:px-6 lg:px-8 py-4 md:py-6 max-w-container-max mx-auto">
+      <div className="flex justify-between items-center px-4 md:px-6 lg:px-8 py-3 md:py-4 max-w-[1440px] mx-auto">
         {/* Brand */}
         <Link
           href="/"
-          className="flex items-center gap-2 group z-50"
-          onClick={() => setIsMenuOpen(false)}
+          className="flex items-center gap-3 z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
         >
           <Image
             src="/assets/images/yad_logo.png"
             alt="YAD Logo"
-            width={40}
-            height={40}
-            className="w-10 h-10 object-contain group-hover:scale-105 transition-transform duration-300"
+            width={44}
+            height={44}
+            className="w-10 h-10 md:w-11 md:h-11 object-contain transition-transform duration-300 hover:scale-105"
+            priority
           />
-          <span className="font-headline-md text-headline-md font-bold text-primary tracking-tight">
+          <span className="font-headline-md text-xl md:text-2xl font-bold text-primary tracking-tight">
             YAD
           </span>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-8 font-body-md text-body-md">
+        <div className="hidden lg:flex items-center gap-8 font-medium">
           {NAV_LINKS.map((link) => {
-            const isActive = pathname === link.href || link.subLinks?.some(sub => pathname === sub.href);
+            const isActive = pathname === link.href || link.subLinks?.some((sub) => pathname === sub.href);
             return (
               <div key={link.href} className="relative group">
                 <Link
                   href={link.href}
-                  className={
-                    isActive
-                      ? "text-secondary font-extrabold border-b-[3px] border-secondary pb-1 hover:scale-105 transition-transform duration-200"
-                      : "text-on-surface-variant hover:text-primary transition-colors hover:scale-105 duration-200"
-                  }
+                  className={`flex items-center gap-1 py-2 text-sm transition-colors duration-200 ${isActive ? "text-primary font-bold" : "text-on-surface-variant hover:text-primary"
+                    }`}
                 >
-                  <span className="flex items-center gap-1">
-                    {link.label}
-                    {link.subLinks && <span className="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>}
-                  </span>
+                  {link.label}
+                  {link.subLinks && (
+                    <span className="material-symbols-outlined text-[18px] transition-transform duration-200 group-hover:rotate-180">
+                      expand_more
+                    </span>
+                  )}
                 </Link>
+
+                {/* Sub-menu with invisible bridge to prevent accidental closing */}
                 {link.subLinks && (
-                  <div className="absolute top-full left-0 mt-2 w-48 bg-surface rounded-xl shadow-lg border border-surface-variant/50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 overflow-hidden flex flex-col py-2">
-                    {link.subLinks.map(subLink => (
-                      <Link
-                        key={subLink.href}
-                        href={subLink.href}
-                        className={`px-4 py-2 hover:bg-surface-container transition-colors ${pathname === subLink.href ? 'text-secondary font-bold bg-secondary/5' : 'text-on-surface-variant hover:text-primary'}`}
-                      >
-                        {subLink.label}
-                      </Link>
-                    ))}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="w-56 bg-surface rounded-xl shadow-lg border border-surface-variant/50 overflow-hidden flex flex-col py-2">
+                      {link.subLinks.map((subLink) => {
+                        const isSubActive = pathname === subLink.href;
+                        return (
+                          <Link
+                            key={subLink.href}
+                            href={subLink.href}
+                            className={`px-4 py-2.5 text-sm text-center transition-colors ${isSubActive
+                              ? "text-primary font-semibold bg-primary/5"
+                              : "text-on-surface-variant hover:text-primary hover:bg-surface-container"
+                              }`}
+                          >
+                            {subLink.label}
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
                 )}
               </div>
@@ -75,107 +101,163 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Desktop CTA Buttons */}
-        <div className="hidden lg:flex items-center gap-6">
+        {/* Desktop Auth & CTA */}
+        <div className="hidden lg:flex items-center gap-5">
           {isLoading ? (
-            <div className="w-24 h-10 animate-pulse bg-surface-variant rounded-full" />
+            <div className="w-24 h-10 bg-surface-variant/50 animate-pulse rounded-full" />
           ) : user ? (
-            <div className="flex items-center gap-4 border-r border-surface-variant pr-6">
-              <Link href={role === 'admin' ? '/admin/dashboard' : '/portal/dashboard'} className="text-on-surface-variant hover:text-primary font-medium transition-colors">
-                Dashboard
-              </Link>
-              <form action={logout}>
-                <button type="submit" className="text-on-surface-variant hover:text-error font-medium transition-colors">
-                  Sign Out
-                </button>
-              </form>
+            <div className="relative group">
+              <button
+                className="flex items-center gap-2 px-4 py-2 rounded-full border border-surface-variant/50 bg-surface hover:bg-surface-container transition-all focus:outline-none focus:ring-2 focus:ring-primary text-sm font-medium text-on-surface"
+                aria-haspopup="true"
+              >
+                <span className="material-symbols-outlined text-[20px] text-primary">account_circle</span>
+                <span className="max-w-[100px] truncate">My Account</span>
+                <span className="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:rotate-180 transition-transform">
+                  expand_more
+                </span>
+              </button>
+
+              <div className="absolute right-0 top-full pt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="bg-surface rounded-xl shadow-xl border border-surface-variant/50 flex flex-col overflow-hidden">
+                  <div className="px-4 py-3 bg-surface-container/30 border-b border-surface-variant/50">
+                    <p className="text-sm font-semibold text-on-surface truncate">{user.email}</p>
+                    <p className="text-xs text-on-surface-variant capitalize mt-0.5">{role} Access</p>
+                  </div>
+                  <div className="py-2">
+                    <Link
+                      href={role === "admin" ? "/admin/dashboard" : "/portal/dashboard"}
+                      className="px-4 py-2.5 text-sm text-on-surface hover:bg-surface-container hover:text-primary transition-colors flex items-center gap-3"
+                    >
+                      <span className="material-symbols-outlined text-[18px]">dashboard</span> Dashboard
+                    </Link>
+                    <form action={logout}>
+                      <button
+                        type="submit"
+                        className="w-full text-left px-4 py-2.5 text-sm text-on-surface hover:bg-error/10 hover:text-error transition-colors flex items-center gap-3"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">logout</span> Sign Out
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
             </div>
           ) : (
-            <div className="flex items-center gap-4 border-r border-surface-variant pr-6">
-              <Link href="/donate" className="text-primary hover:text-secondary font-bold transition-colors">
-                Donate Now
-              </Link>
-            </div>
+            <Link
+              href="/auth/login"
+              className="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors px-2"
+            >
+              Log In
+            </Link>
           )}
-          <Button variant="primary" className="rounded-full shadow-sm hover:scale-105" asChild>
-            <Link href="/auth/login">Login</Link>
+
+          <Button variant="primary" className="rounded-full shadow-sm hover:shadow-md transition-all" asChild>
+            <Link href="/donate/flow">Donate Now</Link>
           </Button>
         </div>
 
-        {/* Mobile Menu Icon */}
+        {/* Mobile Menu Toggle */}
         <button
-          className="lg:hidden text-primary h-12 w-12 flex items-center justify-center rounded-full hover:bg-surface-container-highest transition-colors z-50"
+          className="lg:hidden text-on-surface p-2 -mr-2 flex items-center justify-center rounded-lg hover:bg-surface-container transition-colors z-50 focus:outline-none focus:ring-2 focus:ring-primary"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-expanded={isMenuOpen}
           aria-label="Toggle navigation menu"
         >
-          <span className="material-symbols-outlined text-2xl">
-            {isMenuOpen ? "close" : "menu"}
-          </span>
+          <span className="material-symbols-outlined text-3xl">{isMenuOpen ? "close" : "menu"}</span>
         </button>
       </div>
 
-      {/* Mobile Navigation Dropdown */}
-      {isMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-surface border-b border-surface-variant shadow-xl flex flex-col py-6 px-4 md:px-6 animate-fade-up max-h-[calc(100vh-80px)] overflow-y-auto">
-          <div className="flex flex-col gap-2 mb-6 w-full">
+      {/* Mobile Navigation Overlay */}
+      <div
+        className={`lg:hidden fixed inset-x-0 top-[65px] md:top-[73px] h-[calc(100vh-65px)] bg-surface border-t border-surface-variant overflow-y-auto transition-all duration-300 ease-in-out ${isMenuOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-4 invisible"
+          }`}
+      >
+        <div className="flex flex-col h-full px-4 py-6 max-w-md mx-auto">
+          {/* Mobile Links */}
+          <div className="flex-1 flex flex-col gap-1">
             {NAV_LINKS.map((link) => {
-              const isActive = pathname === link.href || link.subLinks?.some(sub => pathname === sub.href);
+              const isActive = pathname === link.href;
               return (
-                <div key={link.href} className="flex flex-col w-full">
+                <div key={link.href} className="flex flex-col">
                   <Link
                     href={link.href}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`py-4 px-4 w-full rounded-xl font-label-bold text-lg transition-colors flex justify-between items-center ${isActive
-                      ? "bg-secondary-container text-on-secondary-container"
-                      : "text-on-surface hover:bg-surface-container"
+                    className={`py-3 px-4 rounded-xl font-medium text-base transition-colors flex justify-between items-center ${isActive ? "bg-primary/10 text-primary" : "text-on-surface hover:bg-surface-container"
                       }`}
                   >
                     {link.label}
                   </Link>
                   {link.subLinks && (
-                    <div className="flex flex-col pl-6 pr-2 py-2 gap-1 border-l-2 border-surface-variant ml-4 mt-1">
-                      {link.subLinks.map(sub => (
-                        <Link
-                          key={sub.href}
-                          href={sub.href}
-                          onClick={() => setIsMenuOpen(false)}
-                          className={`py-3 px-4 rounded-lg text-md transition-colors ${pathname === sub.href ? "text-secondary font-bold bg-secondary/5" : "text-on-surface-variant hover:text-primary hover:bg-surface-container/50"}`}
-                        >
-                          {sub.label}
-                        </Link>
-                      ))}
+                    <div className="flex flex-col pl-4 pr-2 py-1 gap-1 ml-4 border-l-2 border-surface-variant/50 mt-1 mb-2">
+                      {link.subLinks.map((sub) => {
+                        const isSubActive = pathname === sub.href;
+                        return (
+                          <Link
+                            key={sub.href}
+                            href={sub.href}
+                            className={`py-2 px-4 rounded-lg text-sm text-center transition-colors ${isSubActive
+                              ? "text-primary font-semibold bg-primary/5"
+                              : "text-on-surface-variant hover:text-primary hover:bg-surface-container/50"
+                              }`}
+                          >
+                            {sub.label}
+                          </Link>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
               );
             })}
           </div>
-          <div className="flex flex-col items-center gap-4 border-t border-surface-variant pt-6">
-            <Button variant="primary" size="lg" className="w-full rounded-full" asChild onClick={() => setIsMenuOpen(false)}>
-              <Link href="/donate">Donate</Link>
-            </Button>
+
+          {/* Mobile Auth & CTA Footer */}
+          <div className="mt-8 pt-6 border-t border-surface-variant/50 flex flex-col gap-3">
             {isLoading ? (
-              <div className="w-full h-12 animate-pulse bg-surface-variant rounded-full" />
+              <div className="w-full h-12 bg-surface-variant/50 animate-pulse rounded-full" />
             ) : user ? (
-              <div className="flex flex-col w-full gap-2">
-                <Link href={role === 'admin' ? '/admin/dashboard' : '/portal/dashboard'} className="py-3 px-4 text-center font-medium text-on-surface hover:bg-surface-container rounded-xl transition-colors" onClick={() => setIsMenuOpen(false)}>
-                  Dashboard
-                </Link>
-                <form action={logout} className="w-full">
-                  <button type="submit" className="w-full py-3 px-4 text-center font-medium text-error hover:bg-error-container rounded-xl transition-colors" onClick={() => setIsMenuOpen(false)}>
-                    Sign Out
-                  </button>
-                </form>
+              <div className="bg-surface-container/30 rounded-xl p-4 mb-2">
+                <p className="text-sm font-semibold text-on-surface mb-3 truncate">Hi, {user.email}</p>
+                <div className="grid grid-cols-2 gap-2">
+                  <Link
+                    href={role === "admin" ? "/admin/dashboard" : "/portal/dashboard"}
+                    className="flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-lg text-sm font-medium text-on-surface hover:bg-surface-container transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-[18px]">dashboard</span> Portal
+                  </Link>
+                  <form action={logout} className="w-full">
+                    <button
+                      type="submit"
+                      className="w-full flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-lg text-sm font-medium text-error hover:bg-error/10 transition-colors"
+                    >
+                      <span className="material-symbols-outlined text-[18px]">logout</span> Sign Out
+                    </button>
+                  </form>
+                </div>
               </div>
             ) : (
-              <Link href="/get-involved" className="w-full py-3 px-4 text-center font-medium text-on-surface hover:bg-surface-container rounded-xl transition-colors" onClick={() => setIsMenuOpen(false)}>
-                Join Us
-              </Link>
+              <div className="grid grid-cols-2 gap-3 mb-2">
+                <Link
+                  href="/auth/login"
+                  className="py-3 text-center font-medium border border-surface-variant text-on-surface hover:bg-surface-container rounded-full transition-colors"
+                >
+                  Log In
+                </Link>
+                <Link
+                  href="/auth/register"
+                  className="py-3 text-center font-medium bg-surface-container text-on-surface hover:bg-surface-variant rounded-full transition-colors"
+                >
+                  Register
+                </Link>
+              </div>
             )}
+
+            <Button variant="primary" size="lg" className="w-full rounded-full text-lg shadow-sm" asChild>
+              <Link href="/donate/flow">Donate Now</Link>
+            </Button>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }

@@ -22,6 +22,7 @@ export const NAV_LINKS: NavLink[] = [
       { href: "/event", label: "Events" }
     ]
   },
+  { href: "/get-involved", label: "Contact Us" },
 ];
 
 export const FOOTER_LINKS: FooterLink[] = [

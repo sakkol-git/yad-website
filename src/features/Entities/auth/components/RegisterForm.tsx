@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface RegisterFormProps {
   errorMsg?: string;
@@ -131,7 +132,13 @@ export function RegisterForm({ errorMsg, registerAction, loginWithGoogleAction }
                 type="submit"
                 className="w-full py-3 bg-surface border border-surface-variant rounded-full font-bold text-[16px] text-on-surface shadow-sm hover:bg-surface-container hover:shadow-md transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-3"
               >
-                <span className="material-symbols-outlined text-[20px] text-[#4285F4]">account_circle</span>
+                <Image
+                  src="/assets/icons/google-icon-logo-svgrepo-com.svg"
+                  alt="Google logo"
+                  width={20}
+                  height={20}
+                  className="w-5 h-5 object-contain"
+                />
                 Google
               </button>
             </form>

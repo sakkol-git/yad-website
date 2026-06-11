@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/shared/components/ui/Button";
 import { ProgressIndicator } from "@/features/Entities/donations/components/ProgressIndicator";
 import { createDonationDraftAction } from "@/server/actions/donate.actions";
-import { createStripeCheckoutSession } from "@/server/actions/stripe.actions";
 
 export default function DonateFlowPage() {
+  const router = useRouter();
   const [amount, setAmount] = useState<number | "">("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -31,22 +32,8 @@ export default function DonateFlowPage() {
       if (!draftRes.success || !draftRes.data) {
         throw new Error(draftRes.error || "Failed to create donation draft");
       }
-
-      // 2. Create Stripe Checkout Session
-      const stripeRes = await createStripeCheckoutSession({
-        type: "donation",
-        referenceId: (draftRes.data as any).id,
-        amount: Number(amount),
-        customerEmail: email,
-      });
-
-      if (stripeRes.error || !stripeRes.url) {
-        throw new Error(stripeRes.error || "Failed to create checkout session");
-      }
-
-      // 3. Redirect to Stripe
-      window.location.href = stripeRes.url;
-
+      // 2. Redirect to intermediate Payment method selector page
+      router.push(`/payment?id=${(draftRes.data as any).id}&type=donation`);
     } catch (error: any) {
       console.error(error);
       alert(error.message || "Something went wrong. Please try again.");
