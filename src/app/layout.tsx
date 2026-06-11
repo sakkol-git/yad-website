@@ -63,14 +63,6 @@ export const metadata: Metadata = {
     siteName: "YAD Cambodia",
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: "/assets/images/yad_logo.png", // We will keep the logo as fallback for now
-        width: 1200,
-        height: 630,
-        alt: "YAD Cambodia NGO Logo",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -78,7 +70,6 @@ export const metadata: Metadata = {
     description: "YAD is a Cambodian NGO empowering youth to lead tomorrow through education, digital innovation, and community development.",
     creator: "@YADCambodia",
     site: "@YADCambodia",
-    images: ["/assets/images/yad_logo.png"],
   },
   robots: {
     index: true,
