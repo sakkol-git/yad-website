@@ -1,6 +1,4 @@
 import { ImageResponse } from 'next/og';
-import { readFileSync } from 'fs';
-import { join } from 'path';
 
 export const alt = 'YAD — Youth Advancement for Development';
 export const size = {
@@ -10,11 +8,10 @@ export const size = {
 export const contentType = 'image/png';
 
 export default async function Image() {
-  const logoData = readFileSync(
-    join(process.cwd(), 'public/assets/images/yad_logo.png')
-  );
-  // Convert Node.js Buffer to ArrayBuffer for Satori
-  const logoArrayBuffer = logoData.buffer.slice(logoData.byteOffset, logoData.byteOffset + logoData.byteLength);
+  // Fetch from the live production URL to ensure the image is reliably loaded across Vercel environments
+  const logoData = await fetch(
+    'https://yadkh.org/assets/images/yad_logo.png'
+  ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
     (
@@ -31,9 +28,9 @@ export default async function Image() {
         }}
       >
         <img
-          src={logoArrayBuffer as any}
-          width="400"
-          height="404"
+          src={logoData as any}
+          width={400}
+          height={404}
           alt="YAD Logo"
           style={{ marginBottom: '30px' }}
         />
