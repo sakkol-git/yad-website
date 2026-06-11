@@ -12,7 +12,7 @@ export interface ButtonProps
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "default", size = "default", asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
-    
+
     const variantClasses = {
       default: "bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container hover:shadow-ambient-hover",
       primary: "bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container hover:shadow-ambient-hover",
@@ -22,11 +22,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       ghost: "text-primary hover:bg-surface-container-low",
       link: "text-primary underline-offset-4 hover:underline",
     }
-    
+
     const sizeClasses = {
-      default: "h-12 px-6 py-3 font-label-bold text-[14px] tracking-wide rounded-lg",
+      default: "h-12 px-6 py-3 font-label-bold text-[14px] tracking-wide rounded-md",
       sm: "min-h-[44px] px-4 py-2 font-label-bold text-[12px] tracking-wide rounded-md",
-      lg: "h-14 px-8 py-4 font-label-bold text-[16px] tracking-wide rounded-2xl",
+      lg: "h-14 px-8 py-4 font-label-bold text-[16px] tracking-wide rounded-lg",
       icon: "h-12 w-12 rounded-lg flex items-center justify-center",
     }
 
