@@ -66,42 +66,62 @@ export default async function DonationsPage({
     new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
 
   return (
-    <div className="flex-1 p-4 md:p-12 max-w-[1280px] mx-auto w-full">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 gap-4">
+    <div className="flex-1 p-6 lg:p-10 max-w-[1600px] mx-auto w-full animate-fade-in">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
         <div>
-          <h1 className="text-[36px] md:text-[48px] font-bold leading-tight tracking-tight text-on-background mb-2">
+          <h1 className="text-3xl md:text-4xl font-bold text-on-surface mb-2">
             Donation Workflow
           </h1>
-          <p className="text-[16px] text-on-surface-variant">
+          <p className="text-on-surface-variant">
             Track and report all incoming donations through the state machine lifecycle.
           </p>
         </div>
         <div className="flex gap-3">
-          <button className="py-3 px-6 bg-surface-container border border-outline-variant/30 text-on-surface rounded-full font-bold text-[14px] hover:bg-surface-container-high transition-all duration-200 cursor-pointer flex items-center justify-center gap-2">
-            <span className="material-symbols-outlined">download</span> Export
+          <button className="py-2.5 px-5 bg-surface-container-lowest border border-outline-variant/50 text-on-surface rounded-xl font-bold text-sm hover:bg-surface-container transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-sm">
+            <span className="material-symbols-outlined text-[20px]">download</span> Export
           </button>
-          <button className="py-3 px-6 bg-secondary text-on-secondary rounded-full font-bold text-[14px] shadow-sm hover:scale-[1.02] transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap">
-            <span className="material-symbols-outlined">add</span> Create Draft
+          <button className="py-2.5 px-5 bg-primary text-on-primary rounded-xl font-bold text-sm shadow-md hover:shadow-lg hover:bg-primary-container hover:text-on-primary-container transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap">
+            <span className="material-symbols-outlined text-[20px]">add</span> Create Draft
           </button>
         </div>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-surface-variant/30 shadow-sm">
-          <p className="text-on-surface-variant text-sm font-medium mb-1">Total Flow (Month)</p>
-          <h3 className="text-2xl font-bold text-on-background">{formatCurrency(metrics.monthlyRevenue)}</h3>
+        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
+          <div className="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0">
+            <span className="material-symbols-outlined text-[24px]">calendar_month</span>
+          </div>
+          <div>
+            <p className="text-on-surface-variant text-sm font-medium mb-1">Total Flow (Month)</p>
+            <h3 className="text-2xl font-bold text-on-surface">{formatCurrency(metrics.monthlyRevenue)}</h3>
+          </div>
         </div>
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-surface-variant/30 shadow-sm">
-          <p className="text-on-surface-variant text-sm font-medium mb-1">Pending Payments</p>
-          <h3 className="text-2xl font-bold text-tertiary">{metrics.pendingCount}</h3>
+        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
+          <div className="w-12 h-12 rounded-full bg-error-container text-on-error-container flex items-center justify-center shrink-0">
+            <span className="material-symbols-outlined text-[24px]">pending_actions</span>
+          </div>
+          <div>
+            <p className="text-on-surface-variant text-sm font-medium mb-1">Pending</p>
+            <h3 className="text-2xl font-bold text-on-surface">{metrics.pendingCount}</h3>
+          </div>
         </div>
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-surface-variant/30 shadow-sm">
-          <p className="text-on-surface-variant text-sm font-medium mb-1">Stripe Revenue</p>
-          <h3 className="text-2xl font-bold text-primary">{formatCurrency(metrics.stripeRevenue)}</h3>
+        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
+          <div className="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+            <span className="material-symbols-outlined text-[24px]">credit_card</span>
+          </div>
+          <div>
+            <p className="text-on-surface-variant text-sm font-medium mb-1">Stripe Revenue</p>
+            <h3 className="text-2xl font-bold text-on-surface">{formatCurrency(metrics.stripeRevenue)}</h3>
+          </div>
         </div>
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-surface-variant/30 shadow-sm">
-          <p className="text-on-surface-variant text-sm font-medium mb-1">KHQR Revenue</p>
-          <h3 className="text-2xl font-bold text-secondary">{formatCurrency(metrics.khqrRevenue)}</h3>
+        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
+          <div className="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center shrink-0">
+            <span className="material-symbols-outlined text-[24px]">qr_code_scanner</span>
+          </div>
+          <div>
+            <p className="text-on-surface-variant text-sm font-medium mb-1">KHQR Revenue</p>
+            <h3 className="text-2xl font-bold text-on-surface">{formatCurrency(metrics.khqrRevenue)}</h3>
+          </div>
         </div>
       </div>
 
