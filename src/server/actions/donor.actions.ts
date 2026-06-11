@@ -25,7 +25,7 @@ export async function createDonor(prevState: any, formData: FormData) {
       email: (rawData.email as string) || null,
       amount: rawData.amount ? parseFloat(rawData.amount as string) : null,
       donation_date: (rawData.donation_date as string) || null,
-      message: (rawData.message as string) || null,
+      description: (rawData.description as string) || null,
       is_public: rawData.is_public === 'on' || rawData.is_public === 'true',
       status: (rawData.status as any) || 'Active'
     });
@@ -47,7 +47,7 @@ export async function updateDonor(id: string, prevState: any, formData: FormData
       email: (rawData.email as string) || null,
       amount: rawData.amount ? parseFloat(rawData.amount as string) : null,
       donation_date: (rawData.donation_date as string) || null,
-      message: (rawData.message as string) || null,
+      description: (rawData.description as string) || null,
       is_public: rawData.is_public === 'on' || rawData.is_public === 'true',
       status: rawData.status as any
     });

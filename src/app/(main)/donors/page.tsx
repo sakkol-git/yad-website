@@ -71,9 +71,9 @@ export default async function DonorsShowcasePage() {
                 </div>
                 <h3 className="text-xl font-bold text-on-surface mb-2">{donor.name}</h3>
                 
-                {donor.message && (
+                {donor.description && (
                   <p className="text-sm text-on-surface-variant font-medium italic mt-2 line-clamp-3">
-                    "{donor.message}"
+                    "{donor.description}"
                   </p>
                 )}
                 

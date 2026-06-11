@@ -12,7 +12,7 @@ interface Donor {
   email: string | null;
   amount: number | null;
   donation_date: string | null;
-  message: string | null;
+  description: string | null;
   is_public: boolean;
   status: string;
 }

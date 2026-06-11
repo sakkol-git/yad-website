@@ -2,6 +2,7 @@ import { SupabaseClient } from '@supabase/supabase-js';
 import { Database } from '@/shared/types/supabase';
 import { DonorsRepository } from '../repositories/donors';
 import { requireAdmin } from '../permissions';
+import { createAdminClient } from '@/shared/lib/supabase/server';
 
 export class DonorsService {
   private repository: DonorsRepository;
@@ -24,17 +25,20 @@ export class DonorsService {
 
   async create(supabase: SupabaseClient<Database>, payload: any) {
     await requireAdmin(supabase);
-    return this.repository.create(supabase, payload);
+    const adminClient = createAdminClient();
+    return this.repository.create(adminClient, payload);
   }
 
   async update(supabase: SupabaseClient<Database>, id: string, payload: any) {
     await requireAdmin(supabase);
-    return this.repository.update(supabase, id, payload);
+    const adminClient = createAdminClient();
+    return this.repository.update(adminClient, id, payload);
   }
 
   async delete(supabase: SupabaseClient<Database>, id: string) {
     await requireAdmin(supabase);
-    return this.repository.delete(supabase, id);
+    const adminClient = createAdminClient();
+    return this.repository.delete(adminClient, id);
   }
 }
 

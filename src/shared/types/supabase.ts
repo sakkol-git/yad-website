@@ -230,7 +230,7 @@ export interface Database {
           email: string | null
           amount: number | null
           donation_date: string | null
-          message: string | null
+          description: string | null
           is_public: boolean | null
           status: 'Active' | 'Archived'
           created_at: string
@@ -242,7 +242,7 @@ export interface Database {
           email?: string | null
           amount?: number | null
           donation_date?: string | null
-          message?: string | null
+          description?: string | null
           is_public?: boolean | null
           status?: 'Active' | 'Archived'
           created_at?: string
@@ -254,7 +254,7 @@ export interface Database {
           email?: string | null
           amount?: number | null
           donation_date?: string | null
-          message?: string | null
+          description?: string | null
           is_public?: boolean | null
           status?: 'Active' | 'Archived'
           created_at?: string

@@ -4,7 +4,7 @@ export interface Donor {
   email?: string;
   amount?: number;
   donation_date?: string;
-  message?: string;
+  description?: string;
   is_public: boolean;
   status: 'Active' | 'Archived';
   created_at: string;

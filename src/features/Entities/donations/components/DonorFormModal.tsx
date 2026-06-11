@@ -16,7 +16,7 @@ interface Donor {
   email: string | null;
   amount: number | null;
   donation_date: string | null;
-  message: string | null;
+  description: string | null;
   is_public: boolean;
   status: string;
 }
@@ -143,11 +143,11 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
             </div>
 
             <div className="flex flex-col gap-1.5 md:col-span-2">
-              <label className="text-sm font-label-bold text-on-surface-variant">Message / Notes</label>
+              <label className="text-sm font-label-bold text-on-surface-variant">Description</label>
               <textarea 
-                name="message" 
+                name="description" 
                 rows={3}
-                defaultValue={initialData?.message || ''}
+                defaultValue={initialData?.description || ''}
                 className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-y"
               ></textarea>
             </div>

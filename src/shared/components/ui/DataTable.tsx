@@ -30,7 +30,7 @@ export function DataTable<T>({
   emptyMessage = "No results found."
 }: DataTableProps<T>) {
   return (
-    <div className="rounded-xl border border-surface-variant/50 overflow-hidden bg-surface shadow-sm">
+    <div className="rounded-md border border-surface-variant/50 overflow-hidden bg-surface shadow-sm">
       <Table>
         <TableHeader>
           <TableRow className="hover:bg-transparent">
