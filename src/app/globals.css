@@ -15,16 +15,32 @@
   --color-inverse-primary: #7ae09b;
 
   /* =========================================
-     SECONDARY (Welcoming Cyan/Teal)
+     [COMMUNITY & CONNECTION]
+     SECONDARY (Welcoming Sky-Aqua)
      ========================================= */
-  --color-secondary: #006876;
+  /* Standard secondary (a slightly more vibrant community hue) */
+  --color-secondary: #006e8e;
   --color-on-secondary: #ffffff;
-  --color-secondary-container: #9eeffd;
-  --color-on-secondary-container: #001f24;
-  --color-secondary-fixed: #9eeffd;
-  --color-on-secondary-fixed: #001f24;
-  --color-secondary-fixed-dim: #82d3e0;
-  --color-on-secondary-fixed-variant: #004f5a;
+
+  /* =========================================
+     [CRITICAL INTEGRATION]
+     The exact look of image_0.png with Fixed Contrast
+     ========================================= */
+  /* This exactly preserves the container color from your image */
+  --color-secondary-container: #dcf8ff;
+  /* Soft Aqua from Image */
+
+  /* CRITICAL FIX: The new dark, accessible text color.
+     This is a much darker version of the mint hue for accessibility. */
+  --color-on-secondary-container: #003623;
+  /* Dark Forest Mint (Ensures 4.5:1+ contrast) */
+
+  /* Fixed variant roles for reference (e.g. for borders on secondary containers) */
+  --color-secondary-fixed: #dcf8ff;
+  --color-on-secondary-fixed: #001f28;
+  --color-secondary-fixed-dim: #98e8ff;
+  --color-on-secondary-fixed-variant: #004e60;
+
 
   /* =========================================
      TERTIARY (Optimistic Action Amber)
