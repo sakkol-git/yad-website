@@ -3,6 +3,7 @@
 import { createClient } from '@/shared/lib/supabase/server';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { authService } from '../services/auth.service';
 
 export async function login(formData: FormData) {
   const email = formData.get('email') as string;
@@ -10,30 +11,13 @@ export async function login(formData: FormData) {
 
   const supabase = await createClient();
 
-  const { data: authData, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
-
-  if (error) {
+  try {
+    const { role } = await authService.login(supabase, email, password);
+    revalidatePath('/', 'layout');
+    redirect(role === 'admin' ? '/admin/dashboard' : '/portal/dashboard');
+  } catch (error: any) {
     return redirect(`/auth/login?error=${encodeURIComponent(error.message)}`);
   }
-
-  let role = 'user';
-  if (authData.user) {
-    const { data } = await supabase
-      .from('user_roles')
-      .select('role')
-      .eq('user_id', authData.user.id)
-      .single();
-    const roleData = data as any;
-    if (roleData) {
-      role = roleData.role;
-    }
-  }
-
-  revalidatePath('/', 'layout');
-  redirect(role === 'admin' ? '/admin/dashboard' : '/portal/dashboard');
 }
 
 export async function register(formData: FormData) {
@@ -44,29 +28,38 @@ export async function register(formData: FormData) {
 
   const supabase = await createClient();
 
-  const { error } = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      data: {
-        first_name: firstName,
-        last_name: lastName,
-      },
-    },
-  });
-
-  if (error) {
+  try {
+    await authService.register(supabase, email, password, firstName, lastName);
+    revalidatePath('/', 'layout');
+    redirect('/portal/dashboard');
+  } catch (error: any) {
     return redirect(`/auth/register?error=${encodeURIComponent(error.message)}`);
   }
-
-  revalidatePath('/', 'layout');
-  redirect('/portal/dashboard');
 }
 
 export async function logout() {
   const supabase = await createClient();
-  await supabase.auth.signOut();
+  try {
+    await authService.logout(supabase);
+  } catch (error) {
+    console.error('Logout error:', error);
+  }
   
   revalidatePath('/', 'layout');
   redirect('/');
+}
+
+export async function loginWithGoogle() {
+  const supabase = await createClient();
+  const origin = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const redirectTo = `${origin}/auth/callback?next=/portal/dashboard`;
+  
+  try {
+    const data = await authService.signInWithGoogle(supabase, redirectTo);
+    if (data.url) {
+      redirect(data.url);
+    }
+  } catch (error: any) {
+    return redirect(`/auth/login?error=${encodeURIComponent(error.message)}`);
+  }
 }

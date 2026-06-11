@@ -1,23 +1,23 @@
 import { SupabaseClient } from '@supabase/supabase-js';
 import { Database } from '@/shared/types/supabase';
-import { ProgramsRepository } from '../repositories/programs';
+import { DonorsRepository } from '../repositories/donors';
 import { requireAdmin } from '../permissions';
 
-export class ProgramsService {
-  private repository: ProgramsRepository;
+export class DonorsService {
+  private repository: DonorsRepository;
 
   constructor() {
-    this.repository = new ProgramsRepository();
+    this.repository = new DonorsRepository();
   }
 
-  async getPrograms(supabase: SupabaseClient<Database>, page: number = 1, limit: number = 10, search?: string, isAdminRoute: boolean = false) {
+  async getDonors(supabase: SupabaseClient<Database>, page: number = 1, limit: number = 10, search?: string, isAdminRoute: boolean = false) {
     if (isAdminRoute) {
       await requireAdmin(supabase);
     }
     return this.repository.getPaginated(supabase, page, limit, search);
   }
 
-  async getAllPrograms(supabase: SupabaseClient<Database>) {
+  async getAllDonors(supabase: SupabaseClient<Database>) {
     await requireAdmin(supabase);
     return this.repository.getAll(supabase);
   }
@@ -38,4 +38,4 @@ export class ProgramsService {
   }
 }
 
-export const programsService = new ProgramsService();
+export const donorsService = new DonorsService();

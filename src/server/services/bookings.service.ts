@@ -5,7 +5,8 @@ import {
   getBookingsSchema, GetBookingsInput,
   createGuestInquirySchema, CreateGuestInquiryInput,
   approveAvailabilitySchema, ApproveAvailabilityInput,
-  updateBookingStatusSchema, UpdateBookingStatusInput
+  updateBookingStatusSchema, UpdateBookingStatusInput,
+  ValidBookingTransitions, BookingStatusType
 } from '../validators/booking.schema';
 import { requireAdmin } from '../permissions';
 
@@ -60,6 +61,13 @@ export class BookingsService {
   async updateStatus(supabase: SupabaseClient<Database>, input: UpdateBookingStatusInput) {
     await requireAdmin(supabase);
     const validatedInput = updateBookingStatusSchema.parse(input);
+    
+    if (validatedInput.expectedCurrentStatus) {
+      const allowedNextStates = ValidBookingTransitions[validatedInput.expectedCurrentStatus as BookingStatusType];
+      if (!allowedNextStates.includes(validatedInput.status as BookingStatusType)) {
+        throw new Error(`Invalid state transition from ${validatedInput.expectedCurrentStatus} to ${validatedInput.status}`);
+      }
+    }
     
     return this.repository.updateBookingStatus(
       supabase,

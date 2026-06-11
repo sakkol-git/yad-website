@@ -34,31 +34,37 @@ export const approveAvailabilitySchema = z.object({
 
 export type ApproveAvailabilityInput = z.infer<typeof approveAvailabilitySchema>;
 
+const validBookingStatuses = [
+  'Inquiry', 
+  'Availability Review', 
+  'Pending Confirmation', 
+  'Payment Pending', 
+  'Confirmed', 
+  'Checked In', 
+  'Checked Out', 
+  'Cancelled', 
+  'No Show'
+] as const;
+
+export type BookingStatusType = typeof validBookingStatuses[number];
+
+export const ValidBookingTransitions: Record<BookingStatusType, BookingStatusType[]> = {
+  'Inquiry': ['Availability Review', 'Pending Confirmation', 'Cancelled'],
+  'Availability Review': ['Pending Confirmation', 'Cancelled'],
+  'Pending Confirmation': ['Payment Pending', 'Cancelled'],
+  'Payment Pending': ['Confirmed', 'Cancelled'],
+  'Confirmed': ['Checked In', 'Cancelled', 'No Show'],
+  'Checked In': ['Checked Out'],
+  'Checked Out': [],
+  'Cancelled': [],
+  'No Show': []
+};
+
 // Stage 3-5: State Transitions
 export const updateBookingStatusSchema = z.object({
   id: z.string().uuid(),
-  status: z.enum([
-    'Inquiry', 
-    'Availability Review', 
-    'Pending Confirmation', 
-    'Payment Pending', 
-    'Confirmed', 
-    'Checked In', 
-    'Checked Out', 
-    'Cancelled', 
-    'No Show'
-  ]),
-  expectedCurrentStatus: z.enum([
-    'Inquiry', 
-    'Availability Review', 
-    'Pending Confirmation', 
-    'Payment Pending', 
-    'Confirmed', 
-    'Checked In', 
-    'Checked Out', 
-    'Cancelled', 
-    'No Show'
-  ]).optional(),
+  status: z.enum(validBookingStatuses),
+  expectedCurrentStatus: z.enum(validBookingStatuses).optional(),
 });
 
 export type UpdateBookingStatusInput = z.infer<typeof updateBookingStatusSchema>;

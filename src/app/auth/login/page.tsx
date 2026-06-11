@@ -1,4 +1,4 @@
-import { login } from '@/server/actions/auth.actions';
+import { login, loginWithGoogle } from '@/server/actions/auth.actions';
 import { LoginForm } from '@/features/Entities/auth/components/LoginForm';
 
 export default async function LoginPage({
@@ -9,5 +9,5 @@ export default async function LoginPage({
   const params = await searchParams;
   const errorMsg = typeof params.error === 'string' ? params.error : undefined;
 
-  return <LoginForm errorMsg={errorMsg} loginAction={login} />;
+  return <LoginForm errorMsg={errorMsg} loginAction={login} loginWithGoogleAction={loginWithGoogle} />;
 }

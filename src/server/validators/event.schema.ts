@@ -15,3 +15,21 @@ export const createEventSchema = z.object({
 });
 
 export type CreateEventInput = z.infer<typeof createEventSchema>;
+
+const validEventStatuses = ["Upcoming", "Ongoing", "Completed", "Cancelled"] as const;
+export type EventStatusType = typeof validEventStatuses[number];
+
+export const ValidEventTransitions: Record<EventStatusType, EventStatusType[]> = {
+  "Upcoming": ["Ongoing", "Cancelled", "Completed"],
+  "Ongoing": ["Completed", "Cancelled"],
+  "Completed": [],
+  "Cancelled": []
+};
+
+export const updateEventStatusSchema = z.object({
+  id: z.string().uuid(),
+  status: z.enum(validEventStatuses),
+  expectedCurrentStatus: z.enum(validEventStatuses).optional(),
+});
+
+export type UpdateEventStatusInput = z.infer<typeof updateEventStatusSchema>;

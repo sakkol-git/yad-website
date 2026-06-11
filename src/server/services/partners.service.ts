@@ -3,6 +3,7 @@ import { Database } from '@/shared/types/supabase';
 import { PartnersRepository } from '../repositories/partners';
 import { getPartnersSchema, GetPartnersInput } from '../validators/partner.schema';
 import { requireAdmin } from '../permissions';
+import { cache } from 'react';
 
 export class PartnersService {
   private repository: PartnersRepository;
@@ -18,6 +19,30 @@ export class PartnersService {
     const validatedInput = getPartnersSchema.parse(input);
     return this.repository.getPaginated(supabase, validatedInput.page, validatedInput.limit, validatedInput.search);
   }
+
+  async getAllPartners(supabase: SupabaseClient<Database>) {
+    await requireAdmin(supabase);
+    return this.repository.getAll(supabase);
+  }
+
+  async create(supabase: SupabaseClient<Database>, payload: any) {
+    await requireAdmin(supabase);
+    return this.repository.create(supabase, payload);
+  }
+
+  async update(supabase: SupabaseClient<Database>, id: string, payload: any) {
+    await requireAdmin(supabase);
+    return this.repository.update(supabase, id, payload);
+  }
+
+  async delete(supabase: SupabaseClient<Database>, id: string) {
+    await requireAdmin(supabase);
+    return this.repository.delete(supabase, id);
+  }
+
+  getPublicPartners = cache(async (supabase: SupabaseClient<Database>) => {
+    return this.repository.getAllPublic(supabase);
+  });
 }
 
 export const partnersService = new PartnersService();

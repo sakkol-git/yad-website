@@ -2,36 +2,36 @@
 
 import { createClient } from '@/shared/lib/supabase/server';
 import { revalidatePath } from 'next/cache';
+import { programsService } from '../services/programs.service';
 
 export async function getPrograms() {
   const supabase = await createClient();
-  const { data, error } = await supabase
-    .from('programs')
-    .select('*')
-    .order('created_at', { ascending: false });
-    
-  if (error) {
+  try {
+    const data = await programsService.getAllPrograms(supabase);
+    return data as any[];
+  } catch (error: any) {
     console.error('Error fetching programs:', error);
     throw new Error('Failed to fetch programs');
   }
-  return data as any[];
 }
 
 export async function createProgram(prevState: any, formData: FormData) {
   const supabase = await createClient();
   const rawData = Object.fromEntries(formData);
   
-  const { error } = await supabase.from('programs').insert([{
-    title: rawData.title as string,
-    description: (rawData.description as string) || null,
-    category: (rawData.category as string) || null,
-    start_date: (rawData.start_date as string) || null,
-    end_date: (rawData.end_date as string) || null,
-    capacity: rawData.capacity ? parseInt(rawData.capacity as string) : null,
-    status: (rawData.status as any) || 'Upcoming'
-  }]);
-  
-  if (error) return { error: error.message };
+  try {
+    await programsService.create(supabase, {
+      title: rawData.title as string,
+      description: (rawData.description as string) || null,
+      category: (rawData.category as string) || null,
+      start_date: (rawData.start_date as string) || null,
+      end_date: (rawData.end_date as string) || null,
+      capacity: rawData.capacity ? parseInt(rawData.capacity as string) : null,
+      status: (rawData.status as any) || 'Upcoming'
+    });
+  } catch (error: any) {
+    return { error: error.message };
+  }
   
   revalidatePath('/admin/programs');
   return { success: true };
@@ -41,17 +41,19 @@ export async function updateProgram(id: string, prevState: any, formData: FormDa
   const supabase = await createClient();
   const rawData = Object.fromEntries(formData);
   
-  const { error } = await supabase.from('programs').update({
-    title: rawData.title as string,
-    description: (rawData.description as string) || null,
-    category: (rawData.category as string) || null,
-    start_date: (rawData.start_date as string) || null,
-    end_date: (rawData.end_date as string) || null,
-    capacity: rawData.capacity ? parseInt(rawData.capacity as string) : null,
-    status: rawData.status as any
-  }).eq('id', id);
-
-  if (error) return { error: error.message };
+  try {
+    await programsService.update(supabase, id, {
+      title: rawData.title as string,
+      description: (rawData.description as string) || null,
+      category: (rawData.category as string) || null,
+      start_date: (rawData.start_date as string) || null,
+      end_date: (rawData.end_date as string) || null,
+      capacity: rawData.capacity ? parseInt(rawData.capacity as string) : null,
+      status: rawData.status as any
+    });
+  } catch (error: any) {
+    return { error: error.message };
+  }
   
   revalidatePath('/admin/programs');
   return { success: true };
@@ -59,9 +61,11 @@ export async function updateProgram(id: string, prevState: any, formData: FormDa
 
 export async function deleteProgram(id: string) {
   const supabase = await createClient();
-  const { error } = await supabase.from('programs').delete().eq('id', id);
-  
-  if (error) return { error: error.message };
+  try {
+    await programsService.delete(supabase, id);
+  } catch (error: any) {
+    return { error: error.message };
+  }
   
   revalidatePath('/admin/programs');
   return { success: true };

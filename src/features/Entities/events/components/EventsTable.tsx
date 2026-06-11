@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/shared/components/ui/Button';
 import { EventFormModal } from './EventFormModal';
 import { deleteEvent } from '@/server/actions/event.actions';
+import { DataTable, ColumnDef } from '@/shared/components/ui/DataTable';
 
 interface Event {
   id: string;
@@ -44,6 +45,56 @@ export function EventsTable({ events }: { events: Event[] }) {
     }
   }
 
+  const columns: ColumnDef<Event>[] = [
+    { 
+      header: 'Name', 
+      cell: (event) => <span className="font-bold">{event.name}</span> 
+    },
+    { 
+      header: 'Venue', 
+      cell: (event) => <span>{event.venue || '-'}</span> 
+    },
+    { 
+      header: 'Status', 
+      cell: (event) => (
+        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider
+          ${event.status === 'Ongoing' ? 'bg-primary-container text-on-primary-container' : 
+            event.status === 'Upcoming' ? 'bg-secondary-container text-on-secondary-container' : 
+            event.status === 'Completed' ? 'bg-surface-variant text-on-surface-variant' :
+            'bg-error-container text-on-error-container'}`}
+        >
+          {event.status}
+        </span>
+      )
+    },
+    { 
+      header: 'Capacity', 
+      cell: (event) => <span>{event.capacity || 'Unlimited'}</span> 
+    },
+    { 
+      header: <div className="text-right">Actions</div>, 
+      cell: (event) => (
+        <div className="flex justify-end gap-2">
+          <button 
+            onClick={() => openEdit(event)}
+            className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-full transition-colors flex items-center justify-center"
+            title="Edit Event"
+          >
+            <span className="material-symbols-outlined text-[18px]">edit</span>
+          </button>
+          <button 
+            onClick={() => handleDelete(event.id)}
+            disabled={isDeleting === event.id}
+            className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-full transition-colors flex items-center justify-center disabled:opacity-50"
+            title="Delete Event"
+          >
+            <span className="material-symbols-outlined text-[18px]">delete</span>
+          </button>
+        </div>
+      )
+    }
+  ];
+
   return (
     <>
       <div className="flex items-center justify-between mb-8">
@@ -61,71 +112,12 @@ export function EventsTable({ events }: { events: Event[] }) {
         </Button>
       </div>
 
-      <div className="bg-surface rounded-3xl shadow-sm border border-outline-variant/30 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="border-b border-outline-variant/30 bg-surface-container-lowest">
-                <th className="px-6 py-4 font-label-bold text-sm text-on-surface-variant uppercase tracking-wider">Name</th>
-                <th className="px-6 py-4 font-label-bold text-sm text-on-surface-variant uppercase tracking-wider">Venue</th>
-                <th className="px-6 py-4 font-label-bold text-sm text-on-surface-variant uppercase tracking-wider">Status</th>
-                <th className="px-6 py-4 font-label-bold text-sm text-on-surface-variant uppercase tracking-wider">Capacity</th>
-                <th className="px-6 py-4 font-label-bold text-sm text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-outline-variant/30 bg-surface">
-              {events.map((event) => (
-                <tr key={event.id} className="hover:bg-surface-container-lowest transition-colors">
-                  <td className="px-6 py-4 text-sm font-bold text-on-surface">
-                    {event.name}
-                  </td>
-                  <td className="px-6 py-4 text-sm text-on-surface-variant">
-                    {event.venue || '-'}
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider
-                      ${event.status === 'Ongoing' ? 'bg-primary-container text-on-primary-container' : 
-                        event.status === 'Upcoming' ? 'bg-secondary-container text-on-secondary-container' : 
-                        event.status === 'Completed' ? 'bg-surface-variant text-on-surface-variant' :
-                        'bg-error-container text-on-error-container'}`}
-                    >
-                      {event.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-on-surface-variant">
-                    {event.capacity || 'Unlimited'}
-                  </td>
-                  <td className="px-6 py-4 text-right flex justify-end gap-2">
-                    <button 
-                      onClick={() => openEdit(event)}
-                      className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-full transition-colors flex items-center justify-center"
-                      title="Edit Event"
-                    >
-                      <span className="material-symbols-outlined text-[18px]">edit</span>
-                    </button>
-                    <button 
-                      onClick={() => handleDelete(event.id)}
-                      disabled={isDeleting === event.id}
-                      className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-full transition-colors flex items-center justify-center disabled:opacity-50"
-                      title="Delete Event"
-                    >
-                      <span className="material-symbols-outlined text-[18px]">delete</span>
-                    </button>
-                  </td>
-                </tr>
-              ))}
-              
-              {events.length === 0 && (
-                <tr>
-                  <td colSpan={5} className="px-6 py-8 text-center text-on-surface-variant font-medium">
-                    No events found. Click "New Event" to create one.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <DataTable 
+        columns={columns} 
+        data={events} 
+        keyExtractor={(e) => e.id}
+        emptyMessage='No events found. Click "New Event" to create one.'
+      />
 
       <EventFormModal 
         isOpen={modalState.isOpen} 

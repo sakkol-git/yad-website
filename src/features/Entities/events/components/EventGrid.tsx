@@ -27,7 +27,7 @@ function EventCard({
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className={`object-cover transition-transform duration-700 group-hover:scale-105 ${
-            event.status === "Past Event" ? "grayscale-[20%]" : ""
+            event.status === "Completed" ? "grayscale-[20%]" : ""
           }`}
         />
         {event.status === "Upcoming" && featured && (
@@ -38,7 +38,7 @@ function EventCard({
             Upcoming
           </div>
         )}
-        {event.status === "Past Event" && (
+        {event.status === "Completed" && (
           <div className="absolute top-3 left-3 bg-surface-variant/80 backdrop-blur-sm text-on-surface-variant px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
             <span className="material-symbols-outlined text-xs">
               check_circle
@@ -72,7 +72,7 @@ function EventCard({
           </div>
           <h2
             className={`font-headline-md font-bold mb-3 ${
-              event.status === "Past Event" ? "text-tertiary" : "text-primary"
+              event.status === "Completed" ? "text-tertiary" : "text-primary"
             } ${featured ? "text-headline-md mb-4" : "text-xl"}`}
           >
             {event.title}
@@ -121,7 +121,7 @@ function EventCard({
               <Link
                 href={event.joinUrl}
                 className={`font-label-bold text-label-bold flex items-center gap-2 group-hover:translate-x-1 transition-transform ${
-                  event.status === "Past Event"
+                  event.status === "Completed"
                     ? "text-tertiary"
                     : "text-secondary"
                 }`}

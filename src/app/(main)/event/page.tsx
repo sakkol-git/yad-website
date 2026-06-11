@@ -26,7 +26,7 @@ export default async function EventPage() {
     description: row.description || '',
     imageUrl: row.image_url || '/assets/images/placeholder.jpg',
     imageAlt: row.image_alt || row.name,
-    status: row.status === 'Upcoming' ? 'Upcoming' : 'Past Event',
+    status: row.status === 'Upcoming' ? 'Upcoming' : 'Completed',
     actionLabel: row.action_label || 'Learn More',
     actionIcon: row.action_icon || 'arrow_forward',
     joinUrl: row.join_url || undefined,

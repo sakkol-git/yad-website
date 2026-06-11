@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/shared/components/ui/Button';
 import { UserFormModal } from './UserFormModal';
 import { deleteUser } from '@/server/actions/user.actions';
+import { DataTable, ColumnDef } from '@/shared/components/ui/DataTable';
 
 interface User {
   id: string;
@@ -43,6 +44,63 @@ export function UsersTable({ users }: { users: User[] }) {
     }
   }
 
+  const columns: ColumnDef<User>[] = [
+    { 
+      header: 'Email', 
+      cell: (user) => <span className="font-medium">{user.email}</span> 
+    },
+    { 
+      header: 'Role', 
+      cell: (user) => (
+        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider
+          ${user.role === 'admin' ? 'bg-error-container text-on-error-container' : 
+            user.role === 'manager' ? 'bg-secondary-container text-on-secondary-container' : 
+            'bg-surface-variant text-on-surface-variant'}`}
+        >
+          {user.role}
+        </span>
+      )
+    },
+    { 
+      header: 'Created At', 
+      cell: (user) => (
+        <span>
+          {new Date(user.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+        </span>
+      )
+    },
+    { 
+      header: 'Last Sign In', 
+      cell: (user) => (
+        <span>
+          {user.last_sign_in_at ? new Date(user.last_sign_in_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' }) : 'Never'}
+        </span>
+      )
+    },
+    { 
+      header: <div className="text-right">Actions</div>, 
+      cell: (user) => (
+        <div className="flex justify-end gap-2">
+          <button 
+            onClick={() => openEdit(user)}
+            className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-full transition-colors flex items-center justify-center"
+            title="Edit Role"
+          >
+            <span className="material-symbols-outlined text-[18px]">edit</span>
+          </button>
+          <button 
+            onClick={() => handleDelete(user.id)}
+            disabled={isDeleting === user.id}
+            className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-full transition-colors flex items-center justify-center disabled:opacity-50"
+            title="Delete User"
+          >
+            <span className="material-symbols-outlined text-[18px]">delete</span>
+          </button>
+        </div>
+      )
+    }
+  ];
+
   return (
     <>
       <div className="flex items-center justify-between mb-8">
@@ -60,70 +118,12 @@ export function UsersTable({ users }: { users: User[] }) {
         </Button>
       </div>
 
-      <div className="bg-surface rounded-3xl shadow-sm border border-outline-variant/30 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="border-b border-outline-variant/30 bg-surface-container-lowest">
-                <th className="px-6 py-4 font-label-bold text-sm text-on-surface-variant uppercase tracking-wider">Email</th>
-                <th className="px-6 py-4 font-label-bold text-sm text-on-surface-variant uppercase tracking-wider">Role</th>
-                <th className="px-6 py-4 font-label-bold text-sm text-on-surface-variant uppercase tracking-wider">Created At</th>
-                <th className="px-6 py-4 font-label-bold text-sm text-on-surface-variant uppercase tracking-wider">Last Sign In</th>
-                <th className="px-6 py-4 font-label-bold text-sm text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-outline-variant/30 bg-surface">
-              {users.map((user) => (
-                <tr key={user.id} className="hover:bg-surface-container-lowest transition-colors">
-                  <td className="px-6 py-4 text-sm font-medium text-on-surface">
-                    {user.email}
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider
-                      ${user.role === 'admin' ? 'bg-error-container text-on-error-container' : 
-                        user.role === 'manager' ? 'bg-secondary-container text-on-secondary-container' : 
-                        'bg-surface-variant text-on-surface-variant'}`}
-                    >
-                      {user.role}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-on-surface-variant">
-                    {new Date(user.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
-                  </td>
-                  <td className="px-6 py-4 text-sm text-on-surface-variant">
-                    {user.last_sign_in_at ? new Date(user.last_sign_in_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute:'2-digit' }) : 'Never'}
-                  </td>
-                  <td className="px-6 py-4 text-right flex justify-end gap-2">
-                    <button 
-                      onClick={() => openEdit(user)}
-                      className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-full transition-colors flex items-center justify-center"
-                      title="Edit Role"
-                    >
-                      <span className="material-symbols-outlined text-[18px]">edit</span>
-                    </button>
-                    <button 
-                      onClick={() => handleDelete(user.id)}
-                      disabled={isDeleting === user.id}
-                      className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-full transition-colors flex items-center justify-center disabled:opacity-50"
-                      title="Delete User"
-                    >
-                      <span className="material-symbols-outlined text-[18px]">delete</span>
-                    </button>
-                  </td>
-                </tr>
-              ))}
-              
-              {users.length === 0 && (
-                <tr>
-                  <td colSpan={5} className="px-6 py-8 text-center text-on-surface-variant font-medium">
-                    No users found.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <DataTable 
+        columns={columns} 
+        data={users} 
+        keyExtractor={(u) => u.id}
+        emptyMessage="No users found."
+      />
 
       <UserFormModal 
         isOpen={modalState.isOpen} 

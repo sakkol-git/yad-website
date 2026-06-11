@@ -3,6 +3,12 @@
 import { useState } from 'react';
 import { Button } from '@/shared/components/ui/Button';
 import { createMember, updateMember } from '@/server/actions/member.actions';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/shared/components/ui/Dialog';
 
 interface Member {
   id: string;
@@ -25,8 +31,6 @@ interface MemberFormModalProps {
 export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFormModalProps) {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-
-  if (!isOpen) return null;
 
   async function handleSubmit(formData: FormData) {
     setIsLoading(true);
@@ -52,18 +56,15 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
   const arrayToCsv = (arr?: string[]) => arr?.join(', ') || '';
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200 overflow-y-auto">
-      <div className="bg-surface rounded-3xl shadow-xl w-full max-w-4xl overflow-hidden animate-in zoom-in-95 duration-200 my-8">
-        <div className="px-6 py-4 border-b border-surface-variant/30 flex justify-between items-center bg-surface sticky top-0 z-10">
-          <h2 className="text-xl font-headline-md font-bold text-on-surface">
+    <Dialog open={isOpen} onOpenChange={(open: boolean) => !open && onClose()}>
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden flex flex-col p-0">
+        <DialogHeader className="px-6 py-4 border-b border-surface-variant/30 sticky top-0 bg-surface z-10">
+          <DialogTitle className="text-xl font-headline-md font-bold text-on-surface">
             {mode === 'create' ? 'Create New Member' : 'Edit Member'}
-          </h2>
-          <button type="button" onClick={onClose} className="text-on-surface-variant hover:text-on-surface transition-colors p-1 rounded-full hover:bg-surface-container">
-            <span className="material-symbols-outlined">close</span>
-          </button>
-        </div>
+          </DialogTitle>
+        </DialogHeader>
 
-        <form action={handleSubmit} className="p-6 flex flex-col gap-5 max-h-[80vh] overflow-y-auto">
+        <form action={handleSubmit} className="p-6 flex flex-col gap-5 overflow-y-auto">
           {error && (
             <div className="bg-error-container/20 text-error p-3 rounded-xl text-sm font-medium border border-error-container flex items-center gap-2">
               <span className="material-symbols-outlined text-[18px]">error</span>
@@ -265,7 +266,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
             </Button>
           </div>
         </form>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }

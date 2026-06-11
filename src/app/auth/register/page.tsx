@@ -1,4 +1,4 @@
-import { register } from '@/server/actions/auth.actions';
+import { register, loginWithGoogle } from '@/server/actions/auth.actions';
 import { RegisterForm } from '@/features/Entities/auth/components/RegisterForm';
 
 export default async function RegisterPage({
@@ -9,5 +9,5 @@ export default async function RegisterPage({
   const params = await searchParams;
   const errorMsg = typeof params.error === 'string' ? params.error : undefined;
 
-  return <RegisterForm errorMsg={errorMsg} registerAction={register} />;
+  return <RegisterForm errorMsg={errorMsg} registerAction={register} loginWithGoogleAction={loginWithGoogle} />;
 }

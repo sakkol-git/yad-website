@@ -40,3 +40,7 @@ export const requireRole = async (supabase: SupabaseClient<Database>, allowedRol
 export const requireAdmin = async (supabase: SupabaseClient<Database>) => {
   return requireRole(supabase, ['admin', 'super_admin']);
 };
+
+export const requireAdminOrManager = async (supabase: SupabaseClient<Database>) => {
+  return requireRole(supabase, ['admin', 'super_admin', 'manager']);
+};

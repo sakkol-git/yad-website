@@ -3,9 +3,10 @@ import Link from 'next/link';
 interface RegisterFormProps {
   errorMsg?: string;
   registerAction: (formData: FormData) => Promise<void>;
+  loginWithGoogleAction?: () => Promise<void>;
 }
 
-export function RegisterForm({ errorMsg, registerAction }: RegisterFormProps) {
+export function RegisterForm({ errorMsg, registerAction, loginWithGoogleAction }: RegisterFormProps) {
   return (
     <div className="min-h-screen bg-surface flex flex-col lg:flex-row-reverse">
       {/* Branding/Image (Right Side on Desktop due to flex-row-reverse) */}
@@ -124,13 +125,17 @@ export function RegisterForm({ errorMsg, registerAction }: RegisterFormProps) {
             </div>
           </div>
 
-          <button
-            type="button"
-            className="w-full py-3 bg-surface border border-surface-variant rounded-full font-bold text-[16px] text-on-surface shadow-sm hover:bg-surface-container hover:shadow-md transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-3"
-          >
-            <span className="material-symbols-outlined text-[20px] text-[#4285F4]">account_circle</span>
-            Google
-          </button>
+          {loginWithGoogleAction && (
+            <form action={loginWithGoogleAction}>
+              <button
+                type="submit"
+                className="w-full py-3 bg-surface border border-surface-variant rounded-full font-bold text-[16px] text-on-surface shadow-sm hover:bg-surface-container hover:shadow-md transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-3"
+              >
+                <span className="material-symbols-outlined text-[20px] text-[#4285F4]">account_circle</span>
+                Google
+              </button>
+            </form>
+          )}
 
           <div className="mt-8 text-center">
             <p className="text-sm text-on-surface-variant">
