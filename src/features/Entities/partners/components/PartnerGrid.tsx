@@ -71,9 +71,17 @@ export function PartnerGrid({ partners }: PartnerGridProps) {
                   partner.featured ? "lg:col-span-2" : ""
                 }`}
               >
-                <span className="material-symbols-outlined text-outline text-5xl mb-4 group-hover:text-primary transition-colors">
-                  {partner.icon}
-                </span>
+                {partner.logoUrl ? (
+                  <img
+                    src={partner.logoUrl}
+                    alt={`${partner.name} logo`}
+                    className="max-h-20 w-auto mb-4 object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                  />
+                ) : (
+                  <span className="material-symbols-outlined text-outline text-5xl mb-4 group-hover:text-primary transition-colors">
+                    {partner.icon}
+                  </span>
+                )}
                 <span className="font-headline-md text-base text-outline group-hover:text-primary transition-colors text-center">
                   {partner.name}
                 </span>

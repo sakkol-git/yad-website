@@ -14,6 +14,7 @@ interface Partner {
   phone: string | null;
   partnership_type: string | null;
   notes: string | null;
+  logo_url: string | null;
 }
 
 export function PartnersTable({ partners }: { partners: Partner[] }) {

@@ -93,8 +93,8 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
                         onClick={onClose}
                         aria-current={isActive ? 'page' : undefined}
                         className={`group flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 font-medium text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${isActive
-                            ? 'bg-secondary-container text-on-secondary-container shadow-sm'
-                            : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'
+                          ? 'bg-secondary-container text-on-secondary-container shadow-sm'
+                          : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'
                           }`}
                       >
                         <span

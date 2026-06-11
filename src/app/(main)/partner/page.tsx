@@ -24,6 +24,7 @@ export default async function PartnerPage() {
     category: row.category || 'Local Organizations',
     websiteUrl: row.website_url || '#',
     featured: row.featured || false,
+    logoUrl: row.logo_url || null,
   }));
 
   return (

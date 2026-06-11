@@ -18,7 +18,7 @@ export async function getPartners() {
 export async function createPartner(prevState: any, formData: FormData) {
   const supabase = await createClient();
   const rawData = Object.fromEntries(formData);
-  
+
   try {
     await partnersService.create(supabase, {
       name: rawData.name as string,
@@ -26,12 +26,13 @@ export async function createPartner(prevState: any, formData: FormData) {
       email: (rawData.email as string) || null,
       phone: (rawData.phone as string) || null,
       partnership_type: (rawData.partnership_type as string) || null,
-      notes: (rawData.notes as string) || null
+      notes: (rawData.notes as string) || null,
+      logo_url: (rawData.logo_url as string) || null
     });
   } catch (error: any) {
     return { error: error.message };
   }
-  
+
   revalidatePath('/admin/partners');
   return { success: true };
 }
@@ -39,7 +40,7 @@ export async function createPartner(prevState: any, formData: FormData) {
 export async function updatePartner(id: string, prevState: any, formData: FormData) {
   const supabase = await createClient();
   const rawData = Object.fromEntries(formData);
-  
+
   try {
     await partnersService.update(supabase, id, {
       name: rawData.name as string,
@@ -47,25 +48,26 @@ export async function updatePartner(id: string, prevState: any, formData: FormDa
       email: (rawData.email as string) || null,
       phone: (rawData.phone as string) || null,
       partnership_type: (rawData.partnership_type as string) || null,
-      notes: (rawData.notes as string) || null
+      notes: (rawData.notes as string) || null,
+      logo_url: (rawData.logo_url as string) || null
     });
   } catch (error: any) {
     return { error: error.message };
   }
-  
+
   revalidatePath('/admin/partners');
   return { success: true };
 }
 
 export async function deletePartner(id: string) {
   const supabase = await createClient();
-  
+
   try {
     await partnersService.delete(supabase, id);
   } catch (error: any) {
     return { error: error.message };
   }
-  
+
   revalidatePath('/admin/partners');
   return { success: true };
 }

@@ -5,4 +5,5 @@ export interface PartnerItem {
   category: string;
   websiteUrl: string;
   featured?: boolean;
+  logoUrl?: string | null;
 }
