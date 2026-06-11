@@ -13,7 +13,8 @@ export default async function Image() {
   const logoData = readFileSync(
     join(process.cwd(), 'public/assets/images/yad_logo.png')
   );
-  const logoSrc = `data:image/png;base64,${logoData.toString('base64')}`;
+  // Convert Node.js Buffer to ArrayBuffer for Satori
+  const logoArrayBuffer = logoData.buffer.slice(logoData.byteOffset, logoData.byteOffset + logoData.byteLength);
 
   return new ImageResponse(
     (
@@ -30,15 +31,15 @@ export default async function Image() {
         }}
       >
         <img
-          src={logoSrc}
-          width="208"
-          height="210"
+          src={logoArrayBuffer as any}
+          width="400"
+          height="404"
           alt="YAD Logo"
-          style={{ marginBottom: '40px' }}
+          style={{ marginBottom: '30px' }}
         />
         <div
           style={{
-            fontSize: 64,
+            fontSize: 48,
             fontWeight: 'bold',
             color: '#166534',
             textAlign: 'center',
@@ -47,16 +48,6 @@ export default async function Image() {
           }}
         >
           Youth Advancement for Development
-        </div>
-        <div
-          style={{
-            fontSize: 32,
-            color: '#15803d',
-            marginTop: 20,
-            textAlign: 'center',
-          }}
-        >
-          Empowering Cambodia&apos;s youth to lead tomorrow
         </div>
       </div>
     ),
