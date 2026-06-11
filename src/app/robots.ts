@@ -6,9 +6,10 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/(admin)/", "/(portal)/"],
+        disallow: ["/api/", "/(admin)/", "/(portal)/", "/_next/", "/*?*"],
       },
     ],
     sitemap: "https://yadkh.org/sitemap.xml",
+    host: "https://yadkh.org",
   };
 }

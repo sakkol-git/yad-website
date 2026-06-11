@@ -1,7 +1,14 @@
-import { type NextRequest } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
 import { updateSession } from '@/shared/lib/supabase/middleware';
 
 export async function proxy(request: NextRequest) {
+  const url = request.nextUrl.clone();
+  
+  if (url.pathname !== '/' && url.pathname.endsWith('/')) {
+    url.pathname = url.pathname.slice(0, -1);
+    return NextResponse.redirect(url, { status: 301 });
+  }
+
   return await updateSession(request);
 }
 

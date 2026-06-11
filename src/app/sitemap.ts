@@ -4,22 +4,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://yadkh.org";
 
   const routes = [
-    "",
-    "/about",
-    "/programs",
-    "/impact",
-    "/get-involved",
-    "/event",
-    "/donors",
-    "/partner",
-    "/services",
-    "/donate"
+    { path: "", priority: 1.0, changeFrequency: "weekly" as const },
+    { path: "/programs", priority: 0.9, changeFrequency: "weekly" as const },
+    { path: "/about", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/impact", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/get-involved", priority: 0.8, changeFrequency: "monthly" as const },
+    { path: "/donate", priority: 0.9, changeFrequency: "monthly" as const },
+    { path: "/event", priority: 0.7, changeFrequency: "weekly" as const },
+    { path: "/donors", priority: 0.6, changeFrequency: "monthly" as const },
+    { path: "/partner", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/services", priority: 0.7, changeFrequency: "monthly" as const },
   ];
 
   return routes.map((route) => ({
-    url: `${baseUrl}${route}`,
+    url: `${baseUrl}${route.path}`,
     lastModified: new Date(),
-    changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : 0.8,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
   }));
 }

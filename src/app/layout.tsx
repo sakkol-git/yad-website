@@ -21,26 +21,32 @@ export const viewport: Viewport = {
 const baseUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   : process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : process.env.NEXT_PUBLIC_SITE_URL || "https://yad-cambodia.org";
+    ? `https://${process.env.VERCEL_URL}`
+    : process.env.NEXT_PUBLIC_SITE_URL || "https://yadkh.org";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "YAD — Youth Advancement for Development",
-    template: "%s — YAD",
+    default: "YAD — Youth Advancement for Development Cambodia",
+    template: "%s | YAD Cambodia",
   },
   description:
-    "Empowering Cambodia's youth to lead tomorrow through education, technology, and community programs.",
+    "YAD is a Cambodian NGO empowering youth to lead tomorrow through education, digital innovation, dormitory programs, and community development in slums.",
+  applicationName: "YAD Cambodia",
+  generator: "Next.js",
+  referrer: "origin-when-cross-origin",
+  formatDetection: { email: false, address: false, telephone: false },
   keywords: [
+    "NGO Cambodia",
     "Youth Development Cambodia",
     "Education NGO Cambodia",
     "Cambodia Tech",
     "YAD Cambodia",
     "Youth Empowerment",
     "Cambodia Community Programs",
+    "Nonprofit Organization Cambodia"
   ],
-  authors: [{ name: "YAD Cambodia" }],
+  authors: [{ name: "YAD Cambodia", url: "https://yadkh.org" }],
   creator: "YAD Cambodia",
   publisher: "Youth Advancement for Development",
   alternates: {
@@ -51,19 +57,28 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "YAD — Youth Advancement for Development",
-    description: "Empowering Cambodia's youth to lead tomorrow through education, technology, and community programs.",
+    title: "YAD — Youth Advancement for Development Cambodia",
+    description: "YAD is a Cambodian NGO empowering youth to lead tomorrow through education, digital innovation, and community development.",
     url: "/",
     siteName: "YAD Cambodia",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/assets/images/yad_logo.png", // We will keep the logo as fallback for now
+        width: 1200,
+        height: 630,
+        alt: "YAD Cambodia NGO Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "YAD — Youth Advancement for Development",
-    description: "Empowering Cambodia's youth to lead tomorrow through education, technology, and community programs.",
+    title: "YAD — Youth Advancement for Development Cambodia",
+    description: "YAD is a Cambodian NGO empowering youth to lead tomorrow through education, digital innovation, and community development.",
     creator: "@YADCambodia",
     site: "@YADCambodia",
+    images: ["/assets/images/yad_logo.png"],
   },
   robots: {
     index: true,
@@ -89,25 +104,6 @@ export const metadata: Metadata = {
   verification: {
     google: "google-site-verification-code-here", // Placeholder
   },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Youth Advancement for Development",
-  alternateName: "YAD Cambodia",
-  url: "https://yad-cambodia.org",
-  logo: "https://yad-cambodia.org/assets/images/yad_logo.png",
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+855-99-332-289",
-    email: "jc.acekh@gmail.com",
-    contactType: "customer service",
-  },
-  sameAs: [
-    "https://www.facebook.com/profile.php?id=61571829685466",
-    "https://t.me/Youthadvancementfordevelopment",
-  ],
 };
 
 export default function RootLayout({
@@ -143,10 +139,6 @@ export default function RootLayout({
         <AuthProvider>
           {children}
         </AuthProvider>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
       </body>
     </html>
   );
