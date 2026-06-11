@@ -17,11 +17,11 @@ export const NAV_LINKS: NavLink[] = [
     label: "Programs",
     subLinks: [
       { href: "/programs", label: "Our Programs" },
-      { href: "/impact", label: "Our Impact" },
       { href: "/services", label: "Services" },
       { href: "/event", label: "Events" }
     ]
   },
+  { href: "/impact", label: "Our Impact" },
   { href: "/get-involved", label: "Contact Us" },
 ];
 
