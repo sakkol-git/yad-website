@@ -1,96 +1,41 @@
 @import "tailwindcss";
 
 @theme {
-  /* =========================================
-     PRIMARY (Energetic Leaf Green)
-     ========================================= */
-  --color-primary: #006e3b;
+  --color-primary: #1a7a4a;
   --color-on-primary: #ffffff;
-  --color-primary-container: #96f7b5;
-  --color-on-primary-container: #00210e;
-  --color-primary-fixed: #96f7b5;
-  --color-on-primary-fixed: #00210e;
-  --color-primary-fixed-dim: #7ae09b;
-  --color-on-primary-fixed-variant: #00522a;
-  --color-inverse-primary: #7ae09b;
-
-  /* =========================================
-     [COMMUNITY & CONNECTION]
-     SECONDARY (Welcoming Sky-Aqua)
-     ========================================= */
-  /* Standard secondary (a slightly more vibrant community hue) */
-  --color-secondary: #006e8e;
-  --color-on-secondary: #ffffff;
-
-  /* =========================================
-     [CRITICAL INTEGRATION]
-     The exact look of image_0.png with Fixed Contrast
-     ========================================= */
-  /* This exactly preserves the container color from your image */
-  --color-secondary-container: #dcf8ff;
-  /* Soft Aqua from Image */
-
-  /* CRITICAL FIX: The new dark, accessible text color.
-     This is a much darker version of the mint hue for accessibility. */
-  --color-on-secondary-container: #003623;
-  /* Dark Forest Mint (Ensures 4.5:1+ contrast) */
-
-  /* Fixed variant roles for reference (e.g. for borders on secondary containers) */
-  --color-secondary-fixed: #dcf8ff;
-  --color-on-secondary-fixed: #001f28;
-  --color-secondary-fixed-dim: #98e8ff;
-  --color-on-secondary-fixed-variant: #004e60;
-
-
-  /* =========================================
-     TERTIARY (Optimistic Action Amber)
-     ========================================= */
-  --color-tertiary: #8b5000;
+  --color-primary-container: #e6f7ee;
+  --color-on-primary-container: #0d4028;
+  --color-secondary: #f4ac1a;
+  --color-on-secondary: #5c3d00;
+  --color-secondary-container: #fff8e6;
+  --color-on-secondary-container: #5c3d00;
+  --color-tertiary: #2196b0;
   --color-on-tertiary: #ffffff;
-  --color-tertiary-container: #ffdcbe;
-  --color-on-tertiary-container: #2c1600;
-  --color-tertiary-fixed: #ffdcbe;
-  --color-on-tertiary-fixed: #2c1600;
-  --color-tertiary-fixed-dim: #ffb870;
-  --color-on-tertiary-fixed-variant: #6a3b00;
-
-  /* =========================================
-     ERROR (Standard Accessibility Red)
-     ========================================= */
+  --color-tertiary-container: #e3f5f9;
+  --color-on-tertiary-container: #093e4d;
+  --color-background: #f5f8f6;
+  --color-on-background: #141f19;
+  --color-surface: #f5f8f6;
+  --color-on-surface: #141f19;
+  --color-surface-variant: #dce5df;
+  --color-on-surface-variant: #3d5046;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f0f5f1;
+  --color-surface-container: #eaf0ec;
+  --color-surface-container-high: #dce5df;
+  --color-surface-container-highest: #d0dbd3;
+  --color-surface-bright: #f8fdf9;
+  --color-surface-dim: #d0dbd3;
+  --color-surface-tint: #1a7a4a;
+  --color-outline: #6b8577;
+  --color-outline-variant: #b8ccbf;
+  --color-inverse-surface: #1f2e26;
+  --color-inverse-on-surface: #edf2ee;
+  --color-inverse-primary: #7dd9a3;
   --color-error: #ba1a1a;
   --color-on-error: #ffffff;
   --color-error-container: #ffdad6;
-  --color-on-error-container: #410002;
-
-  /* =========================================
-     BACKGROUND & SURFACES (Clean & Breathable)
-     ========================================= */
-  --color-background: #fbfdf9;
-  --color-on-background: #191c1a;
-  --color-surface: #fbfdf9;
-  --color-surface-tint: #006e3b;
-  --color-on-surface: #191c1a;
-  --color-surface-variant: #dce5db;
-  --color-on-surface-variant: #404943;
-  --color-inverse-surface: #2e312f;
-  --color-inverse-on-surface: #eff1ed;
-
-  /* =========================================
-     SURFACE CONTAINERS (For Layered Cards/UI)
-     ========================================= */
-  --color-surface-dim: #dbe0dc;
-  --color-surface-bright: #fbfdf9;
-  --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #f5faf6;
-  --color-surface-container: #f0f4ef;
-  --color-surface-container-high: #eaefe9;
-  --color-surface-container-highest: #e4e9e3;
-
-  /* =========================================
-     OUTLINES (Borders & Dividers)
-     ========================================= */
-  --color-outline: #707972;
-  --color-outline-variant: #bfc9c0;
+  --color-on-error-container: #93000a;
 
   --spacing-container-max: 1280px;
   --spacing-gutter: clamp(16px, 3vw, 32px);
