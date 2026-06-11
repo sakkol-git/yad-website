@@ -12,7 +12,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
         <input
           type={type}
           className={cn(
-            "flex h-12 w-full rounded-md border border-outline-variant bg-surface-container-low py-2 font-body-md text-sm text-on-surface ring-offset-background file:border-0 file:bg-transparent file:font-label-bold file:text-sm placeholder:text-on-surface-variant focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-colors",
+            "flex h-12 w-full rounded-sm border border-outline-variant bg-surface-container-low py-2 font-body-md text-sm text-on-surface ring-offset-background file:border-0 file:bg-transparent file:font-label-bold file:text-sm placeholder:text-on-surface-variant focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-colors",
             icon ? "pl-10 pr-3" : "px-3",
             className
           )}
