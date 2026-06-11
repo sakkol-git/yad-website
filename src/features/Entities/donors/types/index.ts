@@ -5,6 +5,7 @@ export interface Donor {
   amount?: number;
   donation_date?: string;
   description?: string;
+  country?: string | null;
   is_public: boolean;
   status: 'Active' | 'Archived';
   created_at: string;

@@ -1,6 +1,7 @@
 import { createClient } from '@/shared/lib/supabase/server';
 import { Button } from '@/shared/components/ui/Button';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata = {
   title: 'Our Donors - YAD Cambodia',
@@ -61,26 +62,42 @@ export default async function DonorsShowcasePage() {
             {validDonors.map((donor, index) => (
               <div 
                 key={donor.id} 
-                className="bg-surface rounded-3xl p-8 shadow-ambient border border-outline-variant/30 flex flex-col items-center text-center hover:-translate-y-2 hover:shadow-lg transition-all duration-300 animate-fade-in-up"
+                className="w-full flex justify-center animate-fade-in-up"
                 style={{ animationDelay: `${(index % 6) * 100}ms` }}
               >
-                <div className="w-20 h-20 rounded-full bg-primary-container/30 text-primary-container flex items-center justify-center mb-6 shadow-inner">
-                  <span className="material-symbols-outlined text-[36px]" style={{ fontVariationSettings: "'FILL' 1" }}>
-                    {donor.amount && donor.amount > 1000 ? 'workspace_premium' : 'favorite'}
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold text-on-surface mb-2">{donor.name}</h3>
-                
-                {donor.description && (
-                  <p className="text-sm text-on-surface-variant font-medium italic mt-2 line-clamp-3">
-                    "{donor.description}"
-                  </p>
-                )}
-                
-                <div className="mt-6 pt-6 border-t border-outline-variant/30 w-full flex justify-center items-center gap-2 text-xs font-bold text-primary uppercase tracking-wider">
-                  <span className="material-symbols-outlined text-[16px]">verified</span>
-                  Verified Supporter
-                </div>
+                <Link href={`/donors/${donor.id}`} className="group cursor-pointer block w-full max-w-[340px]">
+                  <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-[5px]">
+                    <div className="absolute inset-0 bg-surface-variant/30 flex items-center justify-center">
+                      <span className="material-symbols-outlined text-[64px] text-on-surface-variant/50">volunteer_activism</span>
+                    </div>
+                    {donor.avatar_url && (
+                      <Image
+                        alt={`Portrait of ${donor.name}`}
+                        src={donor.avatar_url}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    )}
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+
+                    {/* Text Content */}
+                    <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col items-start text-left">
+                      <h3 className="text-white font-bold text-2xl mb-1 group-hover:text-primary-100 transition-colors">
+                        {donor.name}
+                      </h3>
+                      <span className="text-white bg-primary py-1 px-2 rounded-md text-center font-medium text-sm mb-3">
+                        {donor.country || 'Global Supporter'}
+                      </span>
+                      {donor.description && (
+                        <p className="text-gray-300 text-sm line-clamp-3">
+                          {donor.description}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </Link>
               </div>
             ))}
           </div>

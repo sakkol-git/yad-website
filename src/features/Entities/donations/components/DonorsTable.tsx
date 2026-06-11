@@ -13,6 +13,8 @@ interface Donor {
   amount: number | null;
   donation_date: string | null;
   description: string | null;
+  avatar_url?: string | null;
+  country?: string | null;
   is_public: boolean;
   status: string;
 }
@@ -36,7 +38,7 @@ export function DonorsTable({ donors }: { donors: Donor[] }) {
 
   async function handleDelete(id: string) {
     if (!confirm('Are you sure you want to permanently delete this donor?')) return;
-    
+
     setIsDeleting(id);
     try {
       await deleteDonor(id);
@@ -48,8 +50,8 @@ export function DonorsTable({ donors }: { donors: Donor[] }) {
   }
 
   const columns: ColumnDef<Donor>[] = [
-    { 
-      header: 'Donor', 
+    {
+      header: 'Donor',
       cell: (donor) => (
         <>
           <span className="font-bold">{donor.name}</span>
@@ -57,24 +59,32 @@ export function DonorsTable({ donors }: { donors: Donor[] }) {
         </>
       )
     },
-    { 
-      header: 'Amount', 
+    {
+      header: 'Amount',
       cell: (donor) => (
         <span className="font-medium text-primary">
           {donor.amount ? `$${donor.amount.toLocaleString()}` : '-'}
         </span>
       )
     },
-    { 
-      header: 'Date', 
+    {
+      header: 'Country',
+      cell: (donor) => (
+        <span className="text-on-surface-variant font-medium">
+          {donor.country || '-'}
+        </span>
+      )
+    },
+    {
+      header: 'Date',
       cell: (donor) => (
         <span className="text-on-surface-variant">
           {donor.donation_date ? new Date(donor.donation_date).toLocaleDateString() : '-'}
         </span>
       )
     },
-    { 
-      header: 'Visibility', 
+    {
+      header: 'Visibility',
       cell: (donor) => (
         <>
           {donor.is_public ? (
@@ -89,8 +99,8 @@ export function DonorsTable({ donors }: { donors: Donor[] }) {
         </>
       )
     },
-    { 
-      header: 'Status', 
+    {
+      header: 'Status',
       cell: (donor) => (
         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider
           ${donor.status === 'Active' ? 'bg-primary-container text-on-primary-container' : 'bg-surface-variant text-on-surface-variant'}`}
@@ -99,18 +109,18 @@ export function DonorsTable({ donors }: { donors: Donor[] }) {
         </span>
       )
     },
-    { 
-      header: <div className="text-right">Actions</div>, 
+    {
+      header: <div className="text-right">Actions</div>,
       cell: (donor) => (
         <div className="flex justify-end gap-2">
-          <button 
+          <button
             onClick={() => openEdit(donor)}
             className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-full transition-colors flex items-center justify-center"
             title="Edit Donor"
           >
             <span className="material-symbols-outlined text-[18px]">edit</span>
           </button>
-          <button 
+          <button
             onClick={() => handleDelete(donor.id)}
             disabled={isDeleting === donor.id}
             className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-full transition-colors flex items-center justify-center disabled:opacity-50"
@@ -130,8 +140,8 @@ export function DonorsTable({ donors }: { donors: Donor[] }) {
           <h1 className="text-3xl font-headline-lg font-bold text-on-surface">Donors</h1>
           <p className="text-on-surface-variant font-medium mt-1">Manage donations and donor records.</p>
         </div>
-        <Button 
-          variant="default" 
+        <Button
+          variant="default"
           className="rounded-full shadow-md flex items-center gap-2 hover:scale-105"
           onClick={openCreate}
         >
@@ -140,16 +150,16 @@ export function DonorsTable({ donors }: { donors: Donor[] }) {
         </Button>
       </div>
 
-      <DataTable 
-        columns={columns} 
-        data={donors} 
+      <DataTable
+        columns={columns}
+        data={donors}
         keyExtractor={(d) => d.id}
         emptyMessage='No donors found. Click "Add Donor" to create one.'
       />
 
-      <DonorFormModal 
-        isOpen={modalState.isOpen} 
-        onClose={closeModal} 
+      <DonorFormModal
+        isOpen={modalState.isOpen}
+        onClose={closeModal}
         mode={modalState.mode}
         initialData={modalState.donor}
       />

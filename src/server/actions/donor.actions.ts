@@ -18,7 +18,7 @@ export async function getDonors() {
 export async function createDonor(prevState: any, formData: FormData) {
   const supabase = await createClient();
   const rawData = Object.fromEntries(formData);
-  
+
   try {
     await donorsService.create(supabase, {
       name: rawData.name as string,
@@ -26,13 +26,15 @@ export async function createDonor(prevState: any, formData: FormData) {
       amount: rawData.amount ? parseFloat(rawData.amount as string) : null,
       donation_date: (rawData.donation_date as string) || null,
       description: (rawData.description as string) || null,
+      avatar_url: (rawData.avatar_url as string) || null,
+      country: (rawData.country as string) || null,
       is_public: rawData.is_public === 'on' || rawData.is_public === 'true',
       status: (rawData.status as any) || 'Active'
     });
   } catch (error: any) {
     return { error: error.message };
   }
-  
+
   revalidatePath('/admin/donors');
   return { success: true };
 }
@@ -40,7 +42,7 @@ export async function createDonor(prevState: any, formData: FormData) {
 export async function updateDonor(id: string, prevState: any, formData: FormData) {
   const supabase = await createClient();
   const rawData = Object.fromEntries(formData);
-  
+
   try {
     await donorsService.update(supabase, id, {
       name: rawData.name as string,
@@ -48,13 +50,15 @@ export async function updateDonor(id: string, prevState: any, formData: FormData
       amount: rawData.amount ? parseFloat(rawData.amount as string) : null,
       donation_date: (rawData.donation_date as string) || null,
       description: (rawData.description as string) || null,
+      avatar_url: (rawData.avatar_url as string) || null,
+      country: (rawData.country as string) || null,
       is_public: rawData.is_public === 'on' || rawData.is_public === 'true',
       status: rawData.status as any
     });
   } catch (error: any) {
     return { error: error.message };
   }
-  
+
   revalidatePath('/admin/donors');
   return { success: true };
 }
@@ -66,7 +70,7 @@ export async function deleteDonor(id: string) {
   } catch (error: any) {
     return { error: error.message };
   }
-  
+
   revalidatePath('/admin/donors');
   return { success: true };
 }

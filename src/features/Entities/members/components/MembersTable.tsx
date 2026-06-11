@@ -14,6 +14,7 @@ interface Member {
   type: string;
   status: string;
   bio: string | null;
+  avatar_url?: string | null;
 }
 
 export function MembersTable({ members }: { members: Member[] }) {

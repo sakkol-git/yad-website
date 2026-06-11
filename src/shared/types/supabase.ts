@@ -117,58 +117,58 @@ export interface Database {
       // Add other tables as needed based on schema...
       events: {
         Row: {
-            id: string
-            name: string
-            description: string | null
-            venue: string | null
-            capacity: number | null
-            status: 'Upcoming' | 'Ongoing' | 'Completed' | 'Cancelled'
-            slug: string | null
-            date: string | null
-            image_url: string | null
-            image_alt: string | null
-            action_label: string | null
-            action_icon: string | null
-            join_url: string | null
-            donation_url: string | null
-            created_at: string
-            updated_at: string
+          id: string
+          name: string
+          description: string | null
+          venue: string | null
+          capacity: number | null
+          status: 'Upcoming' | 'Ongoing' | 'Completed' | 'Cancelled'
+          slug: string | null
+          date: string | null
+          image_url: string | null
+          image_alt: string | null
+          action_label: string | null
+          action_icon: string | null
+          join_url: string | null
+          donation_url: string | null
+          created_at: string
+          updated_at: string
         }
         Insert: {
-            id?: string
-            name: string
-            description?: string | null
-            venue?: string | null
-            capacity?: number | null
-            status?: 'Upcoming' | 'Ongoing' | 'Completed' | 'Cancelled'
-            slug?: string | null
-            date?: string | null
-            image_url?: string | null
-            image_alt?: string | null
-            action_label?: string | null
-            action_icon?: string | null
-            join_url?: string | null
-            donation_url?: string | null
-            created_at?: string
-            updated_at?: string
+          id?: string
+          name: string
+          description?: string | null
+          venue?: string | null
+          capacity?: number | null
+          status?: 'Upcoming' | 'Ongoing' | 'Completed' | 'Cancelled'
+          slug?: string | null
+          date?: string | null
+          image_url?: string | null
+          image_alt?: string | null
+          action_label?: string | null
+          action_icon?: string | null
+          join_url?: string | null
+          donation_url?: string | null
+          created_at?: string
+          updated_at?: string
         }
         Update: {
-            id?: string
-            name?: string
-            description?: string | null
-            venue?: string | null
-            capacity?: number | null
-            status?: 'Upcoming' | 'Ongoing' | 'Completed' | 'Cancelled'
-            slug?: string | null
-            date?: string | null
-            image_url?: string | null
-            image_alt?: string | null
-            action_label?: string | null
-            action_icon?: string | null
-            join_url?: string | null
-            donation_url?: string | null
-            created_at?: string
-            updated_at?: string
+          id?: string
+          name?: string
+          description?: string | null
+          venue?: string | null
+          capacity?: number | null
+          status?: 'Upcoming' | 'Ongoing' | 'Completed' | 'Cancelled'
+          slug?: string | null
+          date?: string | null
+          image_url?: string | null
+          image_alt?: string | null
+          action_label?: string | null
+          action_icon?: string | null
+          join_url?: string | null
+          donation_url?: string | null
+          created_at?: string
+          updated_at?: string
         }
         Relationships: []
       }

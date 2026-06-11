@@ -17,6 +17,8 @@ interface Donor {
   amount: number | null;
   donation_date: string | null;
   description: string | null;
+  avatar_url?: string | null;
+  country?: string | null;
   is_public: boolean;
   status: string;
 }
@@ -35,7 +37,7 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
   async function handleSubmit(formData: FormData) {
     setIsLoading(true);
     setError(null);
-    
+
     try {
       if (mode === 'create') {
         const result = await createDonor(null, formData);
@@ -60,7 +62,7 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
             {mode === 'create' ? 'Create New Donor Record' : 'Edit Donor Record'}
           </DialogTitle>
         </DialogHeader>
-        
+
         <form action={handleSubmit} className="p-6 flex flex-col gap-5 overflow-y-auto">
           {error && (
             <div className="bg-error-container/20 text-error p-3 rounded-xl text-sm font-medium border border-error-container flex items-center gap-2">
@@ -72,9 +74,9 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="flex flex-col gap-1.5 md:col-span-2">
               <label className="text-sm font-label-bold text-on-surface-variant">Donor Name</label>
-              <input 
-                name="name" 
-                type="text" 
+              <input
+                name="name"
+                type="text"
                 required
                 defaultValue={initialData?.name || ''}
                 className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
@@ -83,9 +85,9 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
 
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-label-bold text-on-surface-variant">Email</label>
-              <input 
-                name="email" 
-                type="email" 
+              <input
+                name="email"
+                type="email"
                 defaultValue={initialData?.email || ''}
                 className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
               />
@@ -93,9 +95,9 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
 
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-label-bold text-on-surface-variant">Amount (USD)</label>
-              <input 
-                name="amount" 
-                type="number" 
+              <input
+                name="amount"
+                type="number"
                 step="0.01"
                 min="0"
                 defaultValue={initialData?.amount || ''}
@@ -105,9 +107,9 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
 
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-label-bold text-on-surface-variant">Donation Date</label>
-              <input 
-                name="donation_date" 
-                type="date" 
+              <input
+                name="donation_date"
+                type="date"
                 defaultValue={initialData?.donation_date ? initialData.donation_date.split('T')[0] : ''}
                 className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
               />
@@ -115,9 +117,9 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
 
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-label-bold text-on-surface-variant">Status</label>
-              <select 
-                name="status" 
-                required 
+              <select
+                name="status"
+                required
                 defaultValue={initialData?.status || 'Active'}
                 className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none cursor-pointer"
               >
@@ -128,9 +130,9 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
 
             <div className="flex flex-col gap-1.5 md:col-span-2">
               <label className="flex items-center gap-3 p-4 bg-surface-container-lowest border border-outline-variant rounded-xl cursor-pointer">
-                <input 
-                  name="is_public" 
-                  type="checkbox" 
+                <input
+                  name="is_public"
+                  type="checkbox"
                   value="true"
                   defaultChecked={initialData?.is_public ?? true}
                   className="w-5 h-5 text-primary border-outline-variant rounded focus:ring-primary"
@@ -143,9 +145,31 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
             </div>
 
             <div className="flex flex-col gap-1.5 md:col-span-2">
+              <label className="text-sm font-label-bold text-on-surface-variant">Avatar URL</label>
+              <input 
+                name="avatar_url" 
+                type="url"
+                placeholder="https://example.com/avatar.jpg"
+                defaultValue={initialData?.avatar_url || ''}
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1.5 md:col-span-2">
+              <label className="text-sm font-label-bold text-on-surface-variant">Country</label>
+              <input 
+                name="country" 
+                type="text"
+                placeholder="e.g. United States, Cambodia, Australia"
+                defaultValue={initialData?.country || ''}
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1.5 md:col-span-2">
               <label className="text-sm font-label-bold text-on-surface-variant">Description</label>
-              <textarea 
-                name="description" 
+              <textarea
+                name="description"
                 rows={3}
                 defaultValue={initialData?.description || ''}
                 className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-y"

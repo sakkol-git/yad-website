@@ -46,6 +46,7 @@ export async function createMember(prevState: any, formData: FormData) {
       type: (rawData.type as any) || 'Resident',
       status: (rawData.status as any) || 'Pending',
       bio: (rawData.bio as string) || null,
+      avatar_url: (rawData.avatar_url as string) || null,
       profile: profile as any
     });
   } catch (error: any) {
@@ -69,6 +70,7 @@ export async function updateMember(id: string, prevState: any, formData: FormDat
       type: rawData.type as any,
       status: rawData.status as any,
       bio: (rawData.bio as string) || null,
+      avatar_url: (rawData.avatar_url as string) || null,
       profile: profile as any
     });
   } catch (error: any) {

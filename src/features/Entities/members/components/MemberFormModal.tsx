@@ -18,6 +18,7 @@ interface Member {
   type: string;
   status: string;
   bio: string | null;
+  avatar_url?: string | null;
   profile?: any | null;
 }
 
@@ -118,6 +119,17 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                     defaultValue={initialData?.bio || ''}
                     className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-y"
                   ></textarea>
+                </div>
+
+                <div className="flex flex-col gap-1.5 md:col-span-2">
+                  <label className="text-sm font-label-bold text-on-surface-variant">Avatar URL</label>
+                  <input
+                    name="avatar_url"
+                    type="url"
+                    placeholder="https://example.com/avatar.jpg"
+                    defaultValue={initialData?.avatar_url || ''}
+                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                  />
                 </div>
 
                 <div className="flex flex-col gap-1.5">
