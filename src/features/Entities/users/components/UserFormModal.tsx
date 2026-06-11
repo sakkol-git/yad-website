@@ -117,7 +117,7 @@ export function UserFormModal({ isOpen, onClose, mode, initialData }: UserFormMo
             <Button type="button" variant="ghost" onClick={onClose} disabled={isLoading}>
               Cancel
             </Button>
-            <Button type="submit" variant="default" disabled={isLoading} className="rounded-full min-w-[100px]">
+            <Button type="submit" variant="default" disabled={isLoading} className=" min-w-[100px]">
               {isLoading ? 'Saving...' : mode === 'create' ? 'Create User' : 'Save Changes'}
             </Button>
           </div>

@@ -152,7 +152,7 @@ export default function Navbar() {
             </Link>
           )}
 
-          <Button variant="primary" className="rounded-full shadow-sm hover:shadow-md transition-all" asChild>
+          <Button variant="primary" className=" shadow-sm hover:shadow-md transition-all" asChild>
             <Link href="/donate/flow">Donate Now</Link>
           </Button>
         </div>

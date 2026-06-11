@@ -87,7 +87,7 @@ export function CreateUserModal({ isOpen, onClose }: { isOpen: boolean; onClose:
             <Button type="button" variant="ghost" onClick={onClose} disabled={isLoading}>
               Cancel
             </Button>
-            <Button type="submit" variant="default" disabled={isLoading} className="rounded-full min-w-[100px]">
+            <Button type="submit" variant="default" disabled={isLoading} className=" min-w-[100px]">
               {isLoading ? 'Creating...' : 'Create User'}
             </Button>
           </div>

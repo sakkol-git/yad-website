@@ -181,7 +181,7 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
             <Button type="button" variant="ghost" onClick={onClose} disabled={isLoading}>
               Cancel
             </Button>
-            <Button type="submit" variant="default" disabled={isLoading} className="rounded-full min-w-[120px]">
+            <Button type="submit" variant="default" disabled={isLoading} className=" min-w-[120px]">
               {isLoading ? 'Saving...' : mode === 'create' ? 'Create Donor' : 'Save Changes'}
             </Button>
           </div>

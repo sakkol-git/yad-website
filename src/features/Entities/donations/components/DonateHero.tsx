@@ -35,13 +35,13 @@ export function DonateHero() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-          <Button variant="secondary" size="lg" className="rounded-full gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:bg-primary transition-all px-8 text-lg" asChild>
+          <Button variant="secondary" size="lg" className=" gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:bg-primary transition-all px-8 text-lg" asChild>
             <Link href="/donate/flow">
               Donate Now
               <span className="material-symbols-outlined text-xl">arrow_forward</span>
             </Link>
           </Button>
-          <Button variant="outline" size="lg" className="rounded-full bg-surface/50 backdrop-blur-md hover:bg-surface text-primary border-primary/20 px-8 text-lg transition-all" asChild>
+          <Button variant="outline" size="lg" className=" bg-surface/50 backdrop-blur-md hover:bg-surface text-primary border-primary/20 px-8 text-lg transition-all" asChild>
             <Link href="#options">
               Learn About Impact
             </Link>

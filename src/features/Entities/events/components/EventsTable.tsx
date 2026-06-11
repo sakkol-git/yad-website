@@ -103,10 +103,10 @@ export function EventsTable({ events }: { events: Event[] }) {
           <p className="text-on-surface-variant font-medium mt-1">Manage YAD events and activities.</p>
         </div>
         <Button 
-          variant="default" 
-          className="rounded-full shadow-md flex items-center gap-2 hover:scale-105"
-          onClick={openCreate}
-        >
+ variant="default" 
+ className=" shadow-md flex items-center gap-2 hover:scale-105"
+ onClick={openCreate}
+ >
           <span className="material-symbols-outlined text-[20px]">add</span>
           New Event
         </Button>

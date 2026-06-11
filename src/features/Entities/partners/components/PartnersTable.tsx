@@ -107,10 +107,10 @@ export function PartnersTable({ partners }: { partners: Partner[] }) {
           <p className="text-on-surface-variant font-medium mt-1">Manage sponsors, NGOs, and other partners.</p>
         </div>
         <Button 
-          variant="default" 
-          className="rounded-full shadow-md flex items-center gap-2 hover:scale-105"
-          onClick={openCreate}
-        >
+ variant="default" 
+ className=" shadow-md flex items-center gap-2 hover:scale-105"
+ onClick={openCreate}
+ >
           <span className="material-symbols-outlined text-[20px]">handshake</span>
           Add Partner
         </Button>

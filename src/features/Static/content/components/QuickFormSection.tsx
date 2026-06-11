@@ -74,10 +74,10 @@ export function QuickFormSection() {
           </div>
           <div className="pt-4">
             <Button
-              className="w-full bg-primary text-on-primary font-label-bold text-label-bold rounded-full hover:bg-on-primary-fixed-variant transition-colors duration-300 shadow-md"
-              type="submit"
-              size="lg"
-            >
+ className="w-full bg-primary text-on-primary font-label-bold text-label-bold hover:bg-on-primary-fixed-variant transition-colors duration-300 shadow-md"
+ type="submit"
+ size="lg"
+ >
               Submit Interest
             </Button>
           </div>

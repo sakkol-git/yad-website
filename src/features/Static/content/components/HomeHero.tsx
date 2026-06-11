@@ -83,7 +83,7 @@ export function HomeHero() {
             sustainable development.
           </p>
           <div className="flex flex-wrap items-center gap-6">
-            <Button variant="primary" size="lg" className="rounded-full px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+            <Button variant="primary" size="lg" className=" px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all">
               Explore More
             </Button>
             <button className="flex items-center gap-3 group text-on-surface font-medium hover:text-primary transition-colors">

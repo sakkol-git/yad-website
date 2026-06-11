@@ -46,7 +46,7 @@ export default async function DonorsShowcasePage() {
           </p>
           <div className="flex justify-center gap-4 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
             <Link href="/donate">
-              <Button size="lg" className="rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-all text-base px-8 h-14">
+              <Button size="lg" className=" shadow-md hover:shadow-lg hover:scale-105 transition-all text-base px-8 h-14">
                 Become a Donor
               </Button>
             </Link>

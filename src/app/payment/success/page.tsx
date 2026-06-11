@@ -149,11 +149,11 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
 
         {/* Dynamic Navigation Actions */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-up delay-300">
-          <Button variant="outline" size="lg" className="border-primary/20 text-primary hover:bg-primary-fixed/10 rounded-full px-8" asChild>
+          <Button variant="outline" size="lg" className="border-primary/20 text-primary hover:bg-primary-fixed/10 px-8" asChild>
             <Link href="/">Back to Homepage</Link>
           </Button>
           {type === "booking" && (
-            <Button variant="primary" size="lg" className="rounded-full px-8" asChild>
+            <Button variant="primary" size="lg" className=" px-8" asChild>
               <Link href="/portal/bookings">Go to Bookings Dashboard</Link>
             </Button>
           )}
@@ -167,27 +167,27 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
             </p>
             <div className="flex justify-center gap-4">
               <Button
-                aria-label="Share on Facebook"
-                variant="ghost"
-                size="icon"
-                className="w-12 h-12 bg-surface-container rounded-full hover:bg-primary-fixed hover:text-on-primary-fixed"
-              >
+ aria-label="Share on Facebook"
+ variant="ghost"
+ size="icon"
+ className="w-12 h-12 bg-surface-container hover:bg-primary-fixed hover:text-on-primary-fixed"
+ >
                 <span className="material-symbols-outlined">share</span>
               </Button>
               <Button
-                aria-label="Share on Twitter"
-                variant="ghost"
-                size="icon"
-                className="w-12 h-12 bg-surface-container rounded-full hover:bg-tertiary-fixed hover:text-on-tertiary-fixed"
-              >
+ aria-label="Share on Twitter"
+ variant="ghost"
+ size="icon"
+ className="w-12 h-12 bg-surface-container hover:bg-tertiary-fixed hover:text-on-tertiary-fixed"
+ >
                 <span className="material-symbols-outlined">chat_bubble</span>
               </Button>
               <Button
-                aria-label="Copy Link"
-                variant="ghost"
-                size="icon"
-                className="w-12 h-12 bg-surface-container rounded-full hover:bg-secondary-container hover:text-on-secondary-container"
-              >
+ aria-label="Copy Link"
+ variant="ghost"
+ size="icon"
+ className="w-12 h-12 bg-surface-container hover:bg-secondary-container hover:text-on-secondary-container"
+ >
                 <span className="material-symbols-outlined">link</span>
               </Button>
             </div>

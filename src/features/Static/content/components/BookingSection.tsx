@@ -186,11 +186,11 @@ export function BookingSection() {
             {/* Submit */}
             <div className="flex justify-end pt-4">
               <Button
-                type="submit"
-                variant="secondary"
-                size="lg"
-                className="rounded-full shadow-ambient hover:scale-105 px-10 w-full md:w-auto text-lg"
-              >
+ type="submit"
+ variant="secondary"
+ size="lg"
+ className=" shadow-ambient hover:scale-105 px-10 w-full md:w-auto text-lg"
+ >
                 Confirm &amp; Pay $45.00
               </Button>
             </div>

@@ -26,7 +26,7 @@ export function DonationPortal() {
 
           <div className="space-y-8 max-w-xl mx-auto">
             <div className="pt-8">
-              <Button variant="primary" size="lg" className="w-full rounded-full py-7 text-[18px] font-bold gap-3 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all bg-primary text-on-primary" asChild>
+              <Button variant="primary" size="lg" className="w-full py-7 text-[18px] font-bold gap-3 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all bg-primary text-on-primary" asChild>
                 <Link href={`/donate/flow`}>
                   Continue to Donation Details
                   <span className="material-symbols-outlined text-[24px]">arrow_forward</span>

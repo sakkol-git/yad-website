@@ -79,12 +79,12 @@ export function ReviewSummary() {
 
         {/* Action Buttons */}
         <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-4 mt-4">
-          <Button variant="outline" size="lg" className="w-full md:w-auto rounded-full px-8" asChild>
+          <Button variant="outline" size="lg" className="w-full md:w-auto px-8" asChild>
             <Link href="/donate/payment">
               Back
             </Link>
           </Button>
-          <Button variant="secondary" size="lg" className="w-full md:w-auto rounded-full px-10 gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:bg-primary" asChild>
+          <Button variant="secondary" size="lg" className="w-full md:w-auto px-10 gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:bg-primary" asChild>
             <Link href="/donate/success">
               <span className="material-symbols-outlined">lock</span>
               Confirm &amp; Pay $50.00

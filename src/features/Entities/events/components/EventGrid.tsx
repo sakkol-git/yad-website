@@ -90,7 +90,7 @@ function EventCard({
           <div className="flex items-center justify-between mt-auto pt-4 border-t border-surface-variant">
             <div className="flex items-center gap-4">
               {event.joinUrl && (
-                <Button variant="secondary" className="rounded-full shadow-sm" asChild>
+                <Button variant="secondary" className=" shadow-sm" asChild>
                   <Link href={event.joinUrl}>
                     {event.actionLabel}{" "}
                     <span className="material-symbols-outlined text-sm ml-2">
@@ -100,7 +100,7 @@ function EventCard({
                 </Button>
               )}
               {event.donationUrl && (
-                <Button variant="outline" className="rounded-full shadow-sm" asChild>
+                <Button variant="outline" className=" shadow-sm" asChild>
                   <Link href={event.donationUrl}>Donate</Link>
                 </Button>
               )}
@@ -133,7 +133,7 @@ function EventCard({
               </Link>
             )}
              {event.donationUrl && (
-               <Button variant="ghost" size="sm" className="rounded-full shadow-none text-secondary" asChild>
+               <Button variant="ghost" size="sm" className=" shadow-none text-secondary" asChild>
                  <Link href={event.donationUrl}>Donate</Link>
                </Button>
              )}

@@ -283,12 +283,12 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                 </div>
 
                 <Button
-                  type="submit"
-                  variant="primary"
-                  size="lg"
-                  className="w-full rounded-full gap-2 hover:scale-[1.02] transition-transform"
-                  disabled={isSubmitting}
-                >
+ type="submit"
+ variant="primary"
+ size="lg"
+ className="w-full gap-2 hover:scale-[1.02] transition-transform"
+ disabled={isSubmitting}
+ >
                   {isSubmitting ? (
                     <>
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />

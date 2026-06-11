@@ -22,7 +22,7 @@ export function ServicesHero() {
               connection.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button variant="secondary" size="lg" className="rounded-full gap-2 shadow-md hover:scale-105" asChild>
+              <Button variant="secondary" size="lg" className=" gap-2 shadow-md hover:scale-105" asChild>
                 <a href="#booking-section">
                   Book Your Stay{" "}
                   <span className="material-symbols-outlined text-xl">
@@ -30,7 +30,7 @@ export function ServicesHero() {
                   </span>
                 </a>
               </Button>
-              <Button variant="ghost" size="lg" className="rounded-full gap-2" asChild>
+              <Button variant="ghost" size="lg" className=" gap-2" asChild>
                 <Link href="#">
                   View Gallery
                 </Link>

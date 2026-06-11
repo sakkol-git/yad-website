@@ -58,9 +58,9 @@ export function UserBookingsTable({ bookings }: UserBookingsTableProps) {
                     <td className="p-4">
                       {booking.status === 'Payment Pending' && (
                         <Button 
-                          variant="primary" 
-                          size="sm" 
-                          onClick={() => handlePayment(booking)}
+ variant="primary" 
+ size="sm" 
+ onClick={() => handlePayment(booking)}
                         >
                           Pay Now
                         </Button>

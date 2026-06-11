@@ -141,10 +141,10 @@ export function DonorsTable({ donors }: { donors: Donor[] }) {
           <p className="text-on-surface-variant font-medium mt-1">Manage donations and donor records.</p>
         </div>
         <Button
-          variant="default"
-          className="rounded-full shadow-md flex items-center gap-2 hover:scale-105"
-          onClick={openCreate}
-        >
+ variant="default"
+ className=" shadow-md flex items-center gap-2 hover:scale-105"
+ onClick={openCreate}
+ >
           <span className="material-symbols-outlined text-[20px]">volunteer_activism</span>
           Add Donor
         </Button>

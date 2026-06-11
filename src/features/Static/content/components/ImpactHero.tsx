@@ -26,7 +26,7 @@ export function ImpactHero() {
           sustainable development across communities.
         </p>
         <div className="flex gap-4">
-          <Button variant="primary" size="lg" className="rounded-full gap-2 hover:scale-105 shadow-ambient">
+          <Button variant="primary" size="lg" className=" gap-2 hover:scale-105 shadow-ambient">
             View Dashboard
             <span className="material-symbols-outlined">
               arrow_downward

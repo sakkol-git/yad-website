@@ -63,7 +63,7 @@ export function DigitalInnovation() {
               </li>
             ))}
           </ul>
-          <Button variant="primary" className="rounded-full bg-tertiary-fixed text-on-tertiary-fixed hover:bg-tertiary-fixed-dim hover:scale-105">
+          <Button variant="primary" className=" bg-tertiary-fixed text-on-tertiary-fixed hover:bg-tertiary-fixed-dim hover:scale-105">
             View Curriculum
           </Button>
         </div>

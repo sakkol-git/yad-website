@@ -148,7 +148,7 @@ export function PartnerFormModal({ isOpen, onClose, mode, initialData }: Partner
             <Button type="button" variant="ghost" onClick={onClose} disabled={isLoading}>
               Cancel
             </Button>
-            <Button type="submit" variant="default" disabled={isLoading} className="rounded-full min-w-[120px]">
+            <Button type="submit" variant="default" disabled={isLoading} className=" min-w-[120px]">
               {isLoading ? 'Saving...' : mode === 'create' ? 'Create Partner' : 'Save Changes'}
             </Button>
           </div>

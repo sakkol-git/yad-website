@@ -16,19 +16,19 @@ export function PartnerCTA() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button
-              variant="default"
-              size="lg"
-              className="rounded-full shadow-ambient hover:scale-105 bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-fixed-dim"
-              asChild
-            >
+ variant="default"
+ size="lg"
+ className=" shadow-ambient hover:scale-105 bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-fixed-dim"
+ asChild
+ >
               <Link href="/get-involved">Partner Inquiry</Link>
             </Button>
             <Button
-              variant="outline"
-              size="lg"
-              className="rounded-full border-2 border-primary-fixed text-primary-fixed hover:bg-primary-fixed hover:text-primary"
-              asChild
-            >
+ variant="outline"
+ size="lg"
+ className=" border-2 border-primary-fixed text-primary-fixed hover:bg-primary-fixed hover:text-primary"
+ asChild
+ >
               <Link href="#">View Partnership Prospectus</Link>
             </Button>
           </div>

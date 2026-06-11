@@ -22,10 +22,10 @@ export function HomeCTA() {
             lasting change.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button variant="secondary" size="lg" className="rounded-full hover:scale-105 shadow-md" asChild>
+            <Button variant="secondary" size="lg" className=" hover:scale-105 shadow-md" asChild>
               <Link href="/donate">Donate Now</Link>
             </Button>
-            <Button variant="outline" size="lg" className="rounded-full bg-surface/10 hover:bg-surface/20 text-on-primary border-on-primary/30 hover:scale-105 backdrop-blur-sm" asChild>
+            <Button variant="outline" size="lg" className=" bg-surface/10 hover:bg-surface/20 text-on-primary border-on-primary/30 hover:scale-105 backdrop-blur-sm" asChild>
               <Link href="/get-involved">Get Involved</Link>
             </Button>
           </div>

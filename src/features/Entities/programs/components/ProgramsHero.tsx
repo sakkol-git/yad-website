@@ -23,13 +23,13 @@ export function ProgramsHero() {
             fostering sustainable development in our communities.
           </p>
           <div className="flex flex-wrap items-center gap-4 mt-4">
-            <Button variant="primary" size="lg" className="rounded-full gap-2 group hover:scale-105 shadow-lg shadow-primary/20">
+            <Button variant="primary" size="lg" className=" gap-2 group hover:scale-105 shadow-lg shadow-primary/20">
               Explore Programs
               <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
                 arrow_forward
               </span>
             </Button>
-            <Button variant="ghost" size="lg" className="rounded-full gap-2">
+            <Button variant="ghost" size="lg" className=" gap-2">
               <span className="material-symbols-outlined">
                 play_circle
               </span>

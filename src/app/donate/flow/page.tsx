@@ -56,10 +56,10 @@ export default function DonateFlowPage() {
             <div className="grid grid-cols-3 gap-4 mb-6">
               {predefinedAmounts.map((preset) => (
                 <Button
-                  key={preset}
-                  type="button"
-                  variant={amount === preset ? "primary" : "outline"}
-                  onClick={() => setAmount(preset)}
+ key={preset}
+ type="button"
+ variant={amount === preset ? "primary" : "outline"}
+ onClick={() => setAmount(preset)}
                   size="lg"
                   className={amount === preset ? "bg-primary-container text-on-primary-container ring-2 ring-primary border-transparent text-lg hover:bg-primary-container" : "border-transparent bg-surface-container hover:bg-surface-variant text-on-surface text-lg"}
                 >
@@ -127,7 +127,7 @@ export default function DonateFlowPage() {
             </div>
 
             <div className="flex justify-end">
-              <Button type="submit" variant="secondary" size="lg" className="rounded-full gap-2 hover:scale-105 px-8" disabled={isLoading}>
+              <Button type="submit" variant="secondary" size="lg" className=" gap-2 hover:scale-105 px-8" disabled={isLoading}>
                 {isLoading ? "Processing..." : "Proceed to Secure Checkout"}
                 {!isLoading && <span className="material-symbols-outlined">lock</span>}
               </Button>

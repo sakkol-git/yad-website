@@ -10,9 +10,9 @@ export function CreateUserButton() {
   return (
     <>
       <Button 
-        variant="default" 
-        className="rounded-full shadow-md flex items-center gap-2 hover:scale-105"
-        onClick={() => setIsModalOpen(true)}
+ variant="default" 
+ className=" shadow-md flex items-center gap-2 hover:scale-105"
+ onClick={() => setIsModalOpen(true)}
       >
         <span className="material-symbols-outlined text-[20px]">person_add</span>
         Create User

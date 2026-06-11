@@ -134,7 +134,7 @@ export function EventFormModal({ isOpen, onClose, mode, initialData }: EventForm
             <Button type="button" variant="ghost" onClick={onClose} disabled={isLoading}>
               Cancel
             </Button>
-            <Button type="submit" variant="default" disabled={isLoading} className="rounded-full min-w-[120px]">
+            <Button type="submit" variant="default" disabled={isLoading} className=" min-w-[120px]">
               {isLoading ? 'Saving...' : mode === 'create' ? 'Create Event' : 'Save Changes'}
             </Button>
           </div>

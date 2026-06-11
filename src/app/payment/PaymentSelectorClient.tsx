@@ -107,11 +107,11 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
               </p>
               <div className="pt-4">
                 <Button
-                  onClick={handleProceedStripe}
-                  variant="primary"
-                  size="lg"
-                  className="rounded-full gap-2 px-8 hover:scale-105 transition-transform"
-                >
+ onClick={handleProceedStripe}
+ variant="primary"
+ size="lg"
+ className=" gap-2 px-8 hover:scale-105 transition-transform"
+ >
                   Continue to Card Payment
                   <span className="material-symbols-outlined">arrow_forward</span>
                 </Button>
@@ -130,11 +130,11 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
               </p>
               <div className="pt-4">
                 <Button
-                  onClick={handleProceedLocal}
-                  variant="primary"
-                  size="lg"
-                  className="rounded-full gap-2 px-8 hover:scale-105 transition-transform"
-                >
+ onClick={handleProceedLocal}
+ variant="primary"
+ size="lg"
+ className=" gap-2 px-8 hover:scale-105 transition-transform"
+ >
                   Continue to Local Payment
                   <span className="material-symbols-outlined">arrow_forward</span>
                 </Button>
