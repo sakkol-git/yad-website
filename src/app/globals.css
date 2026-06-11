@@ -3,35 +3,54 @@
 @theme {
   --color-primary: #1a7a4a;
   --color-on-primary: #ffffff;
-  --color-primary-container: #e6f7ee;
+  --color-primary-container: #4A7060;
   --color-on-primary-container: #0d4028;
-  --color-secondary: #f4ac1a;
-  --color-on-secondary: #5c3d00;
-  --color-secondary-container: #fff8e6;
-  --color-on-secondary-container: #5c3d00;
-  --color-tertiary: #2196b0;
+  --color-primary-fixed: #b0e8c8;
+  --color-primary-fixed-dim: #7acfa2;
+  --color-on-primary-fixed: #00210d;
+  --color-on-primary-fixed-variant: #0d4028;
+  --color-inverse-primary: #7acfa2;
+
+  --color-secondary: #e08c00;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #fff0c2;
+  --color-on-secondary-container: #4a2d00;
+  --color-secondary-fixed: #f5c842;
+  --color-secondary-fixed-dim: #e0a800;
+  --color-on-secondary-fixed: #261600;
+  --color-on-secondary-fixed-variant: #4a2d00;
+
+  --color-tertiary: #1a7fa8;
   --color-on-tertiary: #ffffff;
-  --color-tertiary-container: #e3f5f9;
-  --color-on-tertiary-container: #093e4d;
-  --color-background: #f5f8f6;
-  --color-on-background: #141f19;
-  --color-surface: #f5f8f6;
-  --color-on-surface: #141f19;
-  --color-surface-variant: #dce5df;
-  --color-on-surface-variant: #3d5046;
-  --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #f0f5f1;
-  --color-surface-container: #eaf0ec;
-  --color-surface-container-high: #dce5df;
-  --color-surface-container-highest: #d0dbd3;
-  --color-surface-bright: #f8fdf9;
-  --color-surface-dim: #d0dbd3;
+  --color-tertiary-container: #d6f0f9;
+  --color-on-tertiary-container: #06334a;
+  --color-tertiary-fixed: #b8e4f5;
+  --color-tertiary-fixed-dim: #84cbea;
+  --color-on-tertiary-fixed: #001e2d;
+  --color-on-tertiary-fixed-variant: #06334a;
+
+  --color-background: #f5f9f6;
+  --color-on-background: #131c17;
+  --color-surface: #f5f9f6;
+  --color-surface-bright: #f5f9f6;
+  --color-surface-dim: #cdd7d0;
+  --color-on-surface: #131c17;
+  --color-on-surface-variant: #384d3e;
+  --color-surface-variant: #dde5df;
   --color-surface-tint: #1a7a4a;
-  --color-outline: #6b8577;
-  --color-outline-variant: #b8ccbf;
-  --color-inverse-surface: #1f2e26;
-  --color-inverse-on-surface: #edf2ee;
-  --color-inverse-primary: #7dd9a3;
+
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #eff5f1;
+  --color-surface-container: #e9f0eb;
+  --color-surface-container-high: #dde5df;
+  --color-surface-container-highest: #d0dad3;
+
+  --color-inverse-surface: #1f2e25;
+  --color-inverse-on-surface: #ecf2ee;
+
+  --color-outline: #5e8068;
+  --color-outline-variant: #afc4b5;
+
   --color-error: #ba1a1a;
   --color-on-error: #ffffff;
   --color-error-container: #ffdad6;
