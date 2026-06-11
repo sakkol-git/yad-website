@@ -143,13 +143,13 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
             <Link
               href="/about"
-              className="w-full sm:w-auto px-8 py-4 bg-primary text-on-primary font-bold rounded-full hover:bg-primary/90 shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 text-center text-lg"
+              className="w-full sm:w-auto px-8 py-4 bg-primary text-on-primary font-bold rounded-lg hover:bg-primary/90 shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 text-center text-lg"
             >
               Learn About Our Mission
             </Link>
             <Link
               href="/programs"
-              className="w-full sm:w-auto px-8 py-4 border-2 border-outline/30 bg-transparent text-on-surface font-bold rounded-full hover:bg-surface-variant hover:border-outline/60 hover:-translate-y-0.5 transition-all duration-300 text-center text-lg"
+              className="w-full sm:w-auto px-8 py-4 border-2 border-outline/30 bg-transparent text-on-surface font-bold rounded-lg hover:bg-surface-variant hover:border-outline/60 hover:-translate-y-0.5 transition-all duration-300 text-center text-lg"
             >
               Explore Our Programs
             </Link>
