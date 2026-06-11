@@ -7,7 +7,7 @@ import { Button } from "@/shared/components/ui/Button";
 export function QuickFormSection() {
   return (
     <section className="py-section-gap px-margin-mobile md:px-margin-desktop">
-      <div className="max-w-4xl mx-auto bg-surface-container-lowest rounded-[2rem] p-8 md:p-12 ambient-shadow relative overflow-hidden border border-outline-variant/30">
+      <div className="max-w-4xl mx-auto bg-surface-container-lowest rounded-lg p-8 md:p-12 ambient-shadow relative overflow-hidden border border-outline-variant/30">
         <div className="absolute top-0 right-0 w-64 h-64 bg-secondary-container/20 rounded-bl-full -z-10 blur-xl" />
         <div className="text-center mb-10">
           <h2 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">

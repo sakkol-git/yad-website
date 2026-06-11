@@ -30,7 +30,7 @@ export default async function UsersPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
+        <div className="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
           <div className="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
             <span className="material-symbols-outlined text-[24px]">group</span>
           </div>
@@ -39,7 +39,7 @@ export default async function UsersPage() {
             <h3 className="text-2xl font-bold text-on-surface">{users.length}</h3>
           </div>
         </div>
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
+        <div className="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
           <div className="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
             <span className="material-symbols-outlined text-[24px]">admin_panel_settings</span>
           </div>
@@ -48,7 +48,7 @@ export default async function UsersPage() {
             <h3 className="text-2xl font-bold text-on-surface">{users.filter((u: any) => u.role === 'admin' || u.role === 'Admin').length || 0}</h3>
           </div>
         </div>
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
+        <div className="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
           <div className="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center">
             <span className="material-symbols-outlined text-[24px]">verified_user</span>
           </div>

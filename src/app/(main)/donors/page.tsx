@@ -65,7 +65,7 @@ export default async function DonorsShowcasePage() {
                 style={{ animationDelay: `${(index % 6) * 100}ms` }}
               >
                 <Link href={`/donors/${donor.id}`} className="group cursor-pointer block w-full max-w-[340px]">
-                  <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-[5px]">
+                  <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-[5px]">
                     <div className="absolute inset-0 bg-surface-variant/30 flex items-center justify-center">
                       <span className="material-symbols-outlined text-[64px] text-on-surface-variant/50">volunteer_activism</span>
                     </div>
@@ -99,7 +99,7 @@ export default async function DonorsShowcasePage() {
             ))}
           </div>
         ) : (
-          <div className="bg-surface rounded-3xl p-12 text-center shadow-sm border border-outline-variant/30">
+          <div className="bg-surface rounded-xl p-12 text-center shadow-sm border border-outline-variant/30">
             <div className="w-24 h-24 rounded-full bg-surface-variant/30 mx-auto flex items-center justify-center mb-6">
               <span className="material-symbols-outlined text-[40px] text-on-surface-variant">volunteer_activism</span>
             </div>

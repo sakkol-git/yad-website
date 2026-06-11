@@ -4,7 +4,7 @@ import { Button } from "@/shared/components/ui/Button";
 export function EventCTA() {
   return (
     <section className="py-section-gap px-margin-mobile md:px-margin-desktop">
-      <div className="max-w-container-max mx-auto bg-primary-container rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+      <div className="max-w-container-max mx-auto bg-primary-container rounded-xl p-12 md:p-20 text-center relative overflow-hidden">
         <div className="relative z-10">
           <h2 className="font-display-lg text-headline-lg md:text-display-lg text-primary-fixed mb-6">
             Ready to Make an Impact?

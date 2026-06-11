@@ -25,7 +25,7 @@ export function AdminDashboard() {
 
       {/* KPI Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-6 shadow-ambient hover:-translate-y-1 transition-transform duration-300">
+        <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-6 shadow-ambient hover:-translate-y-1 transition-transform duration-300">
           <div className="flex justify-between items-start mb-4">
             <div className="w-12 h-12 rounded-lg bg-primary-container/30 text-primary-container flex items-center justify-center">
               <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>groups</span>
@@ -38,7 +38,7 @@ export function AdminDashboard() {
           <h3 className="text-3xl font-bold text-primary">2,450</h3>
         </div>
 
-        <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-6 shadow-ambient hover:-translate-y-1 transition-transform duration-300">
+        <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-6 shadow-ambient hover:-translate-y-1 transition-transform duration-300">
           <div className="flex justify-between items-start mb-4">
             <div className="w-12 h-12 rounded-lg bg-tertiary-container/30 text-tertiary-container flex items-center justify-center">
               <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>account_tree</span>
@@ -51,7 +51,7 @@ export function AdminDashboard() {
           <h3 className="text-3xl font-bold text-primary">18</h3>
         </div>
 
-        <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-6 shadow-ambient hover:-translate-y-1 transition-transform duration-300">
+        <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-6 shadow-ambient hover:-translate-y-1 transition-transform duration-300">
           <div className="flex justify-between items-start mb-4">
             <div className="w-12 h-12 rounded-lg bg-secondary-container/30 text-secondary-container flex items-center justify-center">
               <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>payments</span>
@@ -64,7 +64,7 @@ export function AdminDashboard() {
           <h3 className="text-3xl font-bold text-primary">$12,840</h3>
         </div>
 
-        <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-6 shadow-ambient hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
+        <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-6 shadow-ambient hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
           <div className="absolute right-0 top-0 w-2 h-full bg-error"></div>
           <div className="flex justify-between items-start mb-4">
             <div className="w-12 h-12 rounded-lg bg-error-container/50 text-error flex items-center justify-center">
@@ -82,7 +82,7 @@ export function AdminDashboard() {
       {/* Two Column Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left Side: Recent Activity */}
-        <div className="lg:col-span-2 bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-7 shadow-ambient">
+        <div className="lg:col-span-2 bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-7 shadow-ambient">
           <div className="flex justify-between items-center mb-6 pb-4 border-b border-outline-variant/20">
             <h3 className="text-[20px] font-bold text-primary flex items-center gap-2">
               <span className="material-symbols-outlined text-secondary">history</span>
@@ -137,7 +137,7 @@ export function AdminDashboard() {
 
         {/* Right Side: Quick Actions */}
         <div className="flex flex-col gap-6">
-          <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-7 shadow-ambient">
+          <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-7 shadow-ambient">
             <h3 className="text-[18px] font-bold text-primary mb-5 flex items-center gap-2">
               <span className="material-symbols-outlined text-secondary">bolt</span>
               Quick Actions
@@ -163,7 +163,7 @@ export function AdminDashboard() {
             </div>
           </div>
 
-          <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-6 shadow-ambient flex-1">
+          <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-6 shadow-ambient flex-1">
             <h3 className="text-[16px] font-bold text-on-surface mb-4">System Status</h3>
             <div className="space-y-4">
               <div>

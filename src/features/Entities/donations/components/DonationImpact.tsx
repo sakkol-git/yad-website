@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function DonationImpact() {
   return (
-    <section className="bg-surface-container-low py-section-gap rounded-t-[3rem]">
+    <section className="bg-surface-container-low py-section-gap rounded-t-xl">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center">
         <h2 className="font-headline-md text-headline-md text-primary mb-12">
           Your Impact

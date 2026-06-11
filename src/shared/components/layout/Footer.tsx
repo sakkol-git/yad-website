@@ -29,7 +29,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
   }
 
   return (
-    <footer className="bg-surface-container-highest dark:bg-primary/5 rounded-t-[1rem] mt-auto pt-20 pb-8 border-t-8 border-primary relative overflow-hidden">
+    <footer className="bg-surface-container-highest dark:bg-primary/5 rounded-t-md mt-auto pt-20 pb-8 border-t-8 border-primary relative overflow-hidden">
       {/* Decorative subtle background element */}
       <div className="absolute top-0 right-0 w-[150vw] max-w-[500px] aspect-square bg-primary/5 rounded-full blur-[60px] md:blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
 
@@ -41,7 +41,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
           {/* Column 1: Brand & Mission */}
           <div className="flex flex-col items-start text-left gap-6 lg:pr-8 pl-12 md:pl-0">
             <Link href="/" className="flex items-center gap-3 group w-fit">
-              <div className="bg-surface p-2 rounded-2xl shadow-sm border border-outline-variant/30">
+              <div className="bg-surface p-2 rounded-lg shadow-sm border border-outline-variant/30">
                 <Image
                   src="/assets/images/yad_logo.png"
                   alt="YAD Logo"

@@ -6,7 +6,7 @@ export function DigitalInnovation() {
     <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-section-gap">
       <div className="flex flex-col-reverse lg:flex-row items-center gap-16">
         <div className="lg:w-5/12 relative">
-          <div className="absolute inset-0 bg-tertiary-fixed rounded-[3rem] transform -translate-x-6 translate-y-6 z-0" />
+          <div className="absolute inset-0 bg-tertiary-fixed rounded-xl transform -translate-x-6 translate-y-6 z-0" />
           <div className="relative z-10 w-full h-[450px]">
             <Image
               alt="Digital Innovation Lab"
@@ -17,7 +17,7 @@ export function DigitalInnovation() {
             />
           </div>
           {/* Floating feature card */}
-          <div className="absolute top-1/2 -right-12 transform -translate-y-1/2 glass-panel p-5 rounded-2xl z-20 ambient-shadow border border-white/50 w-48 hidden lg:block">
+          <div className="absolute top-1/2 -right-12 transform -translate-y-1/2 glass-panel p-5 rounded-lg z-20 ambient-shadow border border-white/50 w-48 hidden lg:block">
             <div className="flex items-center gap-3 mb-2">
               <span className="material-symbols-outlined text-tertiary">
                 code

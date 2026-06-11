@@ -12,7 +12,7 @@ function EventCard({
 }) {
   return (
     <article
-      className={`event-card bg-surface/80 backdrop-blur-xl border border-white/20 shadow-ambient rounded-[2rem] overflow-hidden flex flex-col relative group cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl ${
+      className={`event-card bg-surface/80 backdrop-blur-xl border border-white/20 shadow-ambient rounded-lg overflow-hidden flex flex-col relative group cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl ${
         featured ? "lg:col-span-2" : ""
       }`}
     >

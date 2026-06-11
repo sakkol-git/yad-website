@@ -87,7 +87,7 @@ export default async function DonationsPage({
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
+        <div className="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
           <div className="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0">
             <span className="material-symbols-outlined text-[24px]">calendar_month</span>
           </div>
@@ -96,7 +96,7 @@ export default async function DonationsPage({
             <h3 className="text-2xl font-bold text-on-surface">{formatCurrency(metrics.monthlyRevenue)}</h3>
           </div>
         </div>
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
+        <div className="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
           <div className="w-12 h-12 rounded-full bg-error-container text-on-error-container flex items-center justify-center shrink-0">
             <span className="material-symbols-outlined text-[24px]">pending_actions</span>
           </div>
@@ -105,7 +105,7 @@ export default async function DonationsPage({
             <h3 className="text-2xl font-bold text-on-surface">{metrics.pendingCount}</h3>
           </div>
         </div>
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
+        <div className="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
           <div className="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
             <span className="material-symbols-outlined text-[24px]">credit_card</span>
           </div>
@@ -114,7 +114,7 @@ export default async function DonationsPage({
             <h3 className="text-2xl font-bold text-on-surface">{formatCurrency(metrics.stripeRevenue)}</h3>
           </div>
         </div>
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
+        <div className="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
           <div className="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center shrink-0">
             <span className="material-symbols-outlined text-[24px]">qr_code_scanner</span>
           </div>

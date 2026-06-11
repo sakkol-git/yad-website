@@ -40,7 +40,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
             {/* Card Option (International) */}
             <button
               onClick={() => setSelectedMethod("card")}
-              className={`flex flex-col items-start text-left p-6 rounded-2xl border-2 transition-all cursor-pointer ${
+              className={`flex flex-col items-start text-left p-6 rounded-lg border-2 transition-all cursor-pointer ${
                 selectedMethod === "card"
                   ? "border-primary bg-primary/5 ring-1 ring-primary"
                   : "border-surface-variant/40 bg-surface-container-low hover:border-surface-variant hover:bg-surface-container"
@@ -68,7 +68,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
             {/* Local Bank Transfer Option */}
             <button
               onClick={() => setSelectedMethod("local")}
-              className={`flex flex-col items-start text-left p-6 rounded-2xl border-2 transition-all cursor-pointer ${
+              className={`flex flex-col items-start text-left p-6 rounded-lg border-2 transition-all cursor-pointer ${
                 selectedMethod === "local"
                   ? "border-primary bg-primary/5 ring-1 ring-primary"
                   : "border-surface-variant/40 bg-surface-container-low hover:border-surface-variant hover:bg-surface-container"
@@ -95,7 +95,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
 
           {/* Action description panels */}
           {selectedMethod === "card" ? (
-            <div className="space-y-6 p-6 bg-surface-container rounded-2xl border border-surface-variant/30 text-center animate-fade-in">
+            <div className="space-y-6 p-6 bg-surface-container rounded-lg border border-surface-variant/30 text-center animate-fade-in">
               <span className="material-symbols-outlined text-5xl text-secondary mb-2">
                 credit_card
               </span>
@@ -118,7 +118,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
               </div>
             </div>
           ) : (
-            <div className="space-y-6 p-6 bg-surface-container rounded-2xl border border-surface-variant/30 text-center animate-fade-in">
+            <div className="space-y-6 p-6 bg-surface-container rounded-lg border border-surface-variant/30 text-center animate-fade-in">
               <span className="material-symbols-outlined text-5xl text-secondary mb-2">
                 account_balance
               </span>

@@ -112,7 +112,7 @@ export function HomeHero() {
             </svg>
           </div>
 
-          <div className="relative z-10 w-full lg:w-[115%] max-w-[750px] aspect-square lg:aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-surface group">
+          <div className="relative z-10 w-full lg:w-[115%] max-w-[750px] aspect-square lg:aspect-[4/3] rounded-xl overflow-hidden shadow-2xl border-4 border-surface group">
             {CAROUSEL_IMAGES.map((image, index) => (
               <Image
                 key={image.src}

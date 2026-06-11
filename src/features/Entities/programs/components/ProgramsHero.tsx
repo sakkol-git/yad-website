@@ -38,11 +38,11 @@ export function ProgramsHero() {
           </div>
         </div>
         <div className="lg:w-1/2 w-full relative">
-          <div className="absolute inset-0 bg-gradient-to-tr from-primary-fixed/20 to-tertiary-fixed/20 rounded-[3rem] blur-2xl transform -rotate-3 scale-105 z-0" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-primary-fixed/20 to-tertiary-fixed/20 rounded-xl blur-2xl transform -rotate-3 scale-105 z-0" />
           <div className="relative z-10 w-full h-[500px]">
             <Image
               alt="Youth education and community building"
-              className="w-full h-full object-cover rounded-[3rem] ambient-shadow"
+              className="w-full h-full object-cover rounded-xl ambient-shadow"
               src="/assets/images/yad-5.png"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -50,7 +50,7 @@ export function ProgramsHero() {
             />
           </div>
           {/* Floating Stat Badge */}
-          <div className="absolute -bottom-8 -left-8 glass-panel p-6 rounded-2xl z-20 ambient-shadow flex items-center gap-4 border border-white/40">
+          <div className="absolute -bottom-8 -left-8 glass-panel p-6 rounded-lg z-20 ambient-shadow flex items-center gap-4 border border-white/40">
             <div className="w-14 h-14 rounded-full bg-secondary-fixed flex items-center justify-center">
               <span
                 className="material-symbols-outlined text-primary text-2xl"

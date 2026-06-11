@@ -16,7 +16,7 @@ export function SlumEducation() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[500px]">
         {/* Main Image Card */}
-        <Card className="md:col-span-7 lg:col-span-8 p-0 border-0 rounded-[2rem] overflow-hidden relative group">
+        <Card className="md:col-span-7 lg:col-span-8 p-0 border-0 rounded-lg overflow-hidden relative group">
           <Image
             alt="Community Education"
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -41,7 +41,7 @@ export function SlumEducation() {
         </Card>
         {/* Stats/Info Cards */}
         <div className="md:col-span-5 lg:col-span-4 flex flex-col gap-6">
-          <Card className="bg-surface-container-low rounded-[2rem] p-0 h-1/2 flex flex-col justify-center border-surface-container-high hover:-translate-y-1 transition-transform duration-300">
+          <Card className="bg-surface-container-low rounded-lg p-0 h-1/2 flex flex-col justify-center border-surface-container-high hover:-translate-y-1 transition-transform duration-300">
             <CardContent className="p-8">
             <div className="flex items-center gap-4 mb-4">
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
@@ -59,7 +59,7 @@ export function SlumEducation() {
             </p>
             </CardContent>
           </Card>
-          <Card className="bg-secondary-fixed rounded-[2rem] p-0 border-0 h-1/2 flex flex-col justify-center relative overflow-hidden group cursor-pointer hover:bg-secondary-fixed-dim transition-colors duration-300">
+          <Card className="bg-secondary-fixed rounded-lg p-0 border-0 h-1/2 flex flex-col justify-center relative overflow-hidden group cursor-pointer hover:bg-secondary-fixed-dim transition-colors duration-300">
             <CardContent className="p-8 relative z-10">
               <h4 className="font-headline-md text-headline-md text-on-secondary-fixed mb-2">
                 Volunteer

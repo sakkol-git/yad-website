@@ -124,7 +124,7 @@ export default function Home() {
       <section className="relative py-8 lg:py-16 bg-surface overflow-hidden">
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl text-left">
           {/* Impact Feature Box */}
-          <div className="relative bg-surface-container-lowest p-8 md:p-12 rounded-3xl shadow-xl border border-outline/10 mb-16 max-w-4xl mx-auto overflow-hidden group hover:shadow-2xl transition-shadow duration-500">
+          <div className="relative bg-surface-container-lowest p-8 md:p-12 rounded-xl shadow-xl border border-outline/10 mb-16 max-w-4xl mx-auto overflow-hidden group hover:shadow-2xl transition-shadow duration-500">
             <div className="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none group-hover:bg-primary/10 transition-colors duration-500" />
             <div className="relative z-10 text-center space-y-6">
               <h2 className="text-2xl md:text-3xl font-bold text-secondary mb-2">

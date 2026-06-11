@@ -60,7 +60,7 @@ export function StripeEmbeddedCheckout({ id, type, amount, email }: StripeEmbedd
   }
 
   return (
-    <div className="w-full bg-white rounded-2xl overflow-hidden shadow-inner p-2 border border-surface-variant/30">
+    <div className="w-full bg-white rounded-lg overflow-hidden shadow-inner p-2 border border-surface-variant/30">
       <EmbeddedCheckoutProvider stripe={stripePromise} options={{ clientSecret }}>
         <EmbeddedCheckout />
       </EmbeddedCheckoutProvider>

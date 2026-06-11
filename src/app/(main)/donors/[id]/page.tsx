@@ -57,7 +57,7 @@ export default async function DonorDetailPage({ params }: PageProps) {
           Back to All Donors
         </Link>
         
-        <div className="bg-surface rounded-3xl p-8 md:p-12 shadow-ambient border border-outline-variant/30 relative overflow-hidden">
+        <div className="bg-surface rounded-xl p-8 md:p-12 shadow-ambient border border-outline-variant/30 relative overflow-hidden">
           {/* Subtle Background Decoration */}
           <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
             <span className="material-symbols-outlined text-[240px]">volunteer_activism</span>
@@ -124,7 +124,7 @@ export default async function DonorDetailPage({ params }: PageProps) {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-16 text-center bg-primary-container/30 rounded-3xl p-8 md:p-12 border border-primary/10">
+        <div className="mt-16 text-center bg-primary-container/30 rounded-xl p-8 md:p-12 border border-primary/10">
           <h3 className="text-2xl font-bold text-on-surface mb-4">Join {typedDonor.name} in Making a Difference</h3>
           <p className="text-on-surface-variant max-w-2xl mx-auto mb-8">
             Your support helps us continue our mission of empowering Cambodian youth through education and community development.

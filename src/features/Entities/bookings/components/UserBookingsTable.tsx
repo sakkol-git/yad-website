@@ -23,7 +23,7 @@ export function UserBookingsTable({ bookings }: UserBookingsTableProps) {
         </div>
       </div>
 
-      <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 overflow-hidden shadow-sm">
+      <div className="bg-surface-container-lowest rounded-lg border border-outline-variant/30 overflow-hidden shadow-sm">
         {bookings && bookings.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">

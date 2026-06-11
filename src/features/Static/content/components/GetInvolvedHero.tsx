@@ -30,7 +30,7 @@ export function GetInvolvedHero() {
             </Link>
           </div>
         </div>
-        <div className="relative w-full aspect-square md:aspect-auto md:h-[600px] rounded-[3rem] overflow-hidden ambient-shadow bg-surface-container-highest">
+        <div className="relative w-full aspect-square md:aspect-auto md:h-[600px] rounded-xl overflow-hidden ambient-shadow bg-surface-container-highest">
           <Image
             alt="Floating green island"
             className="w-full h-full object-cover object-center"

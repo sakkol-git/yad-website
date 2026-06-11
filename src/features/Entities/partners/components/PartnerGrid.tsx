@@ -67,7 +67,7 @@ export function PartnerGrid({ partners }: PartnerGridProps) {
                 href={partner.websiteUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`bg-surface-container-low h-48 rounded-[2rem] flex flex-col items-center justify-center p-6 shadow-ambient hover:scale-[1.02] transition-transform duration-300 border border-white/20 cursor-pointer group ${
+                className={`bg-surface-container-low h-48 rounded-lg flex flex-col items-center justify-center p-6 shadow-ambient hover:scale-[1.02] transition-transform duration-300 border border-white/20 cursor-pointer group ${
                   partner.featured ? "lg:col-span-2" : ""
                 }`}
               >

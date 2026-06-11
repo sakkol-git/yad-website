@@ -4,10 +4,10 @@ import { Button } from "@/shared/components/ui/Button";
 export function DormitoryProgram() {
   return (
     <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-section-gap">
-      <div className="bg-surface-container-lowest rounded-[3rem] p-8 md:p-16 ambient-shadow relative overflow-hidden flex flex-col lg:flex-row items-center gap-16 border border-surface-container-low">
+      <div className="bg-surface-container-lowest rounded-xl p-8 md:p-16 ambient-shadow relative overflow-hidden flex flex-col lg:flex-row items-center gap-16 border border-surface-container-low">
         <div className="absolute top-0 right-0 w-64 h-64 bg-secondary-fixed/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
         <div className="lg:w-1/2 relative z-10">
-          <div className="w-16 h-16 rounded-2xl bg-secondary-fixed flex items-center justify-center mb-6">
+          <div className="w-16 h-16 rounded-lg bg-secondary-fixed flex items-center justify-center mb-6">
             <span
               className="material-symbols-outlined text-primary text-3xl"
               style={{ fontVariationSettings: "'FILL' 1" }}
@@ -52,7 +52,7 @@ export function DormitoryProgram() {
         <div className="lg:w-1/2 relative z-10 h-[400px]">
           <Image
             alt="Youth training center"
-            className="w-full h-full object-cover rounded-[2rem] shadow-lg"
+            className="w-full h-full object-cover rounded-lg shadow-lg"
             src="/assets/images/yad-6.png"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"

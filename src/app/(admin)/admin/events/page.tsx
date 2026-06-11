@@ -30,7 +30,7 @@ export default async function EventsPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
+        <div className="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
           <div className="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
             <span className="material-symbols-outlined text-[24px]">event</span>
           </div>
@@ -39,7 +39,7 @@ export default async function EventsPage() {
             <h3 className="text-2xl font-bold text-on-surface">{events?.length || 0}</h3>
           </div>
         </div>
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
+        <div className="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
           <div className="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
             <span className="material-symbols-outlined text-[24px]">event_available</span>
           </div>
@@ -50,7 +50,7 @@ export default async function EventsPage() {
             </h3>
           </div>
         </div>
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
+        <div className="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
           <div className="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center">
             <span className="material-symbols-outlined text-[24px]">people</span>
           </div>

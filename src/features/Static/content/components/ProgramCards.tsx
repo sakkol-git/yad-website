@@ -9,7 +9,7 @@ export function ProgramCards() {
         {/* Card 1 */}
         <Card className="bg-slate-200 backdrop-blur-xl border-white/20 hover:scale-[1.02] shadow-ambient">
           <CardContent className="flex flex-col items-center text-center p-8 pt-8">
-            <div className="w-32 h-32 rounded-[2rem] overflow-hidden mb-6 bg-tertiary-fixed-dim relative">
+            <div className="w-32 h-32 rounded-lg overflow-hidden mb-6 bg-tertiary-fixed-dim relative">
               <Image
                 alt="Students learning"
                 className="w-full h-full object-cover"
@@ -30,7 +30,7 @@ export function ProgramCards() {
         {/* Card 2 */}
         <Card className="bg-secondary-container/40 backdrop-blur-xl border-white/30 hover:scale-[1.02] shadow-ambient md:-translate-y-8">
           <CardContent className="flex flex-col items-center text-center p-8 pt-8">
-            <div className="w-32 h-32 rounded-[2rem] overflow-hidden mb-6 bg-secondary-fixed relative">
+            <div className="w-32 h-32 rounded-lg overflow-hidden mb-6 bg-secondary-fixed relative">
               <Image
                 alt="Digital Innovation"
                 className="w-full h-full object-cover"
@@ -51,7 +51,7 @@ export function ProgramCards() {
         {/* Card 3 */}
         <Card className="bg-slate-200 backdrop-blur-xl border-white/20 hover:scale-[1.02] shadow-ambient">
           <CardContent className="flex flex-col items-center text-center p-8 pt-8">
-            <div className="w-32 h-32 rounded-[2rem] overflow-hidden mb-6 bg-surface-variant relative">
+            <div className="w-32 h-32 rounded-lg overflow-hidden mb-6 bg-surface-variant relative">
               <Image
                 alt="Slum Education"
                 className="w-full h-full object-cover"

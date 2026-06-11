@@ -6,7 +6,7 @@ import { Button } from "@/shared/components/ui/Button";
 export function DonationPortal() {
   return (
     <section id="options" className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-section-gap scroll-mt-24">
-      <div className="max-w-3xl mx-auto bg-surface-container-lowest rounded-[2rem] p-8 md:p-12 shadow-xl border border-surface-variant/30 relative overflow-hidden">
+      <div className="max-w-3xl mx-auto bg-surface-container-lowest rounded-lg p-8 md:p-12 shadow-xl border border-surface-variant/30 relative overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 bg-secondary/5 rounded-full blur-3xl pointer-events-none" />

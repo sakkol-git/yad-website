@@ -108,7 +108,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
             <div className="flex flex-col items-center">
               {paymentMethod === "khqr" ? (
                 /* Beautiful Mock KHQR Frame */
-                <div className="w-64 bg-red-600 rounded-2xl p-4 shadow-xl border-4 border-red-700 flex flex-col items-center select-none text-white relative">
+                <div className="w-64 bg-red-600 rounded-lg p-4 shadow-xl border-4 border-red-700 flex flex-col items-center select-none text-white relative">
                   {/* KHQR Header Banner */}
                   <div className="w-full flex items-center justify-between mb-3 px-1">
                     <span className="text-[10px] font-bold tracking-widest bg-white text-red-600 px-1.5 py-0.5 rounded-sm">
@@ -171,7 +171,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                 </div>
               ) : (
                 /* Bank Account Details Card */
-                <div className="w-full bg-surface-container-low border border-surface-variant/40 rounded-2xl p-6 shadow-sm">
+                <div className="w-full bg-surface-container-low border border-surface-variant/40 rounded-lg p-6 shadow-sm">
                   <div className="flex items-center gap-3 mb-6">
                     <span className="material-symbols-outlined text-4xl text-primary">account_balance</span>
                     <div>

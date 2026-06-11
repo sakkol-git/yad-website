@@ -66,23 +66,23 @@ export default async function BookingsPage({
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-surface-variant/30 shadow-sm">
+        <div className="bg-surface-container-lowest p-5 rounded-lg border border-surface-variant/30 shadow-sm">
           <p className="text-on-surface-variant text-sm font-medium mb-1">New Inquiries</p>
           <h3 className="text-2xl font-bold text-on-background">{metrics.newInquiries}</h3>
         </div>
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-surface-variant/30 shadow-sm">
+        <div className="bg-surface-container-lowest p-5 rounded-lg border border-surface-variant/30 shadow-sm">
           <p className="text-on-surface-variant text-sm font-medium mb-1">Pending Conf.</p>
           <h3 className="text-2xl font-bold text-tertiary">{metrics.pendingConfirmations}</h3>
         </div>
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-surface-variant/30 shadow-sm">
+        <div className="bg-surface-container-lowest p-5 rounded-lg border border-surface-variant/30 shadow-sm">
           <p className="text-on-surface-variant text-sm font-medium mb-1">Upcoming Arrivals</p>
           <h3 className="text-2xl font-bold text-primary">{metrics.upcomingArrivals}</h3>
         </div>
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-surface-variant/30 shadow-sm">
+        <div className="bg-surface-container-lowest p-5 rounded-lg border border-surface-variant/30 shadow-sm">
           <p className="text-on-surface-variant text-sm font-medium mb-1">Current Guests</p>
           <h3 className="text-2xl font-bold text-secondary">{metrics.currentGuests}</h3>
         </div>
-        <div className="bg-surface-container-lowest p-5 rounded-2xl border border-surface-variant/30 shadow-sm">
+        <div className="bg-surface-container-lowest p-5 rounded-lg border border-surface-variant/30 shadow-sm">
           <p className="text-on-surface-variant text-sm font-medium mb-1">Check-Out Today</p>
           <h3 className="text-2xl font-bold text-error">{metrics.checkOutToday}</h3>
         </div>

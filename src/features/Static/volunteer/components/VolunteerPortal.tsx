@@ -25,7 +25,7 @@ export function VolunteerPortal({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {myVolunteers && myVolunteers.length > 0 ? (
             myVolunteers.map((vol: any) => (
-              <div key={vol.id} className="bg-surface-container-lowest p-5 rounded-2xl border border-outline-variant/30 shadow-sm flex items-start justify-between">
+              <div key={vol.id} className="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm flex items-start justify-between">
                 <div>
                   <h3 className="font-bold text-on-surface">{vol.events?.name}</h3>
                   <p className="text-sm text-on-surface-variant mt-1 line-clamp-2">{vol.events?.description}</p>
@@ -61,7 +61,7 @@ export function VolunteerPortal({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {availableEvents.length > 0 ? (
             availableEvents.map((event: any) => (
-              <div key={event.id} className="bg-surface-container-low p-5 rounded-2xl border border-outline-variant/30 flex flex-col justify-between">
+              <div key={event.id} className="bg-surface-container-low p-5 rounded-lg border border-outline-variant/30 flex flex-col justify-between">
                 <div>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="font-bold text-on-surface">{event.name}</h3>

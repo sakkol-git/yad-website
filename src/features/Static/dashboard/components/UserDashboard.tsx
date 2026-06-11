@@ -18,7 +18,7 @@ export function UserDashboard({
   return (
     <div className="space-y-8">
       {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-secondary/10 to-primary/10 rounded-3xl p-8 border border-outline-variant/30 relative overflow-hidden">
+      <div className="bg-gradient-to-r from-secondary/10 to-primary/10 rounded-xl p-8 border border-outline-variant/30 relative overflow-hidden">
         <div className="relative z-10">
           <h1 className="text-3xl font-bold text-on-surface mb-2">
             {greeting}, {user.user_metadata?.first_name || 'Friend'}! 👋
@@ -32,7 +32,7 @@ export function UserDashboard({
       {/* Quick Actions & Status Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Bookings Card */}
-        <div className="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/30 shadow-sm flex flex-col">
+        <div className="bg-surface-container-lowest rounded-lg p-6 border border-outline-variant/30 shadow-sm flex flex-col">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 bg-primary/10 text-primary rounded-lg flex items-center justify-center">
               <span className="material-symbols-outlined">bed</span>
@@ -59,7 +59,7 @@ export function UserDashboard({
         </div>
 
         {/* Donations Card */}
-        <div className="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/30 shadow-sm flex flex-col">
+        <div className="bg-surface-container-lowest rounded-lg p-6 border border-outline-variant/30 shadow-sm flex flex-col">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 bg-tertiary/10 text-tertiary rounded-lg flex items-center justify-center">
               <span className="material-symbols-outlined">volunteer_activism</span>
@@ -86,7 +86,7 @@ export function UserDashboard({
         </div>
 
         {/* Volunteer Card */}
-        <div className="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/30 shadow-sm flex flex-col">
+        <div className="bg-surface-container-lowest rounded-lg p-6 border border-outline-variant/30 shadow-sm flex flex-col">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 bg-secondary/10 text-secondary rounded-lg flex items-center justify-center">
               <span className="material-symbols-outlined">group</span>

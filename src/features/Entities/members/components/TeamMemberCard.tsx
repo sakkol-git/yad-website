@@ -14,7 +14,7 @@ export function TeamMemberCard({
 
   const content = (
     <div className={cn(
-      "relative w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-[5px]",
+      "relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-[5px]",
       extra
     )}>
       <Image
