@@ -56,11 +56,12 @@ export async function CommunityStructure() {
           {founder && (
             <div className="relative">
               <div className="flex justify-center">
-                <TeamMemberCard
-                  {...founder}
-                  size="lg"
-                  href={`/about/team/${founder.slug}`}
-                />
+                <div className="w-full max-w-[340px]">
+                  <TeamMemberCard
+                    {...founder}
+                    href={`/about/team/${founder.slug}`}
+                  />
+                </div>
               </div>
               <div className="hidden md:block absolute left-1/2 -bottom-10 w-px h-10 bg-gradient-to-b from-primary/50 to-transparent -translate-x-1/2" />
             </div>
@@ -69,15 +70,14 @@ export async function CommunityStructure() {
           {/* Tier 2: Co-Founders & Board */}
           {coFounders.length > 0 && (
             <div className="relative">
-              <div className="flex flex-col md:flex-row justify-center gap-12 md:gap-20">
+              <div className="flex flex-col md:flex-row justify-center items-stretch gap-8 md:gap-12">
                 {coFounders.map((member) => (
-                  <TeamMemberCard
-                    key={member.id}
-                    {...member}
-                    size="md"
-                    borderColor="border-surface-container-highest"
-                    href={`/about/team/${member.slug}`}
-                  />
+                  <div key={member.id} className="w-full max-w-[320px] mx-auto md:mx-0">
+                    <TeamMemberCard
+                      {...member}
+                      href={`/about/team/${member.slug}`}
+                    />
+                  </div>
                 ))}
               </div>
             </div>
@@ -96,15 +96,12 @@ export async function CommunityStructure() {
                 learning together.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-12 items-start">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 items-stretch">
               {residents.map((member) => (
                 <div key={member.id} className="w-full flex justify-center md:justify-start">
                   <div className="w-full">
                     <TeamMemberCard
                       {...member}
-                      size="sm"
-                      borderColor="border-surface-variant"
-                      headlineClass="font-label-bold text-label-bold"
                       href={`/about/team/${member.slug}`}
                     />
                   </div>
@@ -131,16 +128,12 @@ export async function CommunityStructure() {
                 Former residents who return to guide the next generation.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-12 items-start opacity-80 hover:opacity-100 transition-opacity duration-300">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 items-stretch opacity-80 hover:opacity-100 transition-opacity duration-300">
               {alumni.map((member) => (
                 <div key={member.id} className="w-full flex justify-center md:justify-start">
                   <div className="w-full">
                     <TeamMemberCard
                       {...member}
-                      size="sm"
-                      borderColor="border-surface"
-                      headlineClass="font-label-bold text-body-md"
-                      extra="mt-2"
                       href={`/about/team/${member.slug}`}
                     />
                   </div>

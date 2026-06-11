@@ -30,8 +30,5 @@ export interface TeamMember {
 }
 
 export interface TeamMemberCardProps extends TeamMember {
-  size?: "sm" | "md" | "lg";
-  borderColor?: string;
-  headlineClass?: string;
   extra?: string;
 }
