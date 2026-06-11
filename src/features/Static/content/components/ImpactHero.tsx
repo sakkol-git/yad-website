@@ -3,7 +3,7 @@ import { Button } from "@/shared/components/ui/Button";
 
 export function ImpactHero() {
   return (
-    <section className="relative min-h-[819px] flex items-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-section-gap overflow-hidden rounded-xl">
+    <section className="relative min-h-[819px] flex items-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-section-gap overflow-hidden rounded-lg">
       <div className="absolute inset-0 z-0">
         <Image
           alt="Lush green floating island with waterfalls and small wooden cabins against a bright sky, symbolizing a pristine, harmonious ecological future."

@@ -48,7 +48,7 @@ export function RegisterForm({ errorMsg, registerAction, loginWithGoogleAction }
                   type="text"
                   required
                   placeholder="Sokha"
-                  className="w-full px-4 py-2.5 bg-surface-container rounded-lg border border-surface-variant/30 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-[14px] transition-all outline-none"
+                  className="w-full px-4 py-2.5 bg-surface-container rounded-md border border-surface-variant/30 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-[14px] transition-all outline-none"
                 />
               </div>
               <div>
@@ -61,7 +61,7 @@ export function RegisterForm({ errorMsg, registerAction, loginWithGoogleAction }
                   type="text"
                   required
                   placeholder="Chen"
-                  className="w-full px-4 py-2.5 bg-surface-container rounded-lg border border-surface-variant/30 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-[14px] transition-all outline-none"
+                  className="w-full px-4 py-2.5 bg-surface-container rounded-md border border-surface-variant/30 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-[14px] transition-all outline-none"
                 />
               </div>
             </div>
@@ -78,7 +78,7 @@ export function RegisterForm({ errorMsg, registerAction, loginWithGoogleAction }
                   type="email"
                   required
                   placeholder="user@example.com"
-                  className="w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-lg border border-surface-variant/30 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-[14px] transition-all outline-none"
+                  className="w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-md border border-surface-variant/30 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-[14px] transition-all outline-none"
                 />
               </div>
             </div>
@@ -96,7 +96,7 @@ export function RegisterForm({ errorMsg, registerAction, loginWithGoogleAction }
                   required
                   placeholder="••••••••"
                   minLength={6}
-                  className="w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-lg border border-surface-variant/30 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-[14px] transition-all outline-none"
+                  className="w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-md border border-surface-variant/30 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-[14px] transition-all outline-none"
                 />
               </div>
             </div>

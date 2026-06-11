@@ -34,7 +34,7 @@ export function UserDashboard({
         {/* Bookings Card */}
         <div className="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/30 shadow-sm flex flex-col">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-primary/10 text-primary rounded-xl flex items-center justify-center">
+            <div className="w-10 h-10 bg-primary/10 text-primary rounded-lg flex items-center justify-center">
               <span className="material-symbols-outlined">bed</span>
             </div>
             <h2 className="text-lg font-bold text-on-surface">Homestays</h2>
@@ -42,7 +42,7 @@ export function UserDashboard({
           
           <div className="flex-1">
             {upcomingBooking ? (
-              <div className="bg-surface-container p-4 rounded-xl">
+              <div className="bg-surface-container p-4 rounded-lg">
                 <p className="text-xs font-bold text-primary uppercase tracking-wider mb-1">Upcoming Stay</p>
                 <p className="font-medium text-on-surface">{(upcomingBooking.rooms as any)?.name}</p>
                 <p className="text-sm text-on-surface-variant mt-1">Check-in: {new Date(upcomingBooking.check_in).toLocaleDateString()}</p>
@@ -52,7 +52,7 @@ export function UserDashboard({
             )}
           </div>
           
-          <Link href="/portal/bookings" className="mt-4 flex items-center justify-between text-sm font-bold text-primary hover:bg-primary/5 p-2 rounded-lg transition-colors">
+          <Link href="/portal/bookings" className="mt-4 flex items-center justify-between text-sm font-bold text-primary hover:bg-primary/5 p-2 rounded-md transition-colors">
             Manage Bookings
             <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
           </Link>
@@ -61,7 +61,7 @@ export function UserDashboard({
         {/* Donations Card */}
         <div className="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/30 shadow-sm flex flex-col">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-tertiary/10 text-tertiary rounded-xl flex items-center justify-center">
+            <div className="w-10 h-10 bg-tertiary/10 text-tertiary rounded-lg flex items-center justify-center">
               <span className="material-symbols-outlined">volunteer_activism</span>
             </div>
             <h2 className="text-lg font-bold text-on-surface">Donations</h2>
@@ -69,7 +69,7 @@ export function UserDashboard({
           
           <div className="flex-1">
             {recentDonation ? (
-              <div className="bg-surface-container p-4 rounded-xl">
+              <div className="bg-surface-container p-4 rounded-lg">
                 <p className="text-xs font-bold text-tertiary uppercase tracking-wider mb-1">Recent Contribution</p>
                 <p className="font-bold text-xl text-on-surface">${recentDonation.amount}</p>
                 <p className="text-sm text-on-surface-variant mt-1">Status: {recentDonation.status}</p>
@@ -79,7 +79,7 @@ export function UserDashboard({
             )}
           </div>
           
-          <Link href="/portal/donations" className="mt-4 flex items-center justify-between text-sm font-bold text-tertiary hover:bg-tertiary/5 p-2 rounded-lg transition-colors">
+          <Link href="/portal/donations" className="mt-4 flex items-center justify-between text-sm font-bold text-tertiary hover:bg-tertiary/5 p-2 rounded-md transition-colors">
             View History
             <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
           </Link>
@@ -88,7 +88,7 @@ export function UserDashboard({
         {/* Volunteer Card */}
         <div className="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/30 shadow-sm flex flex-col">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-secondary/10 text-secondary rounded-xl flex items-center justify-center">
+            <div className="w-10 h-10 bg-secondary/10 text-secondary rounded-lg flex items-center justify-center">
               <span className="material-symbols-outlined">group</span>
             </div>
             <h2 className="text-lg font-bold text-on-surface">Volunteer</h2>
@@ -96,7 +96,7 @@ export function UserDashboard({
           
           <div className="flex-1">
             {recentVolunteer ? (
-              <div className="bg-surface-container p-4 rounded-xl">
+              <div className="bg-surface-container p-4 rounded-lg">
                 <p className="text-xs font-bold text-secondary uppercase tracking-wider mb-1">Latest Engagement</p>
                 <p className="font-medium text-on-surface">{(recentVolunteer.events as any)?.name}</p>
                 <p className="text-sm text-on-surface-variant mt-1">Status: {recentVolunteer.status}</p>
@@ -106,7 +106,7 @@ export function UserDashboard({
             )}
           </div>
           
-          <Link href="/portal/volunteer" className="mt-4 flex items-center justify-between text-sm font-bold text-secondary hover:bg-secondary/5 p-2 rounded-lg transition-colors">
+          <Link href="/portal/volunteer" className="mt-4 flex items-center justify-between text-sm font-bold text-secondary hover:bg-secondary/5 p-2 rounded-md transition-colors">
             Find Opportunities
             <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
           </Link>

@@ -4,7 +4,7 @@ import { Button } from "@/shared/components/ui/Button";
 
 export function DonateHero() {
   return (
-    <header className="relative px-margin-mobile md:px-margin-desktop py-12 md:py-16 max-w-container-max mx-auto text-center rounded-xl overflow-hidden mb-section-gap mx-4 md:mx-auto mt-28 shadow-2xl">
+    <header className="relative px-margin-mobile md:px-margin-desktop py-12 md:py-16 max-w-container-max mx-auto text-center rounded-lg overflow-hidden mb-section-gap mx-4 md:mx-auto mt-28 shadow-2xl">
       {/* Background Image */}
       <Image
         src="/assets/images/yad-1.png"

@@ -59,7 +59,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
       <div className="w-full lg:w-2/3">
         <ProgressIndicator currentStep={2} />
 
-        <div className="bg-surface-container-lowest rounded-xl ambient-shadow p-6 md:p-10 relative overflow-hidden">
+        <div className="bg-surface-container-lowest rounded-lg ambient-shadow p-6 md:p-10 relative overflow-hidden">
           <div className="flex items-center justify-between border-b border-surface-variant/30 pb-4 mb-6">
             <h2 className="font-headline-md text-headline-md text-primary">
               Cambodian Local Payment
@@ -74,7 +74,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
           </div>
 
           {error && (
-            <div className="mb-6 p-4 bg-error-container text-error rounded-xl border border-error/20 text-sm font-medium">
+            <div className="mb-6 p-4 bg-error-container text-error rounded-lg border border-error/20 text-sm font-medium">
               {error}
             </div>
           )}
@@ -120,7 +120,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                   </div>
 
                   {/* QR Image Area */}
-                  <div className="w-full bg-white rounded-xl p-3 flex flex-col items-center shadow-inner relative">
+                  <div className="w-full bg-white rounded-lg p-3 flex flex-col items-center shadow-inner relative">
                     <svg viewBox="0 0 100 100" className="w-44 h-44 text-slate-800">
                       {/* Stylized QR Code Mock */}
                       <rect width="100" height="100" fill="white" />
@@ -149,7 +149,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                     </svg>
                     
                     {/* Amount Banner */}
-                    <div className="mt-3 w-full bg-slate-50 border border-slate-200 py-1.5 rounded-lg text-center">
+                    <div className="mt-3 w-full bg-slate-50 border border-slate-200 py-1.5 rounded-md text-center">
                       <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                         Amount to Scan
                       </span>
@@ -182,7 +182,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
 
                   <div className="space-y-4">
                     {/* Bank Name */}
-                    <div className="p-3 bg-surface rounded-lg border border-surface-variant/20 flex justify-between items-center">
+                    <div className="p-3 bg-surface rounded-md border border-surface-variant/20 flex justify-between items-center">
                       <div>
                         <span className="text-xs text-on-surface-variant block uppercase tracking-wider font-semibold">Bank Name</span>
                         <span className="text-sm font-bold text-on-surface">ABA Bank</span>
@@ -199,7 +199,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                     </div>
 
                     {/* Account Name */}
-                    <div className="p-3 bg-surface rounded-lg border border-surface-variant/20 flex justify-between items-center">
+                    <div className="p-3 bg-surface rounded-md border border-surface-variant/20 flex justify-between items-center">
                       <div>
                         <span className="text-xs text-on-surface-variant block uppercase tracking-wider font-semibold">Account Name</span>
                         <span className="text-sm font-bold text-on-surface">YAD CAMBODIA ASSOCIATION</span>
@@ -216,7 +216,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                     </div>
 
                     {/* Account Number */}
-                    <div className="p-3 bg-surface rounded-lg border border-surface-variant/20 flex justify-between items-center">
+                    <div className="p-3 bg-surface rounded-md border border-surface-variant/20 flex justify-between items-center">
                       <div>
                         <span className="text-xs text-on-surface-variant block uppercase tracking-wider font-semibold">Account Number</span>
                         <span className="text-sm font-mono font-bold text-on-surface">000 123 456</span>
@@ -247,7 +247,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
 
               <div className="space-y-4 mb-6">
                 {/* Reference Code to include in transfer */}
-                <div className="p-4 bg-primary/5 border border-primary/20 rounded-xl flex justify-between items-center">
+                <div className="p-4 bg-primary/5 border border-primary/20 rounded-lg flex justify-between items-center">
                   <div>
                     <span className="text-xs text-primary font-bold uppercase tracking-wider block">Required Transfer Description / Memo</span>
                     <span className="text-lg font-mono font-bold text-primary">{memoCode}</span>
@@ -309,7 +309,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
 
       {/* Side summary column */}
       <div className="w-full lg:w-1/3 mt-8 lg:mt-0">
-        <div className="sticky top-24 bg-surface-container-low rounded-xl p-8 border border-surface-variant relative overflow-hidden">
+        <div className="sticky top-24 bg-surface-container-low rounded-lg p-8 border border-surface-variant relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-secondary-fixed opacity-20 rounded-bl-full -z-0" />
           <h3 className="font-headline-md text-headline-md text-primary mb-6 relative z-10">
             Payment Summary

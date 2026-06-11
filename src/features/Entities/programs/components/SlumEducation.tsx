@@ -25,7 +25,7 @@ export function SlumEducation() {
             sizes="(max-width: 768px) 100vw, 67vw"
           />
           <CardContent className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-8">
-            <div className="bg-primary/90 backdrop-blur-sm w-fit p-3 rounded-xl mb-4">
+            <div className="bg-primary/90 backdrop-blur-sm w-fit p-3 rounded-lg mb-4">
               <span className="material-symbols-outlined text-white text-3xl">
                 school
               </span>

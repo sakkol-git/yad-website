@@ -59,7 +59,7 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
         <div className="px-6 h-16 flex items-center justify-between border-b border-outline-variant/30 shrink-0">
           <Link
             href="/admin/dashboard"
-            className="font-bold text-xl text-primary flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg px-1 -mx-1"
+            className="font-bold text-xl text-primary flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md px-1 -mx-1"
             onClick={onClose}
           >
             <span className="material-symbols-outlined text-[28px] icon-fill text-primary">spa</span>
@@ -92,7 +92,7 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
                         href={item.href}
                         onClick={onClose}
                         aria-current={isActive ? 'page' : undefined}
-                        className={`group flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 font-medium text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${isActive
+                        className={`group flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 font-medium text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${isActive
                           ? 'bg-secondary-container text-on-secondary-container shadow-sm'
                           : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'
                           }`}
@@ -115,7 +115,7 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
 
         {/* Actionable User Footer */}
         <div className="p-4 border-t border-outline-variant/30 shrink-0">
-          <div className="group flex items-center justify-between gap-3 px-3 py-2 bg-transparent hover:bg-surface-container-low rounded-xl border border-transparent hover:border-outline-variant/30 transition-all cursor-pointer">
+          <div className="group flex items-center justify-between gap-3 px-3 py-2 bg-transparent hover:bg-surface-container-low rounded-lg border border-transparent hover:border-outline-variant/30 transition-all cursor-pointer">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-sm shadow-inner">
                 AD

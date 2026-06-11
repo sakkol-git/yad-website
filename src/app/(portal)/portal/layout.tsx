@@ -17,16 +17,16 @@ export default function PortalLayout({ children }: { children: React.ReactNode }
               </Link>
 
               <nav className="hidden md:flex items-center gap-1">
-                <Link href="/portal/dashboard" className="px-4 py-2 rounded-lg text-sm font-medium text-on-surface hover:bg-surface-container transition-colors">
+                <Link href="/portal/dashboard" className="px-4 py-2 rounded-md text-sm font-medium text-on-surface hover:bg-surface-container transition-colors">
                   Overview
                 </Link>
-                <Link href="/portal/bookings" className="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors">
+                <Link href="/portal/bookings" className="px-4 py-2 rounded-md text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors">
                   My Bookings
                 </Link>
-                <Link href="/portal/donations" className="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors">
+                <Link href="/portal/donations" className="px-4 py-2 rounded-md text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors">
                   My Donations
                 </Link>
-                <Link href="/portal/volunteer" className="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors">
+                <Link href="/portal/volunteer" className="px-4 py-2 rounded-md text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors">
                   Volunteer
                 </Link>
               </nav>

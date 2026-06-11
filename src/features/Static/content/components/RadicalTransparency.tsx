@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/shared/components/ui/Card";
 
 export function RadicalTransparency() {
   return (
-    <section className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto bg-surface-container-highest rounded-xl p-8 md:p-16 shadow-ambient">
+    <section className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto bg-surface-container-highest rounded-lg p-8 md:p-16 shadow-ambient">
       <div className="text-center mb-12">
         <h2 className="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">
           Radical Transparency

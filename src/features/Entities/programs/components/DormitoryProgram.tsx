@@ -25,7 +25,7 @@ export function DormitoryProgram() {
             personal and professional growth.
           </p>
           <div className="grid grid-cols-2 gap-6 mb-8">
-            <div className="bg-surface p-4 rounded-xl border border-surface-container-high">
+            <div className="bg-surface p-4 rounded-lg border border-surface-container-high">
               <p className="font-headline-md text-headline-md text-secondary m-0">
                 120
               </p>
@@ -33,7 +33,7 @@ export function DormitoryProgram() {
                 Current Residents
               </p>
             </div>
-            <div className="bg-surface p-4 rounded-xl border border-surface-container-high">
+            <div className="bg-surface p-4 rounded-lg border border-surface-container-high">
               <p className="font-headline-md text-headline-md text-secondary m-0">
                 45
               </p>

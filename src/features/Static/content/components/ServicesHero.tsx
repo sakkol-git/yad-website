@@ -8,7 +8,7 @@ export function ServicesHero() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
         {/* Text Content */}
         <div className="lg:col-span-5 order-2 lg:order-1 z-10 relative mt-8 lg:mt-0">
-          <div className="bg-surface/90 backdrop-blur-md p-8 md:p-10 rounded-xl shadow-ambient lg:-mr-16 relative">
+          <div className="bg-surface/90 backdrop-blur-md p-8 md:p-10 rounded-lg shadow-ambient lg:-mr-16 relative">
             <span className="inline-block bg-secondary-container text-on-secondary-container px-4 py-1 rounded-full font-label-bold text-label-bold mb-4 tracking-wider uppercase text-xs">
               YAD Projects
             </span>
@@ -41,7 +41,7 @@ export function ServicesHero() {
 
         {/* Hero Image */}
         <div className="lg:col-span-7 order-1 lg:order-2">
-          <div className="relative w-full aspect-[4/3] md:aspect-[16/10] rounded-xl overflow-hidden shadow-ambient group">
+          <div className="relative w-full aspect-[4/3] md:aspect-[16/10] rounded-lg overflow-hidden shadow-ambient group">
             <Image
               alt="Traditional wooden Cambodian home elevated on stilts, surrounded by lush green tropical foliage"
               src="/assets/images/yad-1.png"

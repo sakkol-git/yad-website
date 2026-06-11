@@ -17,7 +17,7 @@ export function ImpactPaths() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Fund */}
-          <div className="bg-surface rounded-xl p-8 ambient-shadow hover-lift flex flex-col group relative overflow-hidden">
+          <div className="bg-surface rounded-lg p-8 ambient-shadow hover-lift flex flex-col group relative overflow-hidden">
             <div className="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center mb-6 text-on-secondary-container transition-transform group-hover:scale-110">
               <span className="material-symbols-outlined text-3xl">
                 volunteer_activism
@@ -43,7 +43,7 @@ export function ImpactPaths() {
           </div>
 
           {/* Mentor */}
-          <div className="bg-surface rounded-xl p-8 ambient-shadow hover-lift flex flex-col group relative overflow-hidden md:-translate-y-4">
+          <div className="bg-surface rounded-lg p-8 ambient-shadow hover-lift flex flex-col group relative overflow-hidden md:-translate-y-4">
             <div className="w-16 h-16 rounded-full bg-tertiary-fixed flex items-center justify-center mb-6 text-on-tertiary-fixed transition-transform group-hover:scale-110">
               <span className="material-symbols-outlined text-3xl">
                 school
@@ -69,7 +69,7 @@ export function ImpactPaths() {
           </div>
 
           {/* Partner */}
-          <div className="bg-surface rounded-xl p-8 ambient-shadow hover-lift flex flex-col group relative overflow-hidden">
+          <div className="bg-surface rounded-lg p-8 ambient-shadow hover-lift flex flex-col group relative overflow-hidden">
             <div className="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center mb-6 text-on-primary-fixed transition-transform group-hover:scale-110">
               <span className="material-symbols-outlined text-3xl">
                 handshake

@@ -32,7 +32,7 @@ export function BookingSection() {
         <div className="lg:col-span-8">
           <form className="space-y-8">
             {/* Step 1: Stay Details */}
-            <div className="bg-surface-container-lowest rounded-xl p-8 shadow-ambient relative overflow-hidden">
+            <div className="bg-surface-container-lowest rounded-lg p-8 shadow-ambient relative overflow-hidden">
               <div className="absolute top-0 left-0 w-2 h-full bg-secondary" />
               <h3 className="font-headline-md text-2xl text-primary mb-6 flex items-center gap-3">
                 <span className="bg-secondary-container text-on-secondary-container w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">
@@ -72,7 +72,7 @@ export function BookingSection() {
             </div>
 
             {/* Step 2: Guest Information */}
-            <div className="bg-surface-container-lowest rounded-xl p-8 shadow-ambient relative overflow-hidden">
+            <div className="bg-surface-container-lowest rounded-lg p-8 shadow-ambient relative overflow-hidden">
               <div className="absolute top-0 left-0 w-2 h-full bg-tertiary-fixed-dim" />
               <h3 className="font-headline-md text-2xl text-primary mb-6 flex items-center gap-3">
                 <span className="bg-tertiary-container text-on-tertiary-container w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">
@@ -101,7 +101,7 @@ export function BookingSection() {
             </div>
 
             {/* Step 3: Payment */}
-            <div className="bg-surface-container-lowest rounded-xl p-8 shadow-ambient relative overflow-hidden">
+            <div className="bg-surface-container-lowest rounded-lg p-8 shadow-ambient relative overflow-hidden">
               <div className="absolute top-0 left-0 w-2 h-full bg-primary-container" />
               <h3 className="font-headline-md text-2xl text-primary mb-6 flex items-center gap-3">
                 <span className="bg-primary text-on-primary w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">
@@ -115,7 +115,7 @@ export function BookingSection() {
                 <button
                   type="button"
                   onClick={() => setPaymentMethod("card")}
-                  className={`flex-1 border-2 rounded-xl p-4 flex flex-col items-center justify-center gap-2 transition-all hover:bg-surface-container-low ${
+                  className={`flex-1 border-2 rounded-lg p-4 flex flex-col items-center justify-center gap-2 transition-all hover:bg-surface-container-low ${
                     paymentMethod === "card"
                       ? "border-secondary bg-secondary/5"
                       : "border-surface-container-highest"
@@ -131,7 +131,7 @@ export function BookingSection() {
                 <button
                   type="button"
                   onClick={() => setPaymentMethod("khqr")}
-                  className={`flex-1 border-2 rounded-xl p-4 flex flex-col items-center justify-center gap-2 transition-all hover:bg-surface-container-low ${
+                  className={`flex-1 border-2 rounded-lg p-4 flex flex-col items-center justify-center gap-2 transition-all hover:bg-surface-container-low ${
                     paymentMethod === "khqr"
                       ? "border-secondary bg-secondary/5"
                       : "border-surface-container-highest"
@@ -169,8 +169,8 @@ export function BookingSection() {
               {/* KHQR Form */}
               {paymentMethod === "khqr" && (
                 <div className="text-center py-6">
-                  <div className="bg-surface-container p-6 rounded-xl inline-block mb-4 shadow-sm">
-                    <div className="w-48 h-48 bg-surface-variant rounded-lg flex items-center justify-center border-4 border-white">
+                  <div className="bg-surface-container p-6 rounded-lg inline-block mb-4 shadow-sm">
+                    <div className="w-48 h-48 bg-surface-variant rounded-md flex items-center justify-center border-4 border-white">
                       <span className="material-symbols-outlined text-6xl text-outline">
                         qr_code_2
                       </span>
@@ -199,12 +199,12 @@ export function BookingSection() {
 
         {/* Booking Summary */}
         <div className="lg:col-span-4">
-          <div className="bg-tertiary text-on-tertiary rounded-xl p-8 shadow-ambient sticky top-32">
+          <div className="bg-tertiary text-on-tertiary rounded-lg p-8 shadow-ambient sticky top-32">
             <h4 className="font-headline-md text-xl mb-6">
               Booking Summary
             </h4>
             <div className="flex gap-4 mb-8">
-              <div className="w-20 h-20 rounded-lg overflow-hidden shrink-0 relative">
+              <div className="w-20 h-20 rounded-md overflow-hidden shrink-0 relative">
                 <Image
                   alt="Interior of a minimalist Cambodian homestay room"
                   src="/assets/images/yad-2.png"

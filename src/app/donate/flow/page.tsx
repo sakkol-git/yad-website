@@ -48,7 +48,7 @@ export default function DonateFlowPage() {
       <div className="w-full lg:w-2/3">
         <ProgressIndicator currentStep={1} />
 
-        <div className="bg-surface-container-lowest rounded-xl ambient-shadow p-6 md:p-10 relative overflow-hidden">
+        <div className="bg-surface-container-lowest rounded-lg ambient-shadow p-6 md:p-10 relative overflow-hidden">
           <form onSubmit={handleSubmit}>
             <h2 className="font-headline-md text-headline-md text-primary mb-6">
               Select Amount
@@ -137,7 +137,7 @@ export default function DonateFlowPage() {
       </div>
 
       <div className="w-full lg:w-1/3 mt-8 lg:mt-0">
-        <div className="sticky top-24 bg-surface-container-low rounded-xl p-8 border border-surface-variant relative overflow-hidden">
+        <div className="sticky top-24 bg-surface-container-low rounded-lg p-8 border border-surface-variant relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-secondary-fixed opacity-20 rounded-bl-full -z-0" />
           <h3 className="font-headline-md text-headline-md text-primary mb-6 relative z-10">
             Summary

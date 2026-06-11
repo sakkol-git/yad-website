@@ -103,7 +103,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
             </h3>
             <div className="flex flex-col gap-5 mt-2">
               <a href="https://maps.app.goo.gl/5AhtYGNDRfVjH8cY8" target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 group">
-                <div className="bg-primary/10 p-2 rounded-lg group-hover:bg-primary group-hover:text-on-primary text-primary transition-colors">
+                <div className="bg-primary/10 p-2 rounded-md group-hover:bg-primary group-hover:text-on-primary text-primary transition-colors">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <span className="font-body-md text-body-md text-on-surface-variant group-hover:text-primary transition-colors pt-1">
@@ -111,7 +111,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
                 </span>
               </a>
               <a href="tel:+85599332289" className="flex items-center gap-3 group">
-                <div className="bg-primary/10 p-2 rounded-lg group-hover:bg-primary group-hover:text-on-primary text-primary transition-colors">
+                <div className="bg-primary/10 p-2 rounded-md group-hover:bg-primary group-hover:text-on-primary text-primary transition-colors">
                   <Phone className="w-5 h-5" />
                 </div>
                 <span className="font-body-md text-body-md text-on-surface-variant group-hover:text-primary transition-colors">
@@ -119,7 +119,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
                 </span>
               </a>
               <a href="mailto:jc.acekh@gmail.com" className="flex items-center gap-3 group">
-                <div className="bg-primary/10 p-2 rounded-lg group-hover:bg-primary group-hover:text-on-primary text-primary transition-colors">
+                <div className="bg-primary/10 p-2 rounded-md group-hover:bg-primary group-hover:text-on-primary text-primary transition-colors">
                   <Mail className="w-5 h-5" />
                 </div>
                 <span className="font-body-md text-body-md text-on-surface-variant group-hover:text-primary transition-colors">

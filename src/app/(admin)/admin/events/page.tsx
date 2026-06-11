@@ -20,10 +20,10 @@ export default async function EventsPage() {
           </p>
         </div>
         <div className="flex gap-3">
-          <button className="py-2.5 px-5 bg-surface-container-lowest border border-outline-variant/50 text-on-surface rounded-xl font-bold text-sm hover:bg-surface-container transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-sm">
+          <button className="py-2.5 px-5 bg-surface-container-lowest border border-outline-variant/50 text-on-surface rounded-lg font-bold text-sm hover:bg-surface-container transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-sm">
             <span className="material-symbols-outlined text-[20px]">download</span> Export
           </button>
-          <button className="py-2.5 px-5 bg-primary text-on-primary rounded-xl font-bold text-sm shadow-md hover:shadow-lg hover:bg-primary-container hover:text-on-primary-container transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap">
+          <button className="py-2.5 px-5 bg-primary text-on-primary rounded-lg font-bold text-sm shadow-md hover:shadow-lg hover:bg-primary-container hover:text-on-primary-container transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap">
             <span className="material-symbols-outlined text-[20px]">event_note</span> Create Event
           </button>
         </div>

@@ -21,13 +21,13 @@ export function AdminHeader() {
         <span className="font-bold text-on-surface text-[18px]">{currentPage}</span>
       </div>
       <div className="flex items-center gap-4">
-        <Link href="/" className="text-sm font-bold text-primary hover:bg-primary-container hover:text-on-primary-container px-3 py-2 rounded-lg transition-colors flex items-center gap-1.5">
+        <Link href="/" className="text-sm font-bold text-primary hover:bg-primary-container hover:text-on-primary-container px-3 py-2 rounded-md transition-colors flex items-center gap-1.5">
           <span className="material-symbols-outlined text-[18px]">public</span>
           View Website
         </Link>
         <div className="h-6 w-[1px] bg-outline-variant/30"></div>
         <form action={logout}>
-          <button type="submit" className="text-sm font-bold text-error hover:bg-error-container hover:text-on-error-container px-3 py-2 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer">
+          <button type="submit" className="text-sm font-bold text-error hover:bg-error-container hover:text-on-error-container px-3 py-2 rounded-md transition-colors flex items-center gap-1.5 cursor-pointer">
             <span className="material-symbols-outlined text-[18px]">logout</span>
             Sign out
           </button>

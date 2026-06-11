@@ -5,7 +5,7 @@ export function ImpactPreview() {
     <section className="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface">
       <div className="max-w-container-max mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
-          <div className="lg:col-span-7 rounded-xl overflow-hidden shadow-ambient relative h-[400px]">
+          <div className="lg:col-span-7 rounded-lg overflow-hidden shadow-ambient relative h-[400px]">
             <Image
               alt="Cambodian youth collaborating"
               className="w-full h-full object-cover"

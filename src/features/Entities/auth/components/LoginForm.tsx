@@ -50,7 +50,7 @@ export function LoginForm({ errorMsg, loginAction, loginWithGoogleAction }: Logi
                   type="email"
                   required
                   placeholder="user@example.com"
-                  className="w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-lg border border-surface-variant/30 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-[15px] transition-all placeholder-on-surface-variant/50 outline-none"
+                  className="w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-md border border-surface-variant/30 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-[15px] transition-all placeholder-on-surface-variant/50 outline-none"
                 />
               </div>
             </div>
@@ -67,7 +67,7 @@ export function LoginForm({ errorMsg, loginAction, loginWithGoogleAction }: Logi
                   type="password"
                   required
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-lg border border-surface-variant/30 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-[15px] transition-all placeholder-on-surface-variant/50 outline-none"
+                  className="w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-md border border-surface-variant/30 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-[15px] transition-all placeholder-on-surface-variant/50 outline-none"
                 />
               </div>
               <div className="text-right mt-2">

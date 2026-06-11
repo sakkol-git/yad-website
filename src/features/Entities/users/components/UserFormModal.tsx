@@ -66,7 +66,7 @@ export function UserFormModal({ isOpen, onClose, mode, initialData }: UserFormMo
         
         <form action={handleSubmit} className="p-6 flex flex-col gap-5 overflow-y-auto">
           {error && (
-            <div className="bg-error-container/20 text-error p-3 rounded-xl text-sm font-medium border border-error-container flex items-center gap-2">
+            <div className="bg-error-container/20 text-error p-3 rounded-lg text-sm font-medium border border-error-container flex items-center gap-2">
               <span className="material-symbols-outlined text-[18px]">error</span>
               {error}
             </div>
@@ -80,7 +80,7 @@ export function UserFormModal({ isOpen, onClose, mode, initialData }: UserFormMo
               required={mode === 'create'}
               disabled={mode === 'edit'}
               defaultValue={initialData?.email || ''}
-              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               placeholder="user@example.com"
             />
           </div>
@@ -93,7 +93,7 @@ export function UserFormModal({ isOpen, onClose, mode, initialData }: UserFormMo
                 type="password" 
                 required 
                 minLength={6}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                 placeholder="Minimum 6 characters"
               />
             </div>
@@ -105,7 +105,7 @@ export function UserFormModal({ isOpen, onClose, mode, initialData }: UserFormMo
               name="role" 
               required 
               defaultValue={initialData?.role || 'user'}
-              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none cursor-pointer"
+              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none cursor-pointer"
             >
               <option value="admin">Admin</option>
               <option value="manager">Manager</option>

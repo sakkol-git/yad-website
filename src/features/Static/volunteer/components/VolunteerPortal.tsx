@@ -72,7 +72,7 @@ export function VolunteerPortal({
                 
                 <form action={signUpForEvent}>
                   <input type="hidden" name="event_id" value={event.id} />
-                  <button type="submit" className="w-full py-2 bg-surface text-secondary border border-secondary/30 rounded-xl font-bold text-sm hover:bg-secondary hover:text-on-secondary transition-colors">
+                  <button type="submit" className="w-full py-2 bg-surface text-secondary border border-secondary/30 rounded-lg font-bold text-sm hover:bg-secondary hover:text-on-secondary transition-colors">
                     Sign Up to Volunteer
                   </button>
                 </form>

@@ -28,7 +28,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn profile"
-                    className="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-secondary-container transition-colors duration-200"
+                    className="w-8 h-8 rounded-md bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-secondary-container transition-colors duration-200"
                   >
                     <span className="material-symbols-outlined text-lg">
                       work
@@ -41,7 +41,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Twitter profile"
-                    className="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-secondary-container transition-colors duration-200"
+                    className="w-8 h-8 rounded-md bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-secondary-container transition-colors duration-200"
                   >
                     <span className="material-symbols-outlined text-lg">
                       tag
@@ -54,7 +54,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Facebook profile"
-                    className="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-secondary-container transition-colors duration-200"
+                    className="w-8 h-8 rounded-md bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-secondary-container transition-colors duration-200"
                   >
                     <span className="material-symbols-outlined text-lg">
                       public
@@ -87,7 +87,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
       <section className="w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-stretch">
           {/* Left Column: Portrait */}
-          <div className="lg:col-span-5 relative w-full aspect-square rounded-xl overflow-hidden shadow-ambient">
+          <div className="lg:col-span-5 relative w-full aspect-square rounded-lg overflow-hidden shadow-ambient">
             <Image
               alt={`${member.name} — ${member.role} at YAD`}
               src={member.image}
@@ -101,7 +101,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
           {/* Right Column: Vision & Experience block */}
           <div className="lg:col-span-7 flex">
             {(profile?.vision || (profile?.experience && profile.experience.length > 0)) && (
-              <div className="bg-primary rounded-xl p-8 md:p-10 text-on-primary w-full flex flex-col justify-center">
+              <div className="bg-primary rounded-lg p-8 md:p-10 text-on-primary w-full flex flex-col justify-center">
                 {profile.vision && (
                   <div className="mb-8">
                     <h2 className="font-headline-md text-2xl mb-4 text-on-primary font-bold">

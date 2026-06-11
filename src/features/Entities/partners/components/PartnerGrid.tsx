@@ -30,7 +30,7 @@ export function PartnerGrid({ partners }: PartnerGridProps) {
   return (
     <section className="px-margin-mobile md:px-margin-desktop pb-section-gap relative z-20 -mt-32">
       <div className="max-w-container-max mx-auto">
-        <div className="bg-surface/80 backdrop-blur-xl rounded-xl p-8 md:p-12 shadow-ambient border border-white/20">
+        <div className="bg-surface/80 backdrop-blur-xl rounded-lg p-8 md:p-12 shadow-ambient border border-white/20">
           <div className="mb-12 text-center">
             <h2 className="font-headline-md text-headline-md text-primary mb-4">
               Global Network, Local Impact

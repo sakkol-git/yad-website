@@ -14,10 +14,10 @@ export function AdminDashboard() {
           </p>
         </div>
         <div className="flex gap-3">
-          <button className="bg-surface-container border border-outline-variant/30 text-on-surface px-5 py-2.5 rounded-xl font-label-bold text-sm hover:bg-surface-container-high transition-colors flex items-center gap-2">
+          <button className="bg-surface-container border border-outline-variant/30 text-on-surface px-5 py-2.5 rounded-lg font-label-bold text-sm hover:bg-surface-container-high transition-colors flex items-center gap-2">
             <span className="material-symbols-outlined text-[18px]">calendar_today</span> Last 30 Days
           </button>
-          <button className="bg-primary text-on-primary px-5 py-2.5 rounded-xl font-label-bold text-sm hover:bg-primary/90 transition-colors flex items-center gap-2 shadow-sm">
+          <button className="bg-primary text-on-primary px-5 py-2.5 rounded-lg font-label-bold text-sm hover:bg-primary/90 transition-colors flex items-center gap-2 shadow-sm">
             <span className="material-symbols-outlined text-[18px]">download</span> Export Report
           </button>
         </div>
@@ -27,7 +27,7 @@ export function AdminDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-6 shadow-ambient hover:-translate-y-1 transition-transform duration-300">
           <div className="flex justify-between items-start mb-4">
-            <div className="w-12 h-12 rounded-xl bg-primary-container/30 text-primary-container flex items-center justify-center">
+            <div className="w-12 h-12 rounded-lg bg-primary-container/30 text-primary-container flex items-center justify-center">
               <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>groups</span>
             </div>
             <span className="bg-secondary-container/50 text-secondary px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1">
@@ -40,7 +40,7 @@ export function AdminDashboard() {
 
         <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-6 shadow-ambient hover:-translate-y-1 transition-transform duration-300">
           <div className="flex justify-between items-start mb-4">
-            <div className="w-12 h-12 rounded-xl bg-tertiary-container/30 text-tertiary-container flex items-center justify-center">
+            <div className="w-12 h-12 rounded-lg bg-tertiary-container/30 text-tertiary-container flex items-center justify-center">
               <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>account_tree</span>
             </div>
             <span className="bg-surface-variant text-on-surface-variant px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1">
@@ -53,7 +53,7 @@ export function AdminDashboard() {
 
         <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-6 shadow-ambient hover:-translate-y-1 transition-transform duration-300">
           <div className="flex justify-between items-start mb-4">
-            <div className="w-12 h-12 rounded-xl bg-secondary-container/30 text-secondary-container flex items-center justify-center">
+            <div className="w-12 h-12 rounded-lg bg-secondary-container/30 text-secondary-container flex items-center justify-center">
               <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>payments</span>
             </div>
             <span className="bg-secondary-container/50 text-secondary px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1">
@@ -67,7 +67,7 @@ export function AdminDashboard() {
         <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-2xl p-6 shadow-ambient hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
           <div className="absolute right-0 top-0 w-2 h-full bg-error"></div>
           <div className="flex justify-between items-start mb-4">
-            <div className="w-12 h-12 rounded-xl bg-error-container/50 text-error flex items-center justify-center">
+            <div className="w-12 h-12 rounded-lg bg-error-container/50 text-error flex items-center justify-center">
               <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>home_work</span>
             </div>
             <span className="bg-error/10 text-error px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1">
@@ -94,7 +94,7 @@ export function AdminDashboard() {
           </div>
           <div className="space-y-1">
             {/* Activity Items */}
-            <div className="flex items-start gap-4 p-3 rounded-xl hover:bg-surface-container/50 transition-colors group cursor-pointer">
+            <div className="flex items-start gap-4 p-3 rounded-lg hover:bg-surface-container/50 transition-colors group cursor-pointer">
               <div className="mt-1 w-10 h-10 rounded-full bg-primary-container/20 text-primary flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                 <span className="material-symbols-outlined text-[20px]">person_add</span>
               </div>
@@ -107,7 +107,7 @@ export function AdminDashboard() {
               </div>
             </div>
 
-            <div className="flex items-start gap-4 p-3 rounded-xl hover:bg-surface-container/50 transition-colors group cursor-pointer">
+            <div className="flex items-start gap-4 p-3 rounded-lg hover:bg-surface-container/50 transition-colors group cursor-pointer">
               <div className="mt-1 w-10 h-10 rounded-full bg-secondary-container/30 text-secondary flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                 <span className="material-symbols-outlined text-[20px]">volunteer_activism</span>
               </div>
@@ -120,7 +120,7 @@ export function AdminDashboard() {
               </div>
             </div>
             
-            <div className="flex items-start gap-4 p-3 rounded-xl hover:bg-surface-container/50 transition-colors group cursor-pointer bg-error/5 border border-error/10">
+            <div className="flex items-start gap-4 p-3 rounded-lg hover:bg-surface-container/50 transition-colors group cursor-pointer bg-error/5 border border-error/10">
               <div className="mt-1 w-10 h-10 rounded-full bg-error-container/50 text-error flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                 <span className="material-symbols-outlined text-[20px]">home_work</span>
               </div>
@@ -143,19 +143,19 @@ export function AdminDashboard() {
               Quick Actions
             </h3>
             <div className="grid grid-cols-2 gap-3">
-              <Link href="/admin/members" className="bg-surface border border-outline-variant/30 rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:border-primary hover:bg-surface-container-low transition-all group">
+              <Link href="/admin/members" className="bg-surface border border-outline-variant/30 rounded-lg p-4 flex flex-col items-center justify-center gap-2 hover:border-primary hover:bg-surface-container-low transition-all group">
                 <span className="material-symbols-outlined text-[28px] text-primary group-hover:-translate-y-1 transition-transform" style={{ fontVariationSettings: "'FILL' 1" }}>group_add</span>
                 <span className="text-xs font-bold text-on-surface">Add Member</span>
               </Link>
-              <Link href="/admin/events" className="bg-surface border border-outline-variant/30 rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:border-tertiary hover:bg-surface-container-low transition-all group">
+              <Link href="/admin/events" className="bg-surface border border-outline-variant/30 rounded-lg p-4 flex flex-col items-center justify-center gap-2 hover:border-tertiary hover:bg-surface-container-low transition-all group">
                 <span className="material-symbols-outlined text-[28px] text-tertiary group-hover:-translate-y-1 transition-transform" style={{ fontVariationSettings: "'FILL' 1" }}>event_note</span>
                 <span className="text-xs font-bold text-on-surface">Create Event</span>
               </Link>
-              <Link href="/admin/donors" className="bg-surface border border-outline-variant/30 rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:border-secondary hover:bg-surface-container-low transition-all group">
+              <Link href="/admin/donors" className="bg-surface border border-outline-variant/30 rounded-lg p-4 flex flex-col items-center justify-center gap-2 hover:border-secondary hover:bg-surface-container-low transition-all group">
                 <span className="material-symbols-outlined text-[28px] text-secondary group-hover:-translate-y-1 transition-transform" style={{ fontVariationSettings: "'FILL' 1" }}>diversity_1</span>
                 <span className="text-xs font-bold text-on-surface">Manage Donors</span>
               </Link>
-              <Link href="/admin/homestays" className="bg-error/5 border border-error/20 rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:bg-error/10 transition-all group relative">
+              <Link href="/admin/homestays" className="bg-error/5 border border-error/20 rounded-lg p-4 flex flex-col items-center justify-center gap-2 hover:bg-error/10 transition-all group relative">
                 <span className="absolute top-2 right-2 w-2 h-2 bg-error rounded-full animate-pulse"></span>
                 <span className="material-symbols-outlined text-[28px] text-error group-hover:-translate-y-1 transition-transform" style={{ fontVariationSettings: "'FILL' 1" }}>fact_check</span>
                 <span className="text-xs font-bold text-error">Approvals</span>

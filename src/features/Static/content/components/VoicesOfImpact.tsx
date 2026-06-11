@@ -22,7 +22,7 @@ export function VoicesOfImpact() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Featured Story */}
         <article className="group cursor-pointer">
-          <div className="relative h-80 rounded-xl overflow-hidden mb-6 shadow-ambient">
+          <div className="relative h-80 rounded-lg overflow-hidden mb-6 shadow-ambient">
             <Image
               alt="Young woman working in a community garden"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -65,8 +65,8 @@ export function VoicesOfImpact() {
 
         {/* Secondary Stories */}
         <div className="flex flex-col gap-6">
-          <article className="flex gap-6 group cursor-pointer bg-surface hover:bg-surface-container-low p-4 rounded-xl transition-colors duration-300">
-            <div className="w-1/3 h-32 rounded-lg overflow-hidden shrink-0 relative">
+          <article className="flex gap-6 group cursor-pointer bg-surface hover:bg-surface-container-low p-4 rounded-lg transition-colors duration-300">
+            <div className="w-1/3 h-32 rounded-md overflow-hidden shrink-0 relative">
               <Image
                 alt="Close up of water drops on leaves"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
@@ -88,8 +88,8 @@ export function VoicesOfImpact() {
               </p>
             </div>
           </article>
-          <article className="flex gap-6 group cursor-pointer bg-surface hover:bg-surface-container-low p-4 rounded-xl transition-colors duration-300">
-            <div className="w-1/3 h-32 rounded-lg overflow-hidden shrink-0 relative">
+          <article className="flex gap-6 group cursor-pointer bg-surface hover:bg-surface-container-low p-4 rounded-lg transition-colors duration-300">
+            <div className="w-1/3 h-32 rounded-md overflow-hidden shrink-0 relative">
               <Image
                 alt="Solar panels at sunset"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"

@@ -40,7 +40,7 @@ export default function Navbar() {
         {/* Brand */}
         <Link
           href="/"
-          className="flex items-center gap-3 z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
+          className="flex items-center gap-3 z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md"
         >
           <Image
             src="/assets/images/yad_logo.png"
@@ -77,7 +77,7 @@ export default function Navbar() {
                 {/* Sub-menu with invisible bridge to prevent accidental closing */}
                 {link.subLinks && (
                   <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    <div className="w-56 bg-surface rounded-xl shadow-lg border border-surface-variant/50 overflow-hidden flex flex-col py-2">
+                    <div className="w-56 bg-surface rounded-lg shadow-lg border border-surface-variant/50 overflow-hidden flex flex-col py-2">
                       {link.subLinks.map((subLink) => {
                         const isSubActive = pathname === subLink.href;
                         return (
@@ -119,7 +119,7 @@ export default function Navbar() {
               </button>
 
               <div className="absolute right-0 top-full pt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <div className="bg-surface rounded-xl shadow-xl border border-surface-variant/50 flex flex-col overflow-hidden">
+                <div className="bg-surface rounded-lg shadow-xl border border-surface-variant/50 flex flex-col overflow-hidden">
                   <div className="px-4 py-3 bg-surface-container/30 border-b border-surface-variant/50">
                     <p className="text-sm font-semibold text-on-surface truncate">{user.email}</p>
                     <p className="text-xs text-on-surface-variant capitalize mt-0.5">{role} Access</p>
@@ -159,7 +159,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="lg:hidden text-on-surface p-2 -mr-2 flex items-center justify-center rounded-lg hover:bg-surface-container transition-colors z-50 focus:outline-none focus:ring-2 focus:ring-primary"
+          className="lg:hidden text-on-surface p-2 -mr-2 flex items-center justify-center rounded-md hover:bg-surface-container transition-colors z-50 focus:outline-none focus:ring-2 focus:ring-primary"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-expanded={isMenuOpen}
           aria-label="Toggle navigation menu"
@@ -182,7 +182,7 @@ export default function Navbar() {
                 <div key={link.href} className="flex flex-col">
                   <Link
                     href={link.href}
-                    className={`py-3 px-4 rounded-xl font-medium text-base transition-colors flex justify-between items-center ${isActive ? "bg-primary/10 text-primary" : "text-on-surface hover:bg-surface-container"
+                    className={`py-3 px-4 rounded-lg font-medium text-base transition-colors flex justify-between items-center ${isActive ? "bg-primary/10 text-primary" : "text-on-surface hover:bg-surface-container"
                       }`}
                   >
                     {link.label}
@@ -195,7 +195,7 @@ export default function Navbar() {
                           <Link
                             key={sub.href}
                             href={sub.href}
-                            className={`py-2 px-4 rounded-lg text-sm text-center transition-colors ${isSubActive
+                            className={`py-2 px-4 rounded-md text-sm text-center transition-colors ${isSubActive
                               ? "text-primary font-semibold bg-primary/5"
                               : "text-on-surface-variant hover:text-primary hover:bg-surface-container/50"
                               }`}
@@ -216,19 +216,19 @@ export default function Navbar() {
             {isLoading ? (
               <div className="w-full h-12 bg-surface-variant/50 animate-pulse rounded-full" />
             ) : user ? (
-              <div className="bg-surface-container/30 rounded-xl p-4 mb-2">
+              <div className="bg-surface-container/30 rounded-lg p-4 mb-2">
                 <p className="text-sm font-semibold text-on-surface mb-3 truncate">Hi, {user.email}</p>
                 <div className="grid grid-cols-2 gap-2">
                   <Link
                     href={role === "admin" ? "/admin/dashboard" : "/portal/dashboard"}
-                    className="flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-lg text-sm font-medium text-on-surface hover:bg-surface-container transition-colors"
+                    className="flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-md text-sm font-medium text-on-surface hover:bg-surface-container transition-colors"
                   >
                     <span className="material-symbols-outlined text-[18px]">dashboard</span> Portal
                   </Link>
                   <form action={logout} className="w-full">
                     <button
                       type="submit"
-                      className="w-full flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-lg text-sm font-medium text-error hover:bg-error/10 transition-colors"
+                      className="w-full flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-md text-sm font-medium text-error hover:bg-error/10 transition-colors"
                     >
                       <span className="material-symbols-outlined text-[18px]">logout</span> Sign Out
                     </button>

@@ -61,7 +61,7 @@ export function EventFormModal({ isOpen, onClose, mode, initialData }: EventForm
         
         <form action={handleSubmit} className="p-6 flex flex-col gap-5 overflow-y-auto">
           {error && (
-            <div className="bg-error-container/20 text-error p-3 rounded-xl text-sm font-medium border border-error-container flex items-center gap-2">
+            <div className="bg-error-container/20 text-error p-3 rounded-lg text-sm font-medium border border-error-container flex items-center gap-2">
               <span className="material-symbols-outlined text-[18px]">error</span>
               {error}
             </div>
@@ -75,7 +75,7 @@ export function EventFormModal({ isOpen, onClose, mode, initialData }: EventForm
                 type="text" 
                 required
                 defaultValue={initialData?.name || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                 placeholder="Event name"
               />
             </div>
@@ -86,7 +86,7 @@ export function EventFormModal({ isOpen, onClose, mode, initialData }: EventForm
                 name="description" 
                 rows={3}
                 defaultValue={initialData?.description || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-y"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-y"
                 placeholder="Detailed description of the event"
               ></textarea>
             </div>
@@ -97,7 +97,7 @@ export function EventFormModal({ isOpen, onClose, mode, initialData }: EventForm
                 name="venue" 
                 type="text" 
                 defaultValue={initialData?.venue || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                 placeholder="Event location"
               />
             </div>
@@ -108,7 +108,7 @@ export function EventFormModal({ isOpen, onClose, mode, initialData }: EventForm
                 name="status" 
                 required 
                 defaultValue={initialData?.status || 'Upcoming'}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none cursor-pointer"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none cursor-pointer"
               >
                 <option value="Upcoming">Upcoming</option>
                 <option value="Ongoing">Ongoing</option>
@@ -124,7 +124,7 @@ export function EventFormModal({ isOpen, onClose, mode, initialData }: EventForm
                 type="number" 
                 min="1"
                 defaultValue={initialData?.capacity || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
                 placeholder="Number of attendees"
               />
             </div>

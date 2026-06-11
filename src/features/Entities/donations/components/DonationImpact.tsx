@@ -8,7 +8,7 @@ export function DonationImpact() {
           Your Impact
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <div className="bg-surface-container-lowest p-8 rounded-xl ambient-shadow hover:-translate-y-2 transition-transform duration-300">
+          <div className="bg-surface-container-lowest p-8 rounded-lg ambient-shadow hover:-translate-y-2 transition-transform duration-300">
             <div className="text-secondary font-headline-lg text-headline-lg mb-2">
               $25
             </div>
@@ -16,7 +16,7 @@ export function DonationImpact() {
               Provides school supplies for one student for a semester.
             </p>
           </div>
-          <div className="bg-surface-container-lowest p-8 rounded-xl ambient-shadow hover:-translate-y-2 transition-transform duration-300 relative border-2 border-secondary/20">
+          <div className="bg-surface-container-lowest p-8 rounded-lg ambient-shadow hover:-translate-y-2 transition-transform duration-300 relative border-2 border-secondary/20">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-secondary text-on-secondary px-4 py-1 rounded-full text-xs font-label-bold">
               Most Common
             </div>
@@ -27,7 +27,7 @@ export function DonationImpact() {
               Funds 1 month of safe housing and utilities for a student.
             </p>
           </div>
-          <div className="bg-surface-container-lowest p-8 rounded-xl ambient-shadow hover:-translate-y-2 transition-transform duration-300">
+          <div className="bg-surface-container-lowest p-8 rounded-lg ambient-shadow hover:-translate-y-2 transition-transform duration-300">
             <div className="text-secondary font-headline-lg text-headline-lg mb-2">
               $100
             </div>

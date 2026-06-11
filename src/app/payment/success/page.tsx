@@ -65,7 +65,7 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary-fixed/20 blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-tertiary-fixed/20 blur-[120px] pointer-events-none" />
 
-      <div className="max-w-[600px] w-full bg-surface-container-lowest/80 backdrop-blur-md rounded-xl p-8 md:p-12 shadow-[0_8px_32px_rgba(65,104,55,0.05)] border border-surface-container/50 text-center relative z-10">
+      <div className="max-w-[600px] w-full bg-surface-container-lowest/80 backdrop-blur-md rounded-lg p-8 md:p-12 shadow-[0_8px_32px_rgba(65,104,55,0.05)] border border-surface-container/50 text-center relative z-10">
         
         {/* Icon */}
         <div className="mb-8 flex justify-center animate-pop-in">
@@ -101,7 +101,7 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
                   We have received your local payment details for a donation of{" "}
                   <strong className="text-secondary">${amount.toFixed(2)}</strong> from <strong className="text-on-surface">{donorOrGuestName}</strong>.
                   <br />
-                  <span className="text-sm block mt-4 p-3 bg-surface-container rounded-lg border border-surface-variant/30 text-on-surface-variant">
+                  <span className="text-sm block mt-4 p-3 bg-surface-container rounded-md border border-surface-variant/30 text-on-surface-variant">
                     Transaction Ref: <strong className="font-mono text-primary">{refId}</strong>. Our finance team will verify the transfer shortly.
                   </span>
                 </>
@@ -131,7 +131,7 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
                   We have received your bank transfer reference details for a booking amount of{" "}
                   <strong className="text-secondary">${amount.toFixed(2)}</strong> under the name <strong className="text-on-surface">{donorOrGuestName}</strong>.
                   <br />
-                  <span className="text-sm block mt-4 p-3 bg-surface-container rounded-lg border border-surface-variant/30 text-on-surface-variant">
+                  <span className="text-sm block mt-4 p-3 bg-surface-container rounded-md border border-surface-variant/30 text-on-surface-variant">
                     Reference ID: <strong className="font-mono text-primary">{refId}</strong>. Your booking status will be updated to "Confirmed" once our team approves the transfer.
                   </span>
                 </>

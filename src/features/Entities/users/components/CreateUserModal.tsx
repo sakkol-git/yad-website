@@ -40,7 +40,7 @@ export function CreateUserModal({ isOpen, onClose }: { isOpen: boolean; onClose:
         
         <form action={handleSubmit} className="p-6 flex flex-col gap-5">
           {error && (
-            <div className="bg-error-container/20 text-error p-3 rounded-xl text-sm font-medium border border-error-container flex items-center gap-2">
+            <div className="bg-error-container/20 text-error p-3 rounded-lg text-sm font-medium border border-error-container flex items-center gap-2">
               <span className="material-symbols-outlined text-[18px]">error</span>
               {error}
             </div>
@@ -52,7 +52,7 @@ export function CreateUserModal({ isOpen, onClose }: { isOpen: boolean; onClose:
               name="email" 
               type="email" 
               required 
-              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
               placeholder="user@example.com"
             />
           </div>
@@ -64,7 +64,7 @@ export function CreateUserModal({ isOpen, onClose }: { isOpen: boolean; onClose:
               type="password" 
               required 
               minLength={6}
-              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
               placeholder="Minimum 6 characters"
             />
           </div>
@@ -75,7 +75,7 @@ export function CreateUserModal({ isOpen, onClose }: { isOpen: boolean; onClose:
               name="role" 
               required 
               defaultValue="user"
-              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none cursor-pointer"
+              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none cursor-pointer"
             >
               <option value="admin">Admin</option>
               <option value="manager">Manager</option>
