@@ -1,16 +1,20 @@
 import { createClient } from '@/shared/lib/supabase/server';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/shared/components/ui/Button';
 import { Metadata } from 'next';
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const resolvedParams = await params;
   const supabase = await createClient();
   const { data: donor } = await supabase
     .from('donors')
     .select('name, description')
-    .eq('id', params.id)
+    .eq('id', resolvedParams.id)
     .eq('is_public', true)
     .eq('status', 'Active')
     .single();
@@ -27,13 +31,14 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   };
 }
 
-export default async function DonorDetailPage({ params }: { params: { id: string } }) {
+export default async function DonorDetailPage({ params }: PageProps) {
+  const resolvedParams = await params;
   const supabase = await createClient();
   
   const { data: donor, error } = await supabase
     .from('donors')
     .select('*')
-    .eq('id', params.id)
+    .eq('id', resolvedParams.id)
     .eq('is_public', true)
     .eq('status', 'Active')
     .single();
@@ -63,12 +68,10 @@ export default async function DonorDetailPage({ params }: { params: { id: string
             <div className="flex-shrink-0 mx-auto md:mx-0">
               <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden relative shadow-lg bg-surface-variant/30 flex items-center justify-center border-4 border-surface">
                 {typedDonor.avatar_url ? (
-                  <Image 
+                  <img 
                     src={typedDonor.avatar_url} 
                     alt={`Portrait of ${typedDonor.name}`} 
-                    fill 
-                    className="object-cover"
-                    sizes="(max-width: 768px) 192px, 256px"
+                    className="absolute inset-0 w-full h-full object-cover text-transparent"
                   />
                 ) : (
                   <span className="material-symbols-outlined text-[80px] text-on-surface-variant/50">person</span>

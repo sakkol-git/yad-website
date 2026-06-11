@@ -1,7 +1,6 @@
 import { createClient } from '@/shared/lib/supabase/server';
 import { Button } from '@/shared/components/ui/Button';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export const metadata = {
   title: 'Our Donors - YAD Cambodia',
@@ -12,7 +11,7 @@ export const revalidate = 3600; // Revalidate every hour
 
 export default async function DonorsShowcasePage() {
   const supabase = await createClient();
-  
+
   // Fetch active, public donors
   const { data: donors, error } = await supabase
     .from('donors')
@@ -60,8 +59,8 @@ export default async function DonorsShowcasePage() {
         {validDonors.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {validDonors.map((donor, index) => (
-              <div 
-                key={donor.id} 
+              <div
+                key={donor.id}
                 className="w-full flex justify-center animate-fade-in-up"
                 style={{ animationDelay: `${(index % 6) * 100}ms` }}
               >
@@ -71,12 +70,10 @@ export default async function DonorsShowcasePage() {
                       <span className="material-symbols-outlined text-[64px] text-on-surface-variant/50">volunteer_activism</span>
                     </div>
                     {donor.avatar_url && (
-                      <Image
+                      <img
                         alt={`Portrait of ${donor.name}`}
                         src={donor.avatar_url}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 text-transparent"
                       />
                     )}
                     {/* Gradient Overlay */}
