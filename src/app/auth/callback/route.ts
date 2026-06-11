@@ -6,15 +6,22 @@ export async function GET(request: Request) {
   const code = searchParams.get('code');
   const next = searchParams.get('next') ?? '/admin/dashboard';
 
-  if (code) {
-    const supabase = await createClient();
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
-    
-    if (!error) {
-      return NextResponse.redirect(`${origin}${next}`);
-    }
+  if (!code) {
+    return NextResponse.redirect(`${origin}/auth/login?error=No+auth+code+provided`);
   }
 
-  // return the user to an error page with instructions
-  return NextResponse.redirect(`${origin}/auth/login?error=Invalid+auth+code`);
+  try {
+    const supabase = await createClient();
+    const { error } = await supabase.auth.exchangeCodeForSession(code);
+
+    if (error) {
+      console.error('Supabase Auth Error during code exchange:', error);
+      return NextResponse.redirect(`${origin}/auth/login?error=${encodeURIComponent(error.message)}`);
+    }
+
+    return NextResponse.redirect(`${origin}${next}`);
+  } catch (err: any) {
+    console.error('Unhandled Server Error in callback route:', err);
+    return NextResponse.redirect(`${origin}/auth/login?error=${encodeURIComponent(err.message || 'Server Error')}`);
+  }
 }
