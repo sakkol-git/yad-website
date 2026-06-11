@@ -10,13 +10,18 @@ export async function login(formData: FormData) {
   const password = formData.get('password') as string;
 
   const supabase = await createClient();
+  let targetUrl: string | undefined;
 
   try {
     const { role } = await authService.login(supabase, email, password);
     revalidatePath('/', 'layout');
-    redirect(role === 'admin' ? '/admin/dashboard' : '/portal/dashboard');
+    targetUrl = role === 'admin' ? '/admin/dashboard' : '/portal/dashboard';
   } catch (error: any) {
     return redirect(`/auth/login?error=${encodeURIComponent(error.message)}`);
+  }
+
+  if (targetUrl) {
+    redirect(targetUrl);
   }
 }
 
@@ -27,13 +32,18 @@ export async function register(formData: FormData) {
   const password = formData.get('password') as string;
 
   const supabase = await createClient();
+  let success = false;
 
   try {
     await authService.register(supabase, email, password, firstName, lastName);
     revalidatePath('/', 'layout');
-    redirect('/portal/dashboard');
+    success = true;
   } catch (error: any) {
     return redirect(`/auth/register?error=${encodeURIComponent(error.message)}`);
+  }
+
+  if (success) {
+    redirect('/portal/dashboard');
   }
 }
 
@@ -44,7 +54,7 @@ export async function logout() {
   } catch (error) {
     console.error('Logout error:', error);
   }
-  
+
   revalidatePath('/', 'layout');
   redirect('/');
 }
@@ -53,13 +63,19 @@ export async function loginWithGoogle() {
   const supabase = await createClient();
   const origin = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const redirectTo = `${origin}/auth/callback?next=/portal/dashboard`;
-  
+
+  let targetUrl: string | undefined;
+
   try {
     const data = await authService.signInWithGoogle(supabase, redirectTo);
     if (data.url) {
-      redirect(data.url);
+      targetUrl = data.url;
     }
   } catch (error: any) {
     return redirect(`/auth/login?error=${encodeURIComponent(error.message)}`);
+  }
+
+  if (targetUrl) {
+    redirect(targetUrl);
   }
 }
