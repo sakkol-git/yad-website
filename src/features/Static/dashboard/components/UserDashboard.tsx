@@ -16,25 +16,25 @@ export function UserDashboard({
   greeting
 }: UserDashboardProps) {
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 md:space-y-8">
       {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-secondary/10 to-primary/10 rounded-xl p-8 border border-outline-variant/30 relative overflow-hidden">
+      <div className="bg-gradient-to-r from-secondary/10 to-primary/10 rounded-xl p-6 md:p-8 border border-outline-variant/30 relative overflow-hidden">
         <div className="relative z-10">
-          <h1 className="text-3xl font-bold text-on-surface mb-2">
+          <h1 className="text-2xl md:text-3xl font-bold text-on-surface mb-2 md:mb-3 leading-tight">
             {greeting}, {user.user_metadata?.first_name || 'Friend'}! 👋
           </h1>
-          <p className="text-on-surface-variant max-w-2xl">
+          <p className="text-on-surface-variant max-w-2xl text-sm md:text-base leading-relaxed">
             Welcome to your personal YAD Cambodia portal. Here you can manage your homestay bookings, track your donation history, and find new opportunities to volunteer with our community.
           </p>
         </div>
       </div>
 
       {/* Quick Actions & Status Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
         {/* Bookings Card */}
-        <div className="bg-surface-container-lowest rounded-lg p-6 border border-outline-variant/30 shadow-sm flex flex-col">
+        <div className="bg-surface-container-lowest rounded-lg p-5 md:p-6 border border-outline-variant/30 shadow-sm flex flex-col">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-primary/10 text-primary rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-primary/10 text-primary rounded-lg flex items-center justify-center shrink-0">
               <span className="material-symbols-outlined">bed</span>
             </div>
             <h2 className="text-lg font-bold text-on-surface">Homestays</h2>
@@ -52,16 +52,16 @@ export function UserDashboard({
             )}
           </div>
           
-          <Link href="/portal/bookings" className="mt-4 flex items-center justify-between text-sm font-bold text-primary hover:bg-primary/5 p-2 rounded-md transition-colors">
+          <Link href="/portal/bookings" className="mt-4 flex items-center justify-between text-sm font-bold text-primary hover:bg-primary/5 p-2 md:p-3 rounded-md transition-colors min-h-[44px]">
             Manage Bookings
             <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
           </Link>
         </div>
 
         {/* Donations Card */}
-        <div className="bg-surface-container-lowest rounded-lg p-6 border border-outline-variant/30 shadow-sm flex flex-col">
+        <div className="bg-surface-container-lowest rounded-lg p-5 md:p-6 border border-outline-variant/30 shadow-sm flex flex-col">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-tertiary/10 text-tertiary rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-tertiary/10 text-tertiary rounded-lg flex items-center justify-center shrink-0">
               <span className="material-symbols-outlined">volunteer_activism</span>
             </div>
             <h2 className="text-lg font-bold text-on-surface">Donations</h2>
@@ -75,20 +75,20 @@ export function UserDashboard({
                 <p className="text-sm text-on-surface-variant mt-1">Status: {recentDonation.status}</p>
               </div>
             ) : (
-              <p className="text-sm text-on-surface-variant">You haven't made any donations yet. Your support helps us empower the youth of Cambodia.</p>
+              <p className="text-sm text-on-surface-variant leading-relaxed">You haven't made any donations yet. Your support helps us empower the youth of Cambodia.</p>
             )}
           </div>
           
-          <Link href="/portal/donations" className="mt-4 flex items-center justify-between text-sm font-bold text-tertiary hover:bg-tertiary/5 p-2 rounded-md transition-colors">
+          <Link href="/portal/donations" className="mt-4 flex items-center justify-between text-sm font-bold text-tertiary hover:bg-tertiary/5 p-2 md:p-3 rounded-md transition-colors min-h-[44px]">
             View History
             <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
           </Link>
         </div>
 
         {/* Volunteer Card */}
-        <div className="bg-surface-container-lowest rounded-lg p-6 border border-outline-variant/30 shadow-sm flex flex-col">
+        <div className="bg-surface-container-lowest rounded-lg p-5 md:p-6 border border-outline-variant/30 shadow-sm flex flex-col">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-secondary/10 text-secondary rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-secondary/10 text-secondary rounded-lg flex items-center justify-center shrink-0">
               <span className="material-symbols-outlined">group</span>
             </div>
             <h2 className="text-lg font-bold text-on-surface">Volunteer</h2>
@@ -102,11 +102,11 @@ export function UserDashboard({
                 <p className="text-sm text-on-surface-variant mt-1">Status: {recentVolunteer.status}</p>
               </div>
             ) : (
-              <p className="text-sm text-on-surface-variant">Join our volunteer network and make a direct impact in the community.</p>
+              <p className="text-sm text-on-surface-variant leading-relaxed">Join our volunteer network and make a direct impact in the community.</p>
             )}
           </div>
           
-          <Link href="/portal/volunteer" className="mt-4 flex items-center justify-between text-sm font-bold text-secondary hover:bg-secondary/5 p-2 rounded-md transition-colors">
+          <Link href="/portal/volunteer" className="mt-4 flex items-center justify-between text-sm font-bold text-secondary hover:bg-secondary/5 p-2 md:p-3 rounded-md transition-colors min-h-[44px]">
             Find Opportunities
             <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
           </Link>
