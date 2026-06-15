@@ -3,6 +3,10 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "@/shared/components/ui/Button";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { ImageRevealMask } from "@/shared/components/animations/ImageRevealMask";
+import { ParallaxLayer } from "@/shared/components/animations/ParallaxLayer";
 
 const CAROUSEL_IMAGES = [
   {
@@ -69,32 +73,34 @@ export function HomeHero() {
       <div className="relative z-10 max-w-container-max mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
         {/* Left Content */}
         <div className="flex flex-col justify-center items-start pt-10 lg:pt-0">
-          <h1 className="font-display-lg text-[4rem] lg:text-[5rem] text-primary mb-2 leading-[1.1] font-bold tracking-tight">
-            Empower<br />
-            <span className="text-secondary">Tomorrow!</span>
-          </h1>
-          <h2 className="text-2xl md:text-3xl font-display text-primary/80 mb-6 font-medium">
-            Shape Cambodia&apos;s Future
-          </h2>
-          <p className="font-body-lg text-lg text-on-surface-variant max-w-lg mb-10 leading-relaxed">
-            Each small action you take today sets off a wave of positive
-            change for the future of our communities. We are building a
-            nurturing ecosystem for young changemakers to thrive in
-            sustainable development.
-          </p>
-          <div className="flex flex-wrap items-center gap-6">
-            <Button variant="primary" size="lg" className=" px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all">
-              Explore More
-            </Button>
-            <button className="flex items-center gap-3 group text-on-surface font-medium hover:text-primary transition-colors">
-              <div className="w-14 h-14 rounded-full bg-surface shadow-md flex items-center justify-center group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-primary text-2xl ml-1">
-                  play_arrow
-                </span>
-              </div>
-              Watch Demo
-            </button>
-          </div>
+          <TextReveal as="h1" delay={0.2} text="Empower Tomorrow!" className="font-display-lg text-[4rem] lg:text-[5rem] text-primary mb-2 leading-[1.1] font-bold tracking-tight" />
+
+          <RevealOnScroll delay={0.5} y={24}>
+            <h2 className="text-2xl md:text-3xl font-display text-primary/80 mb-6 font-medium">
+              Shape Cambodia&apos;s Future
+            </h2>
+            <p className="font-body-lg text-lg text-on-surface-variant max-w-lg mb-10 leading-relaxed">
+              Each small action you take today sets off a wave of positive
+              change for the future of our communities. We are building a
+              nurturing ecosystem for young changemakers to thrive in
+              sustainable development.
+            </p>
+          </RevealOnScroll>
+          <RevealOnScroll delay={0.7} y={16}>
+            <div className="flex flex-wrap items-center gap-6">
+              <Button variant="primary" size="lg" className=" px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+                Explore More
+              </Button>
+              <button className="flex items-center gap-3 group text-on-surface font-medium hover:text-primary transition-colors">
+                <div className="w-14 h-14 rounded-full bg-surface shadow-md flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <span className="material-symbols-outlined text-primary text-2xl ml-1">
+                    play_arrow
+                  </span>
+                </div>
+                Watch Demo
+              </button>
+            </div>
+          </RevealOnScroll>
         </div>
 
         {/* Right Content - Image Card */}
@@ -112,34 +118,36 @@ export function HomeHero() {
             </svg>
           </div>
 
-          <div className="relative z-10 w-full lg:w-[115%] max-w-[750px] aspect-square lg:aspect-[4/3] rounded-xl overflow-hidden shadow-2xl border-4 border-surface group">
-            {CAROUSEL_IMAGES.map((image, index) => (
-              <Image
-                key={image.src}
-                alt={image.alt}
-                src={image.src}
-                fill
-                className={`object-cover transition-opacity duration-1000 ease-in-out group-hover:scale-105 ${index === activeIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-                  }`}
-                sizes="(max-width: 768px) 100vw, 60vw"
-                priority={index === 0}
-                unoptimized={image.src.startsWith('http')}
-              />
-            ))}
-
-            {/* Carousel Indicators */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-              {CAROUSEL_IMAGES.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveIndex(index)}
-                  className={`h-2 rounded-full transition-all duration-300 ${index === activeIndex ? "w-8 bg-primary" : "w-2 bg-white/50 hover:bg-white/90"
+          <ParallaxLayer speed={0.2} className="relative z-10 w-full lg:w-[115%] max-w-[750px] aspect-square lg:aspect-[4/3] rounded-xl overflow-hidden shadow-2xl border-4 border-surface group">
+            <ImageRevealMask className="w-full h-full">
+              {CAROUSEL_IMAGES.map((image, index) => (
+                <Image
+                  key={image.src}
+                  alt={image.alt}
+                  src={image.src}
+                  fill
+                  className={`object-cover transition-opacity duration-1000 ease-in-out group-hover:scale-105 ${index === activeIndex ? "opacity-100 z-10" : "opacity-0 z-0"
                     }`}
-                  aria-label={`Go to slide ${index + 1}`}
+                  sizes="(max-width: 768px) 100vw, 60vw"
+                  priority={index === 0}
+                  unoptimized={image.src.startsWith('http')}
                 />
               ))}
-            </div>
-          </div>
+
+              {/* Carousel Indicators */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                {CAROUSEL_IMAGES.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveIndex(index)}
+                    className={`h-2 rounded-full transition-all duration-300 ${index === activeIndex ? "w-8 bg-primary" : "w-2 bg-white/50 hover:bg-white/90"
+                      }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </ImageRevealMask>
+          </ParallaxLayer>
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { EventItem } from "@/features/Entities/events/types/event.types";
 import { Button } from "@/shared/components/ui/Button";
+import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
 
 function EventCard({
   event,
@@ -146,10 +147,10 @@ function EventCard({
 
 export function EventGrid({ events }: { events: EventItem[] }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-section-gap">
+    <StaggerGroup y={28} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mb-section-gap">
       {events.map((event, index) => (
         <EventCard key={event.id} event={event} featured={index === 0} />
       ))}
-    </div>
+    </StaggerGroup>
   );
 }

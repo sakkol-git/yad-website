@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FOOTER_LINKS } from "@/shared/constants/navigation";
 import { COPYRIGHT_TEXT, SITE_TAGLINE, REGISTERED_TEXT } from "@/shared/constants/site";
 import { Facebook, Send, Mail, Phone, MapPin } from "lucide-react";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 
 interface FooterProps {
   variant?: "full" | "minimal" | "rich";
@@ -12,8 +13,9 @@ export default function Footer({ variant = "full" }: FooterProps) {
   if (variant === "minimal") {
     return (
       <footer className="w-full py-8 text-center bg-surface-container-lowest border-t border-surface-variant text-on-surface-variant font-body-md text-body-md text-sm">
-        <p>{COPYRIGHT_TEXT}</p>
-        <div className="flex justify-center gap-4 mt-2">
+        <RevealOnScroll y={30}>
+          <p>{COPYRIGHT_TEXT}</p>
+          <div className="flex justify-center gap-4 mt-2">
           <Link href="#" className="hover:text-primary transition-colors">
             Privacy
           </Link>
@@ -24,12 +26,14 @@ export default function Footer({ variant = "full" }: FooterProps) {
             Contact
           </Link>
         </div>
+        </RevealOnScroll>
       </footer>
     );
   }
 
   return (
     <footer className="bg-surface-container-highest dark:bg-primary/5 rounded-t-md mt-auto pt-20 pb-8 border-t-8 border-primary relative overflow-hidden">
+      <RevealOnScroll y={30}>
       {/* Decorative subtle background element */}
       <div className="absolute top-0 right-0 w-[150vw] max-w-[500px] aspect-square bg-primary/5 rounded-full blur-[60px] md:blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
 
@@ -158,6 +162,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
         </div>
 
       </div>
+      </RevealOnScroll>
     </footer>
   );
 }

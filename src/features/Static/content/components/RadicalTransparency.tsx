@@ -1,20 +1,21 @@
 import Link from "next/link";
 import { Card, CardContent } from "@/shared/components/ui/Card";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
 
 export function RadicalTransparency() {
   return (
     <section className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto bg-surface-container-highest rounded-lg p-8 md:p-16 shadow-ambient">
-      <div className="text-center mb-12">
-        <h2 className="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">
-          Radical Transparency
-        </h2>
+      <RevealOnScroll className="text-center mb-12">
+        <TextReveal as="h2" text="Radical Transparency" className="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4" />
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
           We believe in open books and clear impact. Dive into our annual
           reports and financial breakdowns to see exactly how contributions
           are utilized.
         </p>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      </RevealOnScroll>
+      <StaggerGroup y={28} className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
           { icon: "description", title: "2023 Annual Report", desc: "Comprehensive overview of our projects, financials, and strategic goals.", action: "Download PDF", actionIcon: "download", color: "bg-primary-container text-on-primary-container" },
           { icon: "pie_chart", title: "Q4 Financial Summary", desc: "Detailed breakdown of income streams and program expenditures.", action: "View Online", actionIcon: "visibility", color: "bg-tertiary-container text-on-tertiary-container" },
@@ -48,7 +49,7 @@ export function RadicalTransparency() {
             </Card>
           </Link>
         ))}
-      </div>
+      </StaggerGroup>
     </section>
   );
 }

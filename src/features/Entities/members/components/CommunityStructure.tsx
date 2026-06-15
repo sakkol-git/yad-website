@@ -1,6 +1,8 @@
 import { TeamMemberCard } from './TeamMemberCard';
 import { MembersRepository } from "@/server/repositories/members";
 import { createClient } from "@/shared/lib/supabase/server";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
 import type { TeamMember } from "@/features/Entities/members/types/member.types";
 
 const membersRepo = new MembersRepository();
@@ -39,7 +41,7 @@ export async function CommunityStructure() {
 
   return (
     <section className="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low/30">
-      <div className="max-w-container-max mx-auto text-center mb-20">
+      <RevealOnScroll className="max-w-container-max mx-auto text-center mb-20">
         <h2 className="font-headline-lg text-headline-lg text-primary mb-4">
           Our Community Structure
         </h2>
@@ -47,7 +49,7 @@ export async function CommunityStructure() {
           YAD operates as a collaborative ecosystem, driven by passionate
           individuals committed to mutual growth.
         </p>
-      </div>
+      </RevealOnScroll>
 
       <div className="max-w-5xl mx-auto flex flex-col gap-[120px]">
         {/* Leadership Block (Tier 1 & Tier 2) */}
@@ -70,7 +72,7 @@ export async function CommunityStructure() {
           {/* Tier 2: Co-Founders & Board */}
           {coFounders.length > 0 && (
             <div className="relative">
-              <div className="flex flex-col md:flex-row justify-center items-stretch gap-8 md:gap-12">
+              <StaggerGroup y={28} className="flex flex-col md:flex-row justify-center items-stretch gap-8 md:gap-12">
                 {coFounders.map((member) => (
                   <div key={member.id} className="w-full max-w-[320px] mx-auto md:mx-0">
                     <TeamMemberCard
@@ -79,7 +81,7 @@ export async function CommunityStructure() {
                     />
                   </div>
                 ))}
-              </div>
+              </StaggerGroup>
             </div>
           )}
         </div>
@@ -87,7 +89,7 @@ export async function CommunityStructure() {
         {/* Tier 3: The Residents (Dormitory) */}
         {residents.length > 0 && (
           <div>
-            <div className="text-center mb-12">
+            <RevealOnScroll className="text-center mb-12">
               <h3 className="font-headline-md text-headline-md text-primary mb-2">
                 The Residents
               </h3>
@@ -95,8 +97,8 @@ export async function CommunityStructure() {
                 The heart of YAD. 10 dedicated university students living and
                 learning together.
               </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 items-stretch">
+            </RevealOnScroll>
+            <StaggerGroup y={28} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 items-stretch">
               {residents.map((member) => (
                 <div key={member.id} className="w-full flex justify-center md:justify-start">
                   <div className="w-full">
@@ -107,7 +109,7 @@ export async function CommunityStructure() {
                   </div>
                 </div>
               ))}
-            </div>
+            </StaggerGroup>
           </div>
         )}
 
@@ -120,15 +122,15 @@ export async function CommunityStructure() {
               </span>
               Extended Network
             </div>
-            <div className="text-center mb-12">
+            <RevealOnScroll className="text-center mb-12">
               <h3 className="font-headline-md text-headline-md text-primary mb-2">
                 Alumni Mentors
               </h3>
               <p className="font-body-md text-body-md text-on-surface-variant">
                 Former residents who return to guide the next generation.
               </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 items-stretch opacity-80 hover:opacity-100 transition-opacity duration-300">
+            </RevealOnScroll>
+            <StaggerGroup y={28} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 items-stretch opacity-80 hover:opacity-100 transition-opacity duration-300">
               {alumni.map((member) => (
                 <div key={member.id} className="w-full flex justify-center md:justify-start">
                   <div className="w-full">
@@ -139,7 +141,7 @@ export async function CommunityStructure() {
                   </div>
                 </div>
               ))}
-            </div>
+            </StaggerGroup>
           </div>
         )}
       </div>

@@ -1,6 +1,41 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap, EASE } from "@/shared/lib/animations/gsap-config";
+import { useReducedMotion } from "@/shared/lib/animations/use-reduced-motion";
 import { Card, CardContent } from "@/shared/components/ui/Card";
+import { HorizontalScrollSection } from "@/shared/components/animations/HorizontalScrollSection";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
+
+function QuoteIcon({ colorClass }: { colorClass: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const reduced = useReducedMotion();
+
+  useGSAP(() => {
+    if (!ref.current || reduced) return;
+    gsap.from(ref.current, {
+      scale: 0,
+      opacity: 0,
+      duration: 0.4,
+      ease: EASE.snappy,
+      scrollTrigger: {
+        trigger: ref.current,
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      }
+    });
+  }, { scope: ref, dependencies: [reduced] });
+
+  return (
+    <span ref={ref} className={`material-symbols-outlined absolute top-8 right-8 text-4xl ${colorClass}`}>
+      format_quote
+    </span>
+  );
+}
 
 export function CommunityVoices() {
   return (
@@ -8,22 +43,17 @@ export function CommunityVoices() {
       <div className="absolute top-1/2 left-0 w-[150vw] max-w-[500px] aspect-square bg-tertiary-container/30 rounded-full blur-3xl -z-10 -translate-y-1/2 -translate-x-1/2" />
       <div className="absolute top-0 right-0 w-[180vw] max-w-[600px] aspect-square bg-secondary-container/20 rounded-full blur-3xl -z-10 translate-x-1/3 -translate-y-1/4" />
 
-      <div className="max-w-container-max mx-auto text-center mb-16">
+      <RevealOnScroll className="max-w-container-max mx-auto text-center mb-16">
         <span className="text-tertiary font-label-bold text-label-bold tracking-wider uppercase mb-2 block">
           Community Voices
         </span>
-        <h2 className="font-headline-lg text-headline-lg text-primary max-w-2xl mx-auto">
-          Hear from the Future Leaders
-        </h2>
-      </div>
+        <TextReveal as="h2" text="Hear from the Future Leaders" className="font-headline-lg text-headline-lg text-primary max-w-2xl mx-auto" />
+      </RevealOnScroll>
 
-
-      <div className="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-        <Card className="bg-surface border border-surface-variant relative">
+      <HorizontalScrollSection className="max-w-container-max mx-auto">
+        <Card className="bg-surface border border-surface-variant relative shrink-0 w-[85vw] md:w-[600px]">
           <CardContent className="p-8 pt-8">
-            <span className="material-symbols-outlined absolute top-8 right-8 text-4xl text-tertiary/20">
-              format_quote
-            </span>
+            <QuoteIcon colorClass="text-tertiary/20" />
             <p className="font-body-lg text-body-lg text-on-surface-variant mb-8 relative z-10 italic">
               &quot;The digital literacy program completely changed my trajectory.
               I now have the skills to build websites and help local businesses
@@ -51,11 +81,9 @@ export function CommunityVoices() {
           </CardContent>
         </Card>
 
-        <Card className="bg-surface border border-surface-variant relative md:translate-y-8">
+        <Card className="bg-surface border border-surface-variant relative shrink-0 w-[85vw] md:w-[600px] md:translate-y-8">
           <CardContent className="p-8 pt-8">
-            <span className="material-symbols-outlined absolute top-8 right-8 text-4xl text-secondary/20">
-              format_quote
-            </span>
+            <QuoteIcon colorClass="text-secondary/20" />
             <p className="font-body-lg text-body-lg text-on-surface-variant mb-8 relative z-10 italic">
               &quot;Living in the YAD dormitory provided me the safe space and
               community I needed to focus entirely on my university studies.&quot;
@@ -81,7 +109,7 @@ export function CommunityVoices() {
             </div>
           </CardContent>
         </Card>
-      </div>
+      </HorizontalScrollSection>
 
       <div className="mt-20 text-center">
         <Link

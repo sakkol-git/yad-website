@@ -1,5 +1,8 @@
 import Image from "next/image";
 import { Card, CardHeader, CardTitle, CardContent } from "@/shared/components/ui/Card";
+import { ImageRevealMask } from "@/shared/components/animations/ImageRevealMask";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
 import type { TeamMember } from "@/features/Entities/members/types/member.types";
 
 interface MemberProfileProps {
@@ -83,11 +86,10 @@ export function MemberProfile({ member }: MemberProfileProps) {
         </div>
       </section>
 
-      {/* Hero Grid Section: Photo & Vision/Experience */}
-      <section className="w-full">
+      <RevealOnScroll className="w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-stretch">
           {/* Left Column: Portrait */}
-          <div className="lg:col-span-5 relative w-full aspect-square rounded-lg overflow-hidden shadow-ambient">
+          <ImageRevealMask className="lg:col-span-5 relative w-full aspect-square rounded-lg shadow-ambient">
             <Image
               alt={`${member.name} — ${member.role} at YAD`}
               src={member.image}
@@ -96,7 +98,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
               className="object-cover object-top"
               priority
             />
-          </div>
+          </ImageRevealMask>
 
           {/* Right Column: Vision & Experience block */}
           <div className="lg:col-span-7 flex">
@@ -136,11 +138,11 @@ export function MemberProfile({ member }: MemberProfileProps) {
             )}
           </div>
         </div>
-      </section>
+      </RevealOnScroll>
 
       {/* Biography Section */}
       {profile?.biography && (
-        <section className="w-full">
+        <RevealOnScroll className="w-full">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-1.5 h-8 bg-secondary rounded-full" />
             <h2 className="font-headline-md text-3xl text-primary">
@@ -150,13 +152,13 @@ export function MemberProfile({ member }: MemberProfileProps) {
           <div className="font-body-lg text-body-lg text-on-surface-variant max-w-full whitespace-pre-wrap leading-relaxed">
             {profile.biography}
           </div>
-        </section>
+        </RevealOnScroll>
       )}
 
       {/* Education & Achievements */}
       {((profile?.education && profile.education.length > 0) || (profile?.achievements && profile.achievements.length > 0)) && (
         <section className="w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+          <StaggerGroup y={28} className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
             {profile.education && profile.education.length > 0 && (
               <Card className="bg-surface-container-low border-surface-container-highest shadow-none flex flex-col h-full p-8 md:p-10">
                 <div className="flex items-center gap-3 mb-6">
@@ -190,7 +192,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
                 </ul>
               </Card>
             )}
-          </div>
+          </StaggerGroup>
         </section>
       )}
     </div>

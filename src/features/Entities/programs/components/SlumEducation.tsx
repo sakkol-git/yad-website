@@ -1,20 +1,23 @@
 import Image from "next/image";
 import { Card, CardContent } from "@/shared/components/ui/Card";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
+import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
 
 export function SlumEducation() {
   return (
     <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
       <div className="text-center max-w-2xl mx-auto mb-12">
-        <h2 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">
-          Slum Community Education
-        </h2>
-        <p className="font-body-md text-body-md text-on-surface-variant">
-          Taking education directly to where it&apos;s needed most. Our
-          mobile tutoring programs and pop-up classrooms ensure no child is
-          left behind due to geographical or economic barriers.
-        </p>
+        <TextReveal as="h2" text="Slum Community Education" className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4" />
+        <RevealOnScroll delay={0.2}>
+          <p className="font-body-md text-body-md text-on-surface-variant">
+            Taking education directly to where it&apos;s needed most. Our
+            mobile tutoring programs and pop-up classrooms ensure no child is
+            left behind due to geographical or economic barriers.
+          </p>
+        </RevealOnScroll>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[500px]">
+      <StaggerGroup y={28} className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[500px]">
         {/* Main Image Card */}
         <Card className="md:col-span-7 lg:col-span-8 p-0 border-0 rounded-lg overflow-hidden relative group">
           <Image
@@ -76,7 +79,7 @@ export function SlumEducation() {
             </span>
           </Card>
         </div>
-      </div>
+      </StaggerGroup>
     </section>
   );
 }

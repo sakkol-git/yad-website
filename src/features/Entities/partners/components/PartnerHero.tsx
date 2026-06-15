@@ -1,3 +1,6 @@
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
+
 export function PartnerHero() {
   return (
     <section className="relative pt-32 pb-32 px-margin-mobile md:px-margin-desktop overflow-hidden bg-surface-container-lowest">
@@ -16,14 +19,14 @@ export function PartnerHero() {
             Collaborative Impact
           </span>
         </div>
-        <h1 className="font-display-lg text-display-lg text-primary mb-6 max-w-4xl mx-auto drop-shadow-sm leading-tight">
-          Driving Change Through Strategic Partnerships
-        </h1>
-        <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10">
-          We collaborate with visionary organizations globally and locally to
-          amplify our impact across Cambodia. Together, we are building
-          sustainable futures for young changemakers.
-        </p>
+        <TextReveal as="h1" text="Driving Change Through Strategic Partnerships" className="font-display-lg text-display-lg text-primary mb-6 max-w-4xl mx-auto drop-shadow-sm leading-tight" />
+        <RevealOnScroll delay={0.2}>
+          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10">
+            We collaborate with visionary organizations globally and locally to
+            amplify our impact across Cambodia. Together, we are building
+            sustainable futures for young changemakers.
+          </p>
+        </RevealOnScroll>
       </div>
     </section>
   );

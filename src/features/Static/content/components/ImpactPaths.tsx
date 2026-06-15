@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
 
 export function ImpactPaths() {
   return (
@@ -7,15 +9,15 @@ export function ImpactPaths() {
       id="pathways"
     >
       <div className="max-w-container-max mx-auto">
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <RevealOnScroll y={20} className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-secondary font-label-bold text-label-bold tracking-wider uppercase mb-2 block">
             Take Action
           </span>
           <h2 className="font-headline-lg text-headline-lg md:text-headline-lg text-primary">
             Choose Your Impact Path
           </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        </RevealOnScroll>
+        <StaggerGroup y={28} className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Fund */}
           <div className="bg-surface rounded-lg p-8 ambient-shadow hover-lift flex flex-col group relative overflow-hidden">
             <div className="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center mb-6 text-on-secondary-container transition-transform group-hover:scale-110">
@@ -93,7 +95,7 @@ export function ImpactPaths() {
             </Link>
             <div className="absolute -right-4 -bottom-4 w-32 h-32 bg-primary/5 rounded-full blur-2xl -z-10 group-hover:bg-primary/10 transition-colors" />
           </div>
-        </div>
+        </StaggerGroup>
       </div>
     </section>
   );

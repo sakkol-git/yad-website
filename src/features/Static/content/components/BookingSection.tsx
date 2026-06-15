@@ -1,6 +1,9 @@
 "use client";
 
 import { Button } from "@/shared/components/ui/Button";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
+import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
 
 import Image from "next/image";
 import { useState } from "react";
@@ -17,17 +20,15 @@ export function BookingSection() {
       id="booking-section"
       className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto"
     >
-      <div className="text-center mb-16 max-w-2xl mx-auto">
-        <h2 className="font-headline-md text-headline-md text-primary mb-4">
-          Reserve Your Experience
-        </h2>
+      <RevealOnScroll className="text-center mb-16 max-w-2xl mx-auto">
+        <TextReveal as="h2" text="Reserve Your Experience" className="font-headline-md text-headline-md text-primary mb-4" />
         <p className="text-on-surface-variant font-body-md text-body-md">
           Complete your booking details below. All proceeds support YAD
           educational initiatives in the local community.
         </p>
-      </div>
+      </RevealOnScroll>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+      <StaggerGroup y={28} className="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
         {/* Main Booking Form */}
         <div className="lg:col-span-8">
           <form className="space-y-8">
@@ -261,7 +262,7 @@ export function BookingSection() {
             </div>
           </div>
         </div>
-      </div>
+      </StaggerGroup>
     </section>
   );
 }

@@ -1,6 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap, ScrollTrigger } from "@/shared/lib/animations/gsap-config";
+import { useReducedMotion } from "@/shared/lib/animations/use-reduced-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -13,6 +16,46 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, role, isLoading } = useAuth();
+  
+  const navRef = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
+
+  useGSAP(
+    () => {
+      if (!navRef.current || reduced) return;
+
+      const nav = navRef.current;
+      
+      // Initially remove background classes
+      nav.classList.remove("bg-surface/95", "backdrop-blur-md", "border-b", "border-surface-variant/40", "shadow-sm");
+
+      // Background transition
+      ScrollTrigger.create({
+        start: "top -50px",
+        end: 99999,
+        onEnter: () => {
+          nav.classList.add("bg-surface/95", "backdrop-blur-md", "border-b", "border-surface-variant/40", "shadow-sm");
+        },
+        onLeaveBack: () => {
+          nav.classList.remove("bg-surface/95", "backdrop-blur-md", "border-b", "border-surface-variant/40", "shadow-sm");
+        }
+      });
+
+      // Hide/Show transition
+      ScrollTrigger.create({
+        start: "top -120px",
+        end: 99999,
+        onUpdate: (self) => {
+          if (self.direction === 1) {
+            gsap.to(nav, { yPercent: -100, duration: 0.4, ease: "power2.inOut", overwrite: "auto" });
+          } else {
+            gsap.to(nav, { yPercent: 0, duration: 0.4, ease: "power2.inOut", overwrite: "auto" });
+          }
+        }
+      });
+    },
+    { scope: navRef, dependencies: [reduced] }
+  );
 
   // Automatically close mobile menu when navigating to a new route
   useEffect(() => {
@@ -33,6 +76,7 @@ export default function Navbar() {
 
   return (
     <nav
+      ref={navRef}
       className="fixed top-0 w-full z-50 bg-surface/95 backdrop-blur-md border-b border-surface-variant/40 shadow-sm transition-all duration-300"
       aria-label="Main navigation"
     >

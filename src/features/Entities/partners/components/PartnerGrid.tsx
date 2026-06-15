@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
 import type { PartnerItem } from "@/features/Entities/partners/types/partner.types";
 
 const CATEGORIES = [
@@ -31,7 +33,7 @@ export function PartnerGrid({ partners }: PartnerGridProps) {
     <section className="px-margin-mobile md:px-margin-desktop pb-section-gap relative z-20 -mt-32">
       <div className="max-w-container-max mx-auto">
         <div className="bg-surface/80 backdrop-blur-xl rounded-lg p-8 md:p-12 shadow-ambient border border-white/20">
-          <div className="mb-12 text-center">
+          <RevealOnScroll className="mb-12 text-center">
             <h2 className="font-headline-md text-headline-md text-primary mb-4">
               Global Network, Local Impact
             </h2>
@@ -40,7 +42,7 @@ export function PartnerGrid({ partners }: PartnerGridProps) {
               organizations, and corporate partners committed to youth
               advancement.
             </p>
-          </div>
+          </RevealOnScroll>
 
           {/* Filter Chips */}
           <div className="flex flex-wrap justify-center gap-4 mb-16">
@@ -60,7 +62,7 @@ export function PartnerGrid({ partners }: PartnerGridProps) {
           </div>
 
           {/* Logo Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+          <StaggerGroup y={28} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
             {filteredPartners.map((partner) => (
               <Link
                 key={partner.id}
@@ -87,7 +89,7 @@ export function PartnerGrid({ partners }: PartnerGridProps) {
                 </span>
               </Link>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </div>
     </section>

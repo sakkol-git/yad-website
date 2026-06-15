@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/shared/lib/utils";
+import { ImageRevealMask } from "@/shared/components/animations/ImageRevealMask";
 import type { TeamMemberCardProps } from "@/features/Entities/members/types/member.types";
 
 export function TeamMemberCard({
@@ -17,13 +18,15 @@ export function TeamMemberCard({
       "relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-[5px]",
       extra
     )}>
-      <Image
-        alt={`Portrait of ${name}`}
-        src={image}
-        fill
-        className="object-cover transition-transform duration-500 group-hover:scale-105"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-      />
+      <ImageRevealMask className="w-full h-full">
+        <Image
+          alt={`Portrait of ${name}`}
+          src={image}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </ImageRevealMask>
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
 

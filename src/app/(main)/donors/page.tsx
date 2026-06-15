@@ -1,6 +1,9 @@
 import { createClient } from '@/shared/lib/supabase/server';
 import { Button } from '@/shared/components/ui/Button';
 import Link from 'next/link';
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 export const metadata = {
   title: 'Our Donors - YAD Cambodia',
@@ -33,36 +36,36 @@ export default async function DonorsShowcasePage() {
       <section className="relative overflow-hidden bg-primary/5 pt-24 pb-20 lg:pt-32 lg:pb-28 border-b border-primary/10">
         <div className="absolute inset-0 z-0 opacity-30 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent pointer-events-none"></div>
         <div className="container relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary font-bold text-sm mb-6 animate-fade-in-up">
-            <span className="material-symbols-outlined text-[16px]">volunteer_activism</span>
-            Our Supporters
-          </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-headline-lg font-bold text-on-surface mb-6 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-            Empowering Change, <br className="hidden md:block" />
-            <span className="text-primary">Together.</span>
-          </h1>
-          <p className="text-lg text-on-surface-variant max-w-2xl mx-auto mb-10 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-            We extend our deepest gratitude to the generous individuals, families, and organizations who believe in our mission and make our work in Cambodia possible.
-          </p>
-          <div className="flex justify-center gap-4 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
-            <Link href="/donate">
-              <Button size="lg" className=" shadow-md hover:shadow-lg hover:scale-105 transition-all text-base px-8 h-14">
-                Become a Donor
-              </Button>
-            </Link>
-          </div>
+          <RevealOnScroll>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary font-bold text-sm mb-6">
+              <span className="material-symbols-outlined text-[16px]">volunteer_activism</span>
+              Our Supporters
+            </div>
+          </RevealOnScroll>
+          <TextReveal as="h1" text="Empowering Change, Together." className="text-4xl md:text-5xl lg:text-6xl font-headline-lg font-bold text-on-surface mb-6" />
+          <RevealOnScroll delay={0.2}>
+            <p className="text-lg text-on-surface-variant max-w-2xl mx-auto mb-10">
+              We extend our deepest gratitude to the generous individuals, families, and organizations who believe in our mission and make our work in Cambodia possible.
+            </p>
+            <div className="flex justify-center gap-4">
+              <Link href="/donate">
+                <Button size="lg" className=" shadow-md hover:shadow-lg hover:scale-105 transition-all text-base px-8 h-14">
+                  Become a Donor
+                </Button>
+              </Link>
+            </div>
+          </RevealOnScroll>
         </div>
       </section>
 
       {/* Donors Grid */}
       <section className="container max-w-6xl mx-auto px-6 -mt-8 relative z-20">
         {validDonors.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StaggerGroup y={28} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {validDonors.map((donor, index) => (
               <div
                 key={donor.id}
-                className="w-full flex justify-center animate-fade-in-up"
-                style={{ animationDelay: `${(index % 6) * 100}ms` }}
+                className="w-full flex justify-center"
               >
                 <Link href={`/donors/${donor.id}`} className="group cursor-pointer block w-full max-w-[340px]">
                   <div className="relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-[5px]">
@@ -97,7 +100,7 @@ export default async function DonorsShowcasePage() {
                 </Link>
               </div>
             ))}
-          </div>
+          </StaggerGroup>
         ) : (
           <div className="bg-surface rounded-xl p-12 text-center shadow-sm border border-outline-variant/30">
             <div className="w-24 h-24 rounded-full bg-surface-variant/30 mx-auto flex items-center justify-center mb-6">
@@ -112,9 +115,9 @@ export default async function DonorsShowcasePage() {
       </section>
 
       {/* Trust Section */}
-      <section className="container max-w-4xl mx-auto px-6 mt-24 text-center">
+      <RevealOnScroll className="container max-w-4xl mx-auto px-6 mt-24 text-center">
         <h2 className="text-2xl font-bold text-on-surface mb-8">Transparency & Trust</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <StaggerGroup y={28} className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="flex flex-col items-center">
             <span className="material-symbols-outlined text-[32px] text-primary mb-3">security</span>
             <h4 className="font-bold text-on-surface mb-2">Secure Donations</h4>
@@ -130,8 +133,8 @@ export default async function DonorsShowcasePage() {
             <h4 className="font-bold text-on-surface mb-2">Privacy Respected</h4>
             <p className="text-sm text-on-surface-variant">You have full control over whether your donation is displayed publicly or kept anonymous.</p>
           </div>
-        </div>
-      </section>
+        </StaggerGroup>
+      </RevealOnScroll>
     </main>
   );
 }

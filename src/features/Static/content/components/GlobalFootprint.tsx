@@ -1,19 +1,21 @@
 import { Card, CardContent } from "@/shared/components/ui/Card";
 import { Button } from "@/shared/components/ui/Button";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
+import { AnimatedCounter } from "@/shared/components/animations/AnimatedCounter";
 
 export function GlobalFootprint() {
   return (
     <section className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-section-gap">
-      <div className="mb-16">
-        <h2 className="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">
-          Our Global Footprint
-        </h2>
+      <RevealOnScroll className="mb-16">
+        <TextReveal as="h2" text="Our Global Footprint" className="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4" />
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
           Tracking our collective journey towards a more sustainable and
           equitable future. Data updated quarterly.
         </p>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      </RevealOnScroll>
+      <StaggerGroup stagger={0.08} y={12} className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Big Stat Card */}
         <Card className="col-span-1 md:col-span-2 bg-surface-container-low p-0 shadow-ambient hover:shadow-ambient-hover group border-0">
           <CardContent className="flex flex-col justify-between h-full p-8">
@@ -29,7 +31,7 @@ export function GlobalFootprint() {
             </div>
             <div>
               <div className="font-display-lg text-6xl md:text-display-lg text-primary mb-2">
-                245+
+                <AnimatedCounter value={245} suffix="+" />
               </div>
               <p className="font-body-md text-body-md text-on-surface-variant">
                 Active local sustainability projects led by youth organizers.
@@ -49,7 +51,7 @@ export function GlobalFootprint() {
           </div>
           <div>
             <div className="font-headline-lg text-headline-lg text-on-tertiary-fixed mb-2">
-              1.2M
+              <AnimatedCounter value={1.2} decimals={1} suffix="M" />
             </div>
             <p className="font-body-md text-body-md text-on-tertiary-fixed-variant">
               Liters of water conserved through new irrigation tech.
@@ -69,7 +71,7 @@ export function GlobalFootprint() {
           </div>
           <div>
             <div className="font-headline-lg text-headline-lg text-on-primary-fixed mb-2">
-              850k
+              <AnimatedCounter value={850} suffix="k" />
             </div>
             <p className="font-body-md text-body-md text-on-primary-fixed-variant">
               Trees planted in deforested regions this year.
@@ -116,7 +118,7 @@ export function GlobalFootprint() {
           </div>
           </CardContent>
         </Card>
-      </div>
+      </StaggerGroup>
     </section>
   );
 }

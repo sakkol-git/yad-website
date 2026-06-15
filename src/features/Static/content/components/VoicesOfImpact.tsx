@@ -1,27 +1,28 @@
 import Image from "next/image";
 import { Button } from "@/shared/components/ui/Button";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
+import { HorizontalScrollSection } from "@/shared/components/animations/HorizontalScrollSection";
 
 export function VoicesOfImpact() {
   return (
     <section className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-section-gap">
       <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-        <div className="max-w-xl">
-          <h2 className="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">
-            Voices of Impact
-          </h2>
+        <RevealOnScroll className="max-w-xl">
+          <TextReveal as="h2" text="Voices of Impact" className="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4" />
           <p className="font-body-lg text-body-lg text-on-surface-variant">
             Meet the young changemakers turning ideas into reality. These
             are their stories from the frontlines of development.
           </p>
-        </div>
+        </RevealOnScroll>
         <Button variant="link" className="px-0 gap-2 text-secondary font-label-bold hover:text-primary transition-colors no-underline hover:no-underline">
           Read all stories
           <span className="material-symbols-outlined">arrow_forward</span>
         </Button>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <HorizontalScrollSection className="w-full">
         {/* Featured Story */}
-        <article className="group cursor-pointer">
+        <article className="group cursor-pointer shrink-0 w-[85vw] md:w-[600px]">
           <div className="relative h-80 rounded-lg overflow-hidden mb-6 shadow-ambient">
             <Image
               alt="Young woman working in a community garden"
@@ -64,7 +65,7 @@ export function VoicesOfImpact() {
         </article>
 
         {/* Secondary Stories */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 shrink-0 w-[85vw] md:w-[600px]">
           <article className="flex gap-6 group cursor-pointer bg-surface hover:bg-surface-container-low p-4 rounded-lg transition-colors duration-300">
             <div className="w-1/3 h-32 rounded-md overflow-hidden shrink-0 relative">
               <Image
@@ -112,7 +113,7 @@ export function VoicesOfImpact() {
             </div>
           </article>
         </div>
-      </div>
+      </HorizontalScrollSection>
     </section>
   );
 }

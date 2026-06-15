@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { Button } from "@/shared/components/ui/Button";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 export function HomeCTA() {
   return (
     <section className="py-section-gap px-margin-mobile md:px-margin-desktop mb-20">
-      <div className="max-w-4xl mx-auto bg-primary text-on-primary rounded-[2.5rem] p-12 md:p-20 text-center relative overflow-hidden shadow-ambient">
+      <RevealOnScroll y={36} className="max-w-4xl mx-auto bg-primary text-on-primary rounded-[2.5rem] p-12 md:p-20 text-center relative overflow-hidden shadow-ambient">
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-on-primary-fixed-variant opacity-90 z-0" />
         <div className="absolute -top-24 -right-24 w-64 h-64 bg-secondary-fixed rounded-full mix-blend-overlay blur-3xl z-0 opacity-50" />
         <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-tertiary-fixed rounded-full mix-blend-overlay blur-3xl z-0 opacity-50" />
@@ -13,9 +15,7 @@ export function HomeCTA() {
           <span className="material-symbols-outlined text-6xl mb-6 text-secondary-fixed drop-shadow-md">
             favorite
           </span>
-          <h2 className="font-display-md text-display-md mb-6">
-            Invest in Potential
-          </h2>
+          <TextReveal as="h2" text="Invest in Potential" className="font-display-md text-display-md mb-6" />
           <p className="font-body-lg text-body-lg text-on-primary/90 max-w-2xl mb-10">
             Whether you choose to fund a scholarship, mentor a student, or
             partner with our initiatives, your involvement is the catalyst for
@@ -30,7 +30,7 @@ export function HomeCTA() {
             </Button>
           </div>
         </div>
-      </div>
+      </RevealOnScroll>
     </section>
   );
 }

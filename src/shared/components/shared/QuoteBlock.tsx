@@ -1,4 +1,10 @@
+"use client";
+
+import { useRef } from "react";
 import { cn } from "@/shared/lib/utils";
+import { useGSAP } from "@gsap/react";
+import { gsap, EASE } from "@/shared/lib/animations/gsap-config";
+import { useReducedMotion } from "@/shared/lib/animations/use-reduced-motion";
 import type { ReactNode } from "react";
 
 interface QuoteBlockProps {
@@ -7,6 +13,24 @@ interface QuoteBlockProps {
 }
 
 export function QuoteBlock({ children, className }: QuoteBlockProps) {
+  const quoteRef = useRef<HTMLSpanElement>(null);
+  const reduced = useReducedMotion();
+
+  useGSAP(() => {
+    if (!quoteRef.current || reduced) return;
+    gsap.from(quoteRef.current, {
+      scale: 0,
+      opacity: 0,
+      duration: 0.4,
+      ease: EASE.snappy,
+      scrollTrigger: {
+        trigger: quoteRef.current,
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      }
+    });
+  }, { scope: quoteRef, dependencies: [reduced] });
+
   return (
     <blockquote
       className={cn(
@@ -15,6 +39,7 @@ export function QuoteBlock({ children, className }: QuoteBlockProps) {
       )}
     >
       <span
+        ref={quoteRef}
         className="absolute top-4 left-5 text-secondary/20 font-bold select-none"
         style={{ fontSize: "4rem", lineHeight: 1 }}
         aria-hidden="true"

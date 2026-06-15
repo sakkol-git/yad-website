@@ -1,15 +1,17 @@
 import Image from "next/image";
 import { Card, CardContent } from "@/shared/components/ui/Card";
+import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
+import { ImageRevealMask } from "@/shared/components/animations/ImageRevealMask";
 
 export function ProgramCards() {
   return (
     <section className="relative z-20 -mt-20 pb-section-gap px-margin-mobile md:px-margin-desktop">
 
-      <div className="w-full max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+      <StaggerGroup y={32} scale={0.96} className="w-full max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
         {/* Card 1 */}
         <Card className="bg-slate-200 backdrop-blur-xl border-white/20 hover:scale-[1.02] shadow-ambient">
           <CardContent className="flex flex-col items-center text-center p-8 pt-8">
-            <div className="w-32 h-32 rounded-lg overflow-hidden mb-6 bg-tertiary-fixed-dim relative">
+            <ImageRevealMask className="w-32 h-32 rounded-lg mb-6 bg-tertiary-fixed-dim relative">
               <Image
                 alt="Students learning"
                 className="w-full h-full object-cover"
@@ -17,7 +19,7 @@ export function ProgramCards() {
                 fill
                 sizes="128px"
               />
-            </div>
+            </ImageRevealMask>
             <h3 className="font-headline-md text-headline-md text-tertiary mb-3">
               DYTP
             </h3>
@@ -30,7 +32,7 @@ export function ProgramCards() {
         {/* Card 2 */}
         <Card className="bg-secondary-container/40 backdrop-blur-xl border-white/30 hover:scale-[1.02] shadow-ambient md:-translate-y-8">
           <CardContent className="flex flex-col items-center text-center p-8 pt-8">
-            <div className="w-32 h-32 rounded-lg overflow-hidden mb-6 bg-secondary-fixed relative">
+            <ImageRevealMask className="w-32 h-32 rounded-lg mb-6 bg-secondary-fixed relative">
               <Image
                 alt="Digital Innovation"
                 className="w-full h-full object-cover"
@@ -38,7 +40,7 @@ export function ProgramCards() {
                 fill
                 sizes="128px"
               />
-            </div>
+            </ImageRevealMask>
             <h3 className="font-headline-md text-headline-md text-secondary mb-3">
               Digital Innovation
             </h3>
@@ -51,7 +53,7 @@ export function ProgramCards() {
         {/* Card 3 */}
         <Card className="bg-slate-200 backdrop-blur-xl border-white/20 hover:scale-[1.02] shadow-ambient">
           <CardContent className="flex flex-col items-center text-center p-8 pt-8">
-            <div className="w-32 h-32 rounded-lg overflow-hidden mb-6 bg-surface-variant relative">
+            <ImageRevealMask className="w-32 h-32 rounded-lg mb-6 bg-surface-variant relative">
               <Image
                 alt="Slum Education"
                 className="w-full h-full object-cover"
@@ -59,7 +61,7 @@ export function ProgramCards() {
                 fill
                 sizes="128px"
               />
-            </div>
+            </ImageRevealMask>
             <h3 className="font-headline-md text-headline-md text-primary-container mb-3">
               Slum Education
             </h3>
@@ -68,7 +70,7 @@ export function ProgramCards() {
             </p>
           </CardContent>
         </Card>
-      </div>
+      </StaggerGroup>
     </section>
   );
 }

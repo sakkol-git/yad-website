@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 export function GetInvolvedHero() {
   return (
@@ -8,27 +10,25 @@ export function GetInvolvedHero() {
       <div className="absolute left-0 bottom-0 w-[180vw] max-w-[800px] aspect-square bg-tertiary-fixed/20 rounded-full blur-3xl -z-10 -translate-x-1/4 translate-y-1/4" />
       <div className="max-w-container-max mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div className="max-w-2xl relative z-10">
-          <h1 className="font-display-lg text-display-lg text-primary mb-6 leading-tight">
-            Small Actions,
-            <br />
-            <span className="text-secondary">Big Impact</span>
-          </h1>
-          <p className="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-lg">
-            Join YAD in empowering youth for sustainable development. Whether
-            you want to fund the future, mentor the next generation, or build
-            a partnership, your involvement creates waves of positive change.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <Link
-              className="bg-secondary-container text-on-secondary-container font-label-bold text-label-bold px-8 py-4 rounded-full hover:bg-secondary hover:text-on-secondary transition-colors duration-300 shadow-sm hover:shadow-md inline-flex items-center gap-2"
-              href="#pathways"
-            >
-              Get Involved Today
-              <span className="material-symbols-outlined text-sm">
-                arrow_downward
-              </span>
-            </Link>
-          </div>
+          <TextReveal as="h1" text="Small Actions, Big Impact" className="font-display-lg text-display-lg text-primary mb-6 leading-tight" />
+          <RevealOnScroll delay={0.2}>
+            <p className="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-lg">
+              Join YAD in empowering youth for sustainable development. Whether
+              you want to fund the future, mentor the next generation, or build
+              a partnership, your involvement creates waves of positive change.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                className="bg-secondary-container text-on-secondary-container font-label-bold text-label-bold px-8 py-4 rounded-full hover:bg-secondary hover:text-on-secondary transition-colors duration-300 shadow-sm hover:shadow-md inline-flex items-center gap-2"
+                href="#pathways"
+              >
+                Get Involved Today
+                <span className="material-symbols-outlined text-sm">
+                  arrow_downward
+                </span>
+              </Link>
+            </div>
+          </RevealOnScroll>
         </div>
         <div className="relative w-full aspect-square md:aspect-auto md:h-[600px] rounded-xl overflow-hidden ambient-shadow bg-surface-container-highest">
           <Image
