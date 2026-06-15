@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/shared/components/ui/Button";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 import { TextReveal } from "@/shared/components/animations/TextReveal";
+import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
 
 export function HomeCTA() {
   return (
@@ -11,7 +12,7 @@ export function HomeCTA() {
         <div className="absolute -top-24 -right-24 w-64 h-64 bg-secondary-fixed rounded-full mix-blend-overlay blur-3xl z-0 opacity-50" />
         <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-tertiary-fixed rounded-full mix-blend-overlay blur-3xl z-0 opacity-50" />
 
-        <div className="relative z-10 flex flex-col items-center">
+        <StaggerGroup y={20} className="relative z-10 flex flex-col items-center text-center">
           <span className="material-symbols-outlined text-6xl mb-6 text-secondary-fixed drop-shadow-md">
             favorite
           </span>
@@ -29,7 +30,7 @@ export function HomeCTA() {
               <Link href="/get-involved">Get Involved</Link>
             </Button>
           </div>
-        </div>
+        </StaggerGroup>
       </RevealOnScroll>
     </section>
   );

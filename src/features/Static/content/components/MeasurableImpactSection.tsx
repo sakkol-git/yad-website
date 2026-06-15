@@ -9,7 +9,7 @@ export function MeasurableImpactSection() {
         {/* Impact Feature Box */}
         <RevealOnScroll y={32} className="relative bg-surface-container-lowest p-8 md:p-12 rounded-xl shadow-xl border border-outline/10 mb-16 max-w-4xl mx-auto overflow-hidden group hover:shadow-2xl transition-shadow duration-500">
           <div className="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none group-hover:bg-primary/10 transition-colors duration-500" />
-          <div className="relative z-10 text-center space-y-6">
+          <StaggerGroup y={16} className="relative z-10 text-center space-y-6">
             <h2 className="text-2xl md:text-3xl font-bold text-secondary mb-2">
               Our Measurable Impact on the Community
             </h2>
@@ -19,7 +19,7 @@ export function MeasurableImpactSection() {
             <p className="text-lg text-on-surface-variant leading-relaxed font-medium">
               When you engage with YAD—whether through volunteering, partnering, or supporting our funding—you are doing far more than funding an isolated program. You are directly investing in a sustainable cycle of youth empowerment, long-term economic development, and profound societal transformation across Cambodia.
             </p>
-          </div>
+          </StaggerGroup>
         </RevealOnScroll>
 
         {/* Call to Action Buttons */}

@@ -18,8 +18,8 @@ export function VisionSection() {
         </RevealOnScroll>
 
         {/* Two Column Content */}
-        <StaggerGroup y={24} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20">
-          <div className="flex flex-col space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20">
+          <StaggerGroup y={24} className="flex flex-col space-y-6">
             <h3 className="text-2xl md:text-3xl font-bold text-primary">
               A Vision for Sustainable Cambodian Development
             </h3>
@@ -29,9 +29,9 @@ export function VisionSection() {
             <p className="text-lg text-on-surface-variant leading-relaxed">
               We steadfastly believe that every child—regardless of their socioeconomic background, geography, or current circumstances—deserves equitable access to high-quality education. The educational disparity in marginalized communities often stifles immense potential. Through strategic partnerships with local public schools, international philanthropic donors, and a network of passionate local volunteers, YAD creates a holistic ecosystem of growth that bridges this gap.
             </p>
-          </div>
+          </StaggerGroup>
 
-          <div className="flex flex-col space-y-6">
+          <StaggerGroup y={24} className="flex flex-col space-y-6">
             <h3 className="text-2xl md:text-3xl font-bold text-primary">
               Core Initiatives Transforming Lives
             </h3>
@@ -44,8 +44,8 @@ export function VisionSection() {
             <p className="text-lg text-on-surface-variant leading-relaxed">
               At the grassroots level, our <strong className="font-semibold text-on-surface">Slum Community Education</strong> initiatives bring mobile classrooms and essential educational resources directly to high-risk, underprivileged communities, ensuring no child is left behind.
             </p>
-          </div>
-        </StaggerGroup>
+          </StaggerGroup>
+        </div>
       </div>
     </section>
   );

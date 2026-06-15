@@ -111,7 +111,7 @@ export function CommunityVoices() {
         </Card>
       </HorizontalScrollSection>
 
-      <div className="mt-20 text-center">
+      <RevealOnScroll y={20} className="mt-20 text-center">
         <Link
           className="inline-flex items-center gap-2 text-primary hover:text-secondary font-label-bold transition-colors pb-1 border-b-2 border-primary/20 hover:border-secondary"
           href="/member-profile"
@@ -121,7 +121,7 @@ export function CommunityVoices() {
             arrow_forward
           </span>
         </Link>
-      </div>
+      </RevealOnScroll>
     </section>
   );
 }
