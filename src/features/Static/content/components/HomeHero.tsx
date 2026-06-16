@@ -88,17 +88,29 @@ export function HomeHero() {
           </RevealOnScroll>
           <RevealOnScroll delay={0.7} y={16}>
             <div className="flex flex-wrap items-center gap-6">
-              <Button variant="primary" size="lg" className=" px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+              <Button 
+                variant="primary" 
+                size="lg" 
+                className=" px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                onClick={() => {
+                  window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
+                }}
+              >
                 Explore More
               </Button>
-              <button className="flex items-center gap-3 group text-on-surface font-medium hover:text-primary transition-colors">
+              <a 
+                href="https://youtu.be/NYumeXQbN-Q?si=NpmUinWk4VZFaZmz" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 group text-on-surface font-medium hover:text-primary transition-colors"
+              >
                 <div className="w-14 h-14 rounded-full bg-surface shadow-md flex items-center justify-center group-hover:scale-110 transition-transform">
                   <span className="material-symbols-outlined text-primary text-2xl ml-1">
                     play_arrow
                   </span>
                 </div>
-                Watch Demo
-              </button>
+                Watch Our Story
+              </a>
             </div>
           </RevealOnScroll>
         </div>
