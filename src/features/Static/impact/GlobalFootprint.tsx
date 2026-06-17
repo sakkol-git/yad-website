@@ -4,8 +4,11 @@ import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
 import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { AnimatedCounter } from "@/shared/components/animations/AnimatedCounter";
+import { getImpactStatsAction } from "@/server/actions/impact.actions";
 
-export function GlobalFootprint() {
+export async function GlobalFootprint() {
+  const stats = await getImpactStatsAction();
+  
   return (
     <section className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-section-gap">
       <RevealOnScroll className="mb-16">
@@ -31,7 +34,7 @@ export function GlobalFootprint() {
             </div>
             <div>
               <div className="font-display-lg text-6xl md:text-display-lg text-primary mb-2">
-                <AnimatedCounter value={245} suffix="+" />
+                <AnimatedCounter value={stats.communitiesReached} suffix="+" />
               </div>
               <p className="font-body-md text-body-md text-on-surface-variant">
                 Active local sustainability projects led by youth organizers.
@@ -51,7 +54,7 @@ export function GlobalFootprint() {
           </div>
           <div>
             <div className="font-headline-lg text-headline-lg text-on-tertiary-fixed mb-2">
-              <AnimatedCounter value={10} suffix="+" />
+              <AnimatedCounter value={stats.youthHoused} suffix="+" />
             </div>
             <p className="font-body-md text-body-md text-on-tertiary-fixed-variant">
               Youth housed and supported through our dormitory program.
@@ -71,7 +74,7 @@ export function GlobalFootprint() {
           </div>
           <div>
             <div className="font-headline-lg text-headline-lg text-on-primary-fixed mb-2">
-              <AnimatedCounter value={5} suffix="+" />
+              <AnimatedCounter value={stats.provincesReached} suffix="+" />
             </div>
             <p className="font-body-md text-body-md text-on-primary-fixed-variant">
               Provinces reached with education and training programs.

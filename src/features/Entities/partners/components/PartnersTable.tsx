@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/shared/components/ui/Button';
 import { PartnerFormModal } from './PartnerFormModal';
 import { deletePartner } from '@/server/actions/partner.actions';
@@ -40,8 +41,9 @@ export function PartnersTable({ partners }: { partners: Partner[] }) {
     setIsDeleting(id);
     try {
       await deletePartner(id);
+      toast.success('Partner deleted successfully');
     } catch (error) {
-      alert('Failed to delete partner');
+      toast.error('Failed to delete partner');
     } finally {
       setIsDeleting(null);
     }

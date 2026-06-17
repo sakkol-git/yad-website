@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/shared/components/ui/Button';
-import { createProgram, updateProgram } from '@/server/actions/program.actions';
+import { createProgramAction as createProgram, updateProgramAction as updateProgram } from '@/server/actions/program.actions';
 import {
   Dialog,
   DialogContent,
@@ -37,11 +37,22 @@ export function ProgramFormModal({ isOpen, onClose, mode, initialData }: Program
     setError(null);
     
     try {
+      const payload = {
+        title: formData.get("title") as string || "",
+        description: formData.get("description") as string || "",
+        category: formData.get("category") as string || "",
+        status: (formData.get("status") as any) || "upcoming",
+        start_date: formData.get("start_date") as string || "",
+        end_date: (formData.get("end_date") as string) || null,
+        beneficiaries_count: Number(formData.get("capacity")) || 0,
+        image_url: null
+      };
+
       if (mode === 'create') {
-        const result = await createProgram(null, formData);
+        const result = await createProgram(payload as any);
         if (result.error) throw new Error(result.error);
       } else if (mode === 'edit' && initialData) {
-        const result = await updateProgram(initialData.id, null, formData);
+        const result = await updateProgram(initialData.id, payload as any);
         if (result.error) throw new Error(result.error);
       }
       onClose();

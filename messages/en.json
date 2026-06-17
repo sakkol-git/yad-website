@@ -1,0 +1,17 @@
+{
+  "Hero": {
+    "title": "Empowering Cambodian Youth",
+    "subtitle": "Join us in our mission to provide education, housing, and leadership training to the next generation of Cambodian leaders.",
+    "cta": "Get Involved"
+  },
+  "GlobalFootprint": {
+    "title": "Our Global Footprint",
+    "description": "Tracking our collective journey towards a more sustainable and equitable future. Data updated quarterly.",
+    "communities": "Communities Reached",
+    "communitiesDesc": "Active local sustainability projects led by youth organizers.",
+    "youthHoused": "Youth Housed",
+    "youthHousedDesc": "Youth housed and supported through our dormitory program.",
+    "provinces": "Provinces Reached",
+    "provincesDesc": "Provinces reached with education and training programs."
+  }
+}

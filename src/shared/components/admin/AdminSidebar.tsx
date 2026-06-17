@@ -6,10 +6,13 @@ import { usePathname } from 'next/navigation';
 // Grouped items to improve scannability and structure
 const navGroups = [
   {
-    label: 'Overview',
+    label: 'Core',
     items: [
       { name: 'Dashboard', href: '/admin/dashboard', icon: 'dashboard' },
       { name: 'Events', href: '/admin/events', icon: 'event' },
+      { name: 'Programs', href: '/admin/programs', icon: 'school' },
+      { name: 'Applications', href: '/admin/applications', icon: 'assignment' },
+      { name: 'Reports', href: '/admin/reports', icon: 'description' },
     ],
   },
   {
@@ -19,6 +22,7 @@ const navGroups = [
       { name: 'Members', href: '/admin/members', icon: 'card_membership' },
       { name: 'Partners', href: '/admin/partners', icon: 'handshake' },
       { name: 'Volunteers', href: '/admin/volunteers', icon: 'assignment_ind' },
+      { name: 'Inquiries', href: '/admin/inquiries', icon: 'inbox' },
       { name: 'Users', href: '/admin/users', icon: 'manage_accounts' },
     ],
   },

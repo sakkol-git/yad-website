@@ -4,6 +4,7 @@ import { useState, useTransition } from "react";
 import { Button } from "@/shared/components/ui/Button";
 import { DataTable, ColumnDef } from "@/shared/components/ui/DataTable";
 import { updateVolunteerStatusAction } from "@/server/actions/volunteer.actions";
+import { toast } from "sonner";
 
 interface Volunteer {
   id: string;
@@ -23,9 +24,10 @@ export function VolunteersTable({ initialData }: { initialData: Volunteer[] }) {
     startTransition(async () => {
       const result = await updateVolunteerStatusAction(id, newStatus);
       if (result.error) {
-        alert(result.error);
+        toast.error(result.error);
       } else {
         setData(prev => prev.map(v => v.id === id ? { ...v, status: newStatus } : v));
+        toast.success(`Volunteer status updated to ${newStatus}`);
       }
     });
   };

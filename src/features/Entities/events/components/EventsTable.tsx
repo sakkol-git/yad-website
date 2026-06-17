@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/shared/components/ui/Button';
 import { EventFormModal } from './EventFormModal';
 import { deleteEvent } from '@/server/actions/event.actions';
@@ -38,8 +39,9 @@ export function EventsTable({ events }: { events: Event[] }) {
     setIsDeleting(id);
     try {
       await deleteEvent(id);
+      toast.success('Event deleted successfully');
     } catch (error) {
-      alert('Failed to delete event');
+      toast.error('Failed to delete event');
     } finally {
       setIsDeleting(null);
     }

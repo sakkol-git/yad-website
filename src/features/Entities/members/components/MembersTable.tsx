@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/shared/components/ui/Button';
 import { MemberFormModal } from './MemberFormModal';
 import { deleteMember } from '@/server/actions/member.actions';
@@ -40,8 +41,9 @@ export function MembersTable({ members }: { members: Member[] }) {
     setIsDeleting(id);
     try {
       await deleteMember(id);
+      toast.success('Member deleted successfully');
     } catch (error) {
-      alert('Failed to delete member');
+      toast.error('Failed to delete member');
     } finally {
       setIsDeleting(null);
     }

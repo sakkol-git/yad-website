@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/shared/components/ui/Button';
 import { UserFormModal } from './UserFormModal';
 import { deleteUser } from '@/server/actions/user.actions';
@@ -37,8 +38,9 @@ export function UsersTable({ users }: { users: User[] }) {
     setIsDeleting(userId);
     try {
       await deleteUser(userId);
+      toast.success('User deleted successfully');
     } catch (error) {
-      alert('Failed to delete user');
+      toast.error('Failed to delete user');
     } finally {
       setIsDeleting(null);
     }

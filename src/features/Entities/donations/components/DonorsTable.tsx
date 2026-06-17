@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/shared/components/ui/Button';
 import { DonorFormModal } from './DonorFormModal';
 import { deleteDonor } from '@/server/actions/donor.actions';
@@ -42,8 +43,9 @@ export function DonorsTable({ donors }: { donors: Donor[] }) {
     setIsDeleting(id);
     try {
       await deleteDonor(id);
+      toast.success('Donor deleted successfully');
     } catch (error) {
-      alert('Failed to delete donor');
+      toast.error('Failed to delete donor');
     } finally {
       setIsDeleting(null);
     }

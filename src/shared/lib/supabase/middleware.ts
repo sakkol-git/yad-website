@@ -40,6 +40,7 @@ export async function updateSession(request: NextRequest) {
   if ((isAdminRoute || isPortalRoute) && !user) {
     const loginUrl = request.nextUrl.clone();
     loginUrl.pathname = '/auth/login';
+    loginUrl.searchParams.set('redirectedFrom', request.nextUrl.pathname);
     return NextResponse.redirect(loginUrl);
   }
 

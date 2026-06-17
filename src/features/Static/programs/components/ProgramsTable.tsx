@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/shared/components/ui/Button';
 import { ProgramFormModal } from './ProgramFormModal';
-import { deleteProgram } from '@/server/actions/program.actions';
+import { deleteProgramAction as deleteProgram } from '@/server/actions/program.actions';
 import { DataTable, ColumnDef } from '@/shared/components/ui/DataTable';
 
 interface Program {
@@ -40,8 +41,9 @@ export function ProgramsTable({ programs }: { programs: Program[] }) {
     setIsDeleting(id);
     try {
       await deleteProgram(id);
+      toast.success('Program deleted successfully');
     } catch (error) {
-      alert('Failed to delete program');
+      toast.error('Failed to delete program');
     } finally {
       setIsDeleting(null);
     }

@@ -114,7 +114,160 @@ export interface Database {
         }
         Relationships: []
       }
-      // Add other tables as needed based on schema...
+      event_volunteers: {
+        Row: {
+          id: string
+          user_id: string
+          event_id: string
+          status: 'pending' | 'approved' | 'rejected' | 'completed'
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          event_id: string
+          status?: 'pending' | 'approved' | 'rejected' | 'completed'
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          event_id?: string
+          status?: 'pending' | 'approved' | 'rejected' | 'completed'
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "event_volunteers_event_id_fkey"
+            columns: ["event_id"]
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      inquiries: {
+        Row: {
+          id: string
+          first_name: string
+          last_name: string
+          email: string
+          interest: string
+          status: 'pending' | 'reviewed' | 'actioned'
+          message: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          first_name: string
+          last_name: string
+          email: string
+          interest: string
+          status?: 'pending' | 'reviewed' | 'actioned'
+          message: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          first_name?: string
+          last_name?: string
+          email?: string
+          interest?: string
+          status?: 'pending' | 'reviewed' | 'actioned'
+          message?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      annual_reports: {
+        Row: {
+          id: string
+          title: string
+          year: number
+          file_url: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          title: string
+          year: number
+          file_url: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          title?: string
+          year?: number
+          file_url?: string
+          created_at?: string
+        }
+        Relationships: []
+      }
+      student_applications: {
+        Row: {
+          id: string
+          first_name: string
+          last_name: string
+          email: string
+          phone: string
+          education_level: string
+          essay: string
+          status: 'pending' | 'reviewed' | 'accepted' | 'rejected'
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          first_name: string
+          last_name: string
+          email: string
+          phone: string
+          education_level: string
+          essay: string
+          status?: 'pending' | 'reviewed' | 'accepted' | 'rejected'
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          first_name?: string
+          last_name?: string
+          email?: string
+          phone?: string
+          education_level?: string
+          essay?: string
+          status?: 'pending' | 'reviewed' | 'accepted' | 'rejected'
+          created_at?: string
+        }
+        Relationships: []
+      }
+      audit_logs: {
+        Row: {
+          id: string
+          user_id: string
+          entity: string
+          action: string
+          changes: any | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          entity: string
+          action: string
+          changes?: any | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          entity?: string
+          action?: string
+          changes?: any | null
+          created_at?: string
+        }
+        Relationships: []
+      }
       events: {
         Row: {
           id: string
