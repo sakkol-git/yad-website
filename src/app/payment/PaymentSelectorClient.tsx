@@ -30,7 +30,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
       <div className="w-full lg:w-2/3">
         <ProgressIndicator currentStep={2} />
 
-        <div className="bg-surface-container-lowest rounded-lg ambient-shadow p-6 md:p-10 relative overflow-hidden">
+        <div className="bg-surface-container-lowest rounded-lg shadow-ambient p-6 md:p-10 relative overflow-hidden">
           <h2 className="font-headline-md text-headline-md text-primary mb-6">
             Choose Payment Method
           </h2>

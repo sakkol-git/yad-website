@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { OrganizationSchema } from "@/shared/components/seo/OrganizationSchema";
 import { WebSiteSchema } from "@/shared/components/seo/WebSiteSchema";
-import { HomeHero } from "@/features/Static/content/components/HomeHero";
-import { ImpactPreview } from "@/features/Static/content/components/ImpactPreview";
-import { ProgramCards } from "@/features/Static/content/components/ProgramCards";
-import { CommunityVoices } from "@/features/Static/content/components/CommunityVoices";
-import { HomeCTA } from "@/features/Static/content/components/HomeCTA";
-import { VisionSection } from "@/features/Static/content/components/VisionSection";
-import { MeasurableImpactSection } from "@/features/Static/content/components/MeasurableImpactSection";
+import { HomeHero } from "@/features/Static/homepage/HomeHero";
+import { PartnerLogos } from "@/features/Static/homepage/PartnerLogos";
+import { ImpactPreview } from "@/features/Static/impact/ImpactPreview";
+import { ProgramCards } from "@/features/Static/homepage/ProgramCards";
+import { CommunityVoices } from "@/features/Static/homepage/CommunityVoices";
+import { HomeCTA } from "@/features/Static/homepage/HomeCTA";
+import { VisionSection } from "@/features/Static/homepage/VisionSection";
+import { MeasurableImpactSection } from "@/features/Static/homepage/MeasurableImpactSection";
 
 export const metadata: Metadata = {
   title: "YAD | Youth Advancement for Development — NGO in Cambodia",
@@ -69,7 +69,7 @@ export default function Home() {
   };
 
   return (
-    <main>
+    <main id="main-content">
       <OrganizationSchema />
       <WebSiteSchema />
       <script
@@ -77,13 +77,10 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <HomeHero />
-
+      {/* <PartnerLogos /> */}
       <VisionSection />
-
       <ProgramCards />
-
       <MeasurableImpactSection />
-
       <ImpactPreview />
       <CommunityVoices />
       <HomeCTA />

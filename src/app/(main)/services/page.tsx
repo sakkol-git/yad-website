@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { ServicesHero } from "@/features/Static/content/components/ServicesHero";
-import { BookingSection } from "@/features/Static/content/components/BookingSection";
+import { ServicesHero } from "@/features/Static/service/ServicesHero";
+import { BookingSection } from "@/features/Entities/bookings/BookingSection";
 
 export const metadata: Metadata = {
   title: "Homestay & Services",

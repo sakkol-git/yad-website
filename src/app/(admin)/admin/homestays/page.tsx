@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createClient } from '@/shared/lib/supabase/server';
 import { RoomsRepository } from '@/server/repositories/rooms';
-import { HomestaysTable } from '@/features/Static/homestays/components/HomestaysTable';
+import { HomestaysTable } from '@/features/Entities/homestays/components/HomestaysTable';
 
 export default async function HomestaysPage({
   searchParams,

@@ -10,7 +10,6 @@ const navGroups = [
     items: [
       { name: 'Dashboard', href: '/admin/dashboard', icon: 'dashboard' },
       { name: 'Events', href: '/admin/events', icon: 'event' },
-      { name: 'Programs', href: '/admin/programs', icon: 'local_activity' },
     ],
   },
   {
@@ -19,6 +18,7 @@ const navGroups = [
       { name: 'Donors', href: '/admin/donors', icon: 'groups' },
       { name: 'Members', href: '/admin/members', icon: 'card_membership' },
       { name: 'Partners', href: '/admin/partners', icon: 'handshake' },
+      { name: 'Volunteers', href: '/admin/volunteers', icon: 'assignment_ind' },
       { name: 'Users', href: '/admin/users', icon: 'manage_accounts' },
     ],
   },

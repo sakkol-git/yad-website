@@ -48,7 +48,7 @@ export default function DonateFlowPage() {
       <div className="w-full lg:w-2/3">
         <ProgressIndicator currentStep={1} />
 
-        <div className="bg-surface-container-lowest rounded-lg ambient-shadow p-6 md:p-10 relative overflow-hidden">
+        <div className="bg-surface-container-lowest rounded-lg shadow-ambient p-6 md:p-10 relative overflow-hidden">
           <form onSubmit={handleSubmit}>
             <h2 className="font-headline-md text-headline-md text-primary mb-6">
               Select Amount

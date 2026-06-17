@@ -17,7 +17,7 @@ export function ReviewSummary() {
         </div>
 
         {/* Details Card */}
-        <div className="bg-surface-container-lowest rounded-lg ambient-shadow p-6 md:p-10 border border-surface-container-high relative overflow-hidden">
+        <div className="bg-surface-container-lowest rounded-lg shadow-ambient p-6 md:p-10 border border-surface-container-high relative overflow-hidden">
           <div className="absolute -top-20 -right-20 w-64 h-64 bg-secondary-container/30 rounded-full blur-3xl pointer-events-none" />
           <div className="flex justify-between items-center mb-8 pb-4 border-b border-surface-container">
             <h2 className="font-headline-md text-headline-md text-primary">Donation Summary</h2>
@@ -99,7 +99,7 @@ export function ReviewSummary() {
 
       {/* Right Column: Sidebar */}
       <div className="lg:col-span-5 xl:col-span-4 sticky top-32">
-        <div className="bg-primary text-on-primary rounded-lg overflow-hidden ambient-shadow flex flex-col">
+        <div className="bg-primary text-on-primary rounded-lg overflow-hidden shadow-ambient flex flex-col">
           <div className="h-48 relative overflow-hidden bg-surface-tint">
             <Image
               alt="Smiling youth outdoors in sunlight"

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
-import { ProgramsHero } from "@/features/Entities/programs/components/ProgramsHero";
-import { DormitoryProgram } from "@/features/Entities/programs/components/DormitoryProgram";
-import { DigitalInnovation } from "@/features/Entities/programs/components/DigitalInnovation";
-import { SlumEducation } from "@/features/Entities/programs/components/SlumEducation";
+import { ProgramsHero } from "@/features/Static/programs/components/ProgramsHero";
+import { DormitoryProgram } from "@/features/Static/programs/components/DormitoryProgram";
+import { DigitalInnovation } from "@/features/Static/programs/components/DigitalInnovation";
+import { SlumEducation } from "@/features/Static/programs/components/SlumEducation";
 
 export const metadata: Metadata = {
   title: "Our Programs",

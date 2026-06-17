@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { AuthProvider } from "@/providers/AuthProvider";
+import { CookieConsent } from "@/shared/components/ui/CookieConsent";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -93,7 +94,7 @@ export const metadata: Metadata = {
     capable: true,
   },
   verification: {
-    google: "google-site-verification-code-here", // Placeholder
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "google-site-verification-code-here",
   },
 };
 
@@ -103,13 +104,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="light">
+    <html lang="en" className="light" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin=""
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+          rel="preload"
+          as="style"
         />
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link
@@ -120,6 +126,7 @@ export default function RootLayout({
       <body
         className={`${plusJakartaSans.variable} bg-surface text-on-surface font-body-md antialiased overflow-x-hidden`}
         style={{ fontFamily: "var(--font-plus-jakarta-sans), system-ui, sans-serif" }}
+        suppressHydrationWarning
       >
         <a
           href="#main-content"
@@ -129,6 +136,7 @@ export default function RootLayout({
         </a>
         <AuthProvider>
           {children}
+          <CookieConsent />
         </AuthProvider>
       </body>
     </html>

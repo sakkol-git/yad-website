@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
-import { ImpactHero } from "@/features/Static/content/components/ImpactHero";
-import { GlobalFootprint } from "@/features/Static/content/components/GlobalFootprint";
-import { VoicesOfImpact } from "@/features/Static/content/components/VoicesOfImpact";
-import { RadicalTransparency } from "@/features/Static/content/components/RadicalTransparency";
+import { ImpactHero } from "@/features/Static/impact/ImpactHero";
+import { GlobalFootprint } from "@/features/Static/impact/GlobalFootprint";
+import { VoicesOfImpact } from "@/features/Static/impact/VoicesOfImpact";
+import { RadicalTransparency } from "@/features/Static/impact/RadicalTransparency";
 
 export const metadata: Metadata = {
   title: "Our Impact & Stories",

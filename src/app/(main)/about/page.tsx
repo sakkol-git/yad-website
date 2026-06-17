@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
-import { AboutHero } from "@/features/Static/content/components/AboutHero";
-import { CorePurpose } from "@/features/Static/content/components/CorePurpose";
-import { CommunityStructure } from "@/features/Entities/members/components/CommunityStructure";
+import { AboutHero } from "@/features/Static/about/AboutHero";
+import { CorePurpose } from "@/features/Static/about/CorePurpose";
+
 
 export const metadata: Metadata = {
   title: "About Our Mission",
@@ -25,7 +25,6 @@ export default function AboutPage() {
       <BreadcrumbSchema items={breadcrumbs} />
       <AboutHero />
       <CorePurpose />
-      <CommunityStructure />
     </main>
   );
 }

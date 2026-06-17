@@ -112,7 +112,7 @@ export default function Navbar() {
                 >
                   {link.label}
                   {link.subLinks && (
-                    <span className="material-symbols-outlined text-[18px] transition-transform duration-200 group-hover:rotate-180">
+                    <span className="material-symbols-outlined text-[18px] transition-transform duration-200 group-hover:rotate-180" aria-hidden="true">
                       expand_more
                     </span>
                   )}
@@ -120,7 +120,7 @@ export default function Navbar() {
 
                 {/* Sub-menu with invisible bridge to prevent accidental closing */}
                 {link.subLinks && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50">
                     <div className="w-56 bg-surface rounded-lg shadow-lg border border-surface-variant/50 overflow-hidden flex flex-col py-2">
                       {link.subLinks.map((subLink) => {
                         const isSubActive = pathname === subLink.href;
@@ -155,14 +155,14 @@ export default function Navbar() {
                 className="flex items-center gap-2 px-4 py-2 rounded-lg border border-surface-variant/50 bg-surface hover:bg-surface-container transition-all focus:outline-none focus:ring-2 focus:ring-primary text-sm font-medium text-on-surface"
                 aria-haspopup="true"
               >
-                <span className="material-symbols-outlined text-[20px] text-primary">account_circle</span>
+                <span className="material-symbols-outlined text-[20px] text-primary" aria-hidden="true">account_circle</span>
                 <span className="max-w-[100px] truncate">My Account</span>
-                <span className="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:rotate-180 transition-transform">
+                <span className="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:rotate-180 transition-transform" aria-hidden="true">
                   expand_more
                 </span>
               </button>
 
-              <div className="absolute right-0 top-full pt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="absolute right-0 top-full pt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50">
                 <div className="bg-surface rounded-lg shadow-xl border border-surface-variant/50 flex flex-col overflow-hidden">
                   <div className="px-4 py-3 bg-surface-container/30 border-b border-surface-variant/50">
                     <p className="text-sm font-semibold text-on-surface truncate">{user.email}</p>
@@ -212,57 +212,102 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Navigation Overlay */}
+      {/* Mobile Navigation Backdrop */}
+      {isMenuOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+          onClick={() => setIsMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Mobile Navigation Drawer */}
       <div
-        className={`lg:hidden fixed inset-x-0 top-[65px] md:top-[73px] h-[calc(100vh-65px)] bg-surface border-t border-surface-variant overflow-y-auto transition-all duration-300 ease-in-out ${isMenuOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-4 invisible"
+        className={`lg:hidden fixed inset-y-0 right-0 w-full max-w-sm bg-surface shadow-2xl z-50 flex flex-col h-[100svh] overflow-hidden transition-transform duration-300 ease-in-out ${isMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
       >
-        <div className="flex flex-col h-full px-4 py-6 max-w-md mx-auto">
+        {/* Drawer Header */}
+        <div className="flex justify-between items-center px-4 py-3 md:py-4 border-b border-surface-variant/40">
+          <span className="font-headline-md text-xl font-bold text-primary">Menu</span>
+          <button
+            className="text-on-surface p-2 -mr-2 flex items-center justify-center rounded-md hover:bg-surface-container transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
+            onClick={() => setIsMenuOpen(false)}
+            aria-label="Close navigation menu"
+          >
+            <span className="material-symbols-outlined text-3xl">close</span>
+          </button>
+        </div>
+
+        <div className="flex-1 overflow-y-auto px-4 py-6">
           {/* Mobile Links */}
-          <div className="flex-1 flex flex-col gap-1">
+          <div className="flex flex-col gap-2">
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
-              return (
-                <div key={link.href} className="flex flex-col">
+              const hasSubLinks = !!link.subLinks;
+              const [isExpanded, setIsExpanded] = useState(false); // Using inline state for accordions
+              
+              if (!hasSubLinks) {
+                return (
                   <Link
+                    key={link.href}
                     href={link.href}
                     className={`py-3 px-4 rounded-lg font-medium text-base transition-colors flex justify-between items-center ${isActive ? "bg-primary/10 text-primary" : "text-on-surface hover:bg-surface-container"
                       }`}
                   >
                     {link.label}
                   </Link>
-                  {link.subLinks && (
-                    <div className="flex flex-col pl-4 pr-2 py-1 gap-1 ml-4 border-l-2 border-surface-variant/50 mt-1 mb-2">
-                      {link.subLinks.map((sub) => {
-                        const isSubActive = pathname === sub.href;
-                        return (
-                          <Link
-                            key={sub.href}
-                            href={sub.href}
-                            className={`py-2 px-4 rounded-md text-sm text-center transition-colors ${isSubActive
-                              ? "text-primary font-semibold bg-primary/5"
-                              : "text-on-surface-variant hover:text-primary hover:bg-surface-container/50"
-                              }`}
-                          >
-                            {sub.label}
-                          </Link>
-                        );
-                      })}
+                );
+              }
+
+              return (
+                <div key={link.href} className="flex flex-col">
+                  <button
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    className={`py-3 px-4 rounded-lg font-medium text-base transition-colors flex justify-between items-center ${isActive || isExpanded ? "bg-surface-container text-primary" : "text-on-surface hover:bg-surface-container"
+                      }`}
+                    aria-expanded={isExpanded}
+                  >
+                    {link.label}
+                    <span className={`material-symbols-outlined transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}>
+                      expand_more
+                    </span>
+                  </button>
+                  <div
+                    className={`grid transition-all duration-300 ease-in-out ${isExpanded ? "grid-rows-[1fr] opacity-100 mt-1 mb-2" : "grid-rows-[0fr] opacity-0"}`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="flex flex-col pl-4 pr-2 py-1 gap-1 ml-4 border-l-2 border-surface-variant/50">
+                        {link.subLinks?.map((sub) => {
+                          const isSubActive = pathname === sub.href;
+                          return (
+                            <Link
+                              key={sub.href}
+                              href={sub.href}
+                              className={`py-2.5 px-4 rounded-md text-sm transition-colors ${isSubActive
+                                ? "text-primary font-semibold bg-primary/5"
+                                : "text-on-surface-variant hover:text-primary hover:bg-surface-container/50"
+                                }`}
+                            >
+                              {sub.label}
+                            </Link>
+                          );
+                        })}
+                      </div>
                     </div>
-                  )}
+                  </div>
                 </div>
               );
             })}
           </div>
 
           {/* Mobile Auth & CTA Footer */}
-          <div className="mt-8 pt-6 border-t border-surface-variant/50 flex flex-col gap-3">
+          <div className="mt-8 pt-6 border-t border-surface-variant/50 flex flex-col gap-4 pb-8">
             {isLoading ? (
               <div className="w-full h-12 bg-surface-variant/50 animate-pulse rounded-full" />
             ) : user ? (
-              <div className="bg-surface-container/30 rounded-lg p-4 mb-2">
+              <div className="bg-surface-container/30 rounded-lg p-4">
                 <p className="text-sm font-semibold text-on-surface mb-3 truncate">Hi, {user.email}</p>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="flex flex-col gap-2">
                   <Link
                     href={role === "admin" ? "/admin/dashboard" : "/portal/dashboard"}
                     className="flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-md text-sm font-medium text-on-surface hover:bg-surface-container transition-colors"
@@ -280,7 +325,7 @@ export default function Navbar() {
                 </div>
               </div>
             ) : (
-              <div className="grid grid-cols-2 gap-3 mb-2">
+              <div className="grid grid-cols-2 gap-3">
                 <Link
                   href="/auth/login"
                   className="py-3 text-center font-medium border border-surface-variant text-on-surface hover:bg-surface-container rounded-full transition-colors"

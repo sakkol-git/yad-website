@@ -6,10 +6,11 @@ export const NAV_LINKS: NavLink[] = [
     href: "/about",
     label: "About Us",
     subLinks: [
-      { href: "/about", label: "Who We Are" },
+      { href: "/about", label: "About Us" },
+      { href: "/about/team", label: "Resident and Alumni" },
+      { href: "/about/governace", label: "Governance & Teams" },
       { href: "/partner", label: "Partners" },
       { href: "/donors", label: "Donors" },
-
     ]
   },
   {
@@ -18,19 +19,34 @@ export const NAV_LINKS: NavLink[] = [
     subLinks: [
       { href: "/programs", label: "Our Programs" },
       { href: "/services", label: "Services" },
-      { href: "/event", label: "Events" }
+      { href: "/event", label: "Events Calendar" }
     ]
   },
-  { href: "/impact", label: "Our Impact" },
-  { href: "/get-involved", label: "Contact Us" },
+  {
+    href: "/get-involved",
+    label: "Get Involved",
+    subLinks: [
+      { href: "/get-involved", label: "Volunteer" },
+      { href: "/donate/flow", label: "Donate" },
+      { href: "/partner", label: "Partner With Us" },
+    ]
+  },
+  {
+    href: "/impact",
+    label: "Impact & Updates",
+    subLinks: [
+      { href: "/impact", label: "Our Impact" },
+      { href: "/news", label: "News & Updates" },
+    ]
+  },
+  { href: "/contact", label: "Contact Us" },
 ];
 
 export const FOOTER_LINKS: FooterLink[] = [
-  { href: "#", label: "Privacy Policy" },
-  { href: "#", label: "Terms of Service" },
-  { href: "#", label: "Impact Report" },
-  { href: "#", label: "Careers" },
-  { href: "#", label: "Contact Us" },
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms of Service" },
+  { href: "/impact", label: "Impact Report" },
+  { href: "/contact", label: "Contact Us" },
 ];
 
 export const DONATE_NAV_LINKS: NavLink[] = [
@@ -38,5 +54,6 @@ export const DONATE_NAV_LINKS: NavLink[] = [
   { href: "/programs", label: "Projects" },
   { href: "/impact", label: "Impact" },
   { href: "/about", label: "About" },
-  { href: "/get-involved", label: "Contact" },
+  { href: "/contact", label: "Contact" },
 ];
+
