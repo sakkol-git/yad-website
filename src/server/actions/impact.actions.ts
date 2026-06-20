@@ -1,12 +1,12 @@
 "use server";
 
-import { createClient } from "@/shared/lib/supabase/server";
+import { createAdminClient } from "@/shared/lib/supabase/server";
 import { unstable_cache } from "next/cache";
 
 export const getImpactStatsAction = unstable_cache(
   async () => {
     try {
-      const supabase = await createClient();
+      const supabase = createAdminClient();
 
       const { count: eventsCount } = await supabase
         .from("events")
@@ -18,7 +18,7 @@ export const getImpactStatsAction = unstable_cache(
         .eq("type", "Resident");
 
       return {
-        communitiesReached: (eventsCount || 0) + 240, 
+        communitiesReached: (eventsCount || 0) + 240,
         youthHoused: (residentsCount || 0) + 10,
         provincesReached: 5,
       };
