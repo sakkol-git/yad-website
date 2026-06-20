@@ -33,7 +33,7 @@ export function RegisterForm() {
     } else {
       toast.success('Account created successfully!');
       if (result.targetUrl) {
-        router.push(result.targetUrl);
+        window.location.href = result.targetUrl;
       }
     }
   };
@@ -42,9 +42,11 @@ export function RegisterForm() {
     startTransitionGoogle(async () => {
       setServerError(null);
       const result = await loginWithGoogle();
-      if (result && !result.success) {
-        setServerError(result.error || 'Failed to login with Google.');
-        toast.error(result.error || 'Failed to login with Google.');
+      if (!result?.success) {
+        setServerError(result?.error || 'Failed to login with Google.');
+        toast.error(result?.error || 'Failed to login with Google.');
+      } else if (result.targetUrl) {
+        window.location.href = result.targetUrl;
       }
     });
   };

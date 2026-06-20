@@ -53,19 +53,14 @@ export async function loginWithGoogle() {
   const origin = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const redirectTo = `${origin}/auth/callback?next=/portal/dashboard`;
 
-  let targetUrl: string | undefined;
-
   try {
     const data = await authService.signInWithGoogle(supabase, redirectTo);
     if (data.url) {
-      targetUrl = data.url;
+      return { success: true, targetUrl: data.url };
     }
+    return { success: false, error: 'Failed to generate Google login URL.' };
   } catch (error: any) {
     console.error('Google login error:', error);
     return { success: false, error: 'Failed to initialize Google login. Please try again.' };
-  }
-
-  if (targetUrl) {
-    redirect(targetUrl);
   }
 }
