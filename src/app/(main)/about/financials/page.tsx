@@ -11,11 +11,21 @@ export const metadata: Metadata = {
 export default async function FinancialsPage() {
   const supabase = await createClient();
   
-  // Fetch annual reports from DB
-  const { data: reports } = await supabase
-    .from('annual_reports')
-    .select('*')
-    .order('year', { ascending: false });
+  let reports: any[] | null = null;
+  try {
+    const { data, error } = await supabase
+      .from('annual_reports')
+      .select('*')
+      .order('year', { ascending: false });
+      
+    if (!error) {
+      reports = data;
+    } else {
+      console.error("Supabase fetch error:", error);
+    }
+  } catch (err) {
+    console.error("Database connection failed:", err);
+  }
 
   return (
     <main>

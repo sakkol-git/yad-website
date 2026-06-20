@@ -12,6 +12,53 @@ import { Button } from "@/shared/components/ui/Button";
 import { useAuth } from "@/providers/AuthProvider";
 import { createClient } from "@/shared/lib/supabase/client";
 
+type NavLink = { href: string; label: string; subLinks?: { href: string; label: string }[] };
+
+// Extracted component to resolve React Hooks violation (useState inside loop)
+function MobileNavAccordion({ link, pathname }: { link: NavLink, pathname: string }) {
+  const isActive = pathname === link.href;
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <div className="flex flex-col">
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className={`py-3 px-4 rounded-lg font-medium text-base transition-colors flex justify-between items-center ${isActive || isExpanded ? "bg-surface-container text-primary" : "text-on-surface hover:bg-surface-container"
+          }`}
+        aria-expanded={isExpanded}
+      >
+        {link.label}
+        <span className={`material-symbols-outlined transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}>
+          expand_more
+        </span>
+      </button>
+      <div
+        className={`grid transition-all duration-300 ease-in-out ${isExpanded ? "grid-rows-[1fr] opacity-100 mt-1 mb-2" : "grid-rows-[0fr] opacity-0"}`}
+      >
+        <div className="overflow-hidden">
+          <div className="flex flex-col pl-4 pr-2 py-1 gap-1 ml-4 border-l-2 border-surface-variant/50">
+            {link.subLinks?.map((sub: any) => {
+              const isSubActive = pathname === sub.href;
+              return (
+                <Link
+                  key={sub.href}
+                  href={sub.href}
+                  className={`py-2.5 px-4 rounded-md text-sm transition-colors ${isSubActive
+                    ? "text-primary font-semibold bg-primary/5"
+                    : "text-on-surface-variant hover:text-primary hover:bg-surface-container/50"
+                    }`}
+                >
+                  {sub.label}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
@@ -67,7 +114,11 @@ export default function Navbar() {
 
   // Automatically close mobile menu when navigating to a new route
   useEffect(() => {
-    setIsMenuOpen(false);
+    if (isMenuOpen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setIsMenuOpen(false);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   // Prevent background scrolling when mobile menu is open
@@ -250,7 +301,6 @@ export default function Navbar() {
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
               const hasSubLinks = !!link.subLinks;
-              const [isExpanded, setIsExpanded] = useState(false); // Using inline state for accordions
               
               if (!hasSubLinks) {
                 return (
@@ -265,44 +315,7 @@ export default function Navbar() {
                 );
               }
 
-              return (
-                <div key={link.href} className="flex flex-col">
-                  <button
-                    onClick={() => setIsExpanded(!isExpanded)}
-                    className={`py-3 px-4 rounded-lg font-medium text-base transition-colors flex justify-between items-center ${isActive || isExpanded ? "bg-surface-container text-primary" : "text-on-surface hover:bg-surface-container"
-                      }`}
-                    aria-expanded={isExpanded}
-                  >
-                    {link.label}
-                    <span className={`material-symbols-outlined transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}>
-                      expand_more
-                    </span>
-                  </button>
-                  <div
-                    className={`grid transition-all duration-300 ease-in-out ${isExpanded ? "grid-rows-[1fr] opacity-100 mt-1 mb-2" : "grid-rows-[0fr] opacity-0"}`}
-                  >
-                    <div className="overflow-hidden">
-                      <div className="flex flex-col pl-4 pr-2 py-1 gap-1 ml-4 border-l-2 border-surface-variant/50">
-                        {link.subLinks?.map((sub) => {
-                          const isSubActive = pathname === sub.href;
-                          return (
-                            <Link
-                              key={sub.href}
-                              href={sub.href}
-                              className={`py-2.5 px-4 rounded-md text-sm transition-colors ${isSubActive
-                                ? "text-primary font-semibold bg-primary/5"
-                                : "text-on-surface-variant hover:text-primary hover:bg-surface-container/50"
-                                }`}
-                            >
-                              {sub.label}
-                            </Link>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
+              return <MobileNavAccordion key={link.href} link={link} pathname={pathname} />;
             })}
           </div>
 
