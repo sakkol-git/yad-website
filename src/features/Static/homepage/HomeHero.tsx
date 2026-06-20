@@ -62,8 +62,8 @@ export function HomeHero() {
     <section className="relative min-h-[100svh] lg:min-h-[921px] flex items-center pt-24 md:pt-32 pb-section-gap px-4 md:px-6 lg:px-8 overflow-hidden bg-surface-container-lowest">
       {/* Background Decor */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <div className="absolute top-[-5%] left-[-10%] w-[150vw] max-w-[600px] aspect-square bg-secondary-container/30 rounded-full blur-[60px] md:blur-[100px]" />
-        <div className="absolute bottom-[-5%] right-[-10%] w-[180vw] max-w-[800px] aspect-square bg-primary/10 rounded-full blur-[80px] md:blur-[120px]" />
+        <div className="absolute top-[-5%] left-[-10%] w-[150%] max-w-[600px] aspect-square bg-secondary-container/30 rounded-full blur-[60px] md:blur-[100px]" />
+        <div className="absolute bottom-[-5%] right-[-10%] w-[180%] max-w-[800px] aspect-square bg-primary/10 rounded-full blur-[80px] md:blur-[120px]" />
 
         {/* Little sparkles/stars like in reference */}
         <div className="absolute top-[20%] left-[45%] text-primary/40 animate-pulse">
@@ -142,7 +142,7 @@ export function HomeHero() {
             </svg>
           </div>
 
-          <ParallaxLayer speed={0.2} className="relative z-10 w-full lg:w-[115%] max-w-[750px] aspect-square lg:aspect-[4/3] rounded-xl overflow-hidden shadow-2xl border-4 border-surface group">
+          <ParallaxLayer speed={0.2} className="relative z-10 w-full max-w-[750px] aspect-square lg:aspect-[4/3] rounded-xl overflow-hidden shadow-2xl border-4 border-surface group">
             <ImageRevealMask className="w-full h-full">
               <div aria-live="polite" className="sr-only">
                 Showing slide {activeIndex + 1} of {CAROUSEL_IMAGES.length}: {CAROUSEL_IMAGES[activeIndex].alt}
