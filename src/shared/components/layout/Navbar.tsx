@@ -6,19 +6,27 @@ import { gsap, ScrollTrigger } from "@/shared/lib/animations/gsap-config";
 import { useReducedMotion } from "@/shared/lib/animations/use-reduced-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { NAV_LINKS } from "@/shared/constants/navigation";
 import { Button } from "@/shared/components/ui/Button";
 import { useAuth } from "@/providers/AuthProvider";
-import { logout } from "@/server/actions/auth.actions";
+import { createClient } from "@/shared/lib/supabase/client";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, role, isLoading } = useAuth();
   
   const navRef = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
+
+  const handleLogout = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.push('/');
+    router.refresh();
+  };
 
   useGSAP(
     () => {
@@ -175,14 +183,12 @@ export default function Navbar() {
                     >
                       <span className="material-symbols-outlined text-[18px]">dashboard</span> Dashboard
                     </Link>
-                    <form action={logout}>
-                      <button
-                        type="submit"
-                        className="w-full text-left px-4 py-2.5 text-sm text-on-surface hover:bg-error/10 hover:text-error transition-colors flex items-center gap-3"
-                      >
-                        <span className="material-symbols-outlined text-[18px]">logout</span> Sign Out
-                      </button>
-                    </form>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full text-left px-4 py-2.5 text-sm text-on-surface hover:bg-error/10 hover:text-error transition-colors flex items-center gap-3"
+                    >
+                      <span className="material-symbols-outlined text-[18px]">logout</span> Sign Out
+                    </button>
                   </div>
                 </div>
               </div>
@@ -314,14 +320,12 @@ export default function Navbar() {
                   >
                     <span className="material-symbols-outlined text-[18px]">dashboard</span> Portal
                   </Link>
-                  <form action={logout} className="w-full">
-                    <button
-                      type="submit"
-                      className="w-full flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-md text-sm font-medium text-error hover:bg-error/10 transition-colors"
-                    >
-                      <span className="material-symbols-outlined text-[18px]">logout</span> Sign Out
-                    </button>
-                  </form>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-md text-sm font-medium text-error hover:bg-error/10 transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-[18px]">logout</span> Sign Out
+                  </button>
                 </div>
               </div>
             ) : (

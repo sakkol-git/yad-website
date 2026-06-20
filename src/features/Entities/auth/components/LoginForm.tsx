@@ -33,7 +33,8 @@ export function LoginForm() {
     } else {
       toast.success('Logged in successfully!');
       if (result.targetUrl) {
-        window.location.href = result.targetUrl;
+        router.push(result.targetUrl);
+        router.refresh();
       }
     }
   };

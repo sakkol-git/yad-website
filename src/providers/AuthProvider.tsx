@@ -26,39 +26,59 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const fetchSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      setUser(session?.user ?? null);
-      
-      if (session?.user) {
-        // Fetch role from user_roles table
-        const { data } = await supabase
-          .from('user_roles')
-          .select('role')
-          .eq('user_id', session.user.id)
-          .single();
-          
-        if (data) {
-          setRole((data as any).role as Role);
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        if (error) throw error;
+
+        setUser(session?.user ?? null);
+        
+        if (session?.user) {
+          // Fetch role from user_roles table
+          const { data, error: roleError } = await supabase
+            .from('user_roles')
+            .select('role')
+            .eq('user_id', session.user.id)
+            .single();
+            
+          if (roleError && roleError.code !== 'PGRST116') {
+            // PGRST116 is the "no rows returned" error, which we can ignore
+            console.error("Error fetching user role:", roleError);
+          } else if (data) {
+            setRole((data as any).role as Role);
+          }
         }
+      } catch (error) {
+        console.error("Failed to fetch session in AuthProvider:", error);
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
 
     fetchSession();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event: any, session: any) => {
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        const { data } = await supabase
-          .from('user_roles')
-          .select('role')
-          .eq('user_id', session.user.id)
-          .single();
-        if (data) setRole((data as any).role as Role);
-      } else {
-        setRole(null);
+      try {
+        setUser(session?.user ?? null);
+        if (session?.user) {
+          const { data, error: roleError } = await supabase
+            .from('user_roles')
+            .select('role')
+            .eq('user_id', session.user.id)
+            .single();
+            
+          if (roleError && roleError.code !== 'PGRST116') {
+             console.error("Error fetching user role on state change:", roleError);
+          } else if (data) {
+            setRole((data as any).role as Role);
+          }
+        } else {
+          setRole(null);
+        }
+      } catch (error) {
+         console.error("Failed to handle auth state change in AuthProvider:", error);
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     });
 
     return () => subscription.unsubscribe();

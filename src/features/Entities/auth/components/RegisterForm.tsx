@@ -33,7 +33,8 @@ export function RegisterForm() {
     } else {
       toast.success('Account created successfully!');
       if (result.targetUrl) {
-        window.location.href = result.targetUrl;
+        router.push(result.targetUrl);
+        router.refresh();
       }
     }
   };
