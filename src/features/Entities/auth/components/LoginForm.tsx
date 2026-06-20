@@ -1,13 +1,54 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { loginSchema, LoginInput } from '@/server/validators/auth.schema';
+import { login, loginWithGoogle } from '@/server/actions/auth.actions';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
+import { useState, useTransition } from 'react';
 
-interface LoginFormProps {
-  errorMsg?: string;
-  loginAction: (formData: FormData) => Promise<void>;
-  loginWithGoogleAction?: () => Promise<void>;
-}
+export function LoginForm() {
+  const router = useRouter();
+  const [serverError, setServerError] = useState<string | null>(null);
+  const [isPendingGoogle, startTransitionGoogle] = useTransition();
 
-export function LoginForm({ errorMsg, loginAction, loginWithGoogleAction }: LoginFormProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginInput>({
+    resolver: zodResolver(loginSchema),
+  });
+
+  const onSubmit = async (data: LoginInput) => {
+    setServerError(null);
+    const result = await login(data);
+    
+    if (!result?.success) {
+      setServerError(result?.error || 'An unexpected error occurred.');
+      toast.error(result?.error || 'Login failed');
+    } else {
+      toast.success('Logged in successfully!');
+      if (result.targetUrl) {
+        router.push(result.targetUrl);
+      }
+    }
+  };
+
+  const onGoogleLogin = () => {
+    startTransitionGoogle(async () => {
+      setServerError(null);
+      const result = await loginWithGoogle();
+      if (result && !result.success) {
+        setServerError(result.error || 'Failed to login with Google.');
+        toast.error(result.error || 'Failed to login with Google.');
+      }
+    });
+  };
+
   return (
     <div className="min-h-screen bg-surface flex flex-col lg:flex-row">
       {/* Left Side - Branding/Image (Desktop Only) */}
@@ -37,7 +78,7 @@ export function LoginForm({ errorMsg, loginAction, loginWithGoogleAction }: Logi
             <p className="text-on-surface-variant text-sm text-center">Sign in to your YAD account</p>
           </div>
 
-          <form action={loginAction} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
               <label className="block text-sm font-semibold text-on-surface-variant mb-1" htmlFor="email">
                 Email Address
@@ -46,13 +87,13 @@ export function LoginForm({ errorMsg, loginAction, loginWithGoogleAction }: Logi
                 <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">mail</span>
                 <input
                   id="email"
-                  name="email"
                   type="email"
-                  required
                   placeholder="user@example.com"
-                  className="w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-md border border-surface-variant/30 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-[15px] transition-all placeholder-on-surface-variant/50 outline-none"
+                  className={`w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-md border ${errors.email ? 'border-error focus:ring-error focus:border-error' : 'border-surface-variant/30 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-[15px] transition-all placeholder-on-surface-variant/50 outline-none`}
+                  {...register("email")}
                 />
               </div>
+              {errors.email && <p className="text-error text-sm mt-1">{errors.email.message}</p>}
             </div>
 
             <div>
@@ -63,31 +104,39 @@ export function LoginForm({ errorMsg, loginAction, loginWithGoogleAction }: Logi
                 <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">lock</span>
                 <input
                   id="password"
-                  name="password"
                   type="password"
-                  required
                   placeholder="••••••••"
-                  className="w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-md border border-surface-variant/30 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-[15px] transition-all placeholder-on-surface-variant/50 outline-none"
+                  className={`w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-md border ${errors.password ? 'border-error focus:ring-error focus:border-error' : 'border-surface-variant/30 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-[15px] transition-all placeholder-on-surface-variant/50 outline-none`}
+                  {...register("password")}
                 />
               </div>
+              {errors.password && <p className="text-error text-sm mt-1">{errors.password.message}</p>}
+              
               <div className="text-right mt-2">
                 <a href="#" className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors">Forgot password?</a>
               </div>
             </div>
 
-            {errorMsg && (
+            {serverError && (
               <div className="text-error text-sm font-medium flex items-center justify-center gap-1.5 mt-2">
                 <span className="material-symbols-outlined text-[18px]">error</span>
-                <p>{errorMsg}</p>
+                <p>{serverError}</p>
               </div>
             )}
 
             <button
               type="submit"
-              className="w-full py-3 bg-primary text-on-primary rounded-full font-bold text-[16px] shadow-sm hover:bg-primary/90 hover:shadow-md transition-all duration-200 active:scale-[0.98] mt-6 flex items-center justify-center gap-2"
+              disabled={isSubmitting}
+              className="w-full py-3 bg-primary text-on-primary rounded-full font-bold text-[16px] shadow-sm hover:bg-primary/90 hover:shadow-md transition-all duration-200 active:scale-[0.98] mt-6 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Sign In
-              <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+              {isSubmitting ? (
+                <div className="w-5 h-5 border-2 border-on-primary border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <>
+                  Sign In
+                  <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+                </>
+              )}
             </button>
           </form>
 
@@ -100,12 +149,15 @@ export function LoginForm({ errorMsg, loginAction, loginWithGoogleAction }: Logi
             </div>
           </div>
 
-          {loginWithGoogleAction && (
-            <form action={loginWithGoogleAction}>
-              <button
-                type="submit"
-                className="w-full py-3 bg-surface border border-surface-variant rounded-full font-bold text-[16px] text-on-surface shadow-sm hover:bg-surface-container hover:shadow-md transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-3"
-              >
+          <button
+            onClick={onGoogleLogin}
+            disabled={isPendingGoogle}
+            className="w-full py-3 bg-surface border border-surface-variant rounded-full font-bold text-[16px] text-on-surface shadow-sm hover:bg-surface-container hover:shadow-md transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+          >
+            {isPendingGoogle ? (
+              <div className="w-5 h-5 border-2 border-on-surface border-t-transparent rounded-full animate-spin" />
+            ) : (
+              <>
                 <Image
                   src="/assets/icons/google-icon-logo-svgrepo-com.svg"
                   alt="Google logo"
@@ -114,9 +166,9 @@ export function LoginForm({ errorMsg, loginAction, loginWithGoogleAction }: Logi
                   className="w-5 h-5 object-contain"
                 />
                 Google
-              </button>
-            </form>
-          )}
+              </>
+            )}
+          </button>
 
           <div className="mt-8 text-center">
             <p className="text-sm text-on-surface-variant">

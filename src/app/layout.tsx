@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { AuthProvider } from "@/providers/AuthProvider";
 import { CookieConsent } from "@/shared/components/ui/CookieConsent";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -137,6 +138,7 @@ export default function RootLayout({
         <AuthProvider>
           {children}
           <CookieConsent />
+          <Toaster position="top-center" />
         </AuthProvider>
       </body>
     </html>

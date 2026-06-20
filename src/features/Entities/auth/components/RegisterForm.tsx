@@ -1,13 +1,54 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { registerSchema, RegisterInput } from '@/server/validators/auth.schema';
+import { register as registerAction, loginWithGoogle } from '@/server/actions/auth.actions';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
+import { useState, useTransition } from 'react';
 
-interface RegisterFormProps {
-  errorMsg?: string;
-  registerAction: (formData: FormData) => Promise<void>;
-  loginWithGoogleAction?: () => Promise<void>;
-}
+export function RegisterForm() {
+  const router = useRouter();
+  const [serverError, setServerError] = useState<string | null>(null);
+  const [isPendingGoogle, startTransitionGoogle] = useTransition();
 
-export function RegisterForm({ errorMsg, registerAction, loginWithGoogleAction }: RegisterFormProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<RegisterInput>({
+    resolver: zodResolver(registerSchema),
+  });
+
+  const onSubmit = async (data: RegisterInput) => {
+    setServerError(null);
+    const result = await registerAction(data);
+    
+    if (!result?.success) {
+      setServerError(result?.error || 'An unexpected error occurred.');
+      toast.error(result?.error || 'Registration failed');
+    } else {
+      toast.success('Account created successfully!');
+      if (result.targetUrl) {
+        router.push(result.targetUrl);
+      }
+    }
+  };
+
+  const onGoogleLogin = () => {
+    startTransitionGoogle(async () => {
+      setServerError(null);
+      const result = await loginWithGoogle();
+      if (result && !result.success) {
+        setServerError(result.error || 'Failed to login with Google.');
+        toast.error(result.error || 'Failed to login with Google.');
+      }
+    });
+  };
+
   return (
     <div className="min-h-screen bg-surface flex flex-col lg:flex-row-reverse">
       {/* Branding/Image (Right Side on Desktop due to flex-row-reverse) */}
@@ -36,7 +77,7 @@ export function RegisterForm({ errorMsg, registerAction, loginWithGoogleAction }
             <p className="text-on-surface-variant text-sm text-center">Sign up to get started</p>
           </div>
 
-          <form action={registerAction} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-semibold text-on-surface-variant mb-1" htmlFor="first_name">
@@ -44,12 +85,12 @@ export function RegisterForm({ errorMsg, registerAction, loginWithGoogleAction }
                 </label>
                 <input
                   id="first_name"
-                  name="first_name"
                   type="text"
-                  required
                   placeholder="Sokha"
-                  className="w-full px-4 py-2.5 bg-surface-container rounded-md border border-surface-variant/30 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-[14px] transition-all outline-none"
+                  className={`w-full px-4 py-2.5 bg-surface-container rounded-md border ${errors.first_name ? 'border-error focus:ring-error focus:border-error' : 'border-surface-variant/30 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-[14px] transition-all outline-none`}
+                  {...register("first_name")}
                 />
+                {errors.first_name && <p className="text-error text-xs mt-1">{errors.first_name.message}</p>}
               </div>
               <div>
                 <label className="block text-sm font-semibold text-on-surface-variant mb-1" htmlFor="last_name">
@@ -57,12 +98,12 @@ export function RegisterForm({ errorMsg, registerAction, loginWithGoogleAction }
                 </label>
                 <input
                   id="last_name"
-                  name="last_name"
                   type="text"
-                  required
                   placeholder="Chen"
-                  className="w-full px-4 py-2.5 bg-surface-container rounded-md border border-surface-variant/30 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-[14px] transition-all outline-none"
+                  className={`w-full px-4 py-2.5 bg-surface-container rounded-md border ${errors.last_name ? 'border-error focus:ring-error focus:border-error' : 'border-surface-variant/30 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-[14px] transition-all outline-none`}
+                  {...register("last_name")}
                 />
+                {errors.last_name && <p className="text-error text-xs mt-1">{errors.last_name.message}</p>}
               </div>
             </div>
 
@@ -74,13 +115,13 @@ export function RegisterForm({ errorMsg, registerAction, loginWithGoogleAction }
                 <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">mail</span>
                 <input
                   id="email"
-                  name="email"
                   type="email"
-                  required
                   placeholder="user@example.com"
-                  className="w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-md border border-surface-variant/30 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-[14px] transition-all outline-none"
+                  className={`w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-md border ${errors.email ? 'border-error focus:ring-error focus:border-error' : 'border-surface-variant/30 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-[14px] transition-all outline-none`}
+                  {...register("email")}
                 />
               </div>
+              {errors.email && <p className="text-error text-sm mt-1">{errors.email.message}</p>}
             </div>
 
             <div>
@@ -91,29 +132,52 @@ export function RegisterForm({ errorMsg, registerAction, loginWithGoogleAction }
                 <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">lock</span>
                 <input
                   id="password"
-                  name="password"
                   type="password"
-                  required
                   placeholder="••••••••"
-                  minLength={6}
-                  className="w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-md border border-surface-variant/30 focus:border-primary focus:ring-1 focus:ring-primary text-on-surface text-[14px] transition-all outline-none"
+                  className={`w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-md border ${errors.password ? 'border-error focus:ring-error focus:border-error' : 'border-surface-variant/30 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-[14px] transition-all outline-none`}
+                  {...register("password")}
                 />
               </div>
+              {errors.password && <p className="text-error text-sm mt-1">{errors.password.message}</p>}
             </div>
 
-            {errorMsg && (
+            <div>
+              <label className="block text-sm font-semibold text-on-surface-variant mb-1" htmlFor="confirmPassword">
+                Confirm Password
+              </label>
+              <div className="relative">
+                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">lock</span>
+                <input
+                  id="confirmPassword"
+                  type="password"
+                  placeholder="••••••••"
+                  className={`w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-md border ${errors.confirmPassword ? 'border-error focus:ring-error focus:border-error' : 'border-surface-variant/30 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-[14px] transition-all outline-none`}
+                  {...register("confirmPassword")}
+                />
+              </div>
+              {errors.confirmPassword && <p className="text-error text-sm mt-1">{errors.confirmPassword.message}</p>}
+            </div>
+
+            {serverError && (
               <div className="text-error text-sm font-medium flex items-center justify-center gap-1.5 mt-2">
                 <span className="material-symbols-outlined text-[18px]">error</span>
-                <p>{errorMsg}</p>
+                <p>{serverError}</p>
               </div>
             )}
 
             <button
               type="submit"
-              className="w-full py-3 bg-primary text-on-primary rounded-full font-bold text-[16px] shadow-sm hover:bg-primary/90 hover:shadow-md transition-all duration-200 active:scale-[0.98] mt-6 flex items-center justify-center gap-2"
+              disabled={isSubmitting}
+              className="w-full py-3 bg-primary text-on-primary rounded-full font-bold text-[16px] shadow-sm hover:bg-primary/90 hover:shadow-md transition-all duration-200 active:scale-[0.98] mt-6 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Sign Up
-              <span className="material-symbols-outlined text-[20px]">how_to_reg</span>
+              {isSubmitting ? (
+                <div className="w-5 h-5 border-2 border-on-primary border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <>
+                  Sign Up
+                  <span className="material-symbols-outlined text-[20px]">how_to_reg</span>
+                </>
+              )}
             </button>
           </form>
 
@@ -126,12 +190,15 @@ export function RegisterForm({ errorMsg, registerAction, loginWithGoogleAction }
             </div>
           </div>
 
-          {loginWithGoogleAction && (
-            <form action={loginWithGoogleAction}>
-              <button
-                type="submit"
-                className="w-full py-3 bg-surface border border-surface-variant rounded-full font-bold text-[16px] text-on-surface shadow-sm hover:bg-surface-container hover:shadow-md transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-3"
-              >
+          <button
+            onClick={onGoogleLogin}
+            disabled={isPendingGoogle}
+            className="w-full py-3 bg-surface border border-surface-variant rounded-full font-bold text-[16px] text-on-surface shadow-sm hover:bg-surface-container hover:shadow-md transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+          >
+            {isPendingGoogle ? (
+              <div className="w-5 h-5 border-2 border-on-surface border-t-transparent rounded-full animate-spin" />
+            ) : (
+              <>
                 <Image
                   src="/assets/icons/google-icon-logo-svgrepo-com.svg"
                   alt="Google logo"
@@ -140,9 +207,9 @@ export function RegisterForm({ errorMsg, registerAction, loginWithGoogleAction }
                   className="w-5 h-5 object-contain"
                 />
                 Google
-              </button>
-            </form>
-          )}
+              </>
+            )}
+          </button>
 
           <div className="mt-8 text-center">
             <p className="text-sm text-on-surface-variant">

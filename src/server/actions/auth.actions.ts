@@ -4,46 +4,35 @@ import { createClient } from '@/shared/lib/supabase/server';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { authService } from '../services/auth.service';
+import { LoginInput, RegisterInput } from '../validators/auth.schema';
 
-export async function login(formData: FormData) {
-  const email = formData.get('email') as string;
-  const password = formData.get('password') as string;
-
+export async function login(input: LoginInput) {
   const supabase = await createClient();
-  let targetUrl: string | undefined;
 
   try {
-    const { role } = await authService.login(supabase, email, password);
+    const { role } = await authService.login(supabase, input.email, input.password);
     revalidatePath('/', 'layout');
-    targetUrl = role === 'admin' ? '/admin/dashboard' : '/portal/dashboard';
+    const targetUrl = role === 'admin' ? '/admin/dashboard' : '/portal/dashboard';
+    return { success: true, targetUrl };
   } catch (error: any) {
-    return redirect(`/auth/login?error=${encodeURIComponent(error.message)}`);
-  }
-
-  if (targetUrl) {
-    redirect(targetUrl);
+    console.error('Login error:', error);
+    return { success: false, error: 'Invalid email or password. Please try again.' };
   }
 }
 
-export async function register(formData: FormData) {
-  const firstName = formData.get('first_name') as string;
-  const lastName = formData.get('last_name') as string;
-  const email = formData.get('email') as string;
-  const password = formData.get('password') as string;
-
+export async function register(input: RegisterInput) {
   const supabase = await createClient();
-  let success = false;
 
   try {
-    await authService.register(supabase, email, password, firstName, lastName);
+    await authService.register(supabase, input.email, input.password, input.first_name, input.last_name);
     revalidatePath('/', 'layout');
-    success = true;
+    return { success: true, targetUrl: '/portal/dashboard' };
   } catch (error: any) {
-    return redirect(`/auth/register?error=${encodeURIComponent(error.message)}`);
-  }
-
-  if (success) {
-    redirect('/portal/dashboard');
+    console.error('Registration error:', error);
+    const message = error.message?.includes('already registered') 
+      ? 'An account with this email already exists.' 
+      : 'Failed to register. Please try again.';
+    return { success: false, error: message };
   }
 }
 
@@ -72,7 +61,8 @@ export async function loginWithGoogle() {
       targetUrl = data.url;
     }
   } catch (error: any) {
-    return redirect(`/auth/login?error=${encodeURIComponent(error.message)}`);
+    console.error('Google login error:', error);
+    return { success: false, error: 'Failed to initialize Google login. Please try again.' };
   }
 
   if (targetUrl) {
