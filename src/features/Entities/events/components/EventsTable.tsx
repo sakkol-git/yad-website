@@ -14,9 +14,11 @@ interface Event {
   venue: string | null;
   capacity: number | null;
   status: string;
+  date?: string | null;
+  time?: string | null;
 }
 
-export function EventsTable({ events }: { events: Event[] }) {
+export function EventsTable({ events, count, page }: { events: Event[]; count?: number | null; page?: number }) {
   const [modalState, setModalState] = useState<{
     isOpen: boolean;
     mode: 'create' | 'edit';
@@ -48,33 +50,63 @@ export function EventsTable({ events }: { events: Event[] }) {
   }
 
   const columns: ColumnDef<Event>[] = [
-    { 
-      header: 'Name', 
-      cell: (event) => <span className="font-bold">{event.name}</span> 
+    {
+      header: 'Event Name',
+      cell: (event) => (
+        <>
+          <span className="font-bold">{event.name}</span>
+          {event.description && (
+            <div className="text-xs font-normal text-on-surface-variant mt-0.5 line-clamp-1 max-w-[250px]">
+              {event.description}
+            </div>
+          )}
+        </>
+      )
     },
-    { 
-      header: 'Venue', 
-      cell: (event) => <span>{event.venue || '-'}</span> 
+    {
+      header: 'Date & Time',
+      cell: (event) => (
+        <>
+          <span className="font-medium">
+            {event.date ? new Date(event.date).toLocaleDateString() : '-'}
+          </span>
+          <div className="text-xs text-on-surface-variant mt-0.5">
+            {event.time || 'Time TBD'}
+          </div>
+        </>
+      )
     },
-    { 
-      header: 'Status', 
+    {
+      header: 'Venue',
+      cell: (event) => (
+        <span className="text-on-surface-variant font-medium">
+          {event.venue || 'TBA'}
+        </span>
+      )
+    },
+    {
+      header: 'Capacity',
+      cell: (event) => (
+        <span className="text-on-surface-variant">
+          {event.capacity ? `${event.capacity} people` : 'Unlimited'}
+        </span>
+      )
+    },
+    {
+      header: 'Status',
       cell: (event) => (
         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider
-          ${event.status === 'Ongoing' ? 'bg-primary-container text-on-primary-container' : 
-            event.status === 'Upcoming' ? 'bg-secondary-container text-on-secondary-container' : 
-            event.status === 'Completed' ? 'bg-surface-variant text-on-surface-variant' :
-            'bg-error-container text-on-error-container'}`}
+          ${event.status === 'Upcoming' ? 'bg-secondary-container text-on-secondary-container' : 
+            event.status === 'Ongoing' ? 'bg-primary-container text-on-primary-container' : 
+            event.status === 'Completed' ? 'bg-tertiary-container text-on-tertiary-container' : 
+            'bg-error-container text-error'}`}
         >
           {event.status}
         </span>
       )
     },
-    { 
-      header: 'Capacity', 
-      cell: (event) => <span>{event.capacity || 'Unlimited'}</span> 
-    },
-    { 
-      header: <div className="text-right">Actions</div>, 
+    {
+      header: <div className="text-right">Actions</div>,
       cell: (event) => (
         <div className="flex justify-end gap-2">
           <button 
@@ -101,24 +133,26 @@ export function EventsTable({ events }: { events: Event[] }) {
     <>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-headline-lg font-bold text-on-surface">Events</h1>
-          <p className="text-on-surface-variant font-medium mt-1">Manage YAD events and activities.</p>
+          <h2 className="text-2xl font-bold text-on-surface">Event List</h2>
+          <p className="text-on-surface-variant mt-1 text-sm">All registered events in the system.</p>
         </div>
-        <Button 
- variant="default" 
- className=" shadow-md flex items-center gap-2 hover:scale-105"
- onClick={openCreate}
- >
-          <span className="material-symbols-outlined text-[20px]">add</span>
-          New Event
-        </Button>
+        <div className="relative">
+          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+          <input
+            className="w-full md:w-64 pl-9 pr-3 py-2 bg-surface-container-lowest border border-outline-variant/30 rounded-md focus:ring-2 focus:ring-primary text-[14px] placeholder-on-surface-variant/70 shadow-sm"
+            placeholder="Search events..."
+            type="text"
+          />
+        </div>
       </div>
 
       <DataTable 
         columns={columns} 
         data={events} 
         keyExtractor={(e) => e.id}
-        emptyMessage='No events found. Click "New Event" to create one.'
+        emptyMessage='No events found. Click "Create Event" to add one.'
+        count={count}
+        page={page}
       />
 
       <EventFormModal 

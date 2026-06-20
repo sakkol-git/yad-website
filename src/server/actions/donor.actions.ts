@@ -4,12 +4,12 @@ import { createClient } from '@/shared/lib/supabase/server';
 import { revalidatePath } from 'next/cache';
 import { donorsService } from '../services/donors.service';
 
-export async function getDonors() {
+export async function getDonors(page: number = 1, limit: number = 10, search?: string) {
   const supabase = await createClient();
   try {
-    const data = await donorsService.getAllDonors(supabase);
+    const { data, count } = await donorsService.getDonors(supabase, page, limit, search, true);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return data as any[];
+    return { data: data as any[], count };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('Error fetching donors:', error);

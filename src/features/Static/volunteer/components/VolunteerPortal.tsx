@@ -1,8 +1,20 @@
+export interface PortalEvent {
+  id: string;
+  name: string;
+  description: string;
+  venue?: string | null;
+}
+
+export interface PortalEventVolunteer {
+  id: string;
+  event_id: string;
+  status: string;
+  events?: PortalEvent | null;
+}
+
 interface VolunteerPortalProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  myVolunteers: any[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  availableEvents: any[];
+  myVolunteers: PortalEventVolunteer[];
+  availableEvents: PortalEvent[];
   signUpForEvent: (formData: FormData) => Promise<void>;
 }
 
@@ -26,8 +38,7 @@ export function VolunteerPortal({
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {myVolunteers && myVolunteers.length > 0 ? (
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            myVolunteers.map((vol: any) => (
+            myVolunteers.map((vol) => (
               <div key={vol.id} className="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm flex items-start justify-between">
                 <div>
                   <h3 className="font-bold text-on-surface">{vol.events?.name}</h3>
@@ -63,8 +74,7 @@ export function VolunteerPortal({
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {availableEvents.length > 0 ? (
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            availableEvents.map((event: any) => (
+            availableEvents.map((event) => (
               <div key={event.id} className="bg-surface-container-low p-5 rounded-lg border border-outline-variant/30 flex flex-col justify-between">
                 <div>
                   <div className="flex justify-between items-start mb-2">

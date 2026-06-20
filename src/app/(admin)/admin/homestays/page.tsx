@@ -1,6 +1,6 @@
 import { createClient } from '@/shared/lib/supabase/server';
 import { RoomsRepository } from '@/server/repositories/rooms';
-import { HomestaysTable } from '@/features/Entities/homestays/components/HomestaysTable';
+import { HomestaysTable, Room } from '@/features/Entities/homestays/components/HomestaysTable';
 
 export default async function HomestaysPage({
   searchParams,
@@ -37,7 +37,7 @@ export default async function HomestaysPage({
       </div>
 
       <HomestaysTable
-        rooms={rooms || []}
+        rooms={(rooms as unknown as Room[]) || []}
         count={count}
         page={page}
         search={search}

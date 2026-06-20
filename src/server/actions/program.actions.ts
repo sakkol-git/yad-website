@@ -14,20 +14,29 @@ export interface ProgramFormData {
   image_url?: string;
 }
 
-export async function getProgramsAction() {
+export async function getProgramsAction(page: number = 1, limit: number = 10, search?: string) {
   try {
     const supabaseAdmin = createAdminClient();
     
-    const { data, error } = await supabaseAdmin
+    let query = supabaseAdmin
       .from("programs")
-      .select("*")
+      .select("*", { count: "exact" })
       .order("created_at", { ascending: false });
+
+    if (search) {
+      query = query.ilike("title", `%${search}%`);
+    }
+
+    const from = (page - 1) * limit;
+    const to = from + limit - 1;
+
+    const { data, count, error } = await query.range(from, to);
 
     if (error) {
       throw error;
     }
 
-    return { success: true, data };
+    return { success: true, data, count };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error("[ProgramAction] Fetch error:", error);

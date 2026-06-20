@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { createClient } from '@/shared/lib/supabase/client';
 
 // Grouped items to improve scannability and structure
 const navGroups = [
@@ -43,6 +44,14 @@ interface AdminSidebarProps {
 
 export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.push('/');
+    router.refresh();
+  };
 
   return (
     <>
@@ -131,6 +140,7 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
             </div>
 
             <button
+              onClick={handleLogout}
               className="opacity-0 group-hover:opacity-100 text-on-surface-variant hover:text-error transition-all duration-200 p-1.5 rounded-full hover:bg-error/10 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-error"
               aria-label="Log out"
               title="Log out"

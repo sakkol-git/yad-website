@@ -2,9 +2,20 @@
 
 import Link from 'next/link';
 
+export interface Donation {
+  id: string;
+  donor_name?: string | null;
+  donor_id?: string | null;
+  amount: number;
+  currency: string;
+  method: string;
+  status: string;
+  created_at: string;
+  receipt_url?: string | null;
+}
+
 interface DonationsTableProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  donations: any[];
+  donations: Donation[];
   count: number | null;
   page: number;
   search?: string;
@@ -74,8 +85,7 @@ export function DonationsTable({
           </thead>
           <tbody className="text-[16px] text-on-background divide-y divide-surface-variant/30">
             {donations && donations.length > 0 ? (
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              donations.map((donation: any) => (
+              donations.map((donation) => (
                 <tr key={donation.id} className="hover:bg-surface-container-low/50 transition-colors group">
                   <td className="p-3 pl-6">
                     <p className="font-bold text-[14px] text-on-background">{donation.donor_name || 'Anonymous'}</p>

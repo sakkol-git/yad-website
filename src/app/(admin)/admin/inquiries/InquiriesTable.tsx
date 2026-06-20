@@ -17,7 +17,7 @@ interface Inquiry {
   created_at: string;
 }
 
-export function InquiriesTable({ initialData }: { initialData: Inquiry[] }) {
+export function InquiriesTable({ initialData, count, page }: { initialData: Inquiry[]; count?: number | null; page?: number }) {
   const [data, setData] = useState<Inquiry[]>(initialData);
   const [isPending, startTransition] = useTransition();
 
@@ -115,7 +115,7 @@ export function InquiriesTable({ initialData }: { initialData: Inquiry[] }) {
 
   return (
     <div className="bg-surface rounded-xl shadow-sm border border-outline-variant/30 overflow-hidden">
-      <DataTable columns={columns} data={data} keyExtractor={(row) => row.id} />
+      <DataTable columns={columns} data={data} keyExtractor={(row) => row.id} count={count} page={page} />
     </div>
   );
 }

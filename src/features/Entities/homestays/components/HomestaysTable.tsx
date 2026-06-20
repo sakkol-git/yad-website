@@ -2,9 +2,15 @@
 
 import Link from 'next/link';
 
+export interface Room {
+  id: string;
+  name: string;
+  capacity: number;
+  status: 'Available' | 'Occupied' | 'Maintenance' | string;
+}
+
 interface HomestaysTableProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  rooms: any[];
+  rooms: Room[];
   count: number | null;
   page: number;
   search?: string;
@@ -57,8 +63,7 @@ export function HomestaysTable({
           </thead>
           <tbody className="text-[16px] text-on-background divide-y divide-surface-variant/30">
             {rooms && rooms.length > 0 ? (
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              rooms.map((room: any) => (
+              rooms.map((room) => (
                 <tr key={room.id} className="hover:bg-surface-container-low/50 transition-colors group">
                   <td className="p-3 pl-6">
                     <p className="font-bold text-[14px] text-on-background">{room.name}</p>

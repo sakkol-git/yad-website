@@ -15,7 +15,7 @@ interface User {
   last_sign_in_at?: string;
 }
 
-export function UsersTable({ users }: { users: User[] }) {
+export function UsersTable({ users, count, page }: { users: User[]; count?: number | null; page?: number }) {
   const [modalState, setModalState] = useState<{
     isOpen: boolean;
     mode: 'create' | 'edit';
@@ -125,6 +125,8 @@ export function UsersTable({ users }: { users: User[] }) {
         data={users} 
         keyExtractor={(u) => u.id}
         emptyMessage="No users found."
+        count={count}
+        page={page}
       />
 
       <UserFormModal 

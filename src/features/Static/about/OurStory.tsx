@@ -4,7 +4,7 @@ import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 
 export function OurStory() {
   return (
-    <section className="bg-surface py-section-gap">
+    <section id="our-history" className="bg-surface py-section-gap scroll-mt-32">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
         <RevealOnScroll>
           <div className="text-center mb-16">

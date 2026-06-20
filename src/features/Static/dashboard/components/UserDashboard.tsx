@@ -1,11 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from 'next/link';
+import { User } from '@supabase/supabase-js';
 
 interface UserDashboardProps {
-  user: any;
-  upcomingBooking: any;
-  recentDonation: any;
-  recentVolunteer: any;
+  user: User;
+  upcomingBooking: { check_in: string; rooms?: { name: string } | null } | null;
+  recentDonation: { amount: number; status: string; created_at: string } | null;
+  recentVolunteer: { status: string; events?: { name: string } | null } | null;
   greeting: string;
 }
 
@@ -45,7 +45,7 @@ export function UserDashboard({
             {upcomingBooking ? (
               <div className="bg-surface-container p-4 rounded-lg">
                 <p className="text-xs font-bold text-primary uppercase tracking-wider mb-1">Upcoming Stay</p>
-                <p className="font-medium text-on-surface">{(upcomingBooking.rooms as any)?.name}</p>
+                <p className="font-medium text-on-surface">{upcomingBooking.rooms?.name}</p>
                 <p className="text-sm text-on-surface-variant mt-1">Check-in: {new Date(upcomingBooking.check_in).toLocaleDateString()}</p>
               </div>
             ) : (
@@ -99,7 +99,7 @@ export function UserDashboard({
             {recentVolunteer ? (
               <div className="bg-surface-container p-4 rounded-lg">
                 <p className="text-xs font-bold text-secondary uppercase tracking-wider mb-1">Latest Engagement</p>
-                <p className="font-medium text-on-surface">{(recentVolunteer.events as any)?.name}</p>
+                <p className="font-medium text-on-surface">{recentVolunteer.events?.name}</p>
                 <p className="text-sm text-on-surface-variant mt-1">Status: {recentVolunteer.status}</p>
               </div>
             ) : (

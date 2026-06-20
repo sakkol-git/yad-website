@@ -19,7 +19,7 @@ interface Program {
   created_at: string;
 }
 
-export function ProgramsTable({ initialData }: { initialData: Program[] }) {
+export function ProgramsTable({ initialData, count, page }: { initialData: Program[]; count?: number | null; page?: number }) {
   const [data, setData] = useState<Program[]>(initialData);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
@@ -118,7 +118,13 @@ export function ProgramsTable({ initialData }: { initialData: Program[] }) {
         </div>
       ) : (
         <div className="bg-surface rounded-xl shadow-sm border border-outline-variant/30 overflow-hidden">
-          <DataTable columns={columns} data={data} keyExtractor={(row) => row.id} />
+          <DataTable 
+            columns={columns} 
+            data={data} 
+            keyExtractor={(row) => row.id} 
+            count={count}
+            page={page}
+          />
         </div>
       )}
 

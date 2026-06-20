@@ -4,13 +4,22 @@
 import { useRouter } from 'next/navigation';
 import { Button } from '@/shared/components/ui/Button';
 
+export interface UserBooking {
+  id: string;
+  rooms?: { name: string } | null;
+  check_in: string;
+  check_out: string;
+  amount: number;
+  status: string;
+}
+
 interface UserBookingsTableProps {
-  bookings: any[];
+  bookings: UserBooking[];
 }
 
 export function UserBookingsTable({ bookings }: UserBookingsTableProps) {
   const router = useRouter();
-  const handlePayment = (booking: any) => {
+  const handlePayment = (booking: UserBooking) => {
     router.push(`/payment?id=${booking.id}&type=booking`);
   };
 
@@ -37,7 +46,7 @@ export function UserBookingsTable({ bookings }: UserBookingsTableProps) {
             </div>
             
             <div className="divide-y divide-outline-variant/20">
-              {bookings.map((booking: any) => (
+              {bookings.map((booking) => (
                 <div key={booking.id} className="grid grid-cols-1 md:grid-cols-6 gap-3 md:gap-4 p-4 hover:bg-surface-container/30 transition-colors items-center">
                   <div className="flex justify-between md:block items-center">
                     <span className="md:hidden font-bold text-on-surface-variant text-sm">Room</span>

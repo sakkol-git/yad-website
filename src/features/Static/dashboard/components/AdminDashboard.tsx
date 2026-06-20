@@ -1,6 +1,34 @@
 import Link from 'next/link';
 
-export function AdminDashboard() {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function AdminDashboard({ initialData }: { initialData?: any }) {
+  const formatCurrency = (amount: number) => 
+    new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
+
+  const formatTimeAgo = (dateString: string) => {
+    const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+    const daysDifference = Math.round((new Date(dateString).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
+    
+    if (daysDifference === 0) {
+      const hoursDifference = Math.round((new Date(dateString).getTime() - new Date().getTime()) / (1000 * 60 * 60));
+      if (hoursDifference === 0) {
+        const minDiff = Math.round((new Date(dateString).getTime() - new Date().getTime()) / (1000 * 60));
+        return rtf.format(minDiff, 'minute');
+      }
+      return rtf.format(hoursDifference, 'hour');
+    }
+    return rtf.format(daysDifference, 'day');
+  };
+
+  const metrics = initialData?.metrics || {
+    totalMembers: 0,
+    activePrograms: 0,
+    monthlyDonations: 0,
+    pendingHomestays: 0
+  };
+
+  const { users = [], donations = [] } = initialData?.recentActivities || {};
+
   return (
     <div className="flex-1">
       {/* Page Header */}
@@ -14,10 +42,10 @@ export function AdminDashboard() {
           </p>
         </div>
         <div className="flex gap-3">
-          <button className="bg-surface-container border border-outline-variant/30 text-on-surface px-5 py-2.5 rounded-lg font-label-bold text-sm hover:bg-surface-container-high transition-colors flex items-center gap-2">
+          <button className="bg-surface-container border border-outline-variant/30 text-on-surface px-5 py-2.5 rounded-lg font-label-bold text-sm hover:bg-surface-container-high transition-colors flex items-center gap-2 cursor-not-allowed opacity-70">
             <span className="material-symbols-outlined text-[18px]">calendar_today</span> Last 30 Days
           </button>
-          <button className="bg-primary text-on-primary px-5 py-2.5 rounded-lg font-label-bold text-sm hover:bg-primary/90 transition-colors flex items-center gap-2 shadow-sm">
+          <button className="bg-primary text-on-primary px-5 py-2.5 rounded-lg font-label-bold text-sm hover:bg-primary/90 transition-colors flex items-center gap-2 shadow-sm cursor-not-allowed opacity-70">
             <span className="material-symbols-outlined text-[18px]">download</span> Export Report
           </button>
         </div>
@@ -35,7 +63,7 @@ export function AdminDashboard() {
             </span>
           </div>
           <p className="text-sm font-medium text-on-surface-variant mb-1">Total Members</p>
-          <h3 className="text-3xl font-bold text-primary">2,450</h3>
+          <h3 className="text-3xl font-bold text-primary">{metrics.totalMembers.toLocaleString()}</h3>
         </div>
 
         <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-6 shadow-ambient hover:-translate-y-1 transition-transform duration-300">
@@ -48,7 +76,7 @@ export function AdminDashboard() {
             </span>
           </div>
           <p className="text-sm font-medium text-on-surface-variant mb-1">Active Programs</p>
-          <h3 className="text-3xl font-bold text-primary">18</h3>
+          <h3 className="text-3xl font-bold text-primary">{metrics.activePrograms}</h3>
         </div>
 
         <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-6 shadow-ambient hover:-translate-y-1 transition-transform duration-300">
@@ -61,21 +89,27 @@ export function AdminDashboard() {
             </span>
           </div>
           <p className="text-sm font-medium text-on-surface-variant mb-1">Monthly Donations</p>
-          <h3 className="text-3xl font-bold text-primary">$12,840</h3>
+          <h3 className="text-3xl font-bold text-primary">{formatCurrency(metrics.monthlyDonations)}</h3>
         </div>
 
         <div className="bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-6 shadow-ambient hover:-translate-y-1 transition-transform duration-300 relative overflow-hidden">
-          <div className="absolute right-0 top-0 w-2 h-full bg-error"></div>
+          {metrics.pendingHomestays > 0 && <div className="absolute right-0 top-0 w-2 h-full bg-error"></div>}
           <div className="flex justify-between items-start mb-4">
-            <div className="w-12 h-12 rounded-lg bg-error-container/50 text-error flex items-center justify-center">
+            <div className={`w-12 h-12 rounded-lg ${metrics.pendingHomestays > 0 ? 'bg-error-container/50 text-error' : 'bg-surface-variant text-on-surface-variant'} flex items-center justify-center`}>
               <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>home_work</span>
             </div>
-            <span className="bg-error/10 text-error px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-              <span className="material-symbols-outlined text-[14px]">priority_high</span> Action Needed
-            </span>
+            {metrics.pendingHomestays > 0 ? (
+              <span className="bg-error/10 text-error px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                <span className="material-symbols-outlined text-[14px]">priority_high</span> Action Needed
+              </span>
+            ) : (
+              <span className="bg-surface-variant text-on-surface-variant px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                <span className="material-symbols-outlined text-[14px]">check</span> All Clear
+              </span>
+            )}
           </div>
           <p className="text-sm font-medium text-on-surface-variant mb-1">Pending Homestays</p>
-          <h3 className="text-3xl font-bold text-error">7</h3>
+          <h3 className={`text-3xl font-bold ${metrics.pendingHomestays > 0 ? 'text-error' : 'text-primary'}`}>{metrics.pendingHomestays}</h3>
         </div>
       </div>
 
@@ -94,44 +128,39 @@ export function AdminDashboard() {
           </div>
           <div className="space-y-1">
             {/* Activity Items */}
-            <div className="flex items-start gap-4 p-3 rounded-lg hover:bg-surface-container/50 transition-colors group cursor-pointer">
-              <div className="mt-1 w-10 h-10 rounded-full bg-primary-container/20 text-primary flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                <span className="material-symbols-outlined text-[20px]">person_add</span>
-              </div>
-              <div className="flex-1">
-                <div className="flex justify-between items-start">
-                  <p className="text-sm font-medium text-on-surface">New member registration: <span className="font-bold text-primary">Sokha Chen</span></p>
-                  <span className="text-xs font-medium text-on-surface-variant bg-surface px-2 py-0.5 rounded-md">2 hrs ago</span>
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            {users.map((user: any) => (
+              <div key={user.id} className="flex items-start gap-4 p-3 rounded-lg hover:bg-surface-container/50 transition-colors group cursor-pointer">
+                <div className="mt-1 w-10 h-10 rounded-full bg-primary-container/20 text-primary flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                  <span className="material-symbols-outlined text-[20px]">person_add</span>
                 </div>
-                <p className="text-sm text-on-surface-variant mt-1">Joined the <span className="font-medium text-secondary">&quot;Youth Leadership&quot;</span> program.</p>
+                <div className="flex-1">
+                  <div className="flex justify-between items-start">
+                    <p className="text-sm font-medium text-on-surface">New member registration: <span className="font-bold text-primary">{user.email}</span></p>
+                    <span className="text-xs font-medium text-on-surface-variant bg-surface px-2 py-0.5 rounded-md">{formatTimeAgo(user.created_at)}</span>
+                  </div>
+                  <p className="text-sm text-on-surface-variant mt-1">Assigned role: <span className="font-medium text-secondary capitalize">{user.role}</span></p>
+                </div>
               </div>
-            </div>
+            ))}
 
-            <div className="flex items-start gap-4 p-3 rounded-lg hover:bg-surface-container/50 transition-colors group cursor-pointer">
-              <div className="mt-1 w-10 h-10 rounded-full bg-secondary-container/30 text-secondary flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                <span className="material-symbols-outlined text-[20px]">volunteer_activism</span>
-              </div>
-              <div className="flex-1">
-                <div className="flex justify-between items-start">
-                  <p className="text-sm font-medium text-on-surface">Donation received: <span className="font-bold text-secondary">$500</span></p>
-                  <span className="text-xs font-medium text-on-surface-variant bg-surface px-2 py-0.5 rounded-md">5 hrs ago</span>
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            {donations.map((donation: any) => (
+              <div key={donation.id} className="flex items-start gap-4 p-3 rounded-lg hover:bg-surface-container/50 transition-colors group cursor-pointer">
+                <div className="mt-1 w-10 h-10 rounded-full bg-secondary-container/30 text-secondary flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                  <span className="material-symbols-outlined text-[20px]">volunteer_activism</span>
                 </div>
-                <p className="text-sm text-on-surface-variant mt-1">From anonymous donor via website portal.</p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-4 p-3 rounded-lg hover:bg-surface-container/50 transition-colors group cursor-pointer bg-error/5 border border-error/10">
-              <div className="mt-1 w-10 h-10 rounded-full bg-error-container/50 text-error flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                <span className="material-symbols-outlined text-[20px]">home_work</span>
-              </div>
-              <div className="flex-1">
-                <div className="flex justify-between items-start">
-                  <p className="text-sm font-medium text-on-surface">Homestay Request: <span className="font-bold text-error">Family Vong</span></p>
-                  <span className="text-xs font-bold text-error bg-error-container/50 px-2 py-0.5 rounded-md">Action Required</span>
+                <div className="flex-1">
+                  <div className="flex justify-between items-start">
+                    <p className="text-sm font-medium text-on-surface">Donation received: <span className="font-bold text-secondary">{formatCurrency(donation.amount)}</span></p>
+                    <span className="text-xs font-medium text-on-surface-variant bg-surface px-2 py-0.5 rounded-md">{formatTimeAgo(donation.created_at)}</span>
+                  </div>
+                  <p className="text-sm text-on-surface-variant mt-1">
+                    From {donation.first_name ? `${donation.first_name} ${donation.last_name || ''}` : 'anonymous donor'} via {donation.method?.toUpperCase()}
+                  </p>
                 </div>
-                <p className="text-sm text-on-surface-variant mt-1">Awaiting approval for 3 guests. <Link className="text-secondary hover:underline font-medium ml-1" href="#">Review request</Link></p>
               </div>
-            </div>
+            ))}
           </div>
         </div>
 

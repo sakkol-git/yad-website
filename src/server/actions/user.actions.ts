@@ -4,10 +4,10 @@ import { createAdminClient } from '@/shared/lib/supabase/admin';
 import { revalidatePath } from 'next/cache';
 import { usersService } from '../services/users.service';
 
-export async function getUsers() {
+export async function getUsers(page: number = 1, limit: number = 10, search?: string) {
   const supabase = createAdminClient();
   try {
-    return await usersService.getAllUsersWithRoles(supabase);
+    return await usersService.getAllUsersWithRoles(supabase, page, limit, search);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('Error fetching users:', error);

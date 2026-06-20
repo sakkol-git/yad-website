@@ -18,7 +18,7 @@ interface Member {
   avatar_url?: string | null;
 }
 
-export function MembersTable({ members }: { members: Member[] }) {
+export function MembersTable({ members, count, page }: { members: Member[]; count?: number | null; page?: number }) {
   const [modalState, setModalState] = useState<{
     isOpen: boolean;
     mode: 'create' | 'edit';
@@ -121,6 +121,8 @@ export function MembersTable({ members }: { members: Member[] }) {
         data={members} 
         keyExtractor={(m) => m.id}
         emptyMessage='No members found. Click "Add Member" to create one.'
+        count={count}
+        page={page}
       />
 
       <MemberFormModal 

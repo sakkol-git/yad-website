@@ -5,8 +5,12 @@ export const metadata = {
   title: 'User Management - YAD Admin',
 };
 
-export default async function UsersPage() {
-  const users = await getUsers();
+export default async function UsersPage(props: { searchParams: Promise<{ page?: string; search?: string }> }) {
+  const searchParams = await props.searchParams;
+  const page = parseInt(searchParams.page || "1", 10);
+  const search = searchParams.search;
+
+  const { data: users, count, adminsCount } = await getUsers(page, 10, search);
 
   return (
     <div className="flex-1 p-6 lg:p-10 max-w-[1600px] mx-auto w-full animate-fade-in">
@@ -36,7 +40,7 @@ export default async function UsersPage() {
           </div>
           <div>
             <p className="text-on-surface-variant text-sm font-medium mb-1">Total Users</p>
-            <h3 className="text-2xl font-bold text-on-surface">{users.length}</h3>
+            <h3 className="text-2xl font-bold text-on-surface">{count || 0}</h3>
           </div>
         </div>
         <div className="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
@@ -46,7 +50,7 @@ export default async function UsersPage() {
           <div>
             <p className="text-on-surface-variant text-sm font-medium mb-1">Admins</p>
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-            <h3 className="text-2xl font-bold text-on-surface">{users.filter((u: any) => u.role === 'admin' || u.role === 'Admin').length || 0}</h3>
+            <h3 className="text-2xl font-bold text-on-surface">{adminsCount || 0}</h3>
           </div>
         </div>
         <div className="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
@@ -55,12 +59,12 @@ export default async function UsersPage() {
           </div>
           <div>
             <p className="text-on-surface-variant text-sm font-medium mb-1">Active Accounts</p>
-            <h3 className="text-2xl font-bold text-on-surface">{users.length}</h3>
+            <h3 className="text-2xl font-bold text-on-surface">{count || 0}</h3>
           </div>
         </div>
       </div>
 
-      <UsersTable users={users} />
+      <UsersTable users={users} count={count} page={page} />
     </div>
   );
 }

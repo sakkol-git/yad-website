@@ -1,6 +1,6 @@
 import { createClient } from '@/shared/lib/supabase/server';
 import { BookingsRepository } from '@/server/repositories/bookings';
-import { BookingsTable } from '@/features/Entities/bookings/components/BookingsTable';
+import { BookingsTable, Booking } from '@/features/Entities/bookings/components/BookingsTable';
 
 export default async function BookingsPage({
   searchParams,
@@ -88,7 +88,7 @@ export default async function BookingsPage({
       </div>
 
       <BookingsTable
-        bookings={bookings || []}
+        bookings={(bookings as unknown as Booking[]) || []}
         count={count}
         page={page}
         search={search}

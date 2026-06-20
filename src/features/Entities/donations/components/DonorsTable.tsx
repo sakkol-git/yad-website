@@ -20,7 +20,7 @@ interface Donor {
   status: string;
 }
 
-export function DonorsTable({ donors }: { donors: Donor[] }) {
+export function DonorsTable({ donors, count, page }: { donors: Donor[]; count?: number | null; page?: number }) {
   const [modalState, setModalState] = useState<{
     isOpen: boolean;
     mode: 'create' | 'edit';
@@ -157,6 +157,8 @@ export function DonorsTable({ donors }: { donors: Donor[] }) {
         data={donors}
         keyExtractor={(d) => d.id}
         emptyMessage='No donors found. Click "Add Donor" to create one.'
+        count={count}
+        page={page}
       />
 
       <DonorFormModal

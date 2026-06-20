@@ -1,12 +1,20 @@
 import { getEvents } from '@/server/actions/event.actions';
 import { EventsTable } from '@/features/Entities/events/components/EventsTable';
+import { createClient } from '@/shared/lib/supabase/server';
 
 export const metadata = {
   title: 'Events Management - YAD Admin',
 };
 
-export default async function EventsPage() {
-  const events = await getEvents();
+export default async function EventsPage(props: { searchParams: Promise<{ page?: string; search?: string }> }) {
+  const searchParams = await props.searchParams;
+  const page = parseInt(searchParams.page || "1", 10);
+  const search = searchParams.search;
+
+  const { data: events, count } = await getEvents(page, 10, search);
+
+  const supabase = await createClient();
+  const { data: allEvents } = await supabase.from('events').select('date, capacity');
 
   return (
     <div className="flex-1 p-6 lg:p-10 max-w-[1600px] mx-auto w-full animate-fade-in">
@@ -36,7 +44,7 @@ export default async function EventsPage() {
           </div>
           <div>
             <p className="text-on-surface-variant text-sm font-medium mb-1">Total Events</p>
-            <h3 className="text-2xl font-bold text-on-surface">{events?.length || 0}</h3>
+            <h3 className="text-2xl font-bold text-on-surface">{count || 0}</h3>
           </div>
         </div>
         <div className="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift">
@@ -47,7 +55,7 @@ export default async function EventsPage() {
             <p className="text-on-surface-variant text-sm font-medium mb-1">Upcoming Events</p>
             <h3 className="text-2xl font-bold text-on-surface">
               {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {events?.filter((e: any) => new Date(e.date) >= new Date()).length || 0}
+              {allEvents?.filter((e: any) => new Date(e.date) >= new Date()).length || 0}
             </h3>
           </div>
         </div>
@@ -59,13 +67,13 @@ export default async function EventsPage() {
             <p className="text-on-surface-variant text-sm font-medium mb-1">Total Capacity</p>
             <h3 className="text-2xl font-bold text-on-surface">
               {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-              {events?.reduce((acc: number, e: any) => acc + (e.capacity || 0), 0) || 0}
+              {allEvents?.reduce((acc: number, e: any) => acc + (e.capacity || 0), 0) || 0}
             </h3>
           </div>
         </div>
       </div>
 
-      <EventsTable events={events} />
+      <EventsTable events={events} count={count} page={page} />
     </div>
   );
 }

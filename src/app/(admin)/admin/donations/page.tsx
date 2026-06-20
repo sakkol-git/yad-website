@@ -1,6 +1,6 @@
 import { createClient } from '@/shared/lib/supabase/server';
 import { donationsService } from '@/server/services/donations.service';
-import { DonationsTable } from '@/features/Entities/donations/components/DonationsTable';
+import { DonationsTable, Donation } from '@/features/Entities/donations/components/DonationsTable';
 
 export default async function DonationsPage({
   searchParams,
@@ -125,7 +125,7 @@ export default async function DonationsPage({
       </div>
 
       <DonationsTable
-        donations={donations || []}
+        donations={(donations as unknown as Donation[]) || []}
         count={count}
         page={page}
         search={search}

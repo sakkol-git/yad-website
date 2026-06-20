@@ -4,12 +4,12 @@ import { createClient } from '@/shared/lib/supabase/server';
 import { revalidatePath } from 'next/cache';
 import { eventsService } from '../services/events.service';
 
-export async function getEvents() {
+export async function getEvents(page: number = 1, limit: number = 10, search?: string) {
   const supabase = await createClient();
   try {
-    const data = await eventsService.getAllEvents(supabase);
+    const { data, count } = await eventsService.getEvents(supabase, { page, limit, search }, true);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return data as any[];
+    return { data: data as any[], count };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('Error fetching events:', error);

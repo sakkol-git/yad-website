@@ -3,8 +3,14 @@ import { Database } from '@/shared/types/supabase';
 import { requireAdmin } from '../permissions';
 
 export class UsersService {
-  async getAllUsersWithRoles(supabaseAdmin: SupabaseClient<Database>) {
-    const { data: { users }, error: authError } = await supabaseAdmin.auth.admin.listUsers();
+  async getAllUsersWithRoles(supabaseAdmin: SupabaseClient<Database>, page: number = 1, limit: number = 10, search?: string) {
+    // Supabase auth admin listUsers doesn't natively support robust text search
+    // We'll fetch users and handle pagination/search in memory if there aren't too many
+    // For a highly scalable app, we'd mirror users to a public.users table
+    // Since this is just for the admin dashboard, we'll do best-effort
+    const { data: { users }, error: authError } = await supabaseAdmin.auth.admin.listUsers({
+      perPage: 1000 // Fetch up to 1000 to allow in-memory filtering for now
+    });
     
     if (authError) {
       throw new Error('Failed to fetch users: ' + authError.message);
@@ -30,7 +36,22 @@ export class UsersService {
       };
     });
 
-    return usersWithRoles.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+    let filteredUsers = usersWithRoles.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+    
+    if (search) {
+      const searchLower = search.toLowerCase();
+      filteredUsers = filteredUsers.filter(u => u.email.toLowerCase().includes(searchLower) || u.role.toLowerCase().includes(searchLower));
+    }
+
+    const count = filteredUsers.length;
+    const adminsCount = filteredUsers.filter(u => u.role === 'admin' || u.role === 'Admin').length;
+    
+    const from = (page - 1) * limit;
+    const to = from + limit;
+    
+    const paginatedUsers = filteredUsers.slice(from, to);
+
+    return { data: paginatedUsers, count, adminsCount };
   }
 
   async createUser(supabaseAdmin: SupabaseClient<Database>, email: string, password: string, role: string) {

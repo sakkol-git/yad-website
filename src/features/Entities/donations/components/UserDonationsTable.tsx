@@ -1,8 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
+export interface UserDonation {
+  id: string;
+  amount: number;
+  method: string;
+  status: string;
+  created_at: string;
+  receipt_url?: string | null;
+}
+
 interface UserDonationsTableProps {
-  donations: any[];
+  donations: UserDonation[];
   totalDonated: number;
 }
 
@@ -33,7 +41,7 @@ export function UserDonationsTable({ donations, totalDonated }: UserDonationsTab
             </div>
             
             <div className="divide-y divide-outline-variant/20">
-              {donations.map((donation: any) => (
+              {donations.map((donation) => (
                 <div key={donation.id} className="grid grid-cols-1 md:grid-cols-5 gap-3 md:gap-4 p-4 hover:bg-surface-container/30 transition-colors items-center">
                   <div className="flex justify-between md:block items-center">
                     <span className="md:hidden font-bold text-on-surface-variant text-sm">Date</span>

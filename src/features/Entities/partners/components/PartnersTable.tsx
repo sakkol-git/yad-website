@@ -18,7 +18,7 @@ interface Partner {
   logo_url: string | null;
 }
 
-export function PartnersTable({ partners }: { partners: Partner[] }) {
+export function PartnersTable({ partners, count, page }: { partners: Partner[]; count?: number | null; page?: number }) {
   const [modalState, setModalState] = useState<{
     isOpen: boolean;
     mode: 'create' | 'edit';
@@ -123,6 +123,8 @@ export function PartnersTable({ partners }: { partners: Partner[] }) {
         data={partners} 
         keyExtractor={(p) => p.id}
         emptyMessage='No partners found. Click "Add Partner" to create one.'
+        count={count}
+        page={page}
       />
 
       <PartnerFormModal 

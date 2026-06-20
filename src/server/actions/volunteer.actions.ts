@@ -11,12 +11,15 @@ import { auditLog } from "./audit.actions";
 
 const MAX_USERS_FETCH = 500;
 
-export async function getVolunteerRequestsAction() {
+export async function getVolunteerRequestsAction(page: number = 1, limit: number = 10) {
   try {
     const supabaseAdmin = createAdminClient();
 
+    const from = (page - 1) * limit;
+    const to = from + limit - 1;
+
     // 1. Fetch volunteers with their associated event
-    const { data: volunteers, error } = await supabaseAdmin
+    const { data: volunteers, count, error } = await supabaseAdmin
       .from("event_volunteers")
       .select(`
         id,
@@ -27,8 +30,9 @@ export async function getVolunteerRequestsAction() {
         events (
           name
         )
-      `)
-      .order("created_at", { ascending: false });
+      `, { count: "exact" })
+      .order("created_at", { ascending: false })
+      .range(from, to);
 
     if (error) {
       console.error("[VolunteerAction] Fetch error:", error);
@@ -73,7 +77,7 @@ export async function getVolunteerRequestsAction() {
       };
     });
 
-    return { data: mappedData };
+    return { data: mappedData, count };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     const message = err instanceof Error ? err.message : "Unknown error";

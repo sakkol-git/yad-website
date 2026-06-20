@@ -16,7 +16,7 @@ interface Volunteer {
   createdAt: string;
 }
 
-export function VolunteersTable({ initialData }: { initialData: Volunteer[] }) {
+export function VolunteersTable({ initialData, count, page }: { initialData: Volunteer[]; count?: number | null; page?: number }) {
   const [data, setData] = useState<Volunteer[]>(initialData);
   const [isPending, startTransition] = useTransition();
 
@@ -106,7 +106,7 @@ export function VolunteersTable({ initialData }: { initialData: Volunteer[] }) {
 
   return (
     <div className="bg-surface rounded-xl shadow-sm border border-outline-variant/30 overflow-hidden">
-      <DataTable columns={columns} data={data} keyExtractor={(row) => row.id} />
+      <DataTable columns={columns} data={data} keyExtractor={(row) => row.id} count={count} page={page} />
     </div>
   );
 }

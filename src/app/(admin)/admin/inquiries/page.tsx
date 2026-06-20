@@ -6,8 +6,13 @@ export const metadata: Metadata = {
   title: "Inquiries | YAD Admin",
 };
 
-export default async function AdminInquiriesPage() {
-  const result = await getInquiriesAction(1, 50); // Fetch first 50 for now
+export default async function AdminInquiriesPage(props: { searchParams: Promise<{ page?: string; search?: string }> }) {
+  const searchParams = await props.searchParams;
+  const page = parseInt(searchParams.page || "1", 10);
+  const search = searchParams.search;
+
+  // We fetch 10 per page instead of 50 to fit the new pagination model
+  const result = await getInquiriesAction(page, 10);
 
   if (!result.success) {
     return (
@@ -18,6 +23,7 @@ export default async function AdminInquiriesPage() {
   }
 
   const inquiries = result.data || [];
+  const count = result.count || 0;
 
   return (
     <div className="p-6 md:p-8 space-y-8 max-w-[1600px] mx-auto w-full">
@@ -31,7 +37,7 @@ export default async function AdminInquiriesPage() {
       </div>
 
       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-      <InquiriesTable initialData={inquiries as any} />
+      <InquiriesTable initialData={inquiries as any} count={count} page={page} />
     </div>
   );
 }

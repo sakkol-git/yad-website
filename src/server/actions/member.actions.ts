@@ -22,12 +22,12 @@ function extractProfileData(rawData: Record<string, unknown>) {
   };
 }
 
-export async function getMembers() {
+export async function getMembers(page: number = 1, limit: number = 10, search?: string) {
   const supabase = await createClient();
   try {
-    const members = await membersService.getAllMembers(supabase);
+    const { data, count } = await membersService.getMembers(supabase, { page, limit, search }, true);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return members as any[];
+    return { data: data as any[], count };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('Error fetching members:', error);
