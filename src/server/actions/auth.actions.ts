@@ -50,10 +50,11 @@ export async function logout() {
   redirect('/');
 }
 
-export async function loginWithGoogle() {
+export async function loginWithGoogle(redirectPath?: string) {
   const supabase = await createClient();
   const origin = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-  const redirectTo = `${origin}/auth/callback?next=/portal/dashboard`;
+  const targetPath = redirectPath || '/portal/dashboard';
+  const redirectTo = `${origin}/auth/callback?next=${encodeURIComponent(targetPath)}`;
 
   try {
     const data = await authService.signInWithGoogle(supabase, redirectTo);

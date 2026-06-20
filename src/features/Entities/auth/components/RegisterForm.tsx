@@ -7,13 +7,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { registerSchema, RegisterInput } from '@/server/validators/auth.schema';
 import { register as registerAction, loginWithGoogle } from '@/server/actions/auth.actions';
 import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useState, useTransition } from 'react';
 
 export function RegisterForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectedFrom = searchParams.get('redirectedFrom');
+
   const [serverError, setServerError] = useState<string | null>(null);
   const [isPendingGoogle, startTransitionGoogle] = useTransition();
+  const [isPendingRouter, startTransitionRouter] = useTransition();
 
   const {
     register,
@@ -22,6 +26,8 @@ export function RegisterForm() {
   } = useForm<RegisterInput>({
     resolver: zodResolver(registerSchema),
   });
+
+  const isWorking = isSubmitting || isPendingRouter;
 
   const onSubmit = async (data: RegisterInput) => {
     setServerError(null);
@@ -32,9 +38,12 @@ export function RegisterForm() {
       toast.error(result?.error || 'Registration failed');
     } else {
       toast.success('Account created successfully!');
-      if (result.targetUrl) {
-        router.push(result.targetUrl);
-        router.refresh();
+      const target = redirectedFrom || result.targetUrl;
+      if (target) {
+        startTransitionRouter(() => {
+          router.push(target);
+          router.refresh();
+        });
       }
     }
   };
@@ -42,7 +51,7 @@ export function RegisterForm() {
   const onGoogleLogin = () => {
     startTransitionGoogle(async () => {
       setServerError(null);
-      const result = await loginWithGoogle();
+      const result = await loginWithGoogle(redirectedFrom || undefined);
       if (!result?.success) {
         setServerError(result?.error || 'Failed to login with Google.');
         toast.error(result?.error || 'Failed to login with Google.');
@@ -170,10 +179,10 @@ export function RegisterForm() {
 
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isWorking}
               className="w-full py-3 bg-primary text-on-primary rounded-full font-bold text-[16px] shadow-sm hover:bg-primary/90 hover:shadow-md transition-all duration-200 active:scale-[0.98] mt-6 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              {isSubmitting ? (
+              {isWorking ? (
                 <div className="w-5 h-5 border-2 border-on-primary border-t-transparent rounded-full animate-spin" />
               ) : (
                 <>
