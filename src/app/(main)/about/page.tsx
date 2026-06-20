@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
 import { AboutHero } from "@/features/Static/about/AboutHero";
+import { OurStory } from "@/features/Static/about/OurStory";
 import { CorePurpose } from "@/features/Static/about/CorePurpose";
 
 
@@ -24,6 +25,7 @@ export default function AboutPage() {
     <main>
       <BreadcrumbSchema items={breadcrumbs} />
       <AboutHero />
+      <OurStory />
       <CorePurpose />
     </main>
   );
