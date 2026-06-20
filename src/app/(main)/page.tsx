@@ -12,10 +12,10 @@ import { MeasurableImpactSection } from "@/features/Static/homepage/MeasurableIm
 
 export const metadata: Metadata = {
   title: "YAD | Youth Advancement for Development — NGO in Cambodia",
-  description: "Youth Advancement for Development (YAD) is a leading NGO in Cambodia focused on youth empowerment, digital innovation, and community education.",
+  description: "Youth Advancement for Development (YAD) is an independent Cambodian NGO focused on youth empowerment, housing, leadership training, and community education.",
   openGraph: {
     title: "YAD | Youth Advancement for Development — NGO in Cambodia",
-    description: "Youth Advancement for Development (YAD) is a leading NGO in Cambodia focused on youth empowerment, digital innovation, and community education.",
+    description: "Youth Advancement for Development (YAD) is an independent Cambodian NGO focused on youth empowerment, housing, leadership training, and community education.",
     url: "https://yadkh.org/",
   },
 };
@@ -30,7 +30,7 @@ export default function Home() {
         "name": "What is Youth Advancement for Development (YAD)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Youth Advancement for Development (YAD) is a premier NGO in Cambodia dedicated to breaking the cycle of poverty by empowering youth through education, digital innovation, and community support."
+          "text": "Youth Advancement for Development (YAD), previously known as the Attitude Centre for Education (ACE), is an independent Cambodian NGO that provides education, housing, training, and work experience to disadvantaged youth in Cambodia."
         }
       },
       {
@@ -38,7 +38,7 @@ export default function Home() {
         "name": "What programs does YAD Cambodia offer?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "YAD offers comprehensive Dormitory & Youth Training, cutting-edge Digital Innovation bootcamps for tech skills, and Slum Community Education for high-risk areas in Phnom Penh and beyond."
+          "text": "YAD offers comprehensive Dormitory & Leadership Training, Porridge for Hope nutrition programs, and Community Schools teaching Life Skills and English in slum communities."
         }
       },
       {
@@ -46,7 +46,7 @@ export default function Home() {
         "name": "How can I volunteer or donate to YAD?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "You can support YAD's mission by visiting our Donate or Get Involved pages on our website. We welcome international donors, local volunteers, and corporate partners to join our ecosystem."
+          "text": "You can support YAD's mission by visiting our Donate or Get Involved pages. We welcome international donors, volunteers, and those looking to stay at our Homestay."
         }
       },
       {
@@ -62,7 +62,7 @@ export default function Home() {
         "name": "Why is youth empowerment important in Cambodia?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Empowering youth is critical for sustainable economic development in Cambodia. By providing education and digital skills, we help students secure meaningful employment and uplift their communities."
+          "text": "Empowering youth is critical for Cambodia's future leaders. By providing housing, education, and life skills, we help students secure meaningful employment and uplift their communities."
         }
       }
     ]

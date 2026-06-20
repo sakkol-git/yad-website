@@ -21,13 +21,13 @@ export function VisionSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20">
           <StaggerGroup y={24} className="flex flex-col space-y-6">
             <h3 className="font-headline-md text-headline-md text-primary">
-              A Vision for Sustainable Development
+              OUR MISSION: TO EMPOWER A NEW GENERATION OF YOUNG LEADERS
             </h3>
             <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-              Youth Advancement for Development (YAD) is a non-governmental organization in Phnom Penh, Cambodia. We break the cycle of poverty through education, digital innovation, and grassroots community support.
+              Youth Advancement for Development (YAD), previously known as the Attitude Centre for Education (ACE), is an independent Cambodian NGO that provides education, housing, training, and work experience to disadvantaged youth in Cambodia.
             </p>
             <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-              We believe every child deserves equitable access to quality education. Through partnerships with local schools, international donors, and volunteers, YAD creates a holistic ecosystem that bridges the educational gap.
+              From teaching Life Skills and English to slum children to providing accommodation, Leadership Skills, English and Life Skills to university students, our work advances the abilities and opportunities of Cambodia&apos;s future leaders.
             </p>
           </StaggerGroup>
 
@@ -36,13 +36,13 @@ export function VisionSection() {
               Core Initiatives Transforming Lives
             </h3>
             <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-              Our <strong className="font-semibold text-on-surface">Dormitory &amp; Youth Training Program</strong> provides safe housing for students relocating from rural provinces to pursue higher education in the city.
+              Our <strong className="font-semibold text-on-surface">Dormitory &amp; Leadership Training Centre (DLTC)</strong> provides safe housing, scholarships, and extensive life skills training for promising and talented university students from remote provinces and urban slum communities.
             </p>
             <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-              Our <strong className="font-semibold text-on-surface">Digital Innovation bootcamps</strong> equip youth with coding, digital literacy, and modern workplace skills for the evolving Cambodian tech sector.
+              Our <strong className="font-semibold text-on-surface">Porridge for Hope &amp; Community Schools</strong> initiatives combat malnutrition and bring basic education directly to poverty-stricken communities, reaching hundreds of children weekly.
             </p>
             <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-              Our <strong className="font-semibold text-on-surface">Slum Community Education</strong> initiative brings mobile classrooms and resources directly to high-risk, underprivileged communities.
+              Our <strong className="font-semibold text-on-surface">Young Professionals &amp; Volunteer</strong> programs aim to develop workforce readiness and foster international cross-cultural exchange through our sustainable Homestay enterprise.
             </p>
           </StaggerGroup>
         </div>

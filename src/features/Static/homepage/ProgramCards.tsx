@@ -21,10 +21,10 @@ export function ProgramCards() {
               />
             </ImageRevealMask>
             <h3 className="font-headline-md text-headline-md text-tertiary mb-3">
-              Dormitory &amp; Youth Training
+              Dormitory &amp; Leadership Training
             </h3>
             <p className="font-body-md text-body-md text-on-surface-variant">
-              Developing youth leadership through hands-on community projects.
+              Housing, scholarships, and extensive life skills for promising students.
             </p>
           </CardContent>
         </Card>
@@ -42,10 +42,10 @@ export function ProgramCards() {
               />
             </ImageRevealMask>
             <h3 className="font-headline-md text-headline-md text-secondary mb-3">
-              Digital Innovation
+              Porridge for Hope
             </h3>
             <p className="font-body-md text-body-md text-on-surface-variant">
-              Equipping the next generation with modern technological skills.
+              Combating malnutrition with bi-monthly nutrition programs for children.
             </p>
           </CardContent>
         </Card>
@@ -63,10 +63,10 @@ export function ProgramCards() {
               />
             </ImageRevealMask>
             <h3 className="font-headline-md text-headline-md text-primary mb-3">
-              Slum Education
+              Community Schools
             </h3>
             <p className="font-body-md text-body-md text-on-surface-variant">
-              Providing accessible learning resources to marginalized areas.
+              Taking English and Life Skills education directly to slum communities.
             </p>
           </CardContent>
         </Card>

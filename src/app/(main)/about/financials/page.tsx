@@ -29,9 +29,17 @@ export default async function FinancialsPage() {
       <section className="py-16 bg-surface-container-lowest">
         <div className="max-w-container-md mx-auto px-margin-mobile md:px-margin-desktop">
           
+          {/* Historical Data Section */}
+          <div className="mb-16">
+            <h2 className="font-headline-md text-headline-md text-primary mb-6">Historical Data (2015)</h2>
+            <p className="text-body-lg text-on-surface-variant mb-8">
+              Transparency has been our core value since our inception as the Attitude Centre for Education (ACE). In 2015, our total income was <strong>$57,504.15</strong>, driven heavily by Grants (42%) and Individual Donors (38%). Our total program expenses were <strong>$57,461.23</strong>, with 46% directly funding the Dormitory and Leadership Center.
+            </p>
+          </div>
+
           {/* Fund Allocation Section */}
           <div className="mb-16">
-            <h2 className="font-headline-md text-headline-md text-primary mb-6">Fund Allocation</h2>
+            <h2 className="font-headline-md text-headline-md text-primary mb-6">Current Fund Allocation</h2>
             <p className="text-body-lg text-on-surface-variant mb-8">
               We maximize our impact by keeping overhead low. For every dollar donated, 80 cents goes directly into our programs and directly benefits the communities we serve.
             </p>
@@ -99,8 +107,11 @@ export default async function FinancialsPage() {
               <div className="bg-surface-container-low border border-surface-variant rounded-lg p-10 text-center">
                 <span className="material-symbols-outlined text-4xl text-on-surface-variant mb-4">description</span>
                 <h3 className="font-headline-sm text-on-surface mb-2">Reports Coming Soon</h3>
-                <p className="text-on-surface-variant">
-                  We are currently finalizing our audited financial reports. Check back soon.
+                <p className="text-on-surface-variant mb-4">
+                  We are currently finalizing our audited financial reports for the recent fiscal years.
+                </p>
+                <p className="text-sm text-on-surface-variant italic">
+                  *Historical Annual General Reports for 2015 and 2017 are available upon request for legacy transparency.
                 </p>
               </div>
             )}

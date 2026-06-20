@@ -15,9 +15,7 @@ export function AboutHero() {
         </span>
         <TextReveal as="h1" text="We Are the Youth Advancement for Development" className="font-display-lg text-display-lg text-primary mb-8 max-w-4xl mx-auto" />
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-3xl mx-auto leading-relaxed">
-          Founded in 2024, YAD is a youth-led, grassroots organization
-          dedicated to nurturing the next generation of Cambodian leaders through
-          education, innovation, and community support.
+          Previously known as the Attitude Centre for Education (ACE), Youth Advancement for Development (YAD) is an independent Cambodian NGO dedicated to nurturing the next generation of leaders. We provide education, housing, training, and work experience to disadvantaged youth across Cambodia.
         </p>
       </RevealOnScroll>
     </header>

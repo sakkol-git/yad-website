@@ -44,11 +44,13 @@ export function DormitoryProgram() {
                 </p>
               </div>
             </div>
-            <Button variant="link" className="px-0 no-underline hover:no-underline flex items-center gap-2 text-primary font-label-bold text-label-bold group">
-              Learn about the center
-              <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
-                arrow_right_alt
-              </span>
+            <Button variant="link" className="px-0 no-underline hover:no-underline flex items-center gap-2 text-primary font-label-bold text-label-bold group" asChild>
+              <a href="/programs/dltc">
+                Learn about the center
+                <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
+                  arrow_right_alt
+                </span>
+              </a>
             </Button>
           </RevealOnScroll>
         </div>
