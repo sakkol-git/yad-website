@@ -3,6 +3,7 @@
 import Link from 'next/link';
 
 interface DonationsTableProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   donations: any[];
   count: number | null;
   page: number;
@@ -73,6 +74,7 @@ export function DonationsTable({
           </thead>
           <tbody className="text-[16px] text-on-background divide-y divide-surface-variant/30">
             {donations && donations.length > 0 ? (
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               donations.map((donation: any) => (
                 <tr key={donation.id} className="hover:bg-surface-container-low/50 transition-colors group">
                   <td className="p-3 pl-6">

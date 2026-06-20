@@ -25,11 +25,13 @@ export class PartnersService {
     return this.repository.getAll(supabase);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async create(supabase: SupabaseClient<Database>, payload: any) {
     await requireAdmin(supabase);
     return this.repository.create(supabase, payload);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async update(supabase: SupabaseClient<Database>, id: string, payload: any) {
     await requireAdmin(supabase);
     return this.repository.update(supabase, id, payload);

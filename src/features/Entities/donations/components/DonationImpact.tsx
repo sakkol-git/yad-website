@@ -13,7 +13,7 @@ export function DonationImpact() {
               $25
             </div>
             <p className="font-body-md text-body-md text-on-surface">
-              Provides school supplies for one student for a semester.
+              Funds one month of nutritious meals for 5 children in our Porridge for Hope program.
             </p>
           </div>
           <div className="bg-surface-container-lowest p-8 rounded-lg shadow-ambient hover:-translate-y-2 transition-transform duration-300 relative border-2 border-secondary/20">
@@ -24,7 +24,7 @@ export function DonationImpact() {
               $50
             </div>
             <p className="font-body-md text-body-md text-on-surface">
-              Funds 1 month of safe housing and utilities for a student.
+              Provides 1 month of safe housing, leadership training, and university access at our Dormitory and Leadership Training Centre.
             </p>
           </div>
           <div className="bg-surface-container-lowest p-8 rounded-lg shadow-ambient hover:-translate-y-2 transition-transform duration-300">
@@ -32,7 +32,7 @@ export function DonationImpact() {
               $100
             </div>
             <p className="font-body-md text-body-md text-on-surface">
-              Supports a complete digital literacy course enrollment.
+              Sponsors a Mobile Tutoring Unit, bringing basic literacy to over 100 children in marginalized urban slums.
             </p>
           </div>
         </div>

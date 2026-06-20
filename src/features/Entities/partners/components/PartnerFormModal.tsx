@@ -45,6 +45,7 @@ export function PartnerFormModal({ isOpen, onClose, mode, initialData }: Partner
         if (result.error) throw new Error(result.error);
       }
       onClose();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.message || 'Something went wrong');
     } finally {

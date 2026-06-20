@@ -46,6 +46,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
       } else {
         throw new Error(res.error || "Failed to submit verification");
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.error(err);
       setError(err.message || "Something went wrong. Please check details and try again.");

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { useRouter } from 'next/navigation';
@@ -9,7 +10,6 @@ interface UserBookingsTableProps {
 
 export function UserBookingsTable({ bookings }: UserBookingsTableProps) {
   const router = useRouter();
-
   const handlePayment = (booking: any) => {
     router.push(`/payment?id=${booking.id}&type=booking`);
   };

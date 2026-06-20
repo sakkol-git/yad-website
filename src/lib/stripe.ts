@@ -5,5 +5,6 @@ if (!process.env.STRIPE_SECRET_KEY) {
 }
 
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   apiVersion: "2026-05-27.dahlia" as any, // Using as any to prevent TS errors if SDK types haven't updated
 });

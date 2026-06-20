@@ -49,7 +49,8 @@ export async function POST(req: Request) {
       signature,
       process.env.STRIPE_WEBHOOK_SECRET
     );
-  } catch (err: unknown) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
     const message = err instanceof Error ? err.message : "Unknown verification error";
     console.error(`Webhook signature verification failed: ${message}`);
     // 400 is correct here — invalid signature means this is not from Stripe
@@ -104,6 +105,7 @@ async function handleDonationCompleted(referenceId: string, session: Stripe.Chec
       .update({
         status: "Completed",
         method: "Stripe",
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any)
       .eq("id", referenceId);
 
@@ -168,6 +170,7 @@ async function handleBookingCompleted(referenceId: string) {
 
     const { error: updateError } = await supabaseAdmin
       .from("bookings")
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .update({ status: "Checked In" } as any)
       .eq("id", referenceId);
 

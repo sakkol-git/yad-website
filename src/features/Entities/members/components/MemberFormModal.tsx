@@ -19,6 +19,7 @@ interface Member {
   status: string;
   bio: string | null;
   avatar_url?: string | null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   profile?: any | null;
 }
 
@@ -46,6 +47,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
         if (result.error) throw new Error(result.error);
       }
       onClose();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.message || 'Something went wrong');
     } finally {

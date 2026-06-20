@@ -31,6 +31,7 @@ export default async function AdminApplicationsPage(props: { searchParams: Promi
 
       <div className="bg-surface-container-lowest border border-surface-variant/30 rounded-lg shadow-sm">
         <ApplicationsTable
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           initialApplications={(applications as any) || []}
           currentPage={page}
           totalPages={totalPages}

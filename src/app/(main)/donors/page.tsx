@@ -28,6 +28,7 @@ export default async function DonorsShowcasePage() {
     console.error('Failed to fetch donors for showcase:', error);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const validDonors = (donors || []) as any[];
 
   return (

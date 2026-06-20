@@ -7,6 +7,7 @@ export class AuditLoggerService {
     userId: string,
     entity: string,
     action: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     changes?: any
   ) {
     try {

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Porridge for Hope | YAD Programs",
@@ -52,11 +53,11 @@ export default function PorridgeForHopePage() {
         </div>
         
         <div className="bg-surface-container rounded-xl overflow-hidden shadow-ambient p-4 h-fit">
-          <img 
+          <Image 
             src="/assets/images/yad-1.png" 
             alt="Over 100 children receiving porridge at the Youth Leaders Centre" 
             className="w-full h-auto rounded-lg"
-          />
+          width={800} height={600} />
           <p className="text-sm text-center mt-3 text-on-surface-variant italic">
             Children from the community receiving their bi-monthly nutrition support.
           </p>

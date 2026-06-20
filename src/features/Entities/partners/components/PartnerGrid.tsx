@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
 import type { PartnerItem } from "@/features/Entities/partners/types/partner.types";
@@ -74,11 +75,15 @@ export function PartnerGrid({ partners }: PartnerGridProps) {
                 }`}
               >
                 {partner.logoUrl ? (
-                  <img
-                    src={partner.logoUrl}
-                    alt={`${partner.name} logo`}
-                    className="max-h-20 w-auto mb-4 object-contain opacity-80 group-hover:opacity-100 transition-opacity"
-                  />
+                  <div className="relative h-20 w-full mb-4">
+                    <Image
+                      src={partner.logoUrl}
+                      alt={`${partner.name} logo`}
+                      fill
+                      className="object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </div>
                 ) : (
                   <span className="material-symbols-outlined text-outline text-5xl mb-4 group-hover:text-primary transition-colors">
                     {partner.icon}

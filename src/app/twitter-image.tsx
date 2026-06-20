@@ -28,6 +28,7 @@ export default async function Image() {
         }}
       >
         <img
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           src={logoData as any}
           width={400}
           height={404}

@@ -45,6 +45,7 @@ export async function POST(req: Request) {
 
     // Insert into DB
     const { error } = await supabaseAdmin
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .from("newsletter_subscribers" as any)
       .insert({ email });
 

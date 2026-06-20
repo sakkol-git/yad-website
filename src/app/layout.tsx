@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { getLocale } from 'next-intl/server';
 import { AuthProvider } from "@/providers/AuthProvider";
 import { CookieConsent } from "@/shared/components/ui/CookieConsent";
 import { Toaster } from "sonner";
@@ -99,13 +100,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
   return (
-    <html lang="en" className="light" suppressHydrationWarning>
+    <html lang={locale} className="light" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -122,6 +124,31 @@ export default function RootLayout({
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "NGO",
+              name: "Youth Action for Development (YAD)",
+              url: "https://yadkh.org",
+              logo: "https://yadkh.org/assets/images/yad_logo.png",
+              description: "Empowering Cambodian youth through education and community development.",
+              address: { "@type": "PostalAddress", "addressCountry": "KH" },
+              sameAs: []
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "DonateAction",
+              agent: { "@type": "Organization", name: "Youth Action for Development (YAD)" }
+            })
+          }}
         />
       </head>
       <body

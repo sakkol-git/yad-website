@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Dormitory & Leadership Training Centre (DLTC) | YAD Programs",
@@ -51,11 +52,11 @@ export default function DLTCPage() {
         </div>
         
         <div className="bg-surface-container rounded-xl overflow-hidden shadow-ambient p-4">
-          <img 
+          <Image 
             src="/assets/images/yad-6.png" 
             alt="Students waving from balconies of the DLTC building" 
             className="w-full h-auto rounded-lg"
-          />
+          width={800} height={600} />
           <p className="text-sm text-center mt-3 text-on-surface-variant italic">
             One of the YAD programs, Dormitory and Leadership Training Centre
           </p>

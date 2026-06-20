@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
@@ -44,6 +43,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             // PGRST116 is the "no rows returned" error, which we can ignore
             console.error("Error fetching user role:", roleError);
           } else if (data) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             setRole((data as any).role as Role);
           }
         }
@@ -56,6 +56,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     fetchSession();
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event: any, session: any) => {
       try {
         setUser(session?.user ?? null);
@@ -69,6 +70,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           if (roleError && roleError.code !== 'PGRST116') {
              console.error("Error fetching user role on state change:", roleError);
           } else if (data) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             setRole((data as any).role as Role);
           }
         } else {

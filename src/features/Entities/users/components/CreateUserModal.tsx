@@ -21,6 +21,7 @@ export function CreateUserModal({ isOpen, onClose }: { isOpen: boolean; onClose:
       } else {
         onClose();
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.message || 'Something went wrong');
     } finally {

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/shared/components/ui/Button";
 import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
@@ -42,6 +43,7 @@ export function HomeHero() {
   // Check prefers-reduced-motion
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (mq.matches) setIsPaused(true);
     const handler = (e: MediaQueryListEvent) => setIsPaused(e.matches);
     mq.addEventListener("change", handler);
@@ -84,44 +86,43 @@ export function HomeHero() {
       <div className="relative z-10 max-w-container-max mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
         {/* Left Content */}
         <div className="flex flex-col justify-center items-start pt-10 lg:pt-0">
-          <TextReveal as="h1" delay={0.2} text="Empower Tomorrow!" className="font-display-lg text-[4rem] lg:text-[5rem] text-primary mb-2 leading-[1.1] font-bold tracking-tight" />
+          <TextReveal as="h1" delay={0.2} text="Empowering Cambodia's Next Generation of Leaders" className="font-display-lg text-[3.2rem] lg:text-[4rem] text-primary mb-4 leading-[1.1] font-bold tracking-tight" />
 
           <RevealOnScroll delay={0.5} y={24}>
-            <h2 className="text-2xl md:text-3xl font-display text-primary/80 mb-6 font-medium">
-              Shape Cambodia&apos;s Future
-            </h2>
-            <p className="font-body-lg text-lg text-on-surface-variant max-w-lg mb-10 leading-relaxed">
-              Each small action you take today sets off a wave of positive
-              change for the future of our communities. We are building a
-              nurturing ecosystem for young changemakers to thrive in
-              sustainable development.
+            <p className="font-body-lg text-lg text-on-surface-variant max-w-lg mb-6 leading-relaxed">
+              Since 2015, we've provided vital education, safe housing, and life skills to youth from remote provinces and urban slum communities.
             </p>
+            {/* Trust Signal */}
+            <div className="flex items-center gap-2 mb-10 text-sm font-label-bold text-on-surface-variant bg-surface-container-low px-4 py-2 rounded-full border border-surface-container w-fit shadow-sm">
+              <span className="material-symbols-outlined text-secondary text-[18px]">verified_user</span>
+              <span>Independent Cambodian NGO</span>
+              <span className="mx-2 text-surface-container-high">|</span>
+              <span className="material-symbols-outlined text-primary text-[18px]">groups</span>
+              <span>500+ Children Reached Weekly</span>
+            </div>
           </RevealOnScroll>
           <RevealOnScroll delay={0.7} y={16}>
             <div className="flex flex-wrap items-center gap-6">
-              <Button 
-                variant="primary" 
-                size="lg" 
-                className=" px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all"
-                onClick={() => {
-                  window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
-                }}
-              >
-                Explore More
-              </Button>
-              <a 
-                href="https://youtu.be/NYumeXQbN-Q?si=NpmUinWk4VZFaZmz" 
-                target="_blank" 
-                rel="noopener noreferrer"
+              <Link href="/donate">
+                <Button 
+                  variant="primary" 
+                  size="lg" 
+                  className=" px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                >
+                  Fund a Student's Future
+                </Button>
+              </Link>
+              <Link 
+                href="/get-involved/volunteer" 
                 className="flex items-center gap-3 group text-on-surface font-medium hover:text-primary transition-colors"
               >
                 <div className="w-14 h-14 rounded-full bg-surface shadow-md flex items-center justify-center group-hover:scale-110 transition-transform">
                   <span className="material-symbols-outlined text-primary text-2xl ml-1">
-                    play_arrow
+                    volunteer_activism
                   </span>
                 </div>
-                Watch Our Story
-              </a>
+                Volunteer With Us
+              </Link>
             </div>
           </RevealOnScroll>
         </div>

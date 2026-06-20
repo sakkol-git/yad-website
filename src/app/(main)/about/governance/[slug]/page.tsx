@@ -8,6 +8,7 @@ import type { TeamMember } from "@/features/Entities/members/types/member.types"
 
 const membersRepo = new MembersRepository();
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mapToTeamMember(row: any): TeamMember {
   return {
     id: row.id,
@@ -17,6 +18,7 @@ function mapToTeamMember(row: any): TeamMember {
     role: row.role || '',
     description: row.bio || '',
     image: row.avatar_url || '',
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     profile: row.profile as any,
   };
 }

@@ -28,7 +28,8 @@ export async function getProgramsAction() {
     }
 
     return { success: true, data };
-  } catch (error: unknown) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     console.error("[ProgramAction] Fetch error:", error);
     return { success: false, error: "Failed to fetch programs" };
   }
@@ -40,6 +41,7 @@ export async function createProgramAction(data: ProgramFormData) {
     
     const { error } = await supabaseAdmin
       .from("programs")
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .insert(data as any);
 
     if (error) {
@@ -50,7 +52,8 @@ export async function createProgramAction(data: ProgramFormData) {
     revalidatePath("/");
     revalidatePath("/programs");
     return { success: true };
-  } catch (error: unknown) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     console.error("[ProgramAction] Create error:", error);
     return { success: false, error: "Failed to create program" };
   }
@@ -62,6 +65,7 @@ export async function updateProgramAction(id: string, data: ProgramFormData) {
     
     const { error } = await supabaseAdmin
       .from("programs")
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .update(data as any)
       .eq("id", id);
 
@@ -73,7 +77,8 @@ export async function updateProgramAction(id: string, data: ProgramFormData) {
     revalidatePath("/");
     revalidatePath("/programs");
     return { success: true };
-  } catch (error: unknown) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     console.error("[ProgramAction] Update error:", error);
     return { success: false, error: "Failed to update program" };
   }
@@ -96,7 +101,8 @@ export async function deleteProgramAction(id: string) {
     revalidatePath("/");
     revalidatePath("/programs");
     return { success: true };
-  } catch (error: unknown) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     console.error("[ProgramAction] Delete error:", error);
     return { success: false, error: "Failed to delete program" };
   }

@@ -37,6 +37,7 @@ export function RevealOnScroll({
         return;
       }
       
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const fromVars: any = { opacity: 0, duration, delay, ease: EASE.smooth };
       if (x !== undefined) {
         fromVars.x = x;
@@ -56,6 +57,7 @@ export function RevealOnScroll({
     { scope: ref, dependencies: [reduced, y, x, delay, duration, start] }
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const Comp = Tag as any;
   return (
     <Comp ref={ref} className={className}>

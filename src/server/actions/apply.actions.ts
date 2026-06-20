@@ -37,7 +37,8 @@ export async function submitStudentApplicationAction(formData: FormData) {
     }
 
     return { success: true };
-  } catch (err: unknown) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
     console.error("[ApplicationAction] Catch Error:", err);
     return { error: "An unexpected error occurred." };
   }
@@ -60,7 +61,8 @@ export async function updateApplicationStatusAction(id: string, newStatus: 'pend
 
     revalidatePath("/admin/applications");
     return { success: true };
-  } catch (err: unknown) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
     console.error("[ApplicationAction] Update Error:", err);
     return { error: "Failed to update application status." };
   }

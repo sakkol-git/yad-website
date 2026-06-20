@@ -59,6 +59,7 @@ export async function getVolunteerRequestsAction() {
     }
 
     // 3. Map the data
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mappedData = (volunteers || []).map((v: any) => {
       const user = users.find(u => u.id === v.user_id);
       return {
@@ -73,7 +74,8 @@ export async function getVolunteerRequestsAction() {
     });
 
     return { data: mappedData };
-  } catch (err: unknown) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
     const message = err instanceof Error ? err.message : "Unknown error";
     console.error("Failed to fetch volunteers:", message);
     return { error: "Failed to fetch volunteer requests." };
@@ -89,6 +91,7 @@ export async function updateVolunteerStatusAction(
 
     const { error } = await supabaseAdmin
       .from("event_volunteers")
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .update({ status: newStatus.toLowerCase() as any })
       .eq("id", id);
 
@@ -101,7 +104,8 @@ export async function updateVolunteerStatusAction(
 
     revalidatePath("/admin/volunteers");
     return { success: true };
-  } catch (err: unknown) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
     const message = err instanceof Error ? err.message : "Unknown error";
     console.error("Failed to update status:", message);
     return { error: "Failed to update volunteer status." };

@@ -67,7 +67,8 @@ export async function uploadReportAction(formData: FormData) {
     revalidatePath("/admin/reports");
     revalidatePath("/about/financials");
     return { success: true };
-  } catch (err: unknown) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
     console.error("[ReportAction] Catch Error:", err);
     return { error: "An unexpected error occurred." };
   }
@@ -100,7 +101,8 @@ export async function deleteReportAction(id: string, fileUrl: string) {
     revalidatePath("/admin/reports");
     revalidatePath("/about/financials");
     return { success: true };
-  } catch (err: unknown) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
     console.error("[ReportAction] Delete Error:", err);
     return { error: "Failed to delete report." };
   }

@@ -3,6 +3,7 @@ import { Database } from '@/shared/types/supabase';
 
 export class AuthRepository {
   async getUserRole(supabase: SupabaseClient<Database>, userId: string) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sb = supabase as any;
     const { data, error } = await sb
       .from('user_roles')

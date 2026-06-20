@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { SupabaseClient } from '@supabase/supabase-js';
 import { Database } from '@/shared/types/supabase';
 
@@ -12,6 +11,7 @@ export class BaseRepository<T extends TableName> {
   }
 
   async getAll(supabase: SupabaseClient<Database>) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sb = supabase as any;
     const { data, error } = await sb.from(this.table).select('*');
     if (error) throw error;
@@ -19,20 +19,25 @@ export class BaseRepository<T extends TableName> {
   }
 
   async getById(supabase: SupabaseClient<Database>, id: string) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sb = supabase as any;
     const { data, error } = await sb.from(this.table).select('*').eq('id', id).single();
     if (error) throw error;
     return data;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async create(supabase: SupabaseClient<Database>, payload: any) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sb = supabase as any;
     const { data, error } = await sb.from(this.table).insert(payload).select().single();
     if (error) throw error;
     return data;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async update(supabase: SupabaseClient<Database>, id: string, payload: any) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sb = supabase as any;
     const { data, error } = await sb
       .from(this.table)
@@ -45,6 +50,7 @@ export class BaseRepository<T extends TableName> {
   }
 
   async delete(supabase: SupabaseClient<Database>, id: string) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sb = supabase as any;
     const { error } = await sb.from(this.table).delete().eq('id', id);
     if (error) throw error;

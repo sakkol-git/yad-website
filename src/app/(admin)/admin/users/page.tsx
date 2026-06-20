@@ -45,6 +45,7 @@ export default async function UsersPage() {
           </div>
           <div>
             <p className="text-on-surface-variant text-sm font-medium mb-1">Admins</p>
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             <h3 className="text-2xl font-bold text-on-surface">{users.filter((u: any) => u.role === 'admin' || u.role === 'Admin').length || 0}</h3>
           </div>
         </div>

@@ -247,7 +247,7 @@ export interface Database {
           user_id: string
           entity: string
           action: string
-          changes: any | null
+          changes: Json | null
           created_at: string
         }
         Insert: {
@@ -255,7 +255,7 @@ export interface Database {
           user_id: string
           entity: string
           action: string
-          changes?: any | null
+          changes?: Json | null
           created_at?: string
         }
         Update: {
@@ -263,7 +263,7 @@ export interface Database {
           user_id?: string
           entity?: string
           action?: string
-          changes?: any | null
+          changes?: Json | null
           created_at?: string
         }
         Relationships: []
@@ -544,15 +544,19 @@ export interface Database {
       }
     }
     Views: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       [key: string]: any
     }
     Functions: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       [key: string]: any
     }
     Enums: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       [key: string]: any
     }
     CompositeTypes: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       [key: string]: any
     }
   }

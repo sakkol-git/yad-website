@@ -24,10 +24,12 @@ export class BookingsRepository extends BaseRepository<'bookings'> {
     }
 
     if (status && status !== 'All Statuses') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       query = query.eq('status', status as any);
     }
 
     if (paymentStatus && paymentStatus !== 'All Payment Statuses') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       query = query.eq('payment_status', paymentStatus as any);
     }
 

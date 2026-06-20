@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createClient } from '@/shared/lib/supabase/server';
 import { UserDashboard } from '@/features/Static/dashboard/components/UserDashboard';
 
@@ -23,6 +22,7 @@ export default async function PortalDashboardPage() {
     .order('created_at', { ascending: false })
     .limit(1);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data: volunteer } = await (supabase as any)
     .from('event_volunteers')
     .select('status, events(name)')
@@ -30,8 +30,11 @@ export default async function PortalDashboardPage() {
     .order('created_at', { ascending: false })
     .limit(1);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const upcomingBooking = bookings?.[0] as any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const recentDonation = donations?.[0] as any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const recentVolunteer = volunteer?.[0] as any;
 
   const getGreeting = () => {

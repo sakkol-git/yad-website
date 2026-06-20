@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/shared/components/ui/Button';
 import { Metadata } from 'next';
+import Image from "next/image";
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -43,6 +44,7 @@ export default async function DonorDetailPage({ params }: PageProps) {
     .eq('status', 'Active')
     .single();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const typedDonor = donor as any;
 
   if (error || !typedDonor) {
@@ -68,11 +70,11 @@ export default async function DonorDetailPage({ params }: PageProps) {
             <div className="flex-shrink-0 mx-auto md:mx-0">
               <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden relative shadow-lg bg-surface-variant/30 flex items-center justify-center border-4 border-surface">
                 {typedDonor.avatar_url ? (
-                  <img 
+                  <Image 
                     src={typedDonor.avatar_url} 
                     alt={`Portrait of ${typedDonor.name}`} 
                     className="absolute inset-0 w-full h-full object-cover text-transparent"
-                  />
+                  width={800} height={600} />
                 ) : (
                   <span className="material-symbols-outlined text-[80px] text-on-surface-variant/50">person</span>
                 )}

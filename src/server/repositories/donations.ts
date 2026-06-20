@@ -24,10 +24,12 @@ export class DonationsRepository extends BaseRepository<'donations'> {
     }
 
     if (status && status !== 'All Statuses') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       query = query.eq('status', status as any);
     }
 
     if (method && method !== 'All Methods') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       query = query.eq('method', method as any);
     }
 

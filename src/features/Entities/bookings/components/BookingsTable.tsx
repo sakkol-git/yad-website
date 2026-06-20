@@ -3,6 +3,7 @@
 import Link from 'next/link';
 
 interface BookingsTableProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   bookings: any[];
   count: number | null;
   page: number;
@@ -76,6 +77,7 @@ export function BookingsTable({
           </thead>
           <tbody className="text-[16px] text-on-background divide-y divide-surface-variant/30">
             {bookings && bookings.length > 0 ? (
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               bookings.map((booking: any) => (
                 <tr key={booking.id} className="hover:bg-surface-container-low/50 transition-colors group">
                   <td className="p-3 pl-6">

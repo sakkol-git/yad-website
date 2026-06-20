@@ -48,6 +48,7 @@ export function UserFormModal({ isOpen, onClose, mode, initialData }: UserFormMo
           onClose();
         }
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.message || 'Something went wrong');
     } finally {

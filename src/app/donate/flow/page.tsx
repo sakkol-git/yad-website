@@ -35,7 +35,9 @@ export default function DonateFlowPage() {
         throw new Error(draftRes.error || "Failed to create donation draft");
       }
       // 2. Redirect to intermediate Payment method selector page
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       router.push(`/payment?id=${(draftRes.data as any).id}&type=donation`);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error(error);
       toast.error(error.message || "Something went wrong. Please try again.");

@@ -32,6 +32,7 @@ export function NewsletterSignup() {
       setStatus("success");
       setMessage("Thank you for subscribing! We'll be in touch.");
       setEmail("");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setStatus("error");
       setMessage(err.message || "Something went wrong. Please try again.");

@@ -1,9 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import { gsap, ScrollTrigger } from "@/shared/lib/animations/gsap-config";
-import { useReducedMotion } from "@/shared/lib/animations/use-reduced-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -26,6 +23,7 @@ function MobileNavAccordion({ link, pathname }: { link: NavLink, pathname: strin
         className={`py-3 px-4 rounded-lg font-medium text-base transition-colors flex justify-between items-center ${isActive || isExpanded ? "bg-surface-container text-primary" : "text-on-surface hover:bg-surface-container"
           }`}
         aria-expanded={isExpanded}
+        aria-controls={`submenu-${link.label.replace(/\\s+/g, '-').toLowerCase()}`}
       >
         {link.label}
         <span className={`material-symbols-outlined transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}>
@@ -33,10 +31,12 @@ function MobileNavAccordion({ link, pathname }: { link: NavLink, pathname: strin
         </span>
       </button>
       <div
+        id={`submenu-${link.label.replace(/\\s+/g, '-').toLowerCase()}`}
         className={`grid transition-all duration-300 ease-in-out ${isExpanded ? "grid-rows-[1fr] opacity-100 mt-1 mb-2" : "grid-rows-[0fr] opacity-0"}`}
       >
         <div className="overflow-hidden">
           <div className="flex flex-col pl-4 pr-2 py-1 gap-1 ml-4 border-l-2 border-surface-variant/50">
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             {link.subLinks?.map((sub: any) => {
               const isSubActive = pathname === sub.href;
               return (
@@ -66,51 +66,40 @@ export default function Navbar() {
   const { user, role, isLoading } = useAuth();
   
   const navRef = useRef<HTMLElement>(null);
-  const reduced = useReducedMotion();
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const lastScrollY = useRef(0);
 
-  const handleLogout = async () => {
-    const supabase = createClient();
-    await supabase.auth.signOut();
-    router.push('/');
-    router.refresh();
-  };
-
-  useGSAP(
-    () => {
-      if (!navRef.current || reduced) return;
-
-      const nav = navRef.current;
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
       
-      // Initially remove background classes
-      nav.classList.remove("bg-surface/95", "backdrop-blur-md", "border-b", "border-surface-variant/40", "shadow-sm");
+      // Background effect
+      if (currentScrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
 
-      // Background transition
-      ScrollTrigger.create({
-        start: "top -50px",
-        end: 99999,
-        onEnter: () => {
-          nav.classList.add("bg-surface/95", "backdrop-blur-md", "border-b", "border-surface-variant/40", "shadow-sm");
-        },
-        onLeaveBack: () => {
-          nav.classList.remove("bg-surface/95", "backdrop-blur-md", "border-b", "border-surface-variant/40", "shadow-sm");
+      // Hide/Show effect
+      if (currentScrollY > 120) {
+        if (currentScrollY > lastScrollY.current && !isMenuOpen) {
+          setIsHidden(true); // scrolling down
+        } else {
+          setIsHidden(false); // scrolling up
         }
-      });
+      } else {
+        setIsHidden(false);
+      }
 
-      // Hide/Show transition
-      ScrollTrigger.create({
-        start: "top -120px",
-        end: 99999,
-        onUpdate: (self) => {
-          if (self.direction === 1) {
-            gsap.to(nav, { yPercent: -100, duration: 0.4, ease: "power2.inOut", overwrite: "auto" });
-          } else {
-            gsap.to(nav, { yPercent: 0, duration: 0.4, ease: "power2.inOut", overwrite: "auto" });
-          }
-        }
-      });
-    },
-    { scope: navRef, dependencies: [reduced] }
-  );
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Check initial scroll position
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMenuOpen]);
 
   // Automatically close mobile menu when navigating to a new route
   useEffect(() => {
@@ -133,10 +122,58 @@ export default function Navbar() {
     };
   }, [isMenuOpen]);
 
+  // Focus trap for mobile drawer
+  useEffect(() => {
+    if (!isMenuOpen || !drawerRef.current) return;
+    
+    const focusableElements = drawerRef.current.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    const firstElement = focusableElements[0] as HTMLElement;
+    const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+    const handleTabKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          lastElement.focus();
+          e.preventDefault();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          firstElement.focus();
+          e.preventDefault();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleTabKey);
+    // Focus first element on open
+    if (firstElement) {
+      firstElement.focus();
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleTabKey);
+    };
+  }, [isMenuOpen]);
+
+  const handleLogout = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.push('/');
+    router.refresh();
+  };
+
   return (
     <nav
       ref={navRef}
-      className="fixed top-0 w-full z-50 bg-surface/95 backdrop-blur-md border-b border-surface-variant/40 shadow-sm transition-all duration-300"
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ease-in-out ${
+        isScrolled 
+          ? "bg-surface/95 backdrop-blur-md border-b border-surface-variant/40 shadow-sm" 
+          : "bg-transparent border-transparent"
+      } ${isHidden ? "-translate-y-full" : "translate-y-0"}`}
       aria-label="Main navigation"
     >
       <div className="flex justify-between items-center px-4 md:px-6 lg:px-8 py-3 md:py-4 max-w-[1440px] mx-auto">
@@ -280,6 +317,9 @@ export default function Navbar() {
 
       {/* Mobile Navigation Drawer */}
       <div
+        ref={drawerRef}
+        aria-modal="true"
+        role="dialog"
         className={`lg:hidden fixed inset-y-0 right-0 w-full max-w-sm bg-surface shadow-2xl z-50 flex flex-col h-[100svh] overflow-hidden transition-transform duration-300 ease-in-out ${isMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
       >

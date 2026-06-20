@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createClient } from '@/shared/lib/supabase/server';
 import { donationsService } from '@/server/services/donations.service';
 import { DonationsTable } from '@/features/Entities/donations/components/DonationsTable';

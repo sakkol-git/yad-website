@@ -14,6 +14,7 @@ export async function login(input: LoginInput) {
     revalidatePath('/', 'layout');
     const targetUrl = role === 'admin' ? '/admin/dashboard' : '/portal/dashboard';
     return { success: true, targetUrl };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('Login error:', error);
     return { success: false, error: 'Invalid email or password. Please try again.' };
@@ -27,6 +28,7 @@ export async function register(input: RegisterInput) {
     await authService.register(supabase, input.email, input.password, input.first_name, input.last_name);
     revalidatePath('/', 'layout');
     return { success: true, targetUrl: '/portal/dashboard' };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('Registration error:', error);
     const message = error.message?.includes('already registered') 
@@ -59,6 +61,7 @@ export async function loginWithGoogle() {
       return { success: true, targetUrl: data.url };
     }
     return { success: false, error: 'Failed to generate Google login URL.' };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('Google login error:', error);
     return { success: false, error: 'Failed to initialize Google login. Please try again.' };

@@ -46,6 +46,7 @@ export default async function EventsPage() {
           <div>
             <p className="text-on-surface-variant text-sm font-medium mb-1">Upcoming Events</p>
             <h3 className="text-2xl font-bold text-on-surface">
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               {events?.filter((e: any) => new Date(e.date) >= new Date()).length || 0}
             </h3>
           </div>
@@ -57,6 +58,7 @@ export default async function EventsPage() {
           <div>
             <p className="text-on-surface-variant text-sm font-medium mb-1">Total Capacity</p>
             <h3 className="text-2xl font-bold text-on-surface">
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               {events?.reduce((acc: number, e: any) => acc + (e.capacity || 0), 0) || 0}
             </h3>
           </div>

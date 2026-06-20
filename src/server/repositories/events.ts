@@ -23,6 +23,7 @@ export class EventsRepository extends BaseRepository<'events'> {
     }
 
     if (status && status !== 'All Statuses') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       query = query.eq('status', status as any);
     }
 
@@ -39,6 +40,7 @@ export class EventsRepository extends BaseRepository<'events'> {
   }
 
   async getAllPublic(supabase: SupabaseClient<Database>) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sb = supabase as any;
     const { data, error } = await sb
       .from('events')
@@ -46,6 +48,7 @@ export class EventsRepository extends BaseRepository<'events'> {
       .order('date', { ascending: false });
 
     if (error) throw error;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return data as any[];
   }
 }

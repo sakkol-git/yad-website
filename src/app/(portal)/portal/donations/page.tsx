@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createClient } from '@/shared/lib/supabase/server';
 import { UserDonationsTable } from '@/features/Entities/donations/components/UserDonationsTable';
 
@@ -16,6 +15,7 @@ export default async function PortalDonationsPage() {
 
   let totalDonated = 0;
   if (donations) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     totalDonated = donations.reduce((sum: number, donation: any) => 
       donation.status === 'Completed' ? sum + Number(donation.amount) : sum, 0
     );

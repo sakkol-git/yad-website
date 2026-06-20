@@ -25,10 +25,12 @@ export class MembersRepository extends BaseRepository<'members'> {
     }
 
     if (role && role !== 'All Roles') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       query = query.eq('type', role as any);
     }
 
     if (status && status !== 'All Statuses') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       query = query.eq('status', status as any);
     }
 
@@ -49,6 +51,7 @@ export class MembersRepository extends BaseRepository<'members'> {
     supabase: SupabaseClient<Database>,
     category: string
   ) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sb = supabase as any;
     const { data, error } = await sb
       .from('members')
@@ -58,6 +61,7 @@ export class MembersRepository extends BaseRepository<'members'> {
       .order('created_at', { ascending: true });
 
     if (error) throw error;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return data as any[];
   }
 
@@ -65,6 +69,7 @@ export class MembersRepository extends BaseRepository<'members'> {
     supabase: SupabaseClient<Database>,
     slug: string
   ) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sb = supabase as any;
     const { data, error } = await sb
       .from('members')
@@ -74,10 +79,12 @@ export class MembersRepository extends BaseRepository<'members'> {
       .single();
 
     if (error && error.code !== 'PGRST116') throw error; // PGRST116 is "no rows returned"
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return data as any;
   }
 
   async getAllPublicSlugs(supabase: SupabaseClient<Database>) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sb = supabase as any;
     const { data, error } = await sb
       .from('members')
@@ -86,6 +93,7 @@ export class MembersRepository extends BaseRepository<'members'> {
       .not('slug', 'is', null);
 
     if (error) throw error;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return data as any[];
   }
 }

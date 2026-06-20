@@ -6,7 +6,7 @@ import { membersService } from '../services/members.service';
 
 const csvToArray = (csv?: string) => csv ? csv.split(',').map(s => s.trim()).filter(Boolean) : undefined;
 
-function extractProfileData(rawData: Record<string, any>) {
+function extractProfileData(rawData: Record<string, unknown>) {
   return {
     quote: (rawData.quote as string) || undefined,
     vision: (rawData.vision as string) || undefined,
@@ -26,13 +26,16 @@ export async function getMembers() {
   const supabase = await createClient();
   try {
     const members = await membersService.getAllMembers(supabase);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return members as any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('Error fetching members:', error);
     throw new Error('Failed to fetch members');
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function createMember(prevState: any, formData: FormData) {
   const supabase = await createClient();
   const rawData = Object.fromEntries(formData);
@@ -43,12 +46,16 @@ export async function createMember(prevState: any, formData: FormData) {
       first_name: rawData.first_name as string,
       last_name: rawData.last_name as string,
       email: rawData.email as string,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       type: (rawData.type as any) || 'Resident',
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       status: (rawData.status as any) || 'Pending',
       bio: (rawData.bio as string) || null,
       avatar_url: (rawData.avatar_url as string) || null,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       profile: profile as any
     });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return { error: error.message };
   }
@@ -57,6 +64,7 @@ export async function createMember(prevState: any, formData: FormData) {
   return { success: true };
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function updateMember(id: string, prevState: any, formData: FormData) {
   const supabase = await createClient();
   const rawData = Object.fromEntries(formData);
@@ -67,12 +75,16 @@ export async function updateMember(id: string, prevState: any, formData: FormDat
       first_name: rawData.first_name as string,
       last_name: rawData.last_name as string,
       email: rawData.email as string,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       type: rawData.type as any,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       status: rawData.status as any,
       bio: (rawData.bio as string) || null,
       avatar_url: (rawData.avatar_url as string) || null,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       profile: profile as any
     });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return { error: error.message };
   }
@@ -85,6 +97,7 @@ export async function deleteMember(id: string) {
   const supabase = await createClient();
   try {
     await membersService.delete(supabase, id);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return { error: error.message };
   }

@@ -1,5 +1,7 @@
 interface VolunteerPortalProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   myVolunteers: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   availableEvents: any[];
   signUpForEvent: (formData: FormData) => Promise<void>;
 }
@@ -24,6 +26,7 @@ export function VolunteerPortal({
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {myVolunteers && myVolunteers.length > 0 ? (
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             myVolunteers.map((vol: any) => (
               <div key={vol.id} className="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm flex items-start justify-between">
                 <div>
@@ -60,6 +63,7 @@ export function VolunteerPortal({
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {availableEvents.length > 0 ? (
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             availableEvents.map((event: any) => (
               <div key={event.id} className="bg-surface-container-low p-5 rounded-lg border border-outline-variant/30 flex flex-col justify-between">
                 <div>

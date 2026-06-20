@@ -27,6 +27,7 @@ export const requireRole = async (supabase: SupabaseClient<Database>, allowedRol
     .single();
 
   if (data) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     role = (data as any).role;
   }
 

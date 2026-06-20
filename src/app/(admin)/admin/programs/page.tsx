@@ -30,6 +30,7 @@ export default async function AdminProgramsPage() {
         </div>
       </div>
 
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <ProgramsTable initialData={programs as any} />
     </div>
   );

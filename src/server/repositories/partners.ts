@@ -39,6 +39,7 @@ export class PartnersRepository extends BaseRepository<'partners'> {
   }
 
   async getAllPublic(supabase: SupabaseClient<Database>) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sb = supabase as any;
     const { data, error } = await sb
       .from('partners')
@@ -46,6 +47,7 @@ export class PartnersRepository extends BaseRepository<'partners'> {
       .order('created_at', { ascending: true });
 
     if (error) throw error;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return data as any[];
   }
 }

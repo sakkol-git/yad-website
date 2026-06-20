@@ -23,6 +23,7 @@ export function ProgramFormModal({
   onClose,
   onSuccess
 }: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   initialData: any;
   onClose: () => void;
   onSuccess: () => void;
@@ -138,6 +139,7 @@ export function ProgramFormModal({
                 <label className="block text-sm font-bold text-on-surface mb-1">Status *</label>
                 <select
                   value={formData.status}
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   onChange={e => setFormData({...formData, status: e.target.value as any})}
                   className="w-full px-4 py-3 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
                 >

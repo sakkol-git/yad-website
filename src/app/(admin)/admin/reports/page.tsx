@@ -31,6 +31,7 @@ export default async function AdminReportsPage(props: { searchParams: Promise<{ 
 
       <div className="bg-surface-container-lowest border border-surface-variant/30 rounded-lg shadow-sm">
         <ReportsTable 
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           initialReports={(reports as any) || []} 
           currentPage={page} 
           totalPages={totalPages} 

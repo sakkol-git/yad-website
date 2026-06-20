@@ -47,6 +47,7 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
         if (result.error) throw new Error(result.error);
       }
       onClose();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setError(err.message || 'Something went wrong');
     } finally {

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Community Schools | YAD Programs",
@@ -55,11 +56,11 @@ export default function CommunitySchoolsPage() {
         </div>
         
         <div className="bg-surface-container rounded-xl overflow-hidden shadow-ambient p-4 h-fit">
-          <img 
+          <Image 
             src="/assets/images/yad-5.png" 
             alt="Community education session in progress" 
             className="w-full h-auto rounded-lg"
-          />
+            width={800} height={600} />
           <p className="text-sm text-center mt-3 text-on-surface-variant italic">
             Providing accessible learning resources to marginalized areas.
           </p>

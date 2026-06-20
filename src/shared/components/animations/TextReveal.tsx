@@ -44,6 +44,7 @@ export function TextReveal({ text, className, as: Tag = "h2", delay = 0 }: TextR
     { scope: ref, dependencies: [reduced, delay] }
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const Comp = Tag as any;
   return (
     <Comp ref={ref} className={className}>

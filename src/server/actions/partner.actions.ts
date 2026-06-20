@@ -8,13 +8,16 @@ export async function getPartners() {
   const supabase = await createClient();
   try {
     const data = await partnersService.getAllPartners(supabase);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return data as any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('Error fetching partners:', error);
     throw new Error('Failed to fetch partners');
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function createPartner(prevState: any, formData: FormData) {
   const supabase = await createClient();
   const rawData = Object.fromEntries(formData);
@@ -29,6 +32,7 @@ export async function createPartner(prevState: any, formData: FormData) {
       notes: (rawData.notes as string) || null,
       logo_url: (rawData.logo_url as string) || null
     });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return { error: error.message };
   }
@@ -37,6 +41,7 @@ export async function createPartner(prevState: any, formData: FormData) {
   return { success: true };
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function updatePartner(id: string, prevState: any, formData: FormData) {
   const supabase = await createClient();
   const rawData = Object.fromEntries(formData);
@@ -51,6 +56,7 @@ export async function updatePartner(id: string, prevState: any, formData: FormDa
       notes: (rawData.notes as string) || null,
       logo_url: (rawData.logo_url as string) || null
     });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return { error: error.message };
   }
@@ -64,6 +70,7 @@ export async function deletePartner(id: string) {
 
   try {
     await partnersService.delete(supabase, id);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return { error: error.message };
   }

@@ -8,12 +8,14 @@ export async function getUsers() {
   const supabase = createAdminClient();
   try {
     return await usersService.getAllUsersWithRoles(supabase);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('Error fetching users:', error);
     throw new Error('Failed to fetch users');
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function createUser(prevState: any, formData: FormData) {
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
@@ -31,6 +33,7 @@ export async function createUser(prevState: any, formData: FormData) {
 
   try {
     await usersService.createUser(supabaseAdmin, email, password, role);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return { error: error.message };
   }
@@ -48,6 +51,7 @@ export async function updateUser(userId: string, role: 'admin' | 'manager' | 'us
 
   try {
     await usersService.updateUserRole(supabaseAdmin, userId, role);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return { error: error.message };
   }
@@ -63,6 +67,7 @@ export async function deleteUser(userId: string) {
 
   try {
     await usersService.deleteUser(supabaseAdmin, userId);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return { error: error.message };
   }

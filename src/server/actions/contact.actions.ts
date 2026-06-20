@@ -61,7 +61,8 @@ export async function submitQuickFormAction(formData: FormData) {
     });
 
     return { success: true };
-  } catch (err: unknown) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
     const message = err instanceof Error ? err.message : "Unknown error";
     console.error("Submission failed:", message);
     return { error: "An unexpected error occurred. Please try again later." };

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createClient } from '@/shared/lib/supabase/server';
 import { BookingsRepository } from '@/server/repositories/bookings';
 import { BookingsTable } from '@/features/Entities/bookings/components/BookingsTable';

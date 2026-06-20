@@ -20,6 +20,7 @@ export async function GET(request: Request) {
     }
 
     return NextResponse.redirect(`${origin}${next}`);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     console.error('Unhandled Server Error in callback route:', err);
     return NextResponse.redirect(`${origin}/auth/login?error=${encodeURIComponent(err.message || 'Server Error')}`);

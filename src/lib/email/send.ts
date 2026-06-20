@@ -20,6 +20,7 @@ export async function sendEmail<T>({ to, subject, template: Template, props }: S
       from: "YAD Cambodia <noreply@yadcambodia.org>", // Update with verified domain
       to,
       subject,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       react: React.createElement(Template as any, props as any),
     });
 
@@ -30,7 +31,8 @@ export async function sendEmail<T>({ to, subject, template: Template, props }: S
     }
 
     return { success: true, data };
-  } catch (err: unknown) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
     const error = err instanceof Error ? err : new Error("Unknown email error");
     console.error("[Email Exception]", error);
     // Sentry.captureException(error, { extra: { to, subject } });

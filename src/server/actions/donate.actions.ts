@@ -26,6 +26,7 @@ export async function createDonationDraftAction(
     });
 
     return { success: true, data: draft };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error("Failed to create donation draft:", error);
     return { success: false, error: error.message || "Failed to create donation" };
@@ -46,6 +47,7 @@ export async function getDonationByIdAction(id: string): Promise<
 
     if (error) throw error;
     return { success: true, data: data as DonationRow };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error("Failed to get donation by ID:", error);
     return { success: false, error: error.message || "Failed to get donation details" };
@@ -69,6 +71,7 @@ export async function submitLocalPaymentAction(
         method,
         reference_id: referenceId,
         updated_at: new Date().toISOString()
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any)
       .eq('id', id)
       .select()
@@ -76,6 +79,7 @@ export async function submitLocalPaymentAction(
 
     if (error) throw error;
     return { success: true, data: data as DonationRow };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error("Failed to submit local payment:", error);
     return { success: false, error: error.message || "Failed to submit local payment verification" };

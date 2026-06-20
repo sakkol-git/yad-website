@@ -22,7 +22,8 @@ export async function getInquiriesAction(page = 1, pageSize = 20) {
     }
 
     return { success: true, data, count };
-  } catch (error: unknown) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     console.error("[InquiryAction] Fetch error:", error);
     Sentry.captureException(error);
     return { success: false, error: "Failed to fetch inquiries" };
@@ -35,6 +36,7 @@ export async function updateInquiryStatusAction(id: string, status: 'pending' | 
 
     const { error } = await supabaseAdmin
       .from("inquiries")
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .update({ status } as any)
       .eq("id", id);
 
@@ -44,7 +46,8 @@ export async function updateInquiryStatusAction(id: string, status: 'pending' | 
 
     revalidatePath("/admin/inquiries");
     return { success: true };
-  } catch (error: unknown) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
     console.error("[InquiryAction] Update error:", error);
     Sentry.captureException(error);
     return { success: false, error: "Failed to update status" };

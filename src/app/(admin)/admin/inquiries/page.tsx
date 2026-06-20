@@ -30,6 +30,7 @@ export default async function AdminInquiriesPage() {
         </div>
       </div>
 
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <InquiriesTable initialData={inquiries as any} />
     </div>
   );

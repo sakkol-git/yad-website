@@ -8,13 +8,16 @@ export async function getEvents() {
   const supabase = await createClient();
   try {
     const data = await eventsService.getAllEvents(supabase);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return data as any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('Error fetching events:', error);
     throw new Error('Failed to fetch events');
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function createEvent(prevState: any, formData: FormData) {
   const supabase = await createClient();
   const rawData = Object.fromEntries(formData);
@@ -25,8 +28,10 @@ export async function createEvent(prevState: any, formData: FormData) {
       description: (rawData.description as string) || null,
       venue: (rawData.venue as string) || null,
       capacity: rawData.capacity ? parseInt(rawData.capacity as string) : null,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       status: (rawData.status as any) || 'Upcoming'
     });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return { error: error.message };
   }
@@ -35,6 +40,7 @@ export async function createEvent(prevState: any, formData: FormData) {
   return { success: true };
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function updateEvent(id: string, prevState: any, formData: FormData) {
   const supabase = await createClient();
   const rawData = Object.fromEntries(formData);
@@ -45,8 +51,10 @@ export async function updateEvent(id: string, prevState: any, formData: FormData
       description: (rawData.description as string) || null,
       venue: (rawData.venue as string) || null,
       capacity: rawData.capacity ? parseInt(rawData.capacity as string) : null,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       status: rawData.status as any
     });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return { error: error.message };
   }
@@ -60,6 +68,7 @@ export async function deleteEvent(id: string) {
   
   try {
     await eventsService.delete(supabase, id);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return { error: error.message };
   }

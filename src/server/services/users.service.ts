@@ -46,6 +46,7 @@ export class UsersService {
 
     const { error: roleError } = await supabaseAdmin
       .from('user_roles')
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .upsert({ user_id: newUserId, role: role as any });
 
     if (roleError) {
@@ -59,6 +60,7 @@ export class UsersService {
   async updateUserRole(supabaseAdmin: SupabaseClient<Database>, userId: string, role: string) {
     const { error } = await supabaseAdmin
       .from('user_roles')
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .upsert({ user_id: userId, role: role as any });
 
     if (error) throw new Error('Failed to update user role');
