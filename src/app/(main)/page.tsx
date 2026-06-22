@@ -78,8 +78,8 @@ export default function Home() {
       />
       <HomeHero />
       {/* <PartnerLogos /> */}
-      <VisionSection />
       <ProgramCards />
+      <VisionSection />
       <MeasurableImpactSection />
       <ImpactPreview />
       <CommunityVoices />
