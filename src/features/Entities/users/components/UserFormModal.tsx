@@ -9,6 +9,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/shared/components/ui/Dialog';
+import { FormField } from '@/shared/components/admin/forms/FormField';
+import { FormInput } from '@/shared/components/ui/FormInput';
+import { FormSelect } from '@/shared/components/ui/FormSelect';
 
 interface User {
   id: string;
@@ -73,46 +76,42 @@ export function UserFormModal({ isOpen, onClose, mode, initialData }: UserFormMo
             </div>
           )}
 
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-label-bold text-on-surface-variant">Email Address</label>
-            <input 
+          <FormField label="Email Address" required={mode === 'create'}>
+            <FormInput 
               name="email" 
               type="email" 
               required={mode === 'create'}
               disabled={mode === 'edit'}
               defaultValue={initialData?.email || ''}
-              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               placeholder="user@example.com"
+              icon="mail"
             />
-          </div>
+          </FormField>
 
           {mode === 'create' && (
-            <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-label-bold text-on-surface-variant">Password</label>
-              <input 
+            <FormField label="Password" required description="Minimum 6 characters">
+              <FormInput 
                 name="password" 
                 type="password" 
                 required 
                 minLength={6}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
-                placeholder="Minimum 6 characters"
+                placeholder="Enter a strong password"
+                icon="lock"
               />
-            </div>
+            </FormField>
           )}
 
-          <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-label-bold text-on-surface-variant">Role</label>
-            <select 
+          <FormField label="Role" required>
+            <FormSelect 
               name="role" 
               required 
               defaultValue={initialData?.role || 'user'}
-              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none cursor-pointer"
             >
               <option value="admin">Admin</option>
               <option value="manager">Manager</option>
               <option value="user">User</option>
-            </select>
-          </div>
+            </FormSelect>
+          </FormField>
 
           <div className="flex justify-end gap-3 mt-4">
             <Button type="button" variant="ghost" onClick={onClose} disabled={isLoading}>

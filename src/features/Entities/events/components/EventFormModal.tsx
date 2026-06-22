@@ -9,6 +9,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/shared/components/ui/Dialog';
+import { FormField } from '@/shared/components/admin/forms/FormField';
+import { FormInput } from '@/shared/components/ui/FormInput';
+import { FormSelect } from '@/shared/components/ui/FormSelect';
+import { FormTextarea } from '@/shared/components/ui/FormTextarea';
 
 interface Event {
   id: string;
@@ -69,70 +73,73 @@ export function EventFormModal({ isOpen, onClose, mode, initialData }: EventForm
           )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div className="flex flex-col gap-1.5 md:col-span-2">
-              <label className="text-sm font-label-bold text-on-surface-variant">Name</label>
-              <input 
-                name="name" 
-                type="text" 
-                required
-                defaultValue={initialData?.name || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
-                placeholder="Event name"
-              />
+            <div className="md:col-span-2">
+              <FormField label="Name" required>
+                <FormInput 
+                  name="name" 
+                  type="text" 
+                  required
+                  defaultValue={initialData?.name || ''}
+                  placeholder="Event name"
+                  icon="event"
+                />
+              </FormField>
             </div>
 
-            <div className="flex flex-col gap-1.5 md:col-span-2">
-              <label className="text-sm font-label-bold text-on-surface-variant">Description</label>
-              <textarea 
-                name="description" 
-                rows={3}
-                defaultValue={initialData?.description || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-y"
-                placeholder="Detailed description of the event"
-              ></textarea>
+            <div className="md:col-span-2">
+              <FormField label="Description">
+                <FormTextarea 
+                  name="description" 
+                  rows={3}
+                  defaultValue={initialData?.description || ''}
+                  placeholder="Detailed description of the event"
+                />
+              </FormField>
             </div>
 
-            <div className="flex flex-col gap-1.5 md:col-span-2">
-              <label className="text-sm font-label-bold text-on-surface-variant">Venue</label>
-              <input 
-                name="venue" 
-                type="text" 
-                defaultValue={initialData?.venue || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
-                placeholder="Event location"
-              />
+            <div className="md:col-span-2">
+              <FormField label="Venue">
+                <FormInput 
+                  name="venue" 
+                  type="text" 
+                  defaultValue={initialData?.venue || ''}
+                  placeholder="Event location"
+                  icon="location_on"
+                />
+              </FormField>
             </div>
 
-            <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-label-bold text-on-surface-variant">Status</label>
-              <select 
-                name="status" 
-                required 
-                defaultValue={initialData?.status || 'Upcoming'}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none cursor-pointer"
-              >
-                <option value="Upcoming">Upcoming</option>
-                <option value="Ongoing">Ongoing</option>
-                <option value="Completed">Completed</option>
-                <option value="Cancelled">Cancelled</option>
-              </select>
+            <div>
+              <FormField label="Status" required>
+                <FormSelect 
+                  name="status" 
+                  required 
+                  defaultValue={initialData?.status || 'Upcoming'}
+                >
+                  <option value="Upcoming">Upcoming</option>
+                  <option value="Ongoing">Ongoing</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Cancelled">Cancelled</option>
+                </FormSelect>
+              </FormField>
             </div>
 
-            <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-label-bold text-on-surface-variant">Capacity</label>
-              <input 
-                name="capacity" 
-                type="number" 
-                min="1"
-                defaultValue={initialData?.capacity || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
-                placeholder="Number of attendees"
-              />
+            <div>
+              <FormField label="Capacity">
+                <FormInput 
+                  name="capacity" 
+                  type="number" 
+                  min="1"
+                  defaultValue={initialData?.capacity || ''}
+                  placeholder="Number of attendees"
+                  icon="groups"
+                />
+              </FormField>
             </div>
           </div>
 
-          <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-surface-variant/30 sticky bottom-0 bg-surface">
-            <Button type="button" variant="ghost" onClick={onClose} disabled={isLoading}>
+          <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-surface-variant/30 sticky bottom-0 bg-surface z-10">
+            <Button type="button" variant="outline" onClick={onClose} disabled={isLoading}>
               Cancel
             </Button>
             <Button type="submit" variant="default" disabled={isLoading} className=" min-w-[120px]">

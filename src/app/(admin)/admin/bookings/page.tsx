@@ -1,6 +1,11 @@
 import { createClient } from '@/shared/lib/supabase/server';
 import { BookingsRepository } from '@/server/repositories/bookings';
 import { BookingsTable, Booking } from '@/features/Entities/bookings/components/BookingsTable';
+import { AdminPageLayout } from '@/shared/components/admin/layout/AdminPageLayout';
+import { AdminPageHeader } from '@/shared/components/admin/layout/AdminPageHeader';
+import { StatCard } from '@/shared/components/admin/data/StatCard';
+import { StatsGrid } from '@/shared/components/admin/data/StatsGrid';
+import { Button } from '@/shared/components/ui/Button';
 
 export default async function BookingsPage({
   searchParams,
@@ -47,45 +52,28 @@ export default async function BookingsPage({
     });
   }
 
-  return (
-    <div className="flex-1 p-4 md:p-12 max-w-[1280px] mx-auto w-full">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 gap-4">
-        <div>
-          <h1 className="text-[36px] md:text-[48px] font-bold leading-tight tracking-tight text-on-background mb-2">
-            Booking Workflow
-          </h1>
-          <p className="text-[16px] text-on-surface-variant">
-            Manage reservations and track the guest lifecycle.
-          </p>
-        </div>
-        <button className="py-3 px-6 bg-secondary text-on-secondary rounded-full font-bold text-[14px] shadow-sm hover:scale-[1.02] hover:bg-secondary/90 transition-all duration-200 cursor-pointer active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap">
-          <span className="material-symbols-outlined">add</span>
-          New Inquiry
-        </button>
-      </div>
+  const headerActions = (
+    <Button variant="default" className="flex items-center gap-2 shadow-sm">
+      <span className="material-symbols-outlined text-[20px]">add</span>
+      New Inquiry
+    </Button>
+  );
 
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
-        <div className="bg-surface-container-lowest p-5 rounded-lg border border-surface-variant/30 shadow-sm">
-          <p className="text-on-surface-variant text-sm font-medium mb-1">New Inquiries</p>
-          <h3 className="text-2xl font-bold text-on-background">{metrics.newInquiries}</h3>
-        </div>
-        <div className="bg-surface-container-lowest p-5 rounded-lg border border-surface-variant/30 shadow-sm">
-          <p className="text-on-surface-variant text-sm font-medium mb-1">Pending Conf.</p>
-          <h3 className="text-2xl font-bold text-tertiary">{metrics.pendingConfirmations}</h3>
-        </div>
-        <div className="bg-surface-container-lowest p-5 rounded-lg border border-surface-variant/30 shadow-sm">
-          <p className="text-on-surface-variant text-sm font-medium mb-1">Upcoming Arrivals</p>
-          <h3 className="text-2xl font-bold text-primary">{metrics.upcomingArrivals}</h3>
-        </div>
-        <div className="bg-surface-container-lowest p-5 rounded-lg border border-surface-variant/30 shadow-sm">
-          <p className="text-on-surface-variant text-sm font-medium mb-1">Current Guests</p>
-          <h3 className="text-2xl font-bold text-secondary">{metrics.currentGuests}</h3>
-        </div>
-        <div className="bg-surface-container-lowest p-5 rounded-lg border border-surface-variant/30 shadow-sm">
-          <p className="text-on-surface-variant text-sm font-medium mb-1">Check-Out Today</p>
-          <h3 className="text-2xl font-bold text-error">{metrics.checkOutToday}</h3>
-        </div>
-      </div>
+  return (
+    <AdminPageLayout>
+      <AdminPageHeader 
+        title="Booking Workflow" 
+        description="Manage reservations and track the guest lifecycle."
+        actions={headerActions}
+      />
+
+      <StatsGrid>
+        <StatCard title="New Inquiries" value={metrics.newInquiries} icon="inbox" colorVariant="primary" />
+        <StatCard title="Pending Conf." value={metrics.pendingConfirmations} icon="hourglass_empty" colorVariant="warning" />
+        <StatCard title="Upcoming Arrivals" value={metrics.upcomingArrivals} icon="flight_land" colorVariant="secondary" />
+        <StatCard title="Current Guests" value={metrics.currentGuests} icon="hotel" colorVariant="tertiary" />
+        <StatCard title="Check-Out Today" value={metrics.checkOutToday} icon="flight_takeoff" colorVariant="error" />
+      </StatsGrid>
 
       <BookingsTable
         bookings={(bookings as unknown as Booking[]) || []}
@@ -95,6 +83,6 @@ export default async function BookingsPage({
         statusRaw={statusRaw}
         paymentStatusRaw={paymentStatusRaw}
       />
-    </div>
+    </AdminPageLayout>
   );
 }

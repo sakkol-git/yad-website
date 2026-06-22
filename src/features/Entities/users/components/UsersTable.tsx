@@ -6,6 +6,10 @@ import { Button } from '@/shared/components/ui/Button';
 import { UserFormModal } from './UserFormModal';
 import { deleteUser } from '@/server/actions/user.actions';
 import { DataTable, ColumnDef } from '@/shared/components/ui/DataTable';
+import { ConfirmationDialog } from '@/shared/components/admin/feedback/ConfirmationDialog';
+import { FilterBar } from '@/shared/components/admin/data/FilterBar';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 
 interface User {
   id: string;
@@ -26,32 +30,60 @@ export function UsersTable({ users, count, page }: { users: User[]; count?: numb
     user: null,
   });
 
-  const [isDeleting, setIsDeleting] = useState<string | null>(null);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const currentSearch = searchParams.get('search') || '';
+  const [searchTerm, setSearchTerm] = useState(currentSearch);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchTerm !== currentSearch) {
+        const params = new URLSearchParams(searchParams);
+        if (searchTerm) params.set('search', searchTerm);
+        else params.delete('search');
+        params.delete('page');
+        router.push(`?${params.toString()}`);
+      }
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [searchTerm, currentSearch, searchParams, router]);
+
+  const [deleteDialog, setDeleteDialog] = useState<{ isOpen: boolean; userId: string | null }>({
+    isOpen: false,
+    userId: null,
+  });
+
+  const [isDeleting, setIsDeleting] = useState<boolean>(false);
 
   const openCreate = () => setModalState({ isOpen: true, mode: 'create', user: null });
   const openEdit = (user: User) => setModalState({ isOpen: true, mode: 'edit', user });
   const closeModal = () => setModalState({ ...modalState, isOpen: false });
 
-  async function handleDelete(userId: string) {
-    if (!confirm('Are you sure you want to permanently delete this user?')) return;
-    
-    setIsDeleting(userId);
+  const confirmDelete = (userId: string) => setDeleteDialog({ isOpen: true, userId });
+  const closeDeleteDialog = () => setDeleteDialog({ isOpen: false, userId: null });
+
+  async function handleDelete() {
+    if (!deleteDialog.userId) return;
+    setIsDeleting(true);
     try {
-      await deleteUser(userId);
+      await deleteUser(deleteDialog.userId);
       toast.success('User deleted successfully');
+      closeDeleteDialog();
     } catch (error) {
       toast.error('Failed to delete user');
     } finally {
-      setIsDeleting(null);
+      setIsDeleting(false);
     }
   }
 
   const columns: ColumnDef<User>[] = [
     { 
+      id: 'email',
       header: 'Email', 
       cell: (user) => <span className="font-medium">{user.email}</span> 
     },
     { 
+      id: 'role',
       header: 'Role', 
       cell: (user) => (
         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider
@@ -64,6 +96,7 @@ export function UsersTable({ users, count, page }: { users: User[]; count?: numb
       )
     },
     { 
+      id: 'created',
       header: 'Created At', 
       cell: (user) => (
         <span>
@@ -72,6 +105,7 @@ export function UsersTable({ users, count, page }: { users: User[]; count?: numb
       )
     },
     { 
+      id: 'last_signin',
       header: 'Last Sign In', 
       cell: (user) => (
         <span>
@@ -80,7 +114,9 @@ export function UsersTable({ users, count, page }: { users: User[]; count?: numb
       )
     },
     { 
+      id: 'actions',
       header: <div className="text-right">Actions</div>, 
+      enableHiding: false,
       cell: (user) => (
         <div className="flex justify-end gap-2">
           <button 
@@ -91,8 +127,8 @@ export function UsersTable({ users, count, page }: { users: User[]; count?: numb
             <span className="material-symbols-outlined text-[18px]">edit</span>
           </button>
           <button 
-            onClick={() => handleDelete(user.id)}
-            disabled={isDeleting === user.id}
+            onClick={() => confirmDelete(user.id)}
+            disabled={isDeleting && deleteDialog.userId === user.id}
             className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-full transition-colors flex items-center justify-center disabled:opacity-50"
             title="Delete User"
           >
@@ -105,20 +141,20 @@ export function UsersTable({ users, count, page }: { users: User[]; count?: numb
 
   return (
     <>
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <h1 className="text-3xl font-headline-lg font-bold text-on-surface">User Management</h1>
-          <p className="text-on-surface-variant font-medium mt-1">Manage platform users and their roles.</p>
-        </div>
+      <FilterBar 
+        searchValue={searchTerm} 
+        onSearchChange={setSearchTerm} 
+        searchPlaceholder="Search users by email or role..."
+      >
         <Button 
- variant="default" 
- className=" shadow-md flex items-center gap-2 hover:scale-105"
- onClick={openCreate}
- >
+          variant="default" 
+          className="shadow-md flex items-center gap-2 hover:scale-105 transition-transform"
+          onClick={openCreate}
+        >
           <span className="material-symbols-outlined text-[20px]">person_add</span>
           Create User
         </Button>
-      </div>
+      </FilterBar>
 
       <DataTable 
         columns={columns} 
@@ -134,6 +170,17 @@ export function UsersTable({ users, count, page }: { users: User[]; count?: numb
         onClose={closeModal} 
         mode={modalState.mode}
         initialData={modalState.user}
+      />
+
+      <ConfirmationDialog
+        isOpen={deleteDialog.isOpen}
+        onClose={closeDeleteDialog}
+        onConfirm={handleDelete}
+        title="Delete User"
+        description="Are you sure you want to permanently delete this user? This action cannot be undone."
+        confirmText="Delete"
+        isDestructive={true}
+        isLoading={isDeleting}
       />
     </>
   );

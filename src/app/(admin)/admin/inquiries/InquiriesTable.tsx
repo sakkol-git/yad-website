@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react";
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from "@/shared/components/ui/Button";
 import { DataTable, ColumnDef } from "@/shared/components/ui/DataTable";
 import { updateInquiryStatusAction } from "@/server/actions/inquiry.actions";
 import { toast } from "sonner";
+import { FilterBar } from '@/shared/components/admin/data/FilterBar';
 
 interface Inquiry {
   id: string;
@@ -18,6 +20,24 @@ interface Inquiry {
 }
 
 export function InquiriesTable({ initialData, count, page }: { initialData: Inquiry[]; count?: number | null; page?: number }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const currentSearch = searchParams.get('search') || '';
+  const [searchTerm, setSearchTerm] = useState(currentSearch);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchTerm !== currentSearch) {
+        const params = new URLSearchParams(searchParams);
+        if (searchTerm) params.set('search', searchTerm);
+        else params.delete('search');
+        params.delete('page');
+        router.push(`?${params.toString()}`);
+      }
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [searchTerm, currentSearch, searchParams, router]);
+
   const [data, setData] = useState<Inquiry[]>(initialData);
   const [isPending, startTransition] = useTransition();
 
@@ -35,20 +55,24 @@ export function InquiriesTable({ initialData, count, page }: { initialData: Inqu
 
   const columns: ColumnDef<Inquiry>[] = [
     {
+      id: "name",
       header: "Name",
       accessorKey: "first_name",
       cell: (row) => `${row.first_name} ${row.last_name}`,
     },
     {
+      id: "email",
       header: "Email",
       accessorKey: "email",
     },
     {
+      id: "interest",
       header: "Interest",
       accessorKey: "interest",
       cell: (row) => <span className="capitalize">{row.interest}</span>,
     },
     {
+      id: "message",
       header: "Message",
       accessorKey: "message",
       cell: (row) => {
@@ -62,31 +86,35 @@ export function InquiriesTable({ initialData, count, page }: { initialData: Inqu
       },
     },
     {
+      id: "submitted",
       header: "Submitted",
       accessorKey: "created_at",
       cell: (row) => new Date(row.created_at).toLocaleDateString(),
     },
     {
+      id: "status",
       header: "Status",
       accessorKey: "status",
       cell: (row) => {
         const colors = {
-          pending: "bg-amber-100 text-amber-800 border-amber-200",
-          reviewed: "bg-blue-100 text-blue-800 border-blue-200",
-          actioned: "bg-green-100 text-green-800 border-green-200",
+          pending: "bg-tertiary-container text-on-tertiary-container",
+          reviewed: "bg-secondary-container text-on-secondary-container",
+          actioned: "bg-primary-container text-on-primary-container",
         };
         return (
-          <span className={`px-2 py-1 text-xs font-bold rounded-full border ${colors[row.status] || "bg-surface-variant text-on-surface-variant"}`}>
+          <span className={`px-2 py-1 text-xs font-bold rounded-full ${colors[row.status] || "bg-surface-variant text-on-surface-variant"}`}>
             {row.status.toUpperCase()}
           </span>
         );
       },
     },
     {
-      header: "Actions",
+      id: "actions",
+      header: <div className="text-right">Actions</div>,
       accessorKey: "id",
+      enableHiding: false,
       cell: (row) => (
-        <div className="flex gap-2">
+        <div className="flex justify-end gap-2">
           {row.status === "pending" && (
             <Button
               variant="default"
@@ -103,7 +131,6 @@ export function InquiriesTable({ initialData, count, page }: { initialData: Inqu
               size="sm"
               onClick={() => handleStatusChange(row.id, "actioned")}
               disabled={isPending}
-              className="border-green-600 text-green-700 hover:bg-green-50"
             >
               Mark Actioned
             </Button>
@@ -114,8 +141,13 @@ export function InquiriesTable({ initialData, count, page }: { initialData: Inqu
   ];
 
   return (
-    <div className="bg-surface rounded-xl shadow-sm border border-outline-variant/30 overflow-hidden">
-      <DataTable columns={columns} data={data} keyExtractor={(row) => row.id} count={count} page={page} />
+    <div className="space-y-4">
+      <FilterBar 
+        searchValue={searchTerm} 
+        onSearchChange={setSearchTerm} 
+        searchPlaceholder="Search inquiries..."
+      />
+      <DataTable columns={columns} data={data} keyExtractor={(row) => row.id} count={count} page={page} emptyMessage="No inquiries found." />
     </div>
   );
 }

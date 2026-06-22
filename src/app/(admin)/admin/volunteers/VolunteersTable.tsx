@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react";
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from "@/shared/components/ui/Button";
 import { DataTable, ColumnDef } from "@/shared/components/ui/DataTable";
 import { updateVolunteerStatusAction } from "@/server/actions/volunteer.actions";
 import { toast } from "sonner";
+import { FilterBar } from '@/shared/components/admin/data/FilterBar';
 
 interface Volunteer {
   id: string;
@@ -17,6 +19,24 @@ interface Volunteer {
 }
 
 export function VolunteersTable({ initialData, count, page }: { initialData: Volunteer[]; count?: number | null; page?: number }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const currentSearch = searchParams.get('search') || '';
+  const [searchTerm, setSearchTerm] = useState(currentSearch);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchTerm !== currentSearch) {
+        const params = new URLSearchParams(searchParams);
+        if (searchTerm) params.set('search', searchTerm);
+        else params.delete('search');
+        params.delete('page');
+        router.push(`?${params.toString()}`);
+      }
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [searchTerm, currentSearch, searchParams, router]);
+
   const [data, setData] = useState<Volunteer[]>(initialData);
   const [isPending, startTransition] = useTransition();
 
@@ -34,26 +54,30 @@ export function VolunteersTable({ initialData, count, page }: { initialData: Vol
 
   const columns: ColumnDef<Volunteer>[] = [
     {
+      id: "applicant",
       header: "Applicant",
       accessorKey: "userEmail",
     },
     {
+      id: "event",
       header: "Event",
       accessorKey: "eventTitle",
     },
     {
+      id: "applied_on",
       header: "Applied On",
       accessorKey: "createdAt",
       cell: (row) => new Date(row.createdAt).toLocaleDateString(),
     },
     {
+      id: "status",
       header: "Status",
       accessorKey: "status",
       cell: (row) => {
         const colors = {
           Pending: "bg-tertiary-container text-on-tertiary-container",
           Approved: "bg-primary-container text-on-primary-container",
-          Rejected: "bg-error-container text-on-error-container",
+          Rejected: "bg-error-container text-error",
           Completed: "bg-surface-variant text-on-surface-variant",
         };
         return (
@@ -64,10 +88,12 @@ export function VolunteersTable({ initialData, count, page }: { initialData: Vol
       },
     },
     {
-      header: "Actions",
+      id: "actions",
+      header: <div className="text-right">Actions</div>,
       accessorKey: "id",
+      enableHiding: false,
       cell: (row) => (
-        <div className="flex gap-2">
+        <div className="flex justify-end gap-2">
           {row.status === "Pending" && (
             <>
               <Button
@@ -105,8 +131,21 @@ export function VolunteersTable({ initialData, count, page }: { initialData: Vol
   ];
 
   return (
-    <div className="bg-surface rounded-xl shadow-sm border border-outline-variant/30 overflow-hidden">
-      <DataTable columns={columns} data={data} keyExtractor={(row) => row.id} count={count} page={page} />
+    <div className="space-y-4">
+      <FilterBar 
+        searchValue={searchTerm} 
+        onSearchChange={setSearchTerm} 
+        searchPlaceholder="Search volunteers..."
+      />
+
+      <DataTable 
+        columns={columns} 
+        data={data} 
+        keyExtractor={(row) => row.id} 
+        count={count} 
+        page={page} 
+        emptyMessage="No volunteers found."
+      />
     </div>
   );
 }

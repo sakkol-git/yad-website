@@ -1,10 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { toast } from "sonner";
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from "@/shared/components/ui/Button";
 import { DataTable, ColumnDef } from "@/shared/components/ui/DataTable";
-import { deleteProgramAction, ProgramFormData } from "@/server/actions/program.actions";
+import { deleteProgramAction } from "@/server/actions/program.actions";
 import { ProgramFormModal } from "./ProgramFormModal";
+import { ConfirmationDialog } from '@/shared/components/admin/feedback/ConfirmationDialog';
+import { FilterBar } from '@/shared/components/admin/data/FilterBar';
 
 interface Program {
   id: string;
@@ -20,21 +24,49 @@ interface Program {
 }
 
 export function ProgramsTable({ initialData, count, page }: { initialData: Program[]; count?: number | null; page?: number }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const currentSearch = searchParams.get('search') || '';
+  const [searchTerm, setSearchTerm] = useState(currentSearch);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchTerm !== currentSearch) {
+        const params = new URLSearchParams(searchParams);
+        if (searchTerm) params.set('search', searchTerm);
+        else params.delete('search');
+        params.delete('page');
+        router.push(`?${params.toString()}`);
+      }
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [searchTerm, currentSearch, searchParams, router]);
+
   const [data, setData] = useState<Program[]>(initialData);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
 
-  const handleDelete = async (id: string) => {
-    // Phase 3 requirement: Replace confirm/alert with toast later, but for now use inline confirmation if needed or keep standard confirm until Toast is added in Task 3.3. Actually, the prompt says "Replace every instance... Confirmation dialogs -> Inline confirmation pattern or Radix AlertDialog". We will just use standard confirm and fix it in Task 3.3, or build a simple alert dialog now.
-    // For now, I'll use a simple confirm, which I'll replace in Task 3.3.
-    if (confirm("Are you sure you want to delete this program?")) {
-      const result = await deleteProgramAction(id);
-      if (result.success) {
-        setData(prev => prev.filter(p => p.id !== id));
-      } else {
-        alert("Failed to delete program: " + result.error);
-      }
+  const [deleteDialog, setDeleteDialog] = useState<{ isOpen: boolean; programId: string | null }>({
+    isOpen: false,
+    programId: null,
+  });
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const confirmDelete = (programId: string) => setDeleteDialog({ isOpen: true, programId });
+  const closeDeleteDialog = () => setDeleteDialog({ isOpen: false, programId: null });
+
+  const handleDelete = async () => {
+    if (!deleteDialog.programId) return;
+    setIsDeleting(true);
+    const result = await deleteProgramAction(deleteDialog.programId);
+    if (result.success) {
+      toast.success("Program deleted successfully");
+      setData(prev => prev.filter(p => p.id !== deleteDialog.programId));
+      closeDeleteDialog();
+    } else {
+      toast.error("Failed to delete program: " + result.error);
     }
+    setIsDeleting(false);
   };
 
   const openEditModal = (program: Program) => {
@@ -49,15 +81,19 @@ export function ProgramsTable({ initialData, count, page }: { initialData: Progr
 
   const columns: ColumnDef<Program>[] = [
     {
+      id: "title",
       header: "Title",
       accessorKey: "title",
+      cell: (row) => <span className="font-bold">{row.title}</span>,
     },
     {
+      id: "category",
       header: "Category",
       accessorKey: "category",
       cell: (row) => <span className="capitalize">{row.category}</span>,
     },
     {
+      id: "status",
       header: "Status",
       accessorKey: "status",
       cell: (row) => {
@@ -74,30 +110,37 @@ export function ProgramsTable({ initialData, count, page }: { initialData: Progr
       },
     },
     {
+      id: "start_date",
       header: "Start Date",
       accessorKey: "start_date",
-      cell: (row) => new Date(row.start_date).toLocaleDateString(),
+      cell: (row) => <span className="text-on-surface-variant">{new Date(row.start_date).toLocaleDateString()}</span>,
     },
     {
+      id: "beneficiaries",
       header: "Beneficiaries",
       accessorKey: "beneficiaries_count",
     },
     {
-      header: "Actions",
-      accessorKey: "id",
+      id: "actions",
+      header: <div className="text-right">Actions</div>,
+      enableHiding: false,
       cell: (row) => (
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={() => openEditModal(row)}>
-            Edit
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => handleDelete(row.id)}
-            className="text-error border-error/50 hover:bg-error/10"
+        <div className="flex justify-end gap-2">
+          <button 
+            onClick={() => openEditModal(row)}
+            className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-full transition-colors flex items-center justify-center"
+            title="Edit Program"
           >
-            Delete
-          </Button>
+            <span className="material-symbols-outlined text-[18px]">edit</span>
+          </button>
+          <button 
+            onClick={() => confirmDelete(row.id)}
+            disabled={isDeleting && deleteDialog.programId === row.id}
+            className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-full transition-colors flex items-center justify-center disabled:opacity-50"
+            title="Delete Program"
+          >
+            <span className="material-symbols-outlined text-[18px]">delete</span>
+          </button>
         </div>
       ),
     },
@@ -105,28 +148,25 @@ export function ProgramsTable({ initialData, count, page }: { initialData: Progr
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-end">
-        <Button variant="primary" onClick={openCreateModal}>
-          <span className="material-symbols-outlined mr-2 text-sm">add</span>
+      <FilterBar 
+        searchValue={searchTerm} 
+        onSearchChange={setSearchTerm} 
+        searchPlaceholder="Search programs..."
+      >
+        <Button variant="default" onClick={openCreateModal} className="shadow-md flex items-center gap-2 hover:scale-105 transition-transform">
+          <span className="material-symbols-outlined text-[20px]">add</span>
           Add Program
         </Button>
-      </div>
+      </FilterBar>
 
-      {data.length === 0 ? (
-        <div className="bg-surface rounded-xl shadow-sm border border-outline-variant/30 p-12 text-center text-on-surface-variant">
-          No programs yet. Add your first program to get started.
-        </div>
-      ) : (
-        <div className="bg-surface rounded-xl shadow-sm border border-outline-variant/30 overflow-hidden">
-          <DataTable 
-            columns={columns} 
-            data={data} 
-            keyExtractor={(row) => row.id} 
-            count={count}
-            page={page}
-          />
-        </div>
-      )}
+      <DataTable 
+        columns={columns} 
+        data={data} 
+        keyExtractor={(row) => row.id} 
+        count={count}
+        page={page}
+        emptyMessage="No programs found."
+      />
 
       {isModalOpen && (
         <ProgramFormModal
@@ -134,12 +174,21 @@ export function ProgramsTable({ initialData, count, page }: { initialData: Progr
           onClose={() => setIsModalOpen(false)}
           onSuccess={() => {
             setIsModalOpen(false);
-            // In a real app we'd refetch or optimistically update. 
-            // Server actions revalidatePath so a simple refresh or the page reload will catch it.
             window.location.reload();
           }}
         />
       )}
+
+      <ConfirmationDialog
+        isOpen={deleteDialog.isOpen}
+        onClose={closeDeleteDialog}
+        onConfirm={handleDelete}
+        title="Delete Program"
+        description="Are you sure you want to permanently delete this program? This action cannot be undone."
+        confirmText="Delete"
+        isDestructive={true}
+        isLoading={isDeleting}
+      />
     </div>
   );
 }

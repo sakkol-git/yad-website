@@ -1,11 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/shared/components/ui/Button';
 import { EventFormModal } from './EventFormModal';
 import { deleteEvent } from '@/server/actions/event.actions';
 import { DataTable, ColumnDef } from '@/shared/components/ui/DataTable';
+import { ConfirmationDialog } from '@/shared/components/admin/feedback/ConfirmationDialog';
+import { FilterBar } from '@/shared/components/admin/data/FilterBar';
 
 interface Event {
   id: string;
@@ -19,6 +22,24 @@ interface Event {
 }
 
 export function EventsTable({ events, count, page }: { events: Event[]; count?: number | null; page?: number }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const currentSearch = searchParams.get('search') || '';
+  const [searchTerm, setSearchTerm] = useState(currentSearch);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchTerm !== currentSearch) {
+        const params = new URLSearchParams(searchParams);
+        if (searchTerm) params.set('search', searchTerm);
+        else params.delete('search');
+        params.delete('page');
+        router.push(`?${params.toString()}`);
+      }
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [searchTerm, currentSearch, searchParams, router]);
+
   const [modalState, setModalState] = useState<{
     isOpen: boolean;
     mode: 'create' | 'edit';
@@ -29,28 +50,38 @@ export function EventsTable({ events, count, page }: { events: Event[]; count?: 
     event: null,
   });
 
-  const [isDeleting, setIsDeleting] = useState<string | null>(null);
+  const [deleteDialog, setDeleteDialog] = useState<{ isOpen: boolean; eventId: string | null }>({
+    isOpen: false,
+    eventId: null,
+  });
+
+  const [isDeleting, setIsDeleting] = useState<boolean>(false);
 
   const openCreate = () => setModalState({ isOpen: true, mode: 'create', event: null });
   const openEdit = (event: Event) => setModalState({ isOpen: true, mode: 'edit', event });
   const closeModal = () => setModalState({ ...modalState, isOpen: false });
 
-  async function handleDelete(id: string) {
-    if (!confirm('Are you sure you want to permanently delete this event?')) return;
+  const confirmDelete = (eventId: string) => setDeleteDialog({ isOpen: true, eventId });
+  const closeDeleteDialog = () => setDeleteDialog({ isOpen: false, eventId: null });
+
+  async function handleDelete() {
+    if (!deleteDialog.eventId) return;
     
-    setIsDeleting(id);
+    setIsDeleting(true);
     try {
-      await deleteEvent(id);
+      await deleteEvent(deleteDialog.eventId);
       toast.success('Event deleted successfully');
+      closeDeleteDialog();
     } catch (error) {
       toast.error('Failed to delete event');
     } finally {
-      setIsDeleting(null);
+      setIsDeleting(false);
     }
   }
 
   const columns: ColumnDef<Event>[] = [
     {
+      id: 'name',
       header: 'Event Name',
       cell: (event) => (
         <>
@@ -64,6 +95,7 @@ export function EventsTable({ events, count, page }: { events: Event[]; count?: 
       )
     },
     {
+      id: 'datetime',
       header: 'Date & Time',
       cell: (event) => (
         <>
@@ -77,6 +109,7 @@ export function EventsTable({ events, count, page }: { events: Event[]; count?: 
       )
     },
     {
+      id: 'venue',
       header: 'Venue',
       cell: (event) => (
         <span className="text-on-surface-variant font-medium">
@@ -85,6 +118,7 @@ export function EventsTable({ events, count, page }: { events: Event[]; count?: 
       )
     },
     {
+      id: 'capacity',
       header: 'Capacity',
       cell: (event) => (
         <span className="text-on-surface-variant">
@@ -93,6 +127,7 @@ export function EventsTable({ events, count, page }: { events: Event[]; count?: 
       )
     },
     {
+      id: 'status',
       header: 'Status',
       cell: (event) => (
         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider
@@ -106,7 +141,9 @@ export function EventsTable({ events, count, page }: { events: Event[]; count?: 
       )
     },
     {
+      id: 'actions',
       header: <div className="text-right">Actions</div>,
+      enableHiding: false,
       cell: (event) => (
         <div className="flex justify-end gap-2">
           <button 
@@ -117,8 +154,8 @@ export function EventsTable({ events, count, page }: { events: Event[]; count?: 
             <span className="material-symbols-outlined text-[18px]">edit</span>
           </button>
           <button 
-            onClick={() => handleDelete(event.id)}
-            disabled={isDeleting === event.id}
+            onClick={() => confirmDelete(event.id)}
+            disabled={isDeleting && deleteDialog.eventId === event.id}
             className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-full transition-colors flex items-center justify-center disabled:opacity-50"
             title="Delete Event"
           >
@@ -131,20 +168,20 @@ export function EventsTable({ events, count, page }: { events: Event[]; count?: 
 
   return (
     <>
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <h2 className="text-2xl font-bold text-on-surface">Event List</h2>
-          <p className="text-on-surface-variant mt-1 text-sm">All registered events in the system.</p>
-        </div>
-        <div className="relative">
-          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
-          <input
-            className="w-full md:w-64 pl-9 pr-3 py-2 bg-surface-container-lowest border border-outline-variant/30 rounded-md focus:ring-2 focus:ring-primary text-[14px] placeholder-on-surface-variant/70 shadow-sm"
-            placeholder="Search events..."
-            type="text"
-          />
-        </div>
-      </div>
+      <FilterBar 
+        searchValue={searchTerm} 
+        onSearchChange={setSearchTerm} 
+        searchPlaceholder="Search events..."
+      >
+        <Button 
+          variant="default" 
+          className="shadow-md flex items-center gap-2 hover:scale-105 transition-transform"
+          onClick={openCreate}
+        >
+          <span className="material-symbols-outlined text-[20px]">event_note</span>
+          Create Event
+        </Button>
+      </FilterBar>
 
       <DataTable 
         columns={columns} 
@@ -160,6 +197,17 @@ export function EventsTable({ events, count, page }: { events: Event[]; count?: 
         onClose={closeModal} 
         mode={modalState.mode}
         initialData={modalState.event}
+      />
+
+      <ConfirmationDialog
+        isOpen={deleteDialog.isOpen}
+        onClose={closeDeleteDialog}
+        onConfirm={handleDelete}
+        title="Delete Event"
+        description="Are you sure you want to permanently delete this event? This action cannot be undone."
+        confirmText="Delete"
+        isDestructive={true}
+        isLoading={isDeleting}
       />
     </>
   );

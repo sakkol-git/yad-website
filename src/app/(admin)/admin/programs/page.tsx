@@ -1,6 +1,10 @@
 import { Metadata } from "next";
 import { getProgramsAction } from "@/server/actions/program.actions";
 import { ProgramsTable } from "./ProgramsTable";
+import { AdminPageLayout } from '@/shared/components/admin/layout/AdminPageLayout';
+import { AdminPageHeader } from '@/shared/components/admin/layout/AdminPageHeader';
+import { StatCard } from '@/shared/components/admin/data/StatCard';
+import { StatsGrid } from '@/shared/components/admin/data/StatsGrid';
 
 export const metadata: Metadata = {
   title: "Programs | YAD Admin",
@@ -15,9 +19,11 @@ export default async function AdminProgramsPage(props: { searchParams: Promise<{
 
   if (!result.success) {
     return (
-      <div className="p-8 text-center text-error">
-        Failed to load programs. {result.error}
-      </div>
+      <AdminPageLayout>
+        <div className="p-8 text-center text-error">
+          Failed to load programs. {result.error}
+        </div>
+      </AdminPageLayout>
     );
   }
 
@@ -25,18 +31,18 @@ export default async function AdminProgramsPage(props: { searchParams: Promise<{
   const count = result.count || 0;
 
   return (
-    <div className="p-6 md:p-8 space-y-8 max-w-[1600px] mx-auto w-full">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h1 className="text-2xl font-display-md text-on-surface font-bold">Programs</h1>
-          <p className="text-on-surface-variant text-sm mt-1">
-            Manage your organization's programs, initiatives, and impact metrics.
-          </p>
-        </div>
-      </div>
+    <AdminPageLayout>
+      <AdminPageHeader 
+        title="Programs" 
+        description="Manage your organization's programs, initiatives, and impact metrics."
+      />
+
+      <StatsGrid>
+        <StatCard title="Total Programs" value={count} icon="account_tree" colorVariant="primary" />
+      </StatsGrid>
 
       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <ProgramsTable initialData={programs as any} count={count} page={page} />
-    </div>
+    </AdminPageLayout>
   );
 }
