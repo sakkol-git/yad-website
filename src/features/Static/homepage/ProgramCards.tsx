@@ -16,8 +16,6 @@ const PROGRAM_CARDS_DATA = [
       gradient: "from-primary/5",
       bgOverlay: "bg-primary/10",
     },
-    // The middle card has a Y-offset on large screens in your original code
-    layoutClass: "",
     priority: true, // Load the first image faster if above the fold
   },
   {
@@ -31,7 +29,6 @@ const PROGRAM_CARDS_DATA = [
       gradient: "from-secondary/5",
       bgOverlay: "bg-secondary/10",
     },
-    layoutClass: "lg:translate-y-8",
     priority: false,
   },
   {
@@ -45,7 +42,6 @@ const PROGRAM_CARDS_DATA = [
       gradient: "from-tertiary/5",
       bgOverlay: "bg-tertiary/10",
     },
-    layoutClass: "",
     priority: false,
   },
 ];
@@ -59,38 +55,39 @@ export function ProgramCards() {
         className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
         {PROGRAM_CARDS_DATA.map((card) => (
-          <article
-            key={card.id}
-            className={`bg-surface-container-lowest/95 backdrop-blur-3xl rounded-[32px] p-8 border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover hover:-translate-y-2 hover:bg-surface-container-lowest transition-all duration-500 group relative flex flex-col items-center text-center overflow-hidden ${card.layoutClass}`}
-          >
-            {/* Hover Gradient Overlay */}
-            <div
-              className={`absolute inset-0 bg-gradient-to-b ${card.theme.gradient} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
-              aria-hidden="true"
-            />
-
-            {/* Image Container */}
-            <ImageRevealMask
-              className={`w-36 h-36 rounded-2xl mb-8 relative shadow-md group-hover:scale-105 transition-transform duration-500 border border-white/50 overflow-hidden ${card.theme.bgOverlay}`}
+          <div key={card.id}>
+            <article
+              className={`h-full bg-surface-container-lowest/95 backdrop-blur-3xl rounded-[32px] p-8 border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover hover:-translate-y-2 hover:bg-surface-container-lowest transition-all duration-500 group relative flex flex-col items-center text-center overflow-hidden`}
             >
-              <Image
-                alt={card.imageAlt}
-                className="w-full h-full object-cover"
-                src={card.imageSrc}
-                fill
-                sizes="144px"
-                priority={card.priority}
+              {/* Hover Gradient Overlay */}
+              <div
+                className={`absolute inset-0 bg-gradient-to-b ${card.theme.gradient} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
+                aria-hidden="true"
               />
-            </ImageRevealMask>
 
-            {/* Text Content */}
-            <h3 className={`text-2xl font-bold mb-3 ${card.theme.text}`}>
-              {card.title}
-            </h3>
-            <p className="text-on-surface-variant font-medium leading-relaxed">
-              {card.description}
-            </p>
-          </article>
+              {/* Image Container */}
+              <ImageRevealMask
+                className={`w-36 h-36 rounded-2xl mb-8 relative shadow-md group-hover:scale-105 transition-transform duration-500 border border-white/50 overflow-hidden ${card.theme.bgOverlay}`}
+              >
+                <Image
+                  alt={card.imageAlt}
+                  className="w-full h-full object-cover"
+                  src={card.imageSrc}
+                  fill
+                  sizes="144px"
+                  priority={card.priority}
+                />
+              </ImageRevealMask>
+
+              {/* Text Content */}
+              <h3 className={`text-2xl font-bold mb-3 ${card.theme.text}`}>
+                {card.title}
+              </h3>
+              <p className="text-on-surface-variant font-medium leading-relaxed">
+                {card.description}
+              </p>
+            </article>
+          </div>
         ))}
       </StaggerGroup>
     </section>
