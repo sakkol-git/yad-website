@@ -79,8 +79,8 @@ export default function Home() {
       <HomeHero />
       <PartnerLogos />
       <VisionSection />
-      <MeasurableImpactSection />
       <ProgramCards />
+      <MeasurableImpactSection />
       <ImpactPreview />
       <CommunityVoices />
       <HomeCTA />
