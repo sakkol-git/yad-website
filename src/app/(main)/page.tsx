@@ -77,7 +77,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <HomeHero />
-      {/* <PartnerLogos /> */}
+      <PartnerLogos />
       <VisionSection />
       <MeasurableImpactSection />
       <ProgramCards />
