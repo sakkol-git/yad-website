@@ -6,11 +6,11 @@ export function ProgramCards() {
   return (
     <section className="relative z-20 mt-8 lg:-mt-24 pb-24 px-4 sm:px-6 lg:px-8">
       <StaggerGroup y={32} scale={0.96} className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
+
         {/* Card 1 */}
-        <div className="bg-surface/60 backdrop-blur-2xl rounded-[32px] p-8 border border-white/20 shadow-xl hover:shadow-2xl hover:-translate-y-2 hover:bg-surface/80 transition-all duration-500 group relative flex flex-col items-center text-center overflow-hidden">
+        <div className="bg-surface-container-lowest/95 backdrop-blur-3xl rounded-[32px] p-8 border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover hover:-translate-y-2 hover:bg-surface-container-lowest transition-all duration-500 group relative flex flex-col items-center text-center overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-          <ImageRevealMask className="w-36 h-36 rounded-2xl mb-8 relative shadow-md group-hover:scale-105 transition-transform duration-500 bg-primary/10 border border-white/10">
+          <ImageRevealMask className="w-36 h-36 rounded-2xl mb-8 relative shadow-md group-hover:scale-105 transition-transform duration-500 bg-primary/10 border border-white/50">
             <Image
               alt="Students learning"
               className="w-full h-full object-cover"
@@ -28,9 +28,9 @@ export function ProgramCards() {
         </div>
 
         {/* Card 2 */}
-        <div className="bg-surface/60 backdrop-blur-2xl rounded-[32px] p-8 border border-white/20 shadow-xl hover:shadow-2xl hover:-translate-y-2 hover:bg-surface/80 transition-all duration-500 group relative flex flex-col items-center text-center overflow-hidden lg:translate-y-8">
+        <div className="bg-surface-container-lowest/95 backdrop-blur-3xl rounded-[32px] p-8 border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover hover:-translate-y-2 hover:bg-surface-container-lowest transition-all duration-500 group relative flex flex-col items-center text-center overflow-hidden lg:translate-y-8">
           <div className="absolute inset-0 bg-gradient-to-b from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-          <ImageRevealMask className="w-36 h-36 rounded-2xl mb-8 relative shadow-md group-hover:scale-105 transition-transform duration-500 bg-secondary/10 border border-white/10">
+          <ImageRevealMask className="w-36 h-36 rounded-2xl mb-8 relative shadow-md group-hover:scale-105 transition-transform duration-500 bg-secondary/10 border border-white/50">
             <Image
               alt="Digital Innovation"
               className="w-full h-full object-cover"
@@ -48,9 +48,9 @@ export function ProgramCards() {
         </div>
 
         {/* Card 3 */}
-        <div className="bg-surface/60 backdrop-blur-2xl rounded-[32px] p-8 border border-white/20 shadow-xl hover:shadow-2xl hover:-translate-y-2 hover:bg-surface/80 transition-all duration-500 group relative flex flex-col items-center text-center overflow-hidden">
+        <div className="bg-surface-container-lowest/95 backdrop-blur-3xl rounded-[32px] p-8 border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover hover:-translate-y-2 hover:bg-surface-container-lowest transition-all duration-500 group relative flex flex-col items-center text-center overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-tertiary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-          <ImageRevealMask className="w-36 h-36 rounded-2xl mb-8 relative shadow-md group-hover:scale-105 transition-transform duration-500 bg-tertiary/10 border border-white/10">
+          <ImageRevealMask className="w-36 h-36 rounded-2xl mb-8 relative shadow-md group-hover:scale-105 transition-transform duration-500 bg-tertiary/10 border border-white/50">
             <Image
               alt="Slum Education"
               className="w-full h-full object-cover"
