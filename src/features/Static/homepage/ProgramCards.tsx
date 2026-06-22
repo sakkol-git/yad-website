@@ -48,7 +48,7 @@ const PROGRAM_CARDS_DATA = [
 
 export function ProgramCards() {
   return (
-    <section className="relative z-20 mt-8 lg:-mt-24 pb-24 px-4 sm:px-6 lg:px-8">
+    <section className="relative z-20 mt-20 lg:-mt-40 pb-24 px-4 sm:px-6 lg:px-8">
       <StaggerGroup
         y={32}
         scale={0.96}
