@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { User } from '@supabase/supabase-js';
+import { PortalPageLayout } from '@/shared/components/portal/layout/PortalPageLayout';
+import { SummaryCard } from '@/shared/components/portal/data/SummaryCard';
 
 interface UserDashboardProps {
   user: User;
@@ -17,102 +19,94 @@ export function UserDashboard({
   greeting
 }: UserDashboardProps) {
   return (
-    <div className="space-y-6 md:space-y-8">
-      {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-secondary/10 to-primary/10 rounded-xl p-6 md:p-8 border border-outline-variant/30 relative overflow-hidden">
-        <div className="relative z-10">
-          <h1 className="text-2xl md:text-3xl font-bold text-on-surface mb-2 md:mb-3 leading-tight">
+    <PortalPageLayout>
+      {/* Premium Welcome Section */}
+      <div className="bg-surface-container-lowest rounded-2xl p-8 md:p-10 border border-outline-variant/30 relative overflow-hidden shadow-sm">
+        {/* Decorative background element */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-secondary/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
+        
+        <div className="relative z-10 max-w-3xl">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-on-surface mb-3 leading-tight tracking-tight">
             {greeting}, {user.user_metadata?.first_name || 'Friend'}! 👋
           </h1>
-          <p className="text-on-surface-variant max-w-2xl text-sm md:text-base leading-relaxed">
-            Welcome to your personal YAD Cambodia portal. Here you can manage your homestay bookings, track your donation history, and find new opportunities to volunteer with our community.
+          <p className="text-on-surface-variant text-base md:text-lg leading-relaxed">
+            Welcome to your personal YAD Cambodia portal. Manage your homestay bookings, track your donation history, and find new opportunities to volunteer with our community.
           </p>
         </div>
       </div>
 
       {/* Quick Actions & Status Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-        {/* Bookings Card */}
-        <div className="bg-surface-container-lowest rounded-lg p-5 md:p-6 border border-outline-variant/30 shadow-sm flex flex-col">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-primary/10 text-primary rounded-lg flex items-center justify-center shrink-0">
-              <span className="material-symbols-outlined">bed</span>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <SummaryCard 
+          title="Homestays" 
+          icon="bed" 
+          colorVariant="primary" 
+          href="/portal/bookings" 
+          actionText="Manage Bookings"
+        >
+          {upcomingBooking ? (
+            <div className="bg-surface-container p-4 rounded-xl border border-outline-variant/10">
+              <p className="text-xs font-bold text-primary uppercase tracking-wider mb-2">Upcoming Stay</p>
+              <p className="font-bold text-lg text-on-surface mb-1">{upcomingBooking.rooms?.name}</p>
+              <p className="text-sm text-on-surface-variant flex items-center gap-1">
+                <span className="material-symbols-outlined text-[16px]">calendar_today</span>
+                {new Date(upcomingBooking.check_in).toLocaleDateString()}
+              </p>
             </div>
-            <h2 className="text-lg font-bold text-on-surface">Homestays</h2>
-          </div>
-          
-          <div className="flex-1">
-            {upcomingBooking ? (
-              <div className="bg-surface-container p-4 rounded-lg">
-                <p className="text-xs font-bold text-primary uppercase tracking-wider mb-1">Upcoming Stay</p>
-                <p className="font-medium text-on-surface">{upcomingBooking.rooms?.name}</p>
-                <p className="text-sm text-on-surface-variant mt-1">Check-in: {new Date(upcomingBooking.check_in).toLocaleDateString()}</p>
-              </div>
-            ) : (
-              <p className="text-sm text-on-surface-variant">You don't have any upcoming bookings.</p>
-            )}
-          </div>
-          
-          <Link href="/portal/bookings" className="mt-4 flex items-center justify-between text-sm font-bold text-primary hover:bg-primary/5 p-2 md:p-3 rounded-md transition-colors min-h-[44px]">
-            Manage Bookings
-            <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-          </Link>
-        </div>
+          ) : (
+            <div className="h-full flex flex-col justify-center">
+              <p className="text-sm text-on-surface-variant leading-relaxed">You don't have any upcoming bookings. Plan your next stay with us!</p>
+            </div>
+          )}
+        </SummaryCard>
 
-        {/* Donations Card */}
-        <div className="bg-surface-container-lowest rounded-lg p-5 md:p-6 border border-outline-variant/30 shadow-sm flex flex-col">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-tertiary/10 text-tertiary rounded-lg flex items-center justify-center shrink-0">
-              <span className="material-symbols-outlined">volunteer_activism</span>
+        <SummaryCard 
+          title="Donations" 
+          icon="volunteer_activism" 
+          colorVariant="tertiary" 
+          href="/portal/donations" 
+          actionText="View History"
+        >
+          {recentDonation ? (
+            <div className="bg-surface-container p-4 rounded-xl border border-outline-variant/10">
+              <p className="text-xs font-bold text-tertiary uppercase tracking-wider mb-2">Recent Contribution</p>
+              <p className="font-bold text-3xl text-on-surface mb-1">${recentDonation.amount}</p>
+              <p className="text-sm text-on-surface-variant flex items-center gap-1">
+                <span className="material-symbols-outlined text-[16px]">info</span>
+                Status: {recentDonation.status}
+              </p>
             </div>
-            <h2 className="text-lg font-bold text-on-surface">Donations</h2>
-          </div>
-          
-          <div className="flex-1">
-            {recentDonation ? (
-              <div className="bg-surface-container p-4 rounded-lg">
-                <p className="text-xs font-bold text-tertiary uppercase tracking-wider mb-1">Recent Contribution</p>
-                <p className="font-bold text-xl text-on-surface">${recentDonation.amount}</p>
-                <p className="text-sm text-on-surface-variant mt-1">Status: {recentDonation.status}</p>
-              </div>
-            ) : (
-              <p className="text-sm text-on-surface-variant leading-relaxed">You haven't made any donations yet. Your support helps us empower the youth of Cambodia.</p>
-            )}
-          </div>
-          
-          <Link href="/portal/donations" className="mt-4 flex items-center justify-between text-sm font-bold text-tertiary hover:bg-tertiary/5 p-2 md:p-3 rounded-md transition-colors min-h-[44px]">
-            View History
-            <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-          </Link>
-        </div>
+          ) : (
+            <div className="h-full flex flex-col justify-center">
+              <p className="text-sm text-on-surface-variant leading-relaxed">You haven't made any donations yet. Your support helps empower the youth of Cambodia.</p>
+            </div>
+          )}
+        </SummaryCard>
 
-        {/* Volunteer Card */}
-        <div className="bg-surface-container-lowest rounded-lg p-5 md:p-6 border border-outline-variant/30 shadow-sm flex flex-col">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-secondary/10 text-secondary rounded-lg flex items-center justify-center shrink-0">
-              <span className="material-symbols-outlined">group</span>
+        <SummaryCard 
+          title="Volunteer" 
+          icon="group" 
+          colorVariant="secondary" 
+          href="/portal/volunteer" 
+          actionText="Find Opportunities"
+        >
+          {recentVolunteer ? (
+            <div className="bg-surface-container p-4 rounded-xl border border-outline-variant/10">
+              <p className="text-xs font-bold text-secondary uppercase tracking-wider mb-2">Latest Engagement</p>
+              <p className="font-bold text-lg text-on-surface mb-1 truncate" title={recentVolunteer.events?.name || ''}>{recentVolunteer.events?.name}</p>
+              <p className="text-sm text-on-surface-variant flex items-center gap-1">
+                <span className="material-symbols-outlined text-[16px]">check_circle</span>
+                Status: {recentVolunteer.status}
+              </p>
             </div>
-            <h2 className="text-lg font-bold text-on-surface">Volunteer</h2>
-          </div>
-          
-          <div className="flex-1">
-            {recentVolunteer ? (
-              <div className="bg-surface-container p-4 rounded-lg">
-                <p className="text-xs font-bold text-secondary uppercase tracking-wider mb-1">Latest Engagement</p>
-                <p className="font-medium text-on-surface">{recentVolunteer.events?.name}</p>
-                <p className="text-sm text-on-surface-variant mt-1">Status: {recentVolunteer.status}</p>
-              </div>
-            ) : (
+          ) : (
+            <div className="h-full flex flex-col justify-center">
               <p className="text-sm text-on-surface-variant leading-relaxed">Join our volunteer network and make a direct impact in the community.</p>
-            )}
-          </div>
-          
-          <Link href="/portal/volunteer" className="mt-4 flex items-center justify-between text-sm font-bold text-secondary hover:bg-secondary/5 p-2 md:p-3 rounded-md transition-colors min-h-[44px]">
-            Find Opportunities
-            <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-          </Link>
-        </div>
+            </div>
+          )}
+        </SummaryCard>
       </div>
-    </div>
+    </PortalPageLayout>
   );
 }
