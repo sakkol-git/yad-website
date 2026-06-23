@@ -18,7 +18,7 @@ export default function DLTCPage() {
   return (
     <main className="relative overflow-hidden bg-surface pt-32 pb-section-gap">
       {/* Background Decorative Glow */}
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-primary/[0.03] rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
 
       <RevealOnScroll className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
         <BreadcrumbSchema items={breadcrumbs} />

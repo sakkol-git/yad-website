@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import heroImg from "../../../../public/assets/images/yad-4.png";
 
 export function AboutHero() {
   return (
@@ -43,9 +44,10 @@ export function AboutHero() {
           <div className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0">
             <RevealOnScroll delay={0.3} className="w-full h-full relative">
               <Image
-                src="/assets/images/yad-4.png"
+                src={heroImg}
                 alt="Cambodian youth engaging in educational activities"
                 fill
+                placeholder="blur"
                 className="object-cover object-center"
                 priority
                 sizes="(max-width: 1024px) 100vw, 60vw"

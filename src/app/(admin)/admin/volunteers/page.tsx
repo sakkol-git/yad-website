@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 import { getVolunteerRequestsAction } from "@/server/actions/volunteer.actions";
 import { VolunteersTable } from "./VolunteersTable";
 import { AdminPageLayout } from '@/shared/components/admin/layout/AdminPageLayout';
@@ -40,7 +41,9 @@ export default async function AdminVolunteersPage(props: { searchParams: Promise
         <StatCard title="Total Requests" value={count} icon="volunteer_activism" colorVariant="primary" />
       </StatsGrid>
 
-      <VolunteersTable initialData={volunteers} count={count} page={page} />
+      <Suspense fallback={<div className="p-8 text-center text-on-surface-variant">Loading volunteers...</div>}>
+        <VolunteersTable initialData={volunteers} count={count} page={page} />
+      </Suspense>
     </AdminPageLayout>
   );
 }

@@ -1,5 +1,6 @@
 import { getEvents } from '@/server/actions/event.actions';
 import { EventsTable } from '@/features/Entities/events/components/EventsTable';
+import { Suspense } from 'react';
 import { createClient } from '@/shared/lib/supabase/server';
 import { AdminPageLayout } from '@/shared/components/admin/layout/AdminPageLayout';
 import { AdminPageHeader } from '@/shared/components/admin/layout/AdminPageHeader';
@@ -46,7 +47,9 @@ export default async function EventsPage(props: { searchParams: Promise<{ page?:
         <StatCard title="Total Capacity" value={totalCapacity} icon="people" colorVariant="tertiary" />
       </StatsGrid>
 
-      <EventsTable events={events} count={count} page={page} />
+      <Suspense fallback={<div className="p-8 text-center text-on-surface-variant">Loading events...</div>}>
+        <EventsTable events={events} count={count} page={page} />
+      </Suspense>
     </AdminPageLayout>
   );
 }

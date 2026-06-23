@@ -189,7 +189,7 @@ export function BookingSection() {
                 type="submit"
                 variant="default"
                 size="lg"
-                className="rounded-none bg-on-surface text-surface hover:bg-surface-variant h-14 px-10 w-full md:w-auto uppercase tracking-wider text-xs font-bold transition-all"
+                className="rounded-none bg-on-surface text-surface hover:bg-surface-variant h-14 px-10 w-full md:w-auto uppercase tracking-wider text-xs font-bold transition-colors duration-150"
               >
                 Confirm &amp; Pay $45.00
               </Button>

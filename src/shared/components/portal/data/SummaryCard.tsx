@@ -41,7 +41,7 @@ export function SummaryCard({ title, icon, colorVariant, href, actionText, child
       </div>
       
       <Link href={href} className={`mt-auto flex items-center text-sm font-medium text-on-surface-variant hover:${actionTextClass} transition-colors w-fit group/link`}>
-        <ArrowRight className={`w-4 h-4 mr-2 opacity-0 -ml-6 group-hover/link:opacity-100 group-hover/link:ml-0 transition-all duration-300 ${actionTextClass}`} />
+        <ArrowRight className={`w-4 h-4 mr-2 opacity-0 -ml-6 group-hover/link:opacity-100 group-hover/link:ml-0 transition-[transform,box-shadow,border-color] duration-300 ease-out ${actionTextClass}`} />
         <span>{actionText}</span>
       </Link>
     </div>

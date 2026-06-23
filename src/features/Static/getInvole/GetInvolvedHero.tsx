@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import heroImg from "../../../../public/assets/images/yad-7.png";
 
 export function GetInvolvedHero() {
   return (
@@ -39,7 +40,7 @@ export function GetInvolvedHero() {
               <div className="flex flex-wrap gap-4">
                 <Link 
                   href="#pathways"
-                  className="bg-primary text-white hover:bg-primary/90 px-6 py-3 h-12 uppercase text-xs tracking-wider font-bold transition-all inline-flex items-center"
+                  className="bg-primary text-white hover:bg-primary/90 px-6 py-3 h-12 uppercase text-xs tracking-wider font-bold transition-colors duration-200 ease-in-out inline-flex items-center"
                 >
                   Explore Pathways
                 </Link>
@@ -51,9 +52,10 @@ export function GetInvolvedHero() {
           <div className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0">
             <RevealOnScroll delay={0.3} className="w-full h-full relative">
               <Image
-                src="/assets/images/yad-7.png"
-                alt="A group of volunteers working closely with children in a community setting"
+                src={heroImg}
+                alt="Volunteers engaged in community work"
                 fill
+                placeholder="blur"
                 className="object-cover object-center"
                 priority
                 sizes="(max-width: 1024px) 100vw, 60vw"

@@ -19,7 +19,7 @@ export function StatCard({ title, value, icon, colorVariant = 'primary' }: StatC
   };
 
   return (
-    <div className="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm flex items-center gap-4 hover-lift transition-all duration-300">
+    <div className="bg-surface-container-lowest p-5 rounded-lg border border-outline-variant/30 shadow-sm flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300">
       <div className={`w-12 h-12 rounded-full flex items-center justify-center ${colorMap[colorVariant]}`}>
         <span className="material-symbols-outlined text-[24px]">{icon}</span>
       </div>

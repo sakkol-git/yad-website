@@ -64,17 +64,17 @@ export function QuickFormSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <FormLabel htmlFor="quick-first-name" className="text-xs uppercase tracking-widest mb-2 font-label-bold">First Name</FormLabel>
-              <FormInput id="quick-first-name" name="firstName" type="text" className="rounded-none border-t-0 border-x-0 border-b-2 border-outline-variant focus:border-primary bg-transparent px-0 focus:ring-0" required disabled={isPending} />
+              <FormInput id="quick-first-name" name="firstName" type="text" className="rounded-none border-t-0 border-x-0 border-b-2 border-outline-variant focus:border-primary bg-transparent px-0 focus:ring-0" required aria-required="true" disabled={isPending} aria-invalid={formState === "error"} aria-describedby={formState === "error" ? "quick-form-error" : undefined} />
             </div>
             <div>
               <FormLabel htmlFor="quick-last-name" className="text-xs uppercase tracking-widest mb-2 font-label-bold">Last Name</FormLabel>
-              <FormInput id="quick-last-name" name="lastName" type="text" className="rounded-none border-t-0 border-x-0 border-b-2 border-outline-variant focus:border-primary bg-transparent px-0 focus:ring-0" required disabled={isPending} />
+              <FormInput id="quick-last-name" name="lastName" type="text" className="rounded-none border-t-0 border-x-0 border-b-2 border-outline-variant focus:border-primary bg-transparent px-0 focus:ring-0" required aria-required="true" disabled={isPending} aria-invalid={formState === "error"} aria-describedby={formState === "error" ? "quick-form-error" : undefined} />
             </div>
           </div>
           
           <div>
             <FormLabel htmlFor="quick-email" className="text-xs uppercase tracking-widest mb-2 font-label-bold">Email Address</FormLabel>
-            <FormInput id="quick-email" name="email" type="email" className="rounded-none border-t-0 border-x-0 border-b-2 border-outline-variant focus:border-primary bg-transparent px-0 focus:ring-0" required disabled={isPending} />
+            <FormInput id="quick-email" name="email" type="email" className="rounded-none border-t-0 border-x-0 border-b-2 border-outline-variant focus:border-primary bg-transparent px-0 focus:ring-0" required aria-required="true" disabled={isPending} aria-invalid={formState === "error"} aria-describedby={formState === "error" ? "quick-form-error" : undefined} />
           </div>
 
           <fieldset disabled={isPending}>
@@ -108,24 +108,40 @@ export function QuickFormSection() {
               name="message"
               rows={3}
               disabled={isPending}
-              className="w-full bg-transparent border-t-0 border-x-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 px-0 py-2 transition-all resize-y text-on-surface font-body-md"
+              className="w-full bg-transparent border-t-0 border-x-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 px-0 py-2 transition-colors duration-200 ease-in-out resize-y text-on-surface font-body-md"
             ></textarea>
           </div>
 
-          {formState === "error" && (
-            <div className="p-4 bg-error/10 border border-error/30 text-error text-sm">
-              {errorMessage}
-            </div>
-          )}
+          <div
+            id="quick-form-error"
+            role="alert"
+            aria-live="assertive"
+            className={`p-4 text-sm transition-opacity duration-200 ${
+              formState === "error" ? "bg-error/10 border border-error/30 text-error opacity-100" : "opacity-0 pointer-events-none h-0 m-0 py-0 border-0"
+            }`}
+          >
+            {errorMessage || "Placeholder"}
+          </div>
 
           <div className="pt-6">
             <Button
-              className="w-full bg-primary text-on-primary hover:bg-surface-inverse hover:text-white uppercase tracking-widest text-sm"
+              className="w-full bg-primary text-on-primary hover:bg-surface-inverse hover:text-white uppercase tracking-widest text-sm relative min-w-[160px]"
               type="submit"
               size="lg"
               disabled={isPending}
+              aria-busy={isPending}
+              aria-disabled={isPending}
             >
-              {isPending ? "Transmitting..." : "Submit Dispatch"}
+              <span className={`absolute inset-0 flex items-center justify-center transition-opacity duration-150 ${isPending ? "opacity-0" : "opacity-100"}`}>
+                Submit Dispatch
+              </span>
+              <span className={`absolute inset-0 flex items-center justify-center gap-2 transition-opacity duration-150 ${isPending ? "opacity-100" : "opacity-0"}`} aria-hidden="true">
+                <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
+                </svg>
+                Transmitting...
+              </span>
             </Button>
           </div>
         </form>

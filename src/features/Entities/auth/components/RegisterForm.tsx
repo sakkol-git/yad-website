@@ -28,6 +28,7 @@ export function RegisterForm() {
   });
 
   const isWorking = isSubmitting || isPendingRouter;
+  const hasErrors = Object.keys(errors).length > 0;
 
   const onSubmit = async (data: RegisterInput) => {
     setServerError(null);
@@ -90,6 +91,15 @@ export function RegisterForm() {
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            {hasErrors && (
+              <div 
+                role="alert" 
+                aria-live="assertive"
+                className="bg-error/10 border border-error/30 text-error rounded-md p-4 text-sm mb-4"
+              >
+                Please correct the errors below before submitting.
+              </div>
+            )}
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-[10px] font-bold uppercase tracking-widest text-on-surface mb-1" htmlFor="first_name">
@@ -99,10 +109,22 @@ export function RegisterForm() {
                   id="first_name"
                   type="text"
                   placeholder="Sokha"
-                  className={`w-full px-4 h-12 bg-transparent rounded-none border ${errors.first_name ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-all outline-none`}
+                  aria-required="true"
+                  aria-describedby="register-first-name-error"
+                  aria-invalid={!!errors.first_name}
+                  className={`w-full px-4 h-12 bg-transparent rounded-none border ${errors.first_name ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
                   {...register("first_name")}
                 />
-                {errors.first_name && <p className="text-error text-xs mt-1">{errors.first_name.message}</p>}
+                <p
+                  id="register-first-name-error"
+                  role="alert"
+                  aria-live="polite"
+                  className={`text-xs mt-1 transition-opacity duration-200 ${
+                    errors.first_name ? "text-error opacity-100" : "opacity-0 pointer-events-none"
+                  }`}
+                >
+                  {errors.first_name?.message || "Placeholder"}
+                </p>
               </div>
               <div>
                 <label className="block text-[10px] font-bold uppercase tracking-widest text-on-surface mb-1" htmlFor="last_name">
@@ -112,10 +134,22 @@ export function RegisterForm() {
                   id="last_name"
                   type="text"
                   placeholder="Chen"
-                  className={`w-full px-4 h-12 bg-transparent rounded-none border ${errors.last_name ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-all outline-none`}
+                  aria-required="true"
+                  aria-describedby="register-last-name-error"
+                  aria-invalid={!!errors.last_name}
+                  className={`w-full px-4 h-12 bg-transparent rounded-none border ${errors.last_name ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
                   {...register("last_name")}
                 />
-                {errors.last_name && <p className="text-error text-xs mt-1">{errors.last_name.message}</p>}
+                <p
+                  id="register-last-name-error"
+                  role="alert"
+                  aria-live="polite"
+                  className={`text-xs mt-1 transition-opacity duration-200 ${
+                    errors.last_name ? "text-error opacity-100" : "opacity-0 pointer-events-none"
+                  }`}
+                >
+                  {errors.last_name?.message || "Placeholder"}
+                </p>
               </div>
             </div>
 
@@ -129,11 +163,23 @@ export function RegisterForm() {
                   id="email"
                   type="email"
                   placeholder="user@example.com"
-                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-none border ${errors.email ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-all outline-none`}
+                  aria-required="true"
+                  aria-describedby="register-email-error"
+                  aria-invalid={!!errors.email}
+                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-none border ${errors.email ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
                   {...register("email")}
                 />
               </div>
-              {errors.email && <p className="text-error text-sm mt-1">{errors.email.message}</p>}
+              <p
+                id="register-email-error"
+                role="alert"
+                aria-live="polite"
+                className={`text-sm mt-1 transition-opacity duration-200 ${
+                  errors.email ? "text-error opacity-100" : "opacity-0 pointer-events-none"
+                }`}
+              >
+                {errors.email?.message || "Placeholder"}
+              </p>
             </div>
 
             <div>
@@ -146,11 +192,23 @@ export function RegisterForm() {
                   id="password"
                   type="password"
                   placeholder="••••••••"
-                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-none border ${errors.password ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-all outline-none`}
+                  aria-required="true"
+                  aria-describedby="register-password-error"
+                  aria-invalid={!!errors.password}
+                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-none border ${errors.password ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
                   {...register("password")}
                 />
               </div>
-              {errors.password && <p className="text-error text-sm mt-1">{errors.password.message}</p>}
+              <p
+                id="register-password-error"
+                role="alert"
+                aria-live="polite"
+                className={`text-sm mt-1 transition-opacity duration-200 ${
+                  errors.password ? "text-error opacity-100" : "opacity-0 pointer-events-none"
+                }`}
+              >
+                {errors.password?.message || "Placeholder"}
+              </p>
             </div>
 
             <div>
@@ -163,33 +221,50 @@ export function RegisterForm() {
                   id="confirmPassword"
                   type="password"
                   placeholder="••••••••"
-                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-none border ${errors.confirmPassword ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-all outline-none`}
+                  aria-required="true"
+                  aria-describedby="register-confirm-password-error"
+                  aria-invalid={!!errors.confirmPassword}
+                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-none border ${errors.confirmPassword ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
                   {...register("confirmPassword")}
                 />
               </div>
-              {errors.confirmPassword && <p className="text-error text-sm mt-1">{errors.confirmPassword.message}</p>}
+              <p
+                id="register-confirm-password-error"
+                role="alert"
+                aria-live="polite"
+                className={`text-sm mt-1 transition-opacity duration-200 ${
+                  errors.confirmPassword ? "text-error opacity-100" : "opacity-0 pointer-events-none"
+                }`}
+              >
+                {errors.confirmPassword?.message || "Placeholder"}
+              </p>
             </div>
 
-            {serverError && (
-              <div className="text-error text-sm font-medium flex items-center justify-center gap-1.5 mt-2">
-                <span className="material-symbols-outlined text-[18px]">error</span>
-                <p>{serverError}</p>
-              </div>
-            )}
+            <div
+              role="alert"
+              aria-live="assertive"
+              className={`text-sm font-medium flex items-center justify-center gap-1.5 mt-2 transition-opacity duration-200 ${
+                serverError ? "text-error opacity-100" : "opacity-0 pointer-events-none h-0 m-0"
+              }`}
+            >
+              <span className="material-symbols-outlined text-[18px]">error</span>
+              <p>{serverError || "Placeholder"}</p>
+            </div>
 
             <button
               type="submit"
               disabled={isWorking}
-              className="w-full h-12 bg-primary text-white rounded-none font-bold text-xs uppercase tracking-widest hover:bg-primary/90 transition-all duration-200 mt-6 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+              aria-busy={isWorking}
+              aria-disabled={isWorking}
+              className="w-full h-12 relative bg-primary text-white rounded-none font-bold text-xs uppercase tracking-widest hover:bg-primary/90 transition-colors duration-200 ease-in-out mt-6 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              {isWorking ? (
+              <span className={`absolute inset-0 flex items-center justify-center gap-2 transition-opacity duration-150 ${isWorking ? "opacity-0" : "opacity-100"}`}>
+                Sign Up
+                <span className="material-symbols-outlined text-[20px]">how_to_reg</span>
+              </span>
+              <span className={`absolute inset-0 flex items-center justify-center gap-2 transition-opacity duration-150 ${isWorking ? "opacity-100" : "opacity-0"}`} aria-hidden="true">
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-              ) : (
-                <>
-                  Sign Up
-                  <span className="material-symbols-outlined text-[20px]">how_to_reg</span>
-                </>
-              )}
+              </span>
             </button>
           </form>
 
@@ -205,22 +280,21 @@ export function RegisterForm() {
           <button
             onClick={onGoogleLogin}
             disabled={isPendingGoogle}
-            className="w-full h-12 bg-transparent border border-outline-variant/50 rounded-none font-bold text-xs uppercase tracking-widest text-on-surface hover:border-primary transition-all duration-200 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full h-12 relative bg-transparent border border-outline-variant/50 rounded-none font-bold text-xs uppercase tracking-widest text-on-surface hover:border-primary transition-colors duration-200 ease-in-out disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            {isPendingGoogle ? (
+            <span className={`absolute inset-0 flex items-center justify-center gap-3 transition-opacity duration-150 ${isPendingGoogle ? "opacity-0" : "opacity-100"}`}>
+              <Image
+                src="/assets/icons/google-icon-logo-svgrepo-com.svg"
+                alt="Google logo"
+                width={20}
+                height={20}
+                className="w-5 h-5 object-contain"
+              />
+              Google
+            </span>
+            <span className={`absolute inset-0 flex items-center justify-center transition-opacity duration-150 ${isPendingGoogle ? "opacity-100" : "opacity-0"}`} aria-hidden="true">
               <div className="w-5 h-5 border-2 border-on-surface border-t-transparent rounded-full animate-spin" />
-            ) : (
-              <>
-                <Image
-                  src="/assets/icons/google-icon-logo-svgrepo-com.svg"
-                  alt="Google logo"
-                  width={20}
-                  height={20}
-                  className="w-5 h-5 object-contain"
-                />
-                Google
-              </>
-            )}
+            </span>
           </button>
 
           <div className="mt-8 text-center">

@@ -63,7 +63,7 @@ export function VolunteerPortal({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {availableEvents.length > 0 ? (
             availableEvents.map((event) => (
-              <div key={event.id} className="group relative bg-surface rounded-md p-8 border border-outline-variant/30 flex flex-col h-full hover:border-primary/40 hover:shadow-ambient transition-all duration-300">
+              <div key={event.id} className="group relative bg-surface rounded-md p-8 border border-outline-variant/30 flex flex-col h-full hover:border-primary/40 hover:shadow-ambient transition-[transform,box-shadow,border-color] duration-300 ease-out">
                 
                 <div className="flex-1 flex flex-col">
                   <div className="flex justify-between items-start mb-6">

@@ -152,7 +152,7 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
             <Link href="/">Back to Homepage</Link>
           </Button>
           {type === "booking" && (
-            <Button variant="default" size="lg" className="rounded-none bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold transition-all px-8" asChild>
+            <Button variant="default" size="lg" className="rounded-none bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold transition-colors duration-150 px-8" asChild>
               <Link href="/portal/bookings">Go to Bookings Dashboard</Link>
             </Button>
           )}

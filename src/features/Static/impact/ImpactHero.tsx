@@ -2,15 +2,16 @@
 
 import Image from "next/image";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import heroImg from "../../../../public/assets/images/yad-5.png";
 
 export function ImpactHero() {
   return (
     <section className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-10 overflow-hidden border-b border-outline-variant/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
-        
+
         {/* Editorial Split Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          
+
           {/* Left Column: Typographic Focus */}
           <div className="lg:col-span-5 flex flex-col z-10">
             <RevealOnScroll delay={0.1}>
@@ -42,9 +43,10 @@ export function ImpactHero() {
           <div className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0">
             <RevealOnScroll delay={0.3} className="w-full h-full relative">
               <Image
-                src="/assets/images/yad-4.png"
-                alt="A young student studying intently, symbolizing the focus and drive of Cambodia's youth"
+                src={heroImg}
+                alt="Students learning and building their future"
                 fill
+                placeholder="blur"
                 className="object-cover object-center"
                 priority
                 sizes="(max-width: 1024px) 100vw, 60vw"

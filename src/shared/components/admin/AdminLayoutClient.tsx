@@ -11,7 +11,7 @@ export function AdminLayoutClient({ children }: { children: React.ReactNode }) {
     <div className="flex min-h-screen bg-surface-container-low font-body-md text-body-md">
       <AdminSidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       
-      <div className="flex-1 flex flex-col min-h-screen w-full lg:ml-72 lg:w-[calc(100%-18rem)] transition-all">
+      <div className="flex-1 flex flex-col min-h-screen w-full lg:ml-72 lg:w-[calc(100%-18rem)] transition-colors duration-150">
         <AdminHeader onOpenSidebar={() => setIsSidebarOpen(true)} />
         <main className="flex-1 flex flex-col overflow-x-hidden max-w-full">
           {children}

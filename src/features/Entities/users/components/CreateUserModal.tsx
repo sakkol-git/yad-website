@@ -53,7 +53,7 @@ export function CreateUserModal({ isOpen, onClose }: { isOpen: boolean; onClose:
               name="email" 
               type="email" 
               required 
-              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
               placeholder="user@example.com"
             />
           </div>
@@ -65,7 +65,7 @@ export function CreateUserModal({ isOpen, onClose }: { isOpen: boolean; onClose:
               type="password" 
               required 
               minLength={6}
-              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
               placeholder="Minimum 6 characters"
             />
           </div>
@@ -76,7 +76,7 @@ export function CreateUserModal({ isOpen, onClose }: { isOpen: boolean; onClose:
               name="role" 
               required 
               defaultValue="user"
-              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none cursor-pointer"
+              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] appearance-none cursor-pointer"
             >
               <option value="admin">Admin</option>
               <option value="manager">Manager</option>

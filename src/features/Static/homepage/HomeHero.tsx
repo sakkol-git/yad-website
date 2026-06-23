@@ -5,11 +5,14 @@ import Link from "next/link";
 import { Button } from "@/shared/components/ui/Button";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 import { useState, useEffect } from "react";
+import heroImg1 from "../../../../public/assets/images/yad-2.png";
+import heroImg2 from "../../../../public/assets/images/yad-6.png";
+import heroImg3 from "../../../../public/assets/images/yad-7.png";
 
 const HERO_IMAGES = [
-  { src: "/assets/images/yad-2.png", alt: "Young Cambodian student looking thoughtfully into the distance" },
-  { src: "/assets/images/yad-6.png", alt: "Cambodian youth engaging in educational activities" },
-  { src: "/assets/images/yad-7.png", alt: "Students participating in community programs" }
+  { src: heroImg1, alt: "Young Cambodian student looking thoughtfully into the distance" },
+  { src: heroImg2, alt: "Cambodian youth engaging in educational activities" },
+  { src: heroImg3, alt: "Students participating in community programs" }
 ];
 
 export function HomeHero() {
@@ -80,8 +83,8 @@ export function HomeHero() {
 
                 return (
                   <div
-                    key={img.src}
-                    className={`absolute inset-0 transition-all duration-[1500ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${isCurrent
+                    key={img.src.src}
+                    className={`absolute inset-0 transition-colors duration-200 ease-in-out duration-[1500ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${isCurrent
                       ? "opacity-100 z-10 translate-x-0 scale-100"
                       : isPrevious
                         ? "opacity-0 z-0 -translate-x-16 scale-105"
@@ -92,6 +95,7 @@ export function HomeHero() {
                       src={img.src}
                       alt={img.alt}
                       fill
+                      placeholder="blur"
                       className={`object-cover object-center transition-transform duration-[10000ms] ease-linear ${isCurrent ? "scale-110" : "scale-100"
                         }`}
                       priority={idx === 0}

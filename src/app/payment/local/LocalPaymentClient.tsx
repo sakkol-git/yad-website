@@ -84,7 +84,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
           <div className="flex border-b border-outline-variant/30 mb-8 gap-6">
             <button
               onClick={() => setPaymentMethod("khqr")}
-              className={`pb-3 font-bold text-[10px] uppercase tracking-widest border-b-2 transition-all cursor-pointer ${
+              className={`pb-3 font-bold text-[10px] uppercase tracking-widest border-b-2 transition-colors duration-150 cursor-pointer ${
                 paymentMethod === "khqr"
                   ? "border-primary text-primary"
                   : "border-transparent text-on-surface-variant hover:text-on-surface"
@@ -94,7 +94,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
             </button>
             <button
               onClick={() => setPaymentMethod("bank_transfer")}
-              className={`pb-3 font-bold text-[10px] uppercase tracking-widest border-b-2 transition-all cursor-pointer ${
+              className={`pb-3 font-bold text-[10px] uppercase tracking-widest border-b-2 transition-colors duration-150 cursor-pointer ${
                 paymentMethod === "bank_transfer"
                   ? "border-primary text-primary"
                   : "border-transparent text-on-surface-variant hover:text-on-surface"
@@ -254,7 +254,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                   </div>
                   <button
                     onClick={() => copyToClipboard(memoCode, "memo")}
-                    className="bg-white text-primary text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-none hover:bg-white/90 transition-all flex items-center gap-2 cursor-pointer"
+                    className="bg-white text-primary text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-none hover:bg-white/90 transition-colors duration-150 flex items-center gap-2 cursor-pointer"
                   >
                     <span className="material-symbols-outlined text-[14px]">
                       {copiedField === "memo" ? "check" : "content_copy"}
@@ -270,7 +270,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                     Bank Transaction ID / Reference Number <span className="text-primary">*</span>
                   </label>
                   <input
-                    className="w-full bg-transparent border border-outline-variant/50 rounded-none px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all"
+                    className="w-full bg-transparent border border-outline-variant/50 rounded-none px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150"
                     placeholder="e.g. 123456 or FT26152..."
                     required
                     type="text"
@@ -286,7 +286,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                   type="submit"
                   variant="default"
                   size="lg"
-                  className="w-full rounded-none bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold transition-all flex items-center gap-2 justify-center"
+                  className="w-full rounded-none bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold transition-colors duration-150 flex items-center gap-2 justify-center"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (

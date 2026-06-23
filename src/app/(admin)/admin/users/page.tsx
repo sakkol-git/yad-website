@@ -1,5 +1,6 @@
 import { getUsers } from '@/server/actions/user.actions';
 import { UsersTable } from '@/features/Entities/users/components/UsersTable';
+import { Suspense } from 'react';
 import { AdminPageLayout } from '@/shared/components/admin/layout/AdminPageLayout';
 import { AdminPageHeader } from '@/shared/components/admin/layout/AdminPageHeader';
 import { StatCard } from '@/shared/components/admin/data/StatCard';
@@ -37,7 +38,9 @@ export default async function UsersPage(props: { searchParams: Promise<{ page?: 
         <StatCard title="Active Accounts" value={count || 0} icon="verified_user" colorVariant="tertiary" />
       </StatsGrid>
 
-      <UsersTable users={users} count={count} page={page} />
+      <Suspense fallback={<div className="p-8 text-center text-on-surface-variant">Loading users...</div>}>
+        <UsersTable users={users} count={count} page={page} />
+      </Suspense>
     </AdminPageLayout>
   );
 }

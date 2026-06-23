@@ -3,11 +3,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
+  gsap.config({
+    force3D: true, // Forces GPU acceleration for perfectly smooth transforms
+  });
 }
 
 export const EASE = {
-  smooth: "power3.out",
-  smoothInOut: "power3.inOut",
+  smooth: "expo.out", // Upgraded from power3.out for a more premium, native feel
+  smoothInOut: "expo.inOut",
   snappy: "power4.out",
   linear: "none",
 } as const;

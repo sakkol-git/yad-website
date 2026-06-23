@@ -32,7 +32,7 @@ function MobileNavAccordion({ link, pathname }: { link: NavLink, pathname: strin
       </button>
       <div
         id={`submenu-${link.label.replace(/\\s+/g, '-').toLowerCase()}`}
-        className={`grid transition-all duration-300 ease-in-out ${isExpanded ? "grid-rows-[1fr] opacity-100 mt-1 mb-2" : "grid-rows-[0fr] opacity-0"}`}
+        className={`grid transition-[background-color,border-color,backdrop-filter] duration-300 ease-in-out ${isExpanded ? "grid-rows-[1fr] opacity-100 mt-1 mb-2" : "grid-rows-[0fr] opacity-0"}`}
       >
         <div className="overflow-hidden">
           <div className="flex flex-col pl-4 pr-2 py-1 gap-1 ml-4 border-l-2 border-surface-variant/50">
@@ -178,8 +178,8 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ease-in-out ${isScrolled
-        ? "bg-surface border-b border-outline-variant/30"
+      className={`fixed top-0 w-full z-50 transition-[background-color,border-color,backdrop-filter] duration-300 ease-in-out ${isScrolled
+        ? "bg-surface/60 backdrop-blur-xl border-b border-outline-variant/30 shadow-ambient"
         : "bg-transparent border-transparent"
         } ${isHidden ? "-translate-y-full" : "translate-y-0"}`}
       aria-label="Main navigation"
@@ -195,7 +195,7 @@ export default function Navbar() {
             alt="YAD Logo"
             width={44}
             height={44}
-            className={`w-10 h-10 md:w-11 md:h-11 object-contain transition-all duration-300 hover:scale-105`}
+            className={`w-10 h-10 md:w-11 md:h-11 object-contain transition-[background-color,border-color,backdrop-filter] duration-300 hover:scale-105`}
             priority
           />
           <span className="text-xl md:text-2xl font-bold tracking-widest uppercase">
@@ -225,7 +225,7 @@ export default function Navbar() {
                 </Link>
 
                 {link.subLinks && (
-                  <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 transition-all duration-200 z-50 ${isNavigating ? 'opacity-0 invisible' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible'}`}>
+                  <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 transition-[background-color,border-color,backdrop-filter] duration-200 z-50 ${isNavigating ? 'opacity-0 invisible' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible'}`}>
                     <div className="w-56 bg-surface/75 backdrop-blur shadow-ambient rounded-md border border-outline-variant/30 overflow-hidden flex flex-col py-2">
                       {link.subLinks.map((subLink) => {
                         const isSubActive = pathname === subLink.href;
@@ -262,7 +262,7 @@ export default function Navbar() {
           ) : user ? (
             <div className="relative group">
               <button
-                className={`flex items-center gap-2 px-4 py-2 rounded-none border transition-all focus:outline-none focus:border-primary text-[10px] font-bold tracking-widest uppercase border-outline-variant/30 bg-surface hover:bg-surface-container text-on-surface`}
+                className={`flex items-center gap-2 px-4 py-2 rounded-none border transition-[background-color,border-color,backdrop-filter] focus:outline-none focus:border-primary text-[10px] font-bold tracking-widest uppercase border-outline-variant/30 bg-surface hover:bg-surface-container text-on-surface`}
                 aria-haspopup="true"
               >
                 <span className="material-symbols-outlined text-[16px]" aria-hidden="true">account_circle</span>
@@ -272,8 +272,8 @@ export default function Navbar() {
                 </span>
               </button>
 
-              <div className={`absolute right-0 top-full pt-2 w-64 transition-all duration-200 z-50 ${isNavigating ? 'opacity-0 invisible' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible'}`}>
-                <div className="bg-surface-container-highest shadow-ambient rounded-md border border-outline-variant/30 flex flex-col overflow-hidden">
+              <div className={`absolute right-0 top-full pt-2 w-64 transition-[background-color,border-color,backdrop-filter] duration-200 z-50 ${isNavigating ? 'opacity-0 invisible' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible'}`}>
+                <div className="bg-surface/70 backdrop-blur-xl border border-outline-variant/30 dark:border-white/10 shadow-ambient rounded-md flex flex-col overflow-hidden">
                   <div className="px-4 py-3 bg-surface-container-high/50 border-b border-surface-variant/50">
                     <p className="text-sm font-semibold text-on-surface truncate">{user.email}</p>
                     <p className="text-xs text-on-surface-variant capitalize mt-0.5">{role} Access</p>
@@ -315,7 +315,7 @@ export default function Navbar() {
           )}
 
           <Button variant="primary" asChild>
-            <Link href="/donate">Donate Now</Link>
+            <Link href="/donate">Fund a Future</Link>
           </Button>
         </div>
 
@@ -423,7 +423,7 @@ export default function Navbar() {
             )}
 
             <Button variant="primary" size="lg" className="w-full text-lg shadow-sm" asChild>
-              <Link href="/donate/flow">Donate Now</Link>
+              <Link href="/donate/flow">Fund a Future</Link>
             </Button>
           </div>
         </div>

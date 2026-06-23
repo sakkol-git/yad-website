@@ -52,7 +52,7 @@ export function MeasurableImpactSection() {
                       {metric.description}
                     </p>
                   </div>
-                  <div className="text-6xl md:text-7xl lg:text-8xl text-primary font-light tabular-nums tracking-tighter group-hover:scale-105 group-hover:text-secondary transition-all duration-500 origin-bottom-right">
+                  <div className="text-6xl md:text-7xl lg:text-8xl text-primary font-light tabular-nums tracking-tighter group-hover:scale-105 group-hover:text-secondary transition-colors duration-150 origin-bottom-right">
                     {metric.value}
                   </div>
                 </RevealOnScroll>

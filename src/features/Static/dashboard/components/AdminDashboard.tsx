@@ -172,19 +172,19 @@ export function AdminDashboard({ initialData }: { initialData?: any }) {
               Quick Actions
             </h3>
             <div className="grid grid-cols-2 gap-3">
-              <Link href="/admin/members" className="bg-surface border border-outline-variant/30 rounded-none p-4 flex flex-col items-center justify-center gap-2 hover:border-primary hover:bg-surface-container-low transition-all group">
+              <Link href="/admin/members" className="bg-surface border border-outline-variant/30 rounded-none p-4 flex flex-col items-center justify-center gap-2 hover:border-primary hover:bg-surface-container-low transition-[transform,box-shadow,border-color] duration-300 ease-out group">
                 <span className="material-symbols-outlined text-[28px] text-primary group-hover:-translate-y-1 transition-transform" style={{ fontVariationSettings: "'FILL' 1" }}>group_add</span>
                 <span className="text-xs font-bold text-on-surface">Add Member</span>
               </Link>
-              <Link href="/admin/events" className="bg-surface border border-outline-variant/30 rounded-none p-4 flex flex-col items-center justify-center gap-2 hover:border-tertiary hover:bg-surface-container-low transition-all group">
+              <Link href="/admin/events" className="bg-surface border border-outline-variant/30 rounded-none p-4 flex flex-col items-center justify-center gap-2 hover:border-tertiary hover:bg-surface-container-low transition-[transform,box-shadow,border-color] duration-300 ease-out group">
                 <span className="material-symbols-outlined text-[28px] text-tertiary group-hover:-translate-y-1 transition-transform" style={{ fontVariationSettings: "'FILL' 1" }}>event_note</span>
                 <span className="text-xs font-bold text-on-surface">Create Event</span>
               </Link>
-              <Link href="/admin/donors" className="bg-surface border border-outline-variant/30 rounded-none p-4 flex flex-col items-center justify-center gap-2 hover:border-secondary hover:bg-surface-container-low transition-all group">
+              <Link href="/admin/donors" className="bg-surface border border-outline-variant/30 rounded-none p-4 flex flex-col items-center justify-center gap-2 hover:border-secondary hover:bg-surface-container-low transition-[transform,box-shadow,border-color] duration-300 ease-out group">
                 <span className="material-symbols-outlined text-[28px] text-secondary group-hover:-translate-y-1 transition-transform" style={{ fontVariationSettings: "'FILL' 1" }}>diversity_1</span>
                 <span className="text-xs font-bold text-on-surface">Manage Donors</span>
               </Link>
-              <Link href="/admin/homestays" className="bg-error/5 border border-error/20 rounded-none p-4 flex flex-col items-center justify-center gap-2 hover:bg-error/10 transition-all group relative">
+              <Link href="/admin/homestays" className="bg-error/5 border border-error/20 rounded-none p-4 flex flex-col items-center justify-center gap-2 hover:bg-error/10 transition-[transform,box-shadow,border-color] duration-300 ease-out group relative">
                 <span className="absolute top-2 right-2 w-2 h-2 bg-error rounded-full animate-pulse"></span>
                 <span className="material-symbols-outlined text-[28px] text-error group-hover:-translate-y-1 transition-transform" style={{ fontVariationSettings: "'FILL' 1" }}>fact_check</span>
                 <span className="text-xs font-bold text-error">Approvals</span>

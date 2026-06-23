@@ -42,7 +42,7 @@ export function PortalHeader({ logoutAction }: PortalHeaderProps) {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-4">
-            <Link href="/" title="Back to Website" className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-md border border-outline-variant/50 text-sm font-medium text-on-surface hover:bg-surface-container hover:border-outline-variant transition-all duration-300 min-h-[44px]">
+            <Link href="/" title="Back to Website" className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-md border border-outline-variant/50 text-sm font-medium text-on-surface hover:bg-surface-container hover:border-outline-variant transition-colors duration-200 ease-in-out min-h-[44px]">
               <span className="material-symbols-outlined text-[18px]">public</span>
               <span className="hidden lg:inline">Website</span>
             </Link>
@@ -52,7 +52,7 @@ export function PortalHeader({ logoutAction }: PortalHeaderProps) {
             </button>
             
             <form action={logoutAction} className="hidden sm:block">
-              <button title="Sign Out" type="submit" className="flex items-center gap-2 px-4 py-2 rounded-md border border-outline-variant/50 text-sm font-medium text-on-surface hover:bg-error-container hover:text-error hover:border-error-container transition-all duration-300 min-h-[44px]">
+              <button title="Sign Out" type="submit" className="flex items-center gap-2 px-4 py-2 rounded-md border border-outline-variant/50 text-sm font-medium text-on-surface hover:bg-error-container hover:text-error hover:border-error-container transition-colors duration-200 ease-in-out min-h-[44px]">
                 <span className="material-symbols-outlined text-[18px]">logout</span>
                 <span className="hidden lg:inline">Sign Out</span>
               </button>

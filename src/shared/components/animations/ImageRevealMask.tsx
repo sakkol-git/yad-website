@@ -19,6 +19,11 @@ export function ImageRevealMask({ children, className }: { children: ReactNode; 
           clipPath: "inset(0% 0% 0% 0%)",
           duration: 1.2,
           ease: EASE.smoothInOut,
+          onComplete: () => {
+            if (ref.current) {
+              ref.current.style.willChange = "auto";
+            }
+          },
           scrollTrigger: {
             trigger: ref.current,
             start: "top 80%",
@@ -30,8 +35,14 @@ export function ImageRevealMask({ children, className }: { children: ReactNode; 
     { scope: ref, dependencies: [reduced] }
   );
 
+  const initialStyle = reduced ? { overflow: "hidden" } : {
+    overflow: "hidden",
+    clipPath: "inset(100% 0% 0% 0%)",
+    willChange: "clip-path"
+  };
+
   return (
-    <div ref={ref} className={className} style={{ overflow: "hidden" }}>
+    <div ref={ref} className={className} style={initialStyle as React.CSSProperties}>
       {children}
     </div>
   );

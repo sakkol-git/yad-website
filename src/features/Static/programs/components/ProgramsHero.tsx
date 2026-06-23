@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import heroImg from "../../../../../public/assets/images/yad-2.png";
 import { Button } from "@/shared/components/ui/Button";
 import Link from "next/link";
 
@@ -39,7 +40,7 @@ export function ProgramsHero() {
               </p>
               
               <div className="flex flex-wrap gap-4">
-                <Button variant="default" size="lg" className="rounded-none bg-primary text-white h-12 px-6 hover:bg-primary/90 uppercase text-xs tracking-wider font-bold transition-all" asChild>
+                <Button variant="default" size="lg" className="rounded-none bg-primary text-white h-12 px-6 hover:bg-primary/90 uppercase text-xs tracking-wider font-bold transition-colors duration-200 ease-in-out" asChild>
                   <Link href="#programs-framework">Explore The Framework</Link>
                 </Button>
               </div>
@@ -50,9 +51,10 @@ export function ProgramsHero() {
           <div className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0">
             <RevealOnScroll delay={0.3} className="w-full h-full relative">
               <Image
-                src="/assets/images/yad-5.png"
-                alt="Students gathered in a vibrant community learning session"
+                src={heroImg}
+                alt="Students participating in an educational program"
                 fill
+                placeholder="blur"
                 className="object-cover object-center"
                 priority
                 sizes="(max-width: 1024px) 100vw, 60vw"

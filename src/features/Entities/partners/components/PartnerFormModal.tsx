@@ -78,7 +78,7 @@ export function PartnerFormModal({ isOpen, onClose, mode, initialData }: Partner
                 type="text" 
                 required
                 defaultValue={initialData?.name || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
               />
             </div>
 
@@ -88,7 +88,7 @@ export function PartnerFormModal({ isOpen, onClose, mode, initialData }: Partner
                 name="contact_person" 
                 type="text" 
                 defaultValue={initialData?.contact_person || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
               />
             </div>
 
@@ -98,7 +98,7 @@ export function PartnerFormModal({ isOpen, onClose, mode, initialData }: Partner
                 name="email" 
                 type="email" 
                 defaultValue={initialData?.email || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
               />
             </div>
 
@@ -108,7 +108,7 @@ export function PartnerFormModal({ isOpen, onClose, mode, initialData }: Partner
                 name="phone" 
                 type="text" 
                 defaultValue={initialData?.phone || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
               />
             </div>
 
@@ -118,7 +118,7 @@ export function PartnerFormModal({ isOpen, onClose, mode, initialData }: Partner
                 name="partnership_type" 
                 type="text" 
                 defaultValue={initialData?.partnership_type || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                 placeholder="e.g. Sponsor, NGO Partner"
               />
             </div>
@@ -129,7 +129,7 @@ export function PartnerFormModal({ isOpen, onClose, mode, initialData }: Partner
                 name="logo_url" 
                 type="url" 
                 defaultValue={initialData?.logo_url || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                 placeholder="https://example.com/logo.png"
               />
             </div>
@@ -140,7 +140,7 @@ export function PartnerFormModal({ isOpen, onClose, mode, initialData }: Partner
                 name="notes" 
                 rows={3}
                 defaultValue={initialData?.notes || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-y"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] resize-y"
               ></textarea>
             </div>
           </div>

@@ -87,7 +87,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                     type="text"
                     required
                     defaultValue={initialData?.first_name || ''}
-                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
 
@@ -98,7 +98,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                     type="text"
                     required
                     defaultValue={initialData?.last_name || ''}
-                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
 
@@ -109,7 +109,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                     type="email"
                     required
                     defaultValue={initialData?.email || ''}
-                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
 
@@ -119,7 +119,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                     name="bio"
                     rows={3}
                     defaultValue={initialData?.bio || ''}
-                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-y"
+                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] resize-y"
                   ></textarea>
                 </div>
 
@@ -130,7 +130,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                     type="url"
                     placeholder="https://example.com/avatar.jpg"
                     defaultValue={initialData?.avatar_url || ''}
-                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
 
@@ -140,7 +140,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                     name="type"
                     required
                     defaultValue={initialData?.type || 'Resident'}
-                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none cursor-pointer"
+                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] appearance-none cursor-pointer"
                   >
                     <option value="Founder">Founder</option>
                     <option value="Resident">Resident</option>
@@ -154,7 +154,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                     name="status"
                     required
                     defaultValue={initialData?.status || 'Pending'}
-                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none cursor-pointer"
+                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] appearance-none cursor-pointer"
                   >
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
@@ -175,7 +175,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                     name="quote"
                     type="text"
                     defaultValue={initialData?.profile?.quote || ''}
-                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
 
@@ -185,7 +185,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                     name="vision"
                     rows={2}
                     defaultValue={initialData?.profile?.vision || ''}
-                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-y"
+                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] resize-y"
                   ></textarea>
                 </div>
 
@@ -196,7 +196,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                     type="text"
                     placeholder="BSc Computer Science, MSc Artificial Intelligence"
                     defaultValue={arrayToCsv(initialData?.profile?.education)}
-                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
 
@@ -207,7 +207,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                     type="text"
                     placeholder="Software Engineer at TechCorp, Freelance Developer"
                     defaultValue={arrayToCsv(initialData?.profile?.experience)}
-                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
 
@@ -218,7 +218,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                     type="text"
                     placeholder="Award Winner 2023, Published Author"
                     defaultValue={arrayToCsv(initialData?.profile?.achievements)}
-                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
               </div>
@@ -234,7 +234,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                     name="linkedin"
                     type="url"
                     defaultValue={initialData?.profile?.socialLinks?.linkedin || ''}
-                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
 
@@ -244,7 +244,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                     name="twitter"
                     type="url"
                     defaultValue={initialData?.profile?.socialLinks?.twitter || ''}
-                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
 
@@ -254,7 +254,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                     name="facebook"
                     type="url"
                     defaultValue={initialData?.profile?.socialLinks?.facebook || ''}
-                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
 
@@ -264,7 +264,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                     name="github"
                     type="url"
                     defaultValue={initialData?.profile?.socialLinks?.github || ''}
-                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
               </div>

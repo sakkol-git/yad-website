@@ -27,13 +27,21 @@ export function TextReveal({ text, className, as: Tag = "h2", delay = 0 }: TextR
         return;
       }
 
-      gsap.from(spans, {
+      gsap.fromTo(spans, {
         yPercent: 100,
         opacity: 0,
+      }, {
+        yPercent: 0,
+        opacity: 1,
         duration: 0.9,
         delay,
         ease: EASE.snappy,
         stagger: 0.045,
+        onComplete: () => {
+          spans.forEach(span => {
+            span.style.willChange = "auto";
+          });
+        },
         scrollTrigger: {
           trigger: ref.current,
           start: "top 85%",
@@ -50,7 +58,12 @@ export function TextReveal({ text, className, as: Tag = "h2", delay = 0 }: TextR
     <Comp ref={ref} className={className}>
       {words.map((word, i) => (
         <span key={i} className="inline-block overflow-hidden pb-[0.08em] mr-[0.25em]">
-          <span className="word-inner inline-block">{word}</span>
+          <span 
+            className="word-inner inline-block" 
+            style={reduced ? {} : { opacity: 0, transform: "translateY(100%)", willChange: "opacity, transform" }}
+          >
+            {word}
+          </span>
         </span>
       ))}
     </Comp>

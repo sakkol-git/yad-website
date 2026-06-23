@@ -92,7 +92,7 @@ export function ProgramFormModal({ isOpen, onClose, mode, initialData }: Program
                 type="text" 
                 required
                 defaultValue={initialData?.title || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                 placeholder="Program title"
               />
             </div>
@@ -103,7 +103,7 @@ export function ProgramFormModal({ isOpen, onClose, mode, initialData }: Program
                 name="description" 
                 rows={3}
                 defaultValue={initialData?.description || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-y"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] resize-y"
                 placeholder="Detailed description of the program"
               ></textarea>
             </div>
@@ -114,7 +114,7 @@ export function ProgramFormModal({ isOpen, onClose, mode, initialData }: Program
                 name="category" 
                 type="text" 
                 defaultValue={initialData?.category || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                 placeholder="e.g. Education, Health"
               />
             </div>
@@ -125,7 +125,7 @@ export function ProgramFormModal({ isOpen, onClose, mode, initialData }: Program
                 name="status" 
                 required 
                 defaultValue={initialData?.status || 'Upcoming'}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none cursor-pointer"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] appearance-none cursor-pointer"
               >
                 <option value="Upcoming">Upcoming</option>
                 <option value="Active">Active</option>
@@ -140,7 +140,7 @@ export function ProgramFormModal({ isOpen, onClose, mode, initialData }: Program
                 name="start_date" 
                 type="date" 
                 defaultValue={initialData?.start_date ? initialData.start_date.split('T')[0] : ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
               />
             </div>
 
@@ -150,7 +150,7 @@ export function ProgramFormModal({ isOpen, onClose, mode, initialData }: Program
                 name="end_date" 
                 type="date" 
                 defaultValue={initialData?.end_date ? initialData.end_date.split('T')[0] : ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
               />
             </div>
 
@@ -161,7 +161,7 @@ export function ProgramFormModal({ isOpen, onClose, mode, initialData }: Program
                 type="number" 
                 min="1"
                 defaultValue={initialData?.capacity || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                 placeholder="Number of participants"
               />
             </div>

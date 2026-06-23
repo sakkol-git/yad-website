@@ -113,7 +113,7 @@ export default function DonateFlowPage() {
               </span>
               <input
                 id="customAmount"
-                className="w-full bg-transparent border border-outline-variant/50 rounded-none pl-8 pr-4 py-3 text-lg font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all"
+                className="w-full bg-transparent border border-outline-variant/50 rounded-none pl-8 pr-4 py-3 text-lg font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150"
                 placeholder="Custom Amount"
                 type="number"
                 min="1"
@@ -132,7 +132,7 @@ export default function DonateFlowPage() {
                 </label>
                 <input
                   id="firstName"
-                  className="w-full bg-transparent border border-outline-variant/50 rounded-none px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all"
+                  className="w-full bg-transparent border border-outline-variant/50 rounded-none px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150"
                   placeholder="Jane"
                   required
                   type="text"
@@ -146,7 +146,7 @@ export default function DonateFlowPage() {
                 </label>
                 <input
                   id="lastName"
-                  className="w-full bg-transparent border border-outline-variant/50 rounded-none px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all"
+                  className="w-full bg-transparent border border-outline-variant/50 rounded-none px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150"
                   placeholder="Doe"
                   required
                   type="text"
@@ -160,7 +160,7 @@ export default function DonateFlowPage() {
                 </label>
                 <input
                   id="email"
-                  className="w-full bg-transparent border border-outline-variant/50 rounded-none px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all"
+                  className="w-full bg-transparent border border-outline-variant/50 rounded-none px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150"
                   placeholder="jane.doe@example.com"
                   required
                   type="email"
@@ -185,7 +185,7 @@ export default function DonateFlowPage() {
             </div>
 
             <div className="flex justify-end">
-              <Button type="submit" variant="default" size="lg" className="rounded-none bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-xs font-bold transition-all px-8 flex items-center gap-2" disabled={isLoading || !consent}>
+              <Button type="submit" variant="default" size="lg" className="rounded-none bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-xs font-bold transition-colors duration-150 px-8 flex items-center gap-2" disabled={isLoading || !consent}>
                 {isLoading ? "Processing..." : "Proceed to Secure Checkout"}
                 {!isLoading && <span className="material-symbols-outlined text-[16px]">lock</span>}
               </Button>

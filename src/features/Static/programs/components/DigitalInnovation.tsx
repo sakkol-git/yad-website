@@ -20,7 +20,7 @@ export function DigitalInnovation() {
             />
           </ImageRevealMask>
           {/* Floating feature card */}
-          <div className="absolute top-1/2 -right-12 transform -translate-y-1/2 bg-white/20 backdrop-blur-md backdrop-saturate-150 p-5 rounded-2xl z-20 shadow-lg border border-white/30 w-48 hidden lg:block">
+          <div className="absolute top-1/2 -right-12 transform -translate-y-1/2 bg-surface/60 backdrop-blur-xl border border-outline-variant/30 shadow-ambient rounded-md z-20 w-48 hidden lg:block">
             <div className="flex items-center gap-3 mb-2">
               <span className="material-symbols-outlined text-tertiary">
                 code

@@ -1,4 +1,5 @@
 import { createClient } from '@/shared/lib/supabase/server';
+import { Suspense } from 'react';
 import { donationsService } from '@/server/services/donations.service';
 import { DonationsTable, Donation } from '@/features/Entities/donations/components/DonationsTable';
 import { AdminPageLayout } from '@/shared/components/admin/layout/AdminPageLayout';
@@ -95,14 +96,16 @@ export default async function DonationsPage({
         <StatCard title="KHQR Revenue" value={formatCurrency(metrics.khqrRevenue)} icon="qr_code_scanner" colorVariant="tertiary" />
       </StatsGrid>
 
-      <DonationsTable
-        donations={(donations as unknown as Donation[]) || []}
-        count={count}
-        page={page}
-        search={search}
-        statusRaw={statusRaw}
-        methodRaw={methodRaw}
-      />
+      <Suspense fallback={<div className="p-8 text-center text-on-surface-variant">Loading donations...</div>}>
+        <DonationsTable
+          donations={(donations as unknown as Donation[]) || []}
+          count={count}
+          page={page}
+          search={search}
+          statusRaw={statusRaw}
+          methodRaw={methodRaw}
+        />
+      </Suspense>
     </AdminPageLayout>
   );
 }

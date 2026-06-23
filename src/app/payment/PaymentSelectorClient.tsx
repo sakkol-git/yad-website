@@ -40,7 +40,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
             {/* Card Option (International) */}
             <button
               onClick={() => setSelectedMethod("card")}
-              className={`flex flex-col items-start text-left p-6 rounded-none border transition-all cursor-pointer ${
+              className={`flex flex-col items-start text-left p-6 rounded-none border transition-colors duration-150 cursor-pointer ${
                 selectedMethod === "card"
                   ? "border-primary bg-primary text-white"
                   : "border-outline-variant/50 bg-transparent hover:border-primary hover:text-primary"
@@ -68,7 +68,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
             {/* Local Bank Transfer Option */}
             <button
               onClick={() => setSelectedMethod("local")}
-              className={`flex flex-col items-start text-left p-6 rounded-none border transition-all cursor-pointer ${
+              className={`flex flex-col items-start text-left p-6 rounded-none border transition-colors duration-150 cursor-pointer ${
                 selectedMethod === "local"
                   ? "border-primary bg-primary text-white"
                   : "border-outline-variant/50 bg-transparent hover:border-primary hover:text-primary"
@@ -110,7 +110,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
                   onClick={handleProceedStripe}
                   variant="default"
                   size="lg"
-                  className="rounded-none bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold px-8 flex items-center gap-2 transition-all mx-auto"
+                  className="rounded-none bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold px-8 flex items-center gap-2 transition-colors duration-150 mx-auto"
                 >
                   Continue to Card Payment
                   <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
@@ -133,7 +133,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
                   onClick={handleProceedLocal}
                   variant="default"
                   size="lg"
-                  className="rounded-none bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold px-8 flex items-center gap-2 transition-all mx-auto"
+                  className="rounded-none bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold px-8 flex items-center gap-2 transition-colors duration-150 mx-auto"
                 >
                   Continue to Local Payment
                   <span className="material-symbols-outlined text-[16px]">arrow_forward</span>

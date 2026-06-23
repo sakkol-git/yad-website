@@ -132,7 +132,7 @@ export default async function DonorDetailPage({ params }: PageProps) {
             Your support helps us continue our mission of empowering Cambodian youth through education and community development.
           </p>
           <Link href="/donate">
-            <Button size="lg" variant="default" className="rounded-none uppercase tracking-widest text-[10px] font-bold px-10 h-14 bg-primary text-white hover:bg-primary/90 transition-all">
+            <Button size="lg" variant="default" className="rounded-none uppercase tracking-widest text-[10px] font-bold px-10 h-14 bg-primary text-white hover:bg-primary/90 transition-colors duration-150">
               Become a Donor Today
             </Button>
           </Link>

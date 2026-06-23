@@ -101,11 +101,23 @@ export function LoginForm() {
                   id="email"
                   type="email"
                   placeholder="user@example.com"
-                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-none border ${errors.email ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-all outline-none`}
+                  aria-required="true"
+                  aria-describedby="login-email-error"
+                  aria-invalid={!!errors.email}
+                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-none border ${errors.email ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
                   {...register("email")}
                 />
               </div>
-              {errors.email && <p className="text-error text-sm mt-1">{errors.email.message}</p>}
+              <p
+                id="login-email-error"
+                role="alert"
+                aria-live="polite"
+                className={`text-sm mt-1 transition-opacity duration-200 ${
+                  errors.email ? "text-error opacity-100" : "opacity-0 pointer-events-none"
+                }`}
+              >
+                {errors.email?.message || "Placeholder error"}
+              </p>
             </div>
 
             <div>
@@ -118,37 +130,54 @@ export function LoginForm() {
                   id="password"
                   type="password"
                   placeholder="••••••••"
-                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-none border ${errors.password ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-all outline-none`}
+                  aria-required="true"
+                  aria-describedby="login-password-error"
+                  aria-invalid={!!errors.password}
+                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-none border ${errors.password ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
                   {...register("password")}
                 />
               </div>
-              {errors.password && <p className="text-error text-sm mt-1">{errors.password.message}</p>}
+              <p
+                id="login-password-error"
+                role="alert"
+                aria-live="polite"
+                className={`text-sm mt-1 transition-opacity duration-200 ${
+                  errors.password ? "text-error opacity-100" : "opacity-0 pointer-events-none"
+                }`}
+              >
+                {errors.password?.message || "Placeholder error"}
+              </p>
               
               <div className="text-right mt-2">
                 <a href="#" className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors">Forgot password?</a>
               </div>
             </div>
 
-            {serverError && (
-              <div className="text-error text-sm font-medium flex items-center justify-center gap-1.5 mt-2">
-                <span className="material-symbols-outlined text-[18px]">error</span>
-                <p>{serverError}</p>
-              </div>
-            )}
+            <div
+              role="alert"
+              aria-live="assertive"
+              className={`text-sm font-medium flex items-center justify-center gap-1.5 mt-2 transition-opacity duration-200 ${
+                serverError ? "text-error opacity-100" : "opacity-0 pointer-events-none h-0 m-0"
+              }`}
+            >
+              <span className="material-symbols-outlined text-[18px]">error</span>
+              <p>{serverError || "Placeholder error"}</p>
+            </div>
 
             <button
               type="submit"
               disabled={isWorking}
-              className="w-full h-12 bg-primary text-white rounded-none font-bold text-xs uppercase tracking-widest hover:bg-primary/90 transition-all duration-200 mt-6 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+              aria-busy={isWorking}
+              aria-disabled={isWorking}
+              className="w-full h-12 relative bg-primary text-white rounded-none font-bold text-xs uppercase tracking-widest hover:bg-primary/90 transition-colors duration-200 ease-in-out mt-6 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              {isWorking ? (
+              <span className={`absolute inset-0 flex items-center justify-center gap-2 transition-opacity duration-150 ${isWorking ? "opacity-0" : "opacity-100"}`}>
+                Sign In
+                <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+              </span>
+              <span className={`absolute inset-0 flex items-center justify-center gap-2 transition-opacity duration-150 ${isWorking ? "opacity-100" : "opacity-0"}`} aria-hidden="true">
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-              ) : (
-                <>
-                  Sign In
-                  <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
-                </>
-              )}
+              </span>
             </button>
           </form>
 
@@ -164,22 +193,21 @@ export function LoginForm() {
           <button
             onClick={onGoogleLogin}
             disabled={isPendingGoogle}
-            className="w-full h-12 bg-transparent border border-outline-variant/50 rounded-none font-bold text-xs uppercase tracking-widest text-on-surface hover:border-primary transition-all duration-200 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full h-12 relative bg-transparent border border-outline-variant/50 rounded-none font-bold text-xs uppercase tracking-widest text-on-surface hover:border-primary transition-colors duration-200 ease-in-out disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            {isPendingGoogle ? (
+            <span className={`absolute inset-0 flex items-center justify-center gap-3 transition-opacity duration-150 ${isPendingGoogle ? "opacity-0" : "opacity-100"}`}>
+              <Image
+                src="/assets/icons/google-icon-logo-svgrepo-com.svg"
+                alt="Google logo"
+                width={20}
+                height={20}
+                className="w-5 h-5 object-contain"
+              />
+              Google
+            </span>
+            <span className={`absolute inset-0 flex items-center justify-center transition-opacity duration-150 ${isPendingGoogle ? "opacity-100" : "opacity-0"}`} aria-hidden="true">
               <div className="w-5 h-5 border-2 border-on-surface border-t-transparent rounded-full animate-spin" />
-            ) : (
-              <>
-                <Image
-                  src="/assets/icons/google-icon-logo-svgrepo-com.svg"
-                  alt="Google logo"
-                  width={20}
-                  height={20}
-                  className="w-5 h-5 object-contain"
-                />
-                Google
-              </>
-            )}
+            </span>
           </button>
 
           <div className="mt-8 text-center">

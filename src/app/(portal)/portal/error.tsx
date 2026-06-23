@@ -17,7 +17,7 @@ export default function PortalError({
 
   return (
     <PortalPageLayout>
-      <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 bg-surface-container-lowest rounded-2xl border border-error/20 shadow-sm">
+      <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 bg-surface-container-lowest rounded-lg border border-error/20 shadow-sm">
         <div className="w-16 h-16 bg-error/10 text-error rounded-full flex items-center justify-center mb-6">
           <span className="material-symbols-outlined text-[32px]">warning</span>
         </div>

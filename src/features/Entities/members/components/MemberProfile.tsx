@@ -31,7 +31,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn profile"
-                    className="w-10 h-10 border border-outline-variant/30 rounded-none bg-transparent flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-all duration-200"
+                    className="w-10 h-10 border border-outline-variant/30 rounded-none bg-transparent flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors duration-200 ease-in-out"
                   >
                     <span className="material-symbols-outlined text-lg">
                       work
@@ -44,7 +44,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Twitter profile"
-                    className="w-10 h-10 border border-outline-variant/30 rounded-none bg-transparent flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-all duration-200"
+                    className="w-10 h-10 border border-outline-variant/30 rounded-none bg-transparent flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors duration-200 ease-in-out"
                   >
                     <span className="material-symbols-outlined text-lg">
                       tag
@@ -57,7 +57,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Facebook profile"
-                    className="w-10 h-10 border border-outline-variant/30 rounded-none bg-transparent flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-all duration-200"
+                    className="w-10 h-10 border border-outline-variant/30 rounded-none bg-transparent flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors duration-200 ease-in-out"
                   >
                     <span className="material-symbols-outlined text-lg">
                       public

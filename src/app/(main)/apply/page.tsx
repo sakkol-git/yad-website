@@ -66,25 +66,25 @@ export default function ApplyPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
                 <label htmlFor="firstName" className="block text-sm font-bold mb-2">First Name</label>
-                <input id="firstName" name="firstName" required type="text" className="stripe-input focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none" placeholder="John" />
+                <input id="firstName" name="firstName" required aria-required="true" type="text" className="stripe-input focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none" placeholder="John" />
               </div>
               <div>
                 <label htmlFor="lastName" className="block text-sm font-bold mb-2">Last Name</label>
-                <input id="lastName" name="lastName" required type="text" className="stripe-input focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none" placeholder="Doe" />
+                <input id="lastName" name="lastName" required aria-required="true" type="text" className="stripe-input focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none" placeholder="Doe" />
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-bold mb-2">Email Address</label>
-                <input id="email" name="email" required type="email" className="stripe-input focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none" placeholder="john.doe@example.com" />
+                <input id="email" name="email" required aria-required="true" type="email" className="stripe-input focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none" placeholder="john.doe@example.com" />
               </div>
               <div>
                 <label htmlFor="phone" className="block text-sm font-bold mb-2">Phone Number</label>
-                <input id="phone" name="phone" required type="tel" className="stripe-input focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none" placeholder="+855 12 345 678" />
+                <input id="phone" name="phone" required aria-required="true" type="tel" className="stripe-input focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none" placeholder="+855 12 345 678" />
               </div>
             </div>
 
             <div className="mb-6">
               <label htmlFor="educationLevel" className="block text-sm font-bold mb-2">Current Education Level</label>
-              <select id="educationLevel" name="educationLevel" required className="stripe-input focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none bg-surface">
+              <select id="educationLevel" name="educationLevel" required aria-required="true" className="stripe-input focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none bg-surface">
                 <option value="">Select your level...</option>
                 <option value="High School">High School</option>
                 <option value="Undergraduate">Undergraduate (University)</option>
@@ -101,6 +101,7 @@ export default function ApplyPage() {
                 id="essay" 
                 name="essay" 
                 required 
+                aria-required="true"
                 rows={6}
                 minLength={100}
                 className="stripe-input min-h-[150px] resize-y focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none py-3" 
@@ -109,7 +110,7 @@ export default function ApplyPage() {
             </div>
 
             <div className="flex justify-end">
-              <Button type="submit" size="lg" disabled={isSubmitting}>
+              <Button type="submit" size="lg" disabled={isSubmitting} aria-busy={isSubmitting} aria-disabled={isSubmitting}>
                 {isSubmitting ? "Submitting..." : "Submit Application"}
               </Button>
             </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import React, { useRef, useId, type ReactNode } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap, EASE, STAGGER, TRIGGER_START } from "@/shared/lib/animations/gsap-config";
 import { useReducedMotion } from "@/shared/lib/animations/use-reduced-motion";
@@ -33,13 +33,22 @@ export function StaggerGroup({
         return;
       }
 
-      gsap.from(items, {
+      gsap.fromTo(items, {
         opacity: 0,
         y,
         ...(scale ? { scale } : {}),
+      }, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
         duration: 0.8,
         ease: EASE.smooth,
         stagger,
+        onComplete: () => {
+          items.forEach((item) => {
+            (item as HTMLElement).style.willChange = "auto";
+          });
+        },
         scrollTrigger: {
           trigger: ref.current,
           start: TRIGGER_START,
@@ -50,5 +59,21 @@ export function StaggerGroup({
     { scope: ref, dependencies: [reduced, y, scale, stagger] }
   );
 
-  return <div ref={ref} className={className}>{children}</div>;
+  const id = useId().replace(/:/g, "");
+  const styleId = `stagger-${id}`;
+
+  return (
+    <>
+      {!reduced && (
+        <style dangerouslySetInnerHTML={{ __html: `
+          .${styleId} > * {
+            opacity: 0;
+            transform: translateY(${y}px) ${scale ? `scale(${scale})` : ''};
+            will-change: opacity, transform;
+          }
+        `}} />
+      )}
+      <div ref={ref} className={`${className || ''} ${styleId}`}>{children}</div>
+    </>
+  );
 }

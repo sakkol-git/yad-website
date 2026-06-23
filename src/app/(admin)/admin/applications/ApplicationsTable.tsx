@@ -1,8 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/components/ui/Table";
 import { Button } from "@/shared/components/ui/Button";
+import { 
+  Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger 
+} from "@/shared/components/ui/Dialog";
 import { 
   Pagination, PaginationContent, PaginationItem, 
   PaginationLink, PaginationNext, PaginationPrevious 
@@ -23,15 +26,18 @@ export function ApplicationsTable({
   totalPages?: number
 }) {
   const [applications, setApplications] = useState(initialApplications);
+  const [isPending, startTransition] = useTransition();
 
-  const handleStatusChange = async (id: string, newStatus: Application["status"]) => {
-    const result = await updateApplicationStatusAction(id, newStatus);
-    if (result.error) {
-      toast.error(result.error);
-    } else {
-      toast.success(`Application marked as ${newStatus}`);
-      setApplications(prev => prev.map(app => app.id === id ? { ...app, status: newStatus } : app));
-    }
+  const handleStatusChange = (id: string, newStatus: Application["status"]) => {
+    startTransition(async () => {
+      const result = await updateApplicationStatusAction(id, newStatus);
+      if (result.error) {
+        toast.error(result.error);
+      } else {
+        toast.success(`Application marked as ${newStatus}`);
+        setApplications(prev => prev.map(app => app.id === id ? { ...app, status: newStatus } : app));
+      }
+    });
   };
 
   return (
@@ -73,12 +79,26 @@ export function ApplicationsTable({
                 </TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end gap-2">
-                    <Button variant="outline" size="sm" onClick={() => alert(`Essay for ${app.first_name}:\n\n${app.essay}`)}>
-                      Read Essay
-                    </Button>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="outline" size="sm">
+                          Read Essay
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                        <DialogHeader>
+                          <DialogTitle>Essay by {app.first_name} {app.last_name}</DialogTitle>
+                          <DialogDescription>{app.email}</DialogDescription>
+                        </DialogHeader>
+                        <div className="mt-4 text-sm text-on-surface whitespace-pre-wrap leading-relaxed">
+                          {app.essay}
+                        </div>
+                      </DialogContent>
+                    </Dialog>
                     <select 
-                      className="text-sm border border-surface-variant rounded px-2 py-1 bg-surface"
+                      className="text-sm border border-surface-variant rounded px-2 py-1 bg-surface disabled:opacity-50"
                       value={app.status}
+                      disabled={isPending}
                       onChange={(e) => handleStatusChange(app.id, e.target.value as Application["status"])}
                     >
                       <option value="pending">Pending</option>

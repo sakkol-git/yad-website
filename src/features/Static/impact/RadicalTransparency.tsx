@@ -68,7 +68,7 @@ export function RadicalTransparency() {
                 </div>
               </div>
               
-              <div className="hidden md:flex items-center justify-center w-12 h-12 rounded-full border border-outline-variant/30 group-hover:bg-primary group-hover:border-primary group-hover:text-on-primary transition-all duration-300">
+              <div className="hidden md:flex items-center justify-center w-12 h-12 rounded-full border border-outline-variant/30 group-hover:bg-primary group-hover:border-primary group-hover:text-on-primary transition-colors duration-200 ease-in-out">
                 <span className="material-symbols-outlined">download</span>
               </div>
             </RevealOnScroll>

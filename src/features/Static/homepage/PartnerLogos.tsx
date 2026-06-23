@@ -23,7 +23,7 @@ export function PartnerLogos() {
           {PARTNERS.map((partner, index) => (
             <div
               key={index}
-              className="relative w-24 sm:w-32 md:w-40 h-12 sm:h-16 hover:scale-105 transition-all duration-300 opacity-80 hover:opacity-100"
+              className="relative w-24 sm:w-32 md:w-40 h-12 sm:h-16 hover:scale-105 transition-colors duration-200 ease-in-out opacity-80 hover:opacity-100"
             >
               <Image
                 src={partner.logo}
@@ -32,6 +32,7 @@ export function PartnerLogos() {
                 className="object-contain"
                 unoptimized
                 loading="lazy"
+                sizes="(max-width: 640px) 96px, (max-width: 768px) 128px, 160px"
               />
             </div>
           ))}

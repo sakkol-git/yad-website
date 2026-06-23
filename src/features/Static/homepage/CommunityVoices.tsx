@@ -75,8 +75,24 @@ export function CommunityVoices() {
         {VOICES_DATA.map((voice, idx) => (
           <div
             key={idx}
-            className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl shadow-ambient border border-outline-variant/30 relative shrink-0 w-[85vw] md:w-[600px] transition-all duration-500 overflow-hidden group"
+            className="relative group shrink-0 w-[85vw] md:w-[600px] rounded-md overflow-hidden"
           >
+            <div className="
+              absolute inset-0 z-0
+              bg-surface-container-high dark:bg-surface-container-high 
+              backdrop-blur-xl shadow-ambient border border-outline-variant/30 
+              transition-[transform,border-color] duration-300 ease-out 
+              group-hover:-translate-y-1 group-hover:border-outline-variant/60
+            "></div>
+
+            <div className="
+              absolute inset-0 z-0
+              bg-primary/[0.04]
+              opacity-0 group-hover:opacity-100
+              transition-opacity duration-300 ease-out
+              pointer-events-none
+            "></div>
+
             <div className="p-10 md:p-12 relative z-10 flex flex-col h-full justify-between gap-10">
               <QuoteIcon colorClass="text-outline-variant/30" />
               <p className="text-xl md:text-2xl text-on-surface leading-relaxed font-light relative z-10 italic">

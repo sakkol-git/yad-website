@@ -15,16 +15,35 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-surface px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-headline-md font-bold text-primary">Something went wrong</h1>
-        <p className="text-on-surface-variant mt-2 mb-6">
-          An unexpected error occurred while rendering this page.
-        </p>
-        <Button onClick={() => reset()} variant="default" className="w-full sm:w-auto">
-          Try again
-        </Button>
+    <main className="min-h-screen bg-surface flex flex-col items-center justify-center relative overflow-hidden px-6">
+      {/* Background ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-error/5 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="relative z-10 w-full max-w-lg mx-auto text-center animate-in fade-in slide-in-from-bottom-4 duration-700 ease-out">
+        <div className="bg-surface/60 backdrop-blur-xl shadow-ambient border border-outline-variant/30 p-12 md:p-16">
+          <div className="w-16 h-16 bg-error/10 flex items-center justify-center mx-auto mb-8 border border-error/20">
+            <span className="material-symbols-outlined text-[32px] text-error">warning</span>
+          </div>
+          
+          <h1 className="text-3xl md:text-4xl font-light text-on-surface tracking-tight mb-4">
+            Critical System Anomaly
+          </h1>
+          
+          <p className="text-sm font-light text-on-surface-variant leading-relaxed mb-10">
+            Our telemetry indicates an unexpected disruption in the processing layer. The operations team has been notified. Please attempt to reinitialize the sequence.
+          </p>
+
+          <Button 
+            onClick={() => reset()} 
+            variant="default" 
+            size="lg" 
+            className="w-full bg-error text-white rounded-none uppercase tracking-widest text-[10px] font-bold h-14 hover:bg-error/90 transition-colors duration-150"
+          >
+            <span className="material-symbols-outlined text-[16px] mr-2">refresh</span>
+            Reinitialize Sequence
+          </Button>
+        </div>
       </div>
-    </div>
+    </main>
   );
 }

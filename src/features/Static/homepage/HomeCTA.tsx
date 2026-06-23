@@ -20,7 +20,7 @@ export function HomeCTA() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button variant="secondary" size="lg" asChild>
-              <Link href="/donate">Donate Now</Link>
+              <Link href="/donate">Fund a Future</Link>
             </Button>
             <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary" asChild>
               <Link href="/get-involved">Get Involved</Link>

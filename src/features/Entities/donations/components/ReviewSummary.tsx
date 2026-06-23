@@ -66,7 +66,7 @@ export function ReviewSummary() {
           <div className="mt-10 pt-6 border-t border-outline-variant/30">
             <label className="flex items-start gap-4 cursor-pointer group">
               <div className="relative flex items-center justify-center mt-1">
-                <input defaultChecked className="peer appearance-none w-5 h-5 border border-outline-variant/50 rounded-none text-primary focus:ring-1 focus:ring-primary focus:ring-offset-background checked:bg-primary checked:border-primary transition-all" type="checkbox" />
+                <input defaultChecked className="peer appearance-none w-5 h-5 border border-outline-variant/50 rounded-none text-primary focus:ring-1 focus:ring-primary focus:ring-offset-background checked:bg-primary checked:border-primary transition-colors duration-150" type="checkbox" />
                 <span className="material-symbols-outlined text-white absolute text-[14px] opacity-0 peer-checked:opacity-100 pointer-events-none">check</span>
               </div>
               <span className="text-sm font-light text-on-surface-variant group-hover:text-on-surface transition-colors leading-relaxed">
@@ -83,7 +83,7 @@ export function ReviewSummary() {
               Back
             </Link>
           </Button>
-          <Button variant="default" size="lg" className="w-full md:w-auto px-10 gap-2 hover:-translate-y-1 bg-primary hover:bg-primary/90 text-white rounded-none uppercase tracking-widest text-[10px] font-bold h-12 transition-all" asChild>
+          <Button variant="default" size="lg" className="w-full md:w-auto px-10 gap-2 hover:-translate-y-1 bg-primary hover:bg-primary/90 text-white rounded-none uppercase tracking-widest text-[10px] font-bold h-12 transition-colors duration-150" asChild>
             <Link href="/donate/success">
               <span className="material-symbols-outlined text-[16px]">lock</span>
               Confirm &amp; Pay $50.00

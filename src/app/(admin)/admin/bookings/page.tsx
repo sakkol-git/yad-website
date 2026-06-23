@@ -1,4 +1,5 @@
 import { createClient } from '@/shared/lib/supabase/server';
+import { Suspense } from 'react';
 import { BookingsRepository } from '@/server/repositories/bookings';
 import { BookingsTable, Booking } from '@/features/Entities/bookings/components/BookingsTable';
 import { AdminPageLayout } from '@/shared/components/admin/layout/AdminPageLayout';
@@ -75,14 +76,16 @@ export default async function BookingsPage({
         <StatCard title="Check-Out Today" value={metrics.checkOutToday} icon="flight_takeoff" colorVariant="error" />
       </StatsGrid>
 
-      <BookingsTable
-        bookings={(bookings as unknown as Booking[]) || []}
-        count={count}
-        page={page}
-        search={search}
-        statusRaw={statusRaw}
-        paymentStatusRaw={paymentStatusRaw}
-      />
+      <Suspense fallback={<div className="p-8 text-center text-on-surface-variant">Loading bookings...</div>}>
+        <BookingsTable
+          bookings={(bookings as unknown as Booking[]) || []}
+          count={count}
+          page={page}
+          search={search}
+          statusRaw={statusRaw}
+          paymentStatusRaw={paymentStatusRaw}
+        />
+      </Suspense>
     </AdminPageLayout>
   );
 }

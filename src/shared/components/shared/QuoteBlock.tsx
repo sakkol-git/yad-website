@@ -18,11 +18,19 @@ export function QuoteBlock({ children, className }: QuoteBlockProps) {
 
   useGSAP(() => {
     if (!quoteRef.current || reduced) return;
-    gsap.from(quoteRef.current, {
+    gsap.fromTo(quoteRef.current, {
       scale: 0,
       opacity: 0,
+    }, {
+      scale: 1,
+      opacity: 1,
       duration: 0.4,
       ease: EASE.snappy,
+      onComplete: () => {
+        if (quoteRef.current) {
+          quoteRef.current.style.willChange = "auto";
+        }
+      },
       scrollTrigger: {
         trigger: quoteRef.current,
         start: "top 85%",
@@ -41,7 +49,11 @@ export function QuoteBlock({ children, className }: QuoteBlockProps) {
       <span
         ref={quoteRef}
         className="absolute top-4 left-5 text-secondary/20 font-bold select-none"
-        style={{ fontSize: "4rem", lineHeight: 1 }}
+        style={{ 
+          fontSize: "4rem", 
+          lineHeight: 1,
+          ...(reduced ? {} : { opacity: 0, transform: "scale(0)", willChange: "transform, opacity" })
+        }}
         aria-hidden="true"
       >
         &ldquo;

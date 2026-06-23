@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 import { getInquiriesAction } from "@/server/actions/inquiry.actions";
 import { InquiriesTable } from "./InquiriesTable";
 import { AdminPageLayout } from '@/shared/components/admin/layout/AdminPageLayout';
@@ -40,8 +41,10 @@ export default async function AdminInquiriesPage(props: { searchParams: Promise<
         <StatCard title="Total Inquiries" value={count} icon="forum" colorVariant="primary" />
       </StatsGrid>
 
-      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-      <InquiriesTable initialData={inquiries as any} count={count} page={page} />
+      <Suspense fallback={<div className="p-8 text-center text-on-surface-variant">Loading inquiries...</div>}>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+        <InquiriesTable initialData={inquiries as any} count={count} page={page} />
+      </Suspense>
     </AdminPageLayout>
   );
 }

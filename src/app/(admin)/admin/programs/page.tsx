@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 import { getProgramsAction } from "@/server/actions/program.actions";
 import { ProgramsTable } from "./ProgramsTable";
 import { AdminPageLayout } from '@/shared/components/admin/layout/AdminPageLayout';
@@ -41,8 +42,10 @@ export default async function AdminProgramsPage(props: { searchParams: Promise<{
         <StatCard title="Total Programs" value={count} icon="account_tree" colorVariant="primary" />
       </StatsGrid>
 
-      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-      <ProgramsTable initialData={programs as any} count={count} page={page} />
+      <Suspense fallback={<div className="p-8 text-center text-on-surface-variant">Loading programs...</div>}>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+        <ProgramsTable initialData={programs as any} count={count} page={page} />
+      </Suspense>
     </AdminPageLayout>
   );
 }

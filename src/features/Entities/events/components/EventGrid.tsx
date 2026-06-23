@@ -13,7 +13,7 @@ function EventCard({
 }) {
   return (
     <article
-      className={`bg-surface border border-outline-variant/30 flex flex-col relative group cursor-pointer transition-all duration-300 hover:border-on-surface hover:bg-surface-container-lowest ${
+      className={`bg-surface border border-outline-variant/30 flex flex-col relative group cursor-pointer transition-[transform,box-shadow,border-color] duration-300 ease-out hover:border-on-surface hover:bg-surface-container-lowest ${
         featured ? "lg:col-span-2" : ""
       }`}
     >
@@ -85,7 +85,7 @@ function EventCard({
           <div className="flex items-center justify-between mt-auto pt-6 border-t border-outline-variant/30">
             <div className="flex flex-wrap items-center gap-4">
               {event.joinUrl && (
-                <Button variant="default" className="rounded-none bg-on-surface text-surface h-12 px-6 hover:bg-surface-variant uppercase text-xs tracking-wider font-bold transition-all" asChild>
+                <Button variant="default" className="rounded-none bg-on-surface text-surface h-12 px-6 hover:bg-surface-variant uppercase text-xs tracking-wider font-bold transition-[transform,box-shadow,border-color] duration-300 ease-out" asChild>
                   <Link href={event.joinUrl}>
                     {event.actionLabel}{" "}
                     <span className="material-symbols-outlined text-sm ml-2">
@@ -95,7 +95,7 @@ function EventCard({
                 </Button>
               )}
               {event.donationUrl && (
-                <Button variant="outline" className="rounded-none border-on-surface text-on-surface h-12 px-6 hover:bg-on-surface hover:text-surface uppercase text-xs tracking-wider font-bold transition-all" asChild>
+                <Button variant="outline" className="rounded-none border-on-surface text-on-surface h-12 px-6 hover:bg-on-surface hover:text-surface uppercase text-xs tracking-wider font-bold transition-[transform,box-shadow,border-color] duration-300 ease-out" asChild>
                   <Link href={event.donationUrl}>Donate</Link>
                 </Button>
               )}

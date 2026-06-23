@@ -80,7 +80,7 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
                 type="text"
                 required
                 defaultValue={initialData?.name || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
               />
             </div>
 
@@ -90,7 +90,7 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
                 name="email"
                 type="email"
                 defaultValue={initialData?.email || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
               />
             </div>
 
@@ -102,7 +102,7 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
                 step="0.01"
                 min="0"
                 defaultValue={initialData?.amount || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
               />
             </div>
 
@@ -112,7 +112,7 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
                 name="donation_date"
                 type="date"
                 defaultValue={initialData?.donation_date ? initialData.donation_date.split('T')[0] : ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
               />
             </div>
 
@@ -122,7 +122,7 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
                 name="status"
                 required
                 defaultValue={initialData?.status || 'Active'}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all appearance-none cursor-pointer"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] appearance-none cursor-pointer"
               >
                 <option value="Active">Active</option>
                 <option value="Inactive">Inactive</option>
@@ -152,7 +152,7 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
                 type="url"
                 placeholder="https://example.com/avatar.jpg"
                 defaultValue={initialData?.avatar_url || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
               />
             </div>
 
@@ -163,7 +163,7 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
                 type="text"
                 placeholder="e.g. United States, Cambodia, Australia"
                 defaultValue={initialData?.country || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
               />
             </div>
 
@@ -173,7 +173,7 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
                 name="description"
                 rows={3}
                 defaultValue={initialData?.description || ''}
-                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-y"
+                className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] resize-y"
               ></textarea>
             </div>
           </div>

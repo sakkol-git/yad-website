@@ -36,31 +36,50 @@ export function RevealOnScroll({
         gsap.set(ref.current, { opacity: 1, y: 0, x: 0 });
         return;
       }
-      
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const fromVars: any = { opacity: 0, duration, delay, ease: EASE.smooth };
+
+      const fromVars: any = { opacity: 0 };
       if (x !== undefined) {
         fromVars.x = x;
       } else {
         fromVars.y = y;
       }
-      
-      gsap.from(ref.current, {
-        ...fromVars,
-        scrollTrigger: {
-          trigger: ref.current,
-          start,
-          toggleActions: "play none none reverse",
-        },
-      });
+
+      gsap.fromTo(ref.current,
+        fromVars,
+        {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          duration,
+          delay,
+          ease: EASE.smooth,
+          onComplete: () => {
+            if (ref.current) {
+              ref.current.style.willChange = "auto";
+            }
+          },
+          scrollTrigger: {
+            trigger: ref.current,
+            start,
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
     },
     { scope: ref, dependencies: [reduced, y, x, delay, duration, start] }
   );
 
+  // Determine initial server-side styles to prevent FOUC
+  const initialStyle = reduced ? {} : {
+    opacity: 0,
+    transform: x !== undefined ? `translateX(${x}px)` : `translateY(${y}px)`,
+    willChange: "opacity, transform"
+  };
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const Comp = Tag as any;
   return (
-    <Comp ref={ref} className={className}>
+    <Comp ref={ref} className={className} style={initialStyle}>
       {children}
     </Comp>
   );

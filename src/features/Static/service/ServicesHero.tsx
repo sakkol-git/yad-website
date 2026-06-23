@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Button } from "@/shared/components/ui/Button";
+import heroImg from "../../../../public/assets/images/yad-1.png";
 import Link from "next/link";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 
@@ -40,12 +41,12 @@ export function ServicesHero() {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <Button variant="default" size="lg" className="bg-primary text-white hover:bg-primary/90 px-6 py-3 h-12 uppercase text-xs tracking-wider font-bold transition-all inline-flex items-center" asChild>
+                <Button variant="default" size="lg" className="bg-primary text-white hover:bg-primary/90 px-6 py-3 h-12 uppercase text-xs tracking-wider font-bold transition-colors duration-200 ease-in-out inline-flex items-center" asChild>
                   <a href="#booking-section">
                     Book Your Stay
                   </a>
                 </Button>
-                <Button variant="outline" size="lg" className="rounded-none border-primary text-primary h-12 px-6 hover:bg-primary hover:text-white uppercase text-xs tracking-wider font-bold transition-all" asChild>
+                <Button variant="outline" size="lg" className="rounded-none border-primary text-primary h-12 px-6 hover:bg-primary hover:text-white uppercase text-xs tracking-wider font-bold transition-colors duration-200 ease-in-out" asChild>
                   <Link href="/services/homestay">
                     View Detail
                   </Link>
@@ -58,9 +59,10 @@ export function ServicesHero() {
           <div className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0">
             <RevealOnScroll delay={0.3} className="w-full h-full relative">
               <Image
-                src="/assets/images/yad-1.png"
+                src={heroImg}
                 alt="Traditional wooden Cambodian home elevated on stilts"
                 fill
+                placeholder="blur"
                 className="object-cover object-center"
                 priority
                 sizes="(max-width: 1024px) 100vw, 60vw"

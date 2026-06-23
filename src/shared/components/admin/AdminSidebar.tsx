@@ -105,7 +105,7 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
                         href={item.href}
                         onClick={onClose}
                         aria-current={isActive ? 'page' : undefined}
-                        className={`group flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 font-medium text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${isActive
+                        className={`group flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors duration-200 ease-in-out font-medium text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${isActive
                           ? 'bg-secondary-container text-on-secondary-container shadow-sm'
                           : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'
                           }`}
@@ -128,7 +128,7 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
 
         {/* Actionable User Footer */}
         <div className="p-4 border-t border-outline-variant/30 shrink-0">
-          <div className="group flex items-center justify-between gap-3 px-3 py-2 bg-transparent hover:bg-surface-container-low rounded-lg border border-transparent hover:border-outline-variant/30 transition-all cursor-pointer">
+          <div className="group flex items-center justify-between gap-3 px-3 py-2 bg-transparent hover:bg-surface-container-low rounded-lg border border-transparent hover:border-outline-variant/30 transition-colors duration-150 cursor-pointer">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-sm shadow-inner">
                 AD
@@ -141,7 +141,7 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
 
             <button
               onClick={handleLogout}
-              className="opacity-0 group-hover:opacity-100 text-on-surface-variant hover:text-error transition-all duration-200 p-1.5 rounded-full hover:bg-error/10 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-error"
+              className="opacity-0 group-hover:opacity-100 text-on-surface-variant hover:text-error transition-colors duration-200 ease-in-out p-1.5 rounded-full hover:bg-error/10 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-error"
               aria-label="Log out"
               title="Log out"
             >

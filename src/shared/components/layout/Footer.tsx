@@ -17,13 +17,13 @@ export default function Footer({ variant = "full" }: FooterProps) {
         <RevealOnScroll y={20}>
           <p>{COPYRIGHT_TEXT}</p>
           <div className="flex justify-center gap-6 mt-4">
-            <Link href="/privacy" className="hover:text-primary hover:underline underline-offset-4 transition-all">
+            <Link href="/privacy" className="hover:text-primary hover:underline underline-offset-4 transition-colors duration-150">
               Privacy
             </Link>
-            <Link href="/terms" className="hover:text-primary hover:underline underline-offset-4 transition-all">
+            <Link href="/terms" className="hover:text-primary hover:underline underline-offset-4 transition-colors duration-150">
               Terms
             </Link>
-            <Link href="/get-involved" className="hover:text-primary hover:underline underline-offset-4 transition-all">
+            <Link href="/get-involved" className="hover:text-primary hover:underline underline-offset-4 transition-colors duration-150">
               Contact
             </Link>
           </div>
@@ -35,7 +35,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
   return (
     <footer className="bg-surface text-on-surface border-t border-outline-variant/30 mt-auto pt-24 pb-8 relative overflow-hidden">
       {/* Background Decorative Elements */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/[0.03] rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-[120px] pointer-events-none translate-y-1/2" />
 
       <RevealOnScroll y={30}>
@@ -69,10 +69,10 @@ export default function Footer({ variant = "full" }: FooterProps) {
                 {SITE_TAGLINE}
               </p>
               <div className="flex gap-4 mt-2">
-                <a href="https://www.facebook.com/profile.php?id=61571829685466" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/5 border border-primary/10 text-primary hover:bg-primary hover:text-white hover:-translate-y-1 transition-all duration-300">
+                <a href="https://www.facebook.com/profile.php?id=61571829685466" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/5 border border-primary/10 text-primary hover:bg-primary hover:text-white hover:-translate-y-1 transition-colors duration-200 ease-in-out">
                   <Facebook className="w-5 h-5" />
                 </a>
-                <a href="https://t.me/Youthadvancementfordevelopment" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/5 border border-primary/10 text-primary hover:bg-primary hover:text-white hover:-translate-y-1 transition-all duration-300">
+                <a href="https://t.me/Youthadvancementfordevelopment" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/5 border border-primary/10 text-primary hover:bg-primary hover:text-white hover:-translate-y-1 transition-colors duration-200 ease-in-out">
                   <Send className="w-5 h-5" />
                 </a>
               </div>
@@ -91,7 +91,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
                   { label: "Our Impact", href: "/impact" }
                 ].map((link) => (
                   <Link key={link.href} href={link.href} className="group flex items-center text-sm font-medium text-on-surface-variant hover:text-primary transition-colors w-fit">
-                    <ArrowRight className="w-3 h-3 mr-2 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-secondary" />
+                    <ArrowRight className="w-3 h-3 mr-2 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-colors duration-200 ease-in-out text-secondary" />
                     <span>{link.label}</span>
                   </Link>
                 ))}
@@ -111,7 +111,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
                   { label: "Volunteer", href: "/get-involved" }
                 ].map((link) => (
                   <Link key={link.href} href={link.href} className="group flex items-center text-sm font-medium text-on-surface-variant hover:text-primary transition-colors w-fit">
-                    <ArrowRight className="w-3 h-3 mr-2 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-secondary" />
+                    <ArrowRight className="w-3 h-3 mr-2 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-colors duration-200 ease-in-out text-secondary" />
                     <span>{link.label}</span>
                   </Link>
                 ))}
@@ -174,7 +174,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className="text-xs font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-primary hover:after:w-full after:transition-all after:duration-300"
+                  className="text-xs font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-primary hover:after:w-full after:transition-colors duration-150 after:duration-300"
                 >
                   {link.label}
                 </Link>
