@@ -87,10 +87,14 @@ export default function Navbar() {
 
       // Hide/Show effect
       if (currentScrollY > 120) {
-        if (currentScrollY > lastScrollY.current && !isMenuOpen) {
-          setIsHidden(true); // scrolling down
-        } else {
-          setIsHidden(false); // scrolling up
+        const scrollDifference = currentScrollY - lastScrollY.current;
+        // Require at least a 5px scroll to change state (prevents trackpad bounce glitch)
+        if (Math.abs(scrollDifference) > 5) {
+          if (scrollDifference > 0 && !isMenuOpen) {
+            setIsHidden(true); // scrolling down
+          } else {
+            setIsHidden(false); // scrolling up
+          }
         }
       } else {
         setIsHidden(false);
