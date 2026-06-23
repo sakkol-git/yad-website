@@ -18,7 +18,7 @@ export function HomeHero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % HERO_IMAGES.length);
-    }, 4000);
+    }, 5000);
     return () => clearInterval(timer);
   }, []);
 
@@ -47,9 +47,8 @@ export function HomeHero() {
                 Empowering <br className="hidden md:block" />
                 Cambodia&apos;s <br className="hidden md:block" />
                 <span className="font-light italic text-on-surface-variant">
-                  next generation
+                  Future Leaders
                 </span> <br className="hidden lg:block" />
-                of leaders.
               </h1>
             </RevealOnScroll>
 
@@ -115,7 +114,7 @@ export function HomeHero() {
                 Established
               </span>
               <span className="text-base md:text-lg font-medium text-on-surface">
-                2015
+                2024
               </span>
             </div>
 

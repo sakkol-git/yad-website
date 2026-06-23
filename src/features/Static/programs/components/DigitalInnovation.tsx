@@ -6,21 +6,21 @@ import { ImageRevealMask } from "@/shared/components/animations/ImageRevealMask"
 
 export function DigitalInnovation() {
   return (
-    <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-section-gap">
+    <section className="max-w-container-max mt-20 lg:mt-32 mx-auto px-margin-mobile md:px-margin-desktop mb-section-gap">
       <div className="flex flex-col-reverse lg:flex-row items-center gap-16">
         <div className="lg:w-5/12 relative">
-          <div className="absolute inset-0 bg-tertiary-fixed rounded-xl transform -translate-x-6 translate-y-6 z-0" />
+          <div className="absolute inset-0 bg-tertiary-fixed rounded-md transform -translate-x-6 translate-y-6 z-0" />
           <ImageRevealMask className="relative z-10 w-full h-[450px]">
             <Image
               alt="Digital Innovation Lab"
-              className="w-full h-full object-cover rounded-[2.5rem]"
+              className="w-full h-full object-cover rounded-sm"
               src="/assets/images/yad-7.png"
               fill
               sizes="(max-width: 1024px) 100vw, 42vw"
             />
           </ImageRevealMask>
           {/* Floating feature card */}
-          <div className="absolute top-1/2 -right-12 transform -translate-y-1/2 glass-panel p-5 rounded-lg z-20 shadow-ambient border border-white/50 w-48 hidden lg:block">
+          <div className="absolute top-1/2 -right-12 transform -translate-y-1/2 bg-white/20 backdrop-blur-md backdrop-saturate-150 p-5 rounded-2xl z-20 shadow-lg border border-white/30 w-48 hidden lg:block">
             <div className="flex items-center gap-3 mb-2">
               <span className="material-symbols-outlined text-tertiary">
                 code

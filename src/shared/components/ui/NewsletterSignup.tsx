@@ -32,7 +32,7 @@ export function NewsletterSignup() {
       setStatus("success");
       setMessage("Thank you for subscribing! We'll be in touch.");
       setEmail("");
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setStatus("error");
       setMessage(err.message || "Something went wrong. Please try again.");
@@ -40,9 +40,9 @@ export function NewsletterSignup() {
   };
 
   return (
-    <div className="bg-surface-container rounded-2xl p-8 shadow-ambient text-center md:text-left relative overflow-hidden">
+    <div className="bg-surface-container rounded-md p-8 shadow-ambient text-center md:text-left relative overflow-hidden">
       <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-bl-full -z-10 blur-2xl" />
-      
+
       <div className="flex flex-col lg:flex-row items-center gap-8">
         <div className="flex-1">
           <h3 className="font-headline-md text-headline-md text-primary mb-2">

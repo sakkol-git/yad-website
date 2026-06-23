@@ -4,11 +4,11 @@ import Image from "next/image";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 
 const PARTNERS = [
-  { name: "Partner 1", logo: "https://via.placeholder.com/200x80/f5f9f6/131c17?text=Partner+1" },
-  { name: "Partner 2", logo: "https://via.placeholder.com/200x80/f5f9f6/131c17?text=Partner+2" },
-  { name: "Partner 3", logo: "https://via.placeholder.com/200x80/f5f9f6/131c17?text=Partner+3" },
-  { name: "Partner 4", logo: "https://via.placeholder.com/200x80/f5f9f6/131c17?text=Partner+4" },
-  { name: "Partner 5", logo: "https://via.placeholder.com/200x80/f5f9f6/131c17?text=Partner+5" },
+  // { name: "Partner 1", logo: "https://via.placeholder.com/200x80/f5f9f6/131c17?text=Partner+1" },
+  // { name: "Partner 2", logo: "https://via.placeholder.com/200x80/f5f9f6/131c17?text=Partner+2" },
+  { name: "Partner 3", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6dWwRsNkyCewldHfYtCH2Ttlf6oSKn_kK5zLC25SfnnPH6R4qOtUlhUFb9rANJqJlMxVtQDqULeL6RPb-zYiblbo7ndiCgCPeuoRLKd4&s=10" },
+  // { name: "Partner 4", logo: "https://via.placeholder.com/200x80/f5f9f6/131c17?text=Partner+4" },
+  // { name: "Partner 5", logo: "https://via.placeholder.com/200x80/f5f9f6/131c17?text=Partner+5" },
 ];
 
 export function PartnerLogos() {
@@ -23,7 +23,7 @@ export function PartnerLogos() {
           {PARTNERS.map((partner, index) => (
             <div
               key={index}
-              className="relative w-24 sm:w-32 md:w-40 h-12 sm:h-16 grayscale hover:grayscale-0 hover:scale-105 transition-all duration-300 opacity-80 hover:opacity-100"
+              className="relative w-24 sm:w-32 md:w-40 h-12 sm:h-16 hover:scale-105 transition-all duration-300 opacity-80 hover:opacity-100"
             >
               <Image
                 src={partner.logo}
