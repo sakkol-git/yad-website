@@ -9,7 +9,7 @@ if (typeof window !== "undefined") {
 }
 
 export const EASE = {
-  smooth: "expo.out", // Upgraded from power3.out for a more premium, native feel
+  smooth: "power3.out", // Softened from expo.out for a smoother reveal
   smoothInOut: "expo.inOut",
   snappy: "power4.out",
   linear: "none",
@@ -17,8 +17,8 @@ export const EASE = {
 
 export const DURATION = {
   fast: 0.4,
-  base: 0.9,
-  slow: 1.3,
+  base: 1.2, // Increased from 0.9 to make the animation feel less abrupt
+  slow: 1.5,
   hero: 2.2,
 } as const;
 
