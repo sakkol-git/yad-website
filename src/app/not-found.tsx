@@ -1,6 +1,4 @@
 import Link from "next/link";
-
-import Link from "next/link";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 import { Button } from "@/shared/components/ui/Button";
 
