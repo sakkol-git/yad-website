@@ -86,7 +86,11 @@ export function HomeHero() {
       <div className="relative z-10 max-w-container-max mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Left Content */}
         <div className="flex flex-col justify-center items-start pt-10 lg:pt-0">
-          <TextReveal as="h1" delay={0.2} text="Empowering Cambodia's Next Generation of Leaders" className="font-display-lg text-[3.2rem] lg:text-[4rem] text-primary mb-4 leading-[1.1] font-bold tracking-tight" />
+          <RevealOnScroll delay={0.2}>
+            <h1 className="text-5xl md:text-6xl lg:text-[4.5rem] text-primary mb-6 leading-[1.05] font-extrabold tracking-tighter max-w-2xl">
+              Empowering Cambodia's <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Next Generation</span> of Leaders
+            </h1>
+          </RevealOnScroll>
 
           <RevealOnScroll delay={0.5} y={24}>
             <p className="font-body-lg text-lg text-on-surface-variant max-w-lg mb-6 leading-relaxed">
@@ -107,7 +111,7 @@ export function HomeHero() {
                 <Button 
                   variant="primary" 
                   size="lg" 
-                  className=" px-8 py-6 text-lg font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                  className="px-8 py-6 text-lg font-medium shadow-[0_8px_30px_rgba(26,122,74,0.12)] hover:shadow-[0_8px_30px_rgba(26,122,74,0.3)] hover:-translate-y-1 transition-all duration-300"
                 >
                   Fund a Student's Future
                 </Button>
@@ -162,13 +166,13 @@ export function HomeHero() {
               ))}
 
               {/* Carousel Controls */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20">
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20 bg-surface/30 backdrop-blur-md px-5 py-3 rounded-full border border-white/20 shadow-xl">
                 <button
                   onClick={() => setIsPaused(!isPaused)}
-                  className="w-8 h-8 rounded-full bg-surface/80 backdrop-blur-sm flex items-center justify-center text-on-surface hover:bg-surface transition-colors shadow-sm"
+                  className="w-8 h-8 rounded-full bg-white/80 hover:bg-white flex items-center justify-center text-primary transition-colors shadow-sm"
                   aria-label={isPaused ? "Play carousel" : "Pause carousel"}
                 >
-                  <span className="material-symbols-outlined text-sm" aria-hidden="true">
+                  <span className="material-symbols-outlined text-sm font-bold" aria-hidden="true">
                     {isPaused ? "play_arrow" : "pause"}
                   </span>
                 </button>
@@ -176,7 +180,7 @@ export function HomeHero() {
                   <button
                     key={index}
                     onClick={() => setActiveIndex(index)}
-                    className={`h-3 md:h-2 rounded-full transition-all duration-300 ${index === activeIndex ? "w-8 bg-primary" : "w-3 md:w-2 bg-white/50 hover:bg-white/90"
+                    className={`h-2 rounded-full transition-all duration-500 ease-out ${index === activeIndex ? "w-8 bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]" : "w-2 bg-white/40 hover:bg-white/70"
                       }`}
                     aria-label={`Go to slide ${index + 1}`}
                   />
