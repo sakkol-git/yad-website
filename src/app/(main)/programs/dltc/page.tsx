@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
 import Image from "next/image";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 
 export const metadata: Metadata = {
   title: "Dormitory & Leadership Training Centre (DLTC) | YAD Programs",
@@ -15,8 +16,12 @@ export default function DLTCPage() {
   ];
 
   return (
-    <main className="pt-32 pb-section-gap max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-      <BreadcrumbSchema items={breadcrumbs} />
+    <main className="relative overflow-hidden bg-surface pt-32 pb-section-gap">
+      {/* Background Decorative Glow */}
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
+
+      <RevealOnScroll className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+        <BreadcrumbSchema items={breadcrumbs} />
       
       <div className="mb-12">
         <h1 className="font-headline-lg text-headline-lg text-primary mb-4">
@@ -51,17 +56,21 @@ export default function DLTCPage() {
           </ul>
         </div>
         
-        <div className="bg-surface-container rounded-xl overflow-hidden shadow-ambient p-4">
-          <Image 
-            src="/assets/images/yad-6.png" 
-            alt="Students waving from balconies of the DLTC building" 
-            className="w-full h-auto rounded-lg"
-          width={800} height={600} />
+        <div className="bg-surface-container rounded-md overflow-hidden shadow-ambient p-4 group">
+          <div className="rounded-sm overflow-hidden w-full h-auto">
+            <Image 
+              src="/assets/images/yad-6.png" 
+              alt="Students waving from balconies of the DLTC building" 
+              className="w-full h-auto group-hover:scale-105 transition-transform duration-700"
+              width={800} height={600} 
+            />
+          </div>
           <p className="text-sm text-center mt-3 text-on-surface-variant italic">
             One of the YAD programs, Dormitory and Leadership Training Centre
           </p>
         </div>
-      </div>
+        </div>
+      </RevealOnScroll>
     </main>
   );
 }

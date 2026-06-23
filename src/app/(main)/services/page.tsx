@@ -11,7 +11,6 @@ export default function ServicesPage() {
   return (
     <main className="pt-32 pb-section-gap">
       <ServicesHero />
-      <BookingSection />
     </main>
   );
 }

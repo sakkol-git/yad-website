@@ -12,7 +12,7 @@ const PROGRAMS = [
       "Housing, scholarships, and extensive life skills for promising students from remote provinces. We build the infrastructure necessary for the next generation of Cambodian leaders to thrive in university and beyond.",
     imageSrc: "/assets/images/yad-2.png",
     imageAlt: "Students in the YAD Dormitory & Leadership program",
-    href: "/programs/dormitory",
+    href: "/programs/dltc",
     priority: true,
   },
   {
@@ -23,7 +23,7 @@ const PROGRAMS = [
       "Combating malnutrition with bi-monthly nutrition programs for children in extreme poverty, ensuring food security as the absolute foundation for learning and cognitive development.",
     imageSrc: "/assets/images/yad-4.png",
     imageAlt: "Children in the Porridge for Hope nutrition program",
-    href: "/programs/porridge",
+    href: "/programs/porridge-for-hope",
     priority: false,
   },
   {
@@ -64,13 +64,12 @@ export function ProgramCards() {
           {PROGRAMS.map((program, idx) => {
             const isEven = idx % 2 !== 0;
             return (
-              <div 
-                key={program.id} 
-                className={`grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center ${
-                  isEven ? "lg:flex-row-reverse" : ""
-                }`}
+              <div
+                key={program.id}
+                className={`grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center ${isEven ? "lg:flex-row-reverse" : ""
+                  }`}
               >
-                
+
                 {/* Image Area */}
                 <div className={`lg:col-span-7 ${isEven ? "lg:order-last" : ""}`}>
                   <RevealOnScroll>
@@ -97,15 +96,15 @@ export function ProgramCards() {
                       </span>
                       <div className="h-px bg-outline-variant/30 flex-1" />
                     </div>
-                    
+
                     <h3 className="text-3xl md:text-4xl font-light text-on-surface mb-6 tracking-tight">
                       {program.title}
                     </h3>
-                    
+
                     <p className="text-sm font-light text-on-surface-variant leading-relaxed mb-10">
                       {program.description}
                     </p>
-                    
+
                     <Link
                       href={program.href}
                       className="inline-flex items-center gap-3 text-primary uppercase tracking-[0.1em] text-[10px] font-bold hover:text-secondary transition-colors group w-fit"

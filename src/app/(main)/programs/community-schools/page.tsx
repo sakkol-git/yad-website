@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
 import Image from "next/image";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 
 export const metadata: Metadata = {
   title: "Community Schools | YAD Programs",
@@ -15,8 +16,12 @@ export default function CommunitySchoolsPage() {
   ];
 
   return (
-    <main className="pt-32 pb-section-gap max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-      <BreadcrumbSchema items={breadcrumbs} />
+    <main className="relative overflow-hidden bg-surface pt-32 pb-section-gap">
+      {/* Background Decorative Glow */}
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
+
+      <RevealOnScroll className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+        <BreadcrumbSchema items={breadcrumbs} />
       
       <div className="mb-12">
         <h1 className="font-headline-lg text-headline-lg text-primary mb-4">
@@ -34,7 +39,7 @@ export default function CommunitySchoolsPage() {
             Our mobile tutoring units and pop-up classrooms ensure no child is left behind due to geographical or economic barriers. By teaching critical Life Skills and foundational English directly within slum communities, we advance the abilities and opportunities of Cambodia&apos;s most vulnerable youth.
           </p>
 
-          <div className="bg-surface-container-low p-6 rounded-lg mb-6 border border-surface-container-high">
+          <div className="bg-surface-container-low p-6 rounded-md mb-6 border border-surface-container-high hover:border-primary/40 transition-colors duration-300">
             <h3 className="font-headline-sm text-headline-sm text-on-surface mb-4 flex items-center gap-2">
               <span className="material-symbols-outlined text-primary">school</span>
               Program Centers
@@ -55,17 +60,21 @@ export default function CommunitySchoolsPage() {
           </p>
         </div>
         
-        <div className="bg-surface-container rounded-xl overflow-hidden shadow-ambient p-4 h-fit">
-          <Image 
-            src="/assets/images/yad-5.png" 
-            alt="Community education session in progress" 
-            className="w-full h-auto rounded-lg"
-            width={800} height={600} />
+        <div className="bg-surface-container rounded-md overflow-hidden shadow-ambient p-4 h-fit group">
+          <div className="rounded-sm overflow-hidden w-full h-auto">
+            <Image 
+              src="/assets/images/yad-5.png" 
+              alt="Community education session in progress" 
+              className="w-full h-auto group-hover:scale-105 transition-transform duration-700"
+              width={800} height={600} 
+            />
+          </div>
           <p className="text-sm text-center mt-3 text-on-surface-variant italic">
             Providing accessible learning resources to marginalized areas.
           </p>
         </div>
-      </div>
+        </div>
+      </RevealOnScroll>
     </main>
   );
 }

@@ -37,6 +37,21 @@ function QuoteIcon({ colorClass }: { colorClass: string }) {
   );
 }
 
+const VOICES_DATA = [
+  {
+    quote: "The digital literacy program completely changed my trajectory. I now have the skills to build websites and help local businesses transition online.",
+    initial: "S",
+    name: "Sokhem",
+    role: "Alumni, 2023 Cohort"
+  },
+  {
+    quote: "Living in the YAD dormitory provided me the safe space and community I needed to focus entirely on my university studies.",
+    initial: "C",
+    name: "Charya",
+    role: "Current Resident"
+  }
+];
+
 export function CommunityVoices() {
   return (
     <section className="py-24 md:py-32 bg-surface relative overflow-hidden border-t border-outline-variant/30">
@@ -56,53 +71,33 @@ export function CommunityVoices() {
         </RevealOnScroll>
       </div>
 
-      <HorizontalScrollSection className="pl-4 sm:pl-6 lg:pl-8 max-w-[1400px] mx-auto">
-        <div className="bg-surface border border-outline-variant/30 relative shrink-0 w-[85vw] md:w-[600px] transition-all duration-500 overflow-hidden group">
-          <div className="p-10 md:p-12 relative z-10 flex flex-col h-full justify-between gap-10">
-            <QuoteIcon colorClass="text-outline-variant/30" />
-            <p className="text-xl md:text-2xl text-on-surface leading-relaxed font-light relative z-10 italic">
-              &quot;The digital literacy program completely changed my trajectory.
-              I now have the skills to build websites and help local businesses
-              transition online.&quot;
-            </p>
-            <div className="flex items-center gap-4 mt-auto">
-              <div className="w-12 h-12 bg-surface-variant/30 flex items-center justify-center">
-                <span className="text-primary font-light text-lg">S</span>
-              </div>
-              <div>
-                <div className="font-medium text-base text-on-surface">
-                  Sokhem
+      <HorizontalScrollSection className="pl-4 sm:pl-6 lg:pl-8 max-w-[1400px] mx-auto py-8">
+        {VOICES_DATA.map((voice, idx) => (
+          <div
+            key={idx}
+            className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl shadow-ambient border border-outline-variant/30 relative shrink-0 w-[85vw] md:w-[600px] transition-all duration-500 overflow-hidden group"
+          >
+            <div className="p-10 md:p-12 relative z-10 flex flex-col h-full justify-between gap-10">
+              <QuoteIcon colorClass="text-outline-variant/30" />
+              <p className="text-xl md:text-2xl text-on-surface leading-relaxed font-light relative z-10 italic">
+                &quot;{voice.quote}&quot;
+              </p>
+              <div className="flex items-center gap-4 mt-auto">
+                <div className="w-12 h-12 bg-surface-variant/30 flex items-center justify-center">
+                  <span className="text-primary font-light text-lg rounded-full bg-surface-container-high dark:bg-surface-container-high border border-outline-variant/30 ">{voice.initial}</span>
                 </div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant font-bold mt-1">
-                  Alumni, 2023 Cohort
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-surface border border-outline-variant/30 relative shrink-0 w-[85vw] md:w-[600px] transition-all duration-500 overflow-hidden group">
-          <div className="p-10 md:p-12 relative z-10 flex flex-col h-full justify-between gap-10">
-            <QuoteIcon colorClass="text-outline-variant/30" />
-            <p className="text-xl md:text-2xl text-on-surface leading-relaxed font-light relative z-10 italic">
-              &quot;Living in the YAD dormitory provided me the safe space and
-              community I needed to focus entirely on my university studies.&quot;
-            </p>
-            <div className="flex items-center gap-4 mt-auto">
-              <div className="w-12 h-12 bg-surface-variant/30 flex items-center justify-center">
-                <span className="text-primary font-light text-lg">C</span>
-              </div>
-              <div>
-                <div className="font-medium text-base text-on-surface">
-                  Charya
-                </div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant font-bold mt-1">
-                  Current Resident
+                <div>
+                  <div className="font-medium text-base text-on-surface">
+                    {voice.name}
+                  </div>
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant font-bold mt-1">
+                    {voice.role}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        ))}
       </HorizontalScrollSection>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">

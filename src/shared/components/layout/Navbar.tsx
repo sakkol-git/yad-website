@@ -63,6 +63,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
   const { user, role, isLoading } = useAuth();
 
 
@@ -103,12 +104,18 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMenuOpen]);
 
-  // Automatically close mobile menu when navigating to a new route
+  // Automatically close mobile menu and desktop dropdowns when navigating to a new route
   useEffect(() => {
     if (isMenuOpen) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsMenuOpen(false);
     }
+
+    // Force close desktop hover dropdowns
+    setIsNavigating(true);
+    const timer = setTimeout(() => setIsNavigating(false), 150);
+
+    return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
@@ -218,17 +225,22 @@ export default function Navbar() {
                 </Link>
 
                 {link.subLinks && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50">
-                    <div className="w-56 bg-surface rounded-none border border-outline-variant/30 overflow-hidden flex flex-col py-2">
+                  <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 transition-all duration-200 z-50 ${isNavigating ? 'opacity-0 invisible' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible'}`}>
+                    <div className="w-56 bg-surface/75 backdrop-blur shadow-ambient rounded-md border border-outline-variant/30 overflow-hidden flex flex-col py-2">
                       {link.subLinks.map((subLink) => {
                         const isSubActive = pathname === subLink.href;
                         return (
                           <Link
                             key={subLink.href}
                             href={subLink.href}
+                            onClick={() => {
+                              if (document.activeElement instanceof HTMLElement) {
+                                document.activeElement.blur();
+                              }
+                            }}
                             className={`px-4 py-3 text-sm text-center transition-colors ${isSubActive
-                              ? "text-primary font-bold bg-surface-container/50 uppercase tracking-widest text-[10px]"
-                              : "text-on-surface-variant font-light hover:text-primary hover:bg-surface-container"
+                              ? "text-primary font-bold bg-surface-container-high uppercase tracking-widest text-[10px]"
+                              : "text-on-surface font-light hover:text-primary hover:bg-surface-container-high"
                               }`}
                           >
                             {subLink.label}
@@ -260,21 +272,31 @@ export default function Navbar() {
                 </span>
               </button>
 
-              <div className="absolute right-0 top-full pt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50">
-                <div className="bg-surface rounded-none border border-outline-variant/30 flex flex-col overflow-hidden">
-                  <div className="px-4 py-3 bg-surface-container/30 border-b border-surface-variant/50">
+              <div className={`absolute right-0 top-full pt-2 w-64 transition-all duration-200 z-50 ${isNavigating ? 'opacity-0 invisible' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible'}`}>
+                <div className="bg-surface-container-highest shadow-ambient rounded-md border border-outline-variant/30 flex flex-col overflow-hidden">
+                  <div className="px-4 py-3 bg-surface-container-high/50 border-b border-surface-variant/50">
                     <p className="text-sm font-semibold text-on-surface truncate">{user.email}</p>
                     <p className="text-xs text-on-surface-variant capitalize mt-0.5">{role} Access</p>
                   </div>
                   <div className="py-2">
                     <Link
                       href={role === "admin" ? "/admin/dashboard" : "/portal/dashboard"}
-                      className="px-4 py-2.5 text-sm text-on-surface hover:bg-surface-container hover:text-primary transition-colors flex items-center gap-3"
+                      onClick={() => {
+                        if (document.activeElement instanceof HTMLElement) {
+                          document.activeElement.blur();
+                        }
+                      }}
+                      className="px-4 py-2.5 text-sm text-on-surface hover:bg-surface-container-high hover:text-primary transition-colors flex items-center gap-3"
                     >
                       <span className="material-symbols-outlined text-[18px]">dashboard</span> Dashboard
                     </Link>
                     <button
-                      onClick={handleLogout}
+                      onClick={(e) => {
+                        if (document.activeElement instanceof HTMLElement) {
+                          document.activeElement.blur();
+                        }
+                        handleLogout();
+                      }}
                       className="w-full text-left px-4 py-2.5 text-sm text-on-surface hover:bg-error/10 hover:text-error transition-colors flex items-center gap-3"
                     >
                       <span className="material-symbols-outlined text-[18px]">logout</span> Sign Out

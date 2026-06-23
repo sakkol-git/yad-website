@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
 import Image from "next/image";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 
 export const metadata: Metadata = {
   title: "Porridge for Hope | YAD Programs",
@@ -15,8 +16,12 @@ export default function PorridgeForHopePage() {
   ];
 
   return (
-    <main className="pt-32 pb-section-gap max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-      <BreadcrumbSchema items={breadcrumbs} />
+    <main className="relative overflow-hidden bg-surface pt-32 pb-section-gap">
+      {/* Background Decorative Glow */}
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
+
+      <RevealOnScroll className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+        <BreadcrumbSchema items={breadcrumbs} />
       
       <div className="mb-12">
         <h1 className="font-headline-lg text-headline-lg text-primary mb-4">
@@ -34,7 +39,7 @@ export default function PorridgeForHopePage() {
             The Porridge for Hope program has had enormous success and greatly improved the lives of many individuals in the community. Targeting primarily children aged 5 years and under (alongside older children at other centres), this initiative ensures vital nutritional milestones are met.
           </p>
 
-          <div className="bg-surface-container-low p-6 rounded-lg mb-6 border border-surface-container-high">
+          <div className="bg-surface-container-low p-6 rounded-md mb-6 border border-surface-container-high hover:border-primary/40 transition-colors duration-300">
             <h3 className="font-headline-sm text-headline-sm text-on-surface mb-4 flex items-center gap-2">
               <span className="material-symbols-outlined text-primary">local_dining</span>
               Program Delivery
@@ -52,17 +57,21 @@ export default function PorridgeForHopePage() {
           </p>
         </div>
         
-        <div className="bg-surface-container rounded-xl overflow-hidden shadow-ambient p-4 h-fit">
-          <Image 
-            src="/assets/images/yad-1.png" 
-            alt="Over 100 children receiving porridge at the Youth Leaders Centre" 
-            className="w-full h-auto rounded-lg"
-          width={800} height={600} />
+        <div className="bg-surface-container rounded-md overflow-hidden shadow-ambient p-4 h-fit group">
+          <div className="rounded-sm overflow-hidden w-full h-auto">
+            <Image 
+              src="/assets/images/yad-1.png" 
+              alt="Over 100 children receiving porridge at the Youth Leaders Centre" 
+              className="w-full h-auto group-hover:scale-105 transition-transform duration-700"
+              width={800} height={600} 
+            />
+          </div>
           <p className="text-sm text-center mt-3 text-on-surface-variant italic">
             Children from the community receiving their bi-monthly nutrition support.
           </p>
         </div>
-      </div>
+        </div>
+      </RevealOnScroll>
     </main>
   );
 }
