@@ -52,7 +52,7 @@ export async function updateSession(request: NextRequest) {
       .single();
 
     const redirectUrl = request.nextUrl.clone();
-    redirectUrl.pathname = roleData?.role === 'admin' ? '/admin/dashboard' : '/portal/dashboard';
+    redirectUrl.pathname = ['admin', 'manager'].includes(roleData?.role) ? '/admin/dashboard' : '/portal/dashboard';
     return NextResponse.redirect(redirectUrl);
   }
 
