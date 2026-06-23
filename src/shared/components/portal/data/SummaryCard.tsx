@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
 interface SummaryCardProps {
   title: string;
@@ -12,32 +13,36 @@ interface SummaryCardProps {
 
 export function SummaryCard({ title, icon, colorVariant, href, actionText, children }: SummaryCardProps) {
   const colors = {
-    primary: 'bg-primary/10 text-primary hover:bg-primary/5 text-primary',
-    secondary: 'bg-secondary/10 text-secondary hover:bg-secondary/5 text-secondary',
-    tertiary: 'bg-tertiary/10 text-tertiary hover:bg-tertiary/5 text-tertiary',
+    primary: 'bg-primary/10 text-primary',
+    secondary: 'bg-secondary/10 text-secondary',
+    tertiary: 'bg-tertiary/10 text-tertiary',
   };
 
-  const iconBg = colors[colorVariant].split(' ')[0];
-  const iconText = colors[colorVariant].split(' ')[1];
-  const hoverBg = colors[colorVariant].split(' ')[2];
-  const actionColor = colors[colorVariant].split(' ')[3];
+  const actionColors = {
+    primary: 'text-primary',
+    secondary: 'text-secondary',
+    tertiary: 'text-tertiary',
+  };
+
+  const iconClasses = colors[colorVariant];
+  const actionTextClass = actionColors[colorVariant];
 
   return (
-    <div className="bg-surface rounded-none p-5 md:p-8 border border-outline-variant/30 flex flex-col group h-full transition-colors hover:border-primary">
-      <div className="flex items-center gap-3 mb-5">
-        <div className={`w-12 h-12 ${iconBg} ${iconText} rounded-none flex items-center justify-center shrink-0 border border-outline-variant/30`}>
+    <div className="group relative bg-surface-container rounded-md p-6 border border-outline-variant/30 hover:border-primary/40 transition-colors duration-300 flex flex-col h-full">
+      <div className="flex items-center gap-4 mb-6">
+        <div className={`w-12 h-12 ${iconClasses} rounded-sm flex items-center justify-center shrink-0 border border-outline-variant/30 group-hover:scale-105 transition-transform duration-300`}>
           <span className="material-symbols-outlined text-[24px]">{icon}</span>
         </div>
-        <h2 className="text-2xl font-light tracking-tight text-on-surface">{title}</h2>
+        <h2 className="font-headline-sm text-headline-sm text-on-surface">{title}</h2>
       </div>
       
-      <div className="flex-1 mb-5">
+      <div className="flex-1 mb-6">
         {children}
       </div>
       
-      <Link href={href} className={`mt-auto flex items-center justify-between text-[10px] font-bold tracking-widest uppercase ${actionColor} ${hoverBg} p-4 border border-outline-variant/30 rounded-none transition-colors group-hover:bg-opacity-100`}>
-        {actionText}
-        <span className="material-symbols-outlined text-[18px] transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+      <Link href={href} className={`mt-auto flex items-center text-sm font-medium text-on-surface-variant hover:${actionTextClass} transition-colors w-fit group/link`}>
+        <ArrowRight className={`w-4 h-4 mr-2 opacity-0 -ml-6 group-hover/link:opacity-100 group-hover/link:ml-0 transition-all duration-300 ${actionTextClass}`} />
+        <span>{actionText}</span>
       </Link>
     </div>
   );

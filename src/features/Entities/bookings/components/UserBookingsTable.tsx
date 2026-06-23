@@ -53,7 +53,7 @@ export function UserBookingsTable({ bookings }: UserBookingsTableProps) {
     {
       id: "room",
       header: "Room",
-      cell: (row) => <span className="font-bold text-[14px] text-on-surface">{row.rooms?.name || 'Any Room'}</span>,
+      cell: (row) => <span className="font-headline-sm text-headline-sm text-on-surface">{row.rooms?.name || 'Any Room'}</span>,
     },
     {
       id: "dates",

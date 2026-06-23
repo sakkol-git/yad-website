@@ -56,14 +56,14 @@ export function VolunteerPortal({
 
       {/* Discovery Section */}
       <div className="mb-16">
-        <h2 className="text-2xl font-headline-md text-primary mb-8 border-b border-outline-variant/30 pb-4 tracking-tight">
+        <h2 className="font-headline-lg text-headline-lg text-primary mb-8 border-b border-outline-variant/30 pb-4 tracking-tight">
           Active Opportunities
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {availableEvents.length > 0 ? (
             availableEvents.map((event) => (
-              <div key={event.id} className="bg-surface p-8 border border-outline-variant/30 flex flex-col group h-full hover:border-primary/50 transition-colors">
+              <div key={event.id} className="group relative bg-surface rounded-md p-8 border border-outline-variant/30 flex flex-col h-full hover:border-primary/40 hover:shadow-ambient transition-all duration-300">
                 
                 <div className="flex-1 flex flex-col">
                   <div className="flex justify-between items-start mb-6">
@@ -91,7 +91,7 @@ export function VolunteerPortal({
               </div>
             ))
           ) : (
-            <div className="col-span-full py-16 border border-outline-variant/30 text-center flex flex-col items-center justify-center">
+            <div className="col-span-full py-16 rounded-md bg-surface-container border border-outline-variant/30 text-center flex flex-col items-center justify-center">
               <span className="material-symbols-outlined text-3xl text-on-surface-variant/30 mb-4">search_off</span>
               <p className="font-headline-sm text-on-surface-variant">No active deployments.</p>
             </div>
@@ -101,14 +101,14 @@ export function VolunteerPortal({
 
       {/* Tracking Section */}
       <div>
-        <h2 className="text-2xl font-headline-md text-primary mb-8 border-b border-outline-variant/30 pb-4 tracking-tight">
+        <h2 className="font-headline-lg text-headline-lg text-primary mb-8 border-b border-outline-variant/30 pb-4 tracking-tight">
           My Active Deployments
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {myVolunteers && myVolunteers.length > 0 ? (
             myVolunteers.map((vol) => (
-              <div key={vol.id} className="bg-surface-container-low p-8 border border-outline-variant/30 flex flex-col">
+              <div key={vol.id} className="bg-surface-container-low rounded-md p-8 border border-outline-variant/30 flex flex-col transition-colors duration-300">
                 
                 <div className="flex-1">
                   <div className="flex justify-between items-start mb-6">
@@ -135,7 +135,7 @@ export function VolunteerPortal({
               </div>
             ))
           ) : (
-            <div className="col-span-full py-16 border border-outline-variant/30 text-center flex flex-col items-center justify-center">
+            <div className="col-span-full py-16 rounded-md bg-surface-container border border-outline-variant/30 text-center flex flex-col items-center justify-center">
               <p className="font-headline-sm text-on-surface-variant">You have no active deployment records.</p>
             </div>
           )}

@@ -47,12 +47,12 @@ export function UserDonationsTable({ donations, totalDonated }: UserDonationsTab
   }, [searchTerm, currentSearch, searchParams, router]);
 
   const headerActions = (
-    <div className="bg-surface-container-low px-6 py-4 rounded-xl border border-outline-variant/30 flex items-center justify-between gap-6 shadow-sm">
+    <div className="bg-surface-container-low px-6 py-4 rounded-md border border-outline-variant/30 flex items-center justify-between gap-6 shadow-sm">
       <div className="flex flex-col">
         <span className="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1">Total Contributed</span>
-        <span className="text-3xl font-extrabold text-tertiary">${totalDonated.toFixed(2)}</span>
+        <span className="font-headline-md text-headline-md text-tertiary">${totalDonated.toFixed(2)}</span>
       </div>
-      <Button variant="default" onClick={() => router.push('/donate')} className="bg-tertiary text-on-tertiary hover:bg-tertiary/90 shadow-sm border-none">
+      <Button variant="default" onClick={() => router.push('/donate')} className="bg-tertiary text-on-tertiary hover:bg-tertiary/90 shadow-sm border-none rounded-md">
         Donate Again
       </Button>
     </div>
@@ -67,7 +67,7 @@ export function UserDonationsTable({ donations, totalDonated }: UserDonationsTab
     {
       id: "amount",
       header: "Amount",
-      cell: (row) => <span className="font-bold text-[16px] text-on-surface">${row.amount}</span>,
+      cell: (row) => <span className="font-body-lg text-body-lg font-bold text-on-surface">${row.amount}</span>,
     },
     {
       id: "method",
