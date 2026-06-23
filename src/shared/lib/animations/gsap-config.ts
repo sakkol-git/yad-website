@@ -17,8 +17,8 @@ export const EASE = {
 
 export const DURATION = {
   fast: 0.4,
-  base: 1.2, // Increased from 0.9 to make the animation feel less abrupt
-  slow: 1.5,
+  base: 1.5, // Increased from 0.9 to make the animation feel less abrupt
+  slow: 1.8,
   hero: 2.2,
 } as const;
 
