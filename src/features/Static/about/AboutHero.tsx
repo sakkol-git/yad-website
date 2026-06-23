@@ -43,7 +43,7 @@ export function AboutHero() {
           <div className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0">
             <RevealOnScroll delay={0.3} className="w-full h-full relative">
               <Image
-                src="/assets/images/yad-3.png"
+                src="/assets/images/yad-4.png"
                 alt="Cambodian youth engaging in educational activities"
                 fill
                 className="object-cover object-center"

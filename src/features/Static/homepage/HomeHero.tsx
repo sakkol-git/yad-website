@@ -4,8 +4,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/shared/components/ui/Button";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { useState, useEffect } from "react";
+
+const HERO_IMAGES = [
+  { src: "/assets/images/yad-2.png", alt: "Young Cambodian student looking thoughtfully into the distance" },
+  { src: "/assets/images/yad-6.png", alt: "Cambodian youth engaging in educational activities" },
+  { src: "/assets/images/yad-7.png", alt: "Students participating in community programs" }
+];
 
 export function HomeHero() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     // REDUCED: Padding top and bottom tightened for better viewport fitting
     <section className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-10 overflow-hidden">
@@ -57,16 +73,34 @@ export function HomeHero() {
 
           {/* Right Column: Un-obscured Cinematic Image (7 Columns) */}
           {/* REDUCED: Height changed from 80vh to 60vh with a hard max-height */}
-          <div className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0">
+          <div className="lg:col-span-7 relative h-[60vh] lg:h-[70vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0 overflow-hidden">
             <RevealOnScroll delay={0.3} className="w-full h-full relative">
-              <Image
-                src="/assets/images/yad-2.png"
-                alt="Young Cambodian student looking thoughtfully into the distance"
-                fill
-                className="object-cover object-center"
-                priority
-                sizes="(max-width: 1024px) 100vw, 60vw"
-              />
+              {HERO_IMAGES.map((img, idx) => {
+                const isCurrent = idx === currentImageIndex;
+                const isPrevious = idx === (currentImageIndex - 1 + HERO_IMAGES.length) % HERO_IMAGES.length;
+
+                return (
+                  <div
+                    key={img.src}
+                    className={`absolute inset-0 transition-all duration-[1500ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${isCurrent
+                      ? "opacity-100 z-10 translate-x-0 scale-100"
+                      : isPrevious
+                        ? "opacity-0 z-0 -translate-x-16 scale-105"
+                        : "opacity-0 z-0 translate-x-16 scale-105"
+                      }`}
+                  >
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      className={`object-cover object-center transition-transform duration-[10000ms] ease-linear ${isCurrent ? "scale-110" : "scale-100"
+                        }`}
+                      priority={idx === 0}
+                      sizes="(max-width: 1024px) 100vw, 60vw"
+                    />
+                  </div>
+                );
+              })}
             </RevealOnScroll>
           </div>
         </div>
