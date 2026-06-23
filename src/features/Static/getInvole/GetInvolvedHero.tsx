@@ -1,47 +1,68 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
-import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 export function GetInvolvedHero() {
   return (
-    <header className="relative pt-32 pb-24 md:pt-48 md:pb-32 px-4 md:px-6 lg:px-8 min-h-[100svh] md:min-h-[819px] flex items-center overflow-hidden">
-      <div className="absolute right-0 top-0 w-[150vw] max-w-[600px] aspect-square bg-secondary-container/30 rounded-full blur-3xl -z-10 translate-x-1/3 -translate-y-1/4" />
-      <div className="absolute left-0 bottom-0 w-[180vw] max-w-[800px] aspect-square bg-tertiary-fixed/20 rounded-full blur-3xl -z-10 -translate-x-1/4 translate-y-1/4" />
-      <div className="max-w-container-max mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div className="max-w-2xl relative z-10">
-          <TextReveal as="h1" text="Small Actions, Big Impact" className="font-display-lg text-display-lg text-primary mb-6 leading-tight" />
-          <RevealOnScroll delay={0.2}>
-            <p className="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-lg">
-              Join YAD in empowering youth for sustainable development. Whether
-              you want to fund the future, mentor the next generation, or build
-              a partnership, your involvement creates waves of positive change.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                className="bg-secondary-container text-on-secondary-container font-label-bold text-label-bold px-8 py-4 rounded-full hover:bg-secondary hover:text-on-secondary transition-colors duration-300 shadow-sm hover:shadow-md inline-flex items-center gap-2"
-                href="#pathways"
-              >
-                Get Involved Today
-                <span className="material-symbols-outlined text-sm">
-                  arrow_downward
+    <section className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-10 overflow-hidden border-b border-outline-variant/30">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
+        
+        {/* Editorial Split Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          
+          {/* Left Column: Typographic Focus */}
+          <div className="lg:col-span-5 flex flex-col z-10">
+            <RevealOnScroll delay={0.1}>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-6 h-[1px] bg-primary" />
+                <span className="uppercase tracking-[0.2em] text-xs font-bold text-primary">
+                  Action & Engagement
                 </span>
-              </Link>
-            </div>
-          </RevealOnScroll>
+              </div>
+            </RevealOnScroll>
+
+            {/* Massive, Tension-filled Headline */}
+            <RevealOnScroll delay={0.2}>
+              <h1 className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6">
+                Mobilize Your <br className="hidden md:block" />
+                <span className="font-light italic text-on-surface-variant">Capital.</span>
+              </h1>
+            </RevealOnScroll>
+
+            {/* Subtext */}
+            <RevealOnScroll delay={0.3}>
+              <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed max-w-sm mb-10">
+                Whether deploying financial capital, operational expertise, or your own time, your involvement with YAD is a direct investment in the systemic development of Cambodia's next generation.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Link 
+                  href="#pathways"
+                  className="bg-primary text-white hover:bg-primary/90 px-6 py-3 h-12 uppercase text-xs tracking-wider font-bold transition-all inline-flex items-center"
+                >
+                  Explore Pathways
+                </Link>
+              </div>
+            </RevealOnScroll>
+          </div>
+
+          {/* Right Column: Cinematic Image */}
+          <div className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0">
+            <RevealOnScroll delay={0.3} className="w-full h-full relative">
+              <Image
+                src="/assets/images/yad-7.png"
+                alt="A group of volunteers working closely with children in a community setting"
+                fill
+                className="object-cover object-center"
+                priority
+                sizes="(max-width: 1024px) 100vw, 60vw"
+              />
+            </RevealOnScroll>
+          </div>
         </div>
-        <div className="relative w-full aspect-square md:aspect-auto md:h-[600px] rounded-xl overflow-hidden shadow-ambient bg-surface-container-highest">
-          <Image
-            alt="Floating green island"
-            className="w-full h-full object-cover object-center"
-            src="/assets/images/yad-7.png"
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
-        </div>
+
       </div>
-    </header>
+    </section>
   );
 }

@@ -15,31 +15,32 @@ export function TeamMemberCard({
 
   const content = (
     <div className={cn(
-      "relative w-full aspect-[4/5] rounded-lg overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-[5px]",
+      "relative w-full group",
       extra
     )}>
-      <ImageRevealMask className="w-full h-full">
-        <Image
-          alt={`Portrait of ${name}`}
-          src={image}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-      </ImageRevealMask>
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+      {/* Image Block */}
+      <div className="relative w-full aspect-[4/5] overflow-hidden mb-5">
+        <ImageRevealMask className="w-full h-full">
+          <Image
+            alt={`Portrait of ${name}`}
+            src={image}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        </ImageRevealMask>
+      </div>
 
       {/* Text Content */}
-      <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col items-start text-left">
-        <h3 className="text-white font-bold text-2xl mb-1 group-hover:text-primary-100 transition-colors">
-          {name}
-        </h3>
-        <span className="text-white bg-primary py-1 px-2 rounded-md text-center font-medium  text-sm mb-3">
+      <div className="flex flex-col items-start text-left">
+        <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant/70 mb-2">
           {role}
         </span>
+        <h3 className="text-2xl font-light text-on-surface tracking-tight mb-3 transition-colors group-hover:text-primary">
+          {name}
+        </h3>
         {description && (
-          <p className="text-gray-300 text-sm line-clamp-3">
+          <p className="text-sm text-on-surface-variant font-light line-clamp-3 leading-relaxed">
             {description}
           </p>
         )}

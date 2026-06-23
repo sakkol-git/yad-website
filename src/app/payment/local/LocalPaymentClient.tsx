@@ -60,9 +60,9 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
       <div className="w-full lg:w-2/3">
         <ProgressIndicator currentStep={2} />
 
-        <div className="bg-surface-container-lowest rounded-lg shadow-ambient p-6 md:p-10 relative overflow-hidden">
-          <div className="flex items-center justify-between border-b border-surface-variant/30 pb-4 mb-6">
-            <h2 className="font-headline-md text-headline-md text-primary">
+        <div className="bg-surface rounded-none p-6 md:p-12 border border-outline-variant/30 relative overflow-hidden">
+          <div className="flex items-center justify-between border-b border-outline-variant/30 pb-4 mb-8">
+            <h2 className="text-2xl font-light text-on-surface tracking-tight">
               Cambodian Local Payment
             </h2>
             <button
@@ -75,16 +75,16 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
           </div>
 
           {error && (
-            <div className="mb-6 p-4 bg-error-container text-error rounded-lg border border-error/20 text-sm font-medium">
+            <div className="mb-6 p-4 bg-error/10 text-error rounded-none border border-error/30 text-[10px] uppercase tracking-widest font-bold">
               {error}
             </div>
           )}
 
           {/* Payment Method Sub-selection Tabs */}
-          <div className="flex border-b border-surface-variant/30 mb-8 gap-4">
+          <div className="flex border-b border-outline-variant/30 mb-8 gap-6">
             <button
               onClick={() => setPaymentMethod("khqr")}
-              className={`py-3 px-4 font-label-bold text-label-bold text-sm border-b-2 transition-all cursor-pointer ${
+              className={`pb-3 font-bold text-[10px] uppercase tracking-widest border-b-2 transition-all cursor-pointer ${
                 paymentMethod === "khqr"
                   ? "border-primary text-primary"
                   : "border-transparent text-on-surface-variant hover:text-on-surface"
@@ -94,7 +94,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
             </button>
             <button
               onClick={() => setPaymentMethod("bank_transfer")}
-              className={`py-3 px-4 font-label-bold text-label-bold text-sm border-b-2 transition-all cursor-pointer ${
+              className={`pb-3 font-bold text-[10px] uppercase tracking-widest border-b-2 transition-all cursor-pointer ${
                 paymentMethod === "bank_transfer"
                   ? "border-primary text-primary"
                   : "border-transparent text-on-surface-variant hover:text-on-surface"
@@ -172,63 +172,63 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                 </div>
               ) : (
                 /* Bank Account Details Card */
-                <div className="w-full bg-surface-container-low border border-surface-variant/40 rounded-lg p-6 shadow-sm">
+                <div className="w-full bg-transparent border border-outline-variant/50 rounded-none p-6">
                   <div className="flex items-center gap-3 mb-6">
-                    <span className="material-symbols-outlined text-4xl text-primary">account_balance</span>
+                    <span className="material-symbols-outlined text-[32px] text-primary">account_balance</span>
                     <div>
-                      <h4 className="font-bold text-[16px] text-on-surface">ABA Bank Transfer</h4>
-                      <p className="text-xs text-on-surface-variant">Perform a direct local bank transfer</p>
+                      <h4 className="font-bold text-[12px] uppercase tracking-widest text-on-surface mb-1">ABA Bank Transfer</h4>
+                      <p className="text-xs font-light text-on-surface-variant">Perform a direct local bank transfer</p>
                     </div>
                   </div>
 
                   <div className="space-y-4">
                     {/* Bank Name */}
-                    <div className="p-3 bg-surface rounded-md border border-surface-variant/20 flex justify-between items-center">
+                    <div className="p-4 bg-transparent rounded-none border border-outline-variant/30 flex justify-between items-center">
                       <div>
-                        <span className="text-xs text-on-surface-variant block uppercase tracking-wider font-semibold">Bank Name</span>
-                        <span className="text-sm font-bold text-on-surface">ABA Bank</span>
+                        <span className="text-[10px] text-on-surface-variant block uppercase tracking-widest font-bold mb-1">Bank Name</span>
+                        <span className="text-sm font-light text-on-surface">ABA Bank</span>
                       </div>
                       <button
                         onClick={() => copyToClipboard("ABA Bank", "bank")}
-                        className="text-primary hover:text-secondary p-1 flex items-center transition-colors cursor-pointer"
+                        className="text-primary hover:text-primary/80 p-1 flex items-center transition-colors cursor-pointer"
                         title="Copy Bank Name"
                       >
-                        <span className="material-symbols-outlined text-lg">
-                          {copiedField === "bank" ? "check_circle" : "content_copy"}
+                        <span className="material-symbols-outlined text-[20px]">
+                          {copiedField === "bank" ? "check" : "content_copy"}
                         </span>
                       </button>
                     </div>
 
                     {/* Account Name */}
-                    <div className="p-3 bg-surface rounded-md border border-surface-variant/20 flex justify-between items-center">
+                    <div className="p-4 bg-transparent rounded-none border border-outline-variant/30 flex justify-between items-center">
                       <div>
-                        <span className="text-xs text-on-surface-variant block uppercase tracking-wider font-semibold">Account Name</span>
-                        <span className="text-sm font-bold text-on-surface">YAD CAMBODIA ASSOCIATION</span>
+                        <span className="text-[10px] text-on-surface-variant block uppercase tracking-widest font-bold mb-1">Account Name</span>
+                        <span className="text-sm font-light text-on-surface">YAD CAMBODIA ASSOCIATION</span>
                       </div>
                       <button
                         onClick={() => copyToClipboard("YAD CAMBODIA ASSOCIATION", "name")}
-                        className="text-primary hover:text-secondary p-1 flex items-center transition-colors cursor-pointer"
+                        className="text-primary hover:text-primary/80 p-1 flex items-center transition-colors cursor-pointer"
                         title="Copy Account Name"
                       >
-                        <span className="material-symbols-outlined text-lg">
-                          {copiedField === "name" ? "check_circle" : "content_copy"}
+                        <span className="material-symbols-outlined text-[20px]">
+                          {copiedField === "name" ? "check" : "content_copy"}
                         </span>
                       </button>
                     </div>
 
                     {/* Account Number */}
-                    <div className="p-3 bg-surface rounded-md border border-surface-variant/20 flex justify-between items-center">
+                    <div className="p-4 bg-transparent rounded-none border border-outline-variant/30 flex justify-between items-center">
                       <div>
-                        <span className="text-xs text-on-surface-variant block uppercase tracking-wider font-semibold">Account Number</span>
-                        <span className="text-sm font-mono font-bold text-on-surface">000 123 456</span>
+                        <span className="text-[10px] text-on-surface-variant block uppercase tracking-widest font-bold mb-1">Account Number</span>
+                        <span className="text-lg font-mono font-light text-on-surface tracking-widest">000 123 456</span>
                       </div>
                       <button
                         onClick={() => copyToClipboard("000123456", "number")}
-                        className="text-primary hover:text-secondary p-1 flex items-center transition-colors cursor-pointer"
+                        className="text-primary hover:text-primary/80 p-1 flex items-center transition-colors cursor-pointer"
                         title="Copy Account Number"
                       >
-                        <span className="material-symbols-outlined text-lg">
-                          {copiedField === "number" ? "check_circle" : "content_copy"}
+                        <span className="material-symbols-outlined text-[20px]">
+                          {copiedField === "number" ? "check" : "content_copy"}
                         </span>
                       </button>
                     </div>
@@ -237,27 +237,26 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
               )}
             </div>
 
-            {/* Right section: Submission Verification Form */}
             <div className="w-full">
-              <h3 className="font-title-md text-title-md text-on-surface mb-3">
+              <h3 className="text-xl font-light text-on-surface tracking-tight mb-4">
                 Verify Your Payment
               </h3>
-              <p className="text-sm text-on-surface-variant mb-6">
+              <p className="text-sm font-light text-on-surface-variant mb-8 leading-relaxed">
                 Please perform the transfer first. To complete your verification, copy the transaction reference details and paste your bank transaction ID below:
               </p>
 
-              <div className="space-y-4 mb-6">
+              <div className="space-y-4 mb-8">
                 {/* Reference Code to include in transfer */}
-                <div className="p-4 bg-primary/5 border border-primary/20 rounded-lg flex justify-between items-center">
+                <div className="p-4 bg-primary text-white border border-outline-variant/30 rounded-none flex justify-between items-center">
                   <div>
-                    <span className="text-xs text-primary font-bold uppercase tracking-wider block">Required Transfer Description / Memo</span>
-                    <span className="text-lg font-mono font-bold text-primary">{memoCode}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest block opacity-80 mb-1">Required Transfer Description / Memo</span>
+                    <span className="text-lg font-mono font-light tracking-widest">{memoCode}</span>
                   </div>
                   <button
                     onClick={() => copyToClipboard(memoCode, "memo")}
-                    className="bg-primary text-on-primary text-xs font-semibold px-3 py-1.5 rounded-full hover:bg-primary/95 transition-all flex items-center gap-1 cursor-pointer"
+                    className="bg-white text-primary text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-none hover:bg-white/90 transition-all flex items-center gap-2 cursor-pointer"
                   >
-                    <span className="material-symbols-outlined text-sm">
+                    <span className="material-symbols-outlined text-[14px]">
                       {copiedField === "memo" ? "check" : "content_copy"}
                     </span>
                     {copiedField === "memo" ? "Copied" : "Copy Description"}
@@ -265,40 +264,40 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                 </div>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-8">
                 <div>
-                  <label className="block font-label-bold text-label-bold text-on-surface mb-2 text-sm">
-                    Bank Transaction ID / Reference Number
+                  <label className="block uppercase tracking-[0.2em] text-[10px] font-bold text-on-surface mb-2">
+                    Bank Transaction ID / Reference Number <span className="text-primary">*</span>
                   </label>
                   <input
-                    className="stripe-input w-full"
+                    className="w-full bg-transparent border border-outline-variant/50 rounded-none px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all"
                     placeholder="e.g. 123456 or FT26152..."
                     required
                     type="text"
                     value={referenceId}
                     onChange={(e) => setReferenceId(e.target.value)}
                   />
-                  <span className="text-xs text-on-surface-variant mt-1.5 block">
+                  <span className="text-[10px] font-light text-on-surface-variant mt-2 block tracking-wide">
                     Copy this code from your bank app receipt screen after completing the transfer.
                   </span>
                 </div>
 
                 <Button
- type="submit"
- variant="primary"
- size="lg"
- className="w-full gap-2 hover:scale-[1.02] transition-transform"
- disabled={isSubmitting}
- >
+                  type="submit"
+                  variant="default"
+                  size="lg"
+                  className="w-full rounded-none bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold transition-all flex items-center gap-2 justify-center"
+                  disabled={isSubmitting}
+                >
                   {isSubmitting ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                       Submitting for Verification...
                     </>
                   ) : (
                     <>
                       Confirm & Submit Payment
-                      <span className="material-symbols-outlined">verified</span>
+                      <span className="material-symbols-outlined text-[16px]">verified</span>
                     </>
                   )}
                 </Button>
@@ -310,48 +309,47 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
 
       {/* Side summary column */}
       <div className="w-full lg:w-1/3 mt-8 lg:mt-0">
-        <div className="sticky top-24 bg-surface-container-low rounded-lg p-8 border border-surface-variant relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-secondary-fixed opacity-20 rounded-bl-full -z-0" />
-          <h3 className="font-headline-md text-headline-md text-primary mb-6 relative z-10">
+        <div className="sticky top-24 bg-surface rounded-none p-8 border border-outline-variant/30 relative overflow-hidden">
+          <h3 className="text-2xl font-light text-on-surface tracking-tight mb-6 relative z-10 border-b border-outline-variant/30 pb-4">
             Payment Summary
           </h3>
           
-          <div className="space-y-4 mb-6 border-b border-surface-variant pb-6 relative z-10 text-sm">
-            <div className="flex justify-between">
-              <span className="text-on-surface-variant">Description</span>
-              <span className="font-bold text-on-surface text-right">{description}</span>
+          <div className="space-y-4 mb-8 relative z-10 text-sm font-light text-on-surface-variant leading-relaxed">
+            <div className="flex justify-between items-center">
+              <span className="uppercase tracking-widest text-[10px] font-bold">Description</span>
+              <span className="font-light text-on-surface text-right">{description}</span>
             </div>
-            <div className="flex justify-between">
-              <span className="text-on-surface-variant">Name</span>
-              <span className="font-bold text-on-surface">{name}</span>
+            <div className="flex justify-between items-center">
+              <span className="uppercase tracking-widest text-[10px] font-bold">Name</span>
+              <span className="font-light text-on-surface text-right">{name}</span>
             </div>
             {email && (
-              <div className="flex justify-between">
-                <span className="text-on-surface-variant">Email</span>
-                <span className="font-semibold text-on-surface break-all text-right">{email}</span>
+              <div className="flex justify-between items-center">
+                <span className="uppercase tracking-widest text-[10px] font-bold">Email</span>
+                <span className="font-light text-on-surface text-right break-all">{email}</span>
               </div>
             )}
           </div>
 
-          <div className="flex justify-between items-end mb-6 relative z-10">
-            <span className="font-body-lg text-body-lg text-on-surface-variant">
+          <div className="flex justify-between items-end mb-8 relative z-10 pt-6 border-t border-outline-variant/30">
+            <span className="uppercase tracking-widest text-[10px] font-bold text-on-surface-variant mb-2">
               Total Amount
             </span>
-            <span className="font-display-lg text-display-lg text-primary">
+            <span className="text-[3.5rem] font-light text-primary tracking-tighter leading-none">
               ${amount.toFixed(2)}
             </span>
           </div>
 
           <div className="space-y-4 relative z-10">
-            <div className="flex items-start gap-3">
-              <span className="material-symbols-outlined text-secondary">
+            <div className="flex items-start gap-4">
+              <span className="material-symbols-outlined text-[20px] text-primary">
                 info
               </span>
               <div>
-                <p className="font-label-bold text-label-bold text-on-surface text-sm">
+                <p className="uppercase tracking-widest text-[10px] font-bold text-on-surface mb-1">
                   What Happens Next?
                 </p>
-                <p className="font-body-md text-body-md text-xs text-on-surface-variant mt-0.5 leading-relaxed">
+                <p className="text-xs font-light text-on-surface-variant leading-relaxed mt-0.5">
                   After submitting your Transaction ID, our financial team will verify it. This process typically takes under 2 hours. You will receive an official confirmation email once confirmed.
                 </p>
               </div>

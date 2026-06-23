@@ -1,64 +1,60 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/shared/components/ui/Button";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 
 export function DonateHero() {
   return (
-    <header className="relative px-margin-mobile md:px-margin-desktop py-12 md:py-16 max-w-container-max mx-auto text-center rounded-lg overflow-hidden mb-section-gap mx-4 md:mx-auto mt-28 shadow-2xl">
-      {/* Background Image */}
-      <Image
-        src="/assets/images/yad-1.png"
-        alt="Smiling Cambodian youth"
-        fill
-        className="object-cover"
-        sizes="(max-width: 1440px) 100vw, 1440px"
-        priority
-      />
+    <section className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-10 overflow-hidden border-b border-outline-variant/30">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
+        
+        {/* Editorial Split Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          
+          {/* Left Column: Typographic Focus */}
+          <div className="lg:col-span-5 flex flex-col z-10">
+            <RevealOnScroll delay={0.1}>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-6 h-[1px] bg-primary" />
+                <span className="uppercase tracking-[0.2em] text-xs font-bold text-primary">
+                  100% of Donations Create Local Impact
+                </span>
+              </div>
+            </RevealOnScroll>
 
-      {/* Gradient Overlay for Text Readability */}
-      <div className="absolute inset-0 bg-surface/80 md:bg-surface/60 backdrop-blur-sm md:backdrop-blur-none" />
-      <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/80 to-transparent md:bg-gradient-to-r md:from-surface md:via-surface/80 md:to-transparent" />
+            {/* Massive, Tension-filled Headline */}
+            <RevealOnScroll delay={0.2}>
+              <h1 className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6">
+                Their Potential. <br className="hidden md:block" />
+                Your <span className="font-light italic text-on-surface-variant">Catalyst.</span>
+              </h1>
+            </RevealOnScroll>
 
-      <div className="relative z-10 max-w-3xl mx-auto md:mx-0 md:text-left flex flex-col items-center md:items-start h-full justify-center px-4 md:px-12 py-2">
-        <div className="inline-flex items-center gap-2 bg-secondary/20 text-secondary border border-secondary/30 font-label-bold text-xs uppercase tracking-wider px-4 py-2 rounded-full mb-4 backdrop-blur-md">
-          <span className="material-symbols-outlined text-sm">volunteer_activism</span>
-          Join 500+ Monthly Donors
-        </div>
-
-        <h1 className="font-display-lg text-headline-lg-mobile md:text-display-lg text-primary mb-4 leading-tight">
-          Invest in Cambodia&apos;s <br className="hidden md:block" />
-          <span className="text-secondary">Future Leaders</span>
-        </h1>
-
-        <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-6 text-lg">
-          Your contribution directly funds safe housing, digital literacy, and community education for underprivileged youth. 100% of your donation creates local impact.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-          <Button variant="secondary" size="lg" className=" gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:bg-primary transition-all px-8 text-lg" asChild>
-            <Link href="/donate/flow">
-              Donate Now
-              <span className="material-symbols-outlined text-xl">arrow_forward</span>
-            </Link>
-          </Button>
-          <Button variant="outline" size="lg" className=" bg-surface/50 backdrop-blur-md hover:bg-surface text-primary border-primary/20 px-8 text-lg transition-all" asChild>
-            <Link href="#options">
-              Learn About Impact
-            </Link>
-          </Button>
-        </div>
-
-        <div className="flex items-center gap-6 mt-6 text-on-surface-variant/80 font-label-bold text-sm">
-          <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-secondary">verified_user</span>
-            Secure Payment
+            {/* Subtext */}
+            <RevealOnScroll delay={0.3}>
+              <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed max-w-sm mb-10">
+                Transforming communities isn't just about charity; it's about structural investment. By funding education, secure housing, and digital literacy, you are directly engineering Cambodia's future leaders.
+              </p>
+            </RevealOnScroll>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-secondary">favorite</span>
-            Tax Deductible
+
+          {/* Right Column: Cinematic Image */}
+          <div className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0">
+            <RevealOnScroll delay={0.3} className="w-full h-full relative">
+              <Image
+                src="/assets/images/yad-1.png"
+                alt="A young Cambodian student smiling, representing hope and future potential"
+                fill
+                className="object-cover object-center"
+                priority
+                sizes="(max-width: 1024px) 100vw, 60vw"
+              />
+            </RevealOnScroll>
           </div>
         </div>
+
       </div>
-    </header>
+    </section>
   );
 }

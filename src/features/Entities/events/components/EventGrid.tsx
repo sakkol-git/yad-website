@@ -13,13 +13,13 @@ function EventCard({
 }) {
   return (
     <article
-      className={`event-card bg-surface/80 backdrop-blur-xl border border-white/20 shadow-ambient rounded-lg overflow-hidden flex flex-col relative group cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl ${
+      className={`bg-surface border border-outline-variant/30 flex flex-col relative group cursor-pointer transition-all duration-300 hover:border-on-surface hover:bg-surface-container-lowest ${
         featured ? "lg:col-span-2" : ""
       }`}
     >
       <div
         className={`w-full relative overflow-hidden bg-surface-variant ${
-          featured ? "h-64 md:h-80" : "h-48"
+          featured ? "h-64 md:h-80" : "h-48 md:h-56"
         }`}
       >
         <Image
@@ -28,22 +28,16 @@ function EventCard({
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className={`object-cover transition-transform duration-700 group-hover:scale-105 ${
-            event.status === "Completed" ? "grayscale-[20%]" : ""
+            event.status === "Completed" ? "grayscale" : "grayscale-[50%] group-hover:grayscale-0"
           }`}
         />
         {event.status === "Upcoming" && featured && (
-          <div className="absolute top-4 left-4 bg-primary text-on-primary px-4 py-2 rounded-full font-label-bold text-label-bold flex items-center gap-2">
-            <span className="material-symbols-outlined text-sm">
-              calendar_month
-            </span>
+          <div className="absolute top-4 left-4 bg-on-surface text-surface px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-bold">
             Upcoming
           </div>
         )}
         {event.status === "Completed" && (
-          <div className="absolute top-3 left-3 bg-surface-variant/80 backdrop-blur-sm text-on-surface-variant px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-            <span className="material-symbols-outlined text-xs">
-              check_circle
-            </span>{" "}
+          <div className="absolute top-4 left-4 bg-surface text-on-surface border border-outline-variant/30 px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-bold">
             Past Event
           </div>
         )}
@@ -51,20 +45,20 @@ function EventCard({
 
       <div
         className={`flex flex-col flex-grow ${
-          featured ? "p-8 justify-between" : "p-6"
+          featured ? "p-8 md:p-12 justify-between" : "p-6 md:p-8"
         }`}
       >
         <div>
           <div
-            className={`flex items-center gap-4 text-secondary mb-3 font-body-sm text-sm`}
+            className={`flex items-center gap-4 text-on-surface-variant mb-4 text-[10px] uppercase tracking-[0.1em] font-bold`}
           >
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-2">
               <span className="material-symbols-outlined text-sm">
                 schedule
               </span>{" "}
               {event.date}
             </span>
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-2">
               <span className="material-symbols-outlined text-sm">
                 location_on
               </span>{" "}
@@ -72,15 +66,15 @@ function EventCard({
             </span>
           </div>
           <h2
-            className={`font-headline-md font-bold mb-3 ${
-              event.status === "Completed" ? "text-tertiary" : "text-primary"
-            } ${featured ? "text-headline-md mb-4" : "text-xl"}`}
+            className={`font-light tracking-tight mb-4 text-on-surface ${
+              featured ? "text-[2rem] leading-tight" : "text-2xl"
+            }`}
           >
             {event.title}
           </h2>
           <p
-            className={`text-on-surface-variant flex-grow ${
-              featured ? "mb-6 font-body-lg text-body-lg line-clamp-3" : "mb-6 text-sm"
+            className={`text-on-surface-variant font-light flex-grow leading-relaxed ${
+              featured ? "mb-8 text-lg line-clamp-3" : "mb-6 text-sm line-clamp-4"
             }`}
           >
             {event.description}
@@ -88,10 +82,10 @@ function EventCard({
         </div>
 
         {featured ? (
-          <div className="flex items-center justify-between mt-auto pt-4 border-t border-surface-variant">
-            <div className="flex items-center gap-4">
+          <div className="flex items-center justify-between mt-auto pt-6 border-t border-outline-variant/30">
+            <div className="flex flex-wrap items-center gap-4">
               {event.joinUrl && (
-                <Button variant="secondary" className=" shadow-sm" asChild>
+                <Button variant="default" className="rounded-none bg-on-surface text-surface h-12 px-6 hover:bg-surface-variant uppercase text-xs tracking-wider font-bold transition-all" asChild>
                   <Link href={event.joinUrl}>
                     {event.actionLabel}{" "}
                     <span className="material-symbols-outlined text-sm ml-2">
@@ -101,30 +95,27 @@ function EventCard({
                 </Button>
               )}
               {event.donationUrl && (
-                <Button variant="outline" className=" shadow-sm" asChild>
+                <Button variant="outline" className="rounded-none border-on-surface text-on-surface h-12 px-6 hover:bg-on-surface hover:text-surface uppercase text-xs tracking-wider font-bold transition-all" asChild>
                   <Link href={event.donationUrl}>Donate</Link>
                 </Button>
               )}
             </div>
             {event.capacity && (
-              <div className="flex -space-x-3">
-                <div className="w-8 h-8 rounded-full bg-secondary-container border-2 border-surface-container-lowest"></div>
-                <div className="w-8 h-8 rounded-full bg-tertiary-container border-2 border-surface-container-lowest"></div>
-                <div className="w-8 h-8 rounded-full bg-primary-container border-2 border-surface-container-lowest flex items-center justify-center text-xs text-on-primary font-bold">
-                  {event.capacity}
-                </div>
+              <div className="hidden sm:flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant">
+                <span>Capacity:</span>
+                <span className="text-on-surface">{event.capacity}</span>
               </div>
             )}
           </div>
         ) : (
-          <div className="flex items-center justify-between mt-auto">
+          <div className="flex items-center justify-between mt-auto pt-6 border-t border-outline-variant/30">
             {event.joinUrl && (
               <Link
                 href={event.joinUrl}
-                className={`font-label-bold text-label-bold flex items-center gap-2 group-hover:translate-x-1 transition-transform ${
+                className={`text-[10px] uppercase tracking-[0.2em] font-bold flex items-center gap-2 group-hover:text-on-surface transition-colors ${
                   event.status === "Completed"
-                    ? "text-tertiary"
-                    : "text-secondary"
+                    ? "text-on-surface-variant"
+                    : "text-on-surface-variant"
                 }`}
               >
                 {event.actionLabel}{" "}
@@ -134,7 +125,7 @@ function EventCard({
               </Link>
             )}
              {event.donationUrl && (
-               <Button variant="ghost" size="sm" className=" shadow-none text-secondary" asChild>
+               <Button variant="ghost" size="sm" className="rounded-none text-on-surface-variant hover:text-on-surface uppercase text-[10px] tracking-wider font-bold" asChild>
                  <Link href={event.donationUrl}>Donate</Link>
                </Button>
              )}

@@ -52,10 +52,10 @@ export default function DonateFlowPage() {
       <div className="w-full lg:w-2/3">
         <ProgressIndicator currentStep={1} />
 
-        <div className="bg-surface-container-lowest rounded-lg shadow-ambient p-6 md:p-10 relative overflow-hidden">
+        <div className="bg-surface rounded-none border border-outline-variant/30 p-6 md:p-12 relative overflow-hidden">
           {/* Donation Information Section */}
-          <div className="mb-10 p-6 bg-surface-container-low border border-surface-variant rounded-lg">
-            <h3 className="font-headline-sm text-headline-sm text-primary mb-3">
+          <div className="mb-10 p-6 md:p-8 bg-surface border border-outline-variant/30 rounded-none">
+            <h3 className="text-xl font-light text-primary tracking-tight mb-4">
               Donation Information
             </h3>
             <p className="text-sm text-on-surface-variant mb-4">
@@ -89,7 +89,7 @@ export default function DonateFlowPage() {
           </div>
 
           <form onSubmit={handleSubmit}>
-            <h2 className="font-headline-md text-headline-md text-primary mb-6">
+            <h2 className="text-2xl font-light text-on-surface tracking-tight mb-8 border-b border-outline-variant/30 pb-4">
               Select Amount
             </h2>
             <div className="grid grid-cols-3 gap-4 mb-6">
@@ -100,7 +100,7 @@ export default function DonateFlowPage() {
                   variant={amount === preset ? "primary" : "outline"}
                   onClick={() => setAmount(preset)}
                   size="lg"
-                  className={amount === preset ? "bg-primary-container text-on-primary-container ring-2 ring-primary border-transparent text-lg hover:bg-primary-container" : "border-transparent bg-surface-container hover:bg-surface-variant text-on-surface text-lg"}
+                  className={amount === preset ? "rounded-none bg-primary text-white ring-1 ring-primary border-transparent text-lg hover:bg-primary/90 transition-colors" : "rounded-none border border-outline-variant/50 bg-transparent hover:border-primary hover:text-primary text-on-surface text-lg transition-colors"}
                 >
                   ${preset}
                 </Button>
@@ -108,12 +108,12 @@ export default function DonateFlowPage() {
             </div>
             <div className="mb-8 relative">
               <label htmlFor="customAmount" className="sr-only">Custom Amount</label>
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 font-body-lg text-body-lg text-on-surface-variant">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-lg text-on-surface-variant">
                 $
               </span>
               <input
                 id="customAmount"
-                className="stripe-input pl-8 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                className="w-full bg-transparent border border-outline-variant/50 rounded-none pl-8 pr-4 py-3 text-lg font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all"
                 placeholder="Custom Amount"
                 type="number"
                 min="1"
@@ -122,17 +122,17 @@ export default function DonateFlowPage() {
               />
             </div>
 
-            <h2 className="font-headline-md text-headline-md text-primary mb-6">
+            <h2 className="text-2xl font-light text-on-surface tracking-tight mb-8 border-b border-outline-variant/30 pb-4 mt-12">
               Your Information
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               <div>
-                <label htmlFor="firstName" className="block font-label-bold text-label-bold text-on-surface mb-2">
-                  First Name
+                <label htmlFor="firstName" className="block uppercase tracking-widest text-[10px] font-bold text-on-surface mb-2">
+                  First Name <span className="text-primary">*</span>
                 </label>
                 <input
                   id="firstName"
-                  className="stripe-input focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                  className="w-full bg-transparent border border-outline-variant/50 rounded-none px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all"
                   placeholder="Jane"
                   required
                   type="text"
@@ -141,12 +141,12 @@ export default function DonateFlowPage() {
                 />
               </div>
               <div>
-                <label htmlFor="lastName" className="block font-label-bold text-label-bold text-on-surface mb-2">
-                  Last Name
+                <label htmlFor="lastName" className="block uppercase tracking-widest text-[10px] font-bold text-on-surface mb-2">
+                  Last Name <span className="text-primary">*</span>
                 </label>
                 <input
                   id="lastName"
-                  className="stripe-input focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                  className="w-full bg-transparent border border-outline-variant/50 rounded-none px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all"
                   placeholder="Doe"
                   required
                   type="text"
@@ -155,12 +155,12 @@ export default function DonateFlowPage() {
                 />
               </div>
               <div className="md:col-span-2">
-                <label htmlFor="email" className="block font-label-bold text-label-bold text-on-surface mb-2">
-                  Email Address
+                <label htmlFor="email" className="block uppercase tracking-widest text-[10px] font-bold text-on-surface mb-2">
+                  Email Address <span className="text-primary">*</span>
                 </label>
                 <input
                   id="email"
-                  className="stripe-input focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                  className="w-full bg-transparent border border-outline-variant/50 rounded-none px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all"
                   placeholder="jane.doe@example.com"
                   required
                   type="email"
@@ -185,9 +185,9 @@ export default function DonateFlowPage() {
             </div>
 
             <div className="flex justify-end">
-              <Button type="submit" variant="secondary" size="lg" className=" gap-2 hover:scale-105 px-8" disabled={isLoading || !consent}>
+              <Button type="submit" variant="default" size="lg" className="rounded-none bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-xs font-bold transition-all px-8 flex items-center gap-2" disabled={isLoading || !consent}>
                 {isLoading ? "Processing..." : "Proceed to Secure Checkout"}
-                {!isLoading && <span className="material-symbols-outlined">lock</span>}
+                {!isLoading && <span className="material-symbols-outlined text-[16px]">lock</span>}
               </Button>
             </div>
           </form>
@@ -195,16 +195,15 @@ export default function DonateFlowPage() {
       </div>
 
       <div className="w-full lg:w-1/3 mt-8 lg:mt-0">
-        <div className="sticky top-24 bg-surface-container-low rounded-lg p-8 border border-surface-variant relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-secondary-fixed opacity-20 rounded-bl-full -z-0" />
-          <h3 className="font-headline-md text-headline-md text-primary mb-6 relative z-10">
+        <div className="sticky top-24 bg-surface rounded-none p-8 border border-outline-variant/30 relative overflow-hidden">
+          <h3 className="text-2xl font-light text-on-surface tracking-tight mb-6 relative z-10 border-b border-outline-variant/30 pb-4">
             Summary
           </h3>
-          <div className="flex justify-between items-end mb-6 border-b border-surface-variant pb-6 relative z-10">
-            <span className="font-body-lg text-body-lg text-on-surface-variant">
+          <div className="flex justify-between items-end mb-8 relative z-10">
+            <span className="text-sm font-light text-on-surface-variant uppercase tracking-widest mb-2">
               Total
             </span>
-            <span className="font-display-lg text-display-lg text-primary">
+            <span className="text-[3.5rem] font-light text-primary tracking-tighter leading-none">
               ${displayAmount}
             </span>
           </div>
@@ -236,8 +235,8 @@ export default function DonateFlowPage() {
               </div>
             </div>
           </div>
-          <div className="mt-8 pt-6 border-t border-surface-variant flex items-center justify-center gap-2 text-on-surface-variant opacity-70 relative z-10">
-            <span className="font-label-bold text-label-bold text-xs uppercase tracking-wider">
+          <div className="mt-10 pt-6 border-t border-outline-variant/30 flex items-center justify-center gap-2 text-on-surface-variant opacity-70 relative z-10">
+            <span className="uppercase tracking-widest text-[10px] font-bold">
               Powered by
             </span>
             <span className="font-bold text-lg tracking-tighter text-[#635BFF]">

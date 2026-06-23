@@ -2,39 +2,50 @@ import Image from "next/image";
 import { Button } from "@/shared/components/ui/Button";
 import Link from "next/link";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
-import { TextReveal } from "@/shared/components/animations/TextReveal";
-import { ImageRevealMask } from "@/shared/components/animations/ImageRevealMask";
 
 export function ServicesHero() {
   return (
-    <section className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-section-gap">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
-        {/* Text Content */}
-        <div className="lg:col-span-5 order-2 lg:order-1 z-10 relative mt-8 lg:mt-0">
-          <div className="bg-surface/90 backdrop-blur-md p-8 md:p-10 rounded-lg shadow-ambient lg:-mr-16 relative">
-            <RevealOnScroll>
-              <span className="inline-block bg-secondary-container text-on-secondary-container px-4 py-1 rounded-full font-label-bold text-label-bold mb-4 tracking-wider uppercase text-xs">
-                YAD Projects
-              </span>
+    <section className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-10 overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
+        
+        {/* Editorial Split Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          
+          {/* Left Column: Typographic Focus (5 Columns) */}
+          <div className="lg:col-span-5 flex flex-col z-10">
+            <RevealOnScroll delay={0.1}>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-6 h-[1px] bg-primary" />
+                <span className="uppercase tracking-[0.2em] text-xs font-bold text-primary">
+                  Social Enterprise
+                </span>
+              </div>
             </RevealOnScroll>
-            <TextReveal as="h1" text="Experience Authentic Cambodia." className="font-headline-lg-mobile md:font-display-lg text-headline-lg-mobile md:text-display-lg text-primary mb-6 leading-tight" />
+
+            {/* Massive, Tension-filled Headline */}
             <RevealOnScroll delay={0.2}>
-              <p className="font-body-lg text-body-lg text-on-surface-variant mb-8">
-                Immerse yourself in rural community life with the YAD
-                Homestay. Your stay directly funds local youth advancement
-                programs while offering you an unforgettable, genuine cultural
-                connection.
+              <h1 className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6">
+                Experience <br className="hidden md:block" />
+                authentic <br className="hidden md:block" />
+                <span className="font-light italic text-primary">
+                  Cambodia.
+                </span>
+              </h1>
+            </RevealOnScroll>
+
+            {/* Subtext */}
+            <RevealOnScroll delay={0.3}>
+              <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed max-w-sm mb-10">
+                Immerse yourself in rural community life with the YAD Homestay. Your stay directly funds local youth advancement programs while offering you an unforgettable, genuine cultural connection.
               </p>
+              
               <div className="flex flex-wrap gap-4">
-                <Button variant="secondary" size="lg" className=" gap-2 shadow-md hover:scale-105" asChild>
+                <Button variant="default" size="lg" className="bg-primary text-white hover:bg-primary/90 px-6 py-3 h-12 uppercase text-xs tracking-wider font-bold transition-all inline-flex items-center" asChild>
                   <a href="#booking-section">
-                    Book Your Stay{" "}
-                    <span className="material-symbols-outlined text-xl">
-                      arrow_forward
-                    </span>
+                    Book Your Stay
                   </a>
                 </Button>
-                <Button variant="ghost" size="lg" className=" gap-2" asChild>
+                <Button variant="outline" size="lg" className="rounded-none border-primary text-primary h-12 px-6 hover:bg-primary hover:text-white uppercase text-xs tracking-wider font-bold transition-all" asChild>
                   <Link href="#">
                     View Gallery
                   </Link>
@@ -42,22 +53,22 @@ export function ServicesHero() {
               </div>
             </RevealOnScroll>
           </div>
+
+          {/* Right Column: Un-obscured Cinematic Image (7 Columns) */}
+          <div className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0">
+            <RevealOnScroll delay={0.3} className="w-full h-full relative">
+              <Image
+                src="/assets/images/yad-1.png"
+                alt="Traditional wooden Cambodian home elevated on stilts"
+                fill
+                className="object-cover object-center"
+                priority
+                sizes="(max-width: 1024px) 100vw, 60vw"
+              />
+            </RevealOnScroll>
+          </div>
         </div>
 
-        {/* Hero Image */}
-        <div className="lg:col-span-7 order-1 lg:order-2">
-          <ImageRevealMask className="relative w-full aspect-[4/3] md:aspect-[16/10] rounded-lg overflow-hidden shadow-ambient group">
-            <Image
-              alt="Traditional wooden Cambodian home elevated on stilts, surrounded by lush green tropical foliage"
-              src="/assets/images/yad-1.png"
-              fill
-              sizes="(max-width: 1024px) 100vw, 58vw"
-              className="object-cover transform transition-transform duration-700 group-hover:scale-105"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent mix-blend-multiply" />
-          </ImageRevealMask>
-        </div>
       </div>
     </section>
   );

@@ -1,20 +1,59 @@
+import Image from "next/image";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
-import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 export function EventHero() {
   return (
-    <div className="text-center mb-16 md:mb-24">
-      <span className="inline-block px-4 py-2 rounded-full bg-secondary-container text-on-secondary-container font-label-bold text-label-bold mb-6">
-        Community Action
-      </span>
-      <TextReveal as="h1" text="Our Events" className="font-display-lg text-headline-lg-mobile md:text-display-lg text-primary mb-6 font-bold" />
-      <RevealOnScroll delay={0.2}>
-        <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-          Join us in creating sustainable change across Cambodia. Discover upcoming
-          opportunities to get involved or explore the impact of our recent
-          community initiatives.
-        </p>
-      </RevealOnScroll>
-    </div>
+    <section className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-10 overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
+        
+        {/* Editorial Split Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          
+          {/* Left Column: Typographic Focus (5 Columns) */}
+          <div className="lg:col-span-5 flex flex-col z-10">
+            <RevealOnScroll delay={0.1}>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-6 h-[1px] bg-primary" />
+                <span className="uppercase tracking-[0.2em] text-xs font-bold text-primary">
+                  Community Action
+                </span>
+              </div>
+            </RevealOnScroll>
+
+            {/* Massive, Tension-filled Headline */}
+            <RevealOnScroll delay={0.2}>
+              <h1 className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6">
+                Our <br className="hidden md:block" />
+                <span className="font-light italic text-on-surface-variant">
+                  Events.
+                </span>
+              </h1>
+            </RevealOnScroll>
+
+            {/* Subtext */}
+            <RevealOnScroll delay={0.3}>
+              <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed max-w-sm mb-10">
+                Join us in creating sustainable change across Cambodia. Discover upcoming opportunities to get involved or explore the impact of our recent community initiatives.
+              </p>
+            </RevealOnScroll>
+          </div>
+
+          {/* Right Column: Un-obscured Cinematic Image (7 Columns) */}
+          <div className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0">
+            <RevealOnScroll delay={0.3} className="w-full h-full relative">
+              <Image
+                src="/assets/images/yad-7.png"
+                alt="Volunteers in action"
+                fill
+                className="object-cover object-center"
+                priority
+                sizes="(max-width: 1024px) 100vw, 60vw"
+              />
+            </RevealOnScroll>
+          </div>
+        </div>
+
+      </div>
+    </section>
   );
 }

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import { getLocale } from 'next-intl/server';
 import { AuthProvider } from "@/providers/AuthProvider";
 import { CookieConsent } from "@/shared/components/ui/CookieConsent";
@@ -8,8 +8,16 @@ import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["400", "700", "800"],
+  weight: ["400", "600", "700", "800"],
   variable: "--font-plus-jakarta-sans",
+  display: "swap",
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair-display",
   display: "swap",
 });
 
@@ -152,7 +160,7 @@ export default async function RootLayout({
         />
       </head>
       <body
-        className={`${plusJakartaSans.variable} bg-surface text-on-surface font-body-md antialiased overflow-x-hidden`}
+        className={`${plusJakartaSans.variable} ${playfairDisplay.variable} bg-surface text-on-surface font-body-md antialiased overflow-x-hidden`}
         style={{ fontFamily: "var(--font-plus-jakarta-sans), system-ui, sans-serif" }}
         suppressHydrationWarning
       >

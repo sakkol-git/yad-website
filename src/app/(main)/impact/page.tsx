@@ -22,7 +22,7 @@ export default function ImpactPage() {
   ];
 
   return (
-    <main className="flex-grow pt-32 pb-section-gap">
+    <main className="flex-grow pb-section-gap">
       <BreadcrumbSchema items={breadcrumbs} />
       <ImpactHero />
       <GlobalFootprint />

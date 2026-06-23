@@ -1,95 +1,129 @@
 import Image from "next/image";
-import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
+import Link from "next/link";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 import { ImageRevealMask } from "@/shared/components/animations/ImageRevealMask";
 
-// 1. Extract data outside the component to prevent recreation on re-renders
-const PROGRAM_CARDS_DATA = [
+const PROGRAMS = [
   {
     id: "dormitory",
+    index: "01",
     title: "Dormitory & Leadership",
-    description: "Housing, scholarships, and extensive life skills for promising students from remote provinces.",
+    description:
+      "Housing, scholarships, and extensive life skills for promising students from remote provinces. We build the infrastructure necessary for the next generation of Cambodian leaders to thrive in university and beyond.",
     imageSrc: "/assets/images/yad-2.png",
-    imageAlt: "Students participating in Dormitory & Leadership program",
-    // Tailwind requires complete class strings to prevent them from being purged
-    theme: {
-      text: "text-primary",
-      gradient: "from-primary/5",
-      bgOverlay: "bg-primary/10",
-    },
-    priority: true, // Load the first image faster if above the fold
+    imageAlt: "Students in the YAD Dormitory & Leadership program",
+    href: "/programs/dormitory",
+    priority: true,
   },
   {
     id: "porridge",
+    index: "02",
     title: "Porridge for Hope",
-    description: "Combating malnutrition with bi-monthly nutrition programs for children in extreme poverty.",
+    description:
+      "Combating malnutrition with bi-monthly nutrition programs for children in extreme poverty, ensuring food security as the absolute foundation for learning and cognitive development.",
     imageSrc: "/assets/images/yad-4.png",
-    imageAlt: "Children receiving nutrition from Porridge for Hope",
-    theme: {
-      text: "text-secondary",
-      gradient: "from-secondary/5",
-      bgOverlay: "bg-secondary/10",
-    },
+    imageAlt: "Children in the Porridge for Hope nutrition program",
+    href: "/programs/porridge",
     priority: false,
   },
   {
     id: "community-schools",
+    index: "03",
     title: "Community Schools",
-    description: "Taking English and essential Life Skills education directly to urban slum communities.",
+    description:
+      "Taking English and essential Life Skills education directly to urban slum communities, reaching children where access to formal public schooling is logistically or financially impossible.",
     imageSrc: "/assets/images/yad-5.png",
-    imageAlt: "Education session in urban slum community",
-    theme: {
-      text: "text-tertiary",
-      gradient: "from-tertiary/5",
-      bgOverlay: "bg-tertiary/10",
-    },
+    imageAlt: "Community schools education session in Phnom Penh",
+    href: "/programs/community-schools",
     priority: false,
   },
 ];
 
 export function ProgramCards() {
   return (
-    <section className="relative z-20 mt-24 lg:mt-32 pb-24 px-4 sm:px-6 lg:px-8">
-      <StaggerGroup
-        y={32}
-        scale={0.96}
-        className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-      >
-        {PROGRAM_CARDS_DATA.map((card) => (
-          <div key={card.id}>
-            <article
-              className={`h-full bg-surface-container-lowest/95 backdrop-blur-3xl rounded-[32px] p-8 border border-outline-variant/30 shadow-ambient hover:shadow-ambient-hover hover:-translate-y-2 hover:bg-surface-container-lowest transition-all duration-500 group relative flex flex-col items-center text-center overflow-hidden`}
-            >
-              {/* Hover Gradient Overlay */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-b ${card.theme.gradient} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
-                aria-hidden="true"
-              />
+    <section className="py-24 md:py-32 bg-surface">
+      <div className="max-w-container-max mx-auto px-6 md:px-12 lg:px-16">
 
-              {/* Image Container */}
-              <ImageRevealMask
-                className={`w-36 h-36 rounded-2xl mb-8 relative shadow-md group-hover:scale-105 transition-transform duration-500 border border-white/50 overflow-hidden ${card.theme.bgOverlay}`}
-              >
-                <Image
-                  alt={card.imageAlt}
-                  className="w-full h-full object-cover"
-                  src={card.imageSrc}
-                  fill
-                  sizes="144px"
-                  priority={card.priority}
-                />
-              </ImageRevealMask>
-
-              {/* Text Content */}
-              <h3 className={`text-2xl font-bold mb-3 ${card.theme.text}`}>
-                {card.title}
-              </h3>
-              <p className="text-on-surface-variant font-medium leading-relaxed">
-                {card.description}
-              </p>
-            </article>
+        {/* Section Header */}
+        <RevealOnScroll className="mb-20 md:mb-32 flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div className="max-w-2xl">
+            <span className="block text-primary uppercase tracking-[0.2em] text-[10px] font-bold mb-4">
+              Strategic Interventions
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-light text-primary tracking-tighter leading-[1.0]">
+              Three Pillars of <br className="hidden md:block" /> Lasting Change.
+            </h2>
           </div>
-        ))}
-      </StaggerGroup>
+          <p className="text-base text-on-surface-variant font-light max-w-md leading-relaxed">
+            Each program is meticulously designed to dismantle a specific systemic barrier preventing Cambodia&apos;s youth from reaching their absolute potential.
+          </p>
+        </RevealOnScroll>
+
+        {/* Editorial Program List */}
+        <div className="flex flex-col gap-24 md:gap-32">
+          {PROGRAMS.map((program, idx) => {
+            const isEven = idx % 2 !== 0;
+            return (
+              <div 
+                key={program.id} 
+                className={`grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center ${
+                  isEven ? "lg:flex-row-reverse" : ""
+                }`}
+              >
+                
+                {/* Image Area */}
+                <div className={`lg:col-span-7 ${isEven ? "lg:order-last" : ""}`}>
+                  <RevealOnScroll>
+                    <ImageRevealMask className="relative w-full aspect-[4/3] md:aspect-[3/2] overflow-hidden group">
+                      <Image
+                        src={program.imageSrc}
+                        alt={program.imageAlt}
+                        fill
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        sizes="(max-width: 1024px) 100vw, 60vw"
+                        priority={program.priority}
+                      />
+                      <div className="absolute inset-0 bg-surface-tint/5 mix-blend-multiply" />
+                    </ImageRevealMask>
+                  </RevealOnScroll>
+                </div>
+
+                {/* Text Content */}
+                <div className="lg:col-span-5 flex flex-col">
+                  <RevealOnScroll delay={0.2}>
+                    <div className="flex items-baseline gap-4 mb-6">
+                      <span className="text-3xl text-outline-variant/50 font-light">
+                        {program.index}
+                      </span>
+                      <div className="h-px bg-outline-variant/30 flex-1" />
+                    </div>
+                    
+                    <h3 className="text-3xl md:text-4xl font-light text-on-surface mb-6 tracking-tight">
+                      {program.title}
+                    </h3>
+                    
+                    <p className="text-sm font-light text-on-surface-variant leading-relaxed mb-10">
+                      {program.description}
+                    </p>
+                    
+                    <Link
+                      href={program.href}
+                      className="inline-flex items-center gap-3 text-primary uppercase tracking-[0.1em] text-[10px] font-bold hover:text-secondary transition-colors group w-fit"
+                    >
+                      Read Full Overview
+                      <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">
+                        arrow_right_alt
+                      </span>
+                    </Link>
+                  </RevealOnScroll>
+                </div>
+
+              </div>
+            );
+          })}
+        </div>
+
+      </div>
     </section>
   );
 }

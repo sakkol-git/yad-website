@@ -22,7 +22,7 @@ export default function ProgramsPage() {
   ];
 
   return (
-    <main className="pt-32 pb-section-gap">
+    <main className="pb-section-gap">
       <BreadcrumbSchema items={breadcrumbs} />
       <ProgramsHero />
       <DormitoryProgram />

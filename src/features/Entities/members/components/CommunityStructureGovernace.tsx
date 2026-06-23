@@ -39,7 +39,7 @@ export async function CommunityStructureGovernance() {
 
 
   return (
-    <section className="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low/30">
+    <section className="py-10">
 
       <div className="max-w-5xl mx-auto flex flex-col gap-[120px]">
         {/* Leadership Block (Tier 1 & Tier 2) */}

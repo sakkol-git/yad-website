@@ -35,17 +35,17 @@ export async function CommunityStructureTeams() {
     const alumni = dbAlumni.map(mapToTeamMember);
 
     return (
-        <section className="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low/30">
+        <section className="py-10">
 
             <div className="max-w-5xl mx-auto flex flex-col gap-[120px]">
                 {/* Tier 3: The Residents (Dormitory) */}
                 {residents.length > 0 && (
                     <div>
-                        <RevealOnScroll className="text-center mb-12">
-                            <h3 className="font-headline-md text-headline-md text-primary mb-2">
-                                The Residents
+                        <RevealOnScroll className="text-center mb-16 border-b border-outline-variant/30 pb-8">
+                            <h3 className="text-[2.5rem] md:text-[3.5rem] text-on-surface tracking-tighter leading-[1.0] mb-4">
+                                The <span className="font-light italic text-on-surface-variant">Residents.</span>
                             </h3>
-                            <p className="font-body-md text-body-md text-on-surface-variant">
+                            <p className="text-base text-on-surface-variant font-light max-w-lg mx-auto">
                                 The heart of YAD. 10 dedicated university students living and
                                 learning together.
                             </p>
@@ -67,18 +67,18 @@ export async function CommunityStructureTeams() {
 
                 {/* Tier 4: The Alumni Network */}
                 {alumni.length > 0 && (
-                    <div className="pt-16 border-t border-surface-variant/50 relative">
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface px-4 text-on-surface-variant font-label-bold text-label-bold uppercase tracking-wider text-xs flex items-center gap-2">
+                    <div className="pt-24 border-t border-outline-variant/30 relative mt-12">
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface px-4 text-on-surface-variant font-bold text-[10px] uppercase tracking-[0.2em] flex items-center gap-2">
                             <span className="material-symbols-outlined text-sm">
                                 public
                             </span>
                             Extended Network
                         </div>
-                        <RevealOnScroll className="text-center mb-12">
-                            <h3 className="font-headline-md text-headline-md text-primary mb-2">
-                                Alumni Mentors
+                        <RevealOnScroll className="text-center mb-16 border-b border-outline-variant/30 pb-8">
+                            <h3 className="text-[2.5rem] md:text-[3.5rem] text-on-surface tracking-tighter leading-[1.0] mb-4">
+                                Alumni <span className="font-light italic text-on-surface-variant">Mentors.</span>
                             </h3>
-                            <p className="font-body-md text-body-md text-on-surface-variant">
+                            <p className="text-base text-on-surface-variant font-light max-w-lg mx-auto">
                                 Former residents who return to guide the next generation.
                             </p>
                         </RevealOnScroll>

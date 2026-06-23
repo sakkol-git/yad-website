@@ -18,11 +18,11 @@ export function PartnerLogos() {
         <p className="text-center font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-8">
           Trusted by international organizations and local partners
         </p>
-        
+
         <div className="flex flex-wrap justify-center items-center gap-6 md:gap-16 opacity-70">
           {PARTNERS.map((partner, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="relative w-24 sm:w-32 md:w-40 h-12 sm:h-16 grayscale hover:grayscale-0 hover:scale-105 transition-all duration-300 opacity-80 hover:opacity-100"
             >
               <Image

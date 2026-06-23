@@ -62,23 +62,22 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
   return (
     <main className="flex-grow flex items-center justify-center p-gutter pt-32 pb-20 relative overflow-hidden min-h-[80vh]">
       {/* Abstract Background Elements */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary-fixed/20 blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-tertiary-fixed/20 blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-1 bg-primary" />
 
-      <div className="max-w-[600px] w-full bg-surface-container-lowest/80 backdrop-blur-md rounded-lg p-8 md:p-12 shadow-[0_8px_32px_rgba(65,104,55,0.05)] border border-surface-container/50 text-center relative z-10">
+      <div className="max-w-[600px] w-full bg-surface rounded-none p-8 md:p-12 border border-outline-variant/30 text-center relative z-10">
         
         {/* Icon */}
         <div className="mb-8 flex justify-center animate-pop-in">
-          <div className={`w-24 h-24 rounded-full flex items-center justify-center ${
-            isPending ? 'bg-tertiary-container shadow-[0_4px_20px_rgba(255,200,100,0.2)]' :
-            isValidSession ? 'bg-secondary-container shadow-[0_4px_20px_rgba(191,236,174,0.4)]' : 'bg-surface-variant'
+          <div className={`w-24 h-24 rounded-none border flex items-center justify-center ${
+            isPending ? 'border-primary bg-primary/5' :
+            isValidSession ? 'border-primary bg-primary/5' : 'border-outline-variant bg-surface'
           }`}>
             <span
               className={`material-symbols-outlined text-5xl ${
-                isPending ? 'text-tertiary text-amber-500' :
-                isValidSession ? 'text-secondary' : 'text-on-surface-variant'
+                isPending ? 'text-primary' :
+                isValidSession ? 'text-primary' : 'text-on-surface-variant'
               }`}
-              style={{ fontVariationSettings: "'FILL' 1" }}
+              style={{ fontVariationSettings: "'FILL' 0" }}
             >
               {isPending ? "pending" : isValidSession ? "check_circle" : "help"}
             </span>
@@ -88,27 +87,27 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
         {/* Dynamic Headlines & Content based on Workflow Type */}
         {type === "donation" ? (
           <>
-            <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4 animate-fade-up delay-100">
+            <h1 className="text-[3rem] font-light text-primary tracking-tighter leading-[1.0] mb-6 animate-fade-up delay-100">
               {isPending 
                 ? "Donation Pending Verification" 
                 : isValidSession 
                   ? "Thank You for Your Impact!" 
                   : "Donation Received"}
             </h1>
-            <p className="font-body-lg text-body-lg text-on-surface-variant mb-10 animate-fade-up delay-200">
+            <p className="text-base text-on-surface-variant font-light mb-10 animate-fade-up delay-200 leading-relaxed">
               {isPending ? (
                 <>
                   We have received your local payment details for a donation of{" "}
-                  <strong className="text-secondary">${amount.toFixed(2)}</strong> from <strong className="text-on-surface">{donorOrGuestName}</strong>.
+                  <strong className="text-primary font-bold">${amount.toFixed(2)}</strong> from <strong className="text-on-surface font-bold">{donorOrGuestName}</strong>.
                   <br />
-                  <span className="text-sm block mt-4 p-3 bg-surface-container rounded-md border border-surface-variant/30 text-on-surface-variant">
-                    Transaction Ref: <strong className="font-mono text-primary">{refId}</strong>. Our finance team will verify the transfer shortly.
+                  <span className="text-sm block mt-4 p-4 bg-surface rounded-none border border-outline-variant/30 text-on-surface-variant">
+                    Transaction Ref: <strong className="font-mono text-primary font-bold">{refId}</strong>. Our finance team will verify the transfer shortly.
                   </span>
                 </>
               ) : isValidSession ? (
                 <>
-                  Thank you, <strong className="text-on-surface">{donorOrGuestName}</strong>! Your contribution of{" "}
-                  <strong className="text-secondary">${amount.toFixed(2)}</strong> will provide safe housing and education support for a student in Cambodia.
+                  Thank you, <strong className="text-on-surface font-bold">{donorOrGuestName}</strong>! Your contribution of{" "}
+                  <strong className="text-primary font-bold">${amount.toFixed(2)}</strong> will provide safe housing and education support for a student in Cambodia.
                 </>
               ) : (
                 "We have received your donation intent, but we couldn't automatically verify the payment status. If you completed the payment, you will receive an email confirmation shortly."
@@ -118,27 +117,27 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
         ) : (
           /* Booking success layout */
           <>
-            <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4 animate-fade-up delay-100">
+            <h1 className="text-[3rem] font-light text-primary tracking-tighter leading-[1.0] mb-6 animate-fade-up delay-100">
               {isPending 
                 ? "Booking Payment Pending" 
                 : isValidSession 
                   ? "Booking Payment Successful!" 
                   : "Booking Reservation Received"}
             </h1>
-            <p className="font-body-lg text-body-lg text-on-surface-variant mb-10 animate-fade-up delay-200">
+            <p className="text-base text-on-surface-variant font-light mb-10 animate-fade-up delay-200 leading-relaxed">
               {isPending ? (
                 <>
                   We have received your bank transfer reference details for a booking amount of{" "}
-                  <strong className="text-secondary">${amount.toFixed(2)}</strong> under the name <strong className="text-on-surface">{donorOrGuestName}</strong>.
+                  <strong className="text-primary font-bold">${amount.toFixed(2)}</strong> under the name <strong className="text-on-surface font-bold">{donorOrGuestName}</strong>.
                   <br />
-                  <span className="text-sm block mt-4 p-3 bg-surface-container rounded-md border border-surface-variant/30 text-on-surface-variant">
-                    Reference ID: <strong className="font-mono text-primary">{refId}</strong>. Your booking status will be updated to "Confirmed" once our team approves the transfer.
+                  <span className="text-sm block mt-4 p-4 bg-surface rounded-none border border-outline-variant/30 text-on-surface-variant">
+                    Reference ID: <strong className="font-mono text-primary font-bold">{refId}</strong>. Your booking status will be updated to "Confirmed" once our team approves the transfer.
                   </span>
                 </>
               ) : isValidSession ? (
                 <>
-                  Thank you, <strong className="text-on-surface">{donorOrGuestName}</strong>! Your homestay reservation payment of{" "}
-                  <strong className="text-secondary">${amount.toFixed(2)}</strong> is complete. Your reservation is now officially confirmed.
+                  Thank you, <strong className="text-on-surface font-bold">{donorOrGuestName}</strong>! Your homestay reservation payment of{" "}
+                  <strong className="text-primary font-bold">${amount.toFixed(2)}</strong> is complete. Your reservation is now officially confirmed.
                 </>
               ) : (
                 "We received your booking details, but we are awaiting payment confirmation. You will receive an email confirmation once the invoice is cleared."
@@ -149,11 +148,11 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
 
         {/* Dynamic Navigation Actions */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-up delay-300">
-          <Button variant="outline" size="lg" className="border-primary/20 text-primary hover:bg-primary-fixed/10 px-8" asChild>
+          <Button variant="outline" size="lg" className="rounded-none border-primary text-primary hover:bg-primary hover:text-white uppercase tracking-widest text-[10px] font-bold h-12 transition-colors px-8" asChild>
             <Link href="/">Back to Homepage</Link>
           </Button>
           {type === "booking" && (
-            <Button variant="primary" size="lg" className=" px-8" asChild>
+            <Button variant="default" size="lg" className="rounded-none bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold transition-all px-8" asChild>
               <Link href="/portal/bookings">Go to Bookings Dashboard</Link>
             </Button>
           )}
@@ -161,34 +160,34 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
 
         {/* Social Share for Donations only */}
         {type === "donation" && (
-          <div className="pt-8 border-t border-surface-variant animate-fade-up delay-400">
-            <p className="font-label-bold text-label-bold text-on-surface-variant mb-4 uppercase tracking-wider">
+          <div className="pt-8 border-t border-outline-variant/30 animate-fade-up delay-400">
+            <p className="uppercase tracking-widest text-[10px] font-bold text-on-surface-variant mb-4">
               Share Your Impact
             </p>
             <div className="flex justify-center gap-4">
               <Button
- aria-label="Share on Facebook"
- variant="ghost"
- size="icon"
- className="w-12 h-12 bg-surface-container hover:bg-primary-fixed hover:text-on-primary-fixed"
- >
-                <span className="material-symbols-outlined">share</span>
+                aria-label="Share on Facebook"
+                variant="outline"
+                size="icon"
+                className="w-12 h-12 rounded-none border border-outline-variant/30 bg-surface text-primary hover:bg-primary hover:text-white transition-colors"
+              >
+                <span className="material-symbols-outlined text-[20px]">share</span>
               </Button>
               <Button
- aria-label="Share on Twitter"
- variant="ghost"
- size="icon"
- className="w-12 h-12 bg-surface-container hover:bg-tertiary-fixed hover:text-on-tertiary-fixed"
- >
-                <span className="material-symbols-outlined">chat_bubble</span>
+                aria-label="Share on Twitter"
+                variant="outline"
+                size="icon"
+                className="w-12 h-12 rounded-none border border-outline-variant/30 bg-surface text-primary hover:bg-primary hover:text-white transition-colors"
+              >
+                <span className="material-symbols-outlined text-[20px]">chat_bubble</span>
               </Button>
               <Button
- aria-label="Copy Link"
- variant="ghost"
- size="icon"
- className="w-12 h-12 bg-surface-container hover:bg-secondary-container hover:text-on-secondary-container"
- >
-                <span className="material-symbols-outlined">link</span>
+                aria-label="Copy Link"
+                variant="outline"
+                size="icon"
+                className="w-12 h-12 rounded-none border border-outline-variant/30 bg-surface text-primary hover:bg-primary hover:text-white transition-colors"
+              >
+                <span className="material-symbols-outlined text-[20px]">link</span>
               </Button>
             </div>
           </div>

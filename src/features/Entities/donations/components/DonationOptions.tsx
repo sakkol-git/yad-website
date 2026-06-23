@@ -1,44 +1,107 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/shared/components/ui/Button";
+import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+
+const IMPACT_TIERS = [
+  {
+    amount: "$25",
+    title: "Nutrition & Focus",
+    description: "Provides bi-monthly nutrition support for one child, ensuring food security as the absolute foundation for cognitive development and learning.",
+  },
+  {
+    amount: "$50",
+    title: "Digital Literacy Hub",
+    description: "Funds the essential technology and software licenses for one student for an entire semester in our urban slum mobile classrooms.",
+  },
+  {
+    amount: "$150",
+    title: "The Dormitory Scholarship",
+    description: "Secures one month of safe housing, utilities, and comprehensive leadership training for a promising university student from a remote province.",
+  },
+];
 
 export function DonationPortal() {
   return (
-    <section id="options" className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-section-gap scroll-mt-24">
-      <div className="max-w-3xl mx-auto bg-surface-container-lowest rounded-lg p-8 md:p-12 shadow-xl border border-surface-variant/30 relative overflow-hidden">
-        {/* Decorative background elements */}
-        <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="relative z-10">
-          <div className="text-center mb-10">
-            <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-surface shadow-sm">
-              <span className="material-symbols-outlined text-primary text-4xl">volunteer_activism</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-on-surface mb-4">
-              Make a Difference Today
-            </h2>
-            <p className="text-lg text-on-surface-variant max-w-xl mx-auto">
-              Your contribution empowers Cambodian youth through safe housing, education, and skills training.
+    <section id="options" className="py-24 md:py-32 px-6 md:px-12 lg:px-16 bg-surface">
+      <div className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        
+        {/* Left: Manifesto & Trust */}
+        <RevealOnScroll className="lg:col-span-5 lg:sticky lg:top-32">
+          <div className="inline-flex items-center gap-4 mb-4">
+            <div className="w-6 h-[1px] bg-primary" />
+            <span className="uppercase tracking-[0.2em] text-[10px] font-bold text-primary">
+              Direct Impact
+            </span>
+          </div>
+          <h2 className="text-[3.5rem] md:text-[4.5rem] text-primary tracking-tighter leading-[1.0] mb-8">
+            Fund the <br className="hidden lg:block"/> Framework.
+          </h2>
+          <div className="space-y-6 text-base md:text-lg text-on-surface-variant font-light leading-relaxed mb-12">
+            <p>
+              We don't deal in generic charity. We deal in highly targeted, structural interventions.
+            </p>
+            <p>
+              When you donate to YAD, you aren't just giving money; you are activating specific, measurable resources that dismantle barriers to education.
             </p>
           </div>
 
-          <div className="space-y-8 max-w-xl mx-auto">
-            <div className="pt-8">
-              <Button variant="primary" size="lg" className="w-full py-7 text-[18px] font-bold gap-3 shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all bg-primary text-on-primary" asChild>
-                <Link href={`/donate/flow`}>
-                  Continue to Donation Details
-                  <span className="material-symbols-outlined text-[24px]">arrow_forward</span>
-                </Link>
-              </Button>
-              <p className="text-center text-sm text-on-surface-variant mt-6 flex items-center justify-center gap-2 font-medium">
-                <span className="material-symbols-outlined text-lg opacity-70">verified_user</span>
-                Secure payment options (Stripe, KHQR, Bank Transfer) available next.
-              </p>
+          <div className="flex items-center gap-6 text-xs font-label-bold uppercase tracking-widest text-on-surface-variant/60">
+            <div className="flex items-center gap-2">
+              <span className="material-symbols-outlined text-secondary">verified_user</span>
+              Secure SSL
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="material-symbols-outlined text-secondary">account_balance</span>
+              Tax Deductible
             </div>
           </div>
+        </RevealOnScroll>
+
+        {/* Right: Tangible Impact Tiers */}
+        <div className="lg:col-span-6 lg:col-start-7 flex flex-col gap-6">
+          <h3 className="uppercase tracking-[0.2em] text-[10px] font-bold text-on-surface-variant mb-4">Choose Your Impact Level</h3>
+          
+          {IMPACT_TIERS.map((tier, index) => (
+            <RevealOnScroll 
+              key={tier.amount} 
+              delay={index * 0.15}
+              className="group relative bg-surface p-8 md:p-10 border border-outline-variant/30 hover:border-primary transition-colors cursor-pointer rounded-none"
+            >
+              <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-10">
+                <div className="text-[4rem] text-primary font-light tracking-tighter shrink-0 group-hover:text-primary/80 transition-colors leading-none">
+                  {tier.amount}
+                </div>
+                <div>
+                  <h4 className="text-xl font-light text-on-surface tracking-tight mb-3">{tier.title}</h4>
+                  <p className="text-sm font-light text-on-surface-variant leading-relaxed mb-6">
+                    {tier.description}
+                  </p>
+                  <Link
+                    href={`/donate/flow?amount=${tier.amount.replace('$', '')}`}
+                    className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-bold uppercase tracking-widest text-xs transition-colors"
+                  >
+                    Fund this tier
+                    <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">
+                      arrow_right_alt
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            </RevealOnScroll>
+          ))}
+
+          {/* Custom Amount */}
+          <RevealOnScroll delay={0.5} className="mt-6">
+            <Link 
+              href="/donate/flow" 
+              className="block w-full text-center py-8 bg-surface border border-outline-variant/30 hover:bg-surface-container-low transition-colors font-bold text-xs uppercase tracking-[0.2em] text-on-surface rounded-none"
+            >
+              Enter a Custom Amount
+            </Link>
+          </RevealOnScroll>
         </div>
+
       </div>
     </section>
   );

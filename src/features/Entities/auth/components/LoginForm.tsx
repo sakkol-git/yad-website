@@ -71,7 +71,7 @@ export function LoginForm() {
           </svg>
         </div>
         <div className="relative z-10 text-on-primary max-w-lg">
-          <h1 className="text-5xl font-bold mb-6">Welcome to YAD Cambodia</h1>
+          <h1 className="text-4xl md:text-5xl font-light mb-6 tracking-tighter leading-[1.0]">Welcome to YAD Cambodia</h1>
           <p className="text-lg opacity-90 leading-relaxed">
             Join our community to empower youth, volunteer for meaningful projects, and manage your homestays. Together, we can make a difference.
           </p>
@@ -86,13 +86,13 @@ export function LoginForm() {
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4 text-primary">
               <span className="material-symbols-outlined text-[32px]">login</span>
             </div>
-            <h1 className="text-3xl font-bold text-on-surface mb-2 text-center">Welcome Back</h1>
-            <p className="text-on-surface-variant text-sm text-center">Sign in to your YAD account</p>
+            <h1 className="text-3xl font-light text-on-surface mb-2 text-center tracking-tight">Welcome Back</h1>
+            <p className="text-on-surface-variant font-light text-sm text-center">Sign in to your YAD account</p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
-              <label className="block text-sm font-semibold text-on-surface-variant mb-1" htmlFor="email">
+              <label className="block text-[10px] font-bold uppercase tracking-widest text-on-surface mb-1" htmlFor="email">
                 Email Address
               </label>
               <div className="relative">
@@ -101,7 +101,7 @@ export function LoginForm() {
                   id="email"
                   type="email"
                   placeholder="user@example.com"
-                  className={`w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-md border ${errors.email ? 'border-error focus:ring-error focus:border-error' : 'border-surface-variant/30 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-[15px] transition-all placeholder-on-surface-variant/50 outline-none`}
+                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-none border ${errors.email ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-all outline-none`}
                   {...register("email")}
                 />
               </div>
@@ -109,7 +109,7 @@ export function LoginForm() {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-on-surface-variant mb-1" htmlFor="password">
+              <label className="block text-[10px] font-bold uppercase tracking-widest text-on-surface mb-1" htmlFor="password">
                 Password
               </label>
               <div className="relative">
@@ -118,7 +118,7 @@ export function LoginForm() {
                   id="password"
                   type="password"
                   placeholder="••••••••"
-                  className={`w-full pl-10 pr-4 py-2.5 bg-surface-container rounded-md border ${errors.password ? 'border-error focus:ring-error focus:border-error' : 'border-surface-variant/30 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-[15px] transition-all placeholder-on-surface-variant/50 outline-none`}
+                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-none border ${errors.password ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-all outline-none`}
                   {...register("password")}
                 />
               </div>
@@ -139,10 +139,10 @@ export function LoginForm() {
             <button
               type="submit"
               disabled={isWorking}
-              className="w-full py-3 bg-primary text-on-primary rounded-full font-bold text-[16px] shadow-sm hover:bg-primary/90 hover:shadow-md transition-all duration-200 active:scale-[0.98] mt-6 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full h-12 bg-primary text-white rounded-none font-bold text-xs uppercase tracking-widest hover:bg-primary/90 transition-all duration-200 mt-6 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
             >
               {isWorking ? (
-                <div className="w-5 h-5 border-2 border-on-primary border-t-transparent rounded-full animate-spin" />
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
               ) : (
                 <>
                   Sign In
@@ -164,7 +164,7 @@ export function LoginForm() {
           <button
             onClick={onGoogleLogin}
             disabled={isPendingGoogle}
-            className="w-full py-3 bg-surface border border-surface-variant rounded-full font-bold text-[16px] text-on-surface shadow-sm hover:bg-surface-container hover:shadow-md transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full h-12 bg-transparent border border-outline-variant/50 rounded-none font-bold text-xs uppercase tracking-widest text-on-surface hover:border-primary transition-all duration-200 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
           >
             {isPendingGoogle ? (
               <div className="w-5 h-5 border-2 border-on-surface border-t-transparent rounded-full animate-spin" />

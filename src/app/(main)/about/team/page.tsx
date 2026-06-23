@@ -9,25 +9,35 @@ export const metadata: Metadata = {
 
 export default function TeamPage() {
   return (
-    <main className="pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-lowest">
-      <div className="max-w-container-max mx-auto">
-        <RevealOnScroll className="text-center max-w-3xl mx-auto mb-16 md:mb-24">
-          <span className="text-tertiary font-label-bold text-label-bold tracking-wider uppercase mb-2 block">
-            Our Community
-          </span>
-          <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg font-bold text-primary mb-6">
-            Resident and Alumni Association
-          </h1>
-          <p className="font-body-lg text-body-lg text-on-surface-variant">
-            YAD is guided by a dedicated team of professionals and a volunteer Board of Directors committed to transparency, accountability, and sustainable impact.
-          </p>
-        </RevealOnScroll>
+    <main className="pb-section-gap bg-surface">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
+        {/* Editorial Page Header */}
+        <div className="pt-24 pb-16 lg:pt-32 lg:pb-24 border-b border-outline-variant/30 mb-16">
+          <RevealOnScroll className="max-w-4xl">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-6 h-[1px] bg-on-surface" />
+              <span className="uppercase tracking-[0.2em] text-xs font-bold text-on-surface">
+                Our Community
+              </span>
+            </div>
+            <h1 className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-on-surface tracking-tighter leading-[1.0] mb-8">
+              Resident and <br className="hidden md:block"/> 
+              <span className="font-light italic text-on-surface-variant">Alumni Association.</span>
+            </h1>
+            <p className="text-lg md:text-xl text-on-surface-variant font-light leading-relaxed max-w-2xl">
+              YAD is guided by a dedicated team of professionals and a volunteer Board of Directors committed to transparency, accountability, and sustainable impact.
+            </p>
+          </RevealOnScroll>
+        </div>
 
         <CommunityStructureTeams />
 
-        <RevealOnScroll y={20} className="mt-24 max-w-4xl mx-auto bg-surface-container rounded-2xl p-8 md:p-12 text-center border border-outline-variant/40">
-          <h2 className="font-headline-lg text-headline-lg text-on-surface mb-4">Commitment to Transparency</h2>
-          <p className="font-body-lg text-body-lg text-on-surface-variant mb-0">
+        {/* Editorial Transparency Section */}
+        <RevealOnScroll className="mt-32 border-t border-b border-outline-variant/30 py-16 md:py-24 max-w-4xl mx-auto text-center">
+          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant/70 block mb-6">
+            Commitment to Transparency
+          </span>
+          <p className="text-2xl md:text-3xl text-on-surface font-light leading-relaxed tracking-tight">
             Our Board of Directors meets quarterly to review programmatic impact, financial health, and strategic direction. We adhere to global NGO standards for financial reporting and operational integrity.
           </p>
         </RevealOnScroll>

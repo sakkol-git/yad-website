@@ -1,75 +1,66 @@
+"use client";
+
 import Image from "next/image";
-import { Button } from "@/shared/components/ui/Button";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
-import { TextReveal } from "@/shared/components/animations/TextReveal";
-import { ImageRevealMask } from "@/shared/components/animations/ImageRevealMask";
+import { Button } from "@/shared/components/ui/Button";
+import Link from "next/link";
 
 export function ProgramsHero() {
   return (
-    <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-section-gap relative">
-      <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24 relative z-10">
-        <div className="lg:w-1/2 flex flex-col gap-6 items-start z-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary-fixed/30 text-primary-container font-label-bold text-label-bold border border-secondary-fixed/50 backdrop-blur-sm">
-            <span className="material-symbols-outlined text-lg">
-              volunteer_activism
-            </span>
-            Core Initiatives
+    <section className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-10 overflow-hidden border-b border-outline-variant/30">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
+        
+        {/* Editorial Split Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          
+          {/* Left Column: Typographic Focus */}
+          <div className="lg:col-span-5 flex flex-col z-10">
+            <RevealOnScroll delay={0.1}>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-6 h-[1px] bg-primary" />
+                <span className="uppercase tracking-[0.2em] text-xs font-bold text-primary">
+                  Core Initiatives
+                </span>
+              </div>
+            </RevealOnScroll>
+
+            {/* Massive, Tension-filled Headline */}
+            <RevealOnScroll delay={0.2}>
+              <h1 className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6">
+                Systems <br className="hidden md:block" />
+                of <span className="font-light italic text-on-surface-variant">Change.</span>
+              </h1>
+            </RevealOnScroll>
+
+            {/* Subtext */}
+            <RevealOnScroll delay={0.3}>
+              <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed max-w-sm mb-10">
+                Our core programs are not isolated efforts; they are an interconnected ecosystem designed to dismantle the specific barriers preventing Cambodian youth from reaching their absolute potential.
+              </p>
+              
+              <div className="flex flex-wrap gap-4">
+                <Button variant="default" size="lg" className="rounded-none bg-primary text-white h-12 px-6 hover:bg-primary/90 uppercase text-xs tracking-wider font-bold transition-all" asChild>
+                  <Link href="#programs-framework">Explore The Framework</Link>
+                </Button>
+              </div>
+            </RevealOnScroll>
           </div>
-          <TextReveal as="h1" text="Empowering Youth, Building Futures." className="font-display-lg text-headline-lg-mobile md:text-display-lg text-primary max-w-2xl leading-tight" />
-          <RevealOnScroll delay={0.2}>
-            <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
-              Our core programs are designed to provide holistic support,
-              practical skills, and educational foundation to youth in need,
-              fostering sustainable development in our communities.
-            </p>
-            <div className="flex flex-wrap items-center gap-4 mt-4">
-              <Button variant="primary" size="lg" className=" gap-2 group hover:scale-105 shadow-lg shadow-primary/20">
-                Explore Programs
-                <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
-                  arrow_forward
-                </span>
-              </Button>
-              <Button variant="ghost" size="lg" className=" gap-2">
-                <span className="material-symbols-outlined">
-                  play_circle
-                </span>
-                Watch Impact Video
-              </Button>
-            </div>
-          </RevealOnScroll>
-        </div>
-        <div className="lg:w-1/2 w-full relative">
-          <div className="absolute inset-0 bg-gradient-to-tr from-primary-fixed/20 to-tertiary-fixed/20 rounded-xl blur-2xl transform -rotate-3 scale-105 z-0" />
-          <ImageRevealMask className="relative z-10 w-full h-[500px] rounded-xl">
-            <Image
-              alt="Youth education and community building"
-              className="w-full h-full object-cover rounded-xl shadow-ambient"
-              src="/assets/images/yad-5.png"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              priority
-            />
-          </ImageRevealMask>
-          {/* Floating Stat Badge */}
-          <div className="absolute -bottom-8 -left-8 glass-panel p-6 rounded-lg z-20 shadow-ambient flex items-center gap-4 border border-white/40">
-            <div className="w-14 h-14 rounded-full bg-secondary-fixed flex items-center justify-center">
-              <span
-                className="material-symbols-outlined text-primary text-2xl"
-                style={{ fontVariationSettings: "'FILL' 1" }}
-              >
-                groups
-              </span>
-            </div>
-            <div>
-              <p className="font-headline-md text-headline-md text-primary m-0 leading-none">
-                5,000+
-              </p>
-              <p className="font-label-bold text-label-bold text-on-surface-variant m-0 mt-1">
-                Youth Reached
-              </p>
-            </div>
+
+          {/* Right Column: Cinematic Image */}
+          <div className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0">
+            <RevealOnScroll delay={0.3} className="w-full h-full relative">
+              <Image
+                src="/assets/images/yad-5.png"
+                alt="Students gathered in a vibrant community learning session"
+                fill
+                className="object-cover object-center"
+                priority
+                sizes="(max-width: 1024px) 100vw, 60vw"
+              />
+            </RevealOnScroll>
           </div>
         </div>
+
       </div>
     </section>
   );

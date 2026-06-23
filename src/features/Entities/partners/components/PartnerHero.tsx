@@ -1,32 +1,59 @@
+import Image from "next/image";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
-import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 export function PartnerHero() {
   return (
-    <section className="relative pt-32 pb-32 px-margin-mobile md:px-margin-desktop overflow-hidden bg-surface-container-lowest">
-      <div className="absolute inset-0 z-0 opacity-80">
-        {/* Abstract floating shapes for background texture */}
-        <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[60%] rounded-full bg-secondary-container opacity-30 blur-3xl mix-blend-multiply"></div>
-        <div className="absolute bottom-[-20%] left-[-10%] w-[50%] h-[70%] rounded-full bg-primary-fixed-dim opacity-20 blur-3xl mix-blend-multiply"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-surface/95 via-surface/60 to-transparent"></div>
-      </div>
-      <div className="relative z-10 max-w-container-max mx-auto text-center mt-12 mb-section-gap">
-        <div className="inline-flex items-center gap-2 bg-surface-container px-4 py-2 rounded-full mb-8">
-          <span className="material-symbols-outlined text-primary fill-icon text-sm">
-            handshake
-          </span>
-          <span className="font-label-bold text-label-bold text-primary">
-            Collaborative Impact
-          </span>
+    <section className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-10 overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
+        
+        {/* Editorial Split Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          
+          {/* Left Column: Typographic Focus (5 Columns) */}
+          <div className="lg:col-span-5 flex flex-col z-10">
+            <RevealOnScroll delay={0.1}>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-6 h-[1px] bg-primary" />
+                <span className="uppercase tracking-[0.2em] text-xs font-bold text-primary">
+                  Corporate & Community Alliances
+                </span>
+              </div>
+            </RevealOnScroll>
+
+            {/* Massive, Tension-filled Headline */}
+            <RevealOnScroll delay={0.2}>
+              <h1 className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6">
+                Driving <br className="hidden md:block" />
+                change through <br className="hidden md:block" />
+                <span className="font-light italic text-primary">
+                  strategic partnerships.
+                </span>
+              </h1>
+            </RevealOnScroll>
+
+            {/* Subtext */}
+            <RevealOnScroll delay={0.3}>
+              <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed max-w-sm mb-10">
+                We collaborate with visionary organizations globally and locally to amplify our impact across Cambodia. Together, we are building sustainable futures for young changemakers.
+              </p>
+            </RevealOnScroll>
+          </div>
+
+          {/* Right Column: Un-obscured Cinematic Image (7 Columns) */}
+          <div className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0">
+            <RevealOnScroll delay={0.3} className="w-full h-full relative">
+              <Image
+                src="/assets/images/yad-4.png"
+                alt="Cambodian youth and partners collaborating"
+                fill
+                className="object-cover object-center"
+                priority
+                sizes="(max-width: 1024px) 100vw, 60vw"
+              />
+            </RevealOnScroll>
+          </div>
         </div>
-        <TextReveal as="h1" text="Driving Change Through Strategic Partnerships" className="font-display-lg text-display-lg text-primary mb-6 max-w-4xl mx-auto drop-shadow-sm leading-tight" />
-        <RevealOnScroll delay={0.2}>
-          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10">
-            We collaborate with visionary organizations globally and locally to
-            amplify our impact across Cambodia. Together, we are building
-            sustainable futures for young changemakers.
-          </p>
-        </RevealOnScroll>
+
       </div>
     </section>
   );

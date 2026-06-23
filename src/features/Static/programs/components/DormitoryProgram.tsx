@@ -1,70 +1,84 @@
 import Image from "next/image";
-import { Button } from "@/shared/components/ui/Button";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
-import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { ImageRevealMask } from "@/shared/components/animations/ImageRevealMask";
+import Link from "next/link";
 
 export function DormitoryProgram() {
   return (
-    <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-section-gap">
-      <div className="bg-surface-container-lowest rounded-xl p-8 md:p-16 shadow-ambient relative overflow-hidden flex flex-col lg:flex-row items-center gap-16 border border-surface-container-low">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-secondary-fixed/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-        <div className="lg:w-1/2 relative z-10">
-          <div className="w-16 h-16 rounded-lg bg-secondary-fixed flex items-center justify-center mb-6">
-            <span
-              className="material-symbols-outlined text-primary text-3xl"
-              style={{ fontVariationSettings: "'FILL' 1" }}
-            >
-              home_work
-            </span>
-          </div>
-          <TextReveal as="h2" text="Dormitory & Youth Training Center" className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4" />
-          <RevealOnScroll delay={0.2}>
-            <p className="font-body-md text-body-md text-on-surface-variant mb-8 max-w-lg">
-              Providing a safe, supportive living environment paired with
-              intensive life-skills and vocational training. We ensure that
-              vulnerable youth have the stability they need to focus on their
-              personal and professional growth.
-            </p>
-            <div className="grid grid-cols-2 gap-6 mb-8">
-              <div className="bg-surface p-4 rounded-lg border border-surface-container-high">
-                <p className="font-headline-md text-headline-md text-secondary m-0">
-                  120
-                </p>
-                <p className="font-label-bold text-label-bold text-on-surface-variant m-0">
-                  Current Residents
-                </p>
+    <section className="py-24 md:py-32 bg-surface-container-lowest">
+      <div className="max-w-container-max mx-auto px-6 md:px-12 lg:px-16">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* Left/Top: Immersive Media */}
+          <div className="lg:col-span-7 flex flex-col gap-12 lg:order-last">
+            <RevealOnScroll delay={0.2}>
+              <ImageRevealMask className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden group">
+                <Image
+                  alt="Students gathered in the dormitory common area"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  src="/assets/images/yad-6.png"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                />
+              </ImageRevealMask>
+              <div className="mt-4 flex flex-col md:flex-row md:items-center justify-between gap-4 text-sm font-label-bold uppercase tracking-widest text-on-surface-variant/60">
+                <span>Dormitory Hub</span>
+                <span>Leadership Training Center</span>
               </div>
-              <div className="bg-surface p-4 rounded-lg border border-surface-container-high">
-                <p className="font-headline-md text-headline-md text-secondary m-0">
-                  45
-                </p>
-                <p className="font-label-bold text-label-bold text-on-surface-variant m-0">
-                  Training Modules
-                </p>
-              </div>
+            </RevealOnScroll>
+
+            {/* Metric Callouts */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-outline-variant/30 pt-12">
+              <RevealOnScroll delay={0.3}>
+                <div className="font-display-md text-5xl text-primary mb-2 tabular-nums">120</div>
+                <h4 className="font-label-bold text-xs uppercase tracking-widest text-on-surface mb-2">Current Residents</h4>
+                <p className="text-sm text-on-surface-variant leading-relaxed">Promising students from remote provinces provided with safe, full-time accommodation.</p>
+              </RevealOnScroll>
+              
+              <RevealOnScroll delay={0.4}>
+                <div className="font-display-md text-5xl text-secondary mb-2 tabular-nums">45+</div>
+                <h4 className="font-label-bold text-xs uppercase tracking-widest text-on-surface mb-2">Training Modules</h4>
+                <p className="text-sm text-on-surface-variant leading-relaxed">Comprehensive curriculum covering leadership, digital literacy, and civic engagement.</p>
+              </RevealOnScroll>
             </div>
-            <Button variant="link" className="px-0 no-underline hover:no-underline flex items-center gap-2 text-primary font-label-bold text-label-bold group" asChild>
-              <a href="/programs/dltc">
-                Learn about the center
-                <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
-                  arrow_right_alt
-                </span>
-              </a>
-            </Button>
-          </RevealOnScroll>
+          </div>
+
+          {/* Right/Bottom: Massive Editorial Context */}
+          <div className="lg:col-span-5 lg:sticky lg:top-32 lg:order-first">
+            <RevealOnScroll>
+              <span className="block text-primary uppercase tracking-[0.2em] font-label-bold text-xs mb-4">
+                Infrastructure for Leaders
+              </span>
+              <h2 className="font-headline-lg text-4xl lg:text-5xl text-primary mb-8 leading-tight tracking-tight">
+                More Than <br className="hidden lg:block"/> Just Housing.
+              </h2>
+              
+              <div className="space-y-6 font-body-lg text-on-surface-variant leading-relaxed text-lg">
+                <p>
+                  For promising students from remote, underserved provinces, the barrier to higher education isn't just tuition—it's the severe lack of safe, affordable accommodation in the capital.
+                </p>
+                <p>
+                  Our Dormitory and Youth Training Center solves this infrastructure gap. But we don't stop at housing. We pair this stable living environment with an intensive leadership curriculum, ensuring these students graduate not just with degrees, but with the capacity to lead.
+                </p>
+              </div>
+
+              <div className="mt-12">
+                <Link
+                  href="/programs/dltc"
+                  className="inline-flex items-center gap-3 text-primary uppercase tracking-[0.1em] font-label-bold text-sm hover:text-secondary transition-colors group pb-2 border-b border-primary/20 hover:border-secondary"
+                >
+                  Explore the Facility
+                  <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">
+                    arrow_right_alt
+                  </span>
+                </Link>
+              </div>
+            </RevealOnScroll>
+          </div>
+
         </div>
-        <div className="lg:w-1/2 relative z-10 h-[400px]">
-          <ImageRevealMask className="w-full h-full">
-            <Image
-              alt="Youth training center"
-              className="w-full h-full object-cover rounded-lg shadow-lg"
-              src="/assets/images/yad-6.png"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-          </ImageRevealMask>
-        </div>
+
       </div>
     </section>
   );

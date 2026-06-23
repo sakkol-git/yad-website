@@ -31,19 +31,16 @@ export function QuickFormSection() {
 
   if (formState === "success") {
     return (
-      <section className="py-section-gap px-margin-mobile md:px-margin-desktop">
-        <div className="max-w-4xl mx-auto bg-surface-container-lowest rounded-lg p-8 md:p-12 shadow-ambient border border-outline-variant/30 text-center">
-          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-6">
-            <span className="material-symbols-outlined text-4xl" aria-hidden="true">check_circle</span>
-          </div>
-          <h2 className="font-headline-md text-headline-md text-primary mb-4">
-            Thank You!
+      <section className="py-24 md:py-32 px-6 md:px-12 lg:px-16 bg-surface">
+        <div className="max-w-3xl mx-auto border border-outline-variant/30 p-12 text-center bg-surface-container-low">
+          <h2 className="font-headline-lg text-4xl text-primary mb-6 tracking-tight">
+            Submission Received
           </h2>
-          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto mb-8">
-            Your interest has been submitted. Our team will review your information and get back to you within 2 business days.
+          <p className="font-body-lg text-on-surface-variant mb-10 leading-relaxed">
+            Your interest has been registered. Our operations team will review your profile and respond within 48 hours to discuss deployment or partnership.
           </p>
-          <Button variant="outline" onClick={() => setFormState("idle")}>
-            Submit Another
+          <Button variant="outline" className="uppercase tracking-widest text-xs" onClick={() => setFormState("idle")}>
+            Submit Another Request
           </Button>
         </div>
       </section>
@@ -51,98 +48,84 @@ export function QuickFormSection() {
   }
 
   return (
-    <section className="py-section-gap px-margin-mobile md:px-margin-desktop">
-      <RevealOnScroll className="max-w-4xl mx-auto bg-surface-container-lowest rounded-lg p-8 md:p-12 shadow-ambient relative overflow-hidden border border-outline-variant/30">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-secondary-container/20 rounded-bl-full -z-10 blur-xl" />
-        <div className="text-center mb-10">
-          <TextReveal as="h2" text="Start Your Journey" className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4" />
-          <p className="font-body-md text-body-md text-on-surface-variant max-w-xl mx-auto">
-            Fill out this quick form and our team will match you with the best
-            opportunity to make a difference.
+    <section className="py-24 md:py-32 px-6 md:px-12 lg:px-16 bg-surface-container-lowest">
+      <RevealOnScroll className="max-w-4xl mx-auto">
+        <div className="mb-16">
+          <span className="block text-primary uppercase tracking-[0.2em] font-label-bold text-xs mb-4">
+            Take Action
+          </span>
+          <TextReveal as="h2" text="Initiate Contact" className="font-headline-lg text-4xl lg:text-5xl text-primary mb-6 tracking-tight" />
+          <p className="font-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+            Provide your operational details below. Our team will evaluate your profile and match your capabilities with our highest-priority systemic needs.
           </p>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <form onSubmit={handleSubmit} className="space-y-8 bg-surface border border-outline-variant/30 p-8 md:p-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <FormLabel htmlFor="quick-first-name">First Name</FormLabel>
-              <FormInput id="quick-first-name" name="firstName" type="text" placeholder="Jane" required disabled={isPending} />
+              <FormLabel htmlFor="quick-first-name" className="text-xs uppercase tracking-widest mb-2 font-label-bold">First Name</FormLabel>
+              <FormInput id="quick-first-name" name="firstName" type="text" className="rounded-none border-t-0 border-x-0 border-b-2 border-outline-variant focus:border-primary bg-transparent px-0 focus:ring-0" required disabled={isPending} />
             </div>
             <div>
-              <FormLabel htmlFor="quick-last-name">Last Name</FormLabel>
-              <FormInput id="quick-last-name" name="lastName" type="text" placeholder="Doe" required disabled={isPending} />
+              <FormLabel htmlFor="quick-last-name" className="text-xs uppercase tracking-widest mb-2 font-label-bold">Last Name</FormLabel>
+              <FormInput id="quick-last-name" name="lastName" type="text" className="rounded-none border-t-0 border-x-0 border-b-2 border-outline-variant focus:border-primary bg-transparent px-0 focus:ring-0" required disabled={isPending} />
             </div>
           </div>
+          
           <div>
-            <FormLabel htmlFor="quick-email">Email Address</FormLabel>
-            <FormInput id="quick-email" name="email" type="email" placeholder="jane@example.com" required disabled={isPending} />
+            <FormLabel htmlFor="quick-email" className="text-xs uppercase tracking-widest mb-2 font-label-bold">Email Address</FormLabel>
+            <FormInput id="quick-email" name="email" type="email" className="rounded-none border-t-0 border-x-0 border-b-2 border-outline-variant focus:border-primary bg-transparent px-0 focus:ring-0" required disabled={isPending} />
           </div>
+
           <fieldset disabled={isPending}>
-            <legend className="font-body-md text-body-md text-on-surface font-semibold mb-3">I want to...</legend>
-            <div className="flex flex-wrap gap-4">
-              <label className="cursor-pointer relative">
-                <input
-                  className="peer sr-only"
-                  name="interest"
-                  type="radio"
-                  value="fund"
-                />
-                <div className="min-h-[44px] flex items-center justify-center px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-body-md text-body-md peer-checked:bg-secondary-container peer-checked:text-on-secondary-container peer-checked:border-secondary transition-all hover:bg-surface-container">
-                  Fund a Project
+            <legend className="text-xs uppercase tracking-widest mb-4 font-label-bold">Primary Objective</legend>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <label className="cursor-pointer">
+                <input className="peer sr-only" name="interest" type="radio" value="fund" />
+                <div className="text-center px-4 py-4 border border-outline-variant/30 text-on-surface-variant font-label-bold text-sm uppercase tracking-widest peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition-colors">
+                  Fund Projects
                 </div>
               </label>
-              <label className="cursor-pointer relative">
-                <input
-                  className="peer sr-only"
-                  name="interest"
-                  type="radio"
-                  value="mentor"
-                  defaultChecked
-                />
-                <div className="min-h-[44px] flex items-center justify-center px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-body-md text-body-md peer-checked:bg-tertiary-fixed peer-checked:text-on-tertiary-fixed peer-checked:border-tertiary transition-all hover:bg-surface-container">
-                  Volunteer / Mentor
+              <label className="cursor-pointer">
+                <input className="peer sr-only" name="interest" type="radio" value="mentor" defaultChecked />
+                <div className="text-center px-4 py-4 border border-outline-variant/30 text-on-surface-variant font-label-bold text-sm uppercase tracking-widest peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition-colors">
+                  Field Volunteer
                 </div>
               </label>
-              <label className="cursor-pointer relative">
-                <input
-                  className="peer sr-only"
-                  name="interest"
-                  type="radio"
-                  value="partner"
-                />
-                <div className="min-h-[44px] flex items-center justify-center px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-body-md text-body-md peer-checked:bg-primary-fixed peer-checked:text-on-primary-fixed peer-checked:border-primary transition-all hover:bg-surface-container">
-                  Discuss Partnership
+              <label className="cursor-pointer">
+                <input className="peer sr-only" name="interest" type="radio" value="partner" />
+                <div className="text-center px-4 py-4 border border-outline-variant/30 text-on-surface-variant font-label-bold text-sm uppercase tracking-widest peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition-colors">
+                  Partnership
                 </div>
               </label>
             </div>
           </fieldset>
 
           <div>
-            <FormLabel htmlFor="quick-message">Message (Optional)</FormLabel>
+            <FormLabel htmlFor="quick-message" className="text-xs uppercase tracking-widest mb-2 font-label-bold">Operational Context (Optional)</FormLabel>
             <textarea
               id="quick-message"
               name="message"
-              rows={4}
-              placeholder="Tell us a little more about how you'd like to get involved..."
+              rows={3}
               disabled={isPending}
-              className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-y text-on-surface font-body-md text-body-md"
+              className="w-full bg-transparent border-t-0 border-x-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 px-0 py-2 transition-all resize-y text-on-surface font-body-md"
             ></textarea>
           </div>
 
           {formState === "error" && (
-            <div className="p-4 bg-error/10 border border-error/20 text-error text-sm rounded-lg flex items-center gap-2">
-              <span className="material-symbols-outlined text-lg" aria-hidden="true">error</span>
-              <span>{errorMessage}</span>
+            <div className="p-4 bg-error/10 border border-error/30 text-error text-sm">
+              {errorMessage}
             </div>
           )}
 
-          <div className="pt-4">
+          <div className="pt-6">
             <Button
-              className="w-full bg-primary text-on-primary font-label-bold text-label-bold hover:bg-on-primary-fixed-variant hover:text-white transition-colors duration-300 shadow-md"
+              className="w-full bg-primary text-on-primary hover:bg-surface-inverse hover:text-white uppercase tracking-widest text-sm"
               type="submit"
               size="lg"
               disabled={isPending}
             >
-              {isPending ? "Submitting..." : "Submit Interest"}
+              {isPending ? "Transmitting..." : "Submit Dispatch"}
             </Button>
           </div>
         </form>

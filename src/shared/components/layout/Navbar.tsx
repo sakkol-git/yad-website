@@ -64,7 +64,9 @@ export default function Navbar() {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, role, isLoading } = useAuth();
-  
+
+
+
   const navRef = useRef<HTMLElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -74,7 +76,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Background effect
       if (currentScrollY > 50) {
         setIsScrolled(true);
@@ -107,7 +109,7 @@ export default function Navbar() {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsMenuOpen(false);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   // Prevent background scrolling when mobile menu is open
@@ -125,7 +127,7 @@ export default function Navbar() {
   // Focus trap for mobile drawer
   useEffect(() => {
     if (!isMenuOpen || !drawerRef.current) return;
-    
+
     const focusableElements = drawerRef.current.querySelectorAll(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     );
@@ -169,28 +171,27 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ease-in-out ${
-        isScrolled 
-          ? "bg-surface/95 backdrop-blur-md border-b border-surface-variant/40 shadow-sm" 
-          : "bg-transparent border-transparent"
-      } ${isHidden ? "-translate-y-full" : "translate-y-0"}`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ease-in-out ${isScrolled
+        ? "bg-surface border-b border-outline-variant/30"
+        : "bg-transparent border-transparent"
+        } ${isHidden ? "-translate-y-full" : "translate-y-0"}`}
       aria-label="Main navigation"
     >
       <div className="flex justify-between items-center px-4 md:px-6 lg:px-8 py-3 md:py-4 max-w-[1440px] mx-auto">
         {/* Brand */}
         <Link
           href="/"
-          className="flex items-center gap-3 z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md"
+          className={`flex items-center gap-3 z-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:border-primary rounded-none text-primary`}
         >
           <Image
             src="/assets/images/yad_logo.png"
             alt="YAD Logo"
             width={44}
             height={44}
-            className="w-10 h-10 md:w-11 md:h-11 object-contain transition-transform duration-300 hover:scale-105"
+            className={`w-10 h-10 md:w-11 md:h-11 object-contain transition-all duration-300 hover:scale-105`}
             priority
           />
-          <span className="font-headline-md text-xl md:text-2xl font-bold text-primary tracking-tight">
+          <span className="text-xl md:text-2xl font-bold tracking-widest uppercase">
             YAD
           </span>
         </Link>
@@ -203,7 +204,9 @@ export default function Navbar() {
               <div key={link.href} className="relative group">
                 <Link
                   href={link.href}
-                  className={`flex items-center gap-1 py-2 text-sm transition-colors duration-200 ${isActive ? "text-primary font-bold" : "text-on-surface-variant hover:text-primary"
+                  className={`flex items-center gap-1 py-2 text-sm transition-colors duration-200 ${isActive
+                    ? "text-primary font-bold"
+                    : "text-on-surface-variant hover:text-primary"
                     }`}
                 >
                   {link.label}
@@ -214,19 +217,18 @@ export default function Navbar() {
                   )}
                 </Link>
 
-                {/* Sub-menu with invisible bridge to prevent accidental closing */}
                 {link.subLinks && (
                   <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50">
-                    <div className="w-56 bg-surface rounded-lg shadow-lg border border-surface-variant/50 overflow-hidden flex flex-col py-2">
+                    <div className="w-56 bg-surface rounded-none border border-outline-variant/30 overflow-hidden flex flex-col py-2">
                       {link.subLinks.map((subLink) => {
                         const isSubActive = pathname === subLink.href;
                         return (
                           <Link
                             key={subLink.href}
                             href={subLink.href}
-                            className={`px-4 py-2.5 text-sm text-center transition-colors ${isSubActive
-                              ? "text-primary font-semibold bg-primary/5"
-                              : "text-on-surface-variant hover:text-primary hover:bg-surface-container"
+                            className={`px-4 py-3 text-sm text-center transition-colors ${isSubActive
+                              ? "text-primary font-bold bg-surface-container/50 uppercase tracking-widest text-[10px]"
+                              : "text-on-surface-variant font-light hover:text-primary hover:bg-surface-container"
                               }`}
                           >
                             {subLink.label}
@@ -248,18 +250,18 @@ export default function Navbar() {
           ) : user ? (
             <div className="relative group">
               <button
-                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-surface-variant/50 bg-surface hover:bg-surface-container transition-all focus:outline-none focus:ring-2 focus:ring-primary text-sm font-medium text-on-surface"
+                className={`flex items-center gap-2 px-4 py-2 rounded-none border transition-all focus:outline-none focus:border-primary text-[10px] font-bold tracking-widest uppercase border-outline-variant/30 bg-surface hover:bg-surface-container text-on-surface`}
                 aria-haspopup="true"
               >
-                <span className="material-symbols-outlined text-[20px] text-primary" aria-hidden="true">account_circle</span>
+                <span className="material-symbols-outlined text-[16px]" aria-hidden="true">account_circle</span>
                 <span className="max-w-[100px] truncate">My Account</span>
-                <span className="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:rotate-180 transition-transform" aria-hidden="true">
+                <span className="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:rotate-180 transition-transform" aria-hidden="true">
                   expand_more
                 </span>
               </button>
 
               <div className="absolute right-0 top-full pt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 z-50">
-                <div className="bg-surface rounded-lg shadow-xl border border-surface-variant/50 flex flex-col overflow-hidden">
+                <div className="bg-surface rounded-none border border-outline-variant/30 flex flex-col overflow-hidden">
                   <div className="px-4 py-3 bg-surface-container/30 border-b border-surface-variant/50">
                     <p className="text-sm font-semibold text-on-surface truncate">{user.email}</p>
                     <p className="text-xs text-on-surface-variant capitalize mt-0.5">{role} Access</p>
@@ -284,20 +286,20 @@ export default function Navbar() {
           ) : (
             <Link
               href="/auth/login"
-              className="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors px-2"
+              className={`text-sm font-medium transition-colors px-2 text-on-surface-variant hover:text-primary`}
             >
               Log In
             </Link>
           )}
 
-          <Button variant="primary" className=" shadow-sm hover:shadow-md transition-all" asChild>
-            <Link href="/donate/flow">Donate Now</Link>
+          <Button variant="primary" asChild>
+            <Link href="/donate">Donate Now</Link>
           </Button>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button
-          className="lg:hidden text-on-surface p-2 -mr-2 flex items-center justify-center rounded-md hover:bg-surface-container transition-colors z-50 focus:outline-none focus:ring-2 focus:ring-primary"
+          className={`lg:hidden p-2 -mr-2 flex items-center justify-center rounded-none transition-colors z-50 focus:outline-none focus:border-primary border border-transparent text-on-surface hover:border-outline-variant/30`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-expanded={isMenuOpen}
           aria-label="Toggle navigation menu"
@@ -320,14 +322,14 @@ export default function Navbar() {
         ref={drawerRef}
         aria-modal="true"
         role="dialog"
-        className={`lg:hidden fixed inset-y-0 right-0 w-full max-w-sm bg-surface shadow-2xl z-50 flex flex-col h-[100svh] overflow-hidden transition-transform duration-300 ease-in-out ${isMenuOpen ? "translate-x-0" : "translate-x-full"
+        className={`lg:hidden fixed inset-y-0 right-0 w-full max-w-sm bg-surface border-l border-outline-variant/30 z-50 flex flex-col h-[100svh] overflow-hidden transition-transform duration-300 ease-in-out ${isMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
       >
         {/* Drawer Header */}
-        <div className="flex justify-between items-center px-4 py-3 md:py-4 border-b border-surface-variant/40">
-          <span className="font-headline-md text-xl font-bold text-primary">Menu</span>
+        <div className="flex justify-between items-center px-6 py-4 border-b border-outline-variant/30">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-primary">Menu</span>
           <button
-            className="text-on-surface p-2 -mr-2 flex items-center justify-center rounded-md hover:bg-surface-container transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
+            className="text-on-surface p-2 -mr-2 flex items-center justify-center rounded-none border border-transparent hover:border-outline-variant/30 transition-colors focus:outline-none focus:border-primary"
             onClick={() => setIsMenuOpen(false)}
             aria-label="Close navigation menu"
           >
@@ -341,13 +343,13 @@ export default function Navbar() {
             {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
               const hasSubLinks = !!link.subLinks;
-              
+
               if (!hasSubLinks) {
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`py-3 px-4 rounded-lg font-medium text-base transition-colors flex justify-between items-center ${isActive ? "bg-primary/10 text-primary" : "text-on-surface hover:bg-surface-container"
+                    className={`py-3 px-4 rounded-none font-light text-base transition-colors flex justify-between items-center border border-transparent ${isActive ? "bg-surface-container border-outline-variant/30 text-primary font-bold text-[10px] uppercase tracking-widest" : "text-on-surface hover:bg-surface-container hover:border-outline-variant/30"
                       }`}
                   >
                     {link.label}

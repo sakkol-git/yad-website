@@ -6,21 +6,20 @@ export const NAV_LINKS: NavLink[] = [
     href: "/about",
     label: "About Us",
     subLinks: [
-      { href: "/about", label: "About Us" },
-      { href: "/about#our-history", label: "Our History" },
-      { href: "/about/team", label: "Resident and Alumni" },
-      { href: "/about/governance", label: "Governance & Teams" },
-      { href: "/partner", label: "Partners" },
+      { href: "/about", label: "Our Story" },
+      { href: "/about/team", label: "Resident & Alumni" },
+      { href: "/about/governance", label: "Leadership & Governance " },
       { href: "/donors", label: "Donors" },
+      { href: "/partner", label: "Partners" },
     ]
   },
   {
     href: "/programs",
-    label: "Programs",
+    label: "Our Work",
     subLinks: [
-      { href: "/programs", label: "Our Programs" },
+      { href: "/programs", label: "Core Programs" },
       { href: "/services", label: "Services" },
-      { href: "/event", label: "Events Calendar" }
+      { href: "/event", label: "Events" }
     ]
   },
   {

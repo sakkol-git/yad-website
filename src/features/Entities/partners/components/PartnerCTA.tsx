@@ -5,37 +5,47 @@ import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 export function PartnerCTA() {
   return (
-    <section className="py-section-gap px-margin-mobile md:px-margin-desktop">
-      <div className="max-w-container-max mx-auto bg-primary-container rounded-xl p-12 md:p-20 text-center relative overflow-hidden">
-        <div className="relative z-10">
-          <TextReveal as="h2" text="Become a Partner" className="font-display-lg text-headline-lg md:text-display-lg text-primary-fixed mb-6" />
+    <section className="py-24 bg-surface border-t border-outline-variant/30">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
+        <div className="bg-on-surface p-12 md:p-24 text-center">
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="w-12 h-[1px] bg-surface/30" />
+            <span className="uppercase tracking-[0.2em] text-xs font-bold text-surface/70">
+              Join Our Coalition
+            </span>
+            <div className="w-12 h-[1px] bg-surface/30" />
+          </div>
+          
+          <h2 className="text-[3rem] md:text-[4rem] text-surface tracking-tighter leading-[1.0] mb-8">
+            Become a <span className="font-light italic text-surface-variant">Partner.</span>
+          </h2>
+          
           <RevealOnScroll delay={0.2}>
-            <p className="font-body-lg text-body-lg text-on-primary-container max-w-2xl mx-auto mb-10">
+            <p className="text-lg md:text-xl text-surface-variant font-light leading-relaxed max-w-2xl mx-auto mb-12">
               Are you ready to invest in the next generation of leaders? Join our
               coalition and help us scale our proven development programs across
               communities that need them most.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-6">
               <Button
-   variant="default"
-   size="lg"
-   className=" shadow-ambient hover:scale-105 bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-fixed-dim"
-   asChild
-   >
+                variant="default"
+                size="lg"
+                className="rounded-none bg-surface text-on-surface hover:bg-surface-variant h-14 px-8 text-sm uppercase tracking-wider font-bold transition-all"
+                asChild
+              >
                 <Link href="/get-involved">Partner Inquiry</Link>
               </Button>
               <Button
-   variant="outline"
-   size="lg"
-   className=" border-2 border-primary-fixed text-primary-fixed hover:bg-primary-fixed hover:text-primary"
-   asChild
-   >
+                variant="outline"
+                size="lg"
+                className="rounded-none border-surface text-surface hover:bg-surface hover:text-on-surface h-14 px-8 text-sm uppercase tracking-wider font-bold transition-all"
+                asChild
+              >
                 <Link href="#">View Partnership Prospectus</Link>
               </Button>
             </div>
           </RevealOnScroll>
         </div>
-        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/leaf.png')]"></div>
       </div>
     </section>
   );

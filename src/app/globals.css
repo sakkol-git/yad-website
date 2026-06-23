@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #1a7a4a;
+  --color-primary: #0F4C3A;
   --color-on-primary: #ffffff;
-  --color-primary-container: #669984;
-  --color-on-primary-container: #0d4028;
-  --color-primary-fixed: #b0e8c8;
-  --color-primary-fixed-dim: #7acfa2;
-  --color-on-primary-fixed: #00210d;
-  --color-on-primary-fixed-variant: #0d4028;
-  --color-inverse-primary: #7acfa2;
+  --color-primary-container: #4D7B6B;
+  --color-on-primary-container: #062319;
+  --color-primary-fixed: #A9D1C0;
+  --color-primary-fixed-dim: #79A995;
+  --color-on-primary-fixed: #03130E;
+  --color-on-primary-fixed-variant: #062319;
+  --color-inverse-primary: #79A995;
 
   --color-secondary: #e08c00;
   --color-on-secondary: #ffffff;
@@ -29,24 +29,24 @@
   --color-on-tertiary-fixed: #001e2d;
   --color-on-tertiary-fixed-variant: #06334a;
 
-  --color-background: #f5f9f6;
-  --color-on-background: #131c17;
-  --color-surface: #f5f9f6;
-  --color-surface-bright: #f5f9f6;
-  --color-surface-dim: #cdd7d0;
-  --color-on-surface: #131c17;
-  --color-on-surface-variant: #384d3e;
-  --color-surface-variant: #dde5df;
-  --color-surface-tint: #1a7a4a;
+  --color-background: #F9F9F8;
+  --color-on-background: #111413;
+  --color-surface: #F9F9F8;
+  --color-surface-bright: #F9F9F8;
+  --color-surface-dim: #DCDDDA;
+  --color-on-surface: #111413;
+  --color-on-surface-variant: #3A4440;
+  --color-surface-variant: #E2E4E1;
+  --color-surface-tint: #0F4C3A;
 
   --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #eff5f1;
-  --color-surface-container: #e9f0eb;
-  --color-surface-container-high: #dde5df;
-  --color-surface-container-highest: #d0dad3;
+  --color-surface-container-low: #F3F4F1;
+  --color-surface-container: #EDEFEA;
+  --color-surface-container-high: #E2E4E1;
+  --color-surface-container-highest: #D5D7D3;
 
-  --color-inverse-surface: #1f2e25;
-  --color-inverse-on-surface: #ecf2ee;
+  --color-inverse-surface: #2E3230;
+  --color-inverse-on-surface: #F0F2EF;
 
   --color-outline: #5e8068;
   --color-outline-variant: #afc4b5;
@@ -78,20 +78,20 @@
   --spacing-section-gap: clamp(64px, 8vw, 120px);
   --spacing-margin-desktop: clamp(32px, 5vw, 64px);
 
-  --radius-DEFAULT: 1rem;
-  --radius-lg: 1.2rem;
-  --radius-xl: 1.8rem;
+  --radius-DEFAULT: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
 
   --font-label-bold: "Plus Jakarta Sans", sans-serif;
   --font-body-md: "Plus Jakarta Sans", sans-serif;
   --font-body-lg: "Plus Jakarta Sans", sans-serif;
-  --font-display-md: "Plus Jakarta Sans", sans-serif;
-  --font-display-lg: "Plus Jakarta Sans", sans-serif;
-  --font-headline-sm: "Plus Jakarta Sans", sans-serif;
-  --font-headline-md: "Plus Jakarta Sans", sans-serif;
-  --font-headline-lg-mobile: "Plus Jakarta Sans", sans-serif;
-  --font-headline-lg: "Plus Jakarta Sans", sans-serif;
-  --font-title-lg: "Plus Jakarta Sans", sans-serif;
+  --font-display-md: var(--font-playfair-display), "Playfair Display", serif;
+  --font-display-lg: var(--font-playfair-display), "Playfair Display", serif;
+  --font-headline-sm: var(--font-playfair-display), "Playfair Display", serif;
+  --font-headline-md: var(--font-playfair-display), "Playfair Display", serif;
+  --font-headline-lg-mobile: var(--font-playfair-display), "Playfair Display", serif;
+  --font-headline-lg: var(--font-playfair-display), "Playfair Display", serif;
+  --font-title-lg: var(--font-playfair-display), "Playfair Display", serif;
 
   --text-label-bold: 14px;
   --text-label-bold--line-height: 1.2;
@@ -153,55 +153,7 @@ html {
   font-variation-settings: "FILL" 1;
 }
 
-.shadow-ambient {
-  box-shadow: 0 10px 40px -10px rgba(1, 54, 25, 0.08);
-}
-
-.shadow-ambient-hover {
-  box-shadow: 0 14px 48px -8px rgba(1, 54, 25, 0.14);
-}
-
-.gradient-mask {
-  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-}
-
-.hero-gradient {
-  background: linear-gradient(to right, var(--color-surface) 30%, transparent 100%);
-}
-
-.glass-nav {
-  background: rgb(248, 250, 248);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.glass-panel {
-  background: rgba(248, 250, 248, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-/* .ambient-shadow removed — use .shadow-ambient instead */
-
-.soft-gradient {
-  background: linear-gradient(135deg,
-      var(--color-surface-container-low) 0%,
-      var(--color-surface-container-lowest) 50%,
-      var(--color-secondary-container) 100%);
-  opacity: 0.3;
-}
-
-.hover-lift {
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 48px -8px rgba(1, 54, 25, 0.14);
-}
+/* Removed legacy soft-UI classes (shadow-ambient, hover-lift, glass, gradients) */
 
 .floating-element {
   animation: float 6s ease-in-out infinite;
@@ -285,4 +237,13 @@ html {
 
 .delay-400 {
   animation-delay: 0.4s;
+}
+
+@keyframes slow-pan {
+  from {
+    transform: scale(1.05) translate(0, 0);
+  }
+  to {
+    transform: scale(1.1) translate(-1%, 2%);
+  }
 }

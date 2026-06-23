@@ -52,23 +52,23 @@ export default async function DonorDetailPage({ params }: PageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-surface-container-lowest pb-24 pt-24 lg:pt-32">
-      <div className="container max-w-4xl mx-auto px-6">
-        <Link href="/donors" className="inline-flex items-center gap-2 text-primary hover:underline font-medium mb-8">
-          <span className="material-symbols-outlined text-[20px]">arrow_back</span>
+    <main className="min-h-screen bg-background pb-24 pt-24 lg:pt-32">
+      <div className="container max-w-5xl mx-auto px-6">
+        <Link href="/donors" className="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary font-bold text-[10px] uppercase tracking-widest mb-12 transition-colors">
+          <span className="material-symbols-outlined text-[16px]">arrow_back</span>
           Back to All Donors
         </Link>
         
-        <div className="bg-surface rounded-xl p-8 md:p-12 shadow-ambient border border-outline-variant/30 relative overflow-hidden">
+        <div className="bg-surface rounded-none p-8 md:p-16 border border-outline-variant/30 relative overflow-hidden">
           {/* Subtle Background Decoration */}
           <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
             <span className="material-symbols-outlined text-[240px]">volunteer_activism</span>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-8 md:gap-12 relative z-10">
+          <div className="flex flex-col md:flex-row gap-12 md:gap-16 relative z-10 items-start">
             {/* Avatar Column */}
             <div className="flex-shrink-0 mx-auto md:mx-0">
-              <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden relative shadow-lg bg-surface-variant/30 flex items-center justify-center border-4 border-surface">
+              <div className="w-48 h-48 md:w-64 md:h-64 rounded-none overflow-hidden relative bg-transparent flex items-center justify-center border border-outline-variant/30">
                 {typedDonor.avatar_url ? (
                   <Image 
                     src={typedDonor.avatar_url} 
@@ -76,46 +76,46 @@ export default async function DonorDetailPage({ params }: PageProps) {
                     className="absolute inset-0 w-full h-full object-cover text-transparent"
                   width={800} height={600} />
                 ) : (
-                  <span className="material-symbols-outlined text-[80px] text-on-surface-variant/50">person</span>
+                  <span className="material-symbols-outlined text-[80px] text-on-surface-variant/30">person</span>
                 )}
               </div>
             </div>
 
             {/* Content Column */}
             <div className="flex-grow text-center md:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary font-bold text-sm mb-4">
-                <span className="material-symbols-outlined text-[16px]">verified</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 border border-outline-variant/50 text-primary font-bold text-[10px] uppercase tracking-widest mb-6">
+                <span className="material-symbols-outlined text-[14px]">verified</span>
                 Verified Supporter
               </div>
               
-              <h1 className="text-3xl md:text-5xl font-headline-lg font-bold text-on-surface mb-2">
+              <h1 className="text-4xl md:text-6xl font-light tracking-tighter text-on-surface mb-4 leading-none">
                 {typedDonor.name}
               </h1>
               
-              <p className="text-xl text-primary font-medium mb-6">
+              <p className="text-sm font-light uppercase tracking-widest text-primary mb-8">
                 {typedDonor.country || 'Global Supporter'}
               </p>
 
               {typedDonor.description && (
-                <div className="prose prose-lg text-on-surface-variant mb-8 max-w-none">
-                  <p className="italic font-medium leading-relaxed">
-                    "{typedDonor.description}"
+                <div className="mb-12 max-w-3xl border-l border-primary pl-6 text-left mx-auto md:mx-0">
+                  <p className="text-2xl font-light tracking-tight text-on-surface leading-relaxed">
+                    &ldquo;{typedDonor.description}&rdquo;
                   </p>
                 </div>
               )}
 
-              <div className="grid grid-cols-2 gap-4 pt-6 border-t border-outline-variant/30">
+              <div className="grid grid-cols-2 gap-8 pt-8 border-t border-outline-variant/30 text-left">
                 <div>
-                  <h4 className="text-sm font-label-bold text-on-surface-variant mb-1 uppercase tracking-wider">Donation Date</h4>
-                  <p className="font-bold text-on-surface">
+                  <h4 className="text-[10px] font-bold text-on-surface-variant mb-2 uppercase tracking-widest">Donation Date</h4>
+                  <p className="text-lg font-light text-on-surface">
                     {typedDonor.donation_date ? new Date(typedDonor.donation_date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }) : 'Ongoing Support'}
                   </p>
                 </div>
                 {typedDonor.amount && (
                   <div>
-                    <h4 className="text-sm font-label-bold text-on-surface-variant mb-1 uppercase tracking-wider">Contribution</h4>
-                    <p className="font-bold text-primary flex items-center justify-center md:justify-start gap-1">
-                      <span className="material-symbols-outlined text-[18px]">favorite</span>
+                    <h4 className="text-[10px] font-bold text-on-surface-variant mb-2 uppercase tracking-widest">Contribution</h4>
+                    <p className="text-2xl font-light text-primary flex items-center justify-start gap-2">
+                      <span className="material-symbols-outlined text-[20px]">favorite</span>
                       ${typedDonor.amount.toLocaleString()}
                     </p>
                   </div>
@@ -126,13 +126,13 @@ export default async function DonorDetailPage({ params }: PageProps) {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-16 text-center bg-primary-container/30 rounded-xl p-8 md:p-12 border border-primary/10">
-          <h3 className="text-2xl font-bold text-on-surface mb-4">Join {typedDonor.name} in Making a Difference</h3>
-          <p className="text-on-surface-variant max-w-2xl mx-auto mb-8">
+        <div className="mt-20 text-center bg-surface border border-outline-variant/30 rounded-none p-8 md:p-16">
+          <h3 className="text-3xl font-light text-on-surface tracking-tight mb-4">Join {typedDonor.name} in Making a Difference</h3>
+          <p className="text-sm font-light text-on-surface-variant max-w-2xl mx-auto mb-10 leading-relaxed">
             Your support helps us continue our mission of empowering Cambodian youth through education and community development.
           </p>
           <Link href="/donate">
-            <Button size="lg" className=" shadow-md hover:scale-105 transition-transform px-8">
+            <Button size="lg" variant="default" className="rounded-none uppercase tracking-widest text-[10px] font-bold px-10 h-14 bg-primary text-white hover:bg-primary/90 transition-all">
               Become a Donor Today
             </Button>
           </Link>

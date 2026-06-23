@@ -20,9 +20,11 @@ export function BookingSection() {
       id="booking-section"
       className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto"
     >
-      <RevealOnScroll className="text-center mb-16 max-w-2xl mx-auto">
-        <TextReveal as="h2" text="Reserve Your Experience" className="font-headline-md text-headline-md text-primary mb-4" />
-        <p className="text-on-surface-variant font-body-md text-body-md">
+      <RevealOnScroll className="mb-16">
+        <h2 className="text-[2.5rem] md:text-[3.5rem] text-on-surface tracking-tighter leading-[1.0] mb-4">
+          Reserve your <span className="font-light italic text-on-surface-variant">Experience.</span>
+        </h2>
+        <p className="text-base text-on-surface-variant font-light max-w-xl">
           Complete your booking details below. All proceeds support YAD
           educational initiatives in the local community.
         </p>
@@ -33,26 +35,25 @@ export function BookingSection() {
         <div className="lg:col-span-8">
           <form className="space-y-8">
             {/* Step 1: Stay Details */}
-            <div className="bg-surface-container-lowest rounded-lg p-8 shadow-ambient relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-2 h-full bg-secondary" />
-              <h3 className="font-headline-md text-2xl text-primary mb-6 flex items-center gap-3">
-                <span className="bg-secondary-container text-on-secondary-container w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">
+            <div className="bg-surface border border-outline-variant/30 p-8 md:p-12">
+              <h3 className="text-2xl text-on-surface font-light tracking-tight mb-8 flex items-center gap-4">
+                <span className="w-8 h-8 border border-on-surface flex items-center justify-center text-[10px] font-bold">
                   1
                 </span>
                 Stay Details
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <FormLabel>Check-in Date</FormLabel>
-                  <FormInput type="date" required />
+                  <FormInput type="date" required className="rounded-none border-outline-variant/30" />
                 </div>
                 <div>
                   <FormLabel>Check-out Date</FormLabel>
-                  <FormInput type="date" required />
+                  <FormInput type="date" required className="rounded-none border-outline-variant/30" />
                 </div>
                 <div>
                   <FormLabel>Number of Guests</FormLabel>
-                  <FormSelect>
+                  <FormSelect className="rounded-none border-outline-variant/30">
                     <option value="1">1 Guest</option>
                     <option value="2">2 Guests</option>
                     <option value="3">3 Guests</option>
@@ -61,7 +62,7 @@ export function BookingSection() {
                 </div>
                 <div>
                   <FormLabel>Dietary Requirements</FormLabel>
-                  <FormSelect>
+                  <FormSelect className="rounded-none border-outline-variant/30">
                     <option value="none">None</option>
                     <option value="vegetarian">Vegetarian</option>
                     <option value="vegan">Vegan</option>
@@ -73,39 +74,37 @@ export function BookingSection() {
             </div>
 
             {/* Step 2: Guest Information */}
-            <div className="bg-surface-container-lowest rounded-lg p-8 shadow-ambient relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-2 h-full bg-tertiary-fixed-dim" />
-              <h3 className="font-headline-md text-2xl text-primary mb-6 flex items-center gap-3">
-                <span className="bg-tertiary-container text-on-tertiary-container w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">
+            <div className="bg-surface border border-outline-variant/30 p-8 md:p-12">
+              <h3 className="text-2xl text-on-surface font-light tracking-tight mb-8 flex items-center gap-4">
+                <span className="w-8 h-8 border border-on-surface flex items-center justify-center text-[10px] font-bold">
                   2
                 </span>
                 Guest Information
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <FormLabel>First Name</FormLabel>
-                  <FormInput type="text" required placeholder="Jane" />
+                  <FormInput type="text" required placeholder="Jane" className="rounded-none border-outline-variant/30" />
                 </div>
                 <div>
                   <FormLabel>Last Name</FormLabel>
-                  <FormInput type="text" required placeholder="Doe" />
+                  <FormInput type="text" required placeholder="Doe" className="rounded-none border-outline-variant/30" />
                 </div>
                 <div className="md:col-span-2">
                   <FormLabel>Email Address</FormLabel>
-                  <FormInput type="email" required placeholder="jane@example.com" />
+                  <FormInput type="email" required placeholder="jane@example.com" className="rounded-none border-outline-variant/30" />
                 </div>
                 <div className="md:col-span-2">
                   <FormLabel>Special Requests / Notes</FormLabel>
-                  <FormTextarea rows={3} placeholder="Any specific needs or questions?" />
+                  <FormTextarea rows={3} placeholder="Any specific needs or questions?" className="rounded-none border-outline-variant/30" />
                 </div>
               </div>
             </div>
 
             {/* Step 3: Payment */}
-            <div className="bg-surface-container-lowest rounded-lg p-8 shadow-ambient relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-2 h-full bg-primary-container" />
-              <h3 className="font-headline-md text-2xl text-primary mb-6 flex items-center gap-3">
-                <span className="bg-primary text-on-primary w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">
+            <div className="bg-surface border border-outline-variant/30 p-8 md:p-12">
+              <h3 className="text-2xl text-on-surface font-light tracking-tight mb-8 flex items-center gap-4">
+                <span className="w-8 h-8 border border-on-surface flex items-center justify-center text-[10px] font-bold">
                   3
                 </span>
                 Payment
@@ -116,30 +115,32 @@ export function BookingSection() {
                 <button
                   type="button"
                   onClick={() => setPaymentMethod("card")}
-                  className={`flex-1 border-2 rounded-lg p-4 flex flex-col items-center justify-center gap-2 transition-all hover:bg-surface-container-low ${paymentMethod === "card"
-                      ? "border-secondary bg-secondary/5"
-                      : "border-surface-container-highest"
-                    }`}
+                  className={`flex-1 border p-6 flex flex-col items-center justify-center gap-3 transition-colors ${
+                    paymentMethod === "card"
+                      ? "border-on-surface bg-on-surface text-surface"
+                      : "border-outline-variant/30 text-on-surface-variant hover:border-on-surface hover:text-on-surface"
+                  }`}
                 >
-                  <span className={`material-symbols-outlined text-3xl ${paymentMethod === "card" ? "text-secondary" : "text-on-surface-variant"}`}>
+                  <span className="material-symbols-outlined text-3xl">
                     credit_card
                   </span>
-                  <span className="font-label-bold text-label-bold text-on-surface">
+                  <span className="uppercase tracking-[0.1em] text-[10px] font-bold">
                     Credit Card
                   </span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setPaymentMethod("khqr")}
-                  className={`flex-1 border-2 rounded-lg p-4 flex flex-col items-center justify-center gap-2 transition-all hover:bg-surface-container-low ${paymentMethod === "khqr"
-                      ? "border-secondary bg-secondary/5"
-                      : "border-surface-container-highest"
-                    }`}
+                  className={`flex-1 border p-6 flex flex-col items-center justify-center gap-3 transition-colors ${
+                    paymentMethod === "khqr"
+                      ? "border-on-surface bg-on-surface text-surface"
+                      : "border-outline-variant/30 text-on-surface-variant hover:border-on-surface hover:text-on-surface"
+                  }`}
                 >
-                  <span className={`material-symbols-outlined text-3xl ${paymentMethod === "khqr" ? "text-secondary" : "text-on-surface-variant"}`}>
+                  <span className="material-symbols-outlined text-3xl">
                     qr_code_scanner
                   </span>
-                  <span className="font-label-bold text-label-bold text-on-surface">
+                  <span className="uppercase tracking-[0.1em] text-[10px] font-bold">
                     KHQR
                   </span>
                 </button>
@@ -147,19 +148,19 @@ export function BookingSection() {
 
               {/* Credit Card Form */}
               {paymentMethod === "card" && (
-                <div className="space-y-6">
+                <div className="space-y-8">
                   <div>
                     <FormLabel>Card Number</FormLabel>
-                    <FormInput type="text" placeholder="0000 0000 0000 0000" icon="credit_card" />
+                    <FormInput type="text" placeholder="0000 0000 0000 0000" icon="credit_card" className="rounded-none border-outline-variant/30" />
                   </div>
-                  <div className="grid grid-cols-2 gap-6">
+                  <div className="grid grid-cols-2 gap-8">
                     <div>
                       <FormLabel>Expiry Date</FormLabel>
-                      <FormInput type="text" placeholder="MM/YY" />
+                      <FormInput type="text" placeholder="MM/YY" className="rounded-none border-outline-variant/30" />
                     </div>
                     <div>
                       <FormLabel>CVC</FormLabel>
-                      <FormInput type="text" placeholder="123" />
+                      <FormInput type="text" placeholder="123" className="rounded-none border-outline-variant/30" />
                     </div>
                   </div>
                 </div>
@@ -168,14 +169,14 @@ export function BookingSection() {
               {/* KHQR Form */}
               {paymentMethod === "khqr" && (
                 <div className="text-center py-6">
-                  <div className="bg-surface-container p-6 rounded-lg inline-block mb-4 shadow-sm">
-                    <div className="w-48 h-48 bg-surface-variant rounded-md flex items-center justify-center border-4 border-white">
-                      <span className="material-symbols-outlined text-6xl text-outline">
+                  <div className="border border-outline-variant/30 p-6 inline-block mb-4">
+                    <div className="w-48 h-48 bg-surface-variant flex items-center justify-center">
+                      <span className="material-symbols-outlined text-6xl text-on-surface-variant">
                         qr_code_2
                       </span>
                     </div>
                   </div>
-                  <p className="font-body-md text-on-surface-variant">
+                  <p className="text-sm font-light text-on-surface-variant">
                     Scan with any Bakong-supported app to pay instantly.
                   </p>
                 </div>
@@ -186,9 +187,9 @@ export function BookingSection() {
             <div className="flex justify-end pt-4">
               <Button
                 type="submit"
-                variant="secondary"
+                variant="default"
                 size="lg"
-                className=" shadow-ambient hover:scale-105 px-10 w-full md:w-auto text-lg"
+                className="rounded-none bg-on-surface text-surface hover:bg-surface-variant h-14 px-10 w-full md:w-auto uppercase tracking-wider text-xs font-bold transition-all"
               >
                 Confirm &amp; Pay $45.00
               </Button>
@@ -198,63 +199,61 @@ export function BookingSection() {
 
         {/* Booking Summary */}
         <div className="lg:col-span-4">
-          <div className="bg-tertiary text-on-tertiary rounded-lg p-8 shadow-ambient sticky top-32">
-            <h4 className="font-headline-md text-xl mb-6">
+          <div className="bg-on-surface text-surface p-8 md:p-12 sticky top-32">
+            <h4 className="text-2xl font-light tracking-tight mb-8">
               Booking Summary
             </h4>
-            <div className="flex gap-4 mb-8">
-              <div className="w-20 h-20 rounded-md overflow-hidden shrink-0 relative">
+            <div className="flex gap-6 mb-10 pb-10 border-b border-surface/20">
+              <div className="w-24 h-24 overflow-hidden shrink-0 relative">
                 <Image
                   alt="Interior of a minimalist Cambodian homestay room"
                   src="/assets/images/yad-2.png"
                   fill
-                  sizes="80px"
-                  className="object-cover"
+                  sizes="96px"
+                  className="object-cover grayscale"
                 />
               </div>
-              <div>
-                <h5 className="font-label-bold text-base">
-                  YAD Community Homestay
+              <div className="flex flex-col justify-center">
+                <h5 className="font-bold text-sm tracking-widest uppercase mb-2">
+                  YAD Homestay
                 </h5>
-                <p className="text-on-tertiary-container text-sm flex items-center gap-1 mt-1">
-                  <span className="material-symbols-outlined text-base">
+                <p className="text-surface/70 text-xs flex items-center gap-2">
+                  <span className="material-symbols-outlined text-sm">
                     location_on
                   </span>
-                  Siem Reap Province
+                  Siem Reap
                 </p>
               </div>
             </div>
-            <div className="space-y-4 mb-8 text-sm">
-              <div className="flex justify-between border-b border-on-tertiary-fixed-variant pb-4">
-                <span className="text-on-tertiary-container">Dates</span>
-                <span className="font-bold text-right">Select dates</span>
+            <div className="space-y-4 mb-10 text-sm font-light text-surface/80">
+              <div className="flex justify-between pb-4 border-b border-surface/10">
+                <span>Dates</span>
+                <span className="text-surface font-normal text-right">Select dates</span>
               </div>
-              <div className="flex justify-between border-b border-on-tertiary-fixed-variant pb-4">
-                <span className="text-on-tertiary-container">Guests</span>
-                <span className="font-bold">1 Guest</span>
+              <div className="flex justify-between pb-4 border-b border-surface/10">
+                <span>Guests</span>
+                <span className="text-surface font-normal">1 Guest</span>
               </div>
-              <div className="flex justify-between border-b border-on-tertiary-fixed-variant pb-4">
-                <span className="text-on-tertiary-container">
-                  Rate per night
-                </span>
-                <span>$15.00</span>
+              <div className="flex justify-between pb-4 border-b border-surface/10">
+                <span>Rate per night</span>
+                <span className="text-surface font-normal">$15.00</span>
               </div>
             </div>
-            <div className="space-y-2 mb-8">
+            <div className="space-y-3 mb-10 text-sm font-light text-surface/80">
               <div className="flex justify-between">
                 <span>Subtotal</span>
                 <span>$45.00</span>
               </div>
-              <div className="flex justify-between text-secondary-fixed">
+              <div className="flex justify-between text-surface font-normal">
                 <span>Community Contribution</span>
                 <span>100%</span>
               </div>
             </div>
-            <div className="flex justify-between items-center pt-6 border-t border-on-tertiary-fixed-variant">
-              <span className="font-headline-md text-xl">
+            <div className="flex justify-between items-center pt-8 border-t border-surface/30">
+              <span className="uppercase tracking-widest text-[10px] font-bold text-surface/70">
                 Total (USD)
               </span>
-              <span className="font-display-lg text-3xl font-bold text-secondary-fixed">
+              <span className="text-4xl font-light tracking-tighter">
                 $45.00
               </span>
             </div>

@@ -24,7 +24,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-block px-4 py-1 rounded-full font-label-bold text-label-bold text-xs tracking-wide",
+        "inline-block px-4 py-1 rounded-sm font-label-bold text-label-bold text-xs tracking-wide",
         variantClasses[variant],
         className
       )}

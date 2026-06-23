@@ -42,7 +42,7 @@ export function StripeEmbeddedCheckout({ id, type, amount, email }: StripeEmbedd
 
   if (error) {
     return (
-      <div className="p-6 text-center bg-error-container text-error rounded-lg border border-error/20">
+      <div className="p-6 text-center bg-error-container text-error rounded-none border border-error/20">
         <span className="material-symbols-outlined text-4xl mb-2 text-red-600">error</span>
         <p className="font-bold text-red-700">Payment Setup Failed</p>
         <p className="text-sm mt-1 text-red-600">{error}</p>
@@ -60,7 +60,7 @@ export function StripeEmbeddedCheckout({ id, type, amount, email }: StripeEmbedd
   }
 
   return (
-    <div className="w-full bg-white rounded-lg overflow-hidden shadow-inner p-2 border border-surface-variant/30">
+    <div className="w-full bg-surface rounded-none overflow-hidden p-2 border border-outline-variant/30">
       <EmbeddedCheckoutProvider stripe={stripePromise} options={{ clientSecret }}>
         <EmbeddedCheckout />
       </EmbeddedCheckoutProvider>

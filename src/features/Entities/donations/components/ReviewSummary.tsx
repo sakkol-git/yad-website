@@ -8,19 +8,18 @@ export function ReviewSummary() {
       {/* Left Column */}
       <div className="lg:col-span-7 xl:col-span-8 flex flex-col gap-8">
         <div>
-          <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">
+          <h1 className="text-[3.5rem] font-light text-primary tracking-tighter leading-none mb-6 border-b border-outline-variant/30 pb-4">
             Review Your Donation
           </h1>
-          <p className="font-body-lg text-body-lg text-on-surface-variant">
+          <p className="text-base text-on-surface-variant font-light leading-relaxed">
             Please review the details below before completing your contribution to Youth Advancement for Development.
           </p>
         </div>
 
         {/* Details Card */}
-        <div className="bg-surface-container-lowest rounded-lg shadow-ambient p-6 md:p-10 border border-surface-container-high relative overflow-hidden">
-          <div className="absolute -top-20 -right-20 w-64 h-64 bg-secondary-container/30 rounded-full blur-3xl pointer-events-none" />
-          <div className="flex justify-between items-center mb-8 pb-4 border-b border-surface-container">
-            <h2 className="font-headline-md text-headline-md text-primary">Donation Summary</h2>
+        <div className="bg-surface rounded-none p-6 md:p-10 border border-outline-variant/30 relative overflow-hidden">
+          <div className="flex justify-between items-center mb-8 pb-4 border-b border-outline-variant/30">
+            <h2 className="text-2xl font-light text-primary tracking-tight">Donation Summary</h2>
             <Button variant="ghost" className="px-2 py-1 h-auto text-secondary hover:text-primary gap-1">
               <span className="material-symbols-outlined text-sm">edit</span>
               Edit
@@ -30,17 +29,17 @@ export function ReviewSummary() {
             {/* Donor Info */}
             <div className="flex flex-col gap-6">
               <div>
-                <span className="block font-label-bold text-label-bold text-outline mb-1 uppercase tracking-wider text-xs">Donor Name</span>
-                <span className="font-body-lg text-body-lg text-on-surface">Alex Mercer</span>
+                <span className="block uppercase tracking-[0.2em] text-[10px] font-bold text-on-surface mb-2">Donor Name</span>
+                <span className="text-lg font-light text-on-surface">Alex Mercer</span>
               </div>
               <div>
-                <span className="block font-label-bold text-label-bold text-outline mb-1 uppercase tracking-wider text-xs">Email Address</span>
-                <span className="font-body-lg text-body-lg text-on-surface">alex.mercer@example.com</span>
+                <span className="block uppercase tracking-[0.2em] text-[10px] font-bold text-on-surface mb-2">Email Address</span>
+                <span className="text-lg font-light text-on-surface">alex.mercer@example.com</span>
               </div>
               <div>
-                <span className="block font-label-bold text-label-bold text-outline mb-1 uppercase tracking-wider text-xs">Frequency</span>
-                <span className="inline-flex items-center gap-2 bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-bold text-label-bold text-sm">
-                  <span className="material-symbols-outlined text-sm">calendar_month</span>
+                <span className="block uppercase tracking-[0.2em] text-[10px] font-bold text-on-surface mb-2">Frequency</span>
+                <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1 rounded-none border border-primary/20 uppercase tracking-widest text-[10px] font-bold">
+                  <span className="material-symbols-outlined text-[14px]">calendar_month</span>
                   Monthly
                 </span>
               </div>
@@ -48,29 +47,29 @@ export function ReviewSummary() {
             {/* Payment Info */}
             <div className="flex flex-col gap-6">
               <div>
-                <span className="block font-label-bold text-label-bold text-outline mb-1 uppercase tracking-wider text-xs">Payment Method</span>
+                <span className="block uppercase tracking-[0.2em] text-[10px] font-bold text-on-surface mb-2">Payment Method</span>
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-8 bg-surface-container-highest rounded flex items-center justify-center text-on-surface-variant font-label-bold text-xs">
+                  <div className="w-12 h-8 border border-outline-variant/50 bg-transparent rounded-none flex items-center justify-center text-on-surface font-bold text-[10px] tracking-widest uppercase">
                     VISA
                   </div>
-                  <span className="font-body-lg text-body-lg text-on-surface">•••• 4242</span>
+                  <span className="text-lg font-light text-on-surface">•••• 4242</span>
                 </div>
               </div>
               <div>
-                <span className="block font-label-bold text-label-bold text-outline mb-1 uppercase tracking-wider text-xs">Billing Zip Code</span>
-                <span className="font-body-lg text-body-lg text-on-surface">90210</span>
+                <span className="block uppercase tracking-[0.2em] text-[10px] font-bold text-on-surface mb-2">Billing Zip Code</span>
+                <span className="text-lg font-light text-on-surface">90210</span>
               </div>
             </div>
           </div>
 
           {/* Consent Checkbox */}
-          <div className="mt-10 pt-6 border-t border-surface-container">
+          <div className="mt-10 pt-6 border-t border-outline-variant/30">
             <label className="flex items-start gap-4 cursor-pointer group">
               <div className="relative flex items-center justify-center mt-1">
-                <input defaultChecked className="peer appearance-none w-6 h-6 border-2 border-outline rounded text-secondary focus:ring-secondary focus:ring-offset-background checked:bg-secondary checked:border-secondary transition-all" type="checkbox" />
-                <span className="material-symbols-outlined text-on-secondary absolute text-sm opacity-0 peer-checked:opacity-100 pointer-events-none">check</span>
+                <input defaultChecked className="peer appearance-none w-5 h-5 border border-outline-variant/50 rounded-none text-primary focus:ring-1 focus:ring-primary focus:ring-offset-background checked:bg-primary checked:border-primary transition-all" type="checkbox" />
+                <span className="material-symbols-outlined text-white absolute text-[14px] opacity-0 peer-checked:opacity-100 pointer-events-none">check</span>
               </div>
-              <span className="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">
+              <span className="text-sm font-light text-on-surface-variant group-hover:text-on-surface transition-colors leading-relaxed">
                 I agree to cover the 3% transaction fee so that 100% of my donation goes directly to the programs.
               </span>
             </label>
@@ -79,14 +78,14 @@ export function ReviewSummary() {
 
         {/* Action Buttons */}
         <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-4 mt-4">
-          <Button variant="outline" size="lg" className="w-full md:w-auto px-8" asChild>
+          <Button variant="outline" size="lg" className="w-full md:w-auto px-8 rounded-none border-primary text-primary hover:bg-primary hover:text-white uppercase tracking-widest text-[10px] font-bold h-12 transition-colors" asChild>
             <Link href="/donate/payment">
               Back
             </Link>
           </Button>
-          <Button variant="secondary" size="lg" className="w-full md:w-auto px-10 gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:bg-primary" asChild>
+          <Button variant="default" size="lg" className="w-full md:w-auto px-10 gap-2 hover:-translate-y-1 bg-primary hover:bg-primary/90 text-white rounded-none uppercase tracking-widest text-[10px] font-bold h-12 transition-all" asChild>
             <Link href="/donate/success">
-              <span className="material-symbols-outlined">lock</span>
+              <span className="material-symbols-outlined text-[16px]">lock</span>
               Confirm &amp; Pay $50.00
             </Link>
           </Button>
@@ -99,8 +98,8 @@ export function ReviewSummary() {
 
       {/* Right Column: Sidebar */}
       <div className="lg:col-span-5 xl:col-span-4 sticky top-32">
-        <div className="bg-primary text-on-primary rounded-lg overflow-hidden shadow-ambient flex flex-col">
-          <div className="h-48 relative overflow-hidden bg-surface-tint">
+        <div className="bg-primary text-white rounded-none border border-outline-variant/30 flex flex-col">
+          <div className="h-48 relative overflow-hidden bg-primary">
             <Image
               alt="Smiling youth outdoors in sunlight"
               className="w-full h-full object-cover opacity-80 mix-blend-luminosity"
@@ -108,29 +107,29 @@ export function ReviewSummary() {
               fill
               sizes="(max-width: 1024px) 100vw, 33vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent" />
             <div className="absolute bottom-4 left-6 right-6">
-              <span className="inline-block bg-tertiary-container text-on-tertiary-container font-label-bold text-xs uppercase tracking-wide px-3 py-1 rounded-full mb-2 backdrop-blur-sm">
+              <span className="inline-block bg-white text-primary font-bold text-[10px] uppercase tracking-widest px-3 py-1 rounded-none mb-2">
                 Impact Summary
               </span>
             </div>
           </div>
           <div className="p-6 md:p-8 flex flex-col gap-6">
-            <div className="flex justify-between items-end border-b border-on-primary/20 pb-6">
-              <span className="font-body-lg text-body-lg text-on-primary/80">Total Donation</span>
-              <span className="font-headline-lg text-headline-lg font-bold text-secondary-container">
-                $50<span className="text-2xl text-on-primary/60">.00</span>
+            <div className="flex justify-between items-end border-b border-white/20 pb-6">
+              <span className="text-sm font-light uppercase tracking-widest">Total Donation</span>
+              <span className="text-[3rem] font-light tracking-tighter leading-none">
+                $50<span className="text-2xl text-white/60">.00</span>
               </span>
             </div>
-            <div className="bg-primary-container rounded-md p-5 flex items-start gap-4">
-              <div className="bg-secondary text-on-secondary p-2 rounded-full shrink-0">
-                <span className="material-symbols-outlined">psychiatry</span>
+            <div className="bg-white/10 rounded-none border border-white/20 p-5 flex items-start gap-4">
+              <div className="bg-white text-primary p-2 rounded-none shrink-0 flex items-center justify-center border border-white/20">
+                <span className="material-symbols-outlined text-[20px]">psychiatry</span>
               </div>
-              <p className="font-body-md text-body-md text-on-primary-container m-0">
+              <p className="text-sm font-light leading-relaxed m-0">
                 Your $50 monthly contribution provides essential learning materials for one student for an entire semester.
               </p>
             </div>
-            <p className="font-body-md text-body-md text-on-primary/70 text-center italic mt-2">
+            <p className="text-sm font-light text-white/70 text-center italic mt-2">
               &ldquo;Thank you for investing in our future leaders.&rdquo;
             </p>
           </div>

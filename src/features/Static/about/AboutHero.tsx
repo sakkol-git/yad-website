@@ -1,23 +1,60 @@
-import { TextReveal } from "@/shared/components/animations/TextReveal";
+import Image from "next/image";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 
 export function AboutHero() {
   return (
-    <header className="relative pt-32 pb-16 md:pt-48 md:pb-20 px-margin-mobile md:px-margin-desktop bg-surface-container-low overflow-hidden min-h-[600px] flex items-center">
-      <div className="absolute inset-0 z-0 opacity-40">
-        <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/20 via-surface/10 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-secondary/20 via-surface/10 to-transparent" />
-      </div>
+    <section className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-10 overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
+        
+        {/* Editorial Split Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          
+          {/* Left Column: Typographic Focus (5 Columns) */}
+          <div className="lg:col-span-5 flex flex-col z-10">
+            <RevealOnScroll delay={0.1}>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-6 h-[1px] bg-primary" />
+                <span className="uppercase tracking-[0.2em] text-xs font-bold text-primary">
+                  Who We Are
+                </span>
+              </div>
+            </RevealOnScroll>
 
-      <RevealOnScroll className="relative z-10 max-w-container-max mx-auto text-center">
-        <span className="text-secondary font-label-bold text-label-bold tracking-wider uppercase mb-6 block">
-          Who We Are
-        </span>
-        <TextReveal as="h1" text="We Are the Youth Advancement for Development" className="font-display-lg text-display-lg text-primary mb-8 max-w-4xl mx-auto" />
-        <p className="font-body-lg text-body-lg text-on-surface-variant max-w-3xl mx-auto leading-relaxed">
-          Previously known as the Attitude Centre for Education (ACE), Youth Advancement for Development (YAD) is an independent Cambodian NGO dedicated to nurturing the next generation of leaders. We provide education, housing, training, and work experience to disadvantaged youth across Cambodia.
-        </p>
-      </RevealOnScroll>
-    </header>
+            {/* Massive, Tension-filled Headline */}
+            <RevealOnScroll delay={0.2}>
+              <h1 className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6">
+                Youth <br className="hidden md:block" />
+                Advancement <br className="hidden md:block" />
+                <span className="font-light italic text-on-surface-variant">
+                  for development.
+                </span>
+              </h1>
+            </RevealOnScroll>
+
+            {/* Subtext */}
+            <RevealOnScroll delay={0.3}>
+              <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed max-w-sm mb-10">
+                Previously known as the Attitude Centre for Education (ACE), YAD is an independent Cambodian NGO dedicated to nurturing the next generation of leaders. We provide education, housing, training, and work experience to disadvantaged youth.
+              </p>
+            </RevealOnScroll>
+          </div>
+
+          {/* Right Column: Un-obscured Cinematic Image (7 Columns) */}
+          <div className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0">
+            <RevealOnScroll delay={0.3} className="w-full h-full relative">
+              <Image
+                src="/assets/images/yad-3.png"
+                alt="Cambodian youth engaging in educational activities"
+                fill
+                className="object-cover object-center"
+                priority
+                sizes="(max-width: 1024px) 100vw, 60vw"
+              />
+            </RevealOnScroll>
+          </div>
+        </div>
+
+      </div>
+    </section>
   );
 }

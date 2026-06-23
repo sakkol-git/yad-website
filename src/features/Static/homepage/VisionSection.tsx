@@ -3,101 +3,88 @@ import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
 
 export function VisionSection() {
   return (
-    <section className="py-24 md:py-32 bg-surface">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <section className="relative py-24 bg-surface overflow-hidden">
+      <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
 
-        {/* Massive, Clean Editorial Headline */}
-        <RevealOnScroll className="mb-20 md:mb-32">
-          <h2 className="text-5xl md:text-6xl lg:text-[5rem] text-on-surface tracking-tight leading-[1.05] max-w-5xl">
-            Empowering youth in Cambodia <br className="hidden md:block" />
-            for a <span className="font-semibold italic">better tomorrow.</span>
+        {/* Section Header */}
+        <RevealOnScroll className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-on-surface pb-8">
+          <h2 className="text-[2.5rem] md:text-[3.5rem] text-primary tracking-tighter leading-[1.0] max-w-xl">
+            Empowering Youth <br className="hidden md:block"/>
+            <span className="font-light italic text-on-surface-variant">for a Better Tomorrow.</span>
           </h2>
+          <p className="text-base text-on-surface-variant font-light max-w-sm leading-relaxed">
+            Our mission is to empower a new generation of young leaders and advance the abilities of Cambodia&apos;s future changemakers.
+          </p>
         </RevealOnScroll>
 
-        {/* Asymmetrical Layout: 5 columns left (Mission), 6 columns right (Initiatives) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-0">
-
-          {/* Left Column: The Mission (Typographic Focus) */}
-          {/* FIXED: Removed RevealOnScroll to prevent the invisible bug. */}
-          <div className="lg:col-span-5 flex flex-col animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-8 h-[1px] bg-on-surface" />
-              <span className="uppercase tracking-widest text-xs font-semibold text-on-surface">
+        {/* Two Column Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          
+          {/* Left Column: Mission Statement */}
+          <StaggerGroup y={24} className="flex flex-col h-full bg-surface-container-lowest p-8 md:p-12 rounded-none border border-outline-variant/30 justify-center">
+            <div className="inline-flex items-center gap-4 mb-8">
+              <div className="w-6 h-[1px] bg-primary" />
+              <span className="uppercase tracking-[0.2em] text-[10px] font-bold text-primary">
                 Our Mission
               </span>
             </div>
-
-            <h3 className="text-2xl md:text-3xl font-light text-on-surface leading-snug mb-8">
-              Youth Advancement for Development (YAD) is an independent NGO providing education, housing, and opportunity to disadvantaged youth.
+            <h3 className="text-2xl md:text-3xl font-light text-on-surface tracking-tight leading-tight mb-6">
+              To empower a new generation of young leaders
             </h3>
+            <p className="text-base text-on-surface-variant font-light leading-relaxed mb-4">
+              Youth Advancement for Development (YAD), previously known as the Attitude Centre for Education (ACE), is an independent Cambodian NGO that provides education, housing, training, and work experience to disadvantaged youth in Cambodia.
+            </p>
+            <p className="text-base text-on-surface-variant font-light leading-relaxed">
+              From teaching Life Skills and English to slum children to providing accommodation, Leadership Skills, and university support, our work advances the abilities and opportunities of Cambodia&apos;s future leaders.
+            </p>
+          </StaggerGroup>
 
-            <div className="space-y-6 text-on-surface-variant font-light leading-relaxed max-w-md">
-              <p>
-                Previously known as the Attitude Centre for Education (ACE), we go beyond basic charity. We provide the structural support needed to create lasting generational change.
-              </p>
-              <p>
-                From teaching Life Skills and English to slum children to providing accommodation, Leadership Skills, and university support, our work advances the abilities of Cambodia&apos;s future leaders.
-              </p>
+          {/* Right Column: Core Initiatives Timeline/List */}
+          <StaggerGroup y={24} className="flex flex-col gap-10">
+            <div className="inline-flex items-center gap-4 mb-2">
+              <div className="w-6 h-[1px] bg-primary" />
+              <span className="uppercase tracking-[0.2em] text-[10px] font-bold text-primary">
+                Core Initiatives
+              </span>
             </div>
-          </div>
 
-          {/* Right Column: Core Initiatives (Editorial List) */}
-          <div className="lg:col-span-6 lg:col-start-7">
-            <StaggerGroup y={20} className="flex flex-col w-full">
-
-              <div className="hidden lg:flex items-center gap-3 mb-8 opacity-0 pointer-events-none">
-                {/* Spacer to align with the left column's top element */}
-                <span className="uppercase tracking-widest text-xs font-semibold">Initiatives</span>
+            <div className="flex gap-6 group items-start">
+              <div className="w-14 h-14 rounded-none border border-primary text-primary flex items-center justify-center shrink-0 bg-primary/5 transition-transform group-hover:bg-primary group-hover:text-white">
+                <span className="material-symbols-outlined text-[24px]">apartment</span>
               </div>
-
-              {/* Initiative 01 */}
-              <div className="group flex flex-col sm:flex-row items-start gap-4 sm:gap-8 py-8 border-t border-outline-variant/40 transition-colors hover:border-on-surface/30">
-                <span className="text-sm font-medium text-on-surface-variant/50 group-hover:text-primary transition-colors shrink-0 pt-1">
-                  01
-                </span>
-                <div>
-                  <h4 className="text-xl md:text-2xl font-medium text-on-surface mb-3">
-                    Dormitory & Leadership
-                  </h4>
-                  <p className="text-on-surface-variant font-light leading-relaxed">
-                    Providing safe housing, comprehensive scholarships, and extensive life skills training for talented university students from remote, underserved provinces.
-                  </p>
-                </div>
+              <div>
+                <h4 className="text-xl font-light text-on-surface mb-2 tracking-tight group-hover:text-primary transition-colors">Dormitory & Leadership Training</h4>
+                <p className="text-sm text-on-surface-variant font-light leading-relaxed max-w-md">
+                  Provides safe housing, scholarships, and extensive life skills training for promising and talented university students from remote provinces.
+                </p>
               </div>
+            </div>
 
-              {/* Initiative 02 */}
-              <div className="group flex flex-col sm:flex-row items-start gap-4 sm:gap-8 py-8 border-t border-outline-variant/40 transition-colors hover:border-on-surface/30">
-                <span className="text-sm font-medium text-on-surface-variant/50 group-hover:text-primary transition-colors shrink-0 pt-1">
-                  02
-                </span>
-                <div>
-                  <h4 className="text-xl md:text-2xl font-medium text-on-surface mb-3">
-                    Porridge for Hope & Schools
-                  </h4>
-                  <p className="text-on-surface-variant font-light leading-relaxed">
-                    Combating child malnutrition while simultaneously bringing basic education directly to poverty-stricken communities, reaching hundreds of children every week.
-                  </p>
-                </div>
+            <div className="flex gap-6 group items-start border-t border-outline-variant/30 pt-10">
+              <div className="w-14 h-14 rounded-none border border-primary text-primary flex items-center justify-center shrink-0 bg-primary/5 transition-transform group-hover:bg-primary group-hover:text-white">
+                <span className="material-symbols-outlined text-[24px]">restaurant</span>
               </div>
-
-              {/* Initiative 03 */}
-              <div className="group flex flex-col sm:flex-row items-start gap-4 sm:gap-8 py-8 border-t border-b border-outline-variant/40 transition-colors hover:border-on-surface/30">
-                <span className="text-sm font-medium text-on-surface-variant/50 group-hover:text-primary transition-colors shrink-0 pt-1">
-                  03
-                </span>
-                <div>
-                  <h4 className="text-xl md:text-2xl font-medium text-on-surface mb-3">
-                    Professionals & Volunteers
-                  </h4>
-                  <p className="text-on-surface-variant font-light leading-relaxed">
-                    Developing workforce readiness and fostering international, cross-cultural exchange through our self-sustaining, community-integrated Homestay enterprise.
-                  </p>
-                </div>
+              <div>
+                <h4 className="text-xl font-light text-on-surface mb-2 tracking-tight group-hover:text-primary transition-colors">Porridge for Hope & Schools</h4>
+                <p className="text-sm text-on-surface-variant font-light leading-relaxed max-w-md">
+                  Combats malnutrition and brings basic education directly to poverty-stricken communities, reaching hundreds of children weekly.
+                </p>
               </div>
+            </div>
 
-            </StaggerGroup>
-          </div>
+            <div className="flex gap-6 group items-start border-t border-outline-variant/30 pt-10">
+              <div className="w-14 h-14 rounded-none border border-primary text-primary flex items-center justify-center shrink-0 bg-primary/5 transition-transform group-hover:bg-primary group-hover:text-white">
+                <span className="material-symbols-outlined text-[24px]">diversity_3</span>
+              </div>
+              <div>
+                <h4 className="text-xl font-light text-on-surface mb-2 tracking-tight group-hover:text-primary transition-colors">Young Professionals & Volunteers</h4>
+                <p className="text-sm text-on-surface-variant font-light leading-relaxed max-w-md">
+                  Develops workforce readiness and fosters international cross-cultural exchange through our sustainable Homestay enterprise.
+                </p>
+              </div>
+            </div>
 
+          </StaggerGroup>
         </div>
       </div>
     </section>

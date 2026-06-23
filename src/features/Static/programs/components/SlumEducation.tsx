@@ -1,85 +1,81 @@
 import Image from "next/image";
-import { Card, CardContent } from "@/shared/components/ui/Card";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
-import { TextReveal } from "@/shared/components/animations/TextReveal";
-import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
+import { ImageRevealMask } from "@/shared/components/animations/ImageRevealMask";
 
 export function SlumEducation() {
   return (
-    <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-      <div className="text-center max-w-2xl mx-auto mb-12">
-        <TextReveal as="h2" text="Slum Community Education" className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4" />
-        <RevealOnScroll delay={0.2}>
-          <p className="font-body-md text-body-md text-on-surface-variant">
-            Taking education directly to where it&apos;s needed most. Our
-            mobile tutoring programs and pop-up classrooms ensure no child is
-            left behind due to geographical or economic barriers.
-          </p>
-        </RevealOnScroll>
-      </div>
-      <StaggerGroup y={28} className="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[500px]">
-        {/* Main Image Card */}
-        <Card className="md:col-span-7 lg:col-span-8 p-0 border-0 rounded-lg overflow-hidden relative group">
-          <Image
-            alt="Community Education"
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            src="/assets/images/yad-4.png"
-            fill
-            sizes="(max-width: 768px) 100vw, 67vw"
-          />
-          <CardContent className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col justify-end p-8">
-            <div className="bg-primary/90 backdrop-blur-sm w-fit p-3 rounded-lg mb-4">
-              <span className="material-symbols-outlined text-white text-3xl">
-                school
+    <section className="py-24 md:py-32 bg-surface">
+      <div className="max-w-container-max mx-auto px-6 md:px-12 lg:px-16">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* Left/Top: Massive Editorial Context */}
+          <div className="lg:col-span-5 lg:sticky lg:top-32">
+            <RevealOnScroll>
+              <span className="block text-primary uppercase tracking-[0.2em] font-label-bold text-xs mb-4">
+                Field Operations
               </span>
-            </div>
-            <h3 className="font-headline-md text-headline-md text-white mb-2">
-              Mobile Tutoring Units
-            </h3>
-            <p className="font-body-md text-body-md text-surface-container-low max-w-lg">
-              Reaching over 500 children weekly in marginalized areas with
-              basic literacy and numeracy programs.
-            </p>
-          </CardContent>
-        </Card>
-        {/* Stats/Info Cards */}
-        <div className="md:col-span-5 lg:col-span-4 flex flex-col gap-6">
-          <Card className="bg-surface-container-low rounded-lg p-0 h-1/2 flex flex-col justify-center border-surface-container-high hover:-translate-y-1 transition-transform duration-300">
-            <CardContent className="p-8">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                <span className="material-symbols-outlined text-primary">
-                  menu_book
-                </span>
+              <h2 className="font-headline-lg text-4xl lg:text-5xl text-primary mb-8 leading-tight tracking-tight">
+                Taking the <br className="hidden lg:block"/> Classroom <br className="hidden lg:block"/> to the Crisis.
+              </h2>
+              
+              <div className="space-y-6 font-body-lg text-on-surface-variant leading-relaxed text-lg">
+                <p>
+                  In urban slums, geography and economics conspire to keep children out of formal education. Waiting for them to come to school is not a strategy; we must take the school to them.
+                </p>
+                <p>
+                  Our mobile tutoring programs deploy directly into marginalized communities, providing the critical literacy and numeracy foundations required to transition these students back into the formal educational system.
+                </p>
               </div>
-              <h4 className="font-label-bold text-label-bold text-primary">
-                Tutoring Goals
-              </h4>
+
+              <blockquote className="mt-12 pl-6 border-l-4 border-secondary">
+                <p className="font-headline-sm text-2xl text-on-surface italic leading-relaxed mb-4">
+                  "We don't just teach reading; we teach them that they have the right to be read to, the right to learn, and the right to a future."
+                </p>
+                <footer className="text-xs font-label-bold uppercase tracking-widest text-on-surface-variant/60">
+                  — Lead Field Educator
+                </footer>
+              </blockquote>
+            </RevealOnScroll>
+          </div>
+
+          {/* Right/Bottom: Immersive Media & Data */}
+          <div className="lg:col-span-7 flex flex-col gap-12">
+            <RevealOnScroll delay={0.2}>
+              <ImageRevealMask className="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden group">
+                <Image
+                  alt="A community education session in a local neighborhood"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  src="/assets/images/yad-4.png"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                />
+              </ImageRevealMask>
+              <div className="mt-4 flex flex-col md:flex-row md:items-center justify-between gap-4 text-sm font-label-bold uppercase tracking-widest text-on-surface-variant/60">
+                <span>Phnom Penh, Cambodia</span>
+                <span>Mobile Tutoring Unit Beta</span>
+              </div>
+            </RevealOnScroll>
+
+            {/* Metric Callouts */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-outline-variant/30 pt-12">
+              <RevealOnScroll delay={0.3}>
+                <div className="font-display-md text-5xl text-primary mb-2 tabular-nums">500+</div>
+                <h4 className="font-label-bold text-xs uppercase tracking-widest text-on-surface mb-2">Weekly Attendance</h4>
+                <p className="text-sm text-on-surface-variant leading-relaxed">Children reached consistently every week across four distinct urban zones.</p>
+              </RevealOnScroll>
+              
+              <RevealOnScroll delay={0.4}>
+                <div className="font-display-md text-5xl text-secondary mb-2 tabular-nums">80%</div>
+                <h4 className="font-label-bold text-xs uppercase tracking-widest text-on-surface mb-2">Integration Rate</h4>
+                <p className="text-sm text-on-surface-variant leading-relaxed">Our goal for integrating participating children into formal schooling systems within 12 months.</p>
+              </RevealOnScroll>
             </div>
-            <p className="font-body-md text-body-md text-on-surface-variant">
-              Our goal is to integrate 80% of participating children into
-              formal schooling systems within 12 months.
-            </p>
-            </CardContent>
-          </Card>
-          <Card className="bg-secondary-fixed rounded-lg p-0 border-0 h-1/2 flex flex-col justify-center relative overflow-hidden group cursor-pointer hover:bg-secondary-fixed-dim transition-colors duration-300">
-            <CardContent className="p-8 relative z-10">
-              <h4 className="font-headline-md text-headline-md text-on-secondary-fixed mb-2">
-                Volunteer
-              </h4>
-              <p className="font-body-md text-body-md text-on-secondary-fixed-variant mb-4">
-                Join our community educators team.
-              </p>
-              <span className="material-symbols-outlined text-on-secondary-fixed bg-white/30 p-2 rounded-full group-hover:translate-x-2 transition-transform">
-                arrow_forward
-              </span>
-            </CardContent>
-            <span className="material-symbols-outlined absolute -right-6 -bottom-6 text-9xl text-white/20 transform -rotate-12 group-hover:rotate-0 transition-transform duration-500">
-              diversity_3
-            </span>
-          </Card>
+            
+          </div>
         </div>
-      </StaggerGroup>
+
+      </div>
     </section>
   );
 }
