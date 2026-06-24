@@ -63,6 +63,9 @@ export async function createMember(prevState: any, formData: FormData) {
   }
   
   revalidatePath('/admin/members');
+  revalidatePath('/about/team/[slug]', 'page');
+  revalidatePath('/about/governance/[slug]', 'page');
+  revalidatePath('/', 'layout');
   return { success: true };
 }
 
@@ -92,6 +95,9 @@ export async function updateMember(id: string, prevState: any, formData: FormDat
   }
   
   revalidatePath('/admin/members');
+  revalidatePath('/about/team/[slug]', 'page');
+  revalidatePath('/about/governance/[slug]', 'page');
+  revalidatePath('/', 'layout');
   return { success: true };
 }
 
