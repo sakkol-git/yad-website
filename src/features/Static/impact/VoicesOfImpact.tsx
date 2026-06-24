@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { ImageRevealMask } from "@/shared/components/animations/ImageRevealMask";
 
 export function VoicesOfImpact() {
@@ -10,17 +11,23 @@ export function VoicesOfImpact() {
         
         {/* Editorial Header */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-          <RevealOnScroll className="max-w-2xl">
-            <span className="block text-primary uppercase tracking-[0.2em] font-label-bold text-xs mb-4">
-              Frontline Stories
-            </span>
-            <h2 className="font-headline-lg text-4xl lg:text-5xl text-primary mb-6 leading-tight tracking-tight">
-              Voices of <br className="hidden md:block"/> Impact
-            </h2>
-            <p className="font-body-lg text-on-surface-variant leading-relaxed">
-              Meet the young changemakers turning potential into reality. These are unfiltered stories from the frontlines of development in Cambodia.
-            </p>
-          </RevealOnScroll>
+          <div className="max-w-2xl">
+            <RevealOnScroll>
+              <span className="block text-primary uppercase tracking-[0.2em] font-label-bold text-xs mb-4">
+                Frontline Stories
+              </span>
+            </RevealOnScroll>
+            <TextReveal 
+              as="h2" 
+              text="Voices of Impact" 
+              className="font-headline-lg text-4xl lg:text-5xl text-primary mb-6 leading-tight tracking-tight" 
+            />
+            <RevealOnScroll delay={0.1}>
+              <p className="font-body-lg text-on-surface-variant leading-relaxed">
+                Meet the young changemakers turning potential into reality. These are unfiltered stories from the frontlines of development in Cambodia.
+              </p>
+            </RevealOnScroll>
+          </div>
           
           <RevealOnScroll delay={0.2}>
             <Link href="/news" className="inline-flex items-center gap-3 text-primary uppercase tracking-[0.1em] font-label-bold text-sm hover:text-secondary transition-colors group pb-2 border-b border-primary/20 hover:border-secondary">

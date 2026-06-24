@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Button } from '@/shared/components/ui/Button';
 import { Metadata } from 'next';
 import Image from "next/image";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -88,9 +89,11 @@ export default async function DonorDetailPage({ params }: PageProps) {
                 Verified Supporter
               </div>
               
-              <h1 className="text-4xl md:text-6xl font-light tracking-tighter text-on-surface mb-4 leading-none">
-                {typedDonor.name}
-              </h1>
+              <TextReveal 
+                as="h1" 
+                text={typedDonor.name} 
+                className="text-4xl md:text-6xl font-light tracking-tighter text-on-surface mb-4 leading-none" 
+              />
               
               <p className="text-sm font-light uppercase tracking-widest text-primary mb-8">
                 {typedDonor.country || 'Global Supporter'}

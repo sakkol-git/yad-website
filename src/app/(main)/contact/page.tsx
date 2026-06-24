@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
 import { FormInput } from "@/shared/components/ui/FormInput";
 import { Button } from "@/shared/components/ui/Button";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -31,7 +32,11 @@ export default function ContactPage() {
               Reach Out
             </span>
           </div>
-          <h1 className="text-[3.5rem] md:text-[4.5rem] text-primary tracking-tighter leading-[1.0] mb-6">Get in Touch.</h1>
+          <TextReveal 
+            as="h1" 
+            text="Get in Touch." 
+            className="text-[3.5rem] md:text-[4.5rem] text-primary tracking-tighter leading-[1.0] mb-6" 
+          />
           <p className="text-base md:text-lg text-on-surface-variant font-light max-w-2xl mx-auto leading-relaxed">
             We are always looking for new partners, volunteers, and supporters who share our vision of empowering Cambodian youth. Reach out to us using the form below.
           </p>
@@ -42,7 +47,11 @@ export default function ContactPage() {
           <div className="flex flex-col gap-8">
             <div className="bg-surface rounded-none p-8 border border-outline-variant/30 relative">
               <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
-              <h2 className="text-2xl font-light text-primary tracking-tight mb-8">Our Office</h2>
+              <TextReveal 
+                as="h2" 
+                text="Our Office" 
+                className="text-2xl font-light text-primary tracking-tight mb-8" 
+              />
               
               <div className="flex flex-col gap-8">
                 <div className="flex items-start gap-4">
@@ -81,7 +90,11 @@ export default function ContactPage() {
 
             {/* Business Hours */}
             <div className="bg-surface-container-lowest rounded-none p-8 border border-outline-variant/30">
-              <h2 className="text-xl font-light text-on-surface tracking-tight mb-6">Business Hours</h2>
+              <TextReveal 
+                as="h2" 
+                text="Business Hours" 
+                className="text-xl font-light text-on-surface tracking-tight mb-6" 
+              />
               <div className="flex justify-between text-sm font-light text-on-surface-variant mb-3 border-b border-outline-variant/30 pb-3">
                 <span>Monday - Friday</span>
                 <span>8:00 AM - 5:00 PM (ICT)</span>
@@ -95,7 +108,11 @@ export default function ContactPage() {
 
           {/* Contact Form */}
           <div className="bg-surface rounded-none p-8 md:p-12 border border-outline-variant/30">
-            <h2 className="text-2xl font-light text-on-surface tracking-tight mb-8">Send a Message</h2>
+            <TextReveal 
+              as="h2" 
+              text="Send a Message" 
+              className="text-2xl font-light text-on-surface tracking-tight mb-8" 
+            />
             <form className="flex flex-col gap-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-2">

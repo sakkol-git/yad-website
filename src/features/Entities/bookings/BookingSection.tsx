@@ -20,15 +20,19 @@ export function BookingSection() {
       id="booking-section"
       className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto"
     >
-      <RevealOnScroll className="mb-16">
-        <h2 className="text-[2.5rem] md:text-[3.5rem] text-on-surface tracking-tighter leading-[1.0] mb-4">
-          Reserve your <span className="font-light italic text-on-surface-variant">Experience.</span>
-        </h2>
-        <p className="text-base text-on-surface-variant font-light max-w-xl">
-          Complete your booking details below. All proceeds support YAD
-          educational initiatives in the local community.
-        </p>
-      </RevealOnScroll>
+      <div className="mb-16">
+        <TextReveal 
+          as="h2" 
+          text="Reserve your Experience." 
+          className="text-[2.5rem] md:text-[3.5rem] text-on-surface tracking-tighter leading-[1.0] mb-4" 
+        />
+        <RevealOnScroll delay={0.1}>
+          <p className="text-base text-on-surface-variant font-light max-w-xl">
+            Complete your booking details below. All proceeds support YAD
+            educational initiatives in the local community.
+          </p>
+        </RevealOnScroll>
+      </div>
 
       <StaggerGroup y={28} className="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
         {/* Main Booking Form */}

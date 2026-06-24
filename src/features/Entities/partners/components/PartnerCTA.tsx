@@ -16,9 +16,11 @@ export function PartnerCTA() {
             <div className="w-12 h-[1px] bg-surface/30" />
           </div>
           
-          <h2 className="text-[3rem] md:text-[4rem] text-surface tracking-tighter leading-[1.0] mb-8">
-            Become a <span className="font-light italic text-surface-variant">Partner.</span>
-          </h2>
+          <TextReveal 
+            as="h2" 
+            text="Become a Partner." 
+            className="text-[3rem] md:text-[4rem] text-surface tracking-tighter leading-[1.0] mb-8" 
+          />
           
           <RevealOnScroll delay={0.2}>
             <p className="text-lg md:text-xl text-surface-variant font-light leading-relaxed max-w-2xl mx-auto mb-12">

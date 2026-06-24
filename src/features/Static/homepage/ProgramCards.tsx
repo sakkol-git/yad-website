@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { ImageRevealMask } from "@/shared/components/animations/ImageRevealMask";
 
 const PROGRAMS = [
@@ -45,19 +46,25 @@ export function ProgramCards() {
       <div className="max-w-container-max mx-auto px-6 md:px-12 lg:px-16">
 
         {/* Section Header */}
-        <RevealOnScroll className="mb-20 md:mb-32 flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <div className="mb-20 md:mb-32 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="max-w-2xl">
-            <span className="block text-primary uppercase tracking-[0.2em] text-[10px] font-bold mb-4">
-              Strategic Interventions
-            </span>
-            <h2 className="text-4xl lg:text-5xl font-light text-primary tracking-tighter leading-[1.0]">
-              Three Pillars of <br className="hidden md:block" /> Lasting Change.
-            </h2>
+            <RevealOnScroll>
+              <span className="block text-primary uppercase tracking-[0.2em] text-[10px] font-bold mb-4">
+                Strategic Interventions
+              </span>
+            </RevealOnScroll>
+            <TextReveal 
+              as="h2" 
+              text="Three Pillars of Lasting Change." 
+              className="text-4xl lg:text-5xl font-light text-primary tracking-tighter leading-[1.0]" 
+            />
           </div>
-          <p className="text-base text-on-surface-variant font-light max-w-md leading-relaxed">
-            Each program is meticulously designed to dismantle a specific systemic barrier preventing Cambodia&apos;s youth from reaching their absolute potential.
-          </p>
-        </RevealOnScroll>
+          <RevealOnScroll delay={0.1}>
+            <p className="text-base text-on-surface-variant font-light max-w-md leading-relaxed">
+              Each program is meticulously designed to dismantle a specific systemic barrier preventing Cambodia&apos;s youth from reaching their absolute potential.
+            </p>
+          </RevealOnScroll>
+        </div>
 
         {/* Editorial Program List */}
         <div className="flex flex-col gap-24 md:gap-32">

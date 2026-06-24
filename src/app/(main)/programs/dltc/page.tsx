@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
 import Image from "next/image";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 export const metadata: Metadata = {
   title: "Dormitory & Leadership Training Centre (DLTC) | YAD Programs",
@@ -24,9 +25,11 @@ export default function DLTCPage() {
         <BreadcrumbSchema items={breadcrumbs} />
       
       <div className="mb-12">
-        <h1 className="font-headline-lg text-headline-lg text-primary mb-4">
-          Dormitory and Leadership Training Centre (DLTC)
-        </h1>
+        <TextReveal 
+          as="h1" 
+          text="Dormitory and Leadership Training Centre (DLTC)" 
+          className="font-headline-lg text-headline-lg text-primary mb-4" 
+        />
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
           The DLTC is a core program of Youth Advancement for Development (YAD) supporting marginalized Cambodian youths from remote provinces and urban slum communities.
         </p>
@@ -34,7 +37,11 @@ export default function DLTCPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div>
-          <h2 className="font-headline-md text-headline-md text-secondary mb-4">Program Overview</h2>
+          <TextReveal 
+            as="h2" 
+            text="Program Overview" 
+            className="font-headline-md text-headline-md text-secondary mb-4" 
+          />
           <p className="font-body-md text-body-md text-on-surface-variant mb-6">
             Currently supporting <strong>18 talented students</strong>, the DLTC provides far more than just a place to sleep. We offer comprehensive housing, scholarships, and an immersive environment focused on leadership and life skills to ensure successful university access and graduation.
           </p>

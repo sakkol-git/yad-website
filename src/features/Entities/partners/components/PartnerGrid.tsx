@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
 import type { PartnerItem } from "@/features/Entities/partners/types/partner.types";
 
@@ -34,16 +35,20 @@ export function PartnerGrid({ partners }: PartnerGridProps) {
     <section className="bg-surface py-20 border-t border-outline-variant/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
         <div className="mb-16">
-          <RevealOnScroll className="max-w-3xl">
-            <h2 className="text-3xl md:text-4xl text-on-surface tracking-tight mb-4">
-              Global <span className="font-light italic text-on-surface-variant">Network,</span> Local Impact.
-            </h2>
-            <p className="text-base font-light text-on-surface-variant max-w-xl">
-              Our network spans international NGOs, local grassroots
-              organizations, and corporate partners committed to youth
-              advancement.
-            </p>
-          </RevealOnScroll>
+          <div className="max-w-3xl">
+            <TextReveal 
+              as="h2" 
+              text="Global Network, Local Impact." 
+              className="text-3xl md:text-4xl text-on-surface tracking-tight mb-4" 
+            />
+            <RevealOnScroll delay={0.1}>
+              <p className="text-base font-light text-on-surface-variant max-w-xl">
+                Our network spans international NGOs, local grassroots
+                organizations, and corporate partners committed to youth
+                advancement.
+              </p>
+            </RevealOnScroll>
+          </div>
         </div>
 
         {/* Filter Chips */}

@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import { createClient } from '@/shared/lib/supabase/server';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/shared/components/ui/Card';
 import { Button } from '@/shared/components/ui/Button';
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 export const metadata: Metadata = {
   title: 'Financial Transparency | YAD Cambodia',
@@ -89,7 +90,11 @@ export default function FinancialsPage() {
   return (
     <main>
       <section className="bg-primary pt-32 pb-16 px-margin-mobile md:px-margin-desktop text-center">
-        <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-on-primary mb-4">Financial Transparency</h1>
+        <TextReveal 
+          as="h1" 
+          text="Financial Transparency" 
+          className="font-display-lg text-display-lg-mobile md:text-display-lg text-on-primary mb-4" 
+        />
         <p className="font-body-lg text-body-lg text-primary-container max-w-2xl mx-auto">
           We believe in radical transparency. Track how every dollar is invested to empower Cambodian youth.
         </p>
@@ -100,7 +105,11 @@ export default function FinancialsPage() {
           
           {/* Historical Data Section */}
           <div className="mb-16">
-            <h2 className="font-headline-md text-headline-md text-primary mb-6">Historical Data (2015)</h2>
+            <TextReveal 
+              as="h2" 
+              text="Historical Data (2015)" 
+              className="font-headline-md text-headline-md text-primary mb-6" 
+            />
             <p className="text-body-lg text-on-surface-variant mb-8">
               Transparency has been our core value since our inception as the Attitude Centre for Education (ACE). In 2015, our total income was <strong>$57,504.15</strong>, driven heavily by Grants (42%) and Individual Donors (38%). Our total program expenses were <strong>$57,461.23</strong>, with 46% directly funding the Dormitory and Leadership Center.
             </p>
@@ -108,7 +117,11 @@ export default function FinancialsPage() {
 
           {/* Fund Allocation Section */}
           <div className="mb-16">
-            <h2 className="font-headline-md text-headline-md text-primary mb-6">Current Fund Allocation</h2>
+            <TextReveal 
+              as="h2" 
+              text="Current Fund Allocation" 
+              className="font-headline-md text-headline-md text-primary mb-6" 
+            />
             <p className="text-body-lg text-on-surface-variant mb-8">
               We maximize our impact by keeping overhead low. For every dollar donated, 80 cents goes directly into our programs and directly benefits the communities we serve.
             </p>
@@ -148,7 +161,11 @@ export default function FinancialsPage() {
 
           {/* Annual Reports Section */}
           <div>
-            <h2 className="font-headline-md text-headline-md text-primary mb-6">Annual Reports</h2>
+            <TextReveal 
+              as="h2" 
+              text="Annual Reports" 
+              className="font-headline-md text-headline-md text-primary mb-6" 
+            />
             <p className="text-body-lg text-on-surface-variant mb-8">
               Download our comprehensive annual reports to see detailed breakdowns of our financials, impact metrics, and stories from the field.
             </p>

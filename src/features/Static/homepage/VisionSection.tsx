@@ -1,4 +1,5 @@
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
 
 export function VisionSection() {
@@ -7,15 +8,18 @@ export function VisionSection() {
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
 
         {/* Section Header */}
-        <RevealOnScroll className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-on-surface pb-8">
-          <h2 className="text-[2.5rem] md:text-[3.5rem] text-primary tracking-tighter leading-[1.0] max-w-xl">
-            Empowering Youth <br className="hidden md:block"/>
-            <span className="font-light italic text-on-surface-variant">for a Better Tomorrow.</span>
-          </h2>
-          <p className="text-base text-on-surface-variant font-light max-w-sm leading-relaxed">
-            Our mission is to empower a new generation of young leaders and advance the abilities of Cambodia&apos;s future changemakers.
-          </p>
-        </RevealOnScroll>
+        <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-on-surface pb-8">
+          <TextReveal 
+            as="h2" 
+            text="Empowering Youth for a Better Tomorrow." 
+            className="text-[2.5rem] md:text-[3.5rem] text-primary tracking-tighter leading-[1.0] max-w-xl" 
+          />
+          <RevealOnScroll delay={0.1}>
+            <p className="text-base text-on-surface-variant font-light max-w-sm leading-relaxed">
+              Our mission is to empower a new generation of young leaders and advance the abilities of Cambodia&apos;s future changemakers.
+            </p>
+          </RevealOnScroll>
+        </div>
 
         {/* Two Column Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">

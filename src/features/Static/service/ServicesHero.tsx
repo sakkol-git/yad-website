@@ -3,6 +3,7 @@ import { Button } from "@/shared/components/ui/Button";
 import heroImg from "../../../../public/assets/images/yad-1.png";
 import Link from "next/link";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 export function ServicesHero() {
   return (
@@ -24,15 +25,12 @@ export function ServicesHero() {
             </RevealOnScroll>
 
             {/* Massive, Tension-filled Headline */}
-            <RevealOnScroll delay={0.2}>
-              <h1 className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6">
-                Experience <br className="hidden md:block" />
-                authentic <br className="hidden md:block" />
-                <span className="font-light italic text-primary">
-                  Cambodia.
-                </span>
-              </h1>
-            </RevealOnScroll>
+            <TextReveal 
+              as="h1" 
+              text="Experience authentic Cambodia." 
+              className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6" 
+              delay={0.2} 
+            />
 
             {/* Subtext */}
             <RevealOnScroll delay={0.3}>

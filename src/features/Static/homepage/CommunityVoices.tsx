@@ -98,8 +98,8 @@ function VoiceCard({ voice }: { voice: typeof VOICES_DATA[number] }) {
           &quot;{voice.quote}&quot;
         </p>
         <div className="flex items-center gap-4 mt-auto">
-          <div className="w-12 h-12 bg-surface-variant/30 flex items-center justify-center">
-            <span className="text-primary font-light text-lg rounded-full bg-surface-container-high dark:bg-surface-container-high border border-outline-variant/30 ">{voice.initial}</span>
+          <div className="w-12 h-12 bg-surface-variant-container-highest text-surface-variant-container-highest rounded-full border border-outline-variant/70 flex items-center justify-center">
+            <span className="text-primary font-light text-lg ">{voice.initial}</span>
           </div>
           <div>
             <div className="font-medium text-base text-on-surface">
@@ -119,19 +119,25 @@ export function CommunityVoices() {
   return (
     <section className="py-24 md:py-32 bg-surface relative overflow-hidden border-t border-outline-variant/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
-        <RevealOnScroll className="mb-20 md:mb-32 flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <div className="mb-20 md:mb-32 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="max-w-2xl">
-            <span className="block text-primary uppercase tracking-[0.2em] text-[10px] font-bold mb-4">
-              Community Voices
-            </span>
-            <h2 className="text-4xl lg:text-5xl font-light text-primary tracking-tighter leading-[1.0]">
-              Hear from the <br className="hidden md:block" /> Future Leaders.
-            </h2>
+            <RevealOnScroll>
+              <span className="block text-primary uppercase tracking-[0.2em] text-[10px] font-bold mb-4">
+                Community Voices
+              </span>
+            </RevealOnScroll>
+            <TextReveal
+              as="h2"
+              text="Hear from the Future Leaders."
+              className="text-4xl lg:text-5xl font-light text-primary tracking-tighter leading-[1.0]"
+            />
           </div>
-          <p className="text-base text-on-surface-variant font-light max-w-md leading-relaxed">
-            Real stories from the students and alumni whose lives have been transformed through our strategic interventions.
-          </p>
-        </RevealOnScroll>
+          <RevealOnScroll delay={0.1}>
+            <p className="text-base text-on-surface-variant font-light max-w-md leading-relaxed">
+              Real stories from the students and alumni whose lives have been transformed through our strategic interventions.
+            </p>
+          </RevealOnScroll>
+        </div>
       </div>
 
       <HorizontalScrollSection className="pl-4 sm:pl-6 lg:pl-8 max-w-[1400px] mx-auto py-8">

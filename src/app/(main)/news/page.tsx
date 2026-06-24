@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
 import { Button } from "@/shared/components/ui/Button";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 export const metadata: Metadata = {
   title: "News & Updates",
@@ -21,13 +22,17 @@ export default function NewsPage() {
   return (
     <main className="flex-grow pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop bg-surface">
       <BreadcrumbSchema items={breadcrumbs} />
-      
+
       <div className="max-w-container-max mx-auto">
         <div className="text-center mb-16">
           <span className="text-tertiary font-label-bold text-label-bold tracking-wider uppercase mb-2 block">
             Latest Updates
           </span>
-          <h1 className="font-display-lg text-display-lg text-primary mb-6">News & Stories</h1>
+          <TextReveal
+            as="h1"
+            text="News & Stories"
+            className="font-display-lg text-display-lg text-primary mb-6"
+          />
           <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
             Stay up to date with the impact of our programs, upcoming events, and stories from the youth leaders of Cambodia.
           </p>
@@ -38,9 +43,11 @@ export default function NewsPage() {
           <span className="material-symbols-outlined text-6xl text-secondary-fixed-dim mb-4" aria-hidden="true">
             article
           </span>
-          <h2 className="font-headline-md text-headline-md text-on-surface mb-4">
-            Our Blog is Coming Soon
-          </h2>
+          <TextReveal
+            as="h2"
+            text="Our Blog is Coming Soon"
+            className="font-headline-md text-headline-md text-on-surface mb-4"
+          />
           <p className="font-body-md text-body-md text-on-surface-variant max-w-md mb-8">
             We are actively working on a new content management system to bring you stories directly from our students, volunteers, and staff.
           </p>

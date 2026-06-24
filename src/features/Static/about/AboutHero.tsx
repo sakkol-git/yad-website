@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 import heroImg from "../../../../public/assets/images/yad-4.png";
 
 export function AboutHero() {
@@ -22,15 +23,12 @@ export function AboutHero() {
             </RevealOnScroll>
 
             {/* Massive, Tension-filled Headline */}
-            <RevealOnScroll delay={0.2}>
-              <h1 className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6">
-                Youth <br className="hidden md:block" />
-                Advancement <br className="hidden md:block" />
-                <span className="font-light italic text-on-surface-variant">
-                  for development.
-                </span>
-              </h1>
-            </RevealOnScroll>
+            <TextReveal 
+              as="h1" 
+              text="Youth Advancement for development." 
+              className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6" 
+              delay={0.2} 
+            />
 
             {/* Subtext */}
             <RevealOnScroll delay={0.3}>

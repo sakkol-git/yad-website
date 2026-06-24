@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { CommunityStructureTeams } from "@/features/Entities/members/components/CommunityStructureTeams";
 
 export const metadata: Metadata = {
@@ -20,10 +21,11 @@ export default function TeamPage() {
                 Our Community
               </span>
             </div>
-            <h1 className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-on-surface tracking-tighter leading-[1.0] mb-8">
-              Resident and <br className="hidden md:block"/> 
-              <span className="font-light italic text-on-surface-variant">Alumni Association.</span>
-            </h1>
+            <TextReveal 
+              as="h1" 
+              text="Resident and Alumni Association." 
+              className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-on-surface tracking-tighter leading-[1.0] mb-8" 
+            />
             <p className="text-lg md:text-xl text-on-surface-variant font-light leading-relaxed max-w-2xl">
               YAD is guided by a dedicated team of professionals and a volunteer Board of Directors committed to transparency, accountability, and sustainable impact.
             </p>

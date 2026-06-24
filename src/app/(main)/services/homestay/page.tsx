@@ -3,6 +3,7 @@ import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
 import { Button } from "@/shared/components/ui/Button";
 import Link from "next/link";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { BookingSection } from "@/features/Entities/bookings/BookingSection";
 
 export const metadata: Metadata = {
@@ -26,9 +27,11 @@ export default function HomestayPage() {
         <BreadcrumbSchema items={breadcrumbs} />
 
         <div className="mb-12">
-          <h1 className="font-headline-lg text-headline-lg text-primary mb-4">
-            Homestay Program
-          </h1>
+          <TextReveal 
+            as="h1" 
+            text="Homestay Program" 
+            className="font-headline-lg text-headline-lg text-primary mb-4" 
+          />
           <p className="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
             Experience authentic Cambodian culture while making a difference. Our Homestay is a social enterprise where 100% of proceeds fund YAD operations.
           </p>
@@ -36,7 +39,11 @@ export default function HomestayPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
           <div>
-            <h2 className="font-headline-md text-headline-md text-secondary mb-4">Accommodation With Purpose</h2>
+            <TextReveal 
+              as="h2" 
+              text="Accommodation With Purpose" 
+              className="font-headline-md text-headline-md text-secondary mb-4" 
+            />
             <p className="font-body-md text-body-md text-on-surface-variant mb-6">
               Whether you are a short-term visitor, a volunteer, or looking for a long-term stay in Phnom Penh, our central location offers comfortable living alongside our community. By staying with us, you directly fund our youth empowerment programs.
             </p>
@@ -83,7 +90,11 @@ export default function HomestayPage() {
 
         {/* Pricing Tables */}
         <div className="bg-surface-container-lowest border border-surface-container-high rounded-md p-8 mb-40">
-          <h2 className="font-headline-md text-headline-md text-center text-primary mb-8">Current Rates</h2>
+          <TextReveal 
+            as="h2" 
+            text="Current Rates" 
+            className="font-headline-md text-headline-md text-center text-primary mb-8" 
+          />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Short Term */}

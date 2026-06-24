@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
 import Image from "next/image";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 export const metadata: Metadata = {
   title: "Community Schools | YAD Programs",
@@ -24,9 +25,11 @@ export default function CommunitySchoolsPage() {
         <BreadcrumbSchema items={breadcrumbs} />
       
       <div className="mb-12">
-        <h1 className="font-headline-lg text-headline-lg text-primary mb-4">
-          Community Schools &amp; Slum Education
-        </h1>
+        <TextReveal 
+          as="h1" 
+          text="Community Schools & Slum Education" 
+          className="font-headline-lg text-headline-lg text-primary mb-4" 
+        />
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
           Taking education directly to where it&apos;s needed most. We provide vital English and Life Skills education to children in poverty-stricken urban slum communities.
         </p>
@@ -34,7 +37,11 @@ export default function CommunitySchoolsPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div>
-          <h2 className="font-headline-md text-headline-md text-secondary mb-4">Bridging the Gap</h2>
+          <TextReveal 
+            as="h2" 
+            text="Bridging the Gap" 
+            className="font-headline-md text-headline-md text-secondary mb-4" 
+          />
           <p className="font-body-md text-body-md text-on-surface-variant mb-6">
             Our mobile tutoring units and pop-up classrooms ensure no child is left behind due to geographical or economic barriers. By teaching critical Life Skills and foundational English directly within slum communities, we advance the abilities and opportunities of Cambodia&apos;s most vulnerable youth.
           </p>

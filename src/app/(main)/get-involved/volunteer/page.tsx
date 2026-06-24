@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
 import { Button } from "@/shared/components/ui/Button";
 import Link from "next/link";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 export const metadata: Metadata = {
   title: "Volunteer With Us | YAD Programs",
@@ -20,9 +21,11 @@ export default function VolunteerPage() {
       <BreadcrumbSchema items={breadcrumbs} />
       
       <div className="mb-12">
-        <h1 className="font-headline-lg text-headline-lg text-primary mb-4">
-          Volunteer With Us
-        </h1>
+        <TextReveal 
+          as="h1" 
+          text="Volunteer With Us" 
+          className="font-headline-lg text-headline-lg text-primary mb-4" 
+        />
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
           Join us for a life-changing experience in Cambodia. Whether you have two weeks or two months, your time volunteering directly supports our youth empowerment programs.
         </p>
@@ -30,7 +33,11 @@ export default function VolunteerPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
         <div className="lg:col-span-2">
-          <h2 className="font-headline-md text-headline-md text-secondary mb-4">What You Will Do</h2>
+          <TextReveal 
+            as="h2" 
+            text="What You Will Do" 
+            className="font-headline-md text-headline-md text-secondary mb-4" 
+          />
           <ul className="list-disc pl-5 mb-8 space-y-2 text-on-surface-variant">
             <li>Learn about the YAD programs and visit our community schools</li>
             <li>Work on construction and painting projects to improve facilities</li>
@@ -40,7 +47,11 @@ export default function VolunteerPage() {
             <li>Participate in community exercise classes at the Riverside</li>
           </ul>
 
-          <h2 className="font-headline-md text-headline-md text-secondary mb-4">Cultural Excursions</h2>
+          <TextReveal 
+            as="h2" 
+            text="Cultural Excursions" 
+            className="font-headline-md text-headline-md text-secondary mb-4" 
+          />
           <p className="font-body-md text-body-md text-on-surface-variant mb-4">
             During your time with us, we plan several excursions to must-see sights around Cambodia. In Phnom Penh, participants have the option to visit the breathtaking Royal Palace, the National Museum, and important historical sites like the Choeung Ek Killing Field and S-21 Toul Sleng Museum. We will introduce you to local cuisine and market shopping.
           </p>

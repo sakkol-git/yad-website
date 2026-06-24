@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { ImageRevealMask } from "@/shared/components/animations/ImageRevealMask";
 
 export function SlumEducation() {
@@ -15,10 +16,14 @@ export function SlumEducation() {
               <span className="block text-primary uppercase tracking-[0.2em] font-label-bold text-xs mb-4">
                 Field Operations
               </span>
-              <h2 className="font-headline-lg text-4xl lg:text-5xl text-primary mb-8 leading-tight tracking-tight">
-                Taking the <br className="hidden lg:block"/> Classroom <br className="hidden lg:block"/> to the Crisis.
-              </h2>
-              
+            </RevealOnScroll>
+            <TextReveal 
+              as="h2" 
+              text="Taking the Classroom to the Crisis." 
+              className="font-headline-lg text-4xl lg:text-5xl text-primary mb-8 leading-tight tracking-tight" 
+            />
+            
+            <RevealOnScroll delay={0.1}>
               <div className="space-y-6 font-body-lg text-on-surface-variant leading-relaxed text-lg">
                 <p>
                   In urban slums, geography and economics conspire to keep children out of formal education. Waiting for them to come to school is not a strategy; we must take the school to them.

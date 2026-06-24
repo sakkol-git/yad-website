@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
 import Image from "next/image";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 export const metadata: Metadata = {
   title: "Porridge for Hope | YAD Programs",
@@ -24,9 +25,11 @@ export default function PorridgeForHopePage() {
         <BreadcrumbSchema items={breadcrumbs} />
       
       <div className="mb-12">
-        <h1 className="font-headline-lg text-headline-lg text-primary mb-4">
-          Porridge for Hope
-        </h1>
+        <TextReveal 
+          as="h1" 
+          text="Porridge for Hope" 
+          className="font-headline-lg text-headline-lg text-primary mb-4" 
+        />
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
           Combating malnutrition and strengthening communities through consistent nutritional support since 2016.
         </p>
@@ -34,7 +37,11 @@ export default function PorridgeForHopePage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <div>
-          <h2 className="font-headline-md text-headline-md text-secondary mb-4">Nutrition &amp; Food Security</h2>
+          <TextReveal 
+            as="h2" 
+            text="Nutrition & Food Security" 
+            className="font-headline-md text-headline-md text-secondary mb-4" 
+          />
           <p className="font-body-md text-body-md text-on-surface-variant mb-6">
             The Porridge for Hope program has had enormous success and greatly improved the lives of many individuals in the community. Targeting primarily children aged 5 years and under (alongside older children at other centres), this initiative ensures vital nutritional milestones are met.
           </p>

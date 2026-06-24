@@ -1,6 +1,7 @@
 "use client";
 
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 export function OurStory() {
   return (
@@ -8,10 +9,11 @@ export function OurStory() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1000px]">
         <RevealOnScroll>
           <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-on-surface pb-8">
-            <h2 className="text-[2.5rem] md:text-[3.5rem] text-on-surface tracking-tighter leading-[1.0] max-w-md">
-              Our <br className="hidden md:block"/>
-              <span className="font-light italic text-on-surface-variant">evolution.</span>
-            </h2>
+            <TextReveal 
+              as="h2" 
+              text="Our evolution." 
+              className="text-[2.5rem] md:text-[3.5rem] text-on-surface tracking-tighter leading-[1.0] max-w-md" 
+            />
             <p className="text-base text-on-surface-variant font-light max-w-sm leading-relaxed">
               From grassroots community education to a comprehensive empowerment network, our journey has been defined by a singular commitment.
             </p>

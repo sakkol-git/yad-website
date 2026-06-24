@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { ImageRevealMask } from "@/shared/components/animations/ImageRevealMask";
 import Link from "next/link";
 
@@ -50,10 +51,14 @@ export function DormitoryProgram() {
               <span className="block text-primary uppercase tracking-[0.2em] font-label-bold text-xs mb-4">
                 Infrastructure for Leaders
               </span>
-              <h2 className="font-headline-lg text-4xl lg:text-5xl text-primary mb-8 leading-tight tracking-tight">
-                More Than <br className="hidden lg:block"/> Just Housing.
-              </h2>
-              
+            </RevealOnScroll>
+            <TextReveal 
+              as="h2" 
+              text="More Than Just Housing." 
+              className="font-headline-lg text-4xl lg:text-5xl text-primary mb-8 leading-tight tracking-tight" 
+            />
+            
+            <RevealOnScroll delay={0.1}>
               <div className="space-y-6 font-body-lg text-on-surface-variant leading-relaxed text-lg">
                 <p>
                   For promising students from remote, underserved provinces, the barrier to higher education isn't just tuition—it's the severe lack of safe, affordable accommodation in the capital.

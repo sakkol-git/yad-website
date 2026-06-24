@@ -19,15 +19,12 @@ export function TextReveal({ text, className, as: Tag = "h2", delay = 0 }: TextR
 
   useGSAP(
     () => {
-      const spans = ref.current?.querySelectorAll<HTMLElement>(".word-inner");
-      if (!spans?.length) return;
-
       if (reduced) {
-        gsap.set(spans, { yPercent: 0, opacity: 1 });
+        gsap.set(".word-inner", { yPercent: 0, opacity: 1 });
         return;
       }
 
-      gsap.fromTo(spans, {
+      gsap.fromTo(".word-inner", {
         yPercent: 100,
         opacity: 0,
       }, {
@@ -38,9 +35,7 @@ export function TextReveal({ text, className, as: Tag = "h2", delay = 0 }: TextR
         ease: GSAP_PRESETS.CINEMATIC.ease,
         stagger: 0.045,
         onComplete: () => {
-          spans.forEach(span => {
-            span.style.willChange = "auto";
-          });
+          gsap.set(".word-inner", { clearProps: "willChange" });
         },
         scrollTrigger: {
           trigger: ref.current,
@@ -60,7 +55,7 @@ export function TextReveal({ text, className, as: Tag = "h2", delay = 0 }: TextR
         <span key={i} className="inline-block overflow-hidden pb-[0.08em] mr-[0.25em]">
           <span 
             className="word-inner inline-block" 
-            style={reduced ? {} : { opacity: 0, transform: "translateY(100%)", willChange: "opacity, transform" }}
+            style={reduced ? {} : { opacity: 0, willChange: "opacity, transform" }}
           >
             {word}
           </span>

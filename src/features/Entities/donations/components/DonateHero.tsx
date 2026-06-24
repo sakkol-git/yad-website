@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/shared/lib/animations/gsap-config";
@@ -74,15 +75,14 @@ export function DonateHero() {
             </RevealOnScroll>
 
             {/* Massive, Tension-filled Headline */}
-            <RevealOnScroll delay={0.2}>
-              <h1
-                ref={headlineRef}
-                className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6"
-              >
-                Their Potential. <br className="hidden md:block" />
-                Your <span className="font-light italic text-on-surface-variant">Catalyst.</span>
-              </h1>
-            </RevealOnScroll>
+            <div ref={headlineRef}>
+              <TextReveal 
+                as="h1" 
+                text="Their Potential. Your Catalyst." 
+                className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6" 
+                delay={0.2} 
+              />
+            </div>
 
             {/* Subtext */}
             <RevealOnScroll delay={0.3}>

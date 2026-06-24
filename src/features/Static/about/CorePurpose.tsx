@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "@/shared/lib/animations/gsap-config";
 import { useReducedMotion } from "@/shared/lib/animations/use-reduced-motion";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { Card, CardHeader, CardTitle, CardContent } from "@/shared/components/ui/Card";
 
 const PURPOSES = [
@@ -82,10 +83,12 @@ export function CorePurpose() {
 
       <div className="max-w-container-max mx-auto w-full relative z-10">
         <div className="text-center mb-16 md:absolute md:top-0 md:left-1/2 md:-translate-x-1/2 md:-translate-y-[120%] w-full">
-          <RevealOnScroll>
-            <h2 className="text-[2.5rem] md:text-[3.5rem] text-on-surface tracking-tighter leading-[1.0] mb-4">
-              Core <span className="font-light italic text-on-surface-variant">Purpose.</span>
-            </h2>
+          <TextReveal 
+            as="h2" 
+            text="Core Purpose." 
+            className="text-[2.5rem] md:text-[3.5rem] text-on-surface tracking-tighter leading-[1.0] mb-4" 
+          />
+          <RevealOnScroll delay={0.1}>
             <p className="text-base text-on-surface-variant font-light max-w-lg mx-auto leading-relaxed">
               Driving sustainable change through three foundational pillars of
               youth empowerment.

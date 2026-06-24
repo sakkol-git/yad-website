@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 import heroImg from "../../../../../public/assets/images/yad-2.png";
 import { Button } from "@/shared/components/ui/Button";
 import Link from "next/link";
@@ -26,12 +27,12 @@ export function ProgramsHero() {
             </RevealOnScroll>
 
             {/* Massive, Tension-filled Headline */}
-            <RevealOnScroll delay={0.2}>
-              <h1 className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6">
-                Systems <br className="hidden md:block" />
-                of <span className="font-light italic text-on-surface-variant">Change.</span>
-              </h1>
-            </RevealOnScroll>
+            <TextReveal 
+              as="h1" 
+              text="Systems of Change." 
+              className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6" 
+              delay={0.2} 
+            />
 
             {/* Subtext */}
             <RevealOnScroll delay={0.3}>

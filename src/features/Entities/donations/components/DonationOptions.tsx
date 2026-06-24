@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 const IMPACT_TIERS = [
   {
@@ -27,36 +28,42 @@ export function DonationPortal() {
       <div className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
         
         {/* Left: Manifesto & Trust */}
-        <RevealOnScroll className="lg:col-span-5 lg:sticky lg:top-32">
-          <div className="inline-flex items-center gap-4 mb-4">
-            <div className="w-6 h-[1px] bg-primary" />
-            <span className="uppercase tracking-[0.2em] text-[10px] font-bold text-primary">
-              Direct Impact
-            </span>
-          </div>
-          <h2 className="text-[3.5rem] md:text-[4.5rem] text-primary tracking-tighter leading-[1.0] mb-8">
-            Fund the <br className="hidden lg:block"/> Framework.
-          </h2>
-          <div className="space-y-6 text-base md:text-lg text-on-surface-variant font-light leading-relaxed mb-12">
-            <p>
-              We don't deal in generic charity. We deal in highly targeted, structural interventions.
-            </p>
-            <p>
-              When you donate to YAD, you aren't just giving money; you are activating specific, measurable resources that dismantle barriers to education.
-            </p>
-          </div>
+        <div className="lg:col-span-5 lg:sticky lg:top-32">
+          <RevealOnScroll>
+            <div className="inline-flex items-center gap-4 mb-4">
+              <div className="w-6 h-[1px] bg-primary" />
+              <span className="uppercase tracking-[0.2em] text-[10px] font-bold text-primary">
+                Direct Impact
+              </span>
+            </div>
+          </RevealOnScroll>
+          <TextReveal 
+            as="h2" 
+            text="Fund the Framework." 
+            className="text-[3.5rem] md:text-[4.5rem] text-primary tracking-tighter leading-[1.0] mb-8" 
+          />
+          <RevealOnScroll delay={0.1}>
+            <div className="space-y-6 text-base md:text-lg text-on-surface-variant font-light leading-relaxed mb-12">
+              <p>
+                We don't deal in generic charity. We deal in highly targeted, structural interventions.
+              </p>
+              <p>
+                When you donate to YAD, you aren't just giving money; you are activating specific, measurable resources that dismantle barriers to education.
+              </p>
+            </div>
 
-          <div className="flex items-center gap-6 text-xs font-label-bold uppercase tracking-widest text-on-surface-variant/60">
-            <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-secondary">verified_user</span>
-              Secure SSL
+            <div className="flex items-center gap-6 text-xs font-label-bold uppercase tracking-widest text-on-surface-variant/60">
+              <div className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-secondary">verified_user</span>
+                Secure SSL
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-secondary">account_balance</span>
+                Tax Deductible
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-secondary">account_balance</span>
-              Tax Deductible
-            </div>
-          </div>
-        </RevealOnScroll>
+          </RevealOnScroll>
+        </div>
 
         {/* Right: Tangible Impact Tiers */}
         <div className="lg:col-span-6 lg:col-start-7 flex flex-col gap-6">

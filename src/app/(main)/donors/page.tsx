@@ -49,15 +49,12 @@ export default async function DonorsShowcasePage() {
                 </div>
               </RevealOnScroll>
 
-              <RevealOnScroll delay={0.2}>
-                <h1 className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6">
-                  Empowering <br className="hidden md:block" />
-                  change, <br className="hidden md:block" />
-                  <span className="font-light italic text-on-surface-variant">
-                    together.
-                  </span>
-                </h1>
-              </RevealOnScroll>
+              <TextReveal 
+                as="h1" 
+                text="Empowering change, together." 
+                className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6" 
+                delay={0.2} 
+              />
 
               <RevealOnScroll delay={0.3}>
                 <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed max-w-sm mb-10">
@@ -136,9 +133,11 @@ export default async function DonorsShowcasePage() {
 
       {/* Trust Section */}
       <RevealOnScroll className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px] py-20 text-center border-t border-outline-variant/30">
-        <h2 className="text-3xl font-light tracking-tight text-on-surface mb-16">
-          Transparency & <span className="italic text-on-surface-variant">Trust.</span>
-        </h2>
+        <TextReveal 
+          as="h2" 
+          text="Transparency & Trust." 
+          className="text-3xl font-light tracking-tight text-on-surface mb-16" 
+        />
         <StaggerGroup y={28} className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
           <div className="flex flex-col items-center">
             <span className="material-symbols-outlined text-[32px] text-on-surface-variant mb-6">security</span>

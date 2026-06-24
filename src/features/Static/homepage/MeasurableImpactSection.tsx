@@ -1,6 +1,7 @@
 "use client";
 
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { AnimatedCounter } from "@/shared/components/animations/AnimatedCounter";
 
 const METRICS = [
@@ -33,14 +34,18 @@ export function MeasurableImpactSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-start">
           
           {/* Left: Editorial Header */}
-          <RevealOnScroll className="lg:col-span-4 lg:sticky lg:top-32">
-            <h2 className="text-4xl lg:text-5xl font-light text-primary mb-6 tracking-tighter leading-[1.0]">
-              Scale of <br className="hidden lg:block"/> Impact
-            </h2>
-            <p className="text-base font-light text-on-surface-variant leading-relaxed max-w-md">
-              When you engage with YAD, you are directly investing in a sustainable cycle of youth empowerment and profound societal transformation. The numbers reflect individual lives forever changed.
-            </p>
-          </RevealOnScroll>
+          <div className="lg:col-span-4 lg:sticky lg:top-32">
+            <TextReveal 
+              as="h2" 
+              text="Scale of Impact" 
+              className="text-4xl lg:text-5xl font-light text-primary mb-6 tracking-tighter leading-[1.0]" 
+            />
+            <RevealOnScroll delay={0.1}>
+              <p className="text-base font-light text-on-surface-variant leading-relaxed max-w-md">
+                When you engage with YAD, you are directly investing in a sustainable cycle of youth empowerment and profound societal transformation. The numbers reflect individual lives forever changed.
+              </p>
+            </RevealOnScroll>
+          </div>
 
           {/* Right: Data Visualization / Metrics Ribbon */}
           <div className="lg:col-span-7 lg:col-start-6">
