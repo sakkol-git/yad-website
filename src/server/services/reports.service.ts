@@ -69,10 +69,16 @@ export class ReportsService {
     // Upload to Supabase Storage using the admin client (service role)
     // to bypass Storage RLS, while the session client handles DB and auth.
     const adminClient = createAdminClient();
+    const arrayBuffer = await file.arrayBuffer();
+
     const { error: uploadError } = await adminClient
       .storage
       .from(STORAGE_BUCKET)
-      .upload(filePath, file, { cacheControl: '3600', upsert: false });
+      .upload(filePath, arrayBuffer, {
+        cacheControl: '3600',
+        upsert: false,
+        contentType: file.type || 'application/pdf'
+      });
 
     if (uploadError) {
       console.error('[ReportsService] Storage upload error:', uploadError);
