@@ -114,11 +114,21 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                 </div>
 
                 <div className="flex flex-col gap-1.5 md:col-span-2">
-                  <label className="text-sm font-label-bold text-on-surface-variant">Bio</label>
+                  <label className="text-sm font-label-bold text-on-surface-variant">Bio (English Story)</label>
                   <textarea
                     name="bio"
                     rows={3}
                     defaultValue={initialData?.bio || ''}
+                    className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] resize-y"
+                  ></textarea>
+                </div>
+
+                <div className="flex flex-col gap-1.5 md:col-span-2">
+                  <label className="text-sm font-label-bold text-on-surface-variant">Khmer Story (Optional)</label>
+                  <textarea
+                    name="khmer_biography"
+                    rows={3}
+                    defaultValue={initialData?.profile?.khmerBiography || ''}
                     className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] resize-y"
                   ></textarea>
                 </div>

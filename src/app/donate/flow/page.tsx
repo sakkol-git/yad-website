@@ -37,7 +37,7 @@ export default function DonateFlowPage() {
       // 2. Redirect to intermediate Payment method selector page
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       router.push(`/payment?id=${(draftRes.data as any).id}&type=donation`);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error(error);
       toast.error(error.message || "Something went wrong. Please try again.");
@@ -68,7 +68,7 @@ export default function DonateFlowPage() {
             <p className="text-sm text-on-surface-variant italic mb-6">
               Tax deductibility depends on your country of residence and applicable laws. YAD Cambodia does not issue tax receipts for international jurisdictions. Please consult your tax advisor.
             </p>
-            
+
             <div className="mb-4">
               <p className="text-sm font-label-bold mb-2 text-on-surface">Fund Allocation</p>
               <div className="flex h-3 w-full rounded-full overflow-hidden">
@@ -82,7 +82,7 @@ export default function DonateFlowPage() {
                 <span><span className="inline-block w-2 h-2 rounded-full bg-tertiary mr-1"></span>Fundraising: 5%</span>
               </div>
             </div>
-            
+
             <a href="/about/financials" className="text-sm text-primary hover:underline font-semibold">
               Read our full financial transparency report →
             </a>
@@ -100,7 +100,7 @@ export default function DonateFlowPage() {
                   variant={amount === preset ? "primary" : "outline"}
                   onClick={() => setAmount(preset)}
                   size="lg"
-                  className={amount === preset ? "rounded-none bg-primary text-white ring-1 ring-primary border-transparent text-lg hover:bg-primary/90 transition-colors" : "rounded-none border border-outline-variant/50 bg-transparent hover:border-primary hover:text-primary text-on-surface text-lg transition-colors"}
+                  className={amount === preset ? "rounded-none bg-primary text-white ring-1 ring-primary border-transparent text-lg hover:bg-primary/90 hover:text-white transition-colors" : "rounded-none border border-outline-variant/50 bg-transparent hover:border-primary hover:text-primary text-on-surface text-lg transition-colors"}
                 >
                   ${preset}
                 </Button>

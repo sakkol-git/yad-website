@@ -7,6 +7,7 @@ export interface SocialLinks {
 
 export interface ProfileData {
   biography?: string;
+  khmerBiography?: string;
   quote?: string;
   vision?: string;
   education?: string[];

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
+import { Plus_Jakarta_Sans, Playfair_Display, Kantumruy_Pro } from "next/font/google";
 import { getLocale } from 'next-intl/server';
 import { AuthProvider } from "@/providers/AuthProvider";
 import { CookieConsent } from "@/shared/components/ui/CookieConsent";
@@ -12,6 +12,13 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   weight: ["400", "600", "700", "800"],
   variable: "--font-plus-jakarta-sans",
+  display: "swap",
+});
+
+const kantumruyPro = Kantumruy_Pro({
+  subsets: ["khmer", "latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-kantumruy-pro",
   display: "swap",
 });
 
@@ -162,7 +169,7 @@ export default async function RootLayout({
         />
       </head>
       <body
-        className={`${plusJakartaSans.variable} ${playfairDisplay.variable} bg-surface text-on-surface font-body-md antialiased overflow-x-hidden`}
+        className={`${plusJakartaSans.variable} ${playfairDisplay.variable} ${kantumruyPro.variable} bg-surface text-on-surface font-body-md antialiased overflow-x-hidden`}
         style={{ fontFamily: "var(--font-plus-jakarta-sans), system-ui, sans-serif" }}
         suppressHydrationWarning
       >
