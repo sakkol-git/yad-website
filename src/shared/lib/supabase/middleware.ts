@@ -60,10 +60,10 @@ export async function updateSession(request: NextRequest) {
   }
 
   // Handle authenticated users visiting auth routes (e.g. /auth/login)
-  // Just redirect them to portal dashboard, if they are admin, the portal or server logic can handle it
+  // Just redirect them to the generic router, which fetches their role and redirects securely
   if (isAuthRoute && user) {
     const redirectUrl = request.nextUrl.clone();
-    redirectUrl.pathname = '/portal/dashboard';
+    redirectUrl.pathname = '/auth/redirect';
     return NextResponse.redirect(redirectUrl);
   }
 

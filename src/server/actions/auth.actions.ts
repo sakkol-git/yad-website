@@ -61,7 +61,7 @@ export async function loginWithGoogle(redirectPath?: string) {
   // Fallback to env var if headers are somehow missing
   const origin = host ? `${protocol}://${host}` : (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000');
   
-  const targetPath = redirectPath || '/portal/dashboard';
+  const targetPath = redirectPath || '/auth/redirect';
   const redirectTo = `${origin}/auth/callback?next=${encodeURIComponent(targetPath)}`;
 
   try {
