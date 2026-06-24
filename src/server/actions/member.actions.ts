@@ -30,7 +30,7 @@ export async function getMembers(page: number = 1, limit: number = 10, search?: 
     const { data, count } = await membersService.getMembers(supabase, { page, limit, search }, true);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return { data: data as any[], count };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error('Error fetching members:', error);
     throw new Error('Failed to fetch members');
@@ -42,12 +42,18 @@ export async function createMember(prevState: any, formData: FormData) {
   const supabase = await createClient();
   const rawData = Object.fromEntries(formData);
   const profile = extractProfileData(rawData);
-  
+
+  const slug = `${rawData.first_name}-${rawData.last_name}`
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+
   try {
     await membersService.create(supabase, {
       first_name: rawData.first_name as string,
       last_name: rawData.last_name as string,
       email: rawData.email as string,
+      slug: slug,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       type: (rawData.type as any) || 'Resident',
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -57,11 +63,11 @@ export async function createMember(prevState: any, formData: FormData) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       profile: profile as any
     });
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return { error: error.message };
   }
-  
+
   revalidatePath('/admin/members');
   revalidatePath('/about/team/[slug]', 'page');
   revalidatePath('/about/governance/[slug]', 'page');
@@ -74,7 +80,7 @@ export async function updateMember(id: string, prevState: any, formData: FormDat
   const supabase = await createClient();
   const rawData = Object.fromEntries(formData);
   const profile = extractProfileData(rawData);
-  
+
   try {
     await membersService.update(supabase, id, {
       first_name: rawData.first_name as string,
@@ -89,11 +95,11 @@ export async function updateMember(id: string, prevState: any, formData: FormDat
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       profile: profile as any
     });
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return { error: error.message };
   }
-  
+
   revalidatePath('/admin/members');
   revalidatePath('/about/team/[slug]', 'page');
   revalidatePath('/about/governance/[slug]', 'page');
@@ -105,11 +111,11 @@ export async function deleteMember(id: string) {
   const supabase = await createClient();
   try {
     await membersService.delete(supabase, id);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return { error: error.message };
   }
-  
+
   revalidatePath('/admin/members');
   return { success: true };
 }

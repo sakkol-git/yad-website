@@ -66,7 +66,7 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
         <div className="px-6 h-16 flex items-center justify-between border-b border-outline-variant/30 shrink-0">
           <Link
             href="/admin/dashboard"
-            className="font-bold text-xl text-primary flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md px-1 -mx-1"
+            className="font-bold text-xl text-primary flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md-md px-1 -mx-1"
             onClick={onClose}
           >
             <span className="material-symbols-outlined text-[28px] icon-fill text-primary">spa</span>
@@ -75,7 +75,7 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
 
           {/* Mobile Close Button */}
           <button
-            className="lg:hidden text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high p-2 rounded-full transition-colors"
+            className="lg:hidden text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high p-2 rounded-md-full transition-colors"
             onClick={onClose}
             aria-label="Close menu"
           >
@@ -99,7 +99,7 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
                         href={item.href}
                         onClick={onClose}
                         aria-current={isActive ? 'page' : undefined}
-                        className={`group flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors duration-200 ease-in-out font-medium text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${isActive
+                        className={`group flex items-center gap-3 px-3 py-2.5 rounded-md-md transition-colors duration-200 ease-in-out font-medium text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${isActive
                           ? 'bg-secondary-container text-on-secondary-container shadow-sm'
                           : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'
                           }`}
@@ -122,9 +122,9 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
 
         {/* Actionable User Footer */}
         <div className="p-4 border-t border-outline-variant/30 shrink-0">
-          <div className="group flex items-center justify-between gap-3 px-3 py-2 bg-transparent hover:bg-surface-container-low rounded-lg border border-transparent hover:border-outline-variant/30 transition-colors duration-150 cursor-pointer">
+          <div className="group flex items-center justify-between gap-3 px-3 py-2 bg-transparent hover:bg-surface-container-low rounded-md-md border border-transparent hover:border-outline-variant/30 transition-colors duration-150 cursor-pointer">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-sm shadow-inner">
+              <div className="w-9 h-9 rounded-md-full bg-primary/10 text-primary flex items-center justify-center font-bold text-sm shadow-inner">
                 AD
               </div>
               <div className="flex flex-col">
@@ -136,7 +136,7 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
             <form action={logout}>
               <button
                 type="submit"
-                className="opacity-0 group-hover:opacity-100 text-on-surface-variant hover:text-error transition-colors duration-200 ease-in-out p-1.5 rounded-full hover:bg-error/10 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-error"
+                className="opacity-0 group-hover:opacity-100 text-on-surface-variant hover:text-error transition-colors duration-200 ease-in-out p-1.5 rounded-md-full hover:bg-error/10 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-error"
                 aria-label="Log out"
                 title="Log out"
               >

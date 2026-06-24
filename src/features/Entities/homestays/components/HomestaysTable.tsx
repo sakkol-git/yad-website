@@ -27,20 +27,20 @@ export function HomestaysTable({
   const totalPages = count ? Math.ceil(count / 10) : 1;
 
   return (
-    <div className="bg-surface-container-lowest rounded-lg shadow-sm border border-surface-variant/30 overflow-hidden">
+    <div className="bg-surface-container-lowest rounded-md-md shadow-sm border border-surface-variant/30 overflow-hidden">
       <div className="p-4 border-b border-surface-variant/30 flex flex-wrap gap-4 items-center justify-between bg-surface-bright">
         <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
           <div className="relative flex-1 md:w-64">
             <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
             <input
-              className="w-full pl-9 pr-3 py-2 bg-surface-container rounded-md border-none focus:ring-2 focus:ring-secondary text-[14px] placeholder-on-surface-variant/70"
+              className="w-full pl-9 pr-3 py-2 bg-surface-container rounded-md-md border-none focus:ring-2 focus:ring-secondary text-[14px] placeholder-on-surface-variant/70"
               placeholder="Search rooms..."
               type="text"
               defaultValue={search}
             />
           </div>
           <select 
-            className="py-2 pl-3 pr-8 bg-surface-container rounded-md border-none focus:ring-2 focus:ring-secondary text-[14px] text-on-surface-variant cursor-pointer"
+            className="py-2 pl-3 pr-8 bg-surface-container rounded-md-md border-none focus:ring-2 focus:ring-secondary text-[14px] text-on-surface-variant cursor-pointer"
             defaultValue={statusRaw || ''}
           >
             <option value="">All Statuses</option>
@@ -70,7 +70,7 @@ export function HomestaysTable({
                   </td>
                   <td className="p-3 text-on-surface-variant text-sm">{room.capacity} Guests</td>
                   <td className="p-3">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${
+                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-md-full text-xs font-bold ${
                       room.status === 'Available' ? 'bg-primary-container text-on-primary-container' : 
                       room.status === 'Occupied' ? 'bg-error-container text-error' :
                       'bg-surface-variant text-on-surface-variant'
@@ -102,12 +102,12 @@ export function HomestaysTable({
             Showing {(page - 1) * 10 + 1} to {Math.min(page * 10, count)} of {count} rooms
           </div>
           <div className="flex gap-2 items-center">
-            <Link href={`?page=${Math.max(1, page - 1)}`} className={`p-1 rounded-md hover:bg-surface-container transition-colors ${page === 1 ? 'opacity-50 pointer-events-none' : ''}`}>
+            <Link href={`?page=${Math.max(1, page - 1)}`} className={`p-1 rounded-md-md hover:bg-surface-container transition-colors ${page === 1 ? 'opacity-50 pointer-events-none' : ''}`}>
               <span className="material-symbols-outlined">chevron_left</span>
             </Link>
-            <div className="w-8 h-8 rounded-md bg-secondary-container text-on-secondary-container flex items-center justify-center">{page}</div>
+            <div className="w-8 h-8 rounded-md-md bg-secondary-container text-on-secondary-container flex items-center justify-center">{page}</div>
             {page + 1 <= totalPages && (
-              <Link href={`?page=${Math.min(totalPages, page + 1)}`} className={`p-1 rounded-md hover:bg-surface-container transition-colors ${page >= totalPages ? 'opacity-50 pointer-events-none' : ''}`}>
+              <Link href={`?page=${Math.min(totalPages, page + 1)}`} className={`p-1 rounded-md-md hover:bg-surface-container transition-colors ${page >= totalPages ? 'opacity-50 pointer-events-none' : ''}`}>
                 <span className="material-symbols-outlined">chevron_right</span>
               </Link>
             )}

@@ -61,7 +61,7 @@ function VoiceCard({ voice }: { voice: typeof VOICES_DATA[number] }) {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative group shrink-0 w-[85vw] md:w-[600px] rounded-md overflow-hidden"
+      className="relative group shrink-0 w-[85vw] md:w-[600px] rounded-md-md overflow-hidden"
     >
       {/* Card background */}
       <div className="
@@ -75,7 +75,7 @@ function VoiceCard({ voice }: { voice: typeof VOICES_DATA[number] }) {
       {/* Cursor-following ambient glow */}
       <div
         ref={glowRef}
-        className="absolute w-48 h-48 rounded-full bg-primary/8 blur-2xl pointer-events-none transition-opacity duration-500 -translate-x-1/2 -translate-y-1/2 z-[1]"
+        className="absolute w-48 h-48 rounded-md-full bg-primary/8 blur-2xl pointer-events-none transition-opacity duration-500 -translate-x-1/2 -translate-y-1/2 z-[1]"
         style={{
           left: "var(--glow-x, 50%)",
           top: "var(--glow-y, 50%)",
@@ -98,7 +98,7 @@ function VoiceCard({ voice }: { voice: typeof VOICES_DATA[number] }) {
           &quot;{voice.quote}&quot;
         </p>
         <div className="flex items-center gap-4 mt-auto">
-          <div className="w-12 h-12 bg-surface-variant-container-highest text-surface-variant-container-highest rounded-full border border-outline-variant/70 flex items-center justify-center">
+          <div className="w-12 h-12 bg-surface-variant-container-highest text-surface-variant-container-highest rounded-md-full border border-outline-variant/70 flex items-center justify-center">
             <span className="text-primary font-light text-lg ">{voice.initial}</span>
           </div>
           <div>

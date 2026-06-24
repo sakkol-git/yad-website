@@ -9,18 +9,18 @@ export function DigitalInnovation() {
     <section className="max-w-container-max mt-20 lg:mt-32 mx-auto px-margin-mobile md:px-margin-desktop mb-section-gap">
       <div className="flex flex-col-reverse lg:flex-row items-center gap-16">
         <div className="lg:w-5/12 relative">
-          <div className="absolute inset-0 bg-tertiary-fixed rounded-md transform -translate-x-6 translate-y-6 z-0" />
+          <div className="absolute inset-0 bg-tertiary-fixed rounded-md-md transform -translate-x-6 translate-y-6 z-0" />
           <ImageRevealMask className="relative z-10 w-full h-[450px]">
             <Image
               alt="Digital Innovation Lab"
-              className="w-full h-full object-cover rounded-sm"
+              className="w-full h-full object-cover rounded-md-sm"
               src="/assets/images/yad-7.png"
               fill
               sizes="(max-width: 1024px) 100vw, 42vw"
             />
           </ImageRevealMask>
           {/* Floating feature card */}
-          <div className="absolute top-1/2 -right-12 transform -translate-y-1/2 bg-surface/85 backdrop-blur-2xl border border-outline-variant/50 shadow-xl shadow-black/10 rounded-md z-20 w-48 hidden lg:block p-5">
+          <div className="absolute top-1/2 -right-12 transform -translate-y-1/2 bg-surface/85 backdrop-blur-2xl border border-outline-variant/50 shadow-xl shadow-black/10 rounded-md-md z-20 w-48 hidden lg:block p-5">
             <div className="flex items-center gap-3 mb-3">
               <span className="material-symbols-outlined text-tertiary text-[20px]">
                 code
@@ -29,8 +29,8 @@ export function DigitalInnovation() {
                 Tech Skills
               </span>
             </div>
-            <div className="w-full bg-surface-container-highest rounded-full h-1.5">
-              <div className="bg-tertiary h-1.5 rounded-full w-4/5" />
+            <div className="w-full bg-surface-container-highest rounded-md-full h-1.5">
+              <div className="bg-tertiary h-1.5 rounded-md-full w-4/5" />
             </div>
           </div>
         </div>

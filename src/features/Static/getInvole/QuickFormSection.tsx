@@ -64,17 +64,17 @@ export function QuickFormSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <FormLabel htmlFor="quick-first-name" className="text-xs uppercase tracking-widest mb-2 font-label-bold">First Name</FormLabel>
-              <FormInput id="quick-first-name" name="firstName" type="text" className="rounded-none border-t-0 border-x-0 border-b-2 border-outline-variant focus:border-primary bg-transparent px-0 focus:ring-0" required aria-required="true" disabled={isPending} aria-invalid={formState === "error"} aria-describedby={formState === "error" ? "quick-form-error" : undefined} />
+              <FormInput id="quick-first-name" name="firstName" type="text" className="rounded-md-md border-t-0 border-x-0 border-b-2 border-outline-variant focus:border-primary bg-transparent px-0 focus:ring-0" required aria-required="true" disabled={isPending} aria-invalid={formState === "error"} aria-describedby={formState === "error" ? "quick-form-error" : undefined} />
             </div>
             <div>
               <FormLabel htmlFor="quick-last-name" className="text-xs uppercase tracking-widest mb-2 font-label-bold">Last Name</FormLabel>
-              <FormInput id="quick-last-name" name="lastName" type="text" className="rounded-none border-t-0 border-x-0 border-b-2 border-outline-variant focus:border-primary bg-transparent px-0 focus:ring-0" required aria-required="true" disabled={isPending} aria-invalid={formState === "error"} aria-describedby={formState === "error" ? "quick-form-error" : undefined} />
+              <FormInput id="quick-last-name" name="lastName" type="text" className="rounded-md-md border-t-0 border-x-0 border-b-2 border-outline-variant focus:border-primary bg-transparent px-0 focus:ring-0" required aria-required="true" disabled={isPending} aria-invalid={formState === "error"} aria-describedby={formState === "error" ? "quick-form-error" : undefined} />
             </div>
           </div>
           
           <div>
             <FormLabel htmlFor="quick-email" className="text-xs uppercase tracking-widest mb-2 font-label-bold">Email Address</FormLabel>
-            <FormInput id="quick-email" name="email" type="email" className="rounded-none border-t-0 border-x-0 border-b-2 border-outline-variant focus:border-primary bg-transparent px-0 focus:ring-0" required aria-required="true" disabled={isPending} aria-invalid={formState === "error"} aria-describedby={formState === "error" ? "quick-form-error" : undefined} />
+            <FormInput id="quick-email" name="email" type="email" className="rounded-md-md border-t-0 border-x-0 border-b-2 border-outline-variant focus:border-primary bg-transparent px-0 focus:ring-0" required aria-required="true" disabled={isPending} aria-invalid={formState === "error"} aria-describedby={formState === "error" ? "quick-form-error" : undefined} />
           </div>
 
           <fieldset disabled={isPending}>

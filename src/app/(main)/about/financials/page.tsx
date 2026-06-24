@@ -55,7 +55,7 @@ async function AnnualReportsList() {
   }
 
   return (
-    <div className="bg-surface-container-low border border-surface-variant rounded-lg p-10 text-center">
+    <div className="bg-surface-container-low border border-surface-variant rounded-md-md p-10 text-center">
       <span className="material-symbols-outlined text-4xl text-on-surface-variant mb-4">description</span>
       <h3 className="font-headline-sm text-on-surface mb-2">Reports Coming Soon</h3>
       <p className="text-on-surface-variant mb-4">
@@ -74,11 +74,11 @@ function ReportsSkeleton() {
       {[1, 2, 3].map((i) => (
         <Card key={i} className="border border-surface-variant bg-surface">
           <CardHeader>
-            <div className="h-6 bg-surface-variant/50 rounded w-3/4 animate-pulse mb-2"></div>
-            <div className="h-4 bg-surface-variant/50 rounded w-1/4 animate-pulse"></div>
+            <div className="h-6 bg-surface-variant/50 rounded-md w-3/4 animate-pulse mb-2"></div>
+            <div className="h-4 bg-surface-variant/50 rounded-md w-1/4 animate-pulse"></div>
           </CardHeader>
           <CardContent>
-            <div className="h-10 bg-surface-variant/50 rounded w-full animate-pulse"></div>
+            <div className="h-10 bg-surface-variant/50 rounded-md w-full animate-pulse"></div>
           </CardContent>
         </Card>
       ))}

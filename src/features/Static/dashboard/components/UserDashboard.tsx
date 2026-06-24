@@ -21,7 +21,7 @@ export function UserDashboard({
   return (
     <PortalPageLayout>
       {/* Premium Welcome Section */}
-      <div className="bg-surface rounded-md p-8 md:p-12 border border-outline-variant/30 relative overflow-hidden">
+      <div className="bg-surface rounded-md-md p-8 md:p-12 border border-outline-variant/30 relative overflow-hidden">
         {/* Stark Editorial border element */}
         <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
         
@@ -45,7 +45,7 @@ export function UserDashboard({
           actionText="Manage Bookings"
         >
           {upcomingBooking ? (
-            <div className="bg-surface-container p-4 rounded-sm border border-outline-variant/10">
+            <div className="bg-surface-container p-4 rounded-md-sm border border-outline-variant/10">
               <p className="font-label-md text-label-md text-primary uppercase tracking-[0.2em] mb-2">Upcoming Stay</p>
               <p className="font-body-lg text-body-lg text-on-surface mb-1">{upcomingBooking.rooms?.name}</p>
               <p className="text-sm font-light text-on-surface-variant flex items-center gap-1">
@@ -68,7 +68,7 @@ export function UserDashboard({
           actionText="View History"
         >
           {recentDonation ? (
-            <div className="bg-surface-container p-4 rounded-sm border border-outline-variant/10">
+            <div className="bg-surface-container p-4 rounded-md-sm border border-outline-variant/10">
               <p className="font-label-md text-label-md text-tertiary uppercase tracking-[0.2em] mb-2">Recent Contribution</p>
               <p className="font-headline-md text-headline-md text-on-surface mb-1">${recentDonation.amount}</p>
               <p className="text-sm font-light text-on-surface-variant flex items-center gap-1">
@@ -91,7 +91,7 @@ export function UserDashboard({
           actionText="Find Opportunities"
         >
           {recentVolunteer ? (
-            <div className="bg-surface-container p-4 rounded-sm border border-outline-variant/10">
+            <div className="bg-surface-container p-4 rounded-md-sm border border-outline-variant/10">
               <p className="font-label-md text-label-md text-secondary uppercase tracking-[0.2em] mb-2">Latest Engagement</p>
               <p className="font-body-lg text-body-lg text-on-surface mb-1 truncate" title={recentVolunteer.events?.name || ''}>{recentVolunteer.events?.name}</p>
               <p className="text-sm font-light text-on-surface-variant flex items-center gap-1">

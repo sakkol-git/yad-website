@@ -61,7 +61,7 @@ export default async function DonorsShowcasePage() {
                   We extend our deepest gratitude to the generous individuals, families, and organizations who believe in our mission and make our work in Cambodia possible.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <Button variant="default" size="lg" className="rounded-none bg-primary text-white h-12 px-6 hover:bg-primary/90 uppercase text-xs tracking-wider font-bold transition-colors duration-150" asChild>
+                  <Button variant="default" size="lg" className="rounded-md-md bg-primary text-white h-12 px-6 hover:bg-primary/90 uppercase text-xs tracking-wider font-bold transition-colors duration-150" asChild>
                     <Link href="/donate">Become a Donor</Link>
                   </Button>
                 </div>

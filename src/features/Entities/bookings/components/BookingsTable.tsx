@@ -111,7 +111,7 @@ export function BookingsTable({
         else if (row.status === 'Cancelled' || row.status === 'No Show') colorClass = 'bg-error-container text-error';
 
         return (
-          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${colorClass}`}>
+          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-md-full text-xs font-bold ${colorClass}`}>
             {row.status}
           </span>
         );
@@ -123,7 +123,7 @@ export function BookingsTable({
       enableHiding: false,
       cell: (row) => (
         <div className="flex justify-end items-center gap-2">
-          <button className="p-2 text-on-surface-variant hover:text-secondary transition-colors flex items-center justify-center rounded-full hover:bg-secondary/10" title="More options">
+          <button className="p-2 text-on-surface-variant hover:text-secondary transition-colors flex items-center justify-center rounded-md-full hover:bg-secondary/10" title="More options">
             <span className="material-symbols-outlined text-[18px]">more_vert</span>
           </button>
         </div>
@@ -134,7 +134,7 @@ export function BookingsTable({
   const additionalFilters = (
     <div className="flex gap-3">
       <select 
-        className="py-2.5 pl-3 pr-8 bg-surface-container rounded-md border border-outline-variant/30 focus:ring-2 focus:ring-primary text-[14px] text-on-surface-variant cursor-pointer appearance-none shadow-sm"
+        className="py-2.5 pl-3 pr-8 bg-surface-container rounded-md-md border border-outline-variant/30 focus:ring-2 focus:ring-primary text-[14px] text-on-surface-variant cursor-pointer appearance-none shadow-sm"
         value={statusRaw || ''}
         onChange={handleStatusFilterChange}
       >
@@ -150,7 +150,7 @@ export function BookingsTable({
         <option value="No Show">No Show</option>
       </select>
       <select 
-        className="py-2.5 pl-3 pr-8 bg-surface-container rounded-md border border-outline-variant/30 focus:ring-2 focus:ring-primary text-[14px] text-on-surface-variant cursor-pointer appearance-none shadow-sm"
+        className="py-2.5 pl-3 pr-8 bg-surface-container rounded-md-md border border-outline-variant/30 focus:ring-2 focus:ring-primary text-[14px] text-on-surface-variant cursor-pointer appearance-none shadow-sm"
         value={paymentStatusRaw || ''}
         onChange={handlePaymentFilterChange}
       >

@@ -60,7 +60,7 @@ export default function ApplyPage() {
       
       <section className="py-16 bg-surface-container-lowest">
         <div className="max-w-3xl mx-auto px-margin-mobile md:px-margin-desktop">
-          <form onSubmit={handleSubmit} className="bg-surface border border-surface-variant rounded-lg p-8 shadow-sm">
+          <form onSubmit={handleSubmit} className="bg-surface border border-surface-variant rounded-md-md p-8 shadow-sm">
             <h2 className="text-2xl font-bold text-primary mb-6">Application Form</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">

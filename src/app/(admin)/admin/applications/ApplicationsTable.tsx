@@ -43,7 +43,7 @@ export function ApplicationsTable({
   return (
     <div className="p-6">
       {applications.length === 0 ? (
-        <div className="text-center p-8 text-on-surface-variant bg-surface-container/30 rounded-lg">
+        <div className="text-center p-8 text-on-surface-variant bg-surface-container/30 rounded-md-md">
           No applications found.
         </div>
       ) : (
@@ -68,7 +68,7 @@ export function ApplicationsTable({
                 </TableCell>
                 <TableCell>{app.education_level}</TableCell>
                 <TableCell>
-                  <span className={`inline-block px-2 py-1 rounded text-xs font-bold ${
+                  <span className={`inline-block px-2 py-1 rounded-md text-xs font-bold ${
                     app.status === 'accepted' ? 'bg-secondary-container text-on-secondary-container' :
                     app.status === 'rejected' ? 'bg-error-container text-on-error-container' :
                     app.status === 'reviewed' ? 'bg-tertiary-container text-on-tertiary-container' :
@@ -96,7 +96,7 @@ export function ApplicationsTable({
                       </DialogContent>
                     </Dialog>
                     <select 
-                      className="text-sm border border-surface-variant rounded px-2 py-1 bg-surface disabled:opacity-50"
+                      className="text-sm border border-surface-variant rounded-md px-2 py-1 bg-surface disabled:opacity-50"
                       value={app.status}
                       disabled={isPending}
                       onChange={(e) => handleStatusChange(app.id, e.target.value as Application["status"])}

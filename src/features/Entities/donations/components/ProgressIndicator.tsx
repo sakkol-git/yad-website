@@ -21,7 +21,7 @@ export function ProgressIndicator({ currentStep }: ProgressIndicatorProps) {
             <div key={step.id} className="flex items-center gap-2 md:gap-4 flex-1">
               <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
                 <div
-                  className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center font-label-bold text-sm md:text-base transition-colors duration-200 ease-in-out ${
+                  className={`w-8 h-8 md:w-10 md:h-10 rounded-md-full flex items-center justify-center font-label-bold text-sm md:text-base transition-colors duration-200 ease-in-out ${
                     isCompleted
                       ? "bg-secondary text-on-secondary shadow-md"
                       : isActive
@@ -46,7 +46,7 @@ export function ProgressIndicator({ currentStep }: ProgressIndicatorProps) {
               {/* Connector Line */}
               {index < steps.length - 1 && (
                 <div
-                  className={`h-1 flex-grow rounded-full transition-colors duration-150 ${
+                  className={`h-1 flex-grow rounded-md-full transition-colors duration-150 ${
                     isCompleted ? "bg-secondary" : "bg-surface-variant/50"
                   }`}
                 />

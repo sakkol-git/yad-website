@@ -83,7 +83,7 @@ export function RegisterForm() {
       <div className="w-full lg:w-1/2 flex items-center justify-center p-4 sm:p-8 lg:p-12 overflow-y-auto">
         <div className="w-full max-w-md py-8">
           <div className="flex flex-col items-center mb-8">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4 text-primary">
+            <div className="w-16 h-16 bg-primary/10 rounded-md-full flex items-center justify-center mb-4 text-primary">
               <span className="material-symbols-outlined text-[32px]">person_add</span>
             </div>
             <h1 className="text-3xl font-light text-on-surface mb-2 text-center tracking-tight">Create an Account</h1>
@@ -95,7 +95,7 @@ export function RegisterForm() {
               <div 
                 role="alert" 
                 aria-live="assertive"
-                className="bg-error/10 border border-error/30 text-error rounded-md p-4 text-sm mb-4"
+                className="bg-error/10 border border-error/30 text-error rounded-md-md p-4 text-sm mb-4"
               >
                 Please correct the errors below before submitting.
               </div>
@@ -112,7 +112,7 @@ export function RegisterForm() {
                   aria-required="true"
                   aria-describedby="register-first-name-error"
                   aria-invalid={!!errors.first_name}
-                  className={`w-full px-4 h-12 bg-transparent rounded-none border ${errors.first_name ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
+                  className={`w-full px-4 h-12 bg-transparent rounded-md-md border ${errors.first_name ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
                   {...register("first_name")}
                 />
                 <p
@@ -137,7 +137,7 @@ export function RegisterForm() {
                   aria-required="true"
                   aria-describedby="register-last-name-error"
                   aria-invalid={!!errors.last_name}
-                  className={`w-full px-4 h-12 bg-transparent rounded-none border ${errors.last_name ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
+                  className={`w-full px-4 h-12 bg-transparent rounded-md-md border ${errors.last_name ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
                   {...register("last_name")}
                 />
                 <p
@@ -166,7 +166,7 @@ export function RegisterForm() {
                   aria-required="true"
                   aria-describedby="register-email-error"
                   aria-invalid={!!errors.email}
-                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-none border ${errors.email ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
+                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-md-md border ${errors.email ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
                   {...register("email")}
                 />
               </div>
@@ -195,7 +195,7 @@ export function RegisterForm() {
                   aria-required="true"
                   aria-describedby="register-password-error"
                   aria-invalid={!!errors.password}
-                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-none border ${errors.password ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
+                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-md-md border ${errors.password ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
                   {...register("password")}
                 />
               </div>
@@ -224,7 +224,7 @@ export function RegisterForm() {
                   aria-required="true"
                   aria-describedby="register-confirm-password-error"
                   aria-invalid={!!errors.confirmPassword}
-                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-none border ${errors.confirmPassword ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
+                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-md-md border ${errors.confirmPassword ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
                   {...register("confirmPassword")}
                 />
               </div>
@@ -256,14 +256,14 @@ export function RegisterForm() {
               disabled={isWorking}
               aria-busy={isWorking}
               aria-disabled={isWorking}
-              className="w-full h-12 relative bg-primary text-white rounded-none font-bold text-xs uppercase tracking-widest hover:bg-primary/90 transition-colors duration-200 ease-in-out mt-6 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full h-12 relative bg-primary text-white rounded-md-md font-bold text-xs uppercase tracking-widest hover:bg-primary/90 transition-colors duration-200 ease-in-out mt-6 disabled:opacity-70 disabled:cursor-not-allowed"
             >
               <span className={`absolute inset-0 flex items-center justify-center gap-2 transition-opacity duration-150 ${isWorking ? "opacity-0" : "opacity-100"}`}>
                 Sign Up
                 <span className="material-symbols-outlined text-[20px]">how_to_reg</span>
               </span>
               <span className={`absolute inset-0 flex items-center justify-center gap-2 transition-opacity duration-150 ${isWorking ? "opacity-100" : "opacity-0"}`} aria-hidden="true">
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-md-full animate-spin" />
               </span>
             </button>
           </form>
@@ -280,7 +280,7 @@ export function RegisterForm() {
           <button
             onClick={onGoogleLogin}
             disabled={isPendingGoogle}
-            className="w-full h-12 relative bg-transparent border border-outline-variant/50 rounded-none font-bold text-xs uppercase tracking-widest text-on-surface hover:border-primary transition-colors duration-200 ease-in-out disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full h-12 relative bg-transparent border border-outline-variant/50 rounded-md-md font-bold text-xs uppercase tracking-widest text-on-surface hover:border-primary transition-colors duration-200 ease-in-out disabled:opacity-70 disabled:cursor-not-allowed"
           >
             <span className={`absolute inset-0 flex items-center justify-center gap-3 transition-opacity duration-150 ${isPendingGoogle ? "opacity-0" : "opacity-100"}`}>
               <Image
@@ -293,7 +293,7 @@ export function RegisterForm() {
               Google
             </span>
             <span className={`absolute inset-0 flex items-center justify-center transition-opacity duration-150 ${isPendingGoogle ? "opacity-100" : "opacity-0"}`} aria-hidden="true">
-              <div className="w-5 h-5 border-2 border-on-surface border-t-transparent rounded-full animate-spin" />
+              <div className="w-5 h-5 border-2 border-on-surface border-t-transparent rounded-md-full animate-spin" />
             </span>
           </button>
 

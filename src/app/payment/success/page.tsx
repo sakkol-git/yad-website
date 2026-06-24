@@ -64,11 +64,11 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
       {/* Abstract Background Elements */}
       <div className="absolute top-0 left-0 w-full h-1 bg-primary" />
 
-      <div className="max-w-[600px] w-full bg-surface rounded-none p-8 md:p-12 border border-outline-variant/30 text-center relative z-10">
+      <div className="max-w-[600px] w-full bg-surface rounded-md-md p-8 md:p-12 border border-outline-variant/30 text-center relative z-10">
         
         {/* Icon */}
         <div className="mb-8 flex justify-center animate-pop-in">
-          <div className={`w-24 h-24 rounded-none border flex items-center justify-center ${
+          <div className={`w-24 h-24 rounded-md-md border flex items-center justify-center ${
             isPending ? 'border-primary bg-primary/5' :
             isValidSession ? 'border-primary bg-primary/5' : 'border-outline-variant bg-surface'
           }`}>
@@ -100,7 +100,7 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
                   We have received your local payment details for a donation of{" "}
                   <strong className="text-primary font-bold">${amount.toFixed(2)}</strong> from <strong className="text-on-surface font-bold">{donorOrGuestName}</strong>.
                   <br />
-                  <span className="text-sm block mt-4 p-4 bg-surface rounded-none border border-outline-variant/30 text-on-surface-variant">
+                  <span className="text-sm block mt-4 p-4 bg-surface rounded-md-md border border-outline-variant/30 text-on-surface-variant">
                     Transaction Ref: <strong className="font-mono text-primary font-bold">{refId}</strong>. Our finance team will verify the transfer shortly.
                   </span>
                 </>
@@ -130,7 +130,7 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
                   We have received your bank transfer reference details for a booking amount of{" "}
                   <strong className="text-primary font-bold">${amount.toFixed(2)}</strong> under the name <strong className="text-on-surface font-bold">{donorOrGuestName}</strong>.
                   <br />
-                  <span className="text-sm block mt-4 p-4 bg-surface rounded-none border border-outline-variant/30 text-on-surface-variant">
+                  <span className="text-sm block mt-4 p-4 bg-surface rounded-md-md border border-outline-variant/30 text-on-surface-variant">
                     Reference ID: <strong className="font-mono text-primary font-bold">{refId}</strong>. Your booking status will be updated to "Confirmed" once our team approves the transfer.
                   </span>
                 </>
@@ -148,11 +148,11 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
 
         {/* Dynamic Navigation Actions */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-up delay-300">
-          <Button variant="outline" size="lg" className="rounded-none border-primary text-primary hover:bg-primary hover:text-white uppercase tracking-widest text-[10px] font-bold h-12 transition-colors px-8" asChild>
+          <Button variant="outline" size="lg" className="rounded-md-md border-primary text-primary hover:bg-primary hover:text-white uppercase tracking-widest text-[10px] font-bold h-12 transition-colors px-8" asChild>
             <Link href="/">Back to Homepage</Link>
           </Button>
           {type === "booking" && (
-            <Button variant="default" size="lg" className="rounded-none bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold transition-colors duration-150 px-8" asChild>
+            <Button variant="default" size="lg" className="rounded-md-md bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold transition-colors duration-150 px-8" asChild>
               <Link href="/portal/bookings">Go to Bookings Dashboard</Link>
             </Button>
           )}
@@ -169,7 +169,7 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
                 aria-label="Share on Facebook"
                 variant="outline"
                 size="icon"
-                className="w-12 h-12 rounded-none border border-outline-variant/30 bg-surface text-primary hover:bg-primary hover:text-white transition-colors"
+                className="w-12 h-12 rounded-md-md border border-outline-variant/30 bg-surface text-primary hover:bg-primary hover:text-white transition-colors"
               >
                 <span className="material-symbols-outlined text-[20px]">share</span>
               </Button>
@@ -177,7 +177,7 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
                 aria-label="Share on Twitter"
                 variant="outline"
                 size="icon"
-                className="w-12 h-12 rounded-none border border-outline-variant/30 bg-surface text-primary hover:bg-primary hover:text-white transition-colors"
+                className="w-12 h-12 rounded-md-md border border-outline-variant/30 bg-surface text-primary hover:bg-primary hover:text-white transition-colors"
               >
                 <span className="material-symbols-outlined text-[20px]">chat_bubble</span>
               </Button>
@@ -185,7 +185,7 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
                 aria-label="Copy Link"
                 variant="outline"
                 size="icon"
-                className="w-12 h-12 rounded-none border border-outline-variant/30 bg-surface text-primary hover:bg-primary hover:text-white transition-colors"
+                className="w-12 h-12 rounded-md-md border border-outline-variant/30 bg-surface text-primary hover:bg-primary hover:text-white transition-colors"
               >
                 <span className="material-symbols-outlined text-[20px]">link</span>
               </Button>

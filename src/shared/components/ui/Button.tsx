@@ -24,10 +24,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     const sizeClasses = {
-      default: "h-12 px-8 uppercase tracking-widest text-[10px] font-bold rounded-none",
-      sm: "h-10 px-6 uppercase tracking-widest text-[10px] font-bold rounded-none",
-      lg: "h-14 px-10 uppercase tracking-widest text-[10px] font-bold rounded-none",
-      icon: "h-12 w-12 rounded-none flex items-center justify-center",
+      default: "h-12 px-8 uppercase tracking-widest text-[10px] font-bold rounded-md-sm",
+      sm: "h-10 px-6 uppercase tracking-widest text-[10px] font-bold rounded-md-sm",
+      lg: "h-14 px-10 uppercase tracking-widest text-[10px] font-bold rounded-md-sm",
+      icon: "h-12 w-12 rounded-md-sm flex items-center justify-center",
     }
 
     const baseClasses = "inline-flex items-center justify-center whitespace-nowrap transition-[color,background-color,border-color,opacity,transform] duration-200 ease-in-out active:scale-[0.97] active:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50"

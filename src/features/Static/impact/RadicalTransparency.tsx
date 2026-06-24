@@ -76,7 +76,7 @@ export function RadicalTransparency({ reports }: RadicalTransparencyProps) {
                     </h3>
                     <div className="flex items-center gap-3 text-xs font-label-bold uppercase tracking-widest text-on-surface-variant/60">
                       <span>Published</span>
-                      <span className="w-1 h-1 rounded-full bg-outline-variant/50 shrink-0" />
+                      <span className="w-1 h-1 rounded-md-full bg-outline-variant/50 shrink-0" />
                       <span>{formatFileSize(doc.file_size_bytes)}</span>
                     </div>
                   </div>
@@ -87,7 +87,7 @@ export function RadicalTransparency({ reports }: RadicalTransparencyProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Download ${doc.title}`}
-                  className="hidden md:flex items-center justify-center w-12 h-12 rounded-full border border-outline-variant/30 group-hover:bg-primary group-hover:border-primary group-hover:text-on-primary transition-colors duration-200 ease-in-out shrink-0"
+                  className="hidden md:flex items-center justify-center w-12 h-12 rounded-md-full border border-outline-variant/30 group-hover:bg-primary group-hover:border-primary group-hover:text-on-primary transition-colors duration-200 ease-in-out shrink-0"
                 >
                   <span className="material-symbols-outlined">download</span>
                 </a>

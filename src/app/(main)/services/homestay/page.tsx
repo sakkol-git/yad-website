@@ -67,19 +67,19 @@ export default function HomestayPage() {
           </div>
 
           <div className="grid grid-cols-2 gap-4 h-fit">
-            <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 hover:border-primary/40 transition-colors duration-300 rounded-md overflow-hidden shadow-ambient group">
+            <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 hover:border-primary/40 transition-colors duration-300 rounded-md-md overflow-hidden shadow-ambient group">
               <div className="aspect-square flex flex-col items-center justify-center p-4 text-center">
                 <span className="material-symbols-outlined text-4xl text-primary mb-3 block group-hover:scale-110 transition-transform duration-300">bed</span>
                 <p className="text-base font-light text-on-surface">Single Rooms</p>
               </div>
             </div>
-            <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 hover:border-primary/40 transition-colors duration-300 rounded-md overflow-hidden shadow-ambient group">
+            <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 hover:border-primary/40 transition-colors duration-300 rounded-md-md overflow-hidden shadow-ambient group">
               <div className="aspect-square flex flex-col items-center justify-center p-4 text-center">
                 <span className="material-symbols-outlined text-4xl text-primary mb-3 block group-hover:scale-110 transition-transform duration-300">king_bed</span>
                 <p className="text-base font-light text-on-surface">Double Rooms</p>
               </div>
             </div>
-            <div className="col-span-2 bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 hover:border-primary/40 transition-colors duration-300 rounded-md overflow-hidden shadow-ambient group">
+            <div className="col-span-2 bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 hover:border-primary/40 transition-colors duration-300 rounded-md-md overflow-hidden shadow-ambient group">
               <div className="h-32 flex flex-col items-center justify-center p-4 text-center">
                 <span className="material-symbols-outlined text-4xl text-primary mb-3 block group-hover:scale-110 transition-transform duration-300">bunkbed</span>
                 <p className="text-base font-light text-on-surface">Group &amp; Dormitory</p>
@@ -89,7 +89,7 @@ export default function HomestayPage() {
         </div>
 
         {/* Pricing Tables */}
-        <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 rounded-md p-10 mb-40 shadow-ambient">
+        <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 rounded-md-md p-10 mb-40 shadow-ambient">
           <TextReveal 
             as="h2" 
             text="Current Rates" 

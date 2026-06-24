@@ -39,7 +39,7 @@ export default function NewsPage() {
         </div>
 
         {/* Empty State / Placeholder */}
-        <div className="bg-surface-container-low rounded-3xl p-12 text-center border-2 border-dashed border-outline-variant/40 flex flex-col items-center justify-center min-h-[400px]">
+        <div className="bg-surface-container-low rounded-md-md p-12 text-center border-2 border-dashed border-outline-variant/40 flex flex-col items-center justify-center min-h-[400px]">
           <span className="material-symbols-outlined text-6xl text-secondary-fixed-dim mb-4" aria-hidden="true">
             article
           </span>

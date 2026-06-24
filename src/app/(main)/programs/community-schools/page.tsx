@@ -46,7 +46,7 @@ export default function CommunitySchoolsPage() {
             Our mobile tutoring units and pop-up classrooms ensure no child is left behind due to geographical or economic barriers. By teaching critical Life Skills and foundational English directly within slum communities, we advance the abilities and opportunities of Cambodia&apos;s most vulnerable youth.
           </p>
 
-          <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 hover:border-primary/40 transition-colors duration-300 p-8 rounded-md mb-8">
+          <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 hover:border-primary/40 transition-colors duration-300 p-8 rounded-md-md mb-8">
             <h3 className="text-2xl font-light text-on-surface tracking-tight mb-4 flex items-center gap-3">
               <span className="material-symbols-outlined text-primary text-3xl">school</span>
               Program Centers
@@ -67,8 +67,8 @@ export default function CommunitySchoolsPage() {
           </p>
         </div>
         
-        <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 rounded-md overflow-hidden shadow-ambient p-4 group h-fit">
-          <div className="rounded-sm overflow-hidden w-full h-auto">
+        <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 rounded-md-md overflow-hidden shadow-ambient p-4 group h-fit">
+          <div className="rounded-md-sm overflow-hidden w-full h-auto">
             <Image 
               src="/assets/images/yad-5.png" 
               alt="Community education session in progress" 

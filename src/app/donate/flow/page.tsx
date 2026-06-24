@@ -52,16 +52,16 @@ export default function DonateFlowPage() {
       <div className="w-full lg:w-2/3">
         <ProgressIndicator currentStep={1} />
 
-        <div className="bg-surface rounded-none border border-outline-variant/30 p-6 md:p-12 relative overflow-hidden">
+        <div className="bg-surface rounded-md-md border border-outline-variant/30 p-6 md:p-12 relative overflow-hidden">
           {/* Donation Information Section */}
-          <div className="mb-10 p-6 md:p-8 bg-surface border border-outline-variant/30 rounded-none">
+          <div className="mb-10 p-6 md:p-8 bg-surface border border-outline-variant/30 rounded-md-md">
             <h3 className="text-xl font-light text-primary tracking-tight mb-4">
               Donation Information
             </h3>
             <p className="text-sm text-on-surface-variant mb-4">
               <strong>Youth Advancement for Development Cambodia</strong>
               <br />
-              <span className="inline-block mt-1 px-2 py-0.5 bg-tertiary-container text-on-tertiary-container rounded text-xs font-bold border border-tertiary/20">
+              <span className="inline-block mt-1 px-2 py-0.5 bg-tertiary-container text-on-tertiary-container rounded-md text-xs font-bold border border-tertiary/20">
                 Registration number: [INSERT NGO REGISTRATION NUMBER]
               </span>
             </p>
@@ -71,15 +71,15 @@ export default function DonateFlowPage() {
 
             <div className="mb-4">
               <p className="text-sm font-label-bold mb-2 text-on-surface">Fund Allocation</p>
-              <div className="flex h-3 w-full rounded-full overflow-hidden">
+              <div className="flex h-3 w-full rounded-md-full overflow-hidden">
                 <div className="bg-secondary" style={{ width: "80%" }} title="Programs & direct beneficiaries: 80%"></div>
                 <div className="bg-primary" style={{ width: "15%" }} title="Operations & staff: 15%"></div>
                 <div className="bg-tertiary" style={{ width: "5%" }} title="Fundraising & outreach: 5%"></div>
               </div>
               <div className="flex justify-between text-xs mt-2 text-on-surface-variant">
-                <span><span className="inline-block w-2 h-2 rounded-full bg-secondary mr-1"></span>Programs: 80%</span>
-                <span><span className="inline-block w-2 h-2 rounded-full bg-primary mr-1"></span>Operations: 15%</span>
-                <span><span className="inline-block w-2 h-2 rounded-full bg-tertiary mr-1"></span>Fundraising: 5%</span>
+                <span><span className="inline-block w-2 h-2 rounded-md-full bg-secondary mr-1"></span>Programs: 80%</span>
+                <span><span className="inline-block w-2 h-2 rounded-md-full bg-primary mr-1"></span>Operations: 15%</span>
+                <span><span className="inline-block w-2 h-2 rounded-md-full bg-tertiary mr-1"></span>Fundraising: 5%</span>
               </div>
             </div>
 
@@ -100,7 +100,7 @@ export default function DonateFlowPage() {
                   variant={amount === preset ? "primary" : "outline"}
                   onClick={() => setAmount(preset)}
                   size="lg"
-                  className={amount === preset ? "rounded-none bg-primary text-white ring-1 ring-primary border-transparent text-lg hover:bg-primary/90 hover:text-white transition-colors" : "rounded-none border border-outline-variant/50 bg-transparent hover:border-primary hover:text-primary text-on-surface text-lg transition-colors"}
+                  className={amount === preset ? "rounded-md-md bg-primary text-white ring-1 ring-primary border-transparent text-lg hover:bg-primary/90 hover:text-white transition-colors" : "rounded-md-md border border-outline-variant/50 bg-transparent hover:border-primary hover:text-primary text-on-surface text-lg transition-colors"}
                 >
                   ${preset}
                 </Button>
@@ -113,7 +113,7 @@ export default function DonateFlowPage() {
               </span>
               <input
                 id="customAmount"
-                className="w-full bg-transparent border border-outline-variant/50 rounded-none pl-8 pr-4 py-3 text-lg font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150"
+                className="w-full bg-transparent border border-outline-variant/50 rounded-md-md pl-8 pr-4 py-3 text-lg font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150"
                 placeholder="Custom Amount"
                 type="number"
                 min="1"
@@ -132,7 +132,7 @@ export default function DonateFlowPage() {
                 </label>
                 <input
                   id="firstName"
-                  className="w-full bg-transparent border border-outline-variant/50 rounded-none px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150"
+                  className="w-full bg-transparent border border-outline-variant/50 rounded-md-md px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150"
                   placeholder="Jane"
                   required
                   type="text"
@@ -146,7 +146,7 @@ export default function DonateFlowPage() {
                 </label>
                 <input
                   id="lastName"
-                  className="w-full bg-transparent border border-outline-variant/50 rounded-none px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150"
+                  className="w-full bg-transparent border border-outline-variant/50 rounded-md-md px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150"
                   placeholder="Doe"
                   required
                   type="text"
@@ -160,7 +160,7 @@ export default function DonateFlowPage() {
                 </label>
                 <input
                   id="email"
-                  className="w-full bg-transparent border border-outline-variant/50 rounded-none px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150"
+                  className="w-full bg-transparent border border-outline-variant/50 rounded-md-md px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150"
                   placeholder="jane.doe@example.com"
                   required
                   type="email"
@@ -177,7 +177,7 @@ export default function DonateFlowPage() {
                 required
                 checked={consent}
                 onChange={(e) => setConsent(e.target.checked)}
-                className="mt-1 w-5 h-5 rounded border-surface-variant text-primary focus:ring-primary"
+                className="mt-1 w-5 h-5 rounded-md border-surface-variant text-primary focus:ring-primary"
               />
               <label htmlFor="consent" className="text-sm text-on-surface-variant leading-tight">
                 I understand this donation is made to Youth Advancement for Development (YAD) Cambodia, a registered Cambodian NGO.
@@ -185,7 +185,7 @@ export default function DonateFlowPage() {
             </div>
 
             <div className="flex justify-end">
-              <Button type="submit" variant="default" size="lg" className="rounded-none bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-xs font-bold transition-colors duration-150 px-8 flex items-center gap-2" disabled={isLoading || !consent}>
+              <Button type="submit" variant="default" size="lg" className="rounded-md-md bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-xs font-bold transition-colors duration-150 px-8 flex items-center gap-2" disabled={isLoading || !consent}>
                 {isLoading ? "Processing..." : "Proceed to Secure Checkout"}
                 {!isLoading && <span className="material-symbols-outlined text-[16px]">lock</span>}
               </Button>
@@ -195,7 +195,7 @@ export default function DonateFlowPage() {
       </div>
 
       <div className="w-full lg:w-1/3 mt-8 lg:mt-0">
-        <div className="sticky top-24 bg-surface rounded-none p-8 border border-outline-variant/30 relative overflow-hidden">
+        <div className="sticky top-24 bg-surface rounded-md-md p-8 border border-outline-variant/30 relative overflow-hidden">
           <h3 className="text-2xl font-light text-on-surface tracking-tight mb-6 relative z-10 border-b border-outline-variant/30 pb-4">
             Summary
           </h3>

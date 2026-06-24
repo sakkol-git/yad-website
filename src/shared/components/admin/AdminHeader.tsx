@@ -19,7 +19,7 @@ export function AdminHeader({ onOpenSidebar }: { onOpenSidebar?: () => void }) {
         {onOpenSidebar && (
           <button 
             onClick={onOpenSidebar}
-            className="lg:hidden p-2 -ml-2 mr-1 text-on-surface hover:bg-surface-container rounded-md flex items-center justify-center transition-colors"
+            className="lg:hidden p-2 -ml-2 mr-1 text-on-surface hover:bg-surface-container rounded-md-md flex items-center justify-center transition-colors"
             aria-label="Open sidebar menu"
           >
             <span className="material-symbols-outlined text-[24px]">menu</span>
@@ -30,13 +30,13 @@ export function AdminHeader({ onOpenSidebar }: { onOpenSidebar?: () => void }) {
         <span className="font-bold text-on-surface text-[18px]">{currentPage}</span>
       </div>
       <div className="flex items-center gap-2 sm:gap-4">
-        <Link href="/" className="text-sm font-bold text-primary hover:bg-primary-container hover:text-on-primary-container px-2 sm:px-3 py-2 rounded-md transition-colors flex items-center gap-1.5" aria-label="View Website">
+        <Link href="/" className="text-sm font-bold text-primary hover:bg-primary-container hover:text-on-primary-container px-2 sm:px-3 py-2 rounded-md-md transition-colors flex items-center gap-1.5" aria-label="View Website">
           <span className="material-symbols-outlined text-[18px]">public</span>
           <span className="hidden sm:inline">View Website</span>
         </Link>
         <div className="h-6 w-[1px] bg-outline-variant/30 hidden sm:block"></div>
         <form action={logout}>
-          <button type="submit" className="text-sm font-bold text-error hover:bg-error-container hover:text-on-error-container px-2 sm:px-3 py-2 rounded-md transition-colors flex items-center gap-1.5 cursor-pointer" aria-label="Sign out">
+          <button type="submit" className="text-sm font-bold text-error hover:bg-error-container hover:text-on-error-container px-2 sm:px-3 py-2 rounded-md-md transition-colors flex items-center gap-1.5 cursor-pointer" aria-label="Sign out">
             <span className="material-symbols-outlined text-[18px]">logout</span>
             <span className="hidden sm:inline">Sign out</span>
           </button>

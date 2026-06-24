@@ -30,7 +30,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
       <div className="w-full lg:w-2/3">
         <ProgressIndicator currentStep={2} />
 
-        <div className="bg-surface rounded-none p-6 md:p-12 border border-outline-variant/30 relative overflow-hidden">
+        <div className="bg-surface rounded-md-md p-6 md:p-12 border border-outline-variant/30 relative overflow-hidden">
           <h2 className="text-2xl font-light text-on-surface tracking-tight mb-8 border-b border-outline-variant/30 pb-4">
             Choose Payment Method
           </h2>
@@ -40,7 +40,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
             {/* Card Option (International) */}
             <button
               onClick={() => setSelectedMethod("card")}
-              className={`flex flex-col items-start text-left p-6 rounded-none border transition-colors duration-150 cursor-pointer ${
+              className={`flex flex-col items-start text-left p-6 rounded-md-md border transition-colors duration-150 cursor-pointer ${
                 selectedMethod === "card"
                   ? "border-primary bg-primary text-white"
                   : "border-outline-variant/50 bg-transparent hover:border-primary hover:text-primary"
@@ -58,17 +58,17 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
                 Pay securely using Credit/Debit card (Visa, Mastercard, etc.), Google Pay, or Apple Pay.
               </p>
               <div className="flex gap-2 mt-auto">
-                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-none border ${selectedMethod === "card" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>VISA</span>
-                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-none border ${selectedMethod === "card" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>MC</span>
-                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-none border ${selectedMethod === "card" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>G-Pay</span>
-                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-none border ${selectedMethod === "card" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>Apple</span>
+                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md-md border ${selectedMethod === "card" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>VISA</span>
+                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md-md border ${selectedMethod === "card" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>MC</span>
+                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md-md border ${selectedMethod === "card" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>G-Pay</span>
+                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md-md border ${selectedMethod === "card" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>Apple</span>
               </div>
             </button>
 
             {/* Local Bank Transfer Option */}
             <button
               onClick={() => setSelectedMethod("local")}
-              className={`flex flex-col items-start text-left p-6 rounded-none border transition-colors duration-150 cursor-pointer ${
+              className={`flex flex-col items-start text-left p-6 rounded-md-md border transition-colors duration-150 cursor-pointer ${
                 selectedMethod === "local"
                   ? "border-primary bg-primary text-white"
                   : "border-outline-variant/50 bg-transparent hover:border-primary hover:text-primary"
@@ -86,16 +86,16 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
                 Pay via Cambodian banks (ABA, Wing, ACLEDA, etc.) by scanning the KHQR code or performing a bank transfer.
               </p>
               <div className="flex gap-2 mt-auto">
-                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-none border ${selectedMethod === "local" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>KHQR</span>
-                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-none border ${selectedMethod === "local" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>ABA</span>
-                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-none border ${selectedMethod === "local" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>Bakong</span>
+                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md-md border ${selectedMethod === "local" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>KHQR</span>
+                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md-md border ${selectedMethod === "local" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>ABA</span>
+                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md-md border ${selectedMethod === "local" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>Bakong</span>
               </div>
             </button>
           </div>
 
           {/* Action description panels */}
           {selectedMethod === "card" ? (
-            <div className="space-y-6 p-8 bg-surface border border-outline-variant/30 rounded-none text-center animate-fade-in mt-8">
+            <div className="space-y-6 p-8 bg-surface border border-outline-variant/30 rounded-md-md text-center animate-fade-in mt-8">
               <span className="material-symbols-outlined text-[32px] text-primary mb-2">
                 credit_card
               </span>
@@ -110,7 +110,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
                   onClick={handleProceedStripe}
                   variant="default"
                   size="lg"
-                  className="rounded-none bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold px-8 flex items-center gap-2 transition-colors duration-150 mx-auto"
+                  className="rounded-md-md bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold px-8 flex items-center gap-2 transition-colors duration-150 mx-auto"
                 >
                   Continue to Card Payment
                   <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
@@ -118,7 +118,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
               </div>
             </div>
           ) : (
-            <div className="space-y-6 p-8 bg-surface border border-outline-variant/30 rounded-none text-center animate-fade-in mt-8">
+            <div className="space-y-6 p-8 bg-surface border border-outline-variant/30 rounded-md-md text-center animate-fade-in mt-8">
               <span className="material-symbols-outlined text-[32px] text-primary mb-2">
                 account_balance
               </span>
@@ -133,7 +133,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
                   onClick={handleProceedLocal}
                   variant="default"
                   size="lg"
-                  className="rounded-none bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold px-8 flex items-center gap-2 transition-colors duration-150 mx-auto"
+                  className="rounded-md-md bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold px-8 flex items-center gap-2 transition-colors duration-150 mx-auto"
                 >
                   Continue to Local Payment
                   <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
@@ -146,7 +146,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
 
       {/* Side summary column */}
       <div className="w-full lg:w-1/3 mt-8 lg:mt-0">
-        <div className="sticky top-24 bg-surface rounded-none p-8 border border-outline-variant/30 relative overflow-hidden">
+        <div className="sticky top-24 bg-surface rounded-md-md p-8 border border-outline-variant/30 relative overflow-hidden">
           <h3 className="text-2xl font-light text-on-surface tracking-tight mb-6 relative z-10 border-b border-outline-variant/30 pb-4">
             Payment Summary
           </h3>

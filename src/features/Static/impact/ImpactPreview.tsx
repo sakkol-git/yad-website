@@ -9,7 +9,7 @@ export function ImpactPreview() {
     <section className="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface">
       <div className="max-w-container-max mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
-          <ImageRevealMask className="lg:col-span-7 rounded-none overflow-hidden relative h-[400px] border border-outline-variant/30">
+          <ImageRevealMask className="lg:col-span-7 rounded-md-md overflow-hidden relative h-[400px] border border-outline-variant/30">
             <Image
               alt="Cambodian youth collaborating"
               className="w-full h-full object-cover"

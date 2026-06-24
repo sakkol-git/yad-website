@@ -102,7 +102,7 @@ export function InquiriesTable({ initialData, count, page }: { initialData: Inqu
           actioned: "bg-primary-container text-on-primary-container",
         };
         return (
-          <span className={`px-2 py-1 text-xs font-bold rounded-full ${colors[row.status] || "bg-surface-variant text-on-surface-variant"}`}>
+          <span className={`px-2 py-1 text-xs font-bold rounded-md-full ${colors[row.status] || "bg-surface-variant text-on-surface-variant"}`}>
             {row.status.toUpperCase()}
           </span>
         );
