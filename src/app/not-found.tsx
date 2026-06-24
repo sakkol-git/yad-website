@@ -11,7 +11,7 @@ export default function NotFound() {
       <RevealOnScroll className="relative z-10 w-full max-w-lg mx-auto text-center">
         <div className="bg-surface/60 backdrop-blur-xl shadow-ambient border border-outline-variant/30 p-12 md:p-16">
           <div className="w-16 h-16 bg-primary/10 flex items-center justify-center mx-auto mb-8">
-            <span className="material-symbols-outlined text-[32px] text-primary">explore_off</span>
+            <span className="material-symbols-outlined text-[32px] text-primary" aria-hidden="true">explore_off</span>
           </div>
           
           <h1 className="text-[6rem] md:text-[8rem] font-light text-primary leading-none tracking-tighter mb-4">
@@ -19,17 +19,17 @@ export default function NotFound() {
           </h1>
           
           <h2 className="text-2xl md:text-3xl font-light text-on-surface tracking-tight mb-4">
-            System Route Disconnected
+            Page Not Found
           </h2>
           
           <p className="text-sm font-light text-on-surface-variant leading-relaxed mb-10">
-            The trajectory you are attempting to trace does not exist within the current sector. Please realign your navigational coordinates.
+            This page has moved or doesn&apos;t exist yet. Let&apos;s get you back on track.
           </p>
 
           <Button asChild variant="default" size="lg" className="w-full bg-primary text-white rounded-none uppercase tracking-widest text-[10px] font-bold h-14 hover:bg-primary/90 transition-colors duration-150">
             <Link href="/">
-              <span className="material-symbols-outlined text-[16px] mr-2">home</span>
-              Return to Core
+              <span className="material-symbols-outlined text-[16px] mr-2" aria-hidden="true">home</span>
+              Return Home
             </Link>
           </Button>
         </div>

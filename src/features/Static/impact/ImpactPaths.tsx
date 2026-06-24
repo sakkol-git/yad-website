@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
-import { ImpactPathCard } from "./ImpactPathCard";
+import { ImpactPathCard } from "@/features/Static/impact/ImpactPathCard";
 
 const PATHS = [
   {

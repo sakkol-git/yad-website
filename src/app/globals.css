@@ -134,6 +134,9 @@
   --text-title-lg: clamp(18px, 2vw + 8px, 22px);
   --text-title-lg--line-height: 1.4;
   --text-title-lg--font-weight: 600;
+
+  /* External brand colors */
+  --color-stripe-brand: #635BFF;
 }
 
 html {

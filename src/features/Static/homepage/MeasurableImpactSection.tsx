@@ -1,18 +1,25 @@
+"use client";
+
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { AnimatedCounter } from "@/shared/components/animations/AnimatedCounter";
 
 const METRICS = [
   {
-    value: "500+",
+    value: 500,
+    suffix: "+",
     label: "Children Reached Weekly",
     description: "Through nutrition and community education programs.",
   },
   {
-    value: "10+",
+    value: 10,
+    suffix: "+",
     label: "Years of Impact",
     description: "Building youth leadership across Cambodia.",
   },
   {
-    value: "1.2K+",
+    value: 1.2,
+    suffix: "K+",
+    decimals: 1,
     label: "Youth Empowered",
     description: "With housing, scholarships, and life skills training.",
   },
@@ -52,9 +59,12 @@ export function MeasurableImpactSection() {
                       {metric.description}
                     </p>
                   </div>
-                  <div className="text-6xl md:text-7xl lg:text-8xl text-primary font-light tabular-nums tracking-tighter group-hover:scale-105 group-hover:text-secondary transition-colors duration-150 origin-bottom-right">
-                    {metric.value}
-                  </div>
+                  <AnimatedCounter 
+                    value={metric.value}
+                    suffix={metric.suffix}
+                    decimals={metric.decimals}
+                    className="text-6xl md:text-7xl lg:text-8xl text-primary font-light tabular-nums tracking-tighter group-hover:scale-105 group-hover:text-secondary transition-colors duration-150 origin-bottom-right inline-block"
+                  />
                 </RevealOnScroll>
               ))}
             </div>

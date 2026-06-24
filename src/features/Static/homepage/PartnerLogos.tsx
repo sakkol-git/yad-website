@@ -1,6 +1,4 @@
-"use client";
-
-import Image from "next/image";
+import { SafeImage } from "@/shared/components/ui/SafeImage";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 
 const PARTNERS = [
@@ -25,7 +23,7 @@ export function PartnerLogos() {
               key={index}
               className="relative w-24 sm:w-32 md:w-40 h-12 sm:h-16 hover:scale-105 transition-colors duration-200 ease-in-out opacity-80 hover:opacity-100"
             >
-              <Image
+              <SafeImage
                 src={partner.logo}
                 alt={partner.name}
                 fill

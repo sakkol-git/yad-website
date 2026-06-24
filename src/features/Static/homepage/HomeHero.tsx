@@ -223,7 +223,7 @@ export function HomeHero() {
                 Status
               </span>
               <span className="flex items-center gap-2 text-base md:text-lg font-medium text-on-surface">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#749D89] animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-primary-fixed-dim animate-pulse" />
                 Independent NGO
               </span>
             </div>

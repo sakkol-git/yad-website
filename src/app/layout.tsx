@@ -5,6 +5,8 @@ import { AuthProvider } from "@/providers/AuthProvider";
 import { CookieConsent } from "@/shared/components/ui/CookieConsent";
 import { CustomCursor } from "@/shared/components/ui/CustomCursor";
 import { Toaster } from "sonner";
+import { OfflineBanner } from "@/shared/components/ui/OfflineBanner";
+import { ExitIntentToast } from "@/shared/components/ui/ExitIntentToast";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -175,6 +177,8 @@ export default async function RootLayout({
           <CustomCursor />
           {children}
           <CookieConsent />
+          <OfflineBanner />
+          <ExitIntentToast />
           <Toaster position="top-center" />
         </AuthProvider>
       </body>

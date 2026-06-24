@@ -20,35 +20,46 @@ export function DigitalInnovation() {
             />
           </ImageRevealMask>
           {/* Floating feature card */}
-          <div className="absolute top-1/2 -right-12 transform -translate-y-1/2 bg-surface/60 backdrop-blur-xl border border-outline-variant/30 shadow-ambient rounded-md z-20 w-48 hidden lg:block">
-            <div className="flex items-center gap-3 mb-2">
-              <span className="material-symbols-outlined text-tertiary">
+          <div className="absolute top-1/2 -right-12 transform -translate-y-1/2 bg-surface/85 backdrop-blur-2xl border border-outline-variant/50 shadow-xl shadow-black/10 rounded-md z-20 w-48 hidden lg:block p-5">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="material-symbols-outlined text-tertiary text-[20px]">
                 code
               </span>
-              <span className="font-label-bold text-label-bold text-on-surface">
+              <span className="font-label-bold text-label-bold text-on-surface uppercase tracking-widest text-[10px]">
                 Tech Skills
               </span>
             </div>
-            <div className="w-full bg-surface-container-highest rounded-full h-2">
-              <div className="bg-tertiary h-2 rounded-full w-4/5" />
+            <div className="w-full bg-surface-container-highest rounded-full h-1.5">
+              <div className="bg-tertiary h-1.5 rounded-full w-4/5" />
             </div>
           </div>
         </div>
+        
         <div className="lg:w-7/12 lg:pl-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-tertiary-fixed/30 text-tertiary font-label-bold text-label-bold border border-tertiary-fixed/50 mb-6">
-            <span className="material-symbols-outlined text-lg">
-              laptop_mac
+          <RevealOnScroll>
+            <span className="block text-tertiary uppercase tracking-[0.2em] font-label-bold text-xs mb-4">
+              Digital Innovation
             </span>
-            Tech Focus
-          </div>
-          <TextReveal as="h2" text="Digital Innovation & IT Labs" className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-6" />
+          </RevealOnScroll>
+          
+          <TextReveal 
+            as="h2" 
+            text="Bridging the Digital Divide." 
+            className="font-headline-lg text-4xl lg:text-5xl text-primary mb-8 leading-tight tracking-tight" 
+          />
+          
+          <RevealOnScroll delay={0.1}>
+            <div className="space-y-6 font-body-lg text-on-surface-variant leading-relaxed text-lg mb-8">
+              <p>
+                Bridging the digital divide by providing access to modern
+                technology and vital digital literacy skills. Our fully equipped
+                IT labs serve as hubs for coding, digital marketing, and
+                essential computer skills training.
+              </p>
+            </div>
+          </RevealOnScroll>
+
           <RevealOnScroll delay={0.2}>
-            <p className="font-body-md text-body-md text-on-surface-variant mb-6">
-              Bridging the digital divide by providing access to modern
-              technology and vital digital literacy skills. Our fully equipped
-              IT labs serve as hubs for coding, digital marketing, and
-              essential computer skills training.
-            </p>
             <ul className="space-y-4 mb-8">
               {[
                 "3 Fully equipped IT laboratories across the region.",
@@ -65,7 +76,7 @@ export function DigitalInnovation() {
                 </li>
               ))}
             </ul>
-            <Button variant="primary" className=" bg-tertiary-fixed text-on-tertiary-fixed hover:bg-tertiary-fixed-dim hover:scale-105">
+            <Button variant="primary" className="bg-tertiary-fixed text-on-tertiary-fixed hover:bg-tertiary-fixed-dim transition-[color,background-color,border-color,opacity,transform] duration-200 ease-in-out active:scale-[0.97] active:opacity-90">
               View Curriculum
             </Button>
           </RevealOnScroll>

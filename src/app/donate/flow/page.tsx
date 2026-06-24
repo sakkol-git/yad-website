@@ -239,7 +239,7 @@ export default function DonateFlowPage() {
             <span className="uppercase tracking-widest text-[10px] font-bold">
               Powered by
             </span>
-            <span className="font-bold text-lg tracking-tighter text-[#635BFF]">
+            <span className="font-bold text-lg tracking-tighter text-stripe-brand">
               stripe
             </span>
           </div>

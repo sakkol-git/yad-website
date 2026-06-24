@@ -1,4 +1,5 @@
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 const DOCUMENTS = [
   {
@@ -27,22 +28,28 @@ export function RadicalTransparency() {
       <div className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-start">
         
         {/* Left: Editorial Manifesto */}
-        <RevealOnScroll className="lg:col-span-5 lg:sticky lg:top-32">
-          <span className="block text-primary uppercase tracking-[0.2em] font-label-bold text-xs mb-4">
-            Accountability
-          </span>
-          <h2 className="font-headline-lg text-4xl lg:text-5xl text-primary mb-8 leading-tight tracking-tight">
-            Radical <br className="hidden lg:block"/> Transparency
-          </h2>
-          <div className="space-y-6 font-body-lg text-on-surface-variant leading-relaxed">
-            <p>
-              Trust is the currency of systemic change. We are committed to an open-book policy, ensuring that our partners, donors, and the communities we serve have full visibility into our operations.
-            </p>
-            <p>
-              Every year, we publish comprehensive breakdowns of our program expenditures alongside independent third-party audits.
-            </p>
-          </div>
-        </RevealOnScroll>
+        <div className="lg:col-span-5 lg:sticky lg:top-32">
+          <RevealOnScroll>
+            <span className="block text-primary uppercase tracking-[0.2em] font-label-bold text-xs mb-4">
+              Accountability
+            </span>
+          </RevealOnScroll>
+          <TextReveal 
+            as="h2" 
+            text="Radical Transparency" 
+            className="font-headline-lg text-4xl lg:text-5xl text-primary mb-8 leading-tight tracking-tight" 
+          />
+          <RevealOnScroll delay={0.1}>
+            <div className="space-y-6 font-body-lg text-on-surface-variant leading-relaxed">
+              <p>
+                Trust is the currency of systemic change. We are committed to an open-book policy, ensuring that our partners, donors, and the communities we serve have full visibility into our operations.
+              </p>
+              <p>
+                Every year, we publish comprehensive breakdowns of our program expenditures alongside independent third-party audits.
+              </p>
+            </div>
+          </RevealOnScroll>
+        </div>
 
         {/* Right: Document List */}
         <div className="lg:col-span-6 lg:col-start-7 flex flex-col">

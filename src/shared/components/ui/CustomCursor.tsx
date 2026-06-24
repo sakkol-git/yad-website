@@ -16,21 +16,27 @@ import gsap from "gsap";
 export function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(true); // default hidden (SSR safe)
 
   useEffect(() => {
     // Detect touch — SSR-safe
-    const coarse = window.matchMedia("(pointer: coarse)").matches;
-    if (coarse) return; // Don't initialise anything on touch devices
-    setIsTouchDevice(false);
+    setIsTouchDevice(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
+
+  useEffect(() => {
+    if (isTouchDevice) return;
 
     const dot = dotRef.current;
     const ring = ringRef.current;
     if (!dot || !ring) return;
 
+    let isVisible = false;
+
     const onMove = (e: MouseEvent) => {
-      if (!isVisible) setIsVisible(true);
+      if (!isVisible) {
+        gsap.to([dot, ring], { opacity: 1, duration: 0.3 });
+        isVisible = true;
+      }
 
       // Dot follows instantly
       gsap.set(dot, { x: e.clientX, y: e.clientY });
@@ -94,8 +100,7 @@ export function CustomCursor() {
       });
       observer.disconnect();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isTouchDevice]);
 
   // Don't render anything on touch devices
   if (isTouchDevice) return null;
@@ -106,15 +111,13 @@ export function CustomCursor() {
       <div
         ref={dotRef}
         aria-hidden="true"
-        className="custom-cursor fixed top-0 left-0 w-1.5 h-1.5 bg-primary rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference"
-        style={{ opacity: isVisible ? 1 : 0 }}
+        className="custom-cursor fixed top-0 left-0 w-1.5 h-1.5 bg-primary rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference opacity-0"
       />
       {/* Ring — lagging, weighted */}
       <div
         ref={ringRef}
         aria-hidden="true"
-        className="custom-cursor fixed top-0 left-0 w-8 h-8 border border-primary/60 rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-300"
-        style={{ opacity: isVisible ? 1 : 0 }}
+        className="custom-cursor fixed top-0 left-0 w-8 h-8 border border-primary/60 rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 opacity-0"
       />
     </>
   );

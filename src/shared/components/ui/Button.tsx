@@ -30,7 +30,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       icon: "h-12 w-12 rounded-none flex items-center justify-center",
     }
 
-    const baseClasses = "inline-flex items-center justify-center whitespace-nowrap transition-colors duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50"
+    const baseClasses = "inline-flex items-center justify-center whitespace-nowrap transition-[color,background-color,border-color,opacity,transform] duration-200 ease-in-out active:scale-[0.97] active:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50"
 
     return (
       <Comp

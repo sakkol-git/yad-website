@@ -32,7 +32,7 @@ export function DataTable<T>({
   data,
   columns,
   keyExtractor,
-  emptyMessage = "No results found.",
+  emptyMessage = "Nothing here yet — check back soon.",
   count,
   page = 1
 }: DataTableProps<T>) {

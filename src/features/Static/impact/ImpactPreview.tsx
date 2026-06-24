@@ -2,6 +2,7 @@ import Image from "next/image";
 import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
 import { AnimatedCounter } from "@/shared/components/animations/AnimatedCounter";
 import { ImageRevealMask } from "@/shared/components/animations/ImageRevealMask";
+import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 export function ImpactPreview() {
   return (
@@ -24,9 +25,11 @@ export function ImpactPreview() {
                 Real-World Impact
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-light text-primary tracking-tighter leading-[1.0]">
-              Our Impact in Action
-            </h2>
+            <TextReveal 
+              as="h2" 
+              text="Our Impact in Action" 
+              className="text-4xl md:text-5xl font-light text-primary tracking-tighter leading-[1.0]" 
+            />
             <p className="text-base text-on-surface-variant font-light leading-relaxed">
               Witness the energy of Cambodia&apos;s next generation. Through
               our modern learning spaces, we provide the tools for digital

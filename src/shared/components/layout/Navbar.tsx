@@ -9,6 +9,7 @@ import { Button } from "@/shared/components/ui/Button";
 import { useAuth } from "@/providers/AuthProvider";
 import { createClient } from "@/shared/lib/supabase/client";
 import { useMagneticHover } from "@/shared/hooks/useMagneticHover";
+import { gsap } from "@/shared/lib/animations/gsap-config";
 
 type NavLink = { href: string; label: string; subLinks?: { href: string; label: string }[] };
 
@@ -75,6 +76,23 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const lastScrollY = useRef(0);
+
+  // Pulse animation for "Fund a Future" CTA
+  useEffect(() => {
+    const hasPulsed = sessionStorage.getItem("cta-pulsed");
+    if (hasPulsed || !ctaRef.current) return;
+
+    const timer = setTimeout(() => {
+      if (ctaRef.current) {
+        gsap.timeline()
+          .to(ctaRef.current, { scale: 1.05, duration: 0.2, ease: "power2.out" })
+          .to(ctaRef.current, { scale: 1, duration: 0.4, ease: "elastic.out(1, 0.5)" });
+        sessionStorage.setItem("cta-pulsed", "true");
+      }
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [ctaRef]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -232,7 +250,7 @@ export default function Navbar() {
 
                 {link.subLinks && (
                   <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 transition-[background-color,border-color,backdrop-filter] duration-200 z-50 ${isNavigating ? 'opacity-0 invisible' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible'}`}>
-                    <div className="w-56 bg-surface/75 backdrop-blur shadow-ambient rounded-md border border-outline-variant/30 overflow-hidden flex flex-col py-2">
+                    <div className="w-56 bg-surface/85 backdrop-blur-2xl shadow-xl shadow-black/10 rounded-md border border-outline-variant/50 overflow-hidden flex flex-col py-2">
                       {link.subLinks.map((subLink) => {
                         const isSubActive = pathname === subLink.href;
                         return (
@@ -279,7 +297,7 @@ export default function Navbar() {
               </button>
 
               <div className={`absolute right-0 top-full pt-2 w-64 transition-[background-color,border-color,backdrop-filter] duration-200 z-50 ${isNavigating ? 'opacity-0 invisible' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible'}`}>
-                <div className="bg-surface/70 backdrop-blur-xl border border-outline-variant/30 dark:border-white/10 shadow-ambient rounded-md flex flex-col overflow-hidden">
+                <div className="bg-surface/85 backdrop-blur-2xl border border-outline-variant/50 dark:border-white/20 shadow-xl shadow-black/10 rounded-md flex flex-col overflow-hidden">
                   <div className="px-4 py-3 bg-surface-container-high/50 border-b border-surface-variant/50">
                     <p className="text-sm font-semibold text-on-surface truncate">{user.email}</p>
                     <p className="text-xs text-on-surface-variant capitalize mt-0.5">{role} Access</p>
