@@ -8,6 +8,7 @@ const csvToArray = (csv?: string) => csv ? csv.split(',').map(s => s.trim()).fil
 
 function extractProfileData(rawData: Record<string, unknown>) {
   return {
+    biography: (rawData.biography as string) || undefined,
     khmerBiography: (rawData.khmer_biography as string) || undefined,
     quote: (rawData.quote as string) || undefined,
     vision: (rawData.vision as string) || undefined,

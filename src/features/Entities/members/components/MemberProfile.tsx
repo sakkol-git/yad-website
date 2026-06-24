@@ -151,28 +151,26 @@ export function MemberProfile({ member }: MemberProfileProps) {
             <h2 className="text-3xl font-light text-on-surface tracking-tight">
               My Story
             </h2>
-            {profile?.biography && profile?.khmerBiography && (
-              <div className="flex items-center gap-2 bg-surface-container-lowest border border-outline-variant/30 p-1 rounded-md">
-                <button
-                  onClick={() => setStoryLang('en')}
-                  className={`px-4 py-1.5 text-xs font-bold tracking-widest uppercase rounded-sm transition-colors ${storyLang === 'en'
-                      ? 'bg-primary text-on-primary'
-                      : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
-                    }`}
-                >
-                  English
-                </button>
-                <button
-                  onClick={() => setStoryLang('km')}
-                  className={`px-4 py-1.5 text-xs font-bold tracking-widest uppercase rounded-sm transition-colors ${storyLang === 'km'
-                      ? 'bg-primary text-on-primary'
-                      : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
-                    }`}
-                >
-                  ខ្មែរ
-                </button>
-              </div>
-            )}
+            <div className="flex items-center gap-2 bg-surface-container-lowest border border-outline-variant/30 p-1 rounded-none">
+              <button
+                onClick={() => setStoryLang('en')}
+                className={`px-4 py-1.5 text-xs font-bold tracking-widest uppercase rounded-none transition-colors ${storyLang === 'en'
+                  ? 'bg-primary text-on-primary'
+                  : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
+                  }`}
+              >
+                English
+              </button>
+              <button
+                onClick={() => setStoryLang('km')}
+                className={`px-4 py-1.5 text-xs font-bold tracking-widest uppercase rounded-none transition-colors ${storyLang === 'km'
+                  ? 'bg-primary text-on-primary'
+                  : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
+                  }`}
+              >
+                ខ្មែរ
+              </button>
+            </div>
           </div>
           <div
             className={`text-sm font-light text-on-surface-variant max-w-4xl whitespace-pre-wrap leading-relaxed ${storyLang === 'km' ? 'text-base leading-loose' : ''
