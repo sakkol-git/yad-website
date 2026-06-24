@@ -22,7 +22,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
       <section className="w-full flex justify-center">
         <div className="max-w-4xl flex flex-col items-center text-center">
           <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
-            <span className="inline-block border border-outline-variant/50 text-primary px-4 py-2 rounded-md-md font-bold text-[10px] tracking-widest uppercase bg-transparent">
+            <span className="inline-block border border-outline-variant/50 text-primary px-4 py-2 rounded-md font-bold text-[10px] tracking-widest uppercase bg-transparent">
               {member.role}
             </span>
 
@@ -35,7 +35,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn profile"
-                    className="w-10 h-10 border border-outline-variant/30 rounded-md-md bg-transparent flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors duration-200 ease-in-out"
+                    className="w-10 h-10 border border-outline-variant/30 rounded-md bg-transparent flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors duration-200 ease-in-out"
                   >
                     <span className="material-symbols-outlined text-lg">
                       work
@@ -48,7 +48,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Twitter profile"
-                    className="w-10 h-10 border border-outline-variant/30 rounded-md-md bg-transparent flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors duration-200 ease-in-out"
+                    className="w-10 h-10 border border-outline-variant/30 rounded-md bg-transparent flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors duration-200 ease-in-out"
                   >
                     <span className="material-symbols-outlined text-lg">
                       tag
@@ -61,7 +61,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Facebook profile"
-                    className="w-10 h-10 border border-outline-variant/30 rounded-md-md bg-transparent flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors duration-200 ease-in-out"
+                    className="w-10 h-10 border border-outline-variant/30 rounded-md bg-transparent flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors duration-200 ease-in-out"
                   >
                     <span className="material-symbols-outlined text-lg">
                       public
@@ -93,7 +93,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
       <RevealOnScroll className="w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-stretch">
           {/* Left Column: Portrait */}
-          <ImageRevealMask className="lg:col-span-5 relative w-full aspect-square rounded-md-md border border-outline-variant/30 overflow-hidden">
+          <ImageRevealMask className="lg:col-span-5 relative w-full aspect-square rounded-md border border-outline-variant/30 overflow-hidden">
             <Image
               alt={`${member.name} — ${member.role} at YAD`}
               src={member.image}
@@ -107,7 +107,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
           {/* Right Column: Vision & Experience block */}
           <div className="lg:col-span-7 flex">
             {(profile?.vision || (profile?.experience && profile.experience.length > 0)) && (
-              <div className="bg-surface border border-outline-variant/30 rounded-md-md p-8 md:p-12 text-on-surface w-full flex flex-col justify-center">
+              <div className="bg-surface border border-outline-variant/30 rounded-md p-8 md:p-12 text-on-surface w-full flex flex-col justify-center">
                 {profile.vision && (
                   <div className="mb-12">
                     <h2 className="text-[10px] font-bold uppercase tracking-widest text-primary mb-4">
@@ -151,10 +151,10 @@ export function MemberProfile({ member }: MemberProfileProps) {
             <h2 className="text-3xl font-light text-on-surface tracking-tight">
               My Story
             </h2>
-            <div className="flex items-center gap-2 bg-surface-container-lowest border border-outline-variant/30 p-1 rounded-md-md">
+            <div className="flex items-center gap-2 bg-surface-container-lowest border border-outline-variant/30 p-1 rounded-md">
               <button
                 onClick={() => setStoryLang('en')}
-                className={`px-4 py-1.5 text-xs font-bold tracking-widest uppercase rounded-md-md transition-colors ${storyLang === 'en'
+                className={`px-4 py-1.5 text-xs font-bold tracking-widest uppercase rounded-md transition-colors ${storyLang === 'en'
                   ? 'bg-primary text-on-primary'
                   : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
                   }`}
@@ -163,7 +163,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
               </button>
               <button
                 onClick={() => setStoryLang('km')}
-                className={`px-4 py-1.5 text-xs font-bold tracking-widest uppercase rounded-md-md transition-colors ${storyLang === 'km'
+                className={`px-4 py-1.5 text-xs font-bold tracking-widest uppercase rounded-md transition-colors ${storyLang === 'km'
                   ? 'bg-primary text-on-primary'
                   : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
                   }`}
@@ -191,7 +191,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
         <section className="w-full">
           <StaggerGroup y={28} className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch mt-12">
             {profile.education && profile.education.length > 0 && (
-              <div className="bg-surface border border-outline-variant/30 rounded-md-md flex flex-col h-full p-8 md:p-12">
+              <div className="bg-surface border border-outline-variant/30 rounded-md flex flex-col h-full p-8 md:p-12">
                 <div className="flex items-center gap-4 mb-8 border-b border-outline-variant/30 pb-4">
                   <span className="material-symbols-outlined text-primary text-[24px]">school</span>
                   <h3 className="text-xl font-light text-on-surface m-0 tracking-tight">Education</h3>
@@ -208,7 +208,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
             )}
 
             {profile.achievements && profile.achievements.length > 0 && (
-              <div className="bg-surface border border-outline-variant/30 rounded-md-md flex flex-col h-full p-8 md:p-12">
+              <div className="bg-surface border border-outline-variant/30 rounded-md flex flex-col h-full p-8 md:p-12">
                 <div className="flex items-center gap-4 mb-8 border-b border-outline-variant/30 pb-4">
                   <span className="material-symbols-outlined text-primary text-[24px]">emoji_events</span>
                   <h3 className="text-xl font-light text-on-surface m-0 tracking-tight">Achievements</h3>

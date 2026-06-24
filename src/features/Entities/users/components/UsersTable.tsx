@@ -86,7 +86,7 @@ export function UsersTable({ users, count, page }: { users: User[]; count?: numb
       id: 'role',
       header: 'Role', 
       cell: (user) => (
-        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-md-full text-xs font-bold uppercase tracking-wider
+        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider
           ${user.role === 'admin' ? 'bg-error-container text-on-error-container' : 
             user.role === 'manager' ? 'bg-secondary-container text-on-secondary-container' : 
             'bg-surface-variant text-on-surface-variant'}`}
@@ -121,7 +121,7 @@ export function UsersTable({ users, count, page }: { users: User[]; count?: numb
         <div className="flex justify-end gap-2">
           <button 
             onClick={() => openEdit(user)}
-            className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-md-full transition-colors flex items-center justify-center"
+            className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-full transition-colors flex items-center justify-center"
             title="Edit Role"
           >
             <span className="material-symbols-outlined text-[18px]">edit</span>
@@ -129,7 +129,7 @@ export function UsersTable({ users, count, page }: { users: User[]; count?: numb
           <button 
             onClick={() => confirmDelete(user.id)}
             disabled={isDeleting && deleteDialog.userId === user.id}
-            className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-md-full transition-colors flex items-center justify-center disabled:opacity-50"
+            className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-full transition-colors flex items-center justify-center disabled:opacity-50"
             title="Delete User"
           >
             <span className="material-symbols-outlined text-[18px]">delete</span>

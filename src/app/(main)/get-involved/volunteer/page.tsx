@@ -61,7 +61,7 @@ export default function VolunteerPage() {
         </div>
         
         <div>
-          <div className="bg-surface-container-low border border-surface-container-high rounded-md-md p-6 shadow-sm">
+          <div className="bg-surface-container-low border border-surface-container-high rounded-md p-6 shadow-sm">
             <h3 className="font-headline-sm text-headline-sm text-primary mb-4 flex items-center gap-2">
               <span className="material-symbols-outlined">night_shelter</span>
               Accommodation Details

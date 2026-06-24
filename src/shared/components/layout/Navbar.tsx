@@ -22,7 +22,7 @@ function MobileNavAccordion({ link, pathname }: { link: NavLink, pathname: strin
     <div className="flex flex-col">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className={`py-3 px-4 rounded-md-md font-medium text-base transition-colors flex justify-between items-center ${isActive || isExpanded ? "bg-surface-container text-primary" : "text-on-surface hover:bg-surface-container"
+        className={`py-3 px-4 rounded-md font-medium text-base transition-colors flex justify-between items-center ${isActive || isExpanded ? "bg-surface-container text-primary" : "text-on-surface hover:bg-surface-container"
           }`}
         aria-expanded={isExpanded}
         aria-controls={`submenu-${link.label.replace(/\\s+/g, '-').toLowerCase()}`}
@@ -45,7 +45,7 @@ function MobileNavAccordion({ link, pathname }: { link: NavLink, pathname: strin
                 <Link
                   key={sub.href}
                   href={sub.href}
-                  className={`py-2.5 px-4 rounded-md-md text-sm transition-colors ${isSubActive
+                  className={`py-2.5 px-4 rounded-md text-sm transition-colors ${isSubActive
                     ? "text-primary font-semibold bg-primary/5"
                     : "text-on-surface-variant hover:text-primary hover:bg-surface-container/50"
                     }`}
@@ -212,7 +212,7 @@ export default function Navbar() {
         {/* Brand */}
         <Link
           href="/"
-          className={`flex items-center gap-3 z-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:border-primary rounded-md-md text-primary`}
+          className={`flex items-center gap-3 z-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:border-primary rounded-md text-primary`}
         >
           <Image
             src="/assets/images/yad_logo.png"
@@ -250,7 +250,7 @@ export default function Navbar() {
 
                 {link.subLinks && (
                   <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 transition-[background-color,border-color,backdrop-filter] duration-200 z-50 ${isNavigating ? 'opacity-0 invisible' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible'}`}>
-                    <div className="w-56 bg-surface/85 backdrop-blur-2xl shadow-xl shadow-black/10 rounded-md-md border border-outline-variant/50 overflow-hidden flex flex-col py-2">
+                    <div className="w-56 bg-surface/85 backdrop-blur-2xl shadow-xl shadow-black/10 rounded-md border border-outline-variant/50 overflow-hidden flex flex-col py-2">
                       {link.subLinks.map((subLink) => {
                         const isSubActive = pathname === subLink.href;
                         return (
@@ -282,11 +282,11 @@ export default function Navbar() {
         {/* Desktop Auth & CTA */}
         <div className="hidden lg:flex items-center gap-5">
           {isLoading ? (
-            <div className="w-24 h-10 bg-surface-variant/50 animate-pulse rounded-md-md" />
+            <div className="w-24 h-10 bg-surface-variant/50 animate-pulse rounded-md" />
           ) : user ? (
             <div className="relative group">
               <button
-                className={`flex items-center gap-2 px-4 py-2 rounded-md-md border transition-[background-color,border-color,backdrop-filter] focus:outline-none focus:border-primary text-[10px] font-bold tracking-widest uppercase border-outline-variant/30 bg-surface hover:bg-surface-container text-on-surface`}
+                className={`flex items-center gap-2 px-4 py-2 rounded-md border transition-[background-color,border-color,backdrop-filter] focus:outline-none focus:border-primary text-[10px] font-bold tracking-widest uppercase border-outline-variant/30 bg-surface hover:bg-surface-container text-on-surface`}
                 aria-haspopup="true"
               >
                 <span className="material-symbols-outlined text-[16px]" aria-hidden="true">account_circle</span>
@@ -297,7 +297,7 @@ export default function Navbar() {
               </button>
 
               <div className={`absolute right-0 top-full pt-2 w-64 transition-[background-color,border-color,backdrop-filter] duration-200 z-50 ${isNavigating ? 'opacity-0 invisible' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible'}`}>
-                <div className="bg-surface/85 backdrop-blur-2xl border border-outline-variant/50 dark:border-white/20 shadow-xl shadow-black/10 rounded-md-md flex flex-col overflow-hidden">
+                <div className="bg-surface/85 backdrop-blur-2xl border border-outline-variant/50 dark:border-white/20 shadow-xl shadow-black/10 rounded-md flex flex-col overflow-hidden">
                   <div className="px-4 py-3 bg-surface-container-high/50 border-b border-surface-variant/50">
                     <p className="text-sm font-semibold text-on-surface truncate">{user.email}</p>
                     <p className="text-xs text-on-surface-variant capitalize mt-0.5">{role} Access</p>
@@ -351,7 +351,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button
-          className={`lg:hidden p-2 -mr-2 flex items-center justify-center rounded-md-md transition-colors z-50 focus:outline-none focus:border-primary border border-transparent text-on-surface hover:border-outline-variant/30`}
+          className={`lg:hidden p-2 -mr-2 flex items-center justify-center rounded-md transition-colors z-50 focus:outline-none focus:border-primary border border-transparent text-on-surface hover:border-outline-variant/30`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-expanded={isMenuOpen}
           aria-label="Toggle navigation menu"
@@ -381,7 +381,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center px-6 py-4 border-b border-outline-variant/30">
           <span className="text-[10px] font-bold uppercase tracking-widest text-primary">Menu</span>
           <button
-            className="text-on-surface p-2 -mr-2 flex items-center justify-center rounded-md-md border border-transparent hover:border-outline-variant/30 transition-colors focus:outline-none focus:border-primary"
+            className="text-on-surface p-2 -mr-2 flex items-center justify-center rounded-md border border-transparent hover:border-outline-variant/30 transition-colors focus:outline-none focus:border-primary"
             onClick={() => setIsMenuOpen(false)}
             aria-label="Close navigation menu"
           >
@@ -401,7 +401,7 @@ export default function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`py-3 px-4 rounded-md-md font-light text-base transition-colors flex justify-between items-center border border-transparent ${isActive ? "bg-surface-container border-outline-variant/30 text-primary font-bold text-[10px] uppercase tracking-widest" : "text-on-surface hover:bg-surface-container hover:border-outline-variant/30"
+                    className={`py-3 px-4 rounded-md font-light text-base transition-colors flex justify-between items-center border border-transparent ${isActive ? "bg-surface-container border-outline-variant/30 text-primary font-bold text-[10px] uppercase tracking-widest" : "text-on-surface hover:bg-surface-container hover:border-outline-variant/30"
                       }`}
                   >
                     {link.label}
@@ -416,20 +416,20 @@ export default function Navbar() {
           {/* Mobile Auth & CTA Footer */}
           <div className="mt-8 pt-6 border-t border-surface-variant/50 flex flex-col gap-4 pb-8">
             {isLoading ? (
-              <div className="w-full h-12 bg-surface-variant/50 animate-pulse rounded-md-full" />
+              <div className="w-full h-12 bg-surface-variant/50 animate-pulse rounded-full" />
             ) : user ? (
-              <div className="bg-surface-container/30 rounded-md-md p-4">
+              <div className="bg-surface-container/30 rounded-md p-4">
                 <p className="text-sm font-semibold text-on-surface mb-3 truncate">Hi, {user.email}</p>
                 <div className="flex flex-col gap-2">
                   <Link
                     href={role === "admin" ? "/admin/dashboard" : "/portal/dashboard"}
-                    className="flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-md-md text-sm font-medium text-on-surface hover:bg-surface-container transition-colors"
+                    className="flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-md text-sm font-medium text-on-surface hover:bg-surface-container transition-colors"
                   >
                     <span className="material-symbols-outlined text-[18px]">dashboard</span> Portal
                   </Link>
                   <button
                     onClick={handleLogout}
-                    className="w-full flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-md-md text-sm font-medium text-error hover:bg-error/10 transition-colors"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-md text-sm font-medium text-error hover:bg-error/10 transition-colors"
                   >
                     <span className="material-symbols-outlined text-[18px]">logout</span> Sign Out
                   </button>
@@ -439,13 +439,13 @@ export default function Navbar() {
               <div className="grid grid-cols-2 gap-3">
                 <Link
                   href="/auth/login"
-                  className="py-3 text-center font-medium border border-surface-variant text-on-surface hover:bg-surface-container rounded-md-full transition-colors"
+                  className="py-3 text-center font-medium border border-surface-variant text-on-surface hover:bg-surface-container rounded-full transition-colors"
                 >
                   Log In
                 </Link>
                 <Link
                   href="/auth/register"
-                  className="py-3 text-center font-medium bg-surface-container text-on-surface hover:bg-surface-variant rounded-md-full transition-colors"
+                  className="py-3 text-center font-medium bg-surface-container text-on-surface hover:bg-surface-variant rounded-full transition-colors"
                 >
                   Register
                 </Link>

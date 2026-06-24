@@ -10,7 +10,7 @@ export function ExitIntentToast() {
 
   return (
     <div 
-      className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-[9999] max-w-sm w-full bg-surface/90 backdrop-blur-xl border border-outline-variant/30 shadow-ambient rounded-md-md p-6 animate-in fade-in slide-in-from-bottom-8 duration-500 ease-out"
+      className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-[9999] max-w-sm w-full bg-surface/90 backdrop-blur-xl border border-outline-variant/30 shadow-ambient rounded-md p-6 animate-in fade-in slide-in-from-bottom-8 duration-500 ease-out"
       role="dialog"
       aria-labelledby="exit-intent-title"
     >

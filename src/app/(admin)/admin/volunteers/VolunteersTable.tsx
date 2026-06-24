@@ -81,7 +81,7 @@ export function VolunteersTable({ initialData, count, page }: { initialData: Vol
           Completed: "bg-surface-variant text-on-surface-variant",
         };
         return (
-          <span className={`px-2 py-1 text-xs font-bold rounded-md-full ${colors[row.status]}`}>
+          <span className={`px-2 py-1 text-xs font-bold rounded-full ${colors[row.status]}`}>
             {row.status}
           </span>
         );

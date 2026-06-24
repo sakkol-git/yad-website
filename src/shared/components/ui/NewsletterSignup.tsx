@@ -41,13 +41,13 @@ export function NewsletterSignup() {
 
   return (
     <div className="relative">
-      <div className="absolute inset-0 bg-primary/5 blur-[120px] rounded-md-full -z-10" />
-      <div className="relative group rounded-md-md overflow-hidden">
+      <div className="absolute inset-0 bg-primary/5 blur-[120px] rounded-full -z-10" />
+      <div className="relative group rounded-md overflow-hidden">
         <div className="absolute inset-0 z-0 bg-surface/60 backdrop-blur-xl border border-outline-variant/30 shadow-ambient transition-colors duration-300 group-hover:border-outline-variant/60" />
         <div className="absolute inset-0 z-0 bg-primary/[0.04] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out pointer-events-none" />
 
         <div className="p-8 relative z-10 text-center md:text-left">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-md-bl-full -z-10 blur-2xl" />
+          <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-bl-full -z-10 blur-2xl" />
 
           <div className="flex flex-col lg:flex-row items-center gap-8">
             <div className="flex-1">
@@ -61,7 +61,7 @@ export function NewsletterSignup() {
 
             <div className="w-full lg:w-auto flex-1 max-w-md">
               {status === "success" ? (
-                <div className="bg-success-container text-on-success-container p-4 rounded-md-md flex items-center gap-3">
+                <div className="bg-success-container text-on-success-container p-4 rounded-md flex items-center gap-3">
                   <span className="material-symbols-outlined icon-fill">check_circle</span>
                   <p className="font-label-md text-label-md">{message}</p>
                 </div>

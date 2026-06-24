@@ -46,7 +46,7 @@ export default function PorridgeForHopePage() {
             The Porridge for Hope program has had enormous success and greatly improved the lives of many individuals in the community. Targeting primarily children aged 5 years and under (alongside older children at other centres), this initiative ensures vital nutritional milestones are met.
           </p>
 
-          <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 hover:border-primary/40 transition-colors duration-300 p-8 rounded-md-md mb-8">
+          <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 hover:border-primary/40 transition-colors duration-300 p-8 rounded-md mb-8">
             <h3 className="text-2xl font-light text-on-surface tracking-tight mb-4 flex items-center gap-3">
               <span className="material-symbols-outlined text-primary text-3xl">local_dining</span>
               Program Delivery
@@ -64,8 +64,8 @@ export default function PorridgeForHopePage() {
           </p>
         </div>
         
-        <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 rounded-md-md overflow-hidden shadow-ambient p-4 group h-fit">
-          <div className="rounded-md-sm overflow-hidden w-full h-auto">
+        <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 rounded-md overflow-hidden shadow-ambient p-4 group h-fit">
+          <div className="rounded-sm overflow-hidden w-full h-auto">
             <Image 
               src="/assets/images/yad-1.png" 
               alt="Over 100 children receiving porridge at the Youth Leaders Centre" 

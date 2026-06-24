@@ -38,7 +38,7 @@ export function ImpactPathCard({
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`relative group rounded-md-md overflow-hidden hover:-translate-y-2 transition-transform duration-500 ease-out border border-outline-variant/30 bg-surface flex flex-col h-full`}
+      className={`relative group rounded-md overflow-hidden hover:-translate-y-2 transition-transform duration-500 ease-out border border-outline-variant/30 bg-surface flex flex-col h-full`}
     >
       {/* Subtle border highlight on hover instead of background tint */}
       <div className="absolute inset-0 z-0 border-2 border-transparent transition-colors duration-500 ease-out group-hover:border-primary/20 pointer-events-none" />
@@ -46,7 +46,7 @@ export function ImpactPathCard({
       {/* Cursor-following ambient glow */}
       <div
         ref={glowRef}
-        className="absolute w-48 h-48 rounded-md-full bg-primary/10 blur-2xl pointer-events-none transition-opacity duration-500 -translate-x-1/2 -translate-y-1/2 z-[1]"
+        className="absolute w-48 h-48 rounded-full bg-primary/10 blur-2xl pointer-events-none transition-opacity duration-500 -translate-x-1/2 -translate-y-1/2 z-[1]"
         style={{
           left: "var(--glow-x, 50%)",
           top: "var(--glow-y, 50%)",
@@ -62,7 +62,7 @@ export function ImpactPathCard({
       {/* Card content */}
       <div className="relative z-10 p-8 md:p-10 flex flex-col h-full">
         <div
-          className={`w-16 h-16 rounded-md-md border border-outline-variant/30 flex items-center justify-center mb-8 text-on-surface-variant transition-colors duration-500 group-hover:${iconColor} group-hover:${iconBg}`}
+          className={`w-16 h-16 rounded-md border border-outline-variant/30 flex items-center justify-center mb-8 text-on-surface-variant transition-colors duration-500 group-hover:${iconColor} group-hover:${iconBg}`}
         >
           <span className="material-symbols-outlined text-[32px] font-light">{icon}</span>
         </div>
@@ -78,7 +78,7 @@ export function ImpactPathCard({
           <span className="material-symbols-outlined text-[16px]">arrow_right_alt</span>
         </Link>
         <div
-          className={`absolute -right-4 -bottom-4 w-32 h-32 ${glowBg} rounded-md-full blur-2xl -z-10 group-hover:${glowHoverBg} transition-colors`}
+          className={`absolute -right-4 -bottom-4 w-32 h-32 ${glowBg} rounded-full blur-2xl -z-10 group-hover:${glowHoverBg} transition-colors`}
         />
       </div>
     </div>

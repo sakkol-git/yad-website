@@ -8,7 +8,7 @@ export const FormSelect = forwardRef<HTMLSelectElement, FormSelectProps>(
     return (
       <select
         className={cn(
-          "flex h-12 w-full items-center justify-between rounded-md-sm border border-outline-variant bg-surface-container-low px-3 py-2 font-body-md text-sm text-on-surface ring-offset-background placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-colors appearance-none",
+          "flex h-12 w-full items-center justify-between rounded-sm border border-outline-variant bg-surface-container-low px-3 py-2 font-body-md text-sm text-on-surface ring-offset-background placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-colors appearance-none",
           className
         )}
         ref={ref}

@@ -110,7 +110,7 @@ export function DonationsTable({
         else if (row.status === 'Failed' || row.status === 'Refunded') colorClass = 'bg-error-container text-error';
 
         return (
-          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-md-full text-xs font-bold ${colorClass}`}>
+          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${colorClass}`}>
             {row.status}
           </span>
         );
@@ -132,11 +132,11 @@ export function DonationsTable({
       cell: (row) => (
         <div className="flex justify-end items-center gap-2">
           {row.receipt_url && (
-            <a href={row.receipt_url} target="_blank" rel="noreferrer" className="p-2 text-secondary hover:text-primary transition-colors flex items-center justify-center rounded-md-full hover:bg-primary/10" title="View Receipt">
+            <a href={row.receipt_url} target="_blank" rel="noreferrer" className="p-2 text-secondary hover:text-primary transition-colors flex items-center justify-center rounded-full hover:bg-primary/10" title="View Receipt">
               <span className="material-symbols-outlined text-[18px]">receipt_long</span>
             </a>
           )}
-          <button className="p-2 text-on-surface-variant hover:text-secondary transition-colors flex items-center justify-center rounded-md-full hover:bg-secondary/10" title="More options">
+          <button className="p-2 text-on-surface-variant hover:text-secondary transition-colors flex items-center justify-center rounded-full hover:bg-secondary/10" title="More options">
             <span className="material-symbols-outlined text-[18px]">more_vert</span>
           </button>
         </div>
@@ -147,7 +147,7 @@ export function DonationsTable({
   const additionalFilters = (
     <div className="flex gap-3">
       <select 
-        className="py-2.5 pl-3 pr-8 bg-surface-container rounded-md-md border border-outline-variant/30 focus:ring-2 focus:ring-primary text-[14px] text-on-surface-variant cursor-pointer appearance-none shadow-sm"
+        className="py-2.5 pl-3 pr-8 bg-surface-container rounded-md border border-outline-variant/30 focus:ring-2 focus:ring-primary text-[14px] text-on-surface-variant cursor-pointer appearance-none shadow-sm"
         value={methodRaw || ''}
         onChange={handleMethodFilterChange}
       >
@@ -158,7 +158,7 @@ export function DonationsTable({
         <option value="other">Other</option>
       </select>
       <select 
-        className="py-2.5 pl-3 pr-8 bg-surface-container rounded-md-md border border-outline-variant/30 focus:ring-2 focus:ring-primary text-[14px] text-on-surface-variant cursor-pointer appearance-none shadow-sm"
+        className="py-2.5 pl-3 pr-8 bg-surface-container rounded-md border border-outline-variant/30 focus:ring-2 focus:ring-primary text-[14px] text-on-surface-variant cursor-pointer appearance-none shadow-sm"
         value={statusRaw || ''}
         onChange={handleStatusFilterChange}
       >

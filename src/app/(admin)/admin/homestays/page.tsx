@@ -30,7 +30,7 @@ export default async function HomestaysPage({
             Manage rooms, occupancy, and check-ins.
           </p>
         </div>
-        <button className="py-3 px-6 bg-secondary text-on-secondary rounded-md-full font-bold text-[14px] shadow-sm hover:scale-[1.02] hover:bg-secondary/90 transition-colors duration-200 ease-in-out cursor-pointer active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap">
+        <button className="py-3 px-6 bg-secondary text-on-secondary rounded-full font-bold text-[14px] shadow-sm hover:scale-[1.02] hover:bg-secondary/90 transition-colors duration-200 ease-in-out cursor-pointer active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap">
           <span className="material-symbols-outlined">add</span>
           Add Room
         </button>

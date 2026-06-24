@@ -63,7 +63,7 @@ export function VolunteerPortal({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {availableEvents.length > 0 ? (
             availableEvents.map((event) => (
-              <div key={event.id} className="group relative bg-surface rounded-md-md p-8 border border-outline-variant/30 flex flex-col h-full hover:border-primary/40 hover:shadow-ambient transition-[transform,box-shadow,border-color] duration-300 ease-out">
+              <div key={event.id} className="group relative bg-surface rounded-md p-8 border border-outline-variant/30 flex flex-col h-full hover:border-primary/40 hover:shadow-ambient transition-[transform,box-shadow,border-color] duration-300 ease-out">
                 
                 <div className="flex-1 flex flex-col">
                   <div className="flex justify-between items-start mb-6">
@@ -91,7 +91,7 @@ export function VolunteerPortal({
               </div>
             ))
           ) : (
-            <div className="col-span-full py-16 rounded-md-md bg-surface-container border border-outline-variant/30 text-center flex flex-col items-center justify-center">
+            <div className="col-span-full py-16 rounded-md bg-surface-container border border-outline-variant/30 text-center flex flex-col items-center justify-center">
               <span className="material-symbols-outlined text-3xl text-on-surface-variant/30 mb-4">search_off</span>
               <p className="font-headline-sm text-on-surface-variant">No active deployments.</p>
             </div>
@@ -108,7 +108,7 @@ export function VolunteerPortal({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {myVolunteers && myVolunteers.length > 0 ? (
             myVolunteers.map((vol) => (
-              <div key={vol.id} className="bg-surface-container-low rounded-md-md p-8 border border-outline-variant/30 flex flex-col transition-colors duration-300">
+              <div key={vol.id} className="bg-surface-container-low rounded-md p-8 border border-outline-variant/30 flex flex-col transition-colors duration-300">
                 
                 <div className="flex-1">
                   <div className="flex justify-between items-start mb-6">
@@ -135,7 +135,7 @@ export function VolunteerPortal({
               </div>
             ))
           ) : (
-            <div className="col-span-full py-16 rounded-md-md bg-surface-container border border-outline-variant/30 text-center flex flex-col items-center justify-center">
+            <div className="col-span-full py-16 rounded-md bg-surface-container border border-outline-variant/30 text-center flex flex-col items-center justify-center">
               <p className="font-headline-sm text-on-surface-variant">You have no active deployment records.</p>
             </div>
           )}

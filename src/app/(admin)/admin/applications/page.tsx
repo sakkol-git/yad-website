@@ -29,7 +29,7 @@ export default async function AdminApplicationsPage(props: { searchParams: Promi
         <p className="text-on-surface-variant mt-1">Review and manage dormitory and scholarship applications.</p>
       </div>
 
-      <div className="bg-surface-container-lowest border border-surface-variant/30 rounded-md-md shadow-sm">
+      <div className="bg-surface-container-lowest border border-surface-variant/30 rounded-md shadow-sm">
         <ApplicationsTable
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           initialApplications={(applications as any) || []}

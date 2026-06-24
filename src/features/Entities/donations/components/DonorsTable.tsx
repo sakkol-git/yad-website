@@ -104,7 +104,7 @@ export function DonorsTable({ donors, count, page }: { donors: Donor[]; count?: 
     {
       header: 'Status',
       cell: (donor) => (
-        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-md-full text-xs font-bold uppercase tracking-wider
+        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider
           ${donor.status === 'Active' ? 'bg-primary-container text-on-primary-container' : 'bg-surface-variant text-on-surface-variant'}`}
         >
           {donor.status}
@@ -117,7 +117,7 @@ export function DonorsTable({ donors, count, page }: { donors: Donor[]; count?: 
         <div className="flex justify-end gap-2">
           <button
             onClick={() => openEdit(donor)}
-            className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-md-full transition-colors flex items-center justify-center"
+            className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-full transition-colors flex items-center justify-center"
             title="Edit Donor"
           >
             <span className="material-symbols-outlined text-[18px]">edit</span>
@@ -125,7 +125,7 @@ export function DonorsTable({ donors, count, page }: { donors: Donor[]; count?: 
           <button
             onClick={() => handleDelete(donor.id)}
             disabled={isDeleting === donor.id}
-            className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-md-full transition-colors flex items-center justify-center disabled:opacity-50"
+            className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-full transition-colors flex items-center justify-center disabled:opacity-50"
             title="Delete Donor"
           >
             <span className="material-symbols-outlined text-[18px]">delete</span>

@@ -25,7 +25,7 @@ export function VisionSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           
           {/* Left Column: Mission Statement */}
-          <StaggerGroup y={24} className="flex flex-col h-full bg-surface-container-lowest p-8 md:p-12 rounded-md-md border border-outline-variant/30 justify-center">
+          <StaggerGroup y={24} className="flex flex-col h-full bg-surface-container-lowest p-8 md:p-12 rounded-md border border-outline-variant/30 justify-center">
             <div className="inline-flex items-center gap-4 mb-8">
               <div className="w-6 h-[1px] bg-primary" />
               <span className="uppercase tracking-[0.2em] text-[10px] font-bold text-primary">
@@ -53,7 +53,7 @@ export function VisionSection() {
             </div>
 
             <div className="flex gap-6 group items-start">
-              <div className="w-14 h-14 rounded-md-md border border-primary text-primary flex items-center justify-center shrink-0 bg-primary/5 transition-transform group-hover:bg-primary group-hover:text-white">
+              <div className="w-14 h-14 rounded-md border border-primary text-primary flex items-center justify-center shrink-0 bg-primary/5 transition-transform group-hover:bg-primary group-hover:text-white">
                 <span className="material-symbols-outlined text-[24px]">apartment</span>
               </div>
               <div>
@@ -65,7 +65,7 @@ export function VisionSection() {
             </div>
 
             <div className="flex gap-6 group items-start border-t border-outline-variant/30 pt-10">
-              <div className="w-14 h-14 rounded-md-md border border-primary text-primary flex items-center justify-center shrink-0 bg-primary/5 transition-transform group-hover:bg-primary group-hover:text-white">
+              <div className="w-14 h-14 rounded-md border border-primary text-primary flex items-center justify-center shrink-0 bg-primary/5 transition-transform group-hover:bg-primary group-hover:text-white">
                 <span className="material-symbols-outlined text-[24px]">restaurant</span>
               </div>
               <div>
@@ -77,7 +77,7 @@ export function VisionSection() {
             </div>
 
             <div className="flex gap-6 group items-start border-t border-outline-variant/30 pt-10">
-              <div className="w-14 h-14 rounded-md-md border border-primary text-primary flex items-center justify-center shrink-0 bg-primary/5 transition-transform group-hover:bg-primary group-hover:text-white">
+              <div className="w-14 h-14 rounded-md border border-primary text-primary flex items-center justify-center shrink-0 bg-primary/5 transition-transform group-hover:bg-primary group-hover:text-white">
                 <span className="material-symbols-outlined text-[24px]">diversity_3</span>
               </div>
               <div>

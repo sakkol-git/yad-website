@@ -47,12 +47,12 @@ export function UserDonationsTable({ donations, totalDonated }: UserDonationsTab
   }, [searchTerm, currentSearch, searchParams, router]);
 
   const headerActions = (
-    <div className="bg-surface-container-low px-6 py-4 rounded-md-md border border-outline-variant/30 flex items-center justify-between gap-6 shadow-sm">
+    <div className="bg-surface-container-low px-6 py-4 rounded-md border border-outline-variant/30 flex items-center justify-between gap-6 shadow-sm">
       <div className="flex flex-col">
         <span className="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1">Total Contributed</span>
         <span className="font-headline-md text-headline-md text-tertiary">${totalDonated.toFixed(2)}</span>
       </div>
-      <Button variant="default" onClick={() => router.push('/donate')} className="bg-tertiary text-on-tertiary hover:bg-tertiary/90 shadow-sm border-none rounded-md-md">
+      <Button variant="default" onClick={() => router.push('/donate')} className="bg-tertiary text-on-tertiary hover:bg-tertiary/90 shadow-sm border-none rounded-md">
         Donate Again
       </Button>
     </div>
@@ -91,7 +91,7 @@ export function UserDonationsTable({ donations, totalDonated }: UserDonationsTab
         else if (row.status === 'Failed' || row.status === 'Refunded') colorClass = 'bg-error-container text-error';
 
         return (
-          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-md-full text-xs font-bold ${colorClass}`}>
+          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${colorClass}`}>
             {row.status}
           </span>
         );
@@ -104,7 +104,7 @@ export function UserDonationsTable({ donations, totalDonated }: UserDonationsTab
       cell: (row) => (
         <div className="flex justify-end items-center">
           {row.receipt_url ? (
-            <a href={row.receipt_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-sm font-bold text-tertiary hover:text-tertiary/80 transition-colors p-2 rounded-md-md hover:bg-tertiary/10">
+            <a href={row.receipt_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-sm font-bold text-tertiary hover:text-tertiary/80 transition-colors p-2 rounded-md hover:bg-tertiary/10">
               <span className="material-symbols-outlined text-[18px]">download</span>
               Download
             </a>

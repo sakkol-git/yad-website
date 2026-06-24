@@ -35,8 +35,8 @@ export default function Footer({ variant = "full" }: FooterProps) {
   return (
     <footer className="bg-surface text-on-surface border-t border-outline-variant/30 mt-auto pt-24 pb-8 relative overflow-hidden">
       {/* Background Decorative Elements */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/[0.03] rounded-md-full blur-[120px] pointer-events-none -translate-y-1/2" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/5 rounded-md-full blur-[120px] pointer-events-none translate-y-1/2" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/[0.03] rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-[120px] pointer-events-none translate-y-1/2" />
 
       <RevealOnScroll y={30}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px] relative z-10">
@@ -52,7 +52,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
             {/* Column 1: Brand & Mission (Takes 4 cols) */}
             <div className="lg:col-span-4 flex flex-col items-start text-left gap-8 lg:pr-12">
               <Link href="/" className="flex items-center gap-4 group w-fit focus-visible:outline-none">
-                <div className="relative flex items-center justify-center w-14 h-14 bg-surface-container rounded-md-md border border-outline-variant/30 transition-transform duration-500 group-hover:scale-105 group-hover:border-primary/40 group-hover:shadow-md">
+                <div className="relative flex items-center justify-center w-14 h-14 bg-surface-container rounded-md border border-outline-variant/30 transition-transform duration-500 group-hover:scale-105 group-hover:border-primary/40 group-hover:shadow-md">
                   <Image
                     src="/assets/images/yad_logo.png"
                     alt="YAD Logo"
@@ -69,10 +69,10 @@ export default function Footer({ variant = "full" }: FooterProps) {
                 {SITE_TAGLINE}
               </p>
               <div className="flex gap-4 mt-2">
-                <a href="https://www.facebook.com/profile.php?id=61571829685466" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 rounded-md-full bg-primary/5 border border-primary/10 text-primary hover:bg-primary hover:text-white hover:-translate-y-1 transition-colors duration-200 ease-in-out">
+                <a href="https://www.facebook.com/profile.php?id=61571829685466" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/5 border border-primary/10 text-primary hover:bg-primary hover:text-white hover:-translate-y-1 transition-colors duration-200 ease-in-out">
                   <Facebook className="w-5 h-5" />
                 </a>
-                <a href="https://t.me/Youthadvancementfordevelopment" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 rounded-md-full bg-primary/5 border border-primary/10 text-primary hover:bg-primary hover:text-white hover:-translate-y-1 transition-colors duration-200 ease-in-out">
+                <a href="https://t.me/Youthadvancementfordevelopment" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/5 border border-primary/10 text-primary hover:bg-primary hover:text-white hover:-translate-y-1 transition-colors duration-200 ease-in-out">
                   <Send className="w-5 h-5" />
                 </a>
               </div>
@@ -124,8 +124,8 @@ export default function Footer({ variant = "full" }: FooterProps) {
                 Contact Us
               </h3>
               <div className="flex flex-col gap-5 mt-4">
-                <a href="https://maps.app.goo.gl/5AhtYGNDRfVjH8cY8" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 group p-3 rounded-md-md hover:bg-surface-container transition-colors border border-transparent hover:border-outline-variant/30 -ml-3">
-                  <div className="flex-shrink-0 mt-1 bg-primary/10 p-2 rounded-md-md text-primary group-hover:scale-110 transition-transform">
+                <a href="https://maps.app.goo.gl/5AhtYGNDRfVjH8cY8" target="_blank" rel="noopener noreferrer" className="flex items-start gap-4 group p-3 rounded-md hover:bg-surface-container transition-colors border border-transparent hover:border-outline-variant/30 -ml-3">
+                  <div className="flex-shrink-0 mt-1 bg-primary/10 p-2 rounded-md text-primary group-hover:scale-110 transition-transform">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <span className="text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors leading-relaxed">
@@ -134,8 +134,8 @@ export default function Footer({ variant = "full" }: FooterProps) {
                   </span>
                 </a>
                 
-                <a href="tel:+85599332289" className="flex items-center gap-4 group p-3 rounded-md-md hover:bg-surface-container transition-colors border border-transparent hover:border-outline-variant/30 -ml-3">
-                  <div className="flex-shrink-0 bg-primary/10 p-2 rounded-md-md text-primary group-hover:scale-110 transition-transform">
+                <a href="tel:+85599332289" className="flex items-center gap-4 group p-3 rounded-md hover:bg-surface-container transition-colors border border-transparent hover:border-outline-variant/30 -ml-3">
+                  <div className="flex-shrink-0 bg-primary/10 p-2 rounded-md text-primary group-hover:scale-110 transition-transform">
                     <Phone className="w-5 h-5" />
                   </div>
                   <span className="text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors">
@@ -143,8 +143,8 @@ export default function Footer({ variant = "full" }: FooterProps) {
                   </span>
                 </a>
 
-                <a href="mailto:info@yadkh.org" className="flex items-center gap-4 group p-3 rounded-md-md hover:bg-surface-container transition-colors border border-transparent hover:border-outline-variant/30 -ml-3">
-                  <div className="flex-shrink-0 bg-primary/10 p-2 rounded-md-md text-primary group-hover:scale-110 transition-transform">
+                <a href="mailto:info@yadkh.org" className="flex items-center gap-4 group p-3 rounded-md hover:bg-surface-container transition-colors border border-transparent hover:border-outline-variant/30 -ml-3">
+                  <div className="flex-shrink-0 bg-primary/10 p-2 rounded-md text-primary group-hover:scale-110 transition-transform">
                     <Mail className="w-5 h-5" />
                   </div>
                   <span className="text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors">

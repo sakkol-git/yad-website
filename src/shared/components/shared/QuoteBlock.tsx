@@ -42,7 +42,7 @@ export function QuoteBlock({ children, className }: QuoteBlockProps) {
   return (
     <blockquote
       className={cn(
-        "relative bg-surface-container-low rounded-md-md p-6 border-l-4 border-secondary",
+        "relative bg-surface-container-low rounded-md p-6 border-l-4 border-secondary",
         className
       )}
     >

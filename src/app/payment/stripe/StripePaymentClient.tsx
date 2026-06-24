@@ -20,7 +20,7 @@ export function StripePaymentClient({ paymentDetails }: StripePaymentClientProps
       <div className="w-full lg:w-2/3">
         <ProgressIndicator currentStep={2} />
 
-        <div className="bg-surface rounded-md-md p-6 md:p-12 border border-outline-variant/30 relative overflow-hidden">
+        <div className="bg-surface rounded-md p-6 md:p-12 border border-outline-variant/30 relative overflow-hidden">
           <div className="flex items-center justify-between border-b border-outline-variant/30 pb-4 mb-8">
             <h2 className="text-2xl font-light text-on-surface tracking-tight">
               International Card Payment
@@ -51,7 +51,7 @@ export function StripePaymentClient({ paymentDetails }: StripePaymentClientProps
 
       {/* Side summary column */}
       <div className="w-full lg:w-1/3 mt-8 lg:mt-0">
-        <div className="sticky top-24 bg-surface rounded-md-md p-8 border border-outline-variant/30 relative overflow-hidden">
+        <div className="sticky top-24 bg-surface rounded-md p-8 border border-outline-variant/30 relative overflow-hidden">
           <h3 className="text-2xl font-light text-on-surface tracking-tight mb-6 relative z-10 border-b border-outline-variant/30 pb-4">
             Payment Summary
           </h3>

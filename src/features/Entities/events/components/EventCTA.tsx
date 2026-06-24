@@ -32,7 +32,7 @@ export function EventCTA() {
               <Button
                 variant="default"
                 size="lg"
-                className="rounded-md-md bg-surface text-on-surface hover:bg-surface-variant h-14 px-8 text-sm uppercase tracking-wider font-bold transition-colors duration-200 ease-in-out"
+                className="rounded-md bg-surface text-on-surface hover:bg-surface-variant h-14 px-8 text-sm uppercase tracking-wider font-bold transition-colors duration-200 ease-in-out"
                 asChild
               >
                 <Link href="/get-involved">Join Our Next Event</Link>
@@ -40,7 +40,7 @@ export function EventCTA() {
               <Button
                 variant="outline"
                 size="lg"
-                className="rounded-md-md border-surface text-surface hover:bg-surface hover:text-on-surface h-14 px-8 text-sm uppercase tracking-wider font-bold transition-colors duration-200 ease-in-out"
+                className="rounded-md border-surface text-surface hover:bg-surface hover:text-on-surface h-14 px-8 text-sm uppercase tracking-wider font-bold transition-colors duration-200 ease-in-out"
                 asChild
               >
                 <Link href="/about">Become a Member</Link>

@@ -66,7 +66,7 @@ export function EventFormModal({ isOpen, onClose, mode, initialData }: EventForm
         
         <form action={handleSubmit} className="p-6 flex flex-col gap-5 overflow-y-auto">
           {error && (
-            <div className="bg-error-container/20 text-error p-3 rounded-md-md text-sm font-medium border border-error-container flex items-center gap-2">
+            <div className="bg-error-container/20 text-error p-3 rounded-md text-sm font-medium border border-error-container flex items-center gap-2">
               <span className="material-symbols-outlined text-[18px]">error</span>
               {error}
             </div>

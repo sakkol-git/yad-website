@@ -45,7 +45,7 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
           {/* Contact Information */}
           <div className="flex flex-col gap-8">
-            <div className="bg-surface rounded-md-md p-8 border border-outline-variant/30 relative">
+            <div className="bg-surface rounded-md p-8 border border-outline-variant/30 relative">
               <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
               <TextReveal 
                 as="h2" 
@@ -89,7 +89,7 @@ export default function ContactPage() {
             </div>
 
             {/* Business Hours */}
-            <div className="bg-surface-container-lowest rounded-md-md p-8 border border-outline-variant/30">
+            <div className="bg-surface-container-lowest rounded-md p-8 border border-outline-variant/30">
               <TextReveal 
                 as="h2" 
                 text="Business Hours" 
@@ -107,7 +107,7 @@ export default function ContactPage() {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-surface rounded-md-md p-8 md:p-12 border border-outline-variant/30">
+          <div className="bg-surface rounded-md p-8 md:p-12 border border-outline-variant/30">
             <TextReveal 
               as="h2" 
               text="Send a Message" 
@@ -117,17 +117,17 @@ export default function ContactPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-2">
                   <label htmlFor="firstName" className="uppercase tracking-widest text-[10px] font-bold text-on-surface">First Name <span className="text-primary">*</span></label>
-                  <FormInput id="firstName" name="firstName" required aria-required="true" placeholder="John" className="rounded-md-md border-outline-variant/50 focus:border-primary focus:ring-1 focus:ring-primary h-12" />
+                  <FormInput id="firstName" name="firstName" required aria-required="true" placeholder="John" className="rounded-md border-outline-variant/50 focus:border-primary focus:ring-1 focus:ring-primary h-12" />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="lastName" className="uppercase tracking-widest text-[10px] font-bold text-on-surface">Last Name <span className="text-primary">*</span></label>
-                  <FormInput id="lastName" name="lastName" required aria-required="true" placeholder="Doe" className="rounded-md-md border-outline-variant/50 focus:border-primary focus:ring-1 focus:ring-primary h-12" />
+                  <FormInput id="lastName" name="lastName" required aria-required="true" placeholder="Doe" className="rounded-md border-outline-variant/50 focus:border-primary focus:ring-1 focus:ring-primary h-12" />
                 </div>
               </div>
 
               <div className="flex flex-col gap-2">
                 <label htmlFor="email" className="uppercase tracking-widest text-[10px] font-bold text-on-surface">Email Address <span className="text-primary">*</span></label>
-                <FormInput type="email" id="email" name="email" required aria-required="true" placeholder="john@example.com" className="rounded-md-md border-outline-variant/50 focus:border-primary focus:ring-1 focus:ring-primary h-12" />
+                <FormInput type="email" id="email" name="email" required aria-required="true" placeholder="john@example.com" className="rounded-md border-outline-variant/50 focus:border-primary focus:ring-1 focus:ring-primary h-12" />
               </div>
 
               <div className="flex flex-col gap-2">
@@ -137,7 +137,7 @@ export default function ContactPage() {
                   name="subject" 
                   required
                   aria-required="true"
-                  className="w-full bg-transparent border border-outline-variant/50 rounded-md-md px-4 h-12 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150"
+                  className="w-full bg-transparent border border-outline-variant/50 rounded-md px-4 h-12 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150"
                 >
                   <option value="">Select a topic</option>
                   <option value="partnership">Partnership Inquiry</option>
@@ -157,11 +157,11 @@ export default function ContactPage() {
                   required
                   aria-required="true"
                   placeholder="How can we help you?"
-                  className="w-full bg-transparent border border-outline-variant/50 rounded-md-md px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150 resize-y"
+                  className="w-full bg-transparent border border-outline-variant/50 rounded-md px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150 resize-y"
                 />
               </div>
 
-              <Button type="submit" variant="default" size="lg" className="mt-4 rounded-md-md bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-xs font-bold transition-colors duration-150">
+              <Button type="submit" variant="default" size="lg" className="mt-4 rounded-md bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-xs font-bold transition-colors duration-150">
                 Send Message
               </Button>
             </form>

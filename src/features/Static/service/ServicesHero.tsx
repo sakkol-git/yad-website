@@ -44,7 +44,7 @@ export function ServicesHero() {
                     Book Your Stay
                   </a>
                 </Button>
-                <Button variant="outline" size="lg" className="rounded-md-md border-primary text-primary h-12 px-6 hover:bg-primary hover:text-white uppercase text-xs tracking-wider font-bold transition-colors duration-200 ease-in-out" asChild>
+                <Button variant="outline" size="lg" className="rounded-md border-primary text-primary h-12 px-6 hover:bg-primary hover:text-white uppercase text-xs tracking-wider font-bold transition-colors duration-200 ease-in-out" asChild>
                   <Link href="/services/homestay">
                     View Detail
                   </Link>

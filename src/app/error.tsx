@@ -17,7 +17,7 @@ export default function Error({
   return (
     <main className="min-h-screen bg-surface flex flex-col items-center justify-center relative overflow-hidden px-6">
       {/* Background ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-error/5 rounded-md-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-error/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-lg mx-auto text-center animate-in fade-in slide-in-from-bottom-4 duration-700 ease-out">
         <div className="bg-surface/60 backdrop-blur-xl shadow-ambient border border-outline-variant/30 p-12 md:p-16">
@@ -37,7 +37,7 @@ export default function Error({
             onClick={() => reset()} 
             variant="default" 
             size="lg" 
-            className="w-full bg-error text-white rounded-md-md uppercase tracking-widest text-[10px] font-bold h-14 hover:bg-error/90 transition-colors duration-150"
+            className="w-full bg-error text-white rounded-md uppercase tracking-widest text-[10px] font-bold h-14 hover:bg-error/90 transition-colors duration-150"
           >
             <span className="material-symbols-outlined text-[16px] mr-2" aria-hidden="true">refresh</span>
             Try Again

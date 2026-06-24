@@ -103,7 +103,7 @@ export function CorePurpose() {
               ref={el => { panelsRef.current[i] = el; }}
               className="absolute inset-0 flex items-center justify-center will-change-transform"
             >
-              <Card className="w-full border-none rounded-md-md bg-transparent shadow-none">
+              <Card className="w-full border-none rounded-md bg-transparent shadow-none">
                 <CardHeader className="text-center flex flex-col items-center pt-10">
                   <div className="w-16 h-16 border border-on-surface flex items-center justify-center mb-6">
                     <span className="material-symbols-outlined text-3xl text-on-surface">
@@ -125,7 +125,7 @@ export function CorePurpose() {
         <div className="md:hidden flex flex-col gap-8">
           {PURPOSES.map((purpose, i) => (
             <RevealOnScroll key={i} delay={i * 0.1}>
-              <Card className="flex flex-col h-full bg-transparent border border-outline-variant/30 rounded-md-md shadow-none">
+              <Card className="flex flex-col h-full bg-transparent border border-outline-variant/30 rounded-md shadow-none">
                 <CardHeader>
                   <div className="w-12 h-12 border border-on-surface flex items-center justify-center mb-6">
                     <span className="material-symbols-outlined text-2xl text-on-surface">

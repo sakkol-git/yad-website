@@ -28,9 +28,9 @@ export function SummaryCard({ title, icon, colorVariant, href, actionText, child
   const actionTextClass = actionColors[colorVariant];
 
   return (
-    <div className="group relative bg-surface-container rounded-md-md p-6 border border-outline-variant/30 hover:border-primary/40 transition-colors duration-300 flex flex-col h-full">
+    <div className="group relative bg-surface-container rounded-md p-6 border border-outline-variant/30 hover:border-primary/40 transition-colors duration-300 flex flex-col h-full">
       <div className="flex items-center gap-4 mb-6">
-        <div className={`w-12 h-12 ${iconClasses} rounded-md-sm flex items-center justify-center shrink-0 border border-outline-variant/30 group-hover:scale-105 transition-transform duration-300`}>
+        <div className={`w-12 h-12 ${iconClasses} rounded-sm flex items-center justify-center shrink-0 border border-outline-variant/30 group-hover:scale-105 transition-transform duration-300`}>
           <span className="material-symbols-outlined text-[24px]">{icon}</span>
         </div>
         <h2 className="font-headline-sm text-headline-sm text-on-surface">{title}</h2>

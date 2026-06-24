@@ -7,7 +7,7 @@ import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
 export function HomeCTA() {
   return (
     <section className="py-section-gap px-margin-mobile md:px-margin-desktop mb-20">
-      <RevealOnScroll y={36} className="max-w-4xl mx-auto bg-primary text-white border border-outline-variant/30 rounded-md-md p-12 md:p-20 text-center relative overflow-hidden">
+      <RevealOnScroll y={36} className="max-w-4xl mx-auto bg-primary text-white border border-outline-variant/30 rounded-md p-12 md:p-20 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-primary opacity-90 z-0" />
 
         <StaggerGroup y={20} className="relative z-10 flex flex-col items-center text-center">

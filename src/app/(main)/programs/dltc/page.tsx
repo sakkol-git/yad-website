@@ -63,8 +63,8 @@ export default function DLTCPage() {
           </ul>
         </div>
         
-        <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 rounded-md-md overflow-hidden shadow-ambient p-4 group h-fit">
-          <div className="rounded-md-sm overflow-hidden w-full h-auto">
+        <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 rounded-md overflow-hidden shadow-ambient p-4 group h-fit">
+          <div className="rounded-sm overflow-hidden w-full h-auto">
             <Image 
               src="/assets/images/yad-6.png" 
               alt="Students waving from balconies of the DLTC building" 

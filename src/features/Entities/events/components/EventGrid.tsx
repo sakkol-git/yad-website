@@ -85,7 +85,7 @@ function EventCard({
           <div className="flex items-center justify-between mt-auto pt-6 border-t border-outline-variant/30">
             <div className="flex flex-wrap items-center gap-4">
               {event.joinUrl && (
-                <Button variant="default" className="rounded-md-md bg-on-surface text-surface h-12 px-6 hover:bg-surface-variant uppercase text-xs tracking-wider font-bold transition-[transform,box-shadow,border-color] duration-300 ease-out" asChild>
+                <Button variant="default" className="rounded-md bg-on-surface text-surface h-12 px-6 hover:bg-surface-variant uppercase text-xs tracking-wider font-bold transition-[transform,box-shadow,border-color] duration-300 ease-out" asChild>
                   <Link href={event.joinUrl}>
                     {event.actionLabel}{" "}
                     <span className="material-symbols-outlined text-sm ml-2">
@@ -95,7 +95,7 @@ function EventCard({
                 </Button>
               )}
               {event.donationUrl && (
-                <Button variant="outline" className="rounded-md-md border-on-surface text-on-surface h-12 px-6 hover:bg-on-surface hover:text-surface uppercase text-xs tracking-wider font-bold transition-[transform,box-shadow,border-color] duration-300 ease-out" asChild>
+                <Button variant="outline" className="rounded-md border-on-surface text-on-surface h-12 px-6 hover:bg-on-surface hover:text-surface uppercase text-xs tracking-wider font-bold transition-[transform,box-shadow,border-color] duration-300 ease-out" asChild>
                   <Link href={event.donationUrl}>Donate</Link>
                 </Button>
               )}
@@ -125,7 +125,7 @@ function EventCard({
               </Link>
             )}
              {event.donationUrl && (
-               <Button variant="ghost" size="sm" className="rounded-md-md text-on-surface-variant hover:text-on-surface uppercase text-[10px] tracking-wider font-bold" asChild>
+               <Button variant="ghost" size="sm" className="rounded-md text-on-surface-variant hover:text-on-surface uppercase text-[10px] tracking-wider font-bold" asChild>
                  <Link href={event.donationUrl}>Donate</Link>
                </Button>
              )}

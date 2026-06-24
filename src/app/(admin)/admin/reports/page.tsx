@@ -44,7 +44,7 @@ export default async function AdminReportsPage(props: {
         </p>
       </div>
 
-      <div className="bg-surface-container-lowest border border-surface-variant/30 rounded-md-md shadow-sm">
+      <div className="bg-surface-container-lowest border border-surface-variant/30 rounded-md shadow-sm">
         <ReportsTable
           initialReports={reports}
           currentPage={page}

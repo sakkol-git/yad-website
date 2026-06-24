@@ -68,14 +68,14 @@ export function DataTable<T>({
         <div className="relative">
           <button 
             onClick={() => setShowColumnToggle(!showColumnToggle)}
-            className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-on-surface border border-outline-variant/50 rounded-md-md bg-surface-container-lowest hover:bg-surface-container transition-colors shadow-sm"
+            className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-on-surface border border-outline-variant/50 rounded-md bg-surface-container-lowest hover:bg-surface-container transition-colors shadow-sm"
           >
             <span className="material-symbols-outlined text-[18px]">view_column</span>
             Columns
           </button>
           
           {showColumnToggle && (
-            <div className="absolute right-0 top-full mt-2 w-48 bg-surface-container-lowest border border-outline-variant/30 rounded-md-md shadow-lg z-10 p-2 animate-in fade-in zoom-in-95">
+            <div className="absolute right-0 top-full mt-2 w-48 bg-surface-container-lowest border border-outline-variant/30 rounded-md shadow-lg z-10 p-2 animate-in fade-in zoom-in-95">
               <div className="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2 px-2">Toggle Columns</div>
               {colsWithId.filter(c => c.enableHiding !== false).map(col => (
                 <label key={col.id} className="flex items-center gap-2 px-2 py-1.5 hover:bg-surface rounded-md cursor-pointer text-sm text-on-surface">
@@ -93,7 +93,7 @@ export function DataTable<T>({
         </div>
       </div>
 
-      <div className="rounded-md-md border border-surface-variant/50 overflow-hidden bg-surface shadow-sm flex flex-col relative">
+      <div className="rounded-md border border-surface-variant/50 overflow-hidden bg-surface shadow-sm flex flex-col relative">
         <div className="overflow-x-auto">
           <Table>
             <TableHeader className="bg-surface-container-lowest sticky top-0 z-10 shadow-sm">
@@ -136,12 +136,12 @@ export function DataTable<T>({
               Showing <span className="text-on-surface">{(page - 1) * 10 + 1}</span> to <span className="text-on-surface">{Math.min(page * 10, count)}</span> of <span className="text-on-surface">{count}</span>
             </div>
             <div className="flex gap-2 items-center">
-              <Link href={`?page=${Math.max(1, page - 1)}`} className={`p-1 rounded-md-md hover:bg-surface-container transition-colors ${page === 1 ? 'opacity-50 pointer-events-none' : ''}`}>
+              <Link href={`?page=${Math.max(1, page - 1)}`} className={`p-1 rounded-md hover:bg-surface-container transition-colors ${page === 1 ? 'opacity-50 pointer-events-none' : ''}`}>
                 <span className="material-symbols-outlined text-[20px]">chevron_left</span>
               </Link>
-              <div className="w-8 h-8 rounded-md-md bg-secondary-container text-on-secondary-container flex items-center justify-center shadow-sm">{page}</div>
+              <div className="w-8 h-8 rounded-md bg-secondary-container text-on-secondary-container flex items-center justify-center shadow-sm">{page}</div>
               {page + 1 <= totalPages && (
-                <Link href={`?page=${Math.min(totalPages, page + 1)}`} className={`p-1 rounded-md-md hover:bg-surface-container transition-colors ${page >= totalPages ? 'opacity-50 pointer-events-none' : ''}`}>
+                <Link href={`?page=${Math.min(totalPages, page + 1)}`} className={`p-1 rounded-md hover:bg-surface-container transition-colors ${page >= totalPages ? 'opacity-50 pointer-events-none' : ''}`}>
                   <span className="material-symbols-outlined text-[20px]">chevron_right</span>
                 </Link>
               )}

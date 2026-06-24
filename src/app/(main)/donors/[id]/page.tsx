@@ -60,7 +60,7 @@ export default async function DonorDetailPage({ params }: PageProps) {
           Back to All Donors
         </Link>
         
-        <div className="bg-surface rounded-md-md p-8 md:p-16 border border-outline-variant/30 relative overflow-hidden">
+        <div className="bg-surface rounded-md p-8 md:p-16 border border-outline-variant/30 relative overflow-hidden">
           {/* Subtle Background Decoration */}
           <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
             <span className="material-symbols-outlined text-[240px]">volunteer_activism</span>
@@ -69,7 +69,7 @@ export default async function DonorDetailPage({ params }: PageProps) {
           <div className="flex flex-col md:flex-row gap-12 md:gap-16 relative z-10 items-start">
             {/* Avatar Column */}
             <div className="flex-shrink-0 mx-auto md:mx-0">
-              <div className="w-48 h-48 md:w-64 md:h-64 rounded-md-md overflow-hidden relative bg-transparent flex items-center justify-center border border-outline-variant/30">
+              <div className="w-48 h-48 md:w-64 md:h-64 rounded-md overflow-hidden relative bg-transparent flex items-center justify-center border border-outline-variant/30">
                 {typedDonor.avatar_url ? (
                   <Image 
                     src={typedDonor.avatar_url} 
@@ -129,13 +129,13 @@ export default async function DonorDetailPage({ params }: PageProps) {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-20 text-center bg-surface border border-outline-variant/30 rounded-md-md p-8 md:p-16">
+        <div className="mt-20 text-center bg-surface border border-outline-variant/30 rounded-md p-8 md:p-16">
           <h3 className="text-3xl font-light text-on-surface tracking-tight mb-4">Join {typedDonor.name} in Making a Difference</h3>
           <p className="text-sm font-light text-on-surface-variant max-w-2xl mx-auto mb-10 leading-relaxed">
             Your support helps us continue our mission of empowering Cambodian youth through education and community development.
           </p>
           <Link href="/donate">
-            <Button size="lg" variant="default" className="rounded-md-md uppercase tracking-widest text-[10px] font-bold px-10 h-14 bg-primary text-white hover:bg-primary/90 transition-colors duration-150">
+            <Button size="lg" variant="default" className="rounded-md uppercase tracking-widest text-[10px] font-bold px-10 h-14 bg-primary text-white hover:bg-primary/90 transition-colors duration-150">
               Become a Donor Today
             </Button>
           </Link>

@@ -23,12 +23,12 @@ export async function GlobalFootprint() {
         <Card className="col-span-1 md:col-span-2 bg-surface-container-low p-0 shadow-ambient hover:shadow-ambient-hover group border-0">
           <CardContent className="flex flex-col justify-between h-full p-8">
             <div className="flex justify-between items-start mb-8">
-              <div className="w-16 h-16 rounded-md-full bg-secondary-container flex items-center justify-center text-on-secondary-container group-hover:scale-110 transition-transform duration-300">
+              <div className="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container group-hover:scale-110 transition-transform duration-300">
                 <span className="material-symbols-outlined text-3xl">
                   nature_people
                 </span>
               </div>
-              <span className="px-4 py-1 rounded-md-full bg-surface text-primary font-label-bold text-sm">
+              <span className="px-4 py-1 rounded-full bg-surface text-primary font-label-bold text-sm">
                 Communities Reached
               </span>
             </div>
@@ -46,7 +46,7 @@ export async function GlobalFootprint() {
         <Card className="col-span-1 bg-tertiary-fixed p-0 shadow-ambient hover:shadow-ambient-hover group border-0">
           <CardContent className="flex flex-col justify-between h-full p-8">
             <div className="flex justify-between items-start mb-8">
-              <div className="w-12 h-12 rounded-md-full bg-surface/50 flex items-center justify-center text-on-tertiary-fixed group-hover:scale-110 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-full bg-surface/50 flex items-center justify-center text-on-tertiary-fixed group-hover:scale-110 transition-transform duration-300">
                 <span className="material-symbols-outlined text-2xl" aria-hidden="true">
                   school
                 </span>
@@ -66,7 +66,7 @@ export async function GlobalFootprint() {
         <Card className="col-span-1 bg-primary-fixed p-0 shadow-ambient hover:shadow-ambient-hover group border-0">
           <CardContent className="flex flex-col justify-between h-full p-8">
             <div className="flex justify-between items-start mb-8">
-              <div className="w-12 h-12 rounded-md-full bg-surface/50 flex items-center justify-center text-on-primary-fixed group-hover:scale-110 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-full bg-surface/50 flex items-center justify-center text-on-primary-fixed group-hover:scale-110 transition-transform duration-300">
                 <span className="material-symbols-outlined text-2xl" aria-hidden="true">
                   location_on
                 </span>
@@ -95,23 +95,23 @@ export async function GlobalFootprint() {
             </div>
             <div className="flex-grow flex items-end gap-2 relative z-10">
               <div
-                className="w-1/6 bg-secondary-fixed rounded-md-md h-1/4 hover:bg-secondary transition-colors cursor-pointer"
+                className="w-1/6 bg-secondary-fixed rounded-md h-1/4 hover:bg-secondary transition-colors cursor-pointer"
                 title="2020"
               />
               <div
-                className="w-1/6 bg-secondary-fixed rounded-md-md h-1/3 hover:bg-secondary transition-colors cursor-pointer"
+                className="w-1/6 bg-secondary-fixed rounded-md h-1/3 hover:bg-secondary transition-colors cursor-pointer"
                 title="2021"
               />
               <div
-                className="w-1/6 bg-secondary-fixed rounded-md-md h-1/2 hover:bg-secondary transition-colors cursor-pointer"
+                className="w-1/6 bg-secondary-fixed rounded-md h-1/2 hover:bg-secondary transition-colors cursor-pointer"
                 title="2022"
               />
               <div
-                className="w-1/6 bg-secondary-fixed rounded-md-md h-3/4 hover:bg-secondary transition-colors cursor-pointer"
+                className="w-1/6 bg-secondary-fixed rounded-md h-3/4 hover:bg-secondary transition-colors cursor-pointer"
                 title="2023"
               />
               <div
-                className="w-1/6 bg-primary rounded-md-md h-full relative group cursor-pointer"
+                className="w-1/6 bg-primary rounded-md h-full relative group cursor-pointer"
                 title="2024 (Current)"
               >
                 <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-surface px-3 py-1 rounded-md shadow-ambient text-xs font-label-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">

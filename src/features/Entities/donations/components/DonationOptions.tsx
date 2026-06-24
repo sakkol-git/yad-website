@@ -73,7 +73,7 @@ export function DonationPortal() {
             <RevealOnScroll 
               key={tier.amount} 
               delay={index * 0.15}
-              className="group relative bg-surface p-8 md:p-10 border border-outline-variant/30 hover:border-primary transition-colors cursor-pointer rounded-md-md"
+              className="group relative bg-surface p-8 md:p-10 border border-outline-variant/30 hover:border-primary transition-colors cursor-pointer rounded-md"
             >
               <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-10">
                 <div className="text-[4rem] text-primary font-light tracking-tighter shrink-0 group-hover:text-primary/80 transition-colors leading-none">
@@ -102,7 +102,7 @@ export function DonationPortal() {
           <RevealOnScroll delay={0.5} className="mt-6">
             <Link 
               href="/donate/flow" 
-              className="block w-full text-center py-8 bg-surface border border-outline-variant/30 hover:bg-surface-container-low transition-colors font-bold text-xs uppercase tracking-[0.2em] text-on-surface rounded-md-md"
+              className="block w-full text-center py-8 bg-surface border border-outline-variant/30 hover:bg-surface-container-low transition-colors font-bold text-xs uppercase tracking-[0.2em] text-on-surface rounded-md"
             >
               Enter a Custom Amount
             </Link>

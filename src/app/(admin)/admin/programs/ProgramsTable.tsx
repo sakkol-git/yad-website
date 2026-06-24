@@ -103,7 +103,7 @@ export function ProgramsTable({ initialData, count, page }: { initialData: Progr
           completed: "bg-surface-variant text-on-surface-variant",
         };
         return (
-          <span className={`px-2 py-1 text-xs font-bold rounded-md-full ${colors[row.status]}`}>
+          <span className={`px-2 py-1 text-xs font-bold rounded-full ${colors[row.status]}`}>
             {row.status.toUpperCase()}
           </span>
         );
@@ -128,7 +128,7 @@ export function ProgramsTable({ initialData, count, page }: { initialData: Progr
         <div className="flex justify-end gap-2">
           <button 
             onClick={() => openEditModal(row)}
-            className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-md-full transition-colors flex items-center justify-center"
+            className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-full transition-colors flex items-center justify-center"
             title="Edit Program"
           >
             <span className="material-symbols-outlined text-[18px]">edit</span>
@@ -136,7 +136,7 @@ export function ProgramsTable({ initialData, count, page }: { initialData: Progr
           <button 
             onClick={() => confirmDelete(row.id)}
             disabled={isDeleting && deleteDialog.programId === row.id}
-            className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-md-full transition-colors flex items-center justify-center disabled:opacity-50"
+            className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-full transition-colors flex items-center justify-center disabled:opacity-50"
             title="Delete Program"
           >
             <span className="material-symbols-outlined text-[18px]">delete</span>

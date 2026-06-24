@@ -43,7 +43,7 @@ export function ApplicationsTable({
   return (
     <div className="p-6">
       {applications.length === 0 ? (
-        <div className="text-center p-8 text-on-surface-variant bg-surface-container/30 rounded-md-md">
+        <div className="text-center p-8 text-on-surface-variant bg-surface-container/30 rounded-md">
           No applications found.
         </div>
       ) : (

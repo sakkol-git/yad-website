@@ -55,7 +55,7 @@ async function AnnualReportsList() {
   }
 
   return (
-    <div className="bg-surface-container-low border border-surface-variant rounded-md-md p-10 text-center">
+    <div className="bg-surface-container-low border border-surface-variant rounded-md p-10 text-center">
       <span className="material-symbols-outlined text-4xl text-on-surface-variant mb-4">description</span>
       <h3 className="font-headline-sm text-on-surface mb-2">Reports Coming Soon</h3>
       <p className="text-on-surface-variant mb-4">

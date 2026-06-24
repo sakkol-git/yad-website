@@ -61,7 +61,7 @@ export function ProgramsTable({ programs }: { programs: Program[] }) {
     { 
       header: 'Status', 
       cell: (program) => (
-        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-md-full text-xs font-bold uppercase tracking-wider
+        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider
           ${program.status === 'Active' ? 'bg-primary-container text-on-primary-container' : 
             program.status === 'Upcoming' ? 'bg-secondary-container text-on-secondary-container' : 
             program.status === 'Completed' ? 'bg-surface-variant text-on-surface-variant' :
@@ -90,7 +90,7 @@ export function ProgramsTable({ programs }: { programs: Program[] }) {
         <div className="flex justify-end gap-2">
           <button 
             onClick={() => openEdit(program)}
-            className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-md-full transition-colors flex items-center justify-center"
+            className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-full transition-colors flex items-center justify-center"
             title="Edit Program"
           >
             <span className="material-symbols-outlined text-[18px]">edit</span>
@@ -98,7 +98,7 @@ export function ProgramsTable({ programs }: { programs: Program[] }) {
           <button 
             onClick={() => handleDelete(program.id)}
             disabled={isDeleting === program.id}
-            className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-md-full transition-colors flex items-center justify-center disabled:opacity-50"
+            className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-full transition-colors flex items-center justify-center disabled:opacity-50"
             title="Delete Program"
           >
             <span className="material-symbols-outlined text-[18px]">delete</span>

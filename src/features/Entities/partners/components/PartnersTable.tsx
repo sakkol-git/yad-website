@@ -70,7 +70,7 @@ export function PartnersTable({ partners, count, page }: { partners: Partner[]; 
       cell: (partner) => (
         <>
           {partner.partnership_type ? (
-            <span className="inline-flex items-center px-2.5 py-0.5 rounded-md-full text-xs font-bold uppercase tracking-wider bg-surface-variant text-on-surface-variant">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-surface-variant text-on-surface-variant">
               {partner.partnership_type}
             </span>
           ) : '-'}
@@ -83,7 +83,7 @@ export function PartnersTable({ partners, count, page }: { partners: Partner[]; 
         <div className="flex justify-end gap-2">
           <button 
             onClick={() => openEdit(partner)}
-            className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-md-full transition-colors flex items-center justify-center"
+            className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-full transition-colors flex items-center justify-center"
             title="Edit Partner"
           >
             <span className="material-symbols-outlined text-[18px]">edit</span>
@@ -91,7 +91,7 @@ export function PartnersTable({ partners, count, page }: { partners: Partner[]; 
           <button 
             onClick={() => handleDelete(partner.id)}
             disabled={isDeleting === partner.id}
-            className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-md-full transition-colors flex items-center justify-center disabled:opacity-50"
+            className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-full transition-colors flex items-center justify-center disabled:opacity-50"
             title="Delete Partner"
           >
             <span className="material-symbols-outlined text-[18px]">delete</span>

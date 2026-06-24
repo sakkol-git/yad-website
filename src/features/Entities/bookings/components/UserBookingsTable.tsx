@@ -80,7 +80,7 @@ export function UserBookingsTable({ bookings }: UserBookingsTableProps) {
         else if (row.status === 'Cancelled' || row.status === 'No Show') colorClass = 'bg-error-container text-error';
 
         return (
-          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-md-full text-xs font-bold ${colorClass}`}>
+          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${colorClass}`}>
             {row.status}
           </span>
         );

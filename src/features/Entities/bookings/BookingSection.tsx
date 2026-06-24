@@ -49,15 +49,15 @@ export function BookingSection() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <FormLabel>Check-in Date</FormLabel>
-                  <FormInput type="date" required className="rounded-md-md border-outline-variant/30" />
+                  <FormInput type="date" required className="rounded-md border-outline-variant/30" />
                 </div>
                 <div>
                   <FormLabel>Check-out Date</FormLabel>
-                  <FormInput type="date" required className="rounded-md-md border-outline-variant/30" />
+                  <FormInput type="date" required className="rounded-md border-outline-variant/30" />
                 </div>
                 <div>
                   <FormLabel>Number of Guests</FormLabel>
-                  <FormSelect className="rounded-md-md border-outline-variant/30">
+                  <FormSelect className="rounded-md border-outline-variant/30">
                     <option value="1">1 Guest</option>
                     <option value="2">2 Guests</option>
                     <option value="3">3 Guests</option>
@@ -66,7 +66,7 @@ export function BookingSection() {
                 </div>
                 <div>
                   <FormLabel>Dietary Requirements</FormLabel>
-                  <FormSelect className="rounded-md-md border-outline-variant/30">
+                  <FormSelect className="rounded-md border-outline-variant/30">
                     <option value="none">None</option>
                     <option value="vegetarian">Vegetarian</option>
                     <option value="vegan">Vegan</option>
@@ -88,19 +88,19 @@ export function BookingSection() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <FormLabel>First Name</FormLabel>
-                  <FormInput type="text" required placeholder="Jane" className="rounded-md-md border-outline-variant/30" />
+                  <FormInput type="text" required placeholder="Jane" className="rounded-md border-outline-variant/30" />
                 </div>
                 <div>
                   <FormLabel>Last Name</FormLabel>
-                  <FormInput type="text" required placeholder="Doe" className="rounded-md-md border-outline-variant/30" />
+                  <FormInput type="text" required placeholder="Doe" className="rounded-md border-outline-variant/30" />
                 </div>
                 <div className="md:col-span-2">
                   <FormLabel>Email Address</FormLabel>
-                  <FormInput type="email" required placeholder="jane@example.com" className="rounded-md-md border-outline-variant/30" />
+                  <FormInput type="email" required placeholder="jane@example.com" className="rounded-md border-outline-variant/30" />
                 </div>
                 <div className="md:col-span-2">
                   <FormLabel>Special Requests / Notes</FormLabel>
-                  <FormTextarea rows={3} placeholder="Any specific needs or questions?" className="rounded-md-md border-outline-variant/30" />
+                  <FormTextarea rows={3} placeholder="Any specific needs or questions?" className="rounded-md border-outline-variant/30" />
                 </div>
               </div>
             </div>
@@ -155,16 +155,16 @@ export function BookingSection() {
                 <div className="space-y-8">
                   <div>
                     <FormLabel>Card Number</FormLabel>
-                    <FormInput type="text" placeholder="0000 0000 0000 0000" icon="credit_card" className="rounded-md-md border-outline-variant/30" />
+                    <FormInput type="text" placeholder="0000 0000 0000 0000" icon="credit_card" className="rounded-md border-outline-variant/30" />
                   </div>
                   <div className="grid grid-cols-2 gap-8">
                     <div>
                       <FormLabel>Expiry Date</FormLabel>
-                      <FormInput type="text" placeholder="MM/YY" className="rounded-md-md border-outline-variant/30" />
+                      <FormInput type="text" placeholder="MM/YY" className="rounded-md border-outline-variant/30" />
                     </div>
                     <div>
                       <FormLabel>CVC</FormLabel>
-                      <FormInput type="text" placeholder="123" className="rounded-md-md border-outline-variant/30" />
+                      <FormInput type="text" placeholder="123" className="rounded-md border-outline-variant/30" />
                     </div>
                   </div>
                 </div>
@@ -193,7 +193,7 @@ export function BookingSection() {
                 type="submit"
                 variant="default"
                 size="lg"
-                className="rounded-md-md bg-on-surface text-surface hover:bg-surface-variant h-14 px-10 w-full md:w-auto uppercase tracking-wider text-xs font-bold transition-colors duration-150"
+                className="rounded-md bg-on-surface text-surface hover:bg-surface-variant h-14 px-10 w-full md:w-auto uppercase tracking-wider text-xs font-bold transition-colors duration-150"
               >
                 Confirm &amp; Pay $45.00
               </Button>

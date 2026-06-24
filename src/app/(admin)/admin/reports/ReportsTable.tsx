@@ -85,7 +85,7 @@ function UploadForm({ onSuccess }: { onSuccess: () => void }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mb-8 bg-surface-container-low p-6 rounded-md-md border border-surface-variant flex flex-col gap-4 max-w-xl"
+      className="mb-8 bg-surface-container-low p-6 rounded-md border border-surface-variant flex flex-col gap-4 max-w-xl"
     >
       <h3 className="font-bold text-primary">Upload Document</h3>
 
@@ -127,7 +127,7 @@ function UploadForm({ onSuccess }: { onSuccess: () => void }) {
         <input
           type="file"
           accept=".pdf"
-          className="block w-full text-sm text-on-surface-variant file:mr-4 file:py-2 file:px-4 file:rounded-md-md file:border-0 file:text-sm file:font-semibold file:bg-primary-container file:text-primary hover:file:bg-primary-container/80 cursor-pointer"
+          className="block w-full text-sm text-on-surface-variant file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary-container file:text-primary hover:file:bg-primary-container/80 cursor-pointer"
           onChange={(e) => setFile(e.target.files?.[0] ?? null)}
         />
         {errors.file && (
@@ -183,7 +183,7 @@ function EditModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-900/50 backdrop-blur-sm p-4">
-      <div className="bg-surface rounded-md-md border border-outline-variant/30 shadow-xl max-w-md w-full p-6">
+      <div className="bg-surface rounded-md border border-outline-variant/30 shadow-xl max-w-md w-full p-6">
         <h3 className="font-bold text-primary text-lg mb-4">Edit Report</h3>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -258,7 +258,7 @@ function DeleteModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-900/50 backdrop-blur-sm p-4">
-      <div className="bg-surface rounded-md-md border border-outline-variant/30 shadow-xl max-w-sm w-full p-6">
+      <div className="bg-surface rounded-md border border-outline-variant/30 shadow-xl max-w-sm w-full p-6">
         <h3 className="font-bold text-on-surface text-lg mb-2">Delete Report</h3>
         <p className="text-on-surface-variant text-sm mb-6">
           Are you sure you want to delete{" "}
@@ -329,7 +329,7 @@ export function ReportsTable({
 
       {/* Table / Empty State */}
       {reports.length === 0 ? (
-        <div className="text-center p-12 text-on-surface-variant bg-surface-container/30 rounded-md-md border border-dashed border-outline-variant/40">
+        <div className="text-center p-12 text-on-surface-variant bg-surface-container/30 rounded-md border border-dashed border-outline-variant/40">
           <span className="material-symbols-outlined text-4xl text-outline mb-3 block">
             description
           </span>

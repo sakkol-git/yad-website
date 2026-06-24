@@ -12,7 +12,7 @@ export function SafeImage({ alt, fallbackInitials, ...props }: SafeImageProps) {
   
   if (failed) {
     return (
-      <div className="w-full h-full bg-surface-container flex items-center justify-center rounded-md-md border border-outline-variant/30">
+      <div className="w-full h-full bg-surface-container flex items-center justify-center rounded-md border border-outline-variant/30">
         {fallbackInitials ? (
           <span className="font-playfair text-lg font-bold text-on-surface-variant">
             {fallbackInitials}

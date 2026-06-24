@@ -6,7 +6,7 @@ export default function NotFound() {
   return (
     <main className="min-h-screen bg-surface flex flex-col items-center justify-center relative overflow-hidden px-6">
       {/* Background ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-md-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <RevealOnScroll className="relative z-10 w-full max-w-lg mx-auto text-center">
         <div className="bg-surface/60 backdrop-blur-xl shadow-ambient border border-outline-variant/30 p-12 md:p-16">
@@ -26,7 +26,7 @@ export default function NotFound() {
             This page has moved or doesn&apos;t exist yet. Let&apos;s get you back on track.
           </p>
 
-          <Button asChild variant="default" size="lg" className="w-full bg-primary text-white rounded-md-md uppercase tracking-widest text-[10px] font-bold h-14 hover:bg-primary/90 transition-colors duration-150">
+          <Button asChild variant="default" size="lg" className="w-full bg-primary text-white rounded-md uppercase tracking-widest text-[10px] font-bold h-14 hover:bg-primary/90 transition-colors duration-150">
             <Link href="/">
               <span className="material-symbols-outlined text-[16px] mr-2" aria-hidden="true">home</span>
               Return Home

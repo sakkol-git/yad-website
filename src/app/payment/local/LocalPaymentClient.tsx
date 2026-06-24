@@ -60,7 +60,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
       <div className="w-full lg:w-2/3">
         <ProgressIndicator currentStep={2} />
 
-        <div className="bg-surface rounded-md-md p-6 md:p-12 border border-outline-variant/30 relative overflow-hidden">
+        <div className="bg-surface rounded-md p-6 md:p-12 border border-outline-variant/30 relative overflow-hidden">
           <div className="flex items-center justify-between border-b border-outline-variant/30 pb-4 mb-8">
             <h2 className="text-2xl font-light text-on-surface tracking-tight">
               Cambodian Local Payment
@@ -75,7 +75,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
           </div>
 
           {error && (
-            <div className="mb-6 p-4 bg-error/10 text-error rounded-md-md border border-error/30 text-[10px] uppercase tracking-widest font-bold">
+            <div className="mb-6 p-4 bg-error/10 text-error rounded-md border border-error/30 text-[10px] uppercase tracking-widest font-bold">
               {error}
             </div>
           )}
@@ -109,10 +109,10 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
             <div className="flex flex-col items-center">
               {paymentMethod === "khqr" ? (
                 /* Beautiful Mock KHQR Frame */
-                <div className="w-64 bg-red-600 rounded-md-md p-4 shadow-xl border-4 border-red-700 flex flex-col items-center select-none text-white relative">
+                <div className="w-64 bg-red-600 rounded-md p-4 shadow-xl border-4 border-red-700 flex flex-col items-center select-none text-white relative">
                   {/* KHQR Header Banner */}
                   <div className="w-full flex items-center justify-between mb-3 px-1">
-                    <span className="text-[10px] font-bold tracking-widest bg-white text-red-600 px-1.5 py-0.5 rounded-md-sm">
+                    <span className="text-[10px] font-bold tracking-widest bg-white text-red-600 px-1.5 py-0.5 rounded-sm">
                       KHQR
                     </span>
                     <span className="text-[9px] font-semibold opacity-95 text-right">
@@ -121,7 +121,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                   </div>
 
                   {/* QR Image Area */}
-                  <div className="w-full bg-white rounded-md-md p-3 flex flex-col items-center shadow-inner relative">
+                  <div className="w-full bg-white rounded-md p-3 flex flex-col items-center shadow-inner relative">
                     <svg viewBox="0 0 100 100" className="w-44 h-44 text-slate-800">
                       {/* Stylized QR Code Mock */}
                       <rect width="100" height="100" fill="white" />
@@ -150,7 +150,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                     </svg>
                     
                     {/* Amount Banner */}
-                    <div className="mt-3 w-full bg-slate-50 border border-slate-200 py-1.5 rounded-md-md text-center">
+                    <div className="mt-3 w-full bg-slate-50 border border-slate-200 py-1.5 rounded-md text-center">
                       <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                         Amount to Scan
                       </span>
@@ -172,7 +172,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                 </div>
               ) : (
                 /* Bank Account Details Card */
-                <div className="w-full bg-transparent border border-outline-variant/50 rounded-md-md p-6">
+                <div className="w-full bg-transparent border border-outline-variant/50 rounded-md p-6">
                   <div className="flex items-center gap-3 mb-6">
                     <span className="material-symbols-outlined text-[32px] text-primary">account_balance</span>
                     <div>
@@ -183,7 +183,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
 
                   <div className="space-y-4">
                     {/* Bank Name */}
-                    <div className="p-4 bg-transparent rounded-md-md border border-outline-variant/30 flex justify-between items-center">
+                    <div className="p-4 bg-transparent rounded-md border border-outline-variant/30 flex justify-between items-center">
                       <div>
                         <span className="text-[10px] text-on-surface-variant block uppercase tracking-widest font-bold mb-1">Bank Name</span>
                         <span className="text-sm font-light text-on-surface">ABA Bank</span>
@@ -200,7 +200,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                     </div>
 
                     {/* Account Name */}
-                    <div className="p-4 bg-transparent rounded-md-md border border-outline-variant/30 flex justify-between items-center">
+                    <div className="p-4 bg-transparent rounded-md border border-outline-variant/30 flex justify-between items-center">
                       <div>
                         <span className="text-[10px] text-on-surface-variant block uppercase tracking-widest font-bold mb-1">Account Name</span>
                         <span className="text-sm font-light text-on-surface">YAD CAMBODIA ASSOCIATION</span>
@@ -217,7 +217,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                     </div>
 
                     {/* Account Number */}
-                    <div className="p-4 bg-transparent rounded-md-md border border-outline-variant/30 flex justify-between items-center">
+                    <div className="p-4 bg-transparent rounded-md border border-outline-variant/30 flex justify-between items-center">
                       <div>
                         <span className="text-[10px] text-on-surface-variant block uppercase tracking-widest font-bold mb-1">Account Number</span>
                         <span className="text-lg font-mono font-light text-on-surface tracking-widest">000 123 456</span>
@@ -247,14 +247,14 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
 
               <div className="space-y-4 mb-8">
                 {/* Reference Code to include in transfer */}
-                <div className="p-4 bg-primary text-white border border-outline-variant/30 rounded-md-md flex justify-between items-center">
+                <div className="p-4 bg-primary text-white border border-outline-variant/30 rounded-md flex justify-between items-center">
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-widest block opacity-80 mb-1">Required Transfer Description / Memo</span>
                     <span className="text-lg font-mono font-light tracking-widest">{memoCode}</span>
                   </div>
                   <button
                     onClick={() => copyToClipboard(memoCode, "memo")}
-                    className="bg-white text-primary text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-md-md hover:bg-white/90 transition-colors duration-150 flex items-center gap-2 cursor-pointer"
+                    className="bg-white text-primary text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-md hover:bg-white/90 transition-colors duration-150 flex items-center gap-2 cursor-pointer"
                   >
                     <span className="material-symbols-outlined text-[14px]">
                       {copiedField === "memo" ? "check" : "content_copy"}
@@ -270,7 +270,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                     Bank Transaction ID / Reference Number <span className="text-primary">*</span>
                   </label>
                   <input
-                    className="w-full bg-transparent border border-outline-variant/50 rounded-md-md px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150"
+                    className="w-full bg-transparent border border-outline-variant/50 rounded-md px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150"
                     placeholder="e.g. 123456 or FT26152..."
                     required
                     type="text"
@@ -286,12 +286,12 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                   type="submit"
                   variant="default"
                   size="lg"
-                  className="w-full rounded-md-md bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold transition-colors duration-150 flex items-center gap-2 justify-center"
+                  className="w-full rounded-md bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold transition-colors duration-150 flex items-center gap-2 justify-center"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-md-full animate-spin" />
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                       Submitting for Verification...
                     </>
                   ) : (
@@ -309,7 +309,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
 
       {/* Side summary column */}
       <div className="w-full lg:w-1/3 mt-8 lg:mt-0">
-        <div className="sticky top-24 bg-surface rounded-md-md p-8 border border-outline-variant/30 relative overflow-hidden">
+        <div className="sticky top-24 bg-surface rounded-md p-8 border border-outline-variant/30 relative overflow-hidden">
           <h3 className="text-2xl font-light text-on-surface tracking-tight mb-6 relative z-10 border-b border-outline-variant/30 pb-4">
             Payment Summary
           </h3>

@@ -144,7 +144,7 @@ export function HomeHero() {
                 ref={ctaRef as React.Ref<HTMLButtonElement>}
                 onMouseMove={handleMouseMove as unknown as React.MouseEventHandler<HTMLButtonElement>}
                 onMouseLeave={handleMouseLeave as unknown as React.MouseEventHandler<HTMLButtonElement>}
-                className="bg-primary text-white hover:bg-primary/90 px-8 py-5 rounded-md-md text-xs tracking-[0.2em] uppercase font-semibold transition-colors w-fit"
+                className="bg-primary text-white hover:bg-primary/90 px-8 py-5 rounded-md text-xs tracking-[0.2em] uppercase font-semibold transition-colors w-fit"
               >
                 <Link href="/donate">Fund a Future</Link>
               </Button>
@@ -223,7 +223,7 @@ export function HomeHero() {
                 Status
               </span>
               <span className="flex items-center gap-2 text-base md:text-lg font-medium text-on-surface">
-                <span className="w-1.5 h-1.5 rounded-md-full bg-primary-fixed-dim animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-primary-fixed-dim animate-pulse" />
                 Independent NGO
               </span>
             </div>

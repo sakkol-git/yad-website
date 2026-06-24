@@ -83,7 +83,7 @@ export function LoginForm() {
         <div className="w-full max-w-md">
           {/* Simple Logo above Welcome Back */}
           <div className="flex flex-col items-center mb-8">
-            <div className="w-16 h-16 bg-primary/10 rounded-md-full flex items-center justify-center mb-4 text-primary">
+            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4 text-primary">
               <span className="material-symbols-outlined text-[32px]">login</span>
             </div>
             <h1 className="text-3xl font-light text-on-surface mb-2 text-center tracking-tight">Welcome Back</h1>
@@ -104,7 +104,7 @@ export function LoginForm() {
                   aria-required="true"
                   aria-describedby="login-email-error"
                   aria-invalid={!!errors.email}
-                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-md-md border ${errors.email ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
+                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-md border ${errors.email ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
                   {...register("email")}
                 />
               </div>
@@ -133,7 +133,7 @@ export function LoginForm() {
                   aria-required="true"
                   aria-describedby="login-password-error"
                   aria-invalid={!!errors.password}
-                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-md-md border ${errors.password ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
+                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-md border ${errors.password ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
                   {...register("password")}
                 />
               </div>
@@ -169,14 +169,14 @@ export function LoginForm() {
               disabled={isWorking}
               aria-busy={isWorking}
               aria-disabled={isWorking}
-              className="w-full h-12 relative bg-primary text-white rounded-md-md font-bold text-xs uppercase tracking-widest hover:bg-primary/90 transition-colors duration-200 ease-in-out mt-6 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full h-12 relative bg-primary text-white rounded-md font-bold text-xs uppercase tracking-widest hover:bg-primary/90 transition-colors duration-200 ease-in-out mt-6 disabled:opacity-70 disabled:cursor-not-allowed"
             >
               <span className={`absolute inset-0 flex items-center justify-center gap-2 transition-opacity duration-150 ${isWorking ? "opacity-0" : "opacity-100"}`}>
                 Sign In
                 <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
               </span>
               <span className={`absolute inset-0 flex items-center justify-center gap-2 transition-opacity duration-150 ${isWorking ? "opacity-100" : "opacity-0"}`} aria-hidden="true">
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-md-full animate-spin" />
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
               </span>
             </button>
           </form>
@@ -193,7 +193,7 @@ export function LoginForm() {
           <button
             onClick={onGoogleLogin}
             disabled={isPendingGoogle}
-            className="w-full h-12 relative bg-transparent border border-outline-variant/50 rounded-md-md font-bold text-xs uppercase tracking-widest text-on-surface hover:border-primary transition-colors duration-200 ease-in-out disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full h-12 relative bg-transparent border border-outline-variant/50 rounded-md font-bold text-xs uppercase tracking-widest text-on-surface hover:border-primary transition-colors duration-200 ease-in-out disabled:opacity-70 disabled:cursor-not-allowed"
           >
             <span className={`absolute inset-0 flex items-center justify-center gap-3 transition-opacity duration-150 ${isPendingGoogle ? "opacity-0" : "opacity-100"}`}>
               <Image
@@ -206,7 +206,7 @@ export function LoginForm() {
               Google
             </span>
             <span className={`absolute inset-0 flex items-center justify-center transition-opacity duration-150 ${isPendingGoogle ? "opacity-100" : "opacity-0"}`} aria-hidden="true">
-              <div className="w-5 h-5 border-2 border-on-surface border-t-transparent rounded-md-full animate-spin" />
+              <div className="w-5 h-5 border-2 border-on-surface border-t-transparent rounded-full animate-spin" />
             </span>
           </button>
 
