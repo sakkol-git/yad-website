@@ -15,13 +15,21 @@ export async function updateSession(request: NextRequest) {
           return request.cookies.getAll();
         },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value));
+          cookiesToSet.forEach(({ name, value, options }) => {
+            request.cookies.set(name, value);
+          });
           supabaseResponse = NextResponse.next({
             request,
           });
-          cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options)
-          );
+          cookiesToSet.forEach(({ name, value, options }) => {
+            const secureOptions = {
+              ...options,
+              secure: process.env.NODE_ENV === 'production',
+              sameSite: 'lax' as const,
+              httpOnly: true,
+            };
+            supabaseResponse.cookies.set(name, value, secureOptions);
+          });
         },
       },
     }
@@ -32,11 +40,18 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Basic admin and portal route protection
+  // Route protection configurations
   const isAdminRoute = request.nextUrl.pathname.startsWith('/admin');
   const isPortalRoute = request.nextUrl.pathname.startsWith('/portal');
   const isAuthRoute = request.nextUrl.pathname.startsWith('/auth/');
+  const isProtectedApiRoute = request.nextUrl.pathname.startsWith('/api/admin') || request.nextUrl.pathname.startsWith('/api/portal');
 
+  // Handle API unauthorized access without redirecting to login page
+  if (isProtectedApiRoute && !user) {
+    return NextResponse.json({ error: 'Unauthorized access' }, { status: 401 });
+  }
+
+  // Handle protected UI routes
   if ((isAdminRoute || isPortalRoute) && !user) {
     const loginUrl = request.nextUrl.clone();
     loginUrl.pathname = '/auth/login';
@@ -44,31 +59,12 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
+  // Handle authenticated users visiting auth routes (e.g. /auth/login)
+  // Just redirect them to portal dashboard, if they are admin, the portal or server logic can handle it
   if (isAuthRoute && user) {
-    const { data: roleData } = await supabase
-      .from('user_roles')
-      .select('role')
-      .eq('user_id', user.id)
-      .single();
-
     const redirectUrl = request.nextUrl.clone();
-    redirectUrl.pathname = ['admin', 'manager'].includes(roleData?.role) ? '/admin/dashboard' : '/portal/dashboard';
+    redirectUrl.pathname = '/portal/dashboard';
     return NextResponse.redirect(redirectUrl);
-  }
-
-  if (isAdminRoute && user) {
-    const { data: roleData } = await supabase
-      .from('user_roles')
-      .select('role')
-      .eq('user_id', user.id)
-      .single();
-
-    if (!roleData || roleData.role === 'user') {
-      // Regular users trying to access admin go to portal
-      const portalUrl = request.nextUrl.clone();
-      portalUrl.pathname = '/portal/dashboard';
-      return NextResponse.redirect(portalUrl);
-    }
   }
 
   return supabaseResponse;
