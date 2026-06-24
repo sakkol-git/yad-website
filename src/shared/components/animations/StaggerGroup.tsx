@@ -2,7 +2,7 @@
 
 import React, { useRef, useId, type ReactNode } from "react";
 import { useGSAP } from "@gsap/react";
-import { gsap, EASE, STAGGER, TRIGGER_START } from "@/shared/lib/animations/gsap-config";
+import { gsap, GSAP_PRESETS, TRIGGER_START } from "@/shared/lib/animations/gsap-config";
 import { useReducedMotion } from "@/shared/lib/animations/use-reduced-motion";
 
 interface StaggerGroupProps {
@@ -18,7 +18,7 @@ export function StaggerGroup({
   className,
   y = 32,
   scale,
-  stagger = STAGGER.base,
+  stagger = GSAP_PRESETS.STAGGER.stagger.amount,
 }: StaggerGroupProps) {
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
@@ -41,9 +41,13 @@ export function StaggerGroup({
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 0.8,
-        ease: EASE.smooth,
-        stagger,
+        duration: GSAP_PRESETS.STAGGER.duration,
+        ease: GSAP_PRESETS.STAGGER.ease,
+        stagger: {
+          amount: stagger,
+          from: GSAP_PRESETS.STAGGER.stagger.from,
+          ease: GSAP_PRESETS.STAGGER.stagger.ease,
+        },
         onComplete: () => {
           items.forEach((item) => {
             (item as HTMLElement).style.willChange = "auto";

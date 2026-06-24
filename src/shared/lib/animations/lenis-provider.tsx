@@ -51,10 +51,11 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     <ReactLenis
       root
       options={{
-        lerp: 0.08, // Adjusted from 0.1 for a more luxurious, softer scroll interpolation
-        duration: 1.2,
+        // duration: 1.4 replaces lerp: 0.08 — more predictable physics, slightly more responsive
+        duration: 1.4,
         smoothWheel: true,
-        syncTouch: false, // never smooth touch scrolling — keep mobile native-feeling
+        wheelMultiplier: 0.9,  // Slightly reduced — prevents over-scrolling sensation
+        syncTouch: false,      // Never smooth touch scrolling — keep mobile native-feeling
         easing: LENIS_EASE,
       }}
     >

@@ -8,6 +8,7 @@ import { NAV_LINKS } from "@/shared/constants/navigation";
 import { Button } from "@/shared/components/ui/Button";
 import { useAuth } from "@/providers/AuthProvider";
 import { createClient } from "@/shared/lib/supabase/client";
+import { useMagneticHover } from "@/shared/hooks/useMagneticHover";
 
 type NavLink = { href: string; label: string; subLinks?: { href: string; label: string }[] };
 
@@ -65,6 +66,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
   const { user, role, isLoading } = useAuth();
+  const { ref: ctaRef, handleMouseMove: ctaMouseMove, handleMouseLeave: ctaMouseLeave } = useMagneticHover(0.25);
 
 
 
@@ -318,7 +320,13 @@ export default function Navbar() {
             </Link>
           )}
 
-          <Button variant="primary" asChild>
+          <Button
+            variant="primary"
+            asChild
+            ref={ctaRef as React.Ref<HTMLButtonElement>}
+            onMouseMove={ctaMouseMove as unknown as React.MouseEventHandler<HTMLButtonElement>}
+            onMouseLeave={ctaMouseLeave as unknown as React.MouseEventHandler<HTMLButtonElement>}
+          >
             <Link href="/donate">Fund a Future</Link>
           </Button>
         </div>

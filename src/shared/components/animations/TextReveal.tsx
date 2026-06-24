@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import { gsap, EASE } from "@/shared/lib/animations/gsap-config";
+import { gsap, GSAP_PRESETS } from "@/shared/lib/animations/gsap-config";
 import { useReducedMotion } from "@/shared/lib/animations/use-reduced-motion";
 
 interface TextRevealProps {
@@ -33,9 +33,9 @@ export function TextReveal({ text, className, as: Tag = "h2", delay = 0 }: TextR
       }, {
         yPercent: 0,
         opacity: 1,
-        duration: 0.9,
+        duration: GSAP_PRESETS.CINEMATIC.duration,
         delay,
-        ease: EASE.snappy,
+        ease: GSAP_PRESETS.CINEMATIC.ease,
         stagger: 0.045,
         onComplete: () => {
           spans.forEach(span => {

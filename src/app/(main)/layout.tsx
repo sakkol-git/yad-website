@@ -2,6 +2,7 @@ import Navbar from "@/shared/components/layout/Navbar";
 import Footer from "@/shared/components/layout/Footer";
 import { LenisProvider } from "@/shared/lib/animations/lenis-provider";
 import { ScrollTriggerRefresh } from "@/shared/lib/animations/scroll-trigger-refresh";
+import { PageTransition } from "@/shared/components/layout/PageTransition";
 
 export default function MainLayout({
   children,
@@ -14,7 +15,7 @@ export default function MainLayout({
         <ScrollTriggerRefresh />
         <Navbar />
         <main id="main-content" className="flex-grow">
-          {children}
+          <PageTransition>{children}</PageTransition>
         </main>
         <Footer />
       </div>

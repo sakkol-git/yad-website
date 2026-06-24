@@ -2,7 +2,7 @@
 
 import { useRef, type ReactNode } from "react";
 import { useGSAP } from "@gsap/react";
-import { gsap, EASE } from "@/shared/lib/animations/gsap-config";
+import { gsap, GSAP_PRESETS } from "@/shared/lib/animations/gsap-config";
 import { useReducedMotion } from "@/shared/lib/animations/use-reduced-motion";
 
 export function ImageRevealMask({ children, className }: { children: ReactNode; className?: string }) {
@@ -17,8 +17,8 @@ export function ImageRevealMask({ children, className }: { children: ReactNode; 
         { clipPath: "inset(100% 0% 0% 0%)" },
         {
           clipPath: "inset(0% 0% 0% 0%)",
-          duration: 1.2,
-          ease: EASE.smoothInOut,
+          duration: GSAP_PRESETS.CINEMATIC.duration,
+          ease: GSAP_PRESETS.CINEMATIC.ease,
           onComplete: () => {
             if (ref.current) {
               ref.current.style.willChange = "auto";

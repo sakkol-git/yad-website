@@ -4,7 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/shared/components/ui/Button";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap, ScrollTrigger } from "@/shared/lib/animations/gsap-config";
+import { useReducedMotion } from "@/shared/lib/animations/use-reduced-motion";
+import { useMagneticHover } from "@/shared/hooks/useMagneticHover";
 import heroImg1 from "../../../../public/assets/images/yad-2.png";
 import heroImg2 from "../../../../public/assets/images/yad-6.png";
 import heroImg3 from "../../../../public/assets/images/yad-7.png";
@@ -17,6 +21,16 @@ const HERO_IMAGES = [
 
 export function HomeHero() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const reduced = useReducedMotion();
+
+  // Parallax refs
+  const sectionRef = useRef<HTMLElement>(null);
+  const headlineRef = useRef<HTMLHeadingElement>(null);
+  const subheadlineRef = useRef<HTMLParagraphElement>(null);
+  const imageColRef = useRef<HTMLDivElement>(null);
+
+  // Magnetic hover for primary CTA
+  const { ref: ctaRef, handleMouseMove, handleMouseLeave } = useMagneticHover(0.25);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -25,9 +39,64 @@ export function HomeHero() {
     return () => clearInterval(timer);
   }, []);
 
+  // Parallax depth — 3 layers at different rates for perceived 3D depth
+  useGSAP(() => {
+    if (reduced) return;
+    if (!sectionRef.current || !headlineRef.current || !subheadlineRef.current || !imageColRef.current) return;
+
+    // Headline moves at 30% of scroll speed (feels closest to camera)
+    gsap.to(headlineRef.current, {
+      yPercent: -30,
+      ease: "none",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "bottom top",
+        scrub: 1.5,
+      },
+    });
+
+    // Subheadline moves at 50% — feels further from camera
+    gsap.to(subheadlineRef.current, {
+      yPercent: -50,
+      ease: "none",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "bottom top",
+        scrub: 2,
+      },
+    });
+
+    // Image column moves at 20% — furthest layer
+    gsap.to(imageColRef.current, {
+      yPercent: -20,
+      ease: "none",
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "bottom top",
+        scrub: 3,
+      },
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => {
+        if (
+          t.trigger === sectionRef.current ||
+          t.vars.trigger === headlineRef.current ||
+          t.vars.trigger === subheadlineRef.current ||
+          t.vars.trigger === imageColRef.current
+        ) {
+          t.kill();
+        }
+      });
+    };
+  }, { scope: sectionRef, dependencies: [reduced] });
+
   return (
     // REDUCED: Padding top and bottom tightened for better viewport fitting
-    <section className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-10 overflow-hidden">
+    <section ref={sectionRef} className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-10 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
 
         {/* Editorial Split Grid */}
@@ -46,7 +115,10 @@ export function HomeHero() {
 
             {/* Massive, Tension-filled Headline */}
             <RevealOnScroll delay={0.2}>
-              <h1 className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6">
+              <h1
+                ref={headlineRef}
+                className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6"
+              >
                 Empowering <br className="hidden md:block" />
                 Cambodia&apos;s <br className="hidden md:block" />
                 <span className="font-light italic text-on-surface-variant">
@@ -57,7 +129,10 @@ export function HomeHero() {
 
             {/* Subtext */}
             <RevealOnScroll delay={0.3}>
-              <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed max-w-sm mb-10">
+              <p
+                ref={subheadlineRef}
+                className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed max-w-sm mb-10"
+              >
                 We provide vital education, safe housing, and life skills to youth from remote provinces and urban slum communities. A foundation for systemic change.
               </p>
             </RevealOnScroll>
@@ -66,6 +141,9 @@ export function HomeHero() {
             <RevealOnScroll delay={0.4}>
               <Button
                 asChild
+                ref={ctaRef as React.Ref<HTMLButtonElement>}
+                onMouseMove={handleMouseMove as unknown as React.MouseEventHandler<HTMLButtonElement>}
+                onMouseLeave={handleMouseLeave as unknown as React.MouseEventHandler<HTMLButtonElement>}
                 className="bg-primary text-white hover:bg-primary/90 px-8 py-5 rounded-none text-xs tracking-[0.2em] uppercase font-semibold transition-colors w-fit"
               >
                 <Link href="/donate">Fund a Future</Link>
@@ -75,7 +153,7 @@ export function HomeHero() {
 
           {/* Right Column: Un-obscured Cinematic Image (7 Columns) */}
           {/* REDUCED: Height changed from 80vh to 60vh with a hard max-height */}
-          <div className="lg:col-span-7 relative h-[60vh] lg:h-[70vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0 overflow-hidden">
+          <div ref={imageColRef} className="lg:col-span-7 relative h-[60vh] lg:h-[70vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0 overflow-hidden">
             <RevealOnScroll delay={0.3} className="w-full h-full relative">
               {HERO_IMAGES.map((img, idx) => {
                 const isCurrent = idx === currentImageIndex;

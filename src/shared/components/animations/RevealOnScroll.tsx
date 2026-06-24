@@ -2,7 +2,7 @@
 
 import { useRef, type ReactNode } from "react";
 import { useGSAP } from "@gsap/react";
-import { gsap, EASE, DURATION, TRIGGER_START } from "@/shared/lib/animations/gsap-config";
+import { gsap, GSAP_PRESETS, TRIGGER_START } from "@/shared/lib/animations/gsap-config";
 import { useReducedMotion } from "@/shared/lib/animations/use-reduced-motion";
 
 interface RevealOnScrollProps {
@@ -22,7 +22,7 @@ export function RevealOnScroll({
   y = 40,
   x,
   delay = 0,
-  duration = DURATION.base,
+  duration = GSAP_PRESETS.REVEAL.duration,
   start = TRIGGER_START,
   as: Tag = "div",
 }: RevealOnScrollProps) {
@@ -52,7 +52,7 @@ export function RevealOnScroll({
           y: 0,
           duration,
           delay,
-          ease: EASE.smooth,
+          ease: GSAP_PRESETS.REVEAL.ease,
           onComplete: () => {
             if (ref.current) {
               ref.current.style.willChange = "auto";
