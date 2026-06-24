@@ -272,20 +272,3 @@ html {
   animation: shimmer 1.8s ease-in-out infinite;
 }
 
-/* ---------------------------------------------------------------------------
-   Custom Cursor — hide native cursor on pointer:fine (desktop) devices only
-   The .custom-cursor elements are rendered only via React (touch-safe).
-   --------------------------------------------------------------------------- */
-@media (pointer: fine) {
-  *,
-  *::before,
-  *::after {
-    cursor: none !important;
-  }
-}
-
-@media (pointer: coarse) {
-  .custom-cursor {
-    display: none !important;
-  }
-}

@@ -3,7 +3,6 @@ import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import { getLocale } from 'next-intl/server';
 import { AuthProvider } from "@/providers/AuthProvider";
 import { CookieConsent } from "@/shared/components/ui/CookieConsent";
-import { CustomCursor } from "@/shared/components/ui/CustomCursor";
 import { Toaster } from "sonner";
 import { OfflineBanner } from "@/shared/components/ui/OfflineBanner";
 import { ExitIntentToast } from "@/shared/components/ui/ExitIntentToast";
@@ -174,7 +173,6 @@ export default async function RootLayout({
           Skip to main content
         </a>
         <AuthProvider>
-          <CustomCursor />
           {children}
           <CookieConsent />
           <OfflineBanner />
