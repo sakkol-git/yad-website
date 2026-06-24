@@ -48,9 +48,10 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
 
   const handleLogout = async () => {
     const supabase = createClient();
-    await supabase.auth.signOut();
-    router.push('/');
-    router.refresh();
+    await supabase.auth.signOut(); // Clear client-side state
+    
+    const { logout } = await import('@/server/actions/auth.actions');
+    await logout(); // Clear server HttpOnly cookies and redirect
   };
 
   return (

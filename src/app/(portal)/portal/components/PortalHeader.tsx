@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { createClient } from '@/shared/lib/supabase/client';
 
 interface PortalHeaderProps {
   logoutAction: (formData: FormData) => void;
@@ -11,6 +12,13 @@ export function PortalHeader({ logoutAction }: PortalHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleMenu = () => setMobileMenuOpen(!mobileMenuOpen);
+
+  const handleLogout = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const supabase = createClient();
+    await supabase.auth.signOut(); // Clear client-side state
+    logoutAction(new FormData()); // Call server action to clear HttpOnly cookies and redirect
+  };
 
   return (
     <header className="bg-surface-container-lowest border-b border-outline-variant/30 sticky top-0 z-40">
@@ -46,12 +54,12 @@ export function PortalHeader({ logoutAction }: PortalHeaderProps) {
               <span className="material-symbols-outlined text-[18px]">public</span>
               <span className="hidden lg:inline">Website</span>
             </Link>
-            
+
             <button className="relative p-2 rounded-md text-on-surface-variant hover:bg-surface-container hover:text-secondary transition-colors duration-300 min-h-[44px] min-w-[44px] flex items-center justify-center">
               <span className="material-symbols-outlined text-[20px]">notifications</span>
             </button>
-            
-            <form action={logoutAction} className="hidden sm:block">
+
+            <form onSubmit={handleLogout} className="hidden sm:block">
               <button title="Sign Out" type="submit" className="flex items-center gap-2 px-4 py-2 rounded-md border border-outline-variant/50 text-sm font-medium text-on-surface hover:bg-error-container hover:text-error hover:border-error-container transition-colors duration-200 ease-in-out min-h-[44px]">
                 <span className="material-symbols-outlined text-[18px]">logout</span>
                 <span className="hidden lg:inline">Sign Out</span>
@@ -91,7 +99,7 @@ export function PortalHeader({ logoutAction }: PortalHeaderProps) {
             <Link onClick={() => setMobileMenuOpen(false)} href="/" className="sm:hidden block px-3 py-2 rounded-md text-base font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors duration-300 min-h-[44px]">
               Back to Website
             </Link>
-            <form action={logoutAction} className="sm:hidden block">
+            <form onSubmit={handleLogout} className="sm:hidden block">
               <button type="submit" className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-error hover:bg-error-container transition-colors duration-300 min-h-[44px]">
                 Sign Out
               </button>
