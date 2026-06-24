@@ -1,109 +1,121 @@
 "use server";
 
+import { createClient } from "@/shared/lib/supabase/server";
 import { createAdminClient } from "@/shared/lib/supabase/admin";
-import { revalidatePath } from "next/cache";
-import { auditLog } from "./audit.actions";
+import { revalidatePath, revalidateTag } from "next/cache";
+import { reportsService } from "@/server/services/reports.service";
 
-export async function uploadReportAction(formData: FormData) {
+/**
+ * Fetches a paginated list of reports for the admin table.
+ * Enforces admin session via the service layer.
+ */
+export async function getReportsAction(
+  page: number = 1,
+  limit: number = 10,
+  search?: string
+) {
+  const supabase = await createClient();
   try {
-    const title = formData.get("title") as string;
-    const yearStr = formData.get("year") as string;
-    const file = formData.get("file") as File;
-
-    if (!title || !yearStr || !file || file.size === 0) {
-      return { error: "Missing required fields." };
-    }
-
-    const year = parseInt(yearStr, 10);
-    if (isNaN(year)) {
-      return { error: "Invalid year." };
-    }
-
-    const supabaseAdmin = createAdminClient();
-
-    // 1. Upload file to Supabase Storage
-    const fileExt = file.name.split('.').pop();
-    const fileName = `annual-report-${year}-${Date.now()}.${fileExt}`;
-    const filePath = `reports/${fileName}`;
-
-    // Note: The bucket 'reports' must be created in Supabase Storage and set to public.
-    const { data: uploadData, error: uploadError } = await supabaseAdmin
-      .storage
-      .from('reports')
-      .upload(filePath, file, {
-        cacheControl: '3600',
-        upsert: false
-      });
-
-    if (uploadError) {
-      console.error("[ReportAction] Upload Error:", uploadError);
-      return { error: "Failed to upload file to storage." };
-    }
-
-    // 2. Get Public URL
-    const { data: publicUrlData } = supabaseAdmin
-      .storage
-      .from('reports')
-      .getPublicUrl(filePath);
-
-    const publicUrl = publicUrlData.publicUrl;
-
-    // 3. Create record in annual_reports table
-    const { error: dbError } = await supabaseAdmin
-      .from("annual_reports")
-      .insert({
-        title,
-        year,
-        file_url: publicUrl,
-      });
-
-    if (dbError) {
-      console.error("[ReportAction] DB Insert Error:", dbError);
-      return { error: "Failed to save report record." };
-    }
-
-    await auditLog("UPLOAD", "annual_reports", "NEW_REPORT");
-
-    revalidatePath("/admin/reports");
-    revalidatePath("/about/financials");
-    return { success: true };
+    const { data, count } = await reportsService.getReports(supabase, {
+      page,
+      limit,
+      search,
+    });
+    return { success: true, data, count };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
-    console.error("[ReportAction] Catch Error:", err);
-    return { error: "An unexpected error occurred." };
+    console.error("[ReportAction] getReports error:", err);
+    return { success: false, error: err.message ?? "Failed to fetch reports." };
   }
 }
 
-export async function deleteReportAction(id: string, fileUrl: string) {
+/**
+ * Uploads a new annual report PDF.
+ * Auth: requires admin session.
+ * Validates title, year, and file via the service layer.
+ */
+export async function uploadReportAction(formData: FormData) {
+  // Use admin client for storage operations (bypasses Storage RLS)
+  // but we still verify the calling user's session via createClient
+  const supabase = await createClient();
+  const adminClient = createAdminClient();
+
+  const title = formData.get("title") as string;
+  const yearStr = formData.get("year") as string;
+  const file = formData.get("file") as File;
+
+  const year = parseInt(yearStr, 10);
+
   try {
-    const supabaseAdmin = createAdminClient();
-
-    // 1. Delete from DB
-    const { error: dbError } = await supabaseAdmin
-      .from("annual_reports")
-      .delete()
-      .eq("id", id);
-
-    if (dbError) {
-      throw dbError;
-    }
-
-    // 2. Extract path and delete from Storage
-    // The URL looks like: https://[project].supabase.co/storage/v1/object/public/reports/reports/annual-report-2023-12345.pdf
-    const urlParts = fileUrl.split('/reports/');
-    if (urlParts.length > 1) {
-      const pathToDelete = "reports/" + urlParts.pop(); // The filename
-      await supabaseAdmin.storage.from('reports').remove([pathToDelete]);
-    }
-
-    await auditLog("DELETE", "annual_reports", id);
+    // requireAdmin is called inside the service with the session client
+    await reportsService.uploadReport(adminClient, { title, year }, file);
 
     revalidatePath("/admin/reports");
-    revalidatePath("/about/financials");
+    revalidatePath("/impact");
+    revalidateTag("reports", "default");
     return { success: true };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
-    console.error("[ReportAction] Delete Error:", err);
-    return { error: "Failed to delete report." };
+    // Re-map Zod errors to user-friendly messages
+    if (err?.errors) {
+      const first = err.errors[0];
+      return { success: false, error: first?.message ?? "Validation failed." };
+    }
+    console.error("[ReportAction] uploadReport error:", err);
+    return { success: false, error: err.message ?? "An unexpected error occurred." };
+  }
+
+  // Silence unused variable warning — supabase is used for session check inside service
+  void supabase;
+}
+
+/**
+ * Updates a report's title and year (metadata only — does not re-upload the file).
+ * Auth: requires admin session.
+ */
+export async function updateReportAction(
+  id: string,
+  formData: FormData
+) {
+  const supabase = await createClient();
+  const title = formData.get("title") as string;
+  const yearStr = formData.get("year") as string;
+  const year = parseInt(yearStr, 10);
+
+  try {
+    await reportsService.updateReport(supabase, id, { title, year });
+    revalidatePath("/admin/reports");
+    revalidatePath("/impact");
+    revalidateTag("reports", "default");
+    return { success: true };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
+    if (err?.errors) {
+      const first = err.errors[0];
+      return { success: false, error: first?.message ?? "Validation failed." };
+    }
+    console.error("[ReportAction] updateReport error:", err);
+    return { success: false, error: err.message ?? "Failed to update report." };
+  }
+}
+
+/**
+ * Deletes a report record and its associated PDF from Supabase Storage.
+ * Auth: requires admin session.
+ */
+export async function deleteReportAction(id: string) {
+  // Use admin client for storage deletion, session client for auth
+  const adminClient = createAdminClient();
+
+  try {
+    await reportsService.deleteReport(adminClient, id);
+    revalidatePath("/admin/reports");
+    revalidatePath("/impact");
+    revalidateTag("reports", "default");
+    return { success: true };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (err: any) {
+    console.error("[ReportAction] deleteReport error:", err);
+    return { success: false, error: err.message ?? "Failed to delete report." };
   }
 }

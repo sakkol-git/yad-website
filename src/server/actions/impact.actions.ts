@@ -1,6 +1,6 @@
 "use server";
 
-import { createAdminClient } from "@/shared/lib/supabase/server";
+import { createAdminClient } from "@/shared/lib/supabase/admin";
 import { unstable_cache } from "next/cache";
 
 export const getImpactStatsAction = unstable_cache(

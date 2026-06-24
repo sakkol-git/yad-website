@@ -187,6 +187,8 @@ export interface Database {
           title: string
           year: number
           file_url: string
+          file_path: string | null
+          file_size_bytes: number | null
           created_at: string
         }
         Insert: {
@@ -194,6 +196,8 @@ export interface Database {
           title: string
           year: number
           file_url: string
+          file_path?: string | null
+          file_size_bytes?: number | null
           created_at?: string
         }
         Update: {
@@ -201,6 +205,8 @@ export interface Database {
           title?: string
           year?: number
           file_url?: string
+          file_path?: string | null
+          file_size_bytes?: number | null
           created_at?: string
         }
         Relationships: []
