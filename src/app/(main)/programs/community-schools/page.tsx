@@ -17,20 +17,20 @@ export default function CommunitySchoolsPage() {
   ];
 
   return (
-    <main className="relative overflow-hidden bg-surface pt-32 pb-section-gap">
-      {/* Background Decorative Glow */}
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-primary/[0.03] rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
-
-      <RevealOnScroll className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+    <main className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-20 overflow-hidden border-b border-outline-variant/30">
+      <RevealOnScroll className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px] relative z-10">
         <BreadcrumbSchema items={breadcrumbs} />
       
-      <div className="mb-12">
+      <div className="mb-16">
+        <span className="block text-primary uppercase tracking-[0.2em] text-[10px] font-bold mb-4">
+          Programs
+        </span>
         <TextReveal 
           as="h1" 
           text="Community Schools & Slum Education" 
-          className="font-headline-lg text-headline-lg text-primary mb-4" 
+          className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] font-light mb-6" 
         />
-        <p className="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+        <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed max-w-3xl">
           Taking education directly to where it&apos;s needed most. We provide vital English and Life Skills education to children in poverty-stricken urban slum communities.
         </p>
       </div>
@@ -40,34 +40,34 @@ export default function CommunitySchoolsPage() {
           <TextReveal 
             as="h2" 
             text="Bridging the Gap" 
-            className="font-headline-md text-headline-md text-secondary mb-4" 
+            className="text-4xl lg:text-5xl font-light text-secondary tracking-tighter leading-[1.0] mb-6" 
           />
-          <p className="font-body-md text-body-md text-on-surface-variant mb-6">
+          <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed mb-8">
             Our mobile tutoring units and pop-up classrooms ensure no child is left behind due to geographical or economic barriers. By teaching critical Life Skills and foundational English directly within slum communities, we advance the abilities and opportunities of Cambodia&apos;s most vulnerable youth.
           </p>
 
-          <div className="bg-surface-container-low p-6 rounded-md mb-6 border border-surface-container-high hover:border-primary/40 transition-colors duration-300">
-            <h3 className="font-headline-sm text-headline-sm text-on-surface mb-4 flex items-center gap-2">
-              <span className="material-symbols-outlined text-primary">school</span>
+          <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 hover:border-primary/40 transition-colors duration-300 p-8 rounded-md mb-8">
+            <h3 className="text-2xl font-light text-on-surface tracking-tight mb-4 flex items-center gap-3">
+              <span className="material-symbols-outlined text-primary text-3xl">school</span>
               Program Centers
             </h3>
-            <p className="font-body-md text-body-md text-on-surface-variant mb-4">
+            <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed mb-4">
               We operate out of multiple dedicated community supports across Phnom Penh, including:
             </p>
-            <ul className="list-disc pl-5 space-y-2 text-on-surface-variant">
+            <ul className="list-disc pl-5 space-y-2 text-on-surface-variant text-base md:text-lg font-light leading-relaxed">
               <li><strong>Rudi Boa Center</strong></li>
               <li><strong>Wat Than Heimberg Center</strong></li>
               <li><strong>Youth Leaders Centre (YLC)</strong></li>
             </ul>
           </div>
 
-          <h3 className="font-headline-sm text-headline-sm text-on-surface mb-3">Mobile Tutoring Units</h3>
-          <p className="font-body-md text-body-md text-on-surface-variant">
+          <h3 className="text-2xl font-light text-on-surface tracking-tight mb-4">Mobile Tutoring Units</h3>
+          <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed">
             Reaching over 500 children weekly in marginalized areas with basic literacy and numeracy programs. Our goal is to integrate 80% of participating children into formal schooling systems within 12 months.
           </p>
         </div>
         
-        <div className="bg-surface-container rounded-md overflow-hidden shadow-ambient p-4 h-fit group">
+        <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 rounded-md overflow-hidden shadow-ambient p-4 group h-fit">
           <div className="rounded-sm overflow-hidden w-full h-auto">
             <Image 
               src="/assets/images/yad-5.png" 

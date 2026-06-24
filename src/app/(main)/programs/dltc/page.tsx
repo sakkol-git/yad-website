@@ -17,20 +17,20 @@ export default function DLTCPage() {
   ];
 
   return (
-    <main className="relative overflow-hidden bg-surface pt-32 pb-section-gap">
-      {/* Background Decorative Glow */}
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-primary/[0.03] rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
-
-      <RevealOnScroll className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+    <main className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-20 overflow-hidden border-b border-outline-variant/30">
+      <RevealOnScroll className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px] relative z-10">
         <BreadcrumbSchema items={breadcrumbs} />
       
-      <div className="mb-12">
+      <div className="mb-16">
+        <span className="block text-primary uppercase tracking-[0.2em] text-[10px] font-bold mb-4">
+          Programs
+        </span>
         <TextReveal 
           as="h1" 
           text="Dormitory and Leadership Training Centre (DLTC)" 
-          className="font-headline-lg text-headline-lg text-primary mb-4" 
+          className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] font-light mb-6" 
         />
-        <p className="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+        <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed max-w-3xl">
           The DLTC is a core program of Youth Advancement for Development (YAD) supporting marginalized Cambodian youths from remote provinces and urban slum communities.
         </p>
       </div>
@@ -40,21 +40,21 @@ export default function DLTCPage() {
           <TextReveal 
             as="h2" 
             text="Program Overview" 
-            className="font-headline-md text-headline-md text-secondary mb-4" 
+            className="text-4xl lg:text-5xl font-light text-secondary tracking-tighter leading-[1.0] mb-6" 
           />
-          <p className="font-body-md text-body-md text-on-surface-variant mb-6">
+          <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed mb-8">
             Currently supporting <strong>18 talented students</strong>, the DLTC provides far more than just a place to sleep. We offer comprehensive housing, scholarships, and an immersive environment focused on leadership and life skills to ensure successful university access and graduation.
           </p>
 
-          <h3 className="font-headline-sm text-headline-sm text-on-surface mb-3">Support for Poor Students</h3>
-          <ul className="list-disc pl-5 mb-8 space-y-2 text-on-surface-variant">
+          <h3 className="text-2xl font-light text-on-surface tracking-tight mb-4">Support for Poor Students</h3>
+          <ul className="list-disc pl-5 mb-10 space-y-2 text-on-surface-variant text-base md:text-lg font-light leading-relaxed">
             <li>Dormitory housing at the DLTC in central Phnom Penh</li>
             <li>Bicycles for transport to and from classes</li>
             <li>University Scholarships</li>
           </ul>
 
-          <h3 className="font-headline-sm text-headline-sm text-on-surface mb-3">Activities and Services</h3>
-          <ul className="list-disc pl-5 mb-6 space-y-2 text-on-surface-variant">
+          <h3 className="text-2xl font-light text-on-surface tracking-tight mb-4">Activities and Services</h3>
+          <ul className="list-disc pl-5 mb-8 space-y-2 text-on-surface-variant text-base md:text-lg font-light leading-relaxed">
             <li>A leadership training based, self-governance model for all residents</li>
             <li>Weekly leadership seminars on conflict resolution, mental health, and job seeking</li>
             <li>Extensive life skills training and programs</li>
@@ -63,7 +63,7 @@ export default function DLTCPage() {
           </ul>
         </div>
         
-        <div className="bg-surface-container rounded-md overflow-hidden shadow-ambient p-4 group">
+        <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 rounded-md overflow-hidden shadow-ambient p-4 group h-fit">
           <div className="rounded-sm overflow-hidden w-full h-auto">
             <Image 
               src="/assets/images/yad-6.png" 

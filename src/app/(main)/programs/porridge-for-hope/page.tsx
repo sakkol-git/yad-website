@@ -17,20 +17,20 @@ export default function PorridgeForHopePage() {
   ];
 
   return (
-    <main className="relative overflow-hidden bg-surface pt-32 pb-section-gap">
-      {/* Background Decorative Glow */}
-      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-primary/[0.03] rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
-
-      <RevealOnScroll className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+    <main className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-20 overflow-hidden border-b border-outline-variant/30">
+      <RevealOnScroll className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px] relative z-10">
         <BreadcrumbSchema items={breadcrumbs} />
       
-      <div className="mb-12">
+      <div className="mb-16">
+        <span className="block text-primary uppercase tracking-[0.2em] text-[10px] font-bold mb-4">
+          Programs
+        </span>
         <TextReveal 
           as="h1" 
           text="Porridge for Hope" 
-          className="font-headline-lg text-headline-lg text-primary mb-4" 
+          className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] font-light mb-6" 
         />
-        <p className="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">
+        <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed max-w-3xl">
           Combating malnutrition and strengthening communities through consistent nutritional support since 2016.
         </p>
       </div>
@@ -40,31 +40,31 @@ export default function PorridgeForHopePage() {
           <TextReveal 
             as="h2" 
             text="Nutrition & Food Security" 
-            className="font-headline-md text-headline-md text-secondary mb-4" 
+            className="text-4xl lg:text-5xl font-light text-secondary tracking-tighter leading-[1.0] mb-6" 
           />
-          <p className="font-body-md text-body-md text-on-surface-variant mb-6">
+          <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed mb-8">
             The Porridge for Hope program has had enormous success and greatly improved the lives of many individuals in the community. Targeting primarily children aged 5 years and under (alongside older children at other centres), this initiative ensures vital nutritional milestones are met.
           </p>
 
-          <div className="bg-surface-container-low p-6 rounded-md mb-6 border border-surface-container-high hover:border-primary/40 transition-colors duration-300">
-            <h3 className="font-headline-sm text-headline-sm text-on-surface mb-4 flex items-center gap-2">
-              <span className="material-symbols-outlined text-primary">local_dining</span>
+          <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 hover:border-primary/40 transition-colors duration-300 p-8 rounded-md mb-8">
+            <h3 className="text-2xl font-light text-on-surface tracking-tight mb-4 flex items-center gap-3">
+              <span className="material-symbols-outlined text-primary text-3xl">local_dining</span>
               Program Delivery
             </h3>
-            <ul className="space-y-3 text-on-surface-variant">
+            <ul className="space-y-3 text-on-surface-variant text-base md:text-lg font-light leading-relaxed">
               <li><strong>Frequency:</strong> Twice a month</li>
               <li><strong>Reach:</strong> More than 100 children per session</li>
               <li><strong>Locations:</strong> Youth Leaders Centre (YLC) and other YAD community centres</li>
             </ul>
           </div>
 
-          <h3 className="font-headline-sm text-headline-sm text-on-surface mb-3">Community Integration</h3>
-          <p className="font-body-md text-body-md text-on-surface-variant">
+          <h3 className="text-2xl font-light text-on-surface tracking-tight mb-4">Community Integration</h3>
+          <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed">
             In a beautiful display of cross-program integration, the porridge is lovingly cooked and served by the university residents of our Dormitory and Leadership Training Centre (DLTC), allowing them to give back directly to the community.
           </p>
         </div>
         
-        <div className="bg-surface-container rounded-md overflow-hidden shadow-ambient p-4 h-fit group">
+        <div className="bg-surface-container-high dark:bg-surface-container-high backdrop-blur-xl border border-outline-variant/30 rounded-md overflow-hidden shadow-ambient p-4 group h-fit">
           <div className="rounded-sm overflow-hidden w-full h-auto">
             <Image 
               src="/assets/images/yad-1.png" 
