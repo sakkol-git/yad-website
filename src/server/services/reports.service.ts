@@ -4,7 +4,7 @@ import { ReportsRepository, type Report } from '../repositories/reports';
 import { requireAdmin } from '../permissions';
 import { auditLogger } from './audit.service';
 import { uploadReportSchema, updateReportSchema, validateReportFile } from '../validators/report.schema';
-import { unstable_cache } from 'next/cache';
+
 import { createClient } from '@/shared/lib/supabase/server';
 import { createAdminClient } from '@/shared/lib/supabase/admin';
 
@@ -33,15 +33,11 @@ export class ReportsService {
    * Public: Cached list of all reports, ordered by year DESC.
    * No auth required. ISR-revalidated via the 'reports' cache tag.
    */
-  getPublicReports = unstable_cache(
-    async (): Promise<Report[]> => {
-      // Use a server-side client (no session needed for public read)
-      const supabase = await createClient();
-      return this.repository.getAllPublic(supabase);
-    },
-    ['public-annual-reports'],
-    { revalidate: 3600, tags: ['reports'] }
-  );
+  async getPublicReports(): Promise<Report[]> {
+    // Use a server-side client (no session needed for public read)
+    const supabase = await createClient();
+    return this.repository.getAllPublic(supabase);
+  }
 
   /**
    * Admin: Upload a new report PDF and create the DB record.
