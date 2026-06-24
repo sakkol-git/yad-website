@@ -49,7 +49,8 @@ export async function uploadReportAction(formData: FormData) {
     await reportsService.uploadReport(supabase, { title, year }, file);
 
     revalidatePath("/admin/reports");
-    revalidatePath("/impact");
+    revalidatePath("/report");
+    revalidatePath("/radical-transparency");
     revalidateTag("reports", "default");
     return { success: true };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -82,7 +83,8 @@ export async function updateReportAction(
   try {
     await reportsService.updateReport(supabase, id, { title, year });
     revalidatePath("/admin/reports");
-    revalidatePath("/impact");
+    revalidatePath("/report");
+    revalidatePath("/radical-transparency");
     revalidateTag("reports", "default");
     return { success: true };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -107,7 +109,8 @@ export async function deleteReportAction(id: string) {
   try {
     await reportsService.deleteReport(supabase, id);
     revalidatePath("/admin/reports");
-    revalidatePath("/impact");
+    revalidatePath("/report");
+    revalidatePath("/radical-transparency");
     revalidateTag("reports", "default");
     return { success: true };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

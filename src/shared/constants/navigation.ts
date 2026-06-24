@@ -37,7 +37,7 @@ export const NAV_LINKS: NavLink[] = [
     subLinks: [
       { href: "/impact", label: "Our Impact" },
       { href: "/news", label: "News & Updates" },
-      { href: "/radical-transparency", label: "Transparency Reports" },
+      { href: "/report", label: "Transparency Reports" },
     ]
   },
   { href: "/contact", label: "Contact Us" },
