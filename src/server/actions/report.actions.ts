@@ -35,10 +35,8 @@ export async function getReportsAction(
  * Validates title, year, and file via the service layer.
  */
 export async function uploadReportAction(formData: FormData) {
-  // Use admin client for storage operations (bypasses Storage RLS)
-  // but we still verify the calling user's session via createClient
+  // Use the session client so requireAdmin can check the user's role
   const supabase = await createClient();
-  const adminClient = createAdminClient();
 
   const title = formData.get("title") as string;
   const yearStr = formData.get("year") as string;
@@ -48,7 +46,7 @@ export async function uploadReportAction(formData: FormData) {
 
   try {
     // requireAdmin is called inside the service with the session client
-    await reportsService.uploadReport(adminClient, { title, year }, file);
+    await reportsService.uploadReport(supabase, { title, year }, file);
 
     revalidatePath("/admin/reports");
     revalidatePath("/impact");
@@ -65,8 +63,7 @@ export async function uploadReportAction(formData: FormData) {
     return { success: false, error: err.message ?? "An unexpected error occurred." };
   }
 
-  // Silence unused variable warning — supabase is used for session check inside service
-  void supabase;
+
 }
 
 /**
@@ -104,11 +101,11 @@ export async function updateReportAction(
  * Auth: requires admin session.
  */
 export async function deleteReportAction(id: string) {
-  // Use admin client for storage deletion, session client for auth
-  const adminClient = createAdminClient();
+  // Use session client for auth
+  const supabase = await createClient();
 
   try {
-    await reportsService.deleteReport(adminClient, id);
+    await reportsService.deleteReport(supabase, id);
     revalidatePath("/admin/reports");
     revalidatePath("/impact");
     revalidateTag("reports", "default");

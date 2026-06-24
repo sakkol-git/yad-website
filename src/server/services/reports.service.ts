@@ -6,6 +6,7 @@ import { auditLogger } from './audit.service';
 import { uploadReportSchema, updateReportSchema, validateReportFile } from '../validators/report.schema';
 import { unstable_cache } from 'next/cache';
 import { createClient } from '@/shared/lib/supabase/server';
+import { createAdminClient } from '@/shared/lib/supabase/admin';
 
 const STORAGE_BUCKET = 'reports';
 
@@ -66,10 +67,9 @@ export class ReportsService {
     const filePath = `reports/${fileName}`;
 
     // Upload to Supabase Storage using the admin client (service role)
-    // We cast supabase here because callers pass in either admin or user client;
-    // the admin key is needed for storage writes without RLS.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { error: uploadError } = await (supabase as any)
+    // to bypass Storage RLS, while the session client handles DB and auth.
+    const adminClient = createAdminClient();
+    const { error: uploadError } = await adminClient
       .storage
       .from(STORAGE_BUCKET)
       .upload(filePath, file, { cacheControl: '3600', upsert: false });
@@ -80,8 +80,7 @@ export class ReportsService {
     }
 
     // Get public URL
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: publicUrlData } = (supabase as any)
+    const { data: publicUrlData } = adminClient
       .storage
       .from(STORAGE_BUCKET)
       .getPublicUrl(filePath);
@@ -104,8 +103,7 @@ export class ReportsService {
 
     if (dbError) {
       // Best-effort: try to remove the orphaned file from storage
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      await (supabase as any).storage.from(STORAGE_BUCKET).remove([filePath]);
+      await adminClient.storage.from(STORAGE_BUCKET).remove([filePath]);
       console.error('[ReportsService] DB insert error:', dbError);
       throw new Error('Failed to save report record. The uploaded file has been removed.');
     }
@@ -154,8 +152,8 @@ export class ReportsService {
 
     // 2. Delete from Storage (non-fatal if it fails — log but don't throw)
     if (storagePath) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { error: storageError } = await (supabase as any)
+      const adminClient = createAdminClient();
+      const { error: storageError } = await adminClient
         .storage
         .from(STORAGE_BUCKET)
         .remove([storagePath]);
