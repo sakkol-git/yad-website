@@ -59,9 +59,13 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  // Handle authenticated users visiting auth routes (e.g. /auth/login)
+  // Handle authenticated users visiting auth pages (e.g. /auth/login, /auth/register)
   // Just redirect them to the generic router, which fetches their role and redirects securely
-  if (isAuthRoute && user) {
+  const isAuthPage = isAuthRoute 
+    && !request.nextUrl.pathname.startsWith('/auth/redirect') 
+    && !request.nextUrl.pathname.startsWith('/auth/callback');
+
+  if (isAuthPage && user) {
     const redirectUrl = request.nextUrl.clone();
     redirectUrl.pathname = '/auth/redirect';
     return NextResponse.redirect(redirectUrl);
