@@ -52,7 +52,15 @@ export async function logout() {
 
 export async function loginWithGoogle(redirectPath?: string) {
   const supabase = await createClient();
-  const origin = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  
+  // Dynamically resolve the origin from headers to preserve custom domains
+  const headersList = await import('next/headers').then(m => m.headers());
+  const host = headersList.get('x-forwarded-host') || headersList.get('host');
+  const protocol = headersList.get('x-forwarded-proto') || 'https';
+  
+  // Fallback to env var if headers are somehow missing
+  const origin = host ? `${protocol}://${host}` : (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000');
+  
   const targetPath = redirectPath || '/portal/dashboard';
   const redirectTo = `${origin}/auth/callback?next=${encodeURIComponent(targetPath)}`;
 
