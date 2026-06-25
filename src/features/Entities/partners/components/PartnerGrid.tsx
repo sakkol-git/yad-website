@@ -86,7 +86,7 @@ export function PartnerGrid({ partners }: PartnerGridProps) {
                     src={partner.logoUrl}
                     alt={`${partner.name} logo`}
                     fill
-                    className="object-contain opacity-60 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0"
+                    className="object-contain transition-transform duration-300 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>

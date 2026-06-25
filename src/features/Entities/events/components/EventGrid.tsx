@@ -13,7 +13,7 @@ function EventCard({
 }) {
   return (
     <article
-      className={`bg-surface border border-outline-variant/30 flex flex-col relative group cursor-pointer transition-[transform,box-shadow,border-color] duration-300 ease-out hover:border-on-surface hover:bg-surface-container-lowest ${
+      className={`bg-surface border border-outline-variant/30 flex flex-col relative group cursor-pointer transition-[transform,box-shadow,border-color] duration-300 ease-out hover:border-on-surface hover:bg-surface-container-lowest rounded-md overflow-hidden shadow-sm hover:shadow-md ${
         featured ? "lg:col-span-2" : ""
       }`}
     >
@@ -27,9 +27,7 @@ function EventCard({
           alt={event.imageAlt}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className={`object-cover transition-transform duration-700 group-hover:scale-105 ${
-            event.status === "Completed" ? "grayscale" : "grayscale-[50%] group-hover:grayscale-0"
-          }`}
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
         {event.status === "Upcoming" && featured && (
           <div className="absolute top-4 left-4 bg-on-surface text-surface px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-bold">
