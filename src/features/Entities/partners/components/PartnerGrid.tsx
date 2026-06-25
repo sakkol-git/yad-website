@@ -57,10 +57,10 @@ export function PartnerGrid({ partners }: PartnerGridProps) {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`uppercase tracking-[0.1em] text-xs font-bold px-6 py-3 border transition-colors ${
+              className={`uppercase tracking-[0.1em] text-xs font-bold px-6 py-3 border rounded-md transition-colors ${
                 activeCategory === cat
-                  ? "bg-on-surface text-surface border-on-surface"
-                  : "bg-transparent text-on-surface-variant border-outline-variant/30 hover:border-on-surface hover:text-on-surface"
+                  ? "bg-primary text-on-primary border-primary shadow-md"
+                  : "bg-transparent text-on-surface-variant border-outline-variant/30 hover:border-primary/50 hover:bg-primary/5 hover:text-primary"
               }`}
             >
               {cat}

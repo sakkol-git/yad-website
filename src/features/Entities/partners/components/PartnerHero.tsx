@@ -6,6 +6,10 @@ import heroImg from "../../../../../public/assets/images/yad-7.png";
 export function PartnerHero() {
   return (
     <section className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-10 overflow-hidden">
+      {/* Subtle Background Glows */}
+      <div className="absolute top-20 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute bottom-0 left-1/4 w-[30rem] h-[30rem] bg-secondary/5 rounded-full blur-[150px] pointer-events-none translate-y-1/2 -z-10" />
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
         
         {/* Editorial Split Grid */}
@@ -40,13 +44,13 @@ export function PartnerHero() {
 
           {/* Right Column: Un-obscured Cinematic Image (7 Columns) */}
           <div className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0">
-            <RevealOnScroll delay={0.3} className="w-full h-full relative">
+            <RevealOnScroll delay={0.3} className="w-full h-full relative rounded-md overflow-hidden shadow-2xl border border-outline-variant/20">
               <Image
                 src={heroImg}
                 alt="Partner collaborations and community impact"
                 fill
                 placeholder="blur"
-                className="object-cover object-center"
+                className="object-cover object-center hover:scale-105 transition-transform duration-700 ease-out"
                 priority
                 sizes="(max-width: 1024px) 100vw, 60vw"
               />
