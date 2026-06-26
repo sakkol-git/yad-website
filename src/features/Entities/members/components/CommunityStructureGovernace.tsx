@@ -51,7 +51,7 @@ export async function CommunityStructureGovernance() {
                 <div className="w-full max-w-[340px]">
                   <TeamMemberCard
                     {...founder}
-                    href={`/about/team/${founder.slug}`}
+                    href={`/about/governance/${founder.slug}`}
                   />
                 </div>
               </div>
@@ -67,7 +67,7 @@ export async function CommunityStructureGovernance() {
                   <div key={member.id} className="w-full max-w-[320px] mx-auto md:mx-0">
                     <TeamMemberCard
                       {...member}
-                      href={`/about/team/${member.slug}`}
+                      href={`/about/governance/${member.slug}`}
                     />
                   </div>
                 ))}

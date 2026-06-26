@@ -81,13 +81,13 @@ export default async function TeamMemberPage({ params }: PageProps) {
       {/* Back Navigation */}
       <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-8">
         <Link
-          href="/about"
+          href="/about/governance"
           className="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md group"
         >
           <span className="material-symbols-outlined text-xl group-hover:-translate-x-1 transition-transform duration-200">
             arrow_back
           </span>
-          Back to Team
+          Back to Leadership & Governance
         </Link>
       </div>
 
