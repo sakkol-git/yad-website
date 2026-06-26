@@ -7,8 +7,8 @@ export const NAV_LINKS: NavLink[] = [
     label: "About Us",
     subLinks: [
       { href: "/about", label: "Our Story" },
-      { href: "/about/team", label: "Resident & Alumni" },
       { href: "/about/governance", label: "Leadership & Governance " },
+      { href: "/about/team", label: "Resident & Alumni" },
       { href: "/about/financials", label: "Financial Transparency " },
     ]
   },
