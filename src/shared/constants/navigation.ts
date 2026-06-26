@@ -31,15 +31,6 @@ export const NAV_LINKS: NavLink[] = [
     ]
   },
   {
-    href: "/get-involved",
-    label: "Get Involved",
-    subLinks: [
-      { href: "/get-involved", label: "Volunteer" },
-      { href: "/donate/flow", label: "Donate" },
-      { href: "/partner", label: "Partner With Us" },
-    ]
-  },
-  {
     href: "/impact",
     label: "Impact & Updates",
     subLinks: [
@@ -48,7 +39,16 @@ export const NAV_LINKS: NavLink[] = [
       { href: "/report", label: "Transparency Reports" },
     ]
   },
-  { href: "/contact", label: "Contact Us" },
+  {
+    href: "/get-involved",
+    label: "Get Involved",
+    subLinks: [
+      { href: "/get-involved", label: "Volunteer" },
+      { href: "/donate/flow", label: "Donate" },
+      { href: "/partner", label: "Partner With Us" },
+      { href: "/contact", label: "Contact Us" },
+    ]
+  },
 ];
 
 export const FOOTER_LINKS: FooterLink[] = [
