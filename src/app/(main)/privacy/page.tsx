@@ -15,8 +15,8 @@ export default function PrivacyPolicyPage() {
         <div className="pt-32 pb-16 lg:pt-40 lg:pb-20 border-b border-outline-variant/30 mb-16 md:mb-24">
           <RevealOnScroll className="max-w-4xl">
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-6 h-[1px] bg-on-surface" />
-              <span className="uppercase tracking-[0.2em] text-[10px] font-bold text-on-surface">
+              <div className="w-6 h-[1px] bg-primary" />
+              <span className="uppercase tracking-[0.2em] text-[10px] font-bold text-primary">
                 Legal
               </span>
             </div>

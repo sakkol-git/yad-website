@@ -87,7 +87,7 @@ export function RadicalTransparency({ reports }: RadicalTransparencyProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Download ${doc.title}`}
-                  className="hidden md:flex items-center justify-center w-12 h-12 rounded-full border border-outline-variant/30 group-hover:bg-primary group-hover:border-primary group-hover:text-on-primary transition-colors duration-200 ease-in-out shrink-0"
+                  className="hidden md:flex items-center justify-center w-12 h-12 rounded-md border border-outline-variant/30 group-hover:bg-primary group-hover:border-primary group-hover:text-on-primary transition-colors duration-200 ease-in-out shrink-0"
                 >
                   <span className="material-symbols-outlined">download</span>
                 </a>

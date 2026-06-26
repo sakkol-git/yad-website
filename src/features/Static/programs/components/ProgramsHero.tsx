@@ -41,7 +41,7 @@ export function ProgramsHero() {
               </p>
               
               <div className="flex flex-wrap gap-4">
-                <Button variant="default" size="lg" className="rounded-md bg-primary text-white h-12 px-6 hover:bg-primary/90 uppercase text-xs tracking-wider font-bold transition-colors duration-200 ease-in-out" asChild>
+                <Button variant="default" size="lg" className="bg-primary text-white h-12 px-6 hover:bg-primary/90 uppercase text-xs tracking-wider font-bold transition-colors duration-200 ease-in-out" asChild>
                   <Link href="#programs-framework">Explore The Framework</Link>
                 </Button>
               </div>

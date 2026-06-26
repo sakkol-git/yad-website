@@ -68,7 +68,7 @@ export async function CommunityStructureTeams() {
                 {/* Tier 4: The Alumni Network */}
                 {alumni.length > 0 && (
                     <div className="pt-24 border-t border-outline-variant/30 relative mt-12">
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface px-4 text-on-surface-variant font-bold text-[10px] uppercase tracking-[0.2em] flex items-center gap-2">
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-surface px-4 text-primary font-bold text-[10px] uppercase tracking-[0.2em] flex items-center gap-2">
                             <span className="material-symbols-outlined text-sm">
                                 public
                             </span>

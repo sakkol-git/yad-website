@@ -20,15 +20,15 @@ export async function GlobalFootprint() {
       </RevealOnScroll>
       <StaggerGroup stagger={0.08} y={12} className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Big Stat Card */}
-        <Card className="col-span-1 md:col-span-2 bg-surface-container-low p-0 shadow-ambient hover:shadow-ambient-hover group border-0">
+        <Card className="col-span-1 md:col-span-2 bg-surface-container-low p-0 border border-outline-variant/30 hover:border-outline transition-colors group">
           <CardContent className="flex flex-col justify-between h-full p-8">
             <div className="flex justify-between items-start mb-8">
-              <div className="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container group-hover:scale-110 transition-transform duration-300">
+              <div className="w-16 h-16 rounded-md bg-secondary-container flex items-center justify-center text-on-secondary-container group-hover:scale-110 transition-transform duration-300">
                 <span className="material-symbols-outlined text-3xl">
                   nature_people
                 </span>
               </div>
-              <span className="px-4 py-1 rounded-full bg-surface text-primary font-label-bold text-sm">
+              <span className="px-3 py-1 rounded-sm bg-surface border border-outline-variant/30 text-primary font-label-bold text-xs uppercase tracking-widest">
                 Communities Reached
               </span>
             </div>
@@ -43,10 +43,10 @@ export async function GlobalFootprint() {
           </CardContent>
         </Card>
         {/* Small Stat Card 1 */}
-        <Card className="col-span-1 bg-tertiary-fixed p-0 shadow-ambient hover:shadow-ambient-hover group border-0">
+        <Card className="col-span-1 bg-tertiary-fixed p-0 border-none group hover:shadow-md transition-shadow">
           <CardContent className="flex flex-col justify-between h-full p-8">
             <div className="flex justify-between items-start mb-8">
-              <div className="w-12 h-12 rounded-full bg-surface/50 flex items-center justify-center text-on-tertiary-fixed group-hover:scale-110 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-md bg-surface/50 flex items-center justify-center text-on-tertiary-fixed group-hover:scale-110 transition-transform duration-300">
                 <span className="material-symbols-outlined text-2xl" aria-hidden="true">
                   school
                 </span>
@@ -63,10 +63,10 @@ export async function GlobalFootprint() {
           </CardContent>
         </Card>
         {/* Small Stat Card 2 */}
-        <Card className="col-span-1 bg-primary-fixed p-0 shadow-ambient hover:shadow-ambient-hover group border-0">
+        <Card className="col-span-1 bg-primary-fixed p-0 border-none group hover:shadow-md transition-shadow">
           <CardContent className="flex flex-col justify-between h-full p-8">
             <div className="flex justify-between items-start mb-8">
-              <div className="w-12 h-12 rounded-full bg-surface/50 flex items-center justify-center text-on-primary-fixed group-hover:scale-110 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-md bg-surface/50 flex items-center justify-center text-on-primary-fixed group-hover:scale-110 transition-transform duration-300">
                 <span className="material-symbols-outlined text-2xl" aria-hidden="true">
                   location_on
                 </span>
@@ -83,7 +83,7 @@ export async function GlobalFootprint() {
           </CardContent>
         </Card>
         {/* Interactive Chart Card */}
-        <Card className="col-span-1 md:col-span-2 bg-surface-container-highest p-0 shadow-ambient relative overflow-hidden border-0">
+        <Card className="col-span-1 md:col-span-2 bg-surface-container-highest p-0 border border-outline-variant/30 relative overflow-hidden">
           <CardContent className="flex flex-col h-full p-8">
             <div className="flex justify-between items-center mb-6 relative z-10">
               <h3 className="font-headline-md text-headline-md text-primary">
@@ -95,26 +95,26 @@ export async function GlobalFootprint() {
             </div>
             <div className="flex-grow flex items-end gap-2 relative z-10">
               <div
-                className="w-1/6 bg-secondary-fixed rounded-md h-1/4 hover:bg-secondary transition-colors cursor-pointer"
+                className="w-1/6 bg-secondary-fixed h-1/4 hover:bg-secondary transition-colors cursor-pointer"
                 title="2020"
               />
               <div
-                className="w-1/6 bg-secondary-fixed rounded-md h-1/3 hover:bg-secondary transition-colors cursor-pointer"
+                className="w-1/6 bg-secondary-fixed h-1/3 hover:bg-secondary transition-colors cursor-pointer"
                 title="2021"
               />
               <div
-                className="w-1/6 bg-secondary-fixed rounded-md h-1/2 hover:bg-secondary transition-colors cursor-pointer"
+                className="w-1/6 bg-secondary-fixed h-1/2 hover:bg-secondary transition-colors cursor-pointer"
                 title="2022"
               />
               <div
-                className="w-1/6 bg-secondary-fixed rounded-md h-3/4 hover:bg-secondary transition-colors cursor-pointer"
+                className="w-1/6 bg-secondary-fixed h-3/4 hover:bg-secondary transition-colors cursor-pointer"
                 title="2023"
               />
               <div
-                className="w-1/6 bg-primary rounded-md h-full relative group cursor-pointer"
+                className="w-1/6 bg-primary h-full relative group cursor-pointer"
                 title="2024 (Current)"
               >
-                <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-surface px-3 py-1 rounded-md shadow-ambient text-xs font-label-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-surface border border-outline-variant/30 px-3 py-1 text-xs font-label-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                   Peak Engagement
                 </div>
               </div>

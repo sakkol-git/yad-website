@@ -58,7 +58,7 @@ export function AdminDashboard({ initialData }: { initialData?: any }) {
             <div className="w-12 h-12 rounded-md bg-primary-container/30 text-primary-container flex items-center justify-center">
               <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>groups</span>
             </div>
-            <span className="bg-secondary-container/50 text-secondary px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+            <span className="bg-secondary-container/50 text-secondary px-2.5 py-1 rounded-sm text-xs font-bold flex items-center gap-1">
               <span className="material-symbols-outlined text-[14px]">trending_up</span> +12%
             </span>
           </div>
@@ -71,7 +71,7 @@ export function AdminDashboard({ initialData }: { initialData?: any }) {
             <div className="w-12 h-12 rounded-md bg-tertiary-container/30 text-tertiary-container flex items-center justify-center">
               <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>account_tree</span>
             </div>
-            <span className="bg-surface-variant text-on-surface-variant px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+            <span className="bg-surface-variant text-on-surface-variant px-2.5 py-1 rounded-sm text-xs font-bold flex items-center gap-1">
               <span className="material-symbols-outlined text-[14px]">horizontal_rule</span> 0%
             </span>
           </div>
@@ -84,7 +84,7 @@ export function AdminDashboard({ initialData }: { initialData?: any }) {
             <div className="w-12 h-12 rounded-md bg-secondary-container/30 text-secondary-container flex items-center justify-center">
               <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>payments</span>
             </div>
-            <span className="bg-secondary-container/50 text-secondary px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+            <span className="bg-secondary-container/50 text-secondary px-2.5 py-1 rounded-sm text-xs font-bold flex items-center gap-1">
               <span className="material-symbols-outlined text-[14px]">trending_up</span> +5.4%
             </span>
           </div>
@@ -99,11 +99,11 @@ export function AdminDashboard({ initialData }: { initialData?: any }) {
               <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>home_work</span>
             </div>
             {metrics.pendingHomestays > 0 ? (
-              <span className="bg-error/10 text-error px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+              <span className="bg-error/10 text-error px-2.5 py-1 rounded-sm text-xs font-bold flex items-center gap-1">
                 <span className="material-symbols-outlined text-[14px]">priority_high</span> Action Needed
               </span>
             ) : (
-              <span className="bg-surface-variant text-on-surface-variant px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+              <span className="bg-surface-variant text-on-surface-variant px-2.5 py-1 rounded-sm text-xs font-bold flex items-center gap-1">
                 <span className="material-symbols-outlined text-[14px]">check</span> All Clear
               </span>
             )}
@@ -200,12 +200,12 @@ export function AdminDashboard({ initialData }: { initialData?: any }) {
                   <span className="text-on-surface-variant">Storage Quota</span>
                   <span className="text-primary">68%</span>
                 </div>
-                <div className="w-full bg-surface-variant rounded-full h-1.5">
-                  <div className="bg-primary h-1.5 rounded-full" style={{ width: '68%' }}></div>
+                <div className="w-full bg-surface-variant rounded-none h-1.5">
+                  <div className="bg-primary h-1.5 rounded-none" style={{ width: '68%' }}></div>
                 </div>
               </div>
               <div className="flex items-center gap-3 pt-2">
-                <div className="w-8 h-8 rounded-full bg-secondary-container/50 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-md bg-secondary-container/50 flex items-center justify-center">
                   <span className="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
                 </div>
                 <div>

@@ -38,7 +38,7 @@ export function DormitoryProgram() {
               </RevealOnScroll>
               
               <RevealOnScroll delay={0.4}>
-                <div className="font-display-md text-5xl text-secondary mb-2 tabular-nums">45+</div>
+                <div className="font-display-md text-5xl text-primary mb-2 tabular-nums">45+</div>
                 <h4 className="font-label-bold text-xs uppercase tracking-widest text-on-surface mb-2">Training Modules</h4>
                 <p className="text-sm text-on-surface-variant leading-relaxed">Comprehensive curriculum covering leadership, digital literacy, and civic engagement.</p>
               </RevealOnScroll>

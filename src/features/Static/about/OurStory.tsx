@@ -8,7 +8,7 @@ export function OurStory() {
     <section id="our-history" className="bg-surface py-20 lg:py-32 scroll-mt-32 border-t border-outline-variant/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1000px]">
         <RevealOnScroll>
-          <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-on-surface pb-8">
+          <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-outline-variant/30 pb-8">
             <TextReveal 
               as="h2" 
               text="Our evolution." 

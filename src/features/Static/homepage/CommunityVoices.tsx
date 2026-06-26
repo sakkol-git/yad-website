@@ -53,8 +53,8 @@ function VoiceCard({ voice }: { voice: typeof VOICES_DATA[number] }) {
       {/* Card background */}
       <div className="
         absolute inset-0 z-0
-        bg-surface-container-high dark:bg-surface-container-high 
-        backdrop-blur-xl shadow-ambient border border-outline-variant/30 
+        bg-surface-container-low
+        border border-outline-variant/30
         transition-[transform,border-color] duration-300 ease-out 
         group-hover:-translate-y-1 group-hover:border-outline-variant/60
       " />

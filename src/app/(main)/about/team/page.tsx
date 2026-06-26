@@ -16,8 +16,8 @@ export default function TeamPage() {
         <div className="pt-24 pb-16 lg:pt-32 lg:pb-24 border-b border-outline-variant/30 mb-16">
           <RevealOnScroll className="max-w-4xl">
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-6 h-[1px] bg-on-surface" />
-              <span className="uppercase tracking-[0.2em] text-xs font-bold text-on-surface">
+              <div className="w-6 h-[1px] bg-primary" />
+              <span className="uppercase tracking-[0.2em] text-xs font-bold text-primary">
                 Our Community
               </span>
             </div>
@@ -36,7 +36,7 @@ export default function TeamPage() {
 
         {/* Editorial Transparency Section */}
         <RevealOnScroll className="mt-32 border-t border-b border-outline-variant/30 py-16 md:py-24 max-w-4xl mx-auto text-center">
-          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant/70 block mb-6">
+          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary block mb-6">
             Commitment to Transparency
           </span>
           <p className="text-2xl md:text-3xl text-on-surface font-light leading-relaxed tracking-tight">
