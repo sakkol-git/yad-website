@@ -9,10 +9,18 @@ export const NAV_LINKS: NavLink[] = [
       { href: "/about", label: "Our Story" },
       { href: "/about/team", label: "Resident & Alumni" },
       { href: "/about/governance", label: "Leadership & Governance " },
-      { href: "/donors", label: "Donors" },
-      { href: "/partner", label: "Partners" },
+      { href: "/about/financials", label: "Financial Transparency " },
     ]
   },
+  {
+    href: "/partner",
+    label: "Partner & Donors",
+    subLinks: [
+      { href: "/partner", label: "Partners" },
+      { href: "/donors", label: "Donors" },
+    ]
+  },
+
   {
     href: "/programs",
     label: "Our Work",
