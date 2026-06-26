@@ -38,7 +38,7 @@ async function AnnualReportsList() {
         {reports.map((report: any) => (
           <Card key={report.id} className="bg-surface-container-low border border-outline-variant/30 hover:border-outline transition-colors shadow-none rounded-none">
             <CardHeader>
-              <CardTitle className="text-on-surface text-xl font-light">{report.title}</CardTitle>
+              <CardTitle className="text-primary text-xl font-light">{report.title}</CardTitle>
               <CardDescription className="text-on-surface-variant uppercase tracking-widest text-xs font-bold mt-1">FY {report.year}</CardDescription>
             </CardHeader>
             <CardContent>
@@ -95,8 +95,8 @@ export default function FinancialsPage() {
         <div className="pt-24 pb-16 lg:pt-32 lg:pb-24 border-b border-outline-variant/30 mb-16">
           <RevealOnScroll className="max-w-4xl">
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-6 h-[1px] bg-on-surface" />
-              <span className="uppercase tracking-[0.2em] text-xs font-bold text-on-surface">
+              <div className="w-6 h-[1px] bg-primary" />
+              <span className="uppercase tracking-[0.2em] text-xs font-bold text-primary">
                 Transparency
               </span>
             </div>
@@ -127,32 +127,32 @@ export default function FinancialsPage() {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="bg-surface-container-low border border-outline-variant/30 hover:border-outline transition-colors shadow-none rounded-none">
+              <Card className="bg-secondary-container border-none shadow-none rounded-none hover:shadow-md transition-shadow">
                 <CardHeader>
-                  <CardTitle className="text-on-surface text-5xl font-light tracking-tighter">80%</CardTitle>
-                  <CardDescription className="text-on-surface-variant uppercase tracking-widest text-xs font-bold mt-2">Programs & Impact</CardDescription>
+                  <CardTitle className="text-on-secondary-container text-5xl font-light tracking-tighter">80%</CardTitle>
+                  <CardDescription className="text-on-secondary-container/80 uppercase tracking-widest text-xs font-bold mt-2">Programs & Impact</CardDescription>
                 </CardHeader>
-                <CardContent className="text-on-surface-variant/80 font-light leading-relaxed">
+                <CardContent className="text-on-secondary-container/80 font-light leading-relaxed">
                   Direct funding for youth development, scholarships, and community projects.
                 </CardContent>
               </Card>
 
-              <Card className="bg-surface-container-low border border-outline-variant/30 hover:border-outline transition-colors shadow-none rounded-none">
+              <Card className="bg-primary-container border-none shadow-none rounded-none hover:shadow-md transition-shadow">
                 <CardHeader>
-                  <CardTitle className="text-on-surface text-5xl font-light tracking-tighter">15%</CardTitle>
-                  <CardDescription className="text-on-surface-variant uppercase tracking-widest text-xs font-bold mt-2">Operations</CardDescription>
+                  <CardTitle className="text-on-primary-container text-5xl font-light tracking-tighter">15%</CardTitle>
+                  <CardDescription className="text-on-primary-container/80 uppercase tracking-widest text-xs font-bold mt-2">Operations</CardDescription>
                 </CardHeader>
-                <CardContent className="text-on-surface-variant/80 font-light leading-relaxed">
+                <CardContent className="text-on-primary-container/80 font-light leading-relaxed">
                   Essential staff, rent, utilities, and running our facilities smoothly.
                 </CardContent>
               </Card>
 
-              <Card className="bg-surface-container-low border border-outline-variant/30 hover:border-outline transition-colors shadow-none rounded-none">
+              <Card className="bg-tertiary-container border-none shadow-none rounded-none hover:shadow-md transition-shadow">
                 <CardHeader>
-                  <CardTitle className="text-on-surface text-5xl font-light tracking-tighter">5%</CardTitle>
-                  <CardDescription className="text-on-surface-variant uppercase tracking-widest text-xs font-bold mt-2">Fundraising</CardDescription>
+                  <CardTitle className="text-on-tertiary-container text-5xl font-light tracking-tighter">5%</CardTitle>
+                  <CardDescription className="text-on-tertiary-container/80 uppercase tracking-widest text-xs font-bold mt-2">Fundraising</CardDescription>
                 </CardHeader>
-                <CardContent className="text-on-surface-variant/80 font-light leading-relaxed">
+                <CardContent className="text-on-tertiary-container/80 font-light leading-relaxed">
                   Marketing, outreach, and donor relations to ensure long-term sustainability.
                 </CardContent>
               </Card>
