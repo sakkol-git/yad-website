@@ -1,14 +1,14 @@
 import { Metadata } from "next";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 import { TextReveal } from "@/shared/components/animations/TextReveal";
-import { CommunityStructureTeams } from "@/features/Entities/members/components/CommunityStructureTeams";
+import { AlumniTeam } from "@/features/Entities/members/components/AlumniTeam";
 
 export const metadata: Metadata = {
-  title: "Leadership & Governance | YAD Cambodia",
-  description: "Meet the dedicated team and board members driving youth empowerment at YAD Cambodia.",
+  title: "Alumni Mentors | YAD Cambodia",
+  description: "Meet the former residents who return to guide the next generation at YAD Cambodia.",
 };
 
-export default function TeamPage() {
+export default function AlumniTeamPage() {
   return (
     <main className="pb-section-gap bg-surface">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
@@ -18,21 +18,21 @@ export default function TeamPage() {
             <div className="flex items-center gap-4 mb-6">
               <div className="w-6 h-[1px] bg-primary" />
               <span className="uppercase tracking-[0.2em] text-xs font-bold text-primary">
-                Our Community
+                Extended Network
               </span>
             </div>
             <TextReveal 
               as="h1" 
-              text="Resident and Alumni Association." 
+              text="Alumni Mentors." 
               className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-on-surface tracking-tighter leading-[1.0] mb-8" 
             />
             <p className="text-lg md:text-xl text-on-surface-variant font-light leading-relaxed max-w-2xl">
-              YAD is guided by a dedicated team of professionals and a volunteer Board of Directors committed to transparency, accountability, and sustainable impact.
+              Former residents who return to guide the next generation, committed to transparency, accountability, and sustainable impact.
             </p>
           </RevealOnScroll>
         </div>
 
-        <CommunityStructureTeams />
+        <AlumniTeam />
 
         {/* Editorial Transparency Section */}
         <RevealOnScroll className="mt-32 border-t border-b border-outline-variant/30 py-16 md:py-24 max-w-4xl mx-auto text-center">
