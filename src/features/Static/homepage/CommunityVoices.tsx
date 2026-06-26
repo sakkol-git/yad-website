@@ -38,20 +38,7 @@ function QuoteIcon({ colorClass }: { colorClass: string }) {
   );
 }
 
-const VOICES_DATA = [
-  {
-    quote: "The digital literacy program completely changed my trajectory. I now have the skills to build websites and help local businesses transition online.",
-    initial: "S",
-    name: "Sokhem",
-    role: "Alumni, 2023 Cohort"
-  },
-  {
-    quote: "Living in the YAD dormitory provided me the safe space and community I needed to focus entirely on my university studies.",
-    initial: "C",
-    name: "Charya",
-    role: "Current Resident"
-  }
-];
+import { VOICES_DATA } from "@/shared/constants/homepage";
 
 function VoiceCard({ voice }: { voice: typeof VOICES_DATA[number] }) {
   const { cardRef, glowRef, handleMouseMove, handleMouseLeave } = useGlowFollow();

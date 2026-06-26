@@ -1,13 +1,6 @@
 import { SafeImage } from "@/shared/components/ui/SafeImage";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
-
-const PARTNERS = [
-  // { name: "Partner 1", logo: "https://via.placeholder.com/200x80/f5f9f6/131c17?text=Partner+1" },
-  // { name: "Partner 2", logo: "https://via.placeholder.com/200x80/f5f9f6/131c17?text=Partner+2" },
-  { name: "Partner 3", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6dWwRsNkyCewldHfYtCH2Ttlf6oSKn_kK5zLC25SfnnPH6R4qOtUlhUFb9rANJqJlMxVtQDqULeL6RPb-zYiblbo7ndiCgCPeuoRLKd4&s=10" },
-  // { name: "Partner 4", logo: "https://via.placeholder.com/200x80/f5f9f6/131c17?text=Partner+4" },
-  // { name: "Partner 5", logo: "https://via.placeholder.com/200x80/f5f9f6/131c17?text=Partner+5" },
-];
+import { PARTNERS } from "@/shared/constants/homepage";
 
 export function PartnerLogos() {
   return (

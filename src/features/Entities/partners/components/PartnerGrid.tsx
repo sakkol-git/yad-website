@@ -7,13 +7,7 @@ import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
 import type { PartnerItem } from "@/features/Entities/partners/types/partner.types";
-
-const CATEGORIES = [
-  "All Partners",
-  "International NGOs",
-  "Local Organizations",
-  "Corporate Sponsors",
-];
+import { CATEGORIES } from "@/shared/constants/partners";
 
 interface PartnerGridProps {
   partners: PartnerItem[];

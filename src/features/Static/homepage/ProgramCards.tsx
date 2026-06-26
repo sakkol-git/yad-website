@@ -3,42 +3,7 @@ import Link from "next/link";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { ImageRevealMask } from "@/shared/components/animations/ImageRevealMask";
-
-const PROGRAMS = [
-  {
-    id: "dormitory",
-    index: "01",
-    title: "Dormitory & Leadership",
-    description:
-      "Housing, scholarships, and extensive life skills for promising students from remote provinces. We build the infrastructure necessary for the next generation of Cambodian leaders to thrive in university and beyond.",
-    imageSrc: "/assets/images/yad-2.png",
-    imageAlt: "Students in the YAD Dormitory & Leadership program",
-    href: "/programs/dltc",
-    priority: true,
-  },
-  {
-    id: "porridge",
-    index: "02",
-    title: "Porridge for Hope",
-    description:
-      "Combating malnutrition with bi-monthly nutrition programs for children in extreme poverty, ensuring food security as the absolute foundation for learning and cognitive development.",
-    imageSrc: "/assets/images/yad-4.png",
-    imageAlt: "Children in the Porridge for Hope nutrition program",
-    href: "/programs/porridge-for-hope",
-    priority: false,
-  },
-  {
-    id: "community-schools",
-    index: "03",
-    title: "Community Schools",
-    description:
-      "Taking English and essential Life Skills education directly to urban slum communities, reaching children where access to formal public schooling is logistically or financially impossible.",
-    imageSrc: "/assets/images/yad-5.png",
-    imageAlt: "Community schools education session in Phnom Penh",
-    href: "/programs/community-schools",
-    priority: false,
-  },
-];
+import { PROGRAMS } from "@/shared/constants/homepage";
 
 export function ProgramCards() {
   return (

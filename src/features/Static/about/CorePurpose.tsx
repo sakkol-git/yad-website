@@ -8,24 +8,7 @@ import { useReducedMotion } from "@/shared/lib/animations/use-reduced-motion";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { Card, CardHeader, CardTitle, CardContent } from "@/shared/components/ui/Card";
-
-const PURPOSES = [
-  {
-    icon: "school",
-    title: "Education Access",
-    desc: "Bridging the gap for underprivileged students through scholarships, learning materials, and accessible tutoring programs.",
-  },
-  {
-    icon: "devices",
-    title: "Digital Literacy",
-    desc: "Equipping youth with the technological skills required to thrive in the modern economy and solve local challenges.",
-  },
-  {
-    icon: "diversity_3",
-    title: "Community Leadership",
-    desc: "Fostering a sense of civic duty by involving youth directly in local development and ecological projects.",
-  }
-];
+import { PURPOSES } from "@/shared/constants/about";
 
 export function CorePurpose() {
   const containerRef = useRef<HTMLElement>(null);

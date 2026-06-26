@@ -3,28 +3,7 @@
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { AnimatedCounter } from "@/shared/components/animations/AnimatedCounter";
-
-const METRICS = [
-  {
-    value: 500,
-    suffix: "+",
-    label: "Children Reached Weekly",
-    description: "Through nutrition and community education programs.",
-  },
-  {
-    value: 10,
-    suffix: "+",
-    label: "Years of Impact",
-    description: "Building youth leadership across Cambodia.",
-  },
-  {
-    value: 1.2,
-    suffix: "K+",
-    decimals: 1,
-    label: "Youth Empowered",
-    description: "With housing, scholarships, and life skills training.",
-  },
-];
+import { METRICS } from "@/shared/constants/homepage";
 
 export function MeasurableImpactSection() {
   return (

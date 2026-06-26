@@ -9,15 +9,7 @@ import { useGSAP } from "@gsap/react";
 import { gsap, ScrollTrigger } from "@/shared/lib/animations/gsap-config";
 import { useReducedMotion } from "@/shared/lib/animations/use-reduced-motion";
 import { useMagneticHover } from "@/shared/hooks/useMagneticHover";
-import heroImg1 from "../../../../public/assets/images/yad-2.png";
-import heroImg2 from "../../../../public/assets/images/yad-6.png";
-import heroImg3 from "../../../../public/assets/images/yad-7.png";
-
-const HERO_IMAGES = [
-  { src: heroImg1, alt: "Young Cambodian student looking thoughtfully into the distance" },
-  { src: heroImg2, alt: "Cambodian youth engaging in educational activities" },
-  { src: heroImg3, alt: "Students participating in community programs" }
-];
+import { HERO_IMAGES } from "@/shared/constants/homepage";
 
 export function HomeHero() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
