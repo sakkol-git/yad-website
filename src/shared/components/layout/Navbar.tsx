@@ -13,7 +13,6 @@ import { gsap } from "@/shared/lib/animations/gsap-config";
 
 type NavLink = { href: string; label: string; subLinks?: { href: string; label: string }[] };
 
-// Extracted component to resolve React Hooks violation (useState inside loop)
 function MobileNavAccordion({ link, pathname }: { link: NavLink, pathname: string }) {
   const isActive = pathname === link.href;
   const [isExpanded, setIsExpanded] = useState(false);
@@ -22,10 +21,10 @@ function MobileNavAccordion({ link, pathname }: { link: NavLink, pathname: strin
     <div className="flex flex-col">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className={`py-3 px-4 rounded-md font-medium text-base transition-colors flex justify-between items-center ${isActive || isExpanded ? "bg-surface-container text-primary" : "text-on-surface hover:bg-surface-container"
+        className={`py-3 px-4 rounded-md transition-colors flex justify-between items-center border border-transparent ${isActive || isExpanded ? "bg-surface-container border-outline-variant/30 text-primary font-bold text-[10px] uppercase tracking-widest" : "text-on-surface font-light text-base hover:bg-surface-container hover:border-outline-variant/30"
           }`}
         aria-expanded={isExpanded}
-        aria-controls={`submenu-${link.label.replace(/\\s+/g, '-').toLowerCase()}`}
+        aria-controls={`submenu-${link.label.replace(/\s+/g, '-').toLowerCase()}`}
       >
         {link.label}
         <span className={`material-symbols-outlined transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}>
@@ -33,11 +32,11 @@ function MobileNavAccordion({ link, pathname }: { link: NavLink, pathname: strin
         </span>
       </button>
       <div
-        id={`submenu-${link.label.replace(/\\s+/g, '-').toLowerCase()}`}
-        className={`grid transition-[background-color,border-color,backdrop-filter] duration-300 ease-in-out ${isExpanded ? "grid-rows-[1fr] opacity-100 mt-1 mb-2" : "grid-rows-[0fr] opacity-0"}`}
+        id={`submenu-${link.label.replace(/\s+/g, '-').toLowerCase()}`}
+        className={`grid transition-[background-color,border-color,backdrop-filter] duration-300 ease-in-out ${isExpanded ? "grid-rows-[1fr] opacity-100 mt-2 mb-2" : "grid-rows-[0fr] opacity-0"}`}
       >
         <div className="overflow-hidden">
-          <div className="flex flex-col pl-4 pr-2 py-1 gap-1 ml-4 border-l-2 border-surface-variant/50">
+          <div className="flex flex-col pl-4 pr-2 py-1 gap-1 ml-4 border-l border-outline-variant/30">
             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
             {link.subLinks?.map((sub: any) => {
               const isSubActive = pathname === sub.href;
@@ -45,9 +44,9 @@ function MobileNavAccordion({ link, pathname }: { link: NavLink, pathname: strin
                 <Link
                   key={sub.href}
                   href={sub.href}
-                  className={`py-2.5 px-4 rounded-md text-sm transition-colors ${isSubActive
-                    ? "text-primary font-semibold bg-primary/5"
-                    : "text-on-surface-variant hover:text-primary hover:bg-surface-container/50"
+                  className={`py-2.5 px-4 rounded-md transition-colors ${isSubActive
+                    ? "text-primary font-bold bg-surface-container/50 text-[10px] uppercase tracking-widest"
+                    : "text-on-surface-variant font-light text-sm hover:text-primary hover:bg-surface-container/50"
                     }`}
                 >
                   {sub.label}
@@ -401,7 +400,7 @@ export default function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`py-3 px-4 rounded-md font-light text-base transition-colors flex justify-between items-center border border-transparent ${isActive ? "bg-surface-container border-outline-variant/30 text-primary font-bold text-[10px] uppercase tracking-widest" : "text-on-surface hover:bg-surface-container hover:border-outline-variant/30"
+                    className={`py-3 px-4 rounded-md transition-colors flex justify-between items-center border border-transparent ${isActive ? "bg-surface-container border-outline-variant/30 text-primary font-bold text-[10px] uppercase tracking-widest" : "text-on-surface font-light text-base hover:bg-surface-container hover:border-outline-variant/30"
                       }`}
                   >
                     {link.label}
@@ -414,24 +413,24 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Auth & CTA Footer */}
-          <div className="mt-8 pt-6 border-t border-surface-variant/50 flex flex-col gap-4 pb-8">
+          <div className="mt-8 pt-6 border-t border-outline-variant/30 flex flex-col gap-4 pb-8">
             {isLoading ? (
-              <div className="w-full h-12 bg-surface-variant/50 animate-pulse rounded-full" />
+              <div className="w-full h-12 bg-surface-variant/50 animate-pulse rounded-md" />
             ) : user ? (
-              <div className="bg-surface-container/30 rounded-md p-4">
+              <div className="bg-surface border border-outline-variant/30 rounded-md p-4">
                 <p className="text-sm font-semibold text-on-surface mb-3 truncate">Hi, {user.email}</p>
                 <div className="flex flex-col gap-2">
                   <Link
                     href={role === "admin" ? "/admin/dashboard" : "/portal/dashboard"}
-                    className="flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-md text-sm font-medium text-on-surface hover:bg-surface-container transition-colors"
+                    className="flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-md text-[10px] font-bold uppercase tracking-widest text-on-surface hover:bg-surface-container transition-colors"
                   >
-                    <span className="material-symbols-outlined text-[18px]">dashboard</span> Portal
+                    <span className="material-symbols-outlined text-[16px]">dashboard</span> Portal
                   </Link>
                   <button
                     onClick={handleLogout}
-                    className="w-full flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-md text-sm font-medium text-error hover:bg-error/10 transition-colors"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-md text-[10px] font-bold uppercase tracking-widest text-error hover:bg-error/10 transition-colors"
                   >
-                    <span className="material-symbols-outlined text-[18px]">logout</span> Sign Out
+                    <span className="material-symbols-outlined text-[16px]">logout</span> Sign Out
                   </button>
                 </div>
               </div>
@@ -439,20 +438,20 @@ export default function Navbar() {
               <div className="grid grid-cols-2 gap-3">
                 <Link
                   href="/auth/login"
-                  className="py-3 text-center font-medium border border-surface-variant text-on-surface hover:bg-surface-container rounded-full transition-colors"
+                  className="py-3 text-center border border-outline-variant/30 text-on-surface hover:bg-surface-container rounded-md transition-colors text-[10px] font-bold uppercase tracking-widest"
                 >
                   Log In
                 </Link>
                 <Link
                   href="/auth/register"
-                  className="py-3 text-center font-medium bg-surface-container text-on-surface hover:bg-surface-variant rounded-full transition-colors"
+                  className="py-3 text-center bg-surface-container text-on-surface hover:bg-surface-variant border border-transparent rounded-md transition-colors text-[10px] font-bold uppercase tracking-widest"
                 >
                   Register
                 </Link>
               </div>
             )}
 
-            <Button variant="primary" size="lg" className="w-full text-lg shadow-sm" asChild>
+            <Button variant="primary" asChild className="w-full h-[48px] text-[10px] font-bold uppercase tracking-widest rounded-md mt-2">
               <Link href="/donate/flow">Fund a Future</Link>
             </Button>
           </div>
