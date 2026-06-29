@@ -30,9 +30,9 @@ export function ApplicationsTable({
 
   const handleStatusChange = (id: string, newStatus: Application["status"]) => {
     startTransition(async () => {
-      const result = await updateApplicationStatusAction(id, newStatus);
-      if (result.error) {
-        toast.error(result.error);
+      const result = await updateApplicationStatusAction({ id, newStatus });
+      if (!result.success || result.error) {
+        toast.error(result.error || "Failed to update");
       } else {
         toast.success(`Application marked as ${newStatus}`);
         setApplications(prev => prev.map(app => app.id === id ? { ...app, status: newStatus } : app));

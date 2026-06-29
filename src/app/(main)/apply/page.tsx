@@ -16,8 +16,8 @@ export default function ApplyPage() {
     const formData = new FormData(e.currentTarget);
     const result = await submitStudentApplicationAction(formData);
 
-    if (result.error) {
-      toast.error(result.error);
+    if (!result.success || result.error) {
+      toast.error(result.error || "Failed to submit application");
     } else {
       toast.success("Application submitted successfully!");
       setIsSuccess(true);

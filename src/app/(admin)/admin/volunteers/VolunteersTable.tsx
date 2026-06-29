@@ -42,9 +42,9 @@ export function VolunteersTable({ initialData, count, page }: { initialData: Vol
 
   const handleStatusChange = (id: string, newStatus: Volunteer["status"]) => {
     startTransition(async () => {
-      const result = await updateVolunteerStatusAction(id, newStatus);
-      if (result.error) {
-        toast.error(result.error);
+      const result = await updateVolunteerStatusAction({ id, newStatus });
+      if (!result.success || result.error) {
+        toast.error(result.error || "Failed to update");
       } else {
         setData(prev => prev.map(v => v.id === id ? { ...v, status: newStatus } : v));
         toast.success(`Volunteer status updated to ${newStatus}`);

@@ -5,29 +5,7 @@ import { createAdminClient } from "@/shared/lib/supabase/admin";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { reportsService } from "@/server/services/reports.service";
 
-/**
- * Fetches a paginated list of reports for the admin table.
- * Enforces admin session via the service layer.
- */
-export async function getReportsAction(
-  page: number = 1,
-  limit: number = 10,
-  search?: string
-) {
-  const supabase = await createClient();
-  try {
-    const { data, count } = await reportsService.getReports(supabase, {
-      page,
-      limit,
-      search,
-    });
-    return { success: true, data, count };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (err: any) {
-    console.error("[ReportAction] getReports error:", err);
-    return { success: false, error: err.message ?? "Failed to fetch reports." };
-  }
-}
+
 
 /**
  * Uploads a new annual report PDF.

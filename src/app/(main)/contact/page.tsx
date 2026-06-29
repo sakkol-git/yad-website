@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
-import { FormInput } from "@/shared/components/ui/FormInput";
-import { Button } from "@/shared/components/ui/Button";
 import { TextReveal } from "@/shared/components/animations/TextReveal";
+import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -113,58 +112,7 @@ export default function ContactPage() {
               text="Send a Message" 
               className="text-2xl font-light text-on-surface tracking-tight mb-8" 
             />
-            <form className="flex flex-col gap-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="firstName" className="uppercase tracking-widest text-[10px] font-bold text-on-surface">First Name <span className="text-primary">*</span></label>
-                  <FormInput id="firstName" name="firstName" required aria-required="true" placeholder="John" className="border-outline-variant/50 focus:border-primary focus:ring-1 focus:ring-primary h-12" />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="lastName" className="uppercase tracking-widest text-[10px] font-bold text-on-surface">Last Name <span className="text-primary">*</span></label>
-                  <FormInput id="lastName" name="lastName" required aria-required="true" placeholder="Doe" className="border-outline-variant/50 focus:border-primary focus:ring-1 focus:ring-primary h-12" />
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="uppercase tracking-widest text-[10px] font-bold text-on-surface">Email Address <span className="text-primary">*</span></label>
-                <FormInput type="email" id="email" name="email" required aria-required="true" placeholder="john@example.com" className="border-outline-variant/50 focus:border-primary focus:ring-1 focus:ring-primary h-12" />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label htmlFor="subject" className="uppercase tracking-widest text-[10px] font-bold text-on-surface">Subject <span className="text-primary">*</span></label>
-                <select 
-                  id="subject" 
-                  name="subject" 
-                  required
-                  aria-required="true"
-                  className="w-full bg-transparent border border-outline-variant/50 px-4 h-12 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150"
-                >
-                  <option value="">Select a topic</option>
-                  <option value="partnership">Partnership Inquiry</option>
-                  <option value="volunteer">Volunteering</option>
-                  <option value="donation">Donations</option>
-                  <option value="media">Media & Press</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label htmlFor="message" className="uppercase tracking-widest text-[10px] font-bold text-on-surface">Message <span className="text-primary">*</span></label>
-                <textarea 
-                  id="message" 
-                  name="message" 
-                  rows={5} 
-                  required
-                  aria-required="true"
-                  placeholder="How can we help you?"
-                  className="w-full bg-transparent border border-outline-variant/50 px-4 py-3 text-sm font-light text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors duration-150 resize-y"
-                />
-              </div>
-
-              <Button type="submit" variant="default" size="lg" className="mt-4 bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-xs font-bold transition-colors duration-150">
-                Send Message
-              </Button>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </div>

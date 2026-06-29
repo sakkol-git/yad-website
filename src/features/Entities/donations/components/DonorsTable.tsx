@@ -42,7 +42,8 @@ export function DonorsTable({ donors, count, page }: { donors: Donor[]; count?: 
 
     setIsDeleting(id);
     try {
-      await deleteDonor(id);
+      const result = await deleteDonor({ id });
+      if (!result.success || result.error) throw new Error(result.error || "Failed to delete");
       toast.success('Donor deleted successfully');
     } catch (error) {
       toast.error('Failed to delete donor');

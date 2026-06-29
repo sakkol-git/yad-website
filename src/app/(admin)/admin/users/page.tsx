@@ -16,7 +16,13 @@ export default async function UsersPage(props: { searchParams: Promise<{ page?: 
   const page = parseInt(searchParams.page || "1", 10);
   const search = searchParams.search;
 
-  const { data: users, count, adminsCount } = await getUsers(page, 10, search);
+  const result = await getUsers({ page, limit: 10, search });
+  
+  if (!result.success || !result.data) {
+    return <div className="p-8 text-center text-error">Failed to load users: {result.error}</div>;
+  }
+
+  const { data: users, count, adminsCount } = result.data;
 
   const headerActions = (
     <Button variant="outline" className="flex items-center gap-2 shadow-sm">

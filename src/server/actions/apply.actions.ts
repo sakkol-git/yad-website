@@ -1,24 +1,15 @@
 "use server";
 
-import { createAdminClient } from "@/shared/lib/supabase/admin";
+"use server";
+
+import { createSafeAction } from "@/shared/lib/safe-action";
 import { revalidatePath } from "next/cache";
 import { auditLog } from "./audit.actions";
+import { submitStudentApplicationSchema, updateApplicationStatusSchema } from "../validators/apply.schema";
 
-export async function submitStudentApplicationAction(formData: FormData) {
-  try {
-    const firstName = formData.get("firstName") as string;
-    const lastName = formData.get("lastName") as string;
-    const email = formData.get("email") as string;
-    const phone = formData.get("phone") as string;
-    const educationLevel = formData.get("educationLevel") as string;
-    const essay = formData.get("essay") as string;
-
-    if (!firstName || !lastName || !email || !phone || !educationLevel || !essay) {
-      return { error: "Please fill out all required fields." };
-    }
-
-    const supabaseAdmin = createAdminClient();
-
+export const submitStudentApplicationAction = createSafeAction(
+  { schema: submitStudentApplicationSchema, role: "public" },
+  async ({ firstName, lastName, email, phone, educationLevel, essay }, { adminClient: supabaseAdmin }) => {
     const { error } = await supabaseAdmin
       .from("student_applications")
       .insert({
@@ -33,21 +24,16 @@ export async function submitStudentApplicationAction(formData: FormData) {
 
     if (error) {
       console.error("[ApplicationAction] Insert Error:", error);
-      return { error: "Failed to submit application. Please try again." };
+      throw new Error("Failed to submit application. Please try again.");
     }
 
-    return { success: true };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (err: any) {
-    console.error("[ApplicationAction] Catch Error:", err);
-    return { error: "An unexpected error occurred." };
+    return true;
   }
-}
+);
 
-export async function updateApplicationStatusAction(id: string, newStatus: 'pending' | 'reviewed' | 'accepted' | 'rejected') {
-  try {
-    const supabaseAdmin = createAdminClient();
-
+export const updateApplicationStatusAction = createSafeAction(
+  { schema: updateApplicationStatusSchema, role: "admin" },
+  async ({ id, newStatus }, { adminClient: supabaseAdmin }) => {
     const { error } = await supabaseAdmin
       .from("student_applications")
       .update({ status: newStatus })
@@ -60,10 +46,6 @@ export async function updateApplicationStatusAction(id: string, newStatus: 'pend
     await auditLog("UPDATE_STATUS", "student_applications", id);
 
     revalidatePath("/admin/applications");
-    return { success: true };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (err: any) {
-    console.error("[ApplicationAction] Update Error:", err);
-    return { error: "Failed to update application status." };
+    return true;
   }
-}
+);

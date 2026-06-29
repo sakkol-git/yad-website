@@ -20,8 +20,8 @@ export function QuickFormSection() {
 
     startTransition(async () => {
       const result = await submitQuickFormAction(formData);
-      if (result.error) {
-        setErrorMessage(result.error);
+      if (!result.success || result.error) {
+        setErrorMessage(result.error || "Submission failed");
         setFormState("error");
       } else {
         setFormState("success");

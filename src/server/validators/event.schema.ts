@@ -1,20 +1,29 @@
 import { z } from "zod";
 
 export const getEventsSchema = z.object({
-  page: z.number().int().min(1).default(1),
-  limit: z.number().int().min(1).max(100).default(10),
+  page: z.number().int().positive().default(1),
+  limit: z.number().int().positive().default(10),
   search: z.string().optional(),
 });
 
-export type GetEventsInput = z.infer<typeof getEventsSchema>;
-
-export const createEventSchema = z.object({
-  title: z.string().min(1, "Title is required"),
-  date: z.string(),
-  location: z.string().min(1, "Location is required"),
+export const eventDataSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  description: z.string().optional().or(z.literal("")),
+  venue: z.string().optional().or(z.literal("")),
+  capacity: z.coerce.number().positive().optional().or(z.literal("")),
+  status: z.enum(["Upcoming", "Ongoing", "Completed"]).default("Upcoming"),
 });
 
-export type CreateEventInput = z.infer<typeof createEventSchema>;
+export const updateEventSchema = z.object({
+  id: z.string().uuid("Invalid event ID"),
+  data: eventDataSchema,
+});
+
+export const deleteEventSchema = z.object({
+  id: z.string().uuid("Invalid event ID"),
+});
+
+export type GetEventsInput = z.infer<typeof getEventsSchema>;
 
 const validEventStatuses = ["Upcoming", "Ongoing", "Completed", "Cancelled"] as const;
 export type EventStatusType = typeof validEventStatuses[number];

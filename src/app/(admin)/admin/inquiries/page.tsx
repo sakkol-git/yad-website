@@ -15,9 +15,9 @@ export default async function AdminInquiriesPage(props: { searchParams: Promise<
   const searchParams = await props.searchParams;
   const page = parseInt(searchParams.page || "1", 10);
   
-  const result = await getInquiriesAction(page, 10);
+  const result = await getInquiriesAction({ page, pageSize: 10 });
 
-  if (!result.success) {
+  if (!result.success || !result.data) {
     return (
       <AdminPageLayout>
         <div className="p-8 text-center text-error">
@@ -27,8 +27,8 @@ export default async function AdminInquiriesPage(props: { searchParams: Promise<
     );
   }
 
-  const inquiries = result.data || [];
-  const count = result.count || 0;
+  const inquiries = result.data.data || [];
+  const count = result.data.count || 0;
 
   return (
     <AdminPageLayout>

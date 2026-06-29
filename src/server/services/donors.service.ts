@@ -23,6 +23,23 @@ export class DonorsService {
     return this.repository.getAll(supabase);
   }
 
+  async getPublicDonors(supabase: SupabaseClient<Database>, limit: number = 100) {
+    const { data, error } = await supabase
+      .from('donors')
+      .select('*')
+      .eq('status', 'Active')
+      .eq('is_public', true)
+      .order('amount', { ascending: false, nullsFirst: false })
+      .order('donation_date', { ascending: false })
+      .limit(limit);
+
+    if (error) {
+      console.error('Failed to fetch public donors:', error);
+      return [];
+    }
+    return data;
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async create(supabase: SupabaseClient<Database>, payload: any) {
     await requireAdmin(supabase);

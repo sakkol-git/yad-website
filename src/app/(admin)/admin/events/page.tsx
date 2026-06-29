@@ -17,7 +17,9 @@ export default async function EventsPage(props: { searchParams: Promise<{ page?:
   const page = parseInt(searchParams.page || "1", 10);
   const search = searchParams.search;
 
-  const { data: events, count } = await getEvents(page, 10, search);
+  const result = await getEvents({ page, limit: 10, search });
+  const events = result.success && result.data ? result.data.data : [];
+  const count = result.success && result.data ? result.data.count : 0;
 
   const supabase = await createClient();
   const { data: allEvents } = await supabase.from('events').select('date, capacity');

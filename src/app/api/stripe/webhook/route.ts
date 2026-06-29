@@ -162,7 +162,7 @@ async function handleBookingCompleted(referenceId: string) {
       return;
     }
 
-    const terminalStatuses = ["Checked In", "Checked Out"];
+    const terminalStatuses = ["Confirmed", "Checked In", "Checked Out"];
     if (terminalStatuses.includes(existing?.status || "")) {
       console.log(`[Webhook] Booking ${referenceId} already in terminal state — skipping`);
       return;
@@ -171,7 +171,7 @@ async function handleBookingCompleted(referenceId: string) {
     const { error: updateError } = await supabaseAdmin
       .from("bookings")
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .update({ status: "Checked In" } as any)
+      .update({ status: "Confirmed" } as any)
       .eq("id", referenceId);
 
     if (updateError) {

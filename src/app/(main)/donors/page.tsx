@@ -1,4 +1,6 @@
-import { createClient } from '@/shared/lib/supabase/server';
+import { SupabaseClient } from '@supabase/supabase-js';
+import { Database } from '@/shared/types/supabase';
+import { donorsService } from '@/server/services/donors.service';
 import { Button } from '@/shared/components/ui/Button';
 import Link from 'next/link';
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
@@ -13,23 +15,14 @@ export const metadata = {
 export const revalidate = 3600; // Revalidate every hour
 
 export default async function DonorsShowcasePage() {
-  const supabase = await createClient();
+  const supabase = new SupabaseClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
 
-  // Fetch active, public donors
-  const { data: donors, error } = await supabase
-    .from('donors')
-    .select('*')
-    .eq('status', 'Active')
-    .eq('is_public', true)
-    .order('amount', { ascending: false, nullsFirst: false })
-    .order('donation_date', { ascending: false });
-
-  if (error) {
-    console.error('Failed to fetch donors for showcase:', error);
-  }
-
+  // Fetch active, public donors via service layer with a hard limit of 100
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const validDonors = (donors || []) as any[];
+  const validDonors = (await donorsService.getPublicDonors(supabase, 100)) as any[];
 
   return (
     <main className="min-h-screen bg-surface-container-lowest pb-24">

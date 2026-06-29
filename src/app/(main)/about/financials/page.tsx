@@ -11,8 +11,14 @@ export const metadata: Metadata = {
   description: 'Review our annual reports, fund allocations, and financial transparency.',
 };
 
+import { SupabaseClient } from '@supabase/supabase-js';
+import { Database } from '@/shared/types/supabase';
+
 async function AnnualReportsList() {
-  const supabase = await createClient();
+  const supabase = new SupabaseClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
   
   {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
   let reports: any[] | null = null;

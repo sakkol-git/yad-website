@@ -40,12 +40,14 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
     setError(null);
 
     try {
+      const dataObj = Object.fromEntries(formData.entries());
       if (mode === 'create') {
-        const result = await createMember(null, formData);
-        if (result.error) throw new Error(result.error);
+        const result = await createMember(dataObj);
+        if (!result.success || result.error) throw new Error(result.error || "Failed to create member");
       } else if (mode === 'edit' && initialData) {
-        const result = await updateMember(initialData.id, null, formData);
-        if (result.error) throw new Error(result.error);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const result = await updateMember({ id: initialData.id, data: dataObj as any });
+        if (!result.success || result.error) throw new Error(result.error || "Failed to update member");
       }
       onClose();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

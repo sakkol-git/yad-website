@@ -34,8 +34,11 @@ export class ReportsService {
    * No auth required. ISR-revalidated via the 'reports' cache tag.
    */
   async getPublicReports(): Promise<Report[]> {
-    // Use a server-side client (no session needed for public read)
-    const supabase = await createClient();
+    // Use an anonymous server-side client to avoid opting into dynamic rendering (cookies)
+    const supabase = new SupabaseClient<Database>(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
     return this.repository.getAllPublic(supabase);
   }
 

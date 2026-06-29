@@ -1,123 +1,105 @@
-'use server';
+"use server";
 
-import { createClient } from '@/shared/lib/supabase/server';
-import { revalidatePath } from 'next/cache';
-import { membersService } from '../services/members.service';
+import { createSafeAction } from "@/shared/lib/safe-action";
+import { revalidatePath } from "next/cache";
+import { membersService } from "../services/members.service";
+import { getMembersSchema, memberDataSchema, updateMemberSchema, deleteMemberSchema } from "../validators/member.schema";
 
 const csvToArray = (csv?: string) => csv ? csv.split(',').map(s => s.trim()).filter(Boolean) : undefined;
 
-function extractProfileData(rawData: Record<string, unknown>) {
+function extractProfileData(rawData: any) {
   return {
-    biography: (rawData.biography as string) || undefined,
-    khmerBiography: (rawData.khmer_biography as string) || undefined,
-    quote: (rawData.quote as string) || undefined,
-    vision: (rawData.vision as string) || undefined,
-    education: csvToArray(rawData.education as string),
-    experience: csvToArray(rawData.experience as string),
-    achievements: csvToArray(rawData.achievements as string),
+    biography: rawData.biography || undefined,
+    khmerBiography: rawData.khmer_biography || undefined,
+    quote: rawData.quote || undefined,
+    vision: rawData.vision || undefined,
+    education: csvToArray(rawData.education),
+    experience: csvToArray(rawData.experience),
+    achievements: csvToArray(rawData.achievements),
     socialLinks: {
-      linkedin: (rawData.linkedin as string) || undefined,
-      twitter: (rawData.twitter as string) || undefined,
-      facebook: (rawData.facebook as string) || undefined,
-      github: (rawData.github as string) || undefined,
+      linkedin: rawData.linkedin || undefined,
+      twitter: rawData.twitter || undefined,
+      facebook: rawData.facebook || undefined,
+      github: rawData.github || undefined,
     }
   };
 }
 
-export async function getMembers(page: number = 1, limit: number = 10, search?: string) {
-  const supabase = await createClient();
-  try {
-    const { data, count } = await membersService.getMembers(supabase, { page, limit, search }, true);
+export const getMembers = createSafeAction(
+  { schema: getMembersSchema, role: "admin" },
+  async ({ page, limit, search }, { sessionClient }) => {
+    const { data, count } = await membersService.getMembers(sessionClient, { page, limit, search }, false);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return { data: data as any[], count };
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    console.error('Error fetching members:', error);
-    throw new Error('Failed to fetch members');
   }
-}
+);
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function createMember(prevState: any, formData: FormData) {
-  const supabase = await createClient();
-  const rawData = Object.fromEntries(formData);
-  const profile = extractProfileData(rawData);
+export const createMember = createSafeAction(
+  { schema: memberDataSchema, role: "admin" },
+  async (parsedData, { sessionClient }) => {
+    const profile = extractProfileData(parsedData);
 
-  const slug = `${rawData.first_name}-${rawData.last_name}`
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
+    const randomSuffix = Math.random().toString(36).substring(2, 6);
+    const slug = `${parsedData.first_name}-${parsedData.last_name}-${randomSuffix}`
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
 
-  try {
-    await membersService.create(supabase, {
-      first_name: rawData.first_name as string,
-      last_name: rawData.last_name as string,
-      email: rawData.email as string,
+    const dataToSubmit = {
+      first_name: parsedData.first_name,
+      last_name: parsedData.last_name,
+      email: parsedData.email || "",
       slug: slug,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      type: (rawData.type as any) || 'Resident',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      status: (rawData.status as any) || 'Pending',
-      bio: (rawData.bio as string) || null,
-      avatar_url: (rawData.avatar_url as string) || null,
-      role: (rawData.role as string) || null,
+      type: parsedData.type,
+      status: parsedData.status,
+      bio: parsedData.bio || null,
+      avatar_url: parsedData.avatar_url || null,
+      role: parsedData.role || null,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       profile: profile as any
-    });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    return { error: error.message };
+    };
+
+    await membersService.create(sessionClient, dataToSubmit);
+    revalidatePath("/admin/members");
+    revalidatePath("/about/team/[slug]", "page");
+    revalidatePath("/about/governance/[slug]", "page");
+    revalidatePath("/", "layout");
+    return true;
   }
+);
 
-  revalidatePath('/admin/members');
-  revalidatePath('/about/team/[slug]', 'page');
-  revalidatePath('/about/governance/[slug]', 'page');
-  revalidatePath('/', 'layout');
-  return { success: true };
-}
+export const updateMember = createSafeAction(
+  { schema: updateMemberSchema, role: "admin" },
+  async ({ id, data: parsedData }, { sessionClient }) => {
+    const profile = extractProfileData(parsedData);
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function updateMember(id: string, prevState: any, formData: FormData) {
-  const supabase = await createClient();
-  const rawData = Object.fromEntries(formData);
-  const profile = extractProfileData(rawData);
-
-  try {
-    await membersService.update(supabase, id, {
-      first_name: rawData.first_name as string,
-      last_name: rawData.last_name as string,
-      email: rawData.email as string,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      type: rawData.type as any,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      status: rawData.status as any,
-      bio: (rawData.bio as string) || null,
-      avatar_url: (rawData.avatar_url as string) || null,
-      role: (rawData.role as string) || null,
+    const dataToSubmit = {
+      first_name: parsedData.first_name,
+      last_name: parsedData.last_name,
+      email: parsedData.email || "",
+      type: parsedData.type,
+      status: parsedData.status,
+      bio: parsedData.bio || null,
+      avatar_url: parsedData.avatar_url || null,
+      role: parsedData.role || null,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       profile: profile as any
-    });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    return { error: error.message };
+    };
+
+    await membersService.update(sessionClient, id, dataToSubmit);
+    revalidatePath("/admin/members");
+    revalidatePath("/about/team/[slug]", "page");
+    revalidatePath("/about/governance/[slug]", "page");
+    revalidatePath("/", "layout");
+    return true;
   }
+);
 
-  revalidatePath('/admin/members');
-  revalidatePath('/about/team/[slug]', 'page');
-  revalidatePath('/about/governance/[slug]', 'page');
-  revalidatePath('/', 'layout');
-  return { success: true };
-}
-
-export async function deleteMember(id: string) {
-  const supabase = await createClient();
-  try {
-    await membersService.delete(supabase, id);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    return { error: error.message };
+export const deleteMember = createSafeAction(
+  { schema: deleteMemberSchema, role: "admin" },
+  async ({ id }, { sessionClient }) => {
+    await membersService.delete(sessionClient, id);
+    revalidatePath("/admin/members");
+    return true;
   }
-
-  revalidatePath('/admin/members');
-  return { success: true };
-}
+);

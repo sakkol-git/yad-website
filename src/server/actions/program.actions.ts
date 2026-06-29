@@ -1,23 +1,17 @@
 "use server";
 
-import { createAdminClient } from "@/shared/lib/supabase/admin";
+"use server";
+
+import { createSafeAction } from "@/shared/lib/safe-action";
 import { revalidatePath } from "next/cache";
+import { getProgramsSchema, programDataSchema, updateProgramSchema, deleteProgramSchema } from "../validators/program.schema";
+import { z } from "zod";
 
-export interface ProgramFormData {
-  title: string;
-  description: string;
-  category: string;
-  status: "active" | "completed" | "upcoming";
-  start_date: string;
-  end_date?: string | null;
-  beneficiaries_count: number;
-  image_url?: string;
-}
+export type ProgramFormData = z.infer<typeof programDataSchema>;
 
-export async function getProgramsAction(page: number = 1, limit: number = 10, search?: string) {
-  try {
-    const supabaseAdmin = createAdminClient();
-    
+export const getProgramsAction = createSafeAction(
+  { schema: getProgramsSchema, role: "admin" },
+  async ({ page, limit, search }, { adminClient: supabaseAdmin }) => {
     let query = supabaseAdmin
       .from("programs")
       .select("*", { count: "exact" })
@@ -36,18 +30,13 @@ export async function getProgramsAction(page: number = 1, limit: number = 10, se
       throw error;
     }
 
-    return { success: true, data, count };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    console.error("[ProgramAction] Fetch error:", error);
-    return { success: false, error: "Failed to fetch programs" };
+    return { data, count };
   }
-}
+);
 
-export async function createProgramAction(data: ProgramFormData) {
-  try {
-    const supabaseAdmin = createAdminClient();
-    
+export const createProgramAction = createSafeAction(
+  { schema: programDataSchema, role: "admin" },
+  async (data, { adminClient: supabaseAdmin }) => {
     const { error } = await supabaseAdmin
       .from("programs")
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -60,18 +49,13 @@ export async function createProgramAction(data: ProgramFormData) {
     revalidatePath("/admin/programs");
     revalidatePath("/");
     revalidatePath("/programs");
-    return { success: true };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    console.error("[ProgramAction] Create error:", error);
-    return { success: false, error: "Failed to create program" };
+    return true;
   }
-}
+);
 
-export async function updateProgramAction(id: string, data: ProgramFormData) {
-  try {
-    const supabaseAdmin = createAdminClient();
-    
+export const updateProgramAction = createSafeAction(
+  { schema: updateProgramSchema, role: "admin" },
+  async ({ id, data }, { adminClient: supabaseAdmin }) => {
     const { error } = await supabaseAdmin
       .from("programs")
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -85,18 +69,13 @@ export async function updateProgramAction(id: string, data: ProgramFormData) {
     revalidatePath("/admin/programs");
     revalidatePath("/");
     revalidatePath("/programs");
-    return { success: true };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    console.error("[ProgramAction] Update error:", error);
-    return { success: false, error: "Failed to update program" };
+    return true;
   }
-}
+);
 
-export async function deleteProgramAction(id: string) {
-  try {
-    const supabaseAdmin = createAdminClient();
-    
+export const deleteProgramAction = createSafeAction(
+  { schema: deleteProgramSchema, role: "admin" },
+  async ({ id }, { adminClient: supabaseAdmin }) => {
     const { error } = await supabaseAdmin
       .from("programs")
       .delete()
@@ -109,10 +88,6 @@ export async function deleteProgramAction(id: string) {
     revalidatePath("/admin/programs");
     revalidatePath("/");
     revalidatePath("/programs");
-    return { success: true };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    console.error("[ProgramAction] Delete error:", error);
-    return { success: false, error: "Failed to delete program" };
+    return true;
   }
-}
+);

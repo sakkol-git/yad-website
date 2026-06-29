@@ -15,20 +15,20 @@ export default async function AdminVolunteersPage(props: { searchParams: Promise
   const searchParams = await props.searchParams;
   const page = parseInt(searchParams.page || "1", 10);
   
-  const result = await getVolunteerRequestsAction(page, 10);
+  const result = await getVolunteerRequestsAction({ page, limit: 10 });
 
-  if (!result || result.error) {
+  if (!result.success || !result.data) {
     return (
       <AdminPageLayout>
         <div className="p-8 text-center text-error">
-          Failed to load volunteers. {result?.error}
+          Failed to load volunteers. {result.error}
         </div>
       </AdminPageLayout>
     );
   }
 
-  const volunteers = result.data || [];
-  const count = result.count || 0;
+  const volunteers = result.data.data || [];
+  const count = result.data.count || 0;
 
   return (
     <AdminPageLayout>

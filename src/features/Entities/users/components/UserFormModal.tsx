@@ -44,7 +44,7 @@ export function UserFormModal({ isOpen, onClose, mode, initialData }: UserFormMo
         }
       } else if (mode === 'edit' && initialData) {
         const role = formData.get('role') as 'admin' | 'manager' | 'user';
-        const result = await updateUser(initialData.id, role);
+        const result = await updateUser({ userId: initialData.id, role });
         if (result.error) {
           setError(result.error);
         } else {

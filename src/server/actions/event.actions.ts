@@ -1,78 +1,58 @@
-'use server';
+"use server";
 
-import { createClient } from '@/shared/lib/supabase/server';
-import { revalidatePath } from 'next/cache';
-import { eventsService } from '../services/events.service';
+import { createSafeAction } from "@/shared/lib/safe-action";
+import { revalidatePath } from "next/cache";
+import { eventsService } from "../services/events.service";
+import { getEventsSchema, eventDataSchema, updateEventSchema, deleteEventSchema } from "../validators/event.schema";
 
-export async function getEvents(page: number = 1, limit: number = 10, search?: string) {
-  const supabase = await createClient();
-  try {
-    const { data, count } = await eventsService.getEvents(supabase, { page, limit, search }, true);
+export const getEvents = createSafeAction(
+  { schema: getEventsSchema, role: "admin" },
+  async ({ page, limit, search }, { sessionClient }) => {
+    const { data, count } = await eventsService.getEvents(sessionClient, { page, limit, search }, false);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return { data: data as any[], count };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    console.error('Error fetching events:', error);
-    throw new Error('Failed to fetch events');
   }
-}
+);
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function createEvent(prevState: any, formData: FormData) {
-  const supabase = await createClient();
-  const rawData = Object.fromEntries(formData);
-  
-  try {
-    await eventsService.create(supabase, {
-      name: rawData.name as string,
-      description: (rawData.description as string) || null,
-      venue: (rawData.venue as string) || null,
-      capacity: rawData.capacity ? parseInt(rawData.capacity as string) : null,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      status: (rawData.status as any) || 'Upcoming'
-    });
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    return { error: error.message };
-  }
-  
-  revalidatePath('/admin/events');
-  return { success: true };
-}
+export const createEvent = createSafeAction(
+  { schema: eventDataSchema, role: "admin" },
+  async (parsedData, { sessionClient }) => {
+    const dataToSubmit = {
+      name: parsedData.name,
+      description: parsedData.description || null,
+      venue: parsedData.venue || null,
+      capacity: parsedData.capacity || null,
+      status: parsedData.status
+    };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function updateEvent(id: string, prevState: any, formData: FormData) {
-  const supabase = await createClient();
-  const rawData = Object.fromEntries(formData);
-  
-  try {
-    await eventsService.update(supabase, id, {
-      name: rawData.name as string,
-      description: (rawData.description as string) || null,
-      venue: (rawData.venue as string) || null,
-      capacity: rawData.capacity ? parseInt(rawData.capacity as string) : null,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      status: rawData.status as any
-    });
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    return { error: error.message };
+    await eventsService.create(sessionClient, dataToSubmit);
+    revalidatePath("/admin/events");
+    return true;
   }
-  
-  revalidatePath('/admin/events');
-  return { success: true };
-}
+);
 
-export async function deleteEvent(id: string) {
-  const supabase = await createClient();
-  
-  try {
-    await eventsService.delete(supabase, id);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    return { error: error.message };
+export const updateEvent = createSafeAction(
+  { schema: updateEventSchema, role: "admin" },
+  async ({ id, data: parsedData }, { sessionClient }) => {
+    const dataToSubmit = {
+      name: parsedData.name,
+      description: parsedData.description || null,
+      venue: parsedData.venue || null,
+      capacity: parsedData.capacity || null,
+      status: parsedData.status
+    };
+
+    await eventsService.update(sessionClient, id, dataToSubmit);
+    revalidatePath("/admin/events");
+    return true;
   }
-  
-  revalidatePath('/admin/events');
-  return { success: true };
-}
+);
+
+export const deleteEvent = createSafeAction(
+  { schema: deleteEventSchema, role: "admin" },
+  async ({ id }, { sessionClient }) => {
+    await eventsService.delete(sessionClient, id);
+    revalidatePath("/admin/events");
+    return true;
+  }
+);

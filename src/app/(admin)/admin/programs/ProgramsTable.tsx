@@ -58,7 +58,7 @@ export function ProgramsTable({ initialData, count, page }: { initialData: Progr
   const handleDelete = async () => {
     if (!deleteDialog.programId) return;
     setIsDeleting(true);
-    const result = await deleteProgramAction(deleteDialog.programId);
+    const result = await deleteProgramAction({ id: deleteDialog.programId });
     if (result.success) {
       toast.success("Program deleted successfully");
       setData(prev => prev.filter(p => p.id !== deleteDialog.programId));

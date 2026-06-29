@@ -21,7 +21,7 @@ function MobileNavAccordion({ link, pathname }: { link: NavLink, pathname: strin
     <div className="flex flex-col">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className={`py-3 px-4 rounded-md transition-colors flex justify-between items-center border border-transparent ${isActive || isExpanded ? "bg-surface-container border-outline-variant/30 text-primary font-bold text-[10px] uppercase tracking-widest" : "text-on-surface font-light text-base hover:bg-surface-container hover:border-outline-variant/30"
+        className={`py-3 px-4 rounded-md transition-colors flex justify-between items-center border border-transparent ${isActive || isExpanded ? "bg-surface-container border-outline-variant/30 text-primary font-bold text-[10px] uppercase tracking-widest" : "text-on-surface font-light text-sm uppercase tracking-widest hover:bg-surface-container hover:border-outline-variant/30"
           }`}
         aria-expanded={isExpanded}
         aria-controls={`submenu-${link.label.replace(/\s+/g, '-').toLowerCase()}`}
@@ -46,7 +46,7 @@ function MobileNavAccordion({ link, pathname }: { link: NavLink, pathname: strin
                   href={sub.href}
                   className={`py-2.5 px-4 rounded-md transition-colors ${isSubActive
                     ? "text-primary font-bold bg-surface-container/50 text-[10px] uppercase tracking-widest"
-                    : "text-on-surface-variant font-light text-sm hover:text-primary hover:bg-surface-container/50"
+                    : "text-on-surface-variant font-light text-[10px] uppercase tracking-widest hover:text-primary hover:bg-surface-container/50"
                     }`}
                 >
                   {sub.label}
@@ -400,7 +400,7 @@ export default function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`py-3 px-4 rounded-md transition-colors flex justify-between items-center border border-transparent ${isActive ? "bg-surface-container border-outline-variant/30 text-primary font-bold text-[10px] uppercase tracking-widest" : "text-on-surface font-light text-base hover:bg-surface-container hover:border-outline-variant/30"
+                    className={`py-3 px-4 rounded-md transition-colors flex justify-between items-center border border-transparent ${isActive ? "bg-surface-container border-outline-variant/30 text-primary font-bold text-[10px] uppercase tracking-widest" : "text-on-surface font-light text-sm uppercase tracking-widest hover:bg-surface-container hover:border-outline-variant/30"
                       }`}
                   >
                     {link.label}
@@ -452,7 +452,7 @@ export default function Navbar() {
             )}
 
             <Button variant="primary" asChild className="w-full h-[48px] text-[10px] font-bold uppercase tracking-widest rounded-md mt-2">
-              <Link href="/donate/flow">Fund a Future</Link>
+              <Link href="/donate">Fund a Future</Link>
             </Button>
           </div>
         </div>

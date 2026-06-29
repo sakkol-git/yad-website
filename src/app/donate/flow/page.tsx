@@ -29,7 +29,7 @@ export default function DonateFlowPage() {
 
     try {
       // 1. Create Donation Draft in DB
-      const draftRes = await createDonationDraftAction(Number(amount), firstName, lastName, email);
+      const draftRes = await createDonationDraftAction({ amount: Number(amount), firstName, lastName, email });
 
       if (!draftRes.success || !draftRes.data) {
         throw new Error(draftRes.error || "Failed to create donation draft");

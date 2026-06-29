@@ -3,11 +3,19 @@ import { getDashboardMetrics } from '@/server/actions/dashboard.actions';
 import { AdminPageLayout } from '@/shared/components/admin/layout/AdminPageLayout';
 
 export default async function AdminDashboardOverview() {
-  const { data } = await getDashboardMetrics();
+  const result = await getDashboardMetrics({});
+  
+  if (!result.success || !result.data) {
+    return (
+      <AdminPageLayout>
+        <div className="p-8 text-center text-error">Failed to load dashboard metrics.</div>
+      </AdminPageLayout>
+    );
+  }
 
   return (
     <AdminPageLayout>
-      <AdminDashboard initialData={data} />
+      <AdminDashboard initialData={result.data} />
     </AdminPageLayout>
   );
 }

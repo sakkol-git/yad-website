@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
 import { Button } from "@/shared/components/ui/Button";
 import { TextReveal } from "@/shared/components/animations/TextReveal";
@@ -73,17 +74,17 @@ export default function NewsPage() {
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
               <Button asChild className="bg-primary text-white hover:bg-primary/90 px-8 py-4 rounded-md text-xs tracking-[0.2em] uppercase font-semibold transition-colors group">
-                <a href="#footer-newsletter" className="flex items-center justify-center gap-2">
+                <Link href="#footer-newsletter" className="flex items-center justify-center gap-2">
                   Subscribe for Updates
                   <span className="material-symbols-outlined text-[16px] group-hover:translate-y-1 transition-transform">
                     arrow_downward
                   </span>
-                </a>
+                </Link>
               </Button>
               <Button variant="outline" asChild className="border-outline-variant/30 hover:border-primary hover:bg-surface-container text-on-surface px-8 py-4 rounded-md text-xs tracking-[0.2em] uppercase font-semibold transition-colors">
-                <a href="/">
+                <Link href="/">
                   Return Home
-                </a>
+                </Link>
               </Button>
             </div>
           </div>

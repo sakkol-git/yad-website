@@ -5,16 +5,18 @@
 // this becomes expensive. The proper fix is a profiles table with a trigger on
 // auth.users INSERT. See Phase 7.2 of the remediation plan.
 
-import { createAdminClient } from "@/shared/lib/supabase/admin";
+"use server";
+
+import { createSafeAction } from "@/shared/lib/safe-action";
 import { revalidatePath } from "next/cache";
 import { auditLog } from "./audit.actions";
+import { getVolunteersSchema, updateVolunteerStatusSchema } from "../validators/volunteer.schema";
 
 const MAX_USERS_FETCH = 500;
 
-export async function getVolunteerRequestsAction(page: number = 1, limit: number = 10) {
-  try {
-    const supabaseAdmin = createAdminClient();
-
+export const getVolunteerRequestsAction = createSafeAction(
+  { schema: getVolunteersSchema, role: "admin" },
+  async ({ page, limit }, { adminClient: supabaseAdmin }) => {
     const from = (page - 1) * limit;
     const to = from + limit - 1;
 
@@ -78,21 +80,12 @@ export async function getVolunteerRequestsAction(page: number = 1, limit: number
     });
 
     return { data: mappedData, count };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (err: any) {
-    const message = err instanceof Error ? err.message : "Unknown error";
-    console.error("Failed to fetch volunteers:", message);
-    return { error: "Failed to fetch volunteer requests." };
   }
-}
+);
 
-export async function updateVolunteerStatusAction(
-  id: string,
-  newStatus: "Pending" | "Approved" | "Rejected" | "Completed"
-) {
-  try {
-    const supabaseAdmin = createAdminClient();
-
+export const updateVolunteerStatusAction = createSafeAction(
+  { schema: updateVolunteerStatusSchema, role: "admin" },
+  async ({ id, newStatus }, { adminClient: supabaseAdmin }) => {
     const { error } = await supabaseAdmin
       .from("event_volunteers")
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -107,11 +100,6 @@ export async function updateVolunteerStatusAction(
     await auditLog("UPDATE_STATUS", "event_volunteers", id);
 
     revalidatePath("/admin/volunteers");
-    return { success: true };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (err: any) {
-    const message = err instanceof Error ? err.message : "Unknown error";
-    console.error("Failed to update status:", message);
-    return { error: "Failed to update volunteer status." };
+    return true;
   }
-}
+);

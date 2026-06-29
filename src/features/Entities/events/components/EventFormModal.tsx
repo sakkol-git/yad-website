@@ -39,12 +39,14 @@ export function EventFormModal({ isOpen, onClose, mode, initialData }: EventForm
     setError(null);
     
     try {
+      const dataObj = Object.fromEntries(formData.entries());
       if (mode === 'create') {
-        const result = await createEvent(null, formData);
-        if (result.error) throw new Error(result.error);
+        const result = await createEvent(dataObj);
+        if (!result.success || result.error) throw new Error(result.error || "Failed to create event");
       } else if (mode === 'edit' && initialData) {
-        const result = await updateEvent(initialData.id, null, formData);
-        if (result.error) throw new Error(result.error);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const result = await updateEvent({ id: initialData.id, data: dataObj as any });
+        if (!result.success || result.error) throw new Error(result.error || "Failed to update event");
       }
       onClose();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,12 +1,14 @@
 'use server';
 
-import { createAdminClient } from "@/shared/lib/supabase/admin";
+'use server';
+
+import { createSafeAction } from "@/shared/lib/safe-action";
 import { usersService } from "../services/users.service";
+import { z } from "zod";
 
-export async function getDashboardMetrics() {
-  const supabase = createAdminClient();
-
-  try {
+export const getDashboardMetrics = createSafeAction(
+  { role: "admin", schema: z.any() },
+  async (_, { adminClient: supabase }) => {
     const [
       { count: membersCount },
       { count: programsCount },
@@ -44,22 +46,16 @@ export async function getDashboardMetrics() {
       .limit(3);
 
     return {
-      success: true,
-      data: {
-        metrics: {
-          totalMembers: membersCount || 0,
-          activePrograms: programsCount || 0,
-          monthlyDonations,
-          pendingHomestays: pendingHomestays || 0,
-        },
-        recentActivities: {
-          users: recentUsers || [],
-          donations: recentDonations || []
-        }
+      metrics: {
+        totalMembers: membersCount || 0,
+        activePrograms: programsCount || 0,
+        monthlyDonations,
+        pendingHomestays: pendingHomestays || 0,
+      },
+      recentActivities: {
+        users: recentUsers || [],
+        donations: recentDonations || []
       }
     };
-  } catch (error) {
-    console.error("Dashboard data fetch error:", error);
-    return { success: false, error: "Failed to fetch dashboard data" };
   }
-}
+);

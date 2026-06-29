@@ -42,7 +42,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px] relative z-10">
           
           {/* Newsletter Section */}
-          <div className="mb-20">
+          <div id="footer-newsletter" className="mb-20">
             <NewsletterSignup />
           </div>
 

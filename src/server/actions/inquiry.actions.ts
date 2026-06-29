@@ -1,13 +1,15 @@
 "use server";
 
-import { createAdminClient } from "@/shared/lib/supabase/admin";
+"use server";
+
+import { createSafeAction } from "@/shared/lib/safe-action";
 import { revalidatePath } from "next/cache";
 import * as Sentry from "@sentry/nextjs";
+import { getInquiriesSchema, updateInquiryStatusSchema } from "../validators/inquiry.schema";
 
-export async function getInquiriesAction(page = 1, pageSize = 20) {
-  try {
-    const supabaseAdmin = createAdminClient();
-
+export const getInquiriesAction = createSafeAction(
+  { schema: getInquiriesSchema, role: "admin" },
+  async ({ page, pageSize }, { adminClient: supabaseAdmin }) => {
     const from = (page - 1) * pageSize;
     const to = from + pageSize - 1;
 
@@ -18,22 +20,17 @@ export async function getInquiriesAction(page = 1, pageSize = 20) {
       .range(from, to);
 
     if (error) {
+      Sentry.captureException(error);
       throw error;
     }
 
-    return { success: true, data, count };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    console.error("[InquiryAction] Fetch error:", error);
-    Sentry.captureException(error);
-    return { success: false, error: "Failed to fetch inquiries" };
+    return { data, count };
   }
-}
+);
 
-export async function updateInquiryStatusAction(id: string, status: 'pending' | 'reviewed' | 'actioned') {
-  try {
-    const supabaseAdmin = createAdminClient();
-
+export const updateInquiryStatusAction = createSafeAction(
+  { schema: updateInquiryStatusSchema, role: "admin" },
+  async ({ id, status }, { adminClient: supabaseAdmin }) => {
     const { error } = await supabaseAdmin
       .from("inquiries")
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -41,15 +38,11 @@ export async function updateInquiryStatusAction(id: string, status: 'pending' | 
       .eq("id", id);
 
     if (error) {
+      Sentry.captureException(error);
       throw error;
     }
 
     revalidatePath("/admin/inquiries");
-    return { success: true };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    console.error("[InquiryAction] Update error:", error);
-    Sentry.captureException(error);
-    return { success: false, error: "Failed to update status" };
+    return true;
   }
-}
+);

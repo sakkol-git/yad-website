@@ -43,9 +43,9 @@ export function InquiriesTable({ initialData, count, page }: { initialData: Inqu
 
   const handleStatusChange = (id: string, newStatus: Inquiry["status"]) => {
     startTransition(async () => {
-      const result = await updateInquiryStatusAction(id, newStatus);
-      if (result.error) {
-        toast.error(result.error);
+      const result = await updateInquiryStatusAction({ id, status: newStatus });
+      if (!result.success || result.error) {
+        toast.error(result.error || "Failed to update");
       } else {
         setData(prev => prev.map(v => v.id === id ? { ...v, status: newStatus } : v));
         toast.success(`Inquiry marked as ${newStatus}`);

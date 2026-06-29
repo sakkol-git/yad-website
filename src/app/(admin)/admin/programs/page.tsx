@@ -16,9 +16,9 @@ export default async function AdminProgramsPage(props: { searchParams: Promise<{
   const page = parseInt(searchParams.page || "1", 10);
   const search = searchParams.search;
 
-  const result = await getProgramsAction(page, 10, search);
+  const result = await getProgramsAction({ page, limit: 10, search });
 
-  if (!result.success) {
+  if (!result.success || !result.data) {
     return (
       <AdminPageLayout>
         <div className="p-8 text-center text-error">
@@ -28,8 +28,8 @@ export default async function AdminProgramsPage(props: { searchParams: Promise<{
     );
   }
 
-  const programs = result.data || [];
-  const count = result.count || 0;
+  const programs = result.data.data || [];
+  const count = result.data.count || 0;
 
   return (
     <AdminPageLayout>

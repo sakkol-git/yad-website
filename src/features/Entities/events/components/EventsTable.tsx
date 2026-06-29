@@ -69,7 +69,8 @@ export function EventsTable({ events, count, page }: { events: Event[]; count?: 
     
     setIsDeleting(true);
     try {
-      await deleteEvent(deleteDialog.eventId);
+      const result = await deleteEvent({ id: deleteDialog.eventId });
+      if (!result.success || result.error) throw new Error(result.error || "Failed to delete");
       toast.success('Event deleted successfully');
       closeDeleteDialog();
     } catch (error) {

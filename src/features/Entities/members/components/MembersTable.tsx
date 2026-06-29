@@ -40,7 +40,8 @@ export function MembersTable({ members, count, page }: { members: Member[]; coun
     
     setIsDeleting(id);
     try {
-      await deleteMember(id);
+      const result = await deleteMember({ id });
+      if (!result.success || result.error) throw new Error(result.error || "Failed to delete");
       toast.success('Member deleted successfully');
     } catch (error) {
       toast.error('Failed to delete member');

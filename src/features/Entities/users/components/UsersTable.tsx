@@ -66,9 +66,13 @@ export function UsersTable({ users, count, page }: { users: User[]; count?: numb
     if (!deleteDialog.userId) return;
     setIsDeleting(true);
     try {
-      await deleteUser(deleteDialog.userId);
-      toast.success('User deleted successfully');
-      closeDeleteDialog();
+      const result = await deleteUser({ userId: deleteDialog.userId });
+      if (result.error) {
+        toast.error(result.error);
+      } else {
+        toast.success('User deleted successfully');
+        closeDeleteDialog();
+      }
     } catch (error) {
       toast.error('Failed to delete user');
     } finally {

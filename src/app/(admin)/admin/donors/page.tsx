@@ -10,7 +10,9 @@ export default async function DonorsPage(props: { searchParams: Promise<{ page?:
   const page = parseInt(searchParams.page || "1", 10);
   const search = searchParams.search;
 
-  const { data: donors, count } = await getDonors(page, 10, search);
+  const result = await getDonors({ page, limit: 10, search });
+  const donors = result.success && result.data ? result.data.data : [];
+  const count = result.success && result.data ? result.data.count : 0;
 
   return (
     <div className="flex-1 p-6 lg:p-10 space-y-8 max-w-7xl mx-auto w-full animate-fade-in">

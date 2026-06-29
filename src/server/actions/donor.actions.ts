@@ -1,85 +1,66 @@
-'use server';
+"use server";
 
-import { createClient } from '@/shared/lib/supabase/server';
-import { revalidatePath } from 'next/cache';
-import { donorsService } from '../services/donors.service';
+import { createSafeAction } from "@/shared/lib/safe-action";
+import { revalidatePath } from "next/cache";
+import { donorsService } from "../services/donors.service";
+import { getDonorsSchema, donorDataSchema, updateDonorSchema, deleteDonorSchema } from "../validators/donor.schema";
 
-export async function getDonors(page: number = 1, limit: number = 10, search?: string) {
-  const supabase = await createClient();
-  try {
-    const { data, count } = await donorsService.getDonors(supabase, page, limit, search, true);
+export const getDonors = createSafeAction(
+  { schema: getDonorsSchema, role: "admin" },
+  async ({ page, limit, search }, { sessionClient }) => {
+    const { data, count } = await donorsService.getDonors(sessionClient, page, limit, search, false);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return { data: data as any[], count };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    console.error('Error fetching donors:', error);
-    throw new Error('Failed to fetch donors');
   }
-}
+);
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function createDonor(prevState: any, formData: FormData) {
-  const supabase = await createClient();
-  const rawData = Object.fromEntries(formData);
+export const createDonor = createSafeAction(
+  { schema: donorDataSchema, role: "admin" },
+  async (parsedData, { sessionClient }) => {
+    const dataToSubmit = {
+      name: parsedData.name,
+      email: parsedData.email || null,
+      amount: parsedData.amount || null,
+      donation_date: parsedData.donation_date || null,
+      description: parsedData.description || null,
+      avatar_url: parsedData.avatar_url || null,
+      country: parsedData.country || null,
+      is_public: parsedData.is_public,
+      status: parsedData.status
+    };
 
-  try {
-    await donorsService.create(supabase, {
-      name: rawData.name as string,
-      email: (rawData.email as string) || null,
-      amount: rawData.amount ? parseFloat(rawData.amount as string) : null,
-      donation_date: (rawData.donation_date as string) || null,
-      description: (rawData.description as string) || null,
-      avatar_url: (rawData.avatar_url as string) || null,
-      country: (rawData.country as string) || null,
-      is_public: rawData.is_public === 'on' || rawData.is_public === 'true',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      status: (rawData.status as any) || 'Active'
-    });
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    return { error: error.message };
+    await donorsService.create(sessionClient, dataToSubmit);
+    revalidatePath("/admin/donors");
+    return true;
   }
+);
 
-  revalidatePath('/admin/donors');
-  return { success: true };
-}
+export const updateDonor = createSafeAction(
+  { schema: updateDonorSchema, role: "admin" },
+  async ({ id, data: parsedData }, { sessionClient }) => {
+    const dataToSubmit = {
+      name: parsedData.name,
+      email: parsedData.email || null,
+      amount: parsedData.amount || null,
+      donation_date: parsedData.donation_date || null,
+      description: parsedData.description || null,
+      avatar_url: parsedData.avatar_url || null,
+      country: parsedData.country || null,
+      is_public: parsedData.is_public,
+      status: parsedData.status
+    };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function updateDonor(id: string, prevState: any, formData: FormData) {
-  const supabase = await createClient();
-  const rawData = Object.fromEntries(formData);
-
-  try {
-    await donorsService.update(supabase, id, {
-      name: rawData.name as string,
-      email: (rawData.email as string) || null,
-      amount: rawData.amount ? parseFloat(rawData.amount as string) : null,
-      donation_date: (rawData.donation_date as string) || null,
-      description: (rawData.description as string) || null,
-      avatar_url: (rawData.avatar_url as string) || null,
-      country: (rawData.country as string) || null,
-      is_public: rawData.is_public === 'on' || rawData.is_public === 'true',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      status: rawData.status as any
-    });
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    return { error: error.message };
+    await donorsService.update(sessionClient, id, dataToSubmit);
+    revalidatePath("/admin/donors");
+    return true;
   }
+);
 
-  revalidatePath('/admin/donors');
-  return { success: true };
-}
-
-export async function deleteDonor(id: string) {
-  const supabase = await createClient();
-  try {
-    await donorsService.delete(supabase, id);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    return { error: error.message };
+export const deleteDonor = createSafeAction(
+  { schema: deleteDonorSchema, role: "admin" },
+  async ({ id }, { sessionClient }) => {
+    await donorsService.delete(sessionClient, id);
+    revalidatePath("/admin/donors");
+    return true;
   }
-
-  revalidatePath('/admin/donors');
-  return { success: true };
-}
+);

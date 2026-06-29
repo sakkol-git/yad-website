@@ -70,7 +70,7 @@ export function ProgramFormModal({
 
       let result;
       if (initialData?.id) {
-        result = await updateProgramAction(initialData.id, dataToSubmit as ProgramFormData);
+        result = await updateProgramAction({ id: initialData.id, data: dataToSubmit as ProgramFormData });
       } else {
         result = await createProgramAction(dataToSubmit as ProgramFormData);
       }

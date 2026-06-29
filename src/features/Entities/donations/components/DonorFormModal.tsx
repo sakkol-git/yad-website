@@ -39,12 +39,14 @@ export function DonorFormModal({ isOpen, onClose, mode, initialData }: DonorForm
     setError(null);
 
     try {
+      const dataObj = Object.fromEntries(formData.entries());
       if (mode === 'create') {
-        const result = await createDonor(null, formData);
-        if (result.error) throw new Error(result.error);
+        const result = await createDonor(dataObj);
+        if (!result.success || result.error) throw new Error(result.error || "Failed to create donor");
       } else if (mode === 'edit' && initialData) {
-        const result = await updateDonor(initialData.id, null, formData);
-        if (result.error) throw new Error(result.error);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const result = await updateDonor({ id: initialData.id, data: dataObj as any });
+        if (!result.success || result.error) throw new Error(result.error || "Failed to update donor");
       }
       onClose();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
