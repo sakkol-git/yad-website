@@ -60,6 +60,7 @@ export async function createMember(prevState: any, formData: FormData) {
       status: (rawData.status as any) || 'Pending',
       bio: (rawData.bio as string) || null,
       avatar_url: (rawData.avatar_url as string) || null,
+      role: (rawData.role as string) || null,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       profile: profile as any
     });
@@ -92,6 +93,7 @@ export async function updateMember(id: string, prevState: any, formData: FormDat
       status: rawData.status as any,
       bio: (rawData.bio as string) || null,
       avatar_url: (rawData.avatar_url as string) || null,
+      role: (rawData.role as string) || null,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       profile: profile as any
     });
