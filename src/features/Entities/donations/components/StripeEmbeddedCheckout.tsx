@@ -43,9 +43,9 @@ export function StripeEmbeddedCheckout({ id, type, amount, email }: StripeEmbedd
   if (error) {
     return (
       <div className="p-6 text-center bg-error-container text-error rounded-md border border-error/20">
-        <span className="material-symbols-outlined text-4xl mb-2 text-red-600">error</span>
-        <p className="font-bold text-red-700">Payment Setup Failed</p>
-        <p className="text-sm mt-1 text-red-600">{error}</p>
+        <span className="material-symbols-outlined text-4xl mb-2 text-error">error</span>
+        <p className="font-bold text-on-error-container">Payment Setup Failed</p>
+        <p className="text-sm mt-1 text-error">{error}</p>
       </div>
     );
   }

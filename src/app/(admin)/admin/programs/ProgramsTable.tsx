@@ -98,8 +98,8 @@ export function ProgramsTable({ initialData, count, page }: { initialData: Progr
       accessorKey: "status",
       cell: (row) => {
         const colors = {
-          upcoming: "bg-amber-100 text-amber-800",
-          active: "bg-green-100 text-green-800",
+          upcoming: "bg-secondary-container text-on-secondary-container",
+          active: "bg-primary-container text-on-primary-container",
           completed: "bg-surface-variant text-on-surface-variant",
         };
         return (

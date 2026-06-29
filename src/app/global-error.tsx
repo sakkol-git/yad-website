@@ -33,7 +33,7 @@ export default function GlobalError({
                 Something Went Wrong
               </h1>
               
-              <p className="text-sm font-light text-gray-600 leading-relaxed mb-10">
+              <p className="text-sm font-light text-on-surface-variant leading-relaxed mb-10">
                 We encountered an unexpected problem. Please try refreshing the page.
               </p>
 

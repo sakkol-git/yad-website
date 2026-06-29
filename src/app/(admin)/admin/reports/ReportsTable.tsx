@@ -182,7 +182,7 @@ function EditModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-900/50 backdrop-blur-sm p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-inverse-surface/50 backdrop-blur-sm p-4">
       <div className="bg-surface rounded-md border border-outline-variant/30 shadow-xl max-w-md w-full p-6">
         <h3 className="font-bold text-primary text-lg mb-4">Edit Report</h3>
 
@@ -257,7 +257,7 @@ function DeleteModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-900/50 backdrop-blur-sm p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-inverse-surface/50 backdrop-blur-sm p-4">
       <div className="bg-surface rounded-md border border-outline-variant/30 shadow-xl max-w-sm w-full p-6">
         <h3 className="font-bold text-on-surface text-lg mb-2">Delete Report</h3>
         <p className="text-on-surface-variant text-sm mb-6">

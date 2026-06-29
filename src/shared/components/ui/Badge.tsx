@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 interface BadgeProps {
   children: ReactNode;
-  variant?: "secondary" | "primary" | "tertiary";
+  variant?: "secondary" | "primary" | "tertiary" | "error";
   className?: string;
 }
 
@@ -14,6 +14,8 @@ const variantClasses: Record<string, string> = {
     "bg-primary-container text-on-primary-container",
   tertiary:
     "bg-tertiary-container text-on-tertiary-container",
+  error:
+    "bg-error-container text-on-error-container",
 };
 
 export function Badge({

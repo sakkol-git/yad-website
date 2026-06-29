@@ -110,9 +110,10 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
               {paymentMethod === "khqr" ? (
                 /* Beautiful Mock KHQR Frame */
                 <div className="w-64 bg-red-600 rounded-md p-4 shadow-xl border-4 border-red-700 flex flex-col items-center select-none text-white relative">
+                  {/* bg-red-600/border-red-700: Intentional KHQR national payment standard brand colors — not a design-token violation */}
                   {/* KHQR Header Banner */}
                   <div className="w-full flex items-center justify-between mb-3 px-1">
-                    <span className="text-[10px] font-bold tracking-widest bg-white text-red-600 px-1.5 py-0.5 rounded-sm">
+                    <span className="text-[10px] font-bold tracking-widest bg-on-primary text-primary px-1.5 py-0.5 rounded-sm">
                       KHQR
                     </span>
                     <span className="text-[9px] font-semibold opacity-95 text-right">
@@ -122,7 +123,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
 
                   {/* QR Image Area */}
                   <div className="w-full bg-white rounded-md p-3 flex flex-col items-center shadow-inner relative">
-                    <svg viewBox="0 0 100 100" className="w-44 h-44 text-slate-800">
+                    <svg viewBox="0 0 100 100" className="w-44 h-44 text-on-surface">
                       {/* Stylized QR Code Mock */}
                       <rect width="100" height="100" fill="white" />
                       {/* Corners */}
@@ -150,11 +151,11 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                     </svg>
                     
                     {/* Amount Banner */}
-                    <div className="mt-3 w-full bg-slate-50 border border-slate-200 py-1.5 rounded-md text-center">
-                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                    <div className="mt-3 w-full bg-surface-container-low border border-outline-variant/30 py-1.5 rounded-md text-center">
+                      <span className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider block">
                         Amount to Scan
                       </span>
-                      <span className="text-[17px] font-bold text-slate-800">
+                      <span className="text-[17px] font-bold text-on-surface">
                         USD {amount.toFixed(2)}
                       </span>
                     </div>

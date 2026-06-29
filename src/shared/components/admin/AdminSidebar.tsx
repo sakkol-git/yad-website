@@ -52,7 +52,7 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
       {/* Mobile Overlay Scrim */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-neutral-900/40 z-20 transition-opacity lg:hidden backdrop-blur-sm"
+          className="fixed inset-0 bg-inverse-surface/40 z-20 transition-opacity lg:hidden backdrop-blur-sm"
           onClick={onClose}
           aria-hidden="true"
         />

@@ -5,7 +5,7 @@ import { cn } from "@/shared/lib/utils"
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean
-  variant?: "default" | "primary" | "secondary" | "secondary-container" | "outline" | "ghost" | "link"
+  variant?: "default" | "primary" | "secondary" | "secondary-container" | "outline" | "ghost" | "link" | "danger"
   size?: "default" | "sm" | "lg" | "icon"
 }
 
@@ -16,11 +16,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const variantClasses = {
       default: "bg-primary text-white border border-transparent hover:bg-primary/90",
       primary: "bg-primary text-white border border-transparent hover:bg-primary/90",
-      secondary: "bg-secondary text-white border border-transparent hover:bg-secondary/90",
+      secondary: "bg-secondary text-on-secondary border border-transparent hover:bg-secondary/90",
       "secondary-container": "bg-surface border border-outline-variant/30 text-on-surface hover:bg-surface-container/50",
-      outline: "border border-primary text-primary hover:bg-primary hover:text-white",
+      outline: "border border-primary text-primary hover:bg-primary hover:text-on-primary",
       ghost: "text-on-surface-variant hover:text-primary hover:bg-surface-container/50",
       link: "text-primary underline-offset-4 hover:underline",
+      danger: "bg-error text-on-error border border-transparent hover:bg-error/90",
     }
 
     const sizeClasses = {
