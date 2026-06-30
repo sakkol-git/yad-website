@@ -176,7 +176,7 @@ export function OurStory() {
                   >
                     {/* Left content (or spacer) */}
                     <div className={isRight ? "text-right" : "col-start-2 row-start-1"}>
-                      {isRight && (
+                      {isRight ? (
                         <div
                           ref={(el) => {
                             cardRefs.current[i] = el;
@@ -184,6 +184,12 @@ export function OurStory() {
                           className="inline-block text-right"
                         >
                           <EraCard era={era} align="right" />
+                        </div>
+                      ) : (
+                        <div className="flex items-center justify-end h-full pr-12">
+                          <span className="text-4xl md:text-5xl lg:text-6xl font-black text-on-surface-variant/10 tracking-tighter">
+                            {era.period.split("—")[0].trim()}
+                          </span>
                         </div>
                       )}
                     </div>
@@ -215,31 +221,26 @@ export function OurStory() {
                           stroke={CHART_HEX.primaryContainer}
                           strokeWidth="3"
                         />
-                        {/* Year label */}
-                        <text
-                          x="24"
-                          y="-8"
-                          textAnchor="middle"
-                          fontSize="11"
-                          fontWeight="700"
-                          fontFamily="inherit"
-                          fill={CHART_HEX.onSurface}
-                          letterSpacing="0.1em"
-                        >
-                          {era.period.split("—")[0].trim()}
-                        </text>
                       </svg>
                     </div>
 
                     {/* Right content (or spacer) */}
-                    <div className={isRight ? "hidden" : "col-start-2"}>
-                      <div
-                        ref={(el) => {
-                          cardRefs.current[i] = el;
-                        }}
-                      >
-                        <EraCard era={era} align="left" />
-                      </div>
+                    <div className={isRight ? "hidden md:block" : "col-start-2"}>
+                      {isRight ? (
+                        <div className="flex items-center justify-start h-full pl-12">
+                          <span className="text-4xl md:text-5xl lg:text-6xl font-black text-on-surface-variant/10 tracking-tighter">
+                            {era.period.split("—")[0].trim()}
+                          </span>
+                        </div>
+                      ) : (
+                        <div
+                          ref={(el) => {
+                            cardRefs.current[i] = el;
+                          }}
+                        >
+                          <EraCard era={era} align="left" />
+                        </div>
+                      )}
                     </div>
                   </div>
 
