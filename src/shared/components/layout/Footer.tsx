@@ -180,7 +180,6 @@ export default function Footer({ variant = "full" }: FooterProps) {
           </div>
 
         </div>
-      </div>
     </footer>
   );
 }
