@@ -19,7 +19,7 @@ export function ProvinceTooltip({ node, x, y }: ProvinceTooltipProps) {
       }}
     >
       <div
-        className="bg-surface border border-outline-variant/30 rounded-sm px-5 py-4 shadow-lg min-w-[220px]"
+        className="bg-surface/80 backdrop-blur-xl border border-outline-variant/30 rounded-xl px-5 py-4 shadow-ambient min-w-[220px]"
         style={{ color: MAP_TOKENS.tooltipText }}
       >
         {/* Header */}

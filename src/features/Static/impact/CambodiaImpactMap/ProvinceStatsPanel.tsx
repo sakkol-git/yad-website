@@ -35,10 +35,10 @@ export function ProvinceStatsPanel({ nodes, activeNodeId, onSelectNode }: Provin
               <button
                 key={node.id}
                 onClick={() => onSelectNode(node)}
-                className={`w-full text-left p-4 rounded-sm border transition-all duration-200 cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                className={`w-full text-left p-4 rounded-xl border transition-all duration-300 cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                   isActive
-                    ? "bg-primary-container/20 border-primary/40"
-                    : "bg-surface border-outline-variant/30 hover:border-primary/30 hover:bg-surface-container-low"
+                    ? "bg-primary-container/20 border-primary/40 shadow-ambient"
+                    : "bg-surface border-outline-variant/30 hover:border-primary/30 hover:bg-surface-container-low hover:shadow-md"
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">

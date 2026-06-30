@@ -146,17 +146,19 @@ export function TheoryOfChange() {
 
             return (
               <div key={col.id} className="flex flex-row lg:flex-col lg:flex-1 items-center">
-                {/* Card */}
                 <div
-                  className={`flex-1 w-full p-6 border rounded-sm ${colors.bg} ${colors.border} transition-all duration-700`}
+                  className={`relative flex-1 w-full p-6 lg:p-8 rounded-2xl border backdrop-blur-xl shadow-sm hover:shadow-ambient overflow-hidden group ${colors.bg} ${colors.border} transition-all duration-700`}
                   style={{
                     opacity: isInView ? 1 : 0,
                     transform: isInView ? "translateY(0)" : "translateY(24px)",
                     transitionDelay: `${i * 150}ms`,
                   }}
                 >
+                  {/* Glass Shimmer / Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent dark:from-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
                   {/* Subtitle label */}
-                  <span className="text-[9px] uppercase tracking-[0.25em] font-bold text-on-surface-variant/60 block mb-3">
+                  <span className="text-[9px] uppercase tracking-[0.25em] font-bold text-on-surface-variant/60 block mb-3 relative z-10">
                     {col.subtitle}
                   </span>
 

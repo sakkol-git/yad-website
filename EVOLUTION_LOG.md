@@ -244,3 +244,21 @@
 **Next candidates:**
 1. Future UI graphic design upgrades (TheoryOfChange glassmorphism, CambodiaImpactMap refinement).
 2. Any remaining inline `supabase.from` calls scattered across other Server Components (requires thorough sweep via grep).
+
+## Run 16 — 2026-06-30
+**Target:** Future UI graphic design upgrades (TheoryOfChange glassmorphism, CambodiaImpactMap refinement) — Visual Consistency/Polish.
+**Change:** 
+- Added glassmorphism to `TheoryOfChange.tsx` by upgrading cards to use `rounded-2xl`, `backdrop-blur-xl`, `shadow-ambient` hover states, and a subtle gradient shimmer.
+- Upgraded the `CambodiaImpactMap.tsx` map container with `rounded-2xl` and `backdrop-blur-md` styling.
+- Refined `ProvinceStatsPanel.tsx` by adding `rounded-xl`, smoother transition durations, and `shadow-ambient` to active states.
+- Upgraded `ProvinceTooltip.tsx` to utilize `backdrop-blur-xl` and `shadow-ambient`.
+**Proof:** 
+- Aesthetic: The Impact graphics now visually feel vastly more premium, maintaining depth, translucency, and micro-interactions that align with top-tier modern web application design guidelines without fundamentally rewriting the layouts or structures.
+**Verification:**
+- [x] `next build` succeeds, zero new TypeScript errors.
+- [x] No new lint errors.
+- [x] Changed flow manually traced: UI renders seamlessly with updated Tailwind classes.
+- [x] Keyboard-only pass: Interactive map elements and theory of change remain accessible.
+**Next candidates:**
+1. Any remaining inline `supabase.from` calls scattered across Server Components (none found within `/src/app` outside of health check, but maybe a deep dive is needed).
+2. Look for any remaining hardcoded strings in alert roles (like the one fixed in QuickFormSection) across other forms.

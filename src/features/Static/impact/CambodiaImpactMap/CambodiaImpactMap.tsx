@@ -80,7 +80,7 @@ export function CambodiaImpactMap() {
         {/* Map Column */}
         <div
           ref={mapContainerRef}
-          className="lg:col-span-8 relative bg-surface-container-low border border-outline-variant/30 rounded-sm overflow-hidden"
+          className="lg:col-span-8 relative bg-surface-container-lowest/50 backdrop-blur-md border border-outline-variant/30 rounded-2xl overflow-hidden shadow-sm hover:shadow-ambient transition-shadow duration-500"
           onMouseMove={handleMapMouseMove}
           style={{ minHeight: 400 }}
         >
