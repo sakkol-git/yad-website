@@ -144,4 +144,19 @@
 - [x] Grep for usages: valid.
 - [x] Keyboard-only pass: Focus state is now visible via standard focus ring.
 **Next candidates:**
-1. `src/features/Static/getInvole/QuickFormSection.tsx` - Error handling (Tier 4). The `QuickFormSection.tsx` form state `error` renders a `<div role="alert">` that says "Placeholder" if no error message is provided.
+1. `src/features/Static/getInvole/QuickFormSection.tsx` - Error handling (Tier 6). The `QuickFormSection.tsx` form state `error` renders a `<div role="alert">` that says "Placeholder" if no error message is provided.
+
+## Run 10 — 2026-06-30
+**Target:** src/features/Static/getInvole/QuickFormSection.tsx — Error handling (UX friction). The form state `error` renders a `<div role="alert">` that says "Placeholder" if no explicit server error message is provided. Ranked Tier 6 (UX friction).
+**Change:** Replaced the hardcoded `"Placeholder"` string in `src/features/Static/getInvole/QuickFormSection.tsx` with a proper, generic fallback error message (`"An unexpected error occurred. Please try again."`).
+**Proof:** 
+- Bug fix: The exact repro was submitting the Quick Contact Form and receiving an empty error from the server action, which resulted in the UI literally rendering the word "Placeholder" in the red alert box. Confirmation: The component now falls back to "An unexpected error occurred. Please try again.".
+**Verification:**
+- [x] `next build` succeeds, zero new TypeScript errors.
+- [x] No new lint errors.
+- [x] No new console errors/warnings in the changed flow.
+- [x] Changed flow manually traced.
+- [x] Grep for usages: valid.
+- [x] Keyboard-only pass: Flow continues to function identically.
+**Next candidates:**
+1. `src/features/Static/impact/CambodiaImpactMap/CambodiaImpactMap.tsx` - Performance (Tier 4). The component statically imports `react-simple-maps`, a heavy mapping dependency, directly blocking initial page load on the Homepage and Impact page. Needs `next/dynamic`.

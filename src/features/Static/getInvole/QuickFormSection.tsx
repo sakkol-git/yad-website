@@ -193,7 +193,7 @@ export function QuickFormSection() {
                 : "opacity-0 pointer-events-none h-0 m-0 py-0 border-0"
             }`}
           >
-            {errorMessage || "Placeholder"}
+            {errorMessage || "An unexpected error occurred. Please try again."}
           </div>
 
           <div className="pt-6">
