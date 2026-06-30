@@ -23,8 +23,8 @@ export function AboutHero() {
             {/* Massive, Tension-filled Headline */}
             <TextReveal
               as="h1"
-              text="Youth Advancement for development."
-              className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6"
+              text="Youth Advancement for development"
+              className="text-[3rem] md:text-[4rem] lg:text-[5rem] text-primary tracking-tighter leading-[1.0] mb-6"
               delay={0.2}
             />
 
