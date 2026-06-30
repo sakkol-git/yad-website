@@ -220,7 +220,7 @@ export function OurStory() {
                           x={isRight ? 52 : -4}
                           y="28"
                           textAnchor={isRight ? "start" : "end"}
-                          fontSize="12"
+                          fontSize="16"
                           fontWeight="700"
                           fontFamily="inherit"
                           fill={CHART_HEX.onSurface}

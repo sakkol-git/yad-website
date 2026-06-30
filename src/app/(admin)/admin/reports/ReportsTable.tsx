@@ -89,8 +89,9 @@ function UploadForm({ onSuccess }: { onSuccess: () => void }) {
 
       {/* Title */}
       <div>
-        <label className="block text-sm font-bold mb-1">Title</label>
+        <label htmlFor="upload-title" className="block text-sm font-bold mb-1">Title</label>
         <input
+          id="upload-title"
           type="text"
           className="stripe-input"
           placeholder="e.g., Annual Impact & Financial Report 2025"
@@ -102,8 +103,9 @@ function UploadForm({ onSuccess }: { onSuccess: () => void }) {
 
       {/* Year */}
       <div>
-        <label className="block text-sm font-bold mb-1">Fiscal Year</label>
+        <label htmlFor="upload-year" className="block text-sm font-bold mb-1">Fiscal Year</label>
         <input
+          id="upload-year"
           type="number"
           className="stripe-input"
           placeholder={String(new Date().getFullYear())}
@@ -115,8 +117,9 @@ function UploadForm({ onSuccess }: { onSuccess: () => void }) {
 
       {/* File */}
       <div>
-        <label className="block text-sm font-bold mb-1">PDF Document</label>
+        <label htmlFor="upload-file" className="block text-sm font-bold mb-1">PDF Document</label>
         <input
+          id="upload-file"
           type="file"
           accept=".pdf"
           className="block w-full text-sm text-on-surface-variant file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary-container file:text-primary hover:file:bg-primary-container/80 cursor-pointer"
@@ -178,8 +181,9 @@ function EditModal({
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div>
-            <label className="block text-sm font-bold mb-1">Title</label>
+            <label htmlFor="edit-title" className="block text-sm font-bold mb-1">Title</label>
             <input
+              id="edit-title"
               type="text"
               className="stripe-input"
               value={title}
@@ -188,8 +192,9 @@ function EditModal({
             />
           </div>
           <div>
-            <label className="block text-sm font-bold mb-1">Fiscal Year</label>
+            <label htmlFor="edit-year" className="block text-sm font-bold mb-1">Fiscal Year</label>
             <input
+              id="edit-year"
               type="number"
               className="stripe-input"
               value={year}
