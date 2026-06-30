@@ -14,11 +14,11 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
 
   return (
     <div ref={ref} className="relative w-full py-10 flex flex-col items-center overflow-hidden">
-      
+
       {/* Tier 1: Founder */}
       {founder && (
         <div className="flex flex-col items-center w-full relative z-10">
-          <div 
+          <div
             className="w-full max-w-[340px] transition-all duration-700 ease-out"
             style={{
               opacity: isInView ? 1 : 0,
@@ -30,7 +30,7 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
 
           {/* Main Trunk connecting Tier 1 to Tier 2 */}
           {coFounders.length > 0 && (
-            <div 
+            <div
               className="w-[2px] h-10 md:h-16 bg-primary origin-top transition-transform duration-500 ease-out"
               style={{
                 transform: isInView ? "scaleY(1)" : "scaleY(0)",
@@ -50,21 +50,21 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
             const isOnly = coFounders.length === 1;
 
             return (
-              <div key={member.id} className="relative flex flex-col items-center px-4 md:px-6">
-                
+              <div key={member.id} className="relative flex flex-col items-center px-8 md:px-16 lg:px-[160px]">
+
                 {/* Horizontal Distribution Line */}
                 {!isOnly && (
                   <div className="absolute top-0 left-0 right-0 h-[2px] flex">
                     {/* Left side goes towards the previous card (origin-right so it draws from center out) */}
-                    <div 
-                      className={`h-full w-1/2 origin-right transition-transform duration-500 ease-out ${!isFirst ? "bg-primary" : ""}`} 
+                    <div
+                      className={`h-full w-1/2 origin-right transition-transform duration-500 ease-out ${!isFirst ? "bg-primary" : ""}`}
                       style={{
                         transform: isInView ? "scaleX(1)" : "scaleX(0)",
                         transitionDelay: "0.8s"
                       }}
                     />
                     {/* Right side goes towards the next card (origin-left so it draws from center out) */}
-                    <div 
+                    <div
                       className={`h-full w-1/2 origin-left transition-transform duration-500 ease-out ${!isLast ? "bg-primary" : ""}`}
                       style={{
                         transform: isInView ? "scaleX(1)" : "scaleX(0)",
@@ -75,7 +75,7 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
                 )}
 
                 {/* Vertical Branch Down to this Card */}
-                <div 
+                <div
                   className="w-[2px] h-10 md:h-16 bg-primary origin-top transition-transform duration-500 ease-out"
                   style={{
                     transform: isInView ? "scaleY(1)" : "scaleY(0)",
@@ -84,7 +84,7 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
                 />
 
                 {/* Card Container */}
-                <div 
+                <div
                   className="w-[260px] md:w-[280px] transition-all duration-700 ease-out"
                   style={{
                     opacity: isInView ? 1 : 0,
@@ -101,7 +101,7 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
       )}
 
       {/* Accountability Note */}
-      <div 
+      <div
         className="mt-24 pt-8 border-t border-outline-variant/30 text-center max-w-2xl transition-all duration-700 ease-out"
         style={{
           opacity: isInView ? 1 : 0,
