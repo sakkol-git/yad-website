@@ -18,7 +18,7 @@ export default function PorridgeForHopePage() {
   ];
 
   return (
-    <main className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-20 overflow-hidden border-b border-outline-variant/30">
+    <main className="relative w-full bg-surface pt-36 pb-16 lg:pt-48 lg:pb-24 overflow-hidden border-b border-outline-variant/30">
       <RevealOnScroll className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-container-max relative z-10">
         <BreadcrumbSchema items={breadcrumbs} />
 

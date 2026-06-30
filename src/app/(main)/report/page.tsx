@@ -36,7 +36,7 @@ export default async function RadicalTransparencyPage() {
   }
 
   return (
-    <main className="flex-grow pb-section-gap pt-24">
+    <main className="flex-grow pb-section-gap pt-36 lg:pt-48">
       <BreadcrumbSchema items={breadcrumbs} />
       <RadicalTransparency reports={reports} />
     </main>

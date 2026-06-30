@@ -53,7 +53,7 @@ export default async function DonorDetailPage({ params }: PageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-background pb-24 pt-24 lg:pt-32">
+    <main className="min-h-screen bg-background pb-24 pt-36 lg:pt-48">
       <div className="container max-w-5xl mx-auto px-6">
         <Link
           href="/donors"

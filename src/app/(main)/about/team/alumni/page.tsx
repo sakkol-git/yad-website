@@ -13,7 +13,7 @@ export default function AlumniTeamPage() {
     <main className="pb-section-gap bg-surface">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-container-max">
         {/* Editorial Page Header */}
-        <div className="pt-24 pb-16 lg:pt-32 lg:pb-24 border-b border-outline-variant/30 mb-16">
+        <div className="pt-36 pb-20 lg:pt-48 lg:pb-28 border-b border-outline-variant/30 mb-16">
           <RevealOnScroll className="max-w-4xl">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-6 h-[1px] bg-primary" />

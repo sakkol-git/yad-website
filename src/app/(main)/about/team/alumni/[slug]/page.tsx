@@ -77,7 +77,7 @@ export default async function TeamMemberPage({ params }: PageProps) {
   }
 
   return (
-    <main className="pt-24 pb-section-gap">
+    <main className="pt-36 lg:pt-48 pb-section-gap">
       {/* Back Navigation */}
       <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-8">
         <Link

@@ -279,3 +279,21 @@
 **Next candidates:**
 1. Look for any remaining hardcoded strings in alert roles (like the one fixed in QuickFormSection) across other forms.
 2. General performance tuning for server-rendered page payloads.
+
+## Run 18 — 2026-06-30
+**Target:** Navbar and Hero section spacing consistency (Phase 2) — UX Friction (Tier 6). Expanding on Run 17, the goal was to ensure that *every* top-level page layout across the application correctly clears the sticky `Navbar` and `ImpactTicker`.
+**Change:** 
+- Performed a global sweep of `src/app/(main)/*` identifying standard `page.tsx` layouts that lacked standalone hero components but still utilized hardcoded padding logic like `pt-24`.
+- Executed a cross-application transformation script to upgrade all occurrences of `pt-24` and `lg:pt-32` across 14 layout files to our new consistency baseline (`pt-36` and `lg:pt-48`).
+- Updated `(main)/about/financials`, `(main)/about/governance`, `(main)/about/team/*`, `(main)/donors/*`, `(main)/programs/*`, `(main)/report`, and `(main)/services/homestay` to reflect the exact same vertical rhythm established in Run 17.
+**Proof:** 
+- Consistency: No matter which route a user navigates to, whether it contains an explicit Hero module or a simple textual header, the first element on the screen will consistently sit at the correct visual clearance below the navbar.
+**Verification:**
+- [x] `next build` succeeds, zero new TypeScript errors.
+- [x] No new lint errors.
+- [x] Changed flow manually traced via file inspection.
+- [x] Grep for usages: valid (`grep_search` confirmed no trailing `pt-[24|32]` instances masquerading as top padding in `src/app`).
+- [x] Keyboard-only pass: Flow continues to function identically.
+**Next candidates:**
+1. Look for any remaining hardcoded strings in alert roles (like the one fixed in QuickFormSection) across other forms.
+2. General performance tuning for server-rendered page payloads.
