@@ -1,7 +1,6 @@
 "use client";
 
 import { useInViewAnimation } from "@/shared/hooks/useInViewAnimation";
-import { CHART_HEX } from "@/shared/constants/infographic-tokens";
 import { TeamMemberCard } from "./TeamMemberCard";
 import type { TeamMember } from "@/features/Entities/members/types/member.types";
 
@@ -14,98 +13,96 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
   const [ref, isInView] = useInViewAnimation<HTMLDivElement>({ threshold: 0.1 });
 
   return (
-    <div ref={ref} className="relative w-full py-10 flex flex-col items-center">
+    <div ref={ref} className="relative w-full py-10 flex flex-col items-center overflow-hidden">
       
       {/* Tier 1: Founder */}
       {founder && (
-        <div 
-          className="relative z-10 w-full max-w-[340px] transition-all duration-700 ease-out"
-          style={{
-            opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(40px)"
-          }}
-        >
-          <TeamMemberCard {...founder} href={`/about/governance/${founder.slug}`} />
-        </div>
-      )}
+        <div className="flex flex-col items-center w-full relative z-10">
+          <div 
+            className="w-full max-w-[340px] transition-all duration-700 ease-out"
+            style={{
+              opacity: isInView ? 1 : 0,
+              transform: isInView ? "translateY(0)" : "translateY(40px)"
+            }}
+          >
+            <TeamMemberCard {...founder} href={`/about/governance/${founder.slug}`} />
+          </div>
 
-      {/* SVG Connecting Tree */}
-      {founder && coFounders.length > 0 && (
-        <div className="relative w-full h-[80px] md:h-[120px] flex items-center justify-center pointer-events-none my-4">
-          <svg className="w-full h-full overflow-visible" preserveAspectRatio="none">
-            {/* Main vertical spine from founder */}
-            <line
-              x1="50%"
-              y1="0"
-              x2="50%"
-              y2="50%"
-              stroke={CHART_HEX.primary}
-              strokeWidth="2"
-              strokeDasharray="100"
-              strokeDashoffset={isInView ? "0" : "100"}
-              style={{ transition: "stroke-dashoffset 0.6s ease 0.3s" }}
+          {/* Main Trunk connecting Tier 1 to Tier 2 */}
+          {coFounders.length > 0 && (
+            <div 
+              className="w-[2px] h-10 md:h-16 bg-primary origin-top transition-transform duration-500 ease-out"
+              style={{
+                transform: isInView ? "scaleY(1)" : "scaleY(0)",
+                transitionDelay: "0.3s"
+              }}
             />
-            
-            {/* Horizontal distribution bar */}
-            <line
-              x1="15%"
-              y1="50%"
-              x2="85%"
-              y2="50%"
-              stroke={CHART_HEX.primary}
-              strokeWidth="2"
-              strokeDasharray="100%"
-              strokeDashoffset={isInView ? "0" : "100%"}
-              style={{ transition: "stroke-dashoffset 0.8s ease 0.6s" }}
-            />
-
-            {/* Downward branches to co-founders */}
-            {coFounders.map((_, i) => {
-              // Calculate x-position based on number of cofounders (15% to 85%)
-              const step = 70 / (coFounders.length > 1 ? coFounders.length - 1 : 1);
-              const xPos = coFounders.length === 1 ? 50 : 15 + i * step;
-
-              return (
-                <line
-                  key={i}
-                  x1={`${xPos}%`}
-                  y1="50%"
-                  x2={`${xPos}%`}
-                  y2="100%"
-                  stroke={CHART_HEX.primary}
-                  strokeWidth="2"
-                  strokeDasharray="100"
-                  strokeDashoffset={isInView ? "0" : "100"}
-                  style={{ transition: `stroke-dashoffset 0.6s ease ${0.8 + i * 0.15}s` }}
-                />
-              );
-            })}
-          </svg>
+          )}
         </div>
       )}
 
       {/* Tier 2: Co-Founders / Board */}
       {coFounders.length > 0 && (
-        <div className="relative z-10 w-full flex flex-row flex-wrap justify-center items-start gap-8 md:gap-12">
-          {coFounders.map((member, i) => (
-            <div 
-              key={member.id} 
-              className="w-full max-w-[280px] transition-all duration-700 ease-out"
-              style={{
-                opacity: isInView ? 1 : 0,
-                transform: isInView ? "translateY(0)" : "translateY(40px)",
-                transitionDelay: `${1000 + i * 150}ms`
-              }}
-            >
-              <TeamMemberCard {...member} href={`/about/governance/${member.slug}`} />
-            </div>
-          ))}
+        <div className="flex flex-row flex-wrap justify-center w-full">
+          {coFounders.map((member, i) => {
+            const isFirst = i === 0;
+            const isLast = i === coFounders.length - 1;
+            const isOnly = coFounders.length === 1;
+
+            return (
+              <div key={member.id} className="relative flex flex-col items-center px-4 md:px-6">
+                
+                {/* Horizontal Distribution Line */}
+                {!isOnly && (
+                  <div className="absolute top-0 left-0 right-0 h-[2px] flex">
+                    {/* Left side goes towards the previous card (origin-right so it draws from center out) */}
+                    <div 
+                      className={`h-full w-1/2 origin-right transition-transform duration-500 ease-out ${!isFirst ? "bg-primary" : ""}`} 
+                      style={{
+                        transform: isInView ? "scaleX(1)" : "scaleX(0)",
+                        transitionDelay: "0.8s"
+                      }}
+                    />
+                    {/* Right side goes towards the next card (origin-left so it draws from center out) */}
+                    <div 
+                      className={`h-full w-1/2 origin-left transition-transform duration-500 ease-out ${!isLast ? "bg-primary" : ""}`}
+                      style={{
+                        transform: isInView ? "scaleX(1)" : "scaleX(0)",
+                        transitionDelay: "0.8s"
+                      }}
+                    />
+                  </div>
+                )}
+
+                {/* Vertical Branch Down to this Card */}
+                <div 
+                  className="w-[2px] h-10 md:h-16 bg-primary origin-top transition-transform duration-500 ease-out"
+                  style={{
+                    transform: isInView ? "scaleY(1)" : "scaleY(0)",
+                    transitionDelay: `${1.1 + i * 0.15}s`
+                  }}
+                />
+
+                {/* Card Container */}
+                <div 
+                  className="w-[260px] md:w-[280px] transition-all duration-700 ease-out"
+                  style={{
+                    opacity: isInView ? 1 : 0,
+                    transform: isInView ? "translateY(0)" : "translateY(40px)",
+                    transitionDelay: `${1.4 + i * 0.15}s`
+                  }}
+                >
+                  <TeamMemberCard {...member} href={`/about/governance/${member.slug}`} />
+                </div>
+              </div>
+            );
+          })}
         </div>
       )}
 
       {/* Accountability Note */}
       <div 
-        className="mt-20 pt-8 border-t border-outline-variant/30 text-center max-w-2xl transition-all duration-700 ease-out"
+        className="mt-24 pt-8 border-t border-outline-variant/30 text-center max-w-2xl transition-all duration-700 ease-out"
         style={{
           opacity: isInView ? 1 : 0,
           transform: isInView ? "translateY(0)" : "translateY(20px)",
