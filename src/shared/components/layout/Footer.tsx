@@ -3,7 +3,7 @@ import Image from "next/image";
 import { FOOTER_LINKS } from "@/shared/constants/navigation";
 import { COPYRIGHT_TEXT, SITE_TAGLINE, REGISTERED_TEXT } from "@/shared/constants/site";
 import { Facebook, Send, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
-import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+
 import { NewsletterSignup } from "@/shared/components/ui/NewsletterSignup";
 
 interface FooterProps {
@@ -14,20 +14,18 @@ export default function Footer({ variant = "full" }: FooterProps) {
   if (variant === "minimal") {
     return (
       <footer className="w-full py-8 text-center bg-surface-container-lowest text-on-surface-variant font-body-md text-sm border-t border-outline-variant/30">
-        <RevealOnScroll y={20}>
-          <p>{COPYRIGHT_TEXT}</p>
-          <div className="flex justify-center gap-6 mt-4">
-            <Link href="/privacy" className="hover:text-primary hover:underline underline-offset-4 transition-colors duration-150">
-              Privacy
-            </Link>
-            <Link href="/terms" className="hover:text-primary hover:underline underline-offset-4 transition-colors duration-150">
-              Terms
-            </Link>
-            <Link href="/get-involved" className="hover:text-primary hover:underline underline-offset-4 transition-colors duration-150">
-              Contact
-            </Link>
-          </div>
-        </RevealOnScroll>
+        <p>{COPYRIGHT_TEXT}</p>
+        <div className="flex justify-center gap-6 mt-4">
+          <Link href="/privacy" className="hover:text-primary hover:underline underline-offset-4 transition-colors duration-150">
+            Privacy
+          </Link>
+          <Link href="/terms" className="hover:text-primary hover:underline underline-offset-4 transition-colors duration-150">
+            Terms
+          </Link>
+          <Link href="/get-involved" className="hover:text-primary hover:underline underline-offset-4 transition-colors duration-150">
+            Contact
+          </Link>
+        </div>
       </footer>
     );
   }
@@ -38,8 +36,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/[0.03] rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-[120px] pointer-events-none translate-y-1/2" />
 
-      <RevealOnScroll y={30}>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px] relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px] relative z-10">
           
           {/* Newsletter Section */}
           <div id="footer-newsletter" className="mb-20">
@@ -183,7 +180,7 @@ export default function Footer({ variant = "full" }: FooterProps) {
           </div>
 
         </div>
-      </RevealOnScroll>
+      </div>
     </footer>
   );
 }
