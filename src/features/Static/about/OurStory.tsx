@@ -282,7 +282,7 @@ export function OurStory() {
 // ── Era Content Card ──────────────────────────────────────────────────────────
 function EraCard({ era, align }: { era: (typeof ERAS)[number]; align: "left" | "right" }) {
   return (
-    <div className={`max-w-[480px] ${align === "right" ? "ml-auto" : ""}`}>
+    <div className={`max-w-lg ${align === "right" ? "ml-auto" : ""}`}>
       {/* Label + Period */}
       <div
         className={`flex items-center gap-3 mb-3 ${align === "right" ? "flex-row-reverse" : ""}`}
@@ -295,7 +295,7 @@ function EraCard({ era, align }: { era: (typeof ERAS)[number]; align: "left" | "
       </div>
 
       {/* ABbr Badge */}
-      <span className="inline-block text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 border border-primary/30 text-primary mb-4 rounded-sm">
+      <span className="inline-block text-xs font-bold uppercase tracking-widest px-2.5 py-1 border border-primary/30 text-primary mb-4 rounded-sm">
         {era.abbr}
       </span>
 
@@ -326,7 +326,7 @@ function EraCard({ era, align }: { era: (typeof ERAS)[number]; align: "left" | "
         {era.programs.map((p) => (
           <span
             key={p}
-            className="text-[9px] uppercase tracking-widest font-bold px-2.5 py-1 bg-primary-container/20 text-on-primary-container rounded-sm"
+            className="text-[10px] uppercase tracking-widest font-bold px-2.5 py-1 bg-primary-container/20 text-on-primary-container rounded-sm"
           >
             {p}
           </span>
