@@ -98,4 +98,35 @@
 **Next candidates:**
 1. `src/app/payment/stripe/StripePaymentClient.tsx` - Check for similar architecture debt as LocalPaymentClient, likely needs component extraction for Checkout/Payment elements. (Tier 5)
 2. `src/shared/components/layout/Navbar.tsx` - Inconsistent UX. Hardcoded `text-[10px]` typography instead of semantic `.kicker-label`. (Tier 7)
-3. `src/features/Entities/members/components/CommunityStructureGovernace.tsx` - Check for responsiveness or architecture issues since the user had it open during the run. (Tier 5)
+3. `src/features/Entities/members/components/CommunityStructureGovernance.tsx` - Check for responsiveness or architecture issues since the user had it open during the run. (Tier 5)
+
+## Run 7 — 2026-06-30
+**Target:** src/app/payment/stripe/StripePaymentClient.tsx — Component architecture. Duplicate PaymentSummary block identified between LocalPaymentClient and StripePaymentClient. Ranked Tier 5 (Architecture/maintainability debt).
+**Change:** Relocated `PaymentSummary.tsx` from `payment/local/components/` up to `payment/components/` and refactored it to accept a generic `children` prop. Both `LocalPaymentClient` and `StripePaymentClient` now import this shared summary component and pass their specific footer text/icons as children.
+**Proof:** 
+- Architecture: Extracted ~50 lines of duplicate UI from `StripePaymentClient.tsx` and consolidated the UI into a single shared `PaymentSummary.tsx`. `LocalPaymentClient` updated to use the new shared path. The application now uses exactly one implementation of the Payment Summary UI.
+**Verification:**
+- [x] `next build` succeeds, zero new TypeScript errors.
+- [x] No new lint errors.
+- [x] No new console errors/warnings in the changed flow.
+- [x] Changed flow manually traced (UI components receive props and render identically).
+- [x] Grep for usages: valid.
+- [x] Keyboard-only pass: Flow continues to function identically.
+**Next candidates:**
+1. `src/shared/components/layout/Navbar.tsx` - Inconsistent UX. Hardcoded `text-[10px]` typography instead of semantic `.kicker-label`. (Tier 7)
+2. `src/features/Entities/members/components/CommunityStructureGovernance.tsx` - Check for responsiveness or architecture issues since the user had it open during the run. (Tier 5)
+
+## Run 8 — 2026-06-30
+**Target:** src/shared/components/layout/Navbar.tsx — Inconsistent UX. Hardcoded `text-[10px]` typography instead of semantic `.kicker-label`. Ranked Tier 7 (Visual/design-system inconsistency).
+**Change:** Updated 11 occurrences in `Navbar.tsx` where `text-[10px] font-bold uppercase tracking-widest` (and variations) were manually specified to instead use the global semantic utility `.kicker-label`.
+**Proof:** 
+- Consistency: The hardcoded utility classes `text-[10px] font-bold uppercase tracking-widest` have been fully replaced with the semantic `.kicker-label` class across mobile menus, dropdowns, and buttons.
+**Verification:**
+- [x] `next build` succeeds, zero new TypeScript errors.
+- [x] No new lint errors.
+- [x] No new console errors/warnings in the changed flow.
+- [x] Changed flow manually traced (UI components receive props and render identically).
+- [x] Grep for usages: valid.
+- [x] Keyboard-only pass: Flow continues to function identically.
+**Next candidates:**
+1. `src/features/Entities/members/components/CommunityStructureGovernance.tsx` - Check for responsiveness or architecture issues since the user had it open during the run. (Tier 5)

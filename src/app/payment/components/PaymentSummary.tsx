@@ -1,10 +1,12 @@
 import { GenericPaymentDetails } from "@/server/actions/payment.actions";
+import { ReactNode } from "react";
 
 interface PaymentSummaryProps {
   paymentDetails: GenericPaymentDetails;
+  children?: ReactNode;
 }
 
-export function PaymentSummary({ paymentDetails }: PaymentSummaryProps) {
+export function PaymentSummary({ paymentDetails, children }: PaymentSummaryProps) {
   const { name, email, amount, description } = paymentDetails;
 
   return (
@@ -40,21 +42,7 @@ export function PaymentSummary({ paymentDetails }: PaymentSummaryProps) {
           </span>
         </div>
 
-        <div className="space-y-4 relative z-10">
-          <div className="flex items-start gap-4">
-            <span className="material-symbols-outlined text-xl text-primary">info</span>
-            <div>
-              <p className="uppercase tracking-widest text-[10px] font-bold text-on-surface mb-1">
-                What Happens Next?
-              </p>
-              <p className="text-xs font-light text-on-surface-variant leading-relaxed mt-0.5">
-                After submitting your Transaction ID, our financial team will verify it. This
-                process typically takes under 2 hours. You will receive an official confirmation
-                email once confirmed.
-              </p>
-            </div>
-          </div>
-        </div>
+        {children && <div className="space-y-4 relative z-10">{children}</div>}
       </div>
     </div>
   );

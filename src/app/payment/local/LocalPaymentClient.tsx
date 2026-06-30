@@ -8,7 +8,7 @@ import { Button } from "@/shared/components/ui/Button";
 import { GenericPaymentDetails } from "@/server/actions/payment.actions";
 import { KHQR } from "./components/KHQR";
 import { BankAccountDetails } from "./components/BankAccountDetails";
-import { PaymentSummary } from "./components/PaymentSummary";
+import { PaymentSummary } from "../components/PaymentSummary";
 
 interface LocalPaymentClientProps {
   paymentDetails: GenericPaymentDetails;
@@ -196,7 +196,21 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
       </div>
 
       {/* Side summary column */}
-      <PaymentSummary paymentDetails={paymentDetails} />
+      <PaymentSummary paymentDetails={paymentDetails}>
+        <div className="flex items-start gap-4">
+          <span className="material-symbols-outlined text-xl text-primary">info</span>
+          <div>
+            <p className="uppercase tracking-widest text-[10px] font-bold text-on-surface mb-1">
+              What Happens Next?
+            </p>
+            <p className="text-xs font-light text-on-surface-variant leading-relaxed mt-0.5">
+              After submitting your Transaction ID, our financial team will verify it. This process
+              typically takes under 2 hours. You will receive an official confirmation email once
+              confirmed.
+            </p>
+          </div>
+        </div>
+      </PaymentSummary>
     </div>
   );
 }
