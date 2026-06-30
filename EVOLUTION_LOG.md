@@ -31,3 +31,20 @@
 1. `src/app/(admin)/admin/reports/ReportsTable.tsx` - Component architecture. Contains 4 separate complex components (UploadForm, EditModal, DeleteModal, ReportsTable) in one file. (Tier 5)
 2. `src/shared/components/layout/Navbar.tsx` - Inconsistent UX. Hardcoded `text-[10px]` typography instead of semantic `.kicker-label`. (Tier 7)
 3. `src/app/payment/local/LocalPaymentClient.tsx` - Component architecture. Over 380 lines mixing UI with complex payment processing logic. (Tier 5)
+
+## Run 3 — 2026-06-30
+**Target:** src/app/(admin)/admin/reports/ReportsTable.tsx — Component architecture. Contains 4 separate complex components (UploadForm, EditModal, DeleteModal, ReportsTable) in one file. Ranked Tier 5 (Architecture/maintainability debt).
+**Change:** Extracted `UploadForm`, `EditModal`, and `DeleteModal` into separate files inside `src/app/(admin)/admin/reports/components/`. 
+**Proof:** 
+- Architecture: Extracted ~230 lines of code into three separate components: `UploadForm.tsx`, `EditModal.tsx`, `DeleteModal.tsx`. The main `ReportsTable.tsx` file is now ~200 lines and only contains the table rendering logic.
+**Verification:**
+- [x] `next build` succeeds, zero new TypeScript errors.
+- [x] No new lint errors.
+- [x] No new console errors/warnings in the changed flow.
+- [x] Changed flow manually traced (UI components render identically).
+- [x] Grep for usages: valid.
+- [x] Keyboard-only pass: Modals still function properly.
+**Next candidates:**
+1. `src/app/payment/local/LocalPaymentClient.tsx` - Component architecture. Over 380 lines mixing UI with complex payment processing logic. (Tier 5)
+2. `src/features/Entities/auth/components/RegisterForm.tsx` - Component architecture. Large >360 lines file with repeated form input logic that should be abstracted. (Tier 5)
+3. `src/shared/components/layout/Navbar.tsx` - Inconsistent UX. Hardcoded `text-[10px]` typography instead of semantic `.kicker-label`. (Tier 7)
