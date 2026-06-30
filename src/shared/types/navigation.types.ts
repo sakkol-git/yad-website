@@ -1,7 +1,7 @@
 export interface NavLink {
   href: string;
   label: string;
-  subLinks?: Omit<NavLink, 'subLinks'>[];
+  subLinks?: Omit<NavLink, "subLinks">[];
 }
 
 export interface FooterLink {

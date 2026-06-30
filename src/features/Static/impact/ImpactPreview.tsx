@@ -21,23 +21,23 @@ export function ImpactPreview() {
           <StaggerGroup y={28} className="lg:col-span-5 flex flex-col gap-6">
             <div className="inline-flex items-center gap-4 mb-2">
               <div className="w-6 h-[1px] bg-primary" />
-              <span className="uppercase tracking-[0.2em] text-[10px] font-bold text-primary">
-                Real-World Impact
-              </span>
+              <span className="kicker-label text-primary">Real-World Impact</span>
             </div>
-            <TextReveal 
-              as="h2" 
-              text="Our Impact in Action" 
-              className="text-4xl md:text-5xl font-light text-primary tracking-tighter leading-[1.0]" 
+            <TextReveal
+              as="h2"
+              text="Our Impact in Action"
+              className="text-4xl md:text-5xl font-light text-primary tracking-tighter leading-[1.0]"
             />
             <p className="text-base text-on-surface-variant font-light leading-relaxed">
-              Witness the energy of Cambodia&apos;s next generation. Through
-              our modern learning spaces, we provide the tools for digital
-              literacy and leadership training that spark real-world change.
+              Witness the energy of Cambodia&apos;s next generation. Through our modern learning
+              spaces, we provide the tools for digital literacy and leadership training that spark
+              real-world change.
             </p>
             <div className="flex items-center gap-3 text-primary mt-4 border border-outline-variant/30 px-4 py-3 self-start">
-              <span className="material-symbols-outlined text-[24px]">groups</span>
-              <span className="uppercase tracking-widest text-xs font-bold"><AnimatedCounter value={1200} suffix="+" /> Youth Empowered This Year</span>
+              <span className="material-symbols-outlined text-2xl">groups</span>
+              <span className="uppercase tracking-widest text-xs font-bold">
+                <AnimatedCounter value={1200} suffix="+" /> Youth Empowered This Year
+              </span>
             </div>
           </StaggerGroup>
         </div>

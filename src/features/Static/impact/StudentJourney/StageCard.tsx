@@ -12,9 +12,7 @@ export function StageCard({ stage, isActive, index }: StageCardProps) {
   return (
     <div
       className={`transition-all duration-700 ease-out ${
-        isActive
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-6"
+        isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       }`}
     >
       <div
@@ -25,7 +23,7 @@ export function StageCard({ stage, isActive, index }: StageCardProps) {
         }`}
       >
         {/* Stage number */}
-        <span className="absolute -top-3 left-4 bg-surface px-2 text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant">
+        <span className="absolute -top-3 left-4 bg-surface px-2 kicker-label text-on-surface-variant">
           Stage {index + 1}
         </span>
 
@@ -39,7 +37,7 @@ export function StageCard({ stage, isActive, index }: StageCardProps) {
               transition: "background-color 0.3s, color 0.3s",
             }}
           >
-            <span className="material-symbols-outlined text-[20px]">{stage.icon}</span>
+            <span className="material-symbols-outlined text-xl">{stage.icon}</span>
           </div>
           <h4 className="text-base font-bold text-on-surface tracking-tight">{stage.title}</h4>
         </div>
@@ -60,7 +58,9 @@ export function StageCard({ stage, isActive, index }: StageCardProps) {
         {/* Donor impact callout */}
         {stage.donorImpact && (
           <div className="mt-3 pt-3 border-t border-outline-variant/20 flex items-center gap-2">
-            <span className="material-symbols-outlined text-[16px] text-secondary">volunteer_activism</span>
+            <span className="material-symbols-outlined text-base text-secondary">
+              volunteer_activism
+            </span>
             <span className="text-xs text-secondary font-bold">{stage.donorImpact}</span>
           </div>
         )}

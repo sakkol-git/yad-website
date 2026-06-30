@@ -8,11 +8,11 @@ import { useReducedMotion } from "@/shared/lib/animations/use-reduced-motion";
 interface RevealOnScrollProps {
   children: ReactNode;
   className?: string;
-  y?: number;          // px to travel from, default 40
-  x?: number;          // px to travel horizontally, optional
+  y?: number; // px to travel from, default 40
+  x?: number; // px to travel horizontally, optional
   delay?: number;
   duration?: number;
-  start?: string;      // ScrollTrigger start position
+  start?: string; // ScrollTrigger start position
   as?: "div" | "section" | "article" | "span" | "p";
 }
 
@@ -44,37 +44,36 @@ export function RevealOnScroll({
         fromVars.y = y;
       }
 
-      gsap.fromTo(ref.current,
-        fromVars,
-        {
-          opacity: 1,
-          x: 0,
-          y: 0,
-          duration,
-          delay,
-          ease: GSAP_PRESETS.REVEAL.ease,
-          onComplete: () => {
-            if (ref.current) {
-              ref.current.style.willChange = "auto";
-            }
-          },
-          scrollTrigger: {
-            trigger: ref.current,
-            start,
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
+      gsap.fromTo(ref.current, fromVars, {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        duration,
+        delay,
+        ease: GSAP_PRESETS.REVEAL.ease,
+        onComplete: () => {
+          if (ref.current) {
+            ref.current.style.willChange = "auto";
+          }
+        },
+        scrollTrigger: {
+          trigger: ref.current,
+          start,
+          toggleActions: "play none none reverse",
+        },
+      });
     },
-    { scope: ref, dependencies: [reduced, y, x, delay, duration, start] }
+    { scope: ref, dependencies: [reduced, y, x, delay, duration, start] },
   );
 
   // Determine initial server-side styles to prevent FOUC
-  const initialStyle = reduced ? {} : {
-    opacity: 0,
-    transform: x !== undefined ? `translateX(${x}px)` : `translateY(${y}px)`,
-    willChange: "opacity, transform"
-  };
+  const initialStyle = reduced
+    ? {}
+    : {
+        opacity: 0,
+        transform: x !== undefined ? `translateX(${x}px)` : `translateY(${y}px)`,
+        willChange: "opacity, transform",
+      };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const Comp = Tag as any;

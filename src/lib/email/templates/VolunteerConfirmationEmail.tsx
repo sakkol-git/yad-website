@@ -27,14 +27,16 @@ export const VolunteerConfirmationEmail = ({
       <Body style={main}>
         <Container style={container}>
           <Heading style={h1}>Thank You for Your Interest!</Heading>
-          
+
           <Text style={text}>Hi {volunteerName},</Text>
           <Text style={text}>
-            We've received your volunteer interest submission on {submittedAt}. Thank you for wanting to make an impact with Youth Advancement for Development (YAD) Cambodia!
+            We've received your volunteer interest submission on {submittedAt}. Thank you for
+            wanting to make an impact with Youth Advancement for Development (YAD) Cambodia!
           </Text>
 
           <Text style={text}>
-            Our team will review your application and contact you within 5–7 business days to discuss next steps and how you can get involved.
+            Our team will review your application and contact you within 5–7 business days to
+            discuss next steps and how you can get involved.
           </Text>
 
           <Text style={text}>
@@ -42,16 +44,27 @@ export const VolunteerConfirmationEmail = ({
           </Text>
 
           <Text style={socialLinks}>
-            <Link href="https://facebook.com/yadcambodia" style={link}>Facebook</Link> •{" "}
-            <Link href="https://instagram.com/yadcambodia" style={link}>Instagram</Link> •{" "}
-            <Link href="https://linkedin.com/company/yadcambodia" style={link}>LinkedIn</Link>
+            <Link href="https://facebook.com/yadcambodia" style={link}>
+              Facebook
+            </Link>{" "}
+            •{" "}
+            <Link href="https://instagram.com/yadcambodia" style={link}>
+              Instagram
+            </Link>{" "}
+            •{" "}
+            <Link href="https://linkedin.com/company/yadcambodia" style={link}>
+              LinkedIn
+            </Link>
           </Text>
 
           <Hr style={hr} />
 
           <Text style={footer}>
-            Youth Advancement for Development Cambodia<br />
-            <Link href="https://yadcambodia.org" style={link}>yadcambodia.org</Link>
+            Youth Advancement for Development Cambodia
+            <br />
+            <Link href="https://yadcambodia.org" style={link}>
+              yadcambodia.org
+            </Link>
           </Text>
         </Container>
       </Body>

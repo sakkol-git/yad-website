@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/shared/components/ui/Button";
 import { DataTable, ColumnDef } from "@/shared/components/ui/DataTable";
 import { deleteProgramAction } from "@/server/actions/program.actions";
 import { ProgramFormModal } from "./ProgramFormModal";
-import { ConfirmationDialog } from '@/shared/components/admin/feedback/ConfirmationDialog';
-import { FilterBar } from '@/shared/components/admin/data/FilterBar';
+import { ConfirmationDialog } from "@/shared/components/admin/feedback/ConfirmationDialog";
+import { FilterBar } from "@/shared/components/admin/data/FilterBar";
 
 interface Program {
   id: string;
@@ -23,19 +23,27 @@ interface Program {
   created_at: string;
 }
 
-export function ProgramsTable({ initialData, count, page }: { initialData: Program[]; count?: number | null; page?: number }) {
+export function ProgramsTable({
+  initialData,
+  count,
+  page,
+}: {
+  initialData: Program[];
+  count?: number | null;
+  page?: number;
+}) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const currentSearch = searchParams.get('search') || '';
+  const currentSearch = searchParams.get("search") || "";
   const [searchTerm, setSearchTerm] = useState(currentSearch);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (searchTerm !== currentSearch) {
         const params = new URLSearchParams(searchParams);
-        if (searchTerm) params.set('search', searchTerm);
-        else params.delete('search');
-        params.delete('page');
+        if (searchTerm) params.set("search", searchTerm);
+        else params.delete("search");
+        params.delete("page");
         router.push(`?${params.toString()}`);
       }
     }, 400);
@@ -61,7 +69,7 @@ export function ProgramsTable({ initialData, count, page }: { initialData: Progr
     const result = await deleteProgramAction({ id: deleteDialog.programId });
     if (result.success) {
       toast.success("Program deleted successfully");
-      setData(prev => prev.filter(p => p.id !== deleteDialog.programId));
+      setData((prev) => prev.filter((p) => p.id !== deleteDialog.programId));
       closeDeleteDialog();
     } else {
       toast.error("Failed to delete program: " + result.error);
@@ -113,7 +121,11 @@ export function ProgramsTable({ initialData, count, page }: { initialData: Progr
       id: "start_date",
       header: "Start Date",
       accessorKey: "start_date",
-      cell: (row) => <span className="text-on-surface-variant">{new Date(row.start_date).toLocaleDateString()}</span>,
+      cell: (row) => (
+        <span className="text-on-surface-variant">
+          {new Date(row.start_date).toLocaleDateString()}
+        </span>
+      ),
     },
     {
       id: "beneficiaries",
@@ -126,20 +138,20 @@ export function ProgramsTable({ initialData, count, page }: { initialData: Progr
       enableHiding: false,
       cell: (row) => (
         <div className="flex justify-end gap-2">
-          <button 
+          <button
             onClick={() => openEditModal(row)}
             className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-full transition-colors flex items-center justify-center"
             title="Edit Program"
           >
-            <span className="material-symbols-outlined text-[18px]">edit</span>
+            <span className="material-symbols-outlined text-lg">edit</span>
           </button>
-          <button 
+          <button
             onClick={() => confirmDelete(row.id)}
             disabled={isDeleting && deleteDialog.programId === row.id}
             className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-full transition-colors flex items-center justify-center disabled:opacity-50"
             title="Delete Program"
           >
-            <span className="material-symbols-outlined text-[18px]">delete</span>
+            <span className="material-symbols-outlined text-lg">delete</span>
           </button>
         </div>
       ),
@@ -148,21 +160,25 @@ export function ProgramsTable({ initialData, count, page }: { initialData: Progr
 
   return (
     <div className="space-y-4">
-      <FilterBar 
-        searchValue={searchTerm} 
-        onSearchChange={setSearchTerm} 
+      <FilterBar
+        searchValue={searchTerm}
+        onSearchChange={setSearchTerm}
         searchPlaceholder="Search programs..."
       >
-        <Button variant="default" onClick={openCreateModal} className="shadow-md flex items-center gap-2 hover:scale-105 transition-transform">
-          <span className="material-symbols-outlined text-[20px]">add</span>
+        <Button
+          variant="default"
+          onClick={openCreateModal}
+          className="shadow-md flex items-center gap-2 hover:scale-105 transition-transform"
+        >
+          <span className="material-symbols-outlined text-xl">add</span>
           Add Program
         </Button>
       </FilterBar>
 
-      <DataTable 
-        columns={columns} 
-        data={data} 
-        keyExtractor={(row) => row.id} 
+      <DataTable
+        columns={columns}
+        data={data}
+        keyExtractor={(row) => row.id}
         count={count}
         page={page}
         emptyMessage="No programs found."

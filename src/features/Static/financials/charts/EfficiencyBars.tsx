@@ -17,7 +17,7 @@ export function EfficiencyBars() {
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-sm bg-primary-container/20 flex items-center justify-center text-primary">
-                  <span className="material-symbols-outlined text-[20px]">{item.icon}</span>
+                  <span className="material-symbols-outlined text-xl">{item.icon}</span>
                 </div>
                 <span className="text-sm font-light text-on-surface">{item.name}</span>
               </div>
@@ -49,11 +49,17 @@ export function EfficiencyBars() {
       {/* Accessibility: hidden data table */}
       <table className="sr-only" aria-label="Program cost-per-outcome">
         <thead>
-          <tr><th>Program</th><th>Cost (USD)</th></tr>
+          <tr>
+            <th>Program</th>
+            <th>Cost (USD)</th>
+          </tr>
         </thead>
         <tbody>
           {EFFICIENCY_DATA.map((d) => (
-            <tr key={d.name}><td>{d.name}</td><td>${d.cost}</td></tr>
+            <tr key={d.name}>
+              <td>{d.name}</td>
+              <td>${d.cost}</td>
+            </tr>
           ))}
         </tbody>
       </table>

@@ -9,7 +9,12 @@ export interface SendEmailOptions<T> {
   props: T;
 }
 
-export async function sendEmail<T>({ to, subject, template: Template, props }: SendEmailOptions<T>) {
+export async function sendEmail<T>({
+  to,
+  subject,
+  template: Template,
+  props,
+}: SendEmailOptions<T>) {
   if (!resend) {
     console.warn(`[Email Skipped] Missing RESEND_API_KEY. Would have sent "${subject}" to ${to}`);
     return { success: false, error: "Missing RESEND_API_KEY" };
@@ -31,7 +36,7 @@ export async function sendEmail<T>({ to, subject, template: Template, props }: S
     }
 
     return { success: true, data };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     const error = err instanceof Error ? err : new Error("Unknown email error");
     console.error("[Email Exception]", error);
@@ -39,4 +44,3 @@ export async function sendEmail<T>({ to, subject, template: Template, props }: S
     return { success: false, error: error.message };
   }
 }
-

@@ -3,9 +3,20 @@
 import { createSafeAction } from "@/shared/lib/safe-action";
 import { revalidatePath } from "next/cache";
 import { membersService } from "../services/members.service";
-import { getMembersSchema, memberDataSchema, updateMemberSchema, deleteMemberSchema } from "../validators/member.schema";
+import {
+  getMembersSchema,
+  memberDataSchema,
+  updateMemberSchema,
+  deleteMemberSchema,
+} from "../validators/member.schema";
 
-const csvToArray = (csv?: string) => csv ? csv.split(',').map(s => s.trim()).filter(Boolean) : undefined;
+const csvToArray = (csv?: string) =>
+  csv
+    ? csv
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean)
+    : undefined;
 
 function extractProfileData(rawData: any) {
   return {
@@ -21,17 +32,21 @@ function extractProfileData(rawData: any) {
       twitter: rawData.twitter || undefined,
       facebook: rawData.facebook || undefined,
       github: rawData.github || undefined,
-    }
+    },
   };
 }
 
 export const getMembers = createSafeAction(
   { schema: getMembersSchema, role: "admin" },
   async ({ page, limit, search }, { sessionClient }) => {
-    const { data, count } = await membersService.getMembers(sessionClient, { page, limit, search }, false);
+    const { data, count } = await membersService.getMembers(
+      sessionClient,
+      { page, limit, search },
+      false,
+    );
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return { data: data as any[], count };
-  }
+  },
 );
 
 export const createMember = createSafeAction(
@@ -42,8 +57,8 @@ export const createMember = createSafeAction(
     const randomSuffix = Math.random().toString(36).substring(2, 6);
     const slug = `${parsedData.first_name}-${parsedData.last_name}-${randomSuffix}`
       .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, '');
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
 
     const dataToSubmit = {
       first_name: parsedData.first_name,
@@ -56,7 +71,7 @@ export const createMember = createSafeAction(
       avatar_url: parsedData.avatar_url || null,
       role: parsedData.role || null,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      profile: profile as any
+      profile: profile as any,
     };
 
     await membersService.create(sessionClient, dataToSubmit);
@@ -65,7 +80,7 @@ export const createMember = createSafeAction(
     revalidatePath("/about/governance/[slug]", "page");
     revalidatePath("/", "layout");
     return true;
-  }
+  },
 );
 
 export const updateMember = createSafeAction(
@@ -83,7 +98,7 @@ export const updateMember = createSafeAction(
       avatar_url: parsedData.avatar_url || null,
       role: parsedData.role || null,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      profile: profile as any
+      profile: profile as any,
     };
 
     await membersService.update(sessionClient, id, dataToSubmit);
@@ -92,7 +107,7 @@ export const updateMember = createSafeAction(
     revalidatePath("/about/governance/[slug]", "page");
     revalidatePath("/", "layout");
     return true;
-  }
+  },
 );
 
 export const deleteMember = createSafeAction(
@@ -101,5 +116,5 @@ export const deleteMember = createSafeAction(
     await membersService.delete(sessionClient, id);
     revalidatePath("/admin/members");
     return true;
-  }
+  },
 );

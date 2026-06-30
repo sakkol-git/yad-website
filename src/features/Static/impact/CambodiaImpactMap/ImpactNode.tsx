@@ -12,7 +12,14 @@ interface ImpactNodeProps {
   maxStudents: number;
 }
 
-export function ImpactNodeMarker({ node, index, isActive, onHover, onClick, maxStudents }: ImpactNodeProps) {
+export function ImpactNodeMarker({
+  node,
+  index,
+  isActive,
+  onHover,
+  onClick,
+  maxStudents,
+}: ImpactNodeProps) {
   // Radius proportional to studentsReached: min 6px, max 16px
   const minR = 6;
   const maxR = 16;
@@ -24,7 +31,9 @@ export function ImpactNodeMarker({ node, index, isActive, onHover, onClick, maxS
       onMouseEnter={() => onHover(node)}
       onMouseLeave={() => onHover(null)}
       onClick={() => onClick(node)}
-      onKeyDown={(e) => { if (e.key === "Enter") onClick(node); }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") onClick(node);
+      }}
       tabIndex={0}
       role="button"
       aria-label={`${node.name}: ${node.studentsReached} students reached`}

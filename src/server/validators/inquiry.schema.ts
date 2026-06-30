@@ -7,5 +7,5 @@ export const getInquiriesSchema = z.object({
 
 export const updateInquiryStatusSchema = z.object({
   id: z.string().uuid("Invalid inquiry ID"),
-  status: z.enum(['pending', 'reviewed', 'actioned']),
+  status: z.enum(["pending", "reviewed", "actioned"]),
 });

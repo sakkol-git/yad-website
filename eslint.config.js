@@ -5,15 +5,7 @@ const eslintConfig = [
   ...nextConfigVitals,
   ...nextConfigTs,
   {
-    ignores: [
-      ".next/",
-      "out/",
-      "build/",
-      "dist/",
-      ".output/",
-      ".vinxi/",
-      "next-env.d.ts",
-    ],
+    ignores: [".next/", "out/", "build/", "dist/", ".output/", ".vinxi/", "next-env.d.ts"],
   },
   {
     rules: {
@@ -24,7 +16,7 @@ const eslintConfig = [
       "react-hooks/exhaustive-deps": "off",
       "react-hooks/set-state-in-effect": "off",
       "@next/next/no-html-link-for-pages": "off",
-      "@next/next/no-page-custom-font": "off"
+      "@next/next/no-page-custom-font": "off",
     },
   },
 ];

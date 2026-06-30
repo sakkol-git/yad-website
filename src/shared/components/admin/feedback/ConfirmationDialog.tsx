@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Dialog,
   DialogContent,
@@ -6,8 +6,8 @@ import {
   DialogFooter,
   DialogTitle,
   DialogDescription,
-} from '@/shared/components/ui/Dialog';
-import { Button } from '@/shared/components/ui/Button';
+} from "@/shared/components/ui/Dialog";
+import { Button } from "@/shared/components/ui/Button";
 
 interface ConfirmationDialogProps {
   isOpen: boolean;
@@ -27,8 +27,8 @@ export function ConfirmationDialog({
   onConfirm,
   title,
   description,
-  confirmText = 'Confirm',
-  cancelText = 'Cancel',
+  confirmText = "Confirm",
+  cancelText = "Cancel",
   isDestructive = false,
   isLoading = false,
 }: ConfirmationDialogProps) {
@@ -36,20 +36,20 @@ export function ConfirmationDialog({
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className={isDestructive ? 'text-error' : ''}>{title}</DialogTitle>
+          <DialogTitle className={isDestructive ? "text-error" : ""}>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
         <DialogFooter className="mt-6">
           <Button variant="outline" onClick={onClose} disabled={isLoading}>
             {cancelText}
           </Button>
-          <Button 
+          <Button
             variant="default"
-            onClick={onConfirm} 
+            onClick={onConfirm}
             disabled={isLoading}
-            className={isDestructive ? 'bg-error text-on-error hover:bg-error/90' : ''}
+            className={isDestructive ? "bg-error text-on-error hover:bg-error/90" : ""}
           >
-            {isLoading ? 'Processing...' : confirmText}
+            {isLoading ? "Processing..." : confirmText}
           </Button>
         </DialogFooter>
       </DialogContent>

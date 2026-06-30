@@ -4,7 +4,12 @@
 
 import { createSafeAction } from "@/shared/lib/safe-action";
 import { revalidatePath } from "next/cache";
-import { getProgramsSchema, programDataSchema, updateProgramSchema, deleteProgramSchema } from "../validators/program.schema";
+import {
+  getProgramsSchema,
+  programDataSchema,
+  updateProgramSchema,
+  deleteProgramSchema,
+} from "../validators/program.schema";
 import { z } from "zod";
 
 export type ProgramFormData = z.infer<typeof programDataSchema>;
@@ -31,7 +36,7 @@ export const getProgramsAction = createSafeAction(
     }
 
     return { data, count };
-  }
+  },
 );
 
 export const createProgramAction = createSafeAction(
@@ -50,7 +55,7 @@ export const createProgramAction = createSafeAction(
     revalidatePath("/");
     revalidatePath("/programs");
     return true;
-  }
+  },
 );
 
 export const updateProgramAction = createSafeAction(
@@ -70,16 +75,13 @@ export const updateProgramAction = createSafeAction(
     revalidatePath("/");
     revalidatePath("/programs");
     return true;
-  }
+  },
 );
 
 export const deleteProgramAction = createSafeAction(
   { schema: deleteProgramSchema, role: "admin" },
   async ({ id }, { adminClient: supabaseAdmin }) => {
-    const { error } = await supabaseAdmin
-      .from("programs")
-      .delete()
-      .eq("id", id);
+    const { error } = await supabaseAdmin.from("programs").delete().eq("id", id);
 
     if (error) {
       throw error;
@@ -89,5 +91,5 @@ export const deleteProgramAction = createSafeAction(
     revalidatePath("/");
     revalidatePath("/programs");
     return true;
-  }
+  },
 );

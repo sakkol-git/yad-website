@@ -37,20 +37,8 @@ export function SectionContainer({
   padding = "normal",
 }: SectionContainerProps) {
   return (
-    <section
-      id={id}
-      className={cn(
-        variantClasses[variant],
-        className
-      )}
-    >
-      <div
-        className={cn(
-          "mx-auto",
-          sizeClasses[containerSize],
-          paddingClasses[padding]
-        )}
-      >
+    <section id={id} className={cn(variantClasses[variant], className)}>
+      <div className={cn("mx-auto", sizeClasses[containerSize], paddingClasses[padding])}>
         {children}
       </div>
     </section>

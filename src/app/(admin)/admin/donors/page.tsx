@@ -1,11 +1,13 @@
-import { getDonors } from '@/server/actions/donor.actions';
-import { DonorsTable } from '@/features/Entities/donations/components/DonorsTable';
+import { getDonors } from "@/server/actions/donor.actions";
+import { DonorsTable } from "@/features/Entities/donations/components/DonorsTable";
 
 export const metadata = {
-  title: 'Donors Management - YAD Admin',
+  title: "Donors Management - YAD Admin",
 };
 
-export default async function DonorsPage(props: { searchParams: Promise<{ page?: string; search?: string }> }) {
+export default async function DonorsPage(props: {
+  searchParams: Promise<{ page?: string; search?: string }>;
+}) {
   const searchParams = await props.searchParams;
   const page = parseInt(searchParams.page || "1", 10);
   const search = searchParams.search;

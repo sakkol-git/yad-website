@@ -64,7 +64,7 @@ export function ImpactPathCard({
         <div
           className={`w-16 h-16 rounded-md border border-outline-variant/30 flex items-center justify-center mb-8 text-on-surface-variant transition-colors duration-500 group-hover:${iconColor} group-hover:${iconBg}`}
         >
-          <span className="material-symbols-outlined text-[32px] font-light">{icon}</span>
+          <span className="material-symbols-outlined text-4xl font-light">{icon}</span>
         </div>
         <h3 className="text-2xl font-light tracking-tight text-on-surface mb-4">{title}</h3>
         <p className="text-sm font-light text-on-surface-variant leading-relaxed mb-10 flex-grow">
@@ -74,8 +74,7 @@ export function ImpactPathCard({
           className={`text-primary font-bold text-[10px] uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-[gap] duration-500 ease-out`}
           href={linkHref}
         >
-          {linkLabel}{" "}
-          <span className="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+          {linkLabel} <span className="material-symbols-outlined text-base">arrow_right_alt</span>
         </Link>
         <div
           className={`absolute -right-4 -bottom-4 w-32 h-32 ${glowBg} rounded-full blur-2xl -z-10 group-hover:${glowHoverBg} transition-colors`}

@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { toast } from 'sonner';
-import { Button } from '@/shared/components/ui/Button';
-import { DonorFormModal } from './DonorFormModal';
-import { deleteDonor } from '@/server/actions/donor.actions';
-import { DataTable, ColumnDef } from '@/shared/components/ui/DataTable';
+import { useState } from "react";
+import { toast } from "sonner";
+import { Button } from "@/shared/components/ui/Button";
+import { DonorFormModal } from "./DonorFormModal";
+import { deleteDonor } from "@/server/actions/donor.actions";
+import { DataTable, ColumnDef } from "@/shared/components/ui/DataTable";
 
 interface Donor {
   id: string;
@@ -20,33 +20,41 @@ interface Donor {
   status: string;
 }
 
-export function DonorsTable({ donors, count, page }: { donors: Donor[]; count?: number | null; page?: number }) {
+export function DonorsTable({
+  donors,
+  count,
+  page,
+}: {
+  donors: Donor[];
+  count?: number | null;
+  page?: number;
+}) {
   const [modalState, setModalState] = useState<{
     isOpen: boolean;
-    mode: 'create' | 'edit';
+    mode: "create" | "edit";
     donor: Donor | null;
   }>({
     isOpen: false,
-    mode: 'create',
+    mode: "create",
     donor: null,
   });
 
   const [isDeleting, setIsDeleting] = useState<string | null>(null);
 
-  const openCreate = () => setModalState({ isOpen: true, mode: 'create', donor: null });
-  const openEdit = (donor: Donor) => setModalState({ isOpen: true, mode: 'edit', donor });
+  const openCreate = () => setModalState({ isOpen: true, mode: "create", donor: null });
+  const openEdit = (donor: Donor) => setModalState({ isOpen: true, mode: "edit", donor });
   const closeModal = () => setModalState({ ...modalState, isOpen: false });
 
   async function handleDelete(id: string) {
-    if (!confirm('Are you sure you want to permanently delete this donor?')) return;
+    if (!confirm("Are you sure you want to permanently delete this donor?")) return;
 
     setIsDeleting(id);
     try {
       const result = await deleteDonor({ id });
       if (!result.success || result.error) throw new Error(result.error || "Failed to delete");
-      toast.success('Donor deleted successfully');
+      toast.success("Donor deleted successfully");
     } catch (error) {
-      toast.error('Failed to delete donor');
+      toast.error("Failed to delete donor");
     } finally {
       setIsDeleting(null);
     }
@@ -54,63 +62,64 @@ export function DonorsTable({ donors, count, page }: { donors: Donor[]; count?: 
 
   const columns: ColumnDef<Donor>[] = [
     {
-      header: 'Donor',
+      header: "Donor",
       cell: (donor) => (
         <>
           <span className="font-bold">{donor.name}</span>
-          {donor.email && <div className="text-xs font-normal text-on-surface-variant mt-0.5">{donor.email}</div>}
+          {donor.email && (
+            <div className="text-xs font-normal text-on-surface-variant mt-0.5">{donor.email}</div>
+          )}
         </>
-      )
+      ),
     },
     {
-      header: 'Amount',
+      header: "Amount",
       cell: (donor) => (
         <span className="font-medium text-primary">
-          {donor.amount ? `$${donor.amount.toLocaleString()}` : '-'}
+          {donor.amount ? `$${donor.amount.toLocaleString()}` : "-"}
         </span>
-      )
+      ),
     },
     {
-      header: 'Country',
+      header: "Country",
       cell: (donor) => (
-        <span className="text-on-surface-variant font-medium">
-          {donor.country || '-'}
-        </span>
-      )
+        <span className="text-on-surface-variant font-medium">{donor.country || "-"}</span>
+      ),
     },
     {
-      header: 'Date',
+      header: "Date",
       cell: (donor) => (
         <span className="text-on-surface-variant">
-          {donor.donation_date ? new Date(donor.donation_date).toLocaleDateString() : '-'}
+          {donor.donation_date ? new Date(donor.donation_date).toLocaleDateString() : "-"}
         </span>
-      )
+      ),
     },
     {
-      header: 'Visibility',
+      header: "Visibility",
       cell: (donor) => (
         <>
           {donor.is_public ? (
             <span className="inline-flex items-center gap-1 text-xs font-bold text-primary">
-              <span className="material-symbols-outlined text-[16px]">visibility</span> Public
+              <span className="material-symbols-outlined text-base">visibility</span> Public
             </span>
           ) : (
             <span className="inline-flex items-center gap-1 text-xs font-bold text-on-surface-variant">
-              <span className="material-symbols-outlined text-[16px]">visibility_off</span> Hidden
+              <span className="material-symbols-outlined text-base">visibility_off</span> Hidden
             </span>
           )}
         </>
-      )
+      ),
     },
     {
-      header: 'Status',
+      header: "Status",
       cell: (donor) => (
-        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider
-          ${donor.status === 'Active' ? 'bg-primary-container text-on-primary-container' : 'bg-surface-variant text-on-surface-variant'}`}
+        <span
+          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider
+          ${donor.status === "Active" ? "bg-primary-container text-on-primary-container" : "bg-surface-variant text-on-surface-variant"}`}
         >
           {donor.status}
         </span>
-      )
+      ),
     },
     {
       header: <div className="text-right">Actions</div>,
@@ -121,7 +130,7 @@ export function DonorsTable({ donors, count, page }: { donors: Donor[]; count?: 
             className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary/10 rounded-full transition-colors flex items-center justify-center"
             title="Edit Donor"
           >
-            <span className="material-symbols-outlined text-[18px]">edit</span>
+            <span className="material-symbols-outlined text-lg">edit</span>
           </button>
           <button
             onClick={() => handleDelete(donor.id)}
@@ -129,11 +138,11 @@ export function DonorsTable({ donors, count, page }: { donors: Donor[]; count?: 
             className="p-2 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded-full transition-colors flex items-center justify-center disabled:opacity-50"
             title="Delete Donor"
           >
-            <span className="material-symbols-outlined text-[18px]">delete</span>
+            <span className="material-symbols-outlined text-lg">delete</span>
           </button>
         </div>
-      )
-    }
+      ),
+    },
   ];
 
   return (
@@ -141,14 +150,16 @@ export function DonorsTable({ donors, count, page }: { donors: Donor[]; count?: 
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-headline-lg font-bold text-on-surface">Donors</h1>
-          <p className="text-on-surface-variant font-medium mt-1">Manage donations and donor records.</p>
+          <p className="text-on-surface-variant font-medium mt-1">
+            Manage donations and donor records.
+          </p>
         </div>
         <Button
- variant="default"
- className=" shadow-md flex items-center gap-2 hover:scale-105"
- onClick={openCreate}
- >
-          <span className="material-symbols-outlined text-[20px]">volunteer_activism</span>
+          variant="default"
+          className=" shadow-md flex items-center gap-2 hover:scale-105"
+          onClick={openCreate}
+        >
+          <span className="material-symbols-outlined text-xl">volunteer_activism</span>
           Add Donor
         </Button>
       </div>

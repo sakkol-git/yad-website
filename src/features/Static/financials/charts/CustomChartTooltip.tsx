@@ -28,11 +28,7 @@ export function CustomChartTooltip({
       className="bg-surface-container-high border border-outline-variant/30 rounded-sm px-4 py-3 shadow-lg"
       style={{ color: CHART_HEX.onSurface }}
     >
-      {label && (
-        <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant mb-2">
-          {label}
-        </p>
-      )}
+      {label && <p className="kicker-label text-on-surface-variant mb-2">{label}</p>}
       {payload.map((entry, i) => (
         <div key={i} className="flex items-center gap-2 text-sm">
           <div

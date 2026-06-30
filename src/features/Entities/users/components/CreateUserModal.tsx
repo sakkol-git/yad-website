@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from '@/shared/components/ui/Button';
-import { createUser } from '@/server/actions/user.actions';
+import { useState } from "react";
+import { Button } from "@/shared/components/ui/Button";
+import { createUser } from "@/server/actions/user.actions";
 
 export function CreateUserModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [error, setError] = useState<string | null>(null);
@@ -13,7 +13,7 @@ export function CreateUserModal({ isOpen, onClose }: { isOpen: boolean; onClose:
   async function handleSubmit(formData: FormData) {
     setIsLoading(true);
     setError(null);
-    
+
     try {
       const result = await createUser(null, formData);
       if (result.error) {
@@ -21,9 +21,9 @@ export function CreateUserModal({ isOpen, onClose }: { isOpen: boolean; onClose:
       } else {
         onClose();
       }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
-      setError(err.message || 'Something went wrong');
+      setError(err.message || "Something went wrong");
     } finally {
       setIsLoading(false);
     }
@@ -34,25 +34,28 @@ export function CreateUserModal({ isOpen, onClose }: { isOpen: boolean; onClose:
       <div className="bg-surface rounded-md shadow-xl w-full max-w-md overflow-hidden animate-in zoom-in-95 duration-200">
         <div className="px-6 py-4 border-b border-surface-variant/30 flex justify-between items-center">
           <h2 className="text-xl font-headline-md font-bold text-on-surface">Create New User</h2>
-          <button onClick={onClose} className="text-on-surface-variant hover:text-on-surface transition-colors p-1 rounded-full hover:bg-surface-container">
+          <button
+            onClick={onClose}
+            className="text-on-surface-variant hover:text-on-surface transition-colors p-1 rounded-full hover:bg-surface-container"
+          >
             <span className="material-symbols-outlined">close</span>
           </button>
         </div>
-        
+
         <form action={handleSubmit} className="p-6 flex flex-col gap-5">
           {error && (
             <div className="bg-error-container/20 text-error p-3 rounded-md text-sm font-medium border border-error-container flex items-center gap-2">
-              <span className="material-symbols-outlined text-[18px]">error</span>
+              <span className="material-symbols-outlined text-lg">error</span>
               {error}
             </div>
           )}
 
           <div className="flex flex-col gap-1.5">
             <label className="text-sm font-label-bold text-on-surface-variant">Email Address</label>
-            <input 
-              name="email" 
-              type="email" 
-              required 
+            <input
+              name="email"
+              type="email"
+              required
               className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
               placeholder="user@example.com"
             />
@@ -60,10 +63,10 @@ export function CreateUserModal({ isOpen, onClose }: { isOpen: boolean; onClose:
 
           <div className="flex flex-col gap-1.5">
             <label className="text-sm font-label-bold text-on-surface-variant">Password</label>
-            <input 
-              name="password" 
-              type="password" 
-              required 
+            <input
+              name="password"
+              type="password"
+              required
               minLength={6}
               className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
               placeholder="Minimum 6 characters"
@@ -72,9 +75,9 @@ export function CreateUserModal({ isOpen, onClose }: { isOpen: boolean; onClose:
 
           <div className="flex flex-col gap-1.5">
             <label className="text-sm font-label-bold text-on-surface-variant">Role</label>
-            <select 
-              name="role" 
-              required 
+            <select
+              name="role"
+              required
               defaultValue="user"
               className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] appearance-none cursor-pointer"
             >
@@ -89,7 +92,7 @@ export function CreateUserModal({ isOpen, onClose }: { isOpen: boolean; onClose:
               Cancel
             </Button>
             <Button type="submit" variant="default" disabled={isLoading} className=" min-w-[100px]">
-              {isLoading ? 'Creating...' : 'Create User'}
+              {isLoading ? "Creating..." : "Create User"}
             </Button>
           </div>
         </form>

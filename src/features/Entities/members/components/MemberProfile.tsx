@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -14,7 +14,7 @@ interface MemberProfileProps {
 
 export function MemberProfile({ member }: MemberProfileProps) {
   const { profile } = member;
-  const [storyLang, setStoryLang] = useState<'en' | 'km'>('en');
+  const [storyLang, setStoryLang] = useState<"en" | "km">("en");
 
   return (
     <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop w-full flex flex-col gap-16 md:gap-20 py-12">
@@ -27,7 +27,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
             </span>
 
             {/* Social Links Row next to Role Badge */}
-            {profile?.socialLinks && (Object.keys(profile.socialLinks).length > 0) && (
+            {profile?.socialLinks && Object.keys(profile.socialLinks).length > 0 && (
               <div className="flex gap-2">
                 {profile.socialLinks.linkedin && (
                   <a
@@ -37,9 +37,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
                     aria-label="LinkedIn profile"
                     className="w-10 h-10 border border-outline-variant/30 rounded-md bg-transparent flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors duration-200 ease-in-out"
                   >
-                    <span className="material-symbols-outlined text-lg">
-                      work
-                    </span>
+                    <span className="material-symbols-outlined text-lg">work</span>
                   </a>
                 )}
                 {profile.socialLinks.twitter && (
@@ -50,9 +48,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
                     aria-label="Twitter profile"
                     className="w-10 h-10 border border-outline-variant/30 rounded-md bg-transparent flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors duration-200 ease-in-out"
                   >
-                    <span className="material-symbols-outlined text-lg">
-                      tag
-                    </span>
+                    <span className="material-symbols-outlined text-lg">tag</span>
                   </a>
                 )}
                 {profile.socialLinks.facebook && (
@@ -63,9 +59,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
                     aria-label="Facebook profile"
                     className="w-10 h-10 border border-outline-variant/30 rounded-md bg-transparent flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors duration-200 ease-in-out"
                   >
-                    <span className="material-symbols-outlined text-lg">
-                      public
-                    </span>
+                    <span className="material-symbols-outlined text-lg">public</span>
                   </a>
                 )}
               </div>
@@ -113,9 +107,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
                     <h2 className="text-[10px] font-bold uppercase tracking-widest text-primary mb-4">
                       Vision
                     </h2>
-                    <p className="text-lg font-light leading-relaxed">
-                      {profile.vision}
-                    </p>
+                    <p className="text-lg font-light leading-relaxed">{profile.vision}</p>
                   </div>
                 )}
 
@@ -130,9 +122,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
                           <span className="material-symbols-outlined text-primary text-xl shrink-0">
                             work_history
                           </span>
-                          <p className="text-sm font-light leading-relaxed">
-                            {exp}
-                          </p>
+                          <p className="text-sm font-light leading-relaxed">{exp}</p>
                         </li>
                       ))}
                     </ul>
@@ -148,38 +138,39 @@ export function MemberProfile({ member }: MemberProfileProps) {
       {(profile?.biography || profile?.khmerBiography) && (
         <RevealOnScroll className="w-full">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 border-b border-outline-variant/30 pb-4">
-            <h2 className="text-3xl font-light text-on-surface tracking-tight">
-              My Story
-            </h2>
+            <h2 className="text-3xl font-light text-on-surface tracking-tight">My Story</h2>
             <div className="flex items-center gap-2 bg-surface-container-lowest border border-outline-variant/30 p-1 rounded-md">
               <button
-                onClick={() => setStoryLang('en')}
-                className={`px-4 py-1.5 text-xs font-bold tracking-widest uppercase rounded-md transition-colors ${storyLang === 'en'
-                  ? 'bg-primary text-on-primary'
-                  : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
-                  }`}
+                onClick={() => setStoryLang("en")}
+                className={`px-4 py-1.5 text-xs font-bold tracking-widest uppercase rounded-md transition-colors ${
+                  storyLang === "en"
+                    ? "bg-primary text-on-primary"
+                    : "text-on-surface-variant hover:text-on-surface hover:bg-surface-container"
+                }`}
               >
                 English
               </button>
               <button
-                onClick={() => setStoryLang('km')}
-                className={`px-4 py-1.5 text-xs font-bold tracking-widest uppercase rounded-md transition-colors ${storyLang === 'km'
-                  ? 'bg-primary text-on-primary'
-                  : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container'
-                  }`}
+                onClick={() => setStoryLang("km")}
+                className={`px-4 py-1.5 text-xs font-bold tracking-widest uppercase rounded-md transition-colors ${
+                  storyLang === "km"
+                    ? "bg-primary text-on-primary"
+                    : "text-on-surface-variant hover:text-on-surface hover:bg-surface-container"
+                }`}
               >
                 ខ្មែរ
               </button>
             </div>
           </div>
           <div
-            className={`text-sm font-light text-on-surface-variant max-w-4xl whitespace-pre-wrap leading-relaxed ${storyLang === 'km' ? 'text-base leading-loose' : ''
-              }`}
+            className={`text-sm font-light text-on-surface-variant max-w-4xl whitespace-pre-wrap leading-relaxed ${
+              storyLang === "km" ? "text-base leading-loose" : ""
+            }`}
             style={{
-              fontFamily: storyLang === 'km' ? 'var(--font-kantumruy-pro)' : 'inherit',
+              fontFamily: storyLang === "km" ? "var(--font-kantumruy-pro)" : "inherit",
             }}
           >
-            {storyLang === 'en'
+            {storyLang === "en"
               ? profile.biography || profile.khmerBiography
               : profile.khmerBiography || profile.biography}
           </div>
@@ -187,19 +178,30 @@ export function MemberProfile({ member }: MemberProfileProps) {
       )}
 
       {/* Education & Achievements */}
-      {((profile?.education && profile.education.length > 0) || (profile?.achievements && profile.achievements.length > 0)) && (
+      {((profile?.education && profile.education.length > 0) ||
+        (profile?.achievements && profile.achievements.length > 0)) && (
         <section className="w-full">
-          <StaggerGroup y={28} className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch mt-12">
+          <StaggerGroup
+            y={28}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch mt-12"
+          >
             {profile.education && profile.education.length > 0 && (
               <div className="bg-surface border border-outline-variant/30 rounded-md flex flex-col h-full p-8 md:p-12">
                 <div className="flex items-center gap-4 mb-8 border-b border-outline-variant/30 pb-4">
-                  <span className="material-symbols-outlined text-primary text-[24px]">school</span>
-                  <h3 className="text-xl font-light text-on-surface m-0 tracking-tight">Education</h3>
+                  <span className="material-symbols-outlined text-primary text-2xl">school</span>
+                  <h3 className="text-xl font-light text-on-surface m-0 tracking-tight">
+                    Education
+                  </h3>
                 </div>
                 <ul className="space-y-4 flex-grow">
                   {profile.education.map((edu, i) => (
-                    <li key={i} className="flex gap-4 items-start text-on-surface-variant font-light text-sm">
-                      <span className="material-symbols-outlined text-[16px] mt-1 text-primary shrink-0">check</span>
+                    <li
+                      key={i}
+                      className="flex gap-4 items-start text-on-surface-variant font-light text-sm"
+                    >
+                      <span className="material-symbols-outlined text-base mt-1 text-primary shrink-0">
+                        check
+                      </span>
                       <span className="leading-relaxed">{edu}</span>
                     </li>
                   ))}
@@ -210,13 +212,22 @@ export function MemberProfile({ member }: MemberProfileProps) {
             {profile.achievements && profile.achievements.length > 0 && (
               <div className="bg-surface border border-outline-variant/30 rounded-md flex flex-col h-full p-8 md:p-12">
                 <div className="flex items-center gap-4 mb-8 border-b border-outline-variant/30 pb-4">
-                  <span className="material-symbols-outlined text-primary text-[24px]">emoji_events</span>
-                  <h3 className="text-xl font-light text-on-surface m-0 tracking-tight">Achievements</h3>
+                  <span className="material-symbols-outlined text-primary text-2xl">
+                    emoji_events
+                  </span>
+                  <h3 className="text-xl font-light text-on-surface m-0 tracking-tight">
+                    Achievements
+                  </h3>
                 </div>
                 <ul className="space-y-4 flex-grow">
                   {profile.achievements.map((ach, i) => (
-                    <li key={i} className="flex gap-4 items-start text-on-surface-variant font-light text-sm">
-                      <span className="material-symbols-outlined text-[16px] mt-1 text-primary shrink-0">stars</span>
+                    <li
+                      key={i}
+                      className="flex gap-4 items-start text-on-surface-variant font-light text-sm"
+                    >
+                      <span className="material-symbols-outlined text-base mt-1 text-primary shrink-0">
+                        stars
+                      </span>
                       <span className="leading-relaxed">{ach}</span>
                     </li>
                   ))}
@@ -229,4 +240,3 @@ export function MemberProfile({ member }: MemberProfileProps) {
     </div>
   );
 }
-

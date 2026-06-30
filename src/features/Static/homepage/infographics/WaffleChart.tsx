@@ -59,7 +59,7 @@ export function WaffleChart({ programs, cellValue = 10 }: WaffleChartProps) {
 
       {/* Legend */}
       <div className="flex flex-wrap items-center gap-4 mt-4 pt-4 border-t border-outline-variant/30">
-        <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant/70">
+        <span className="kicker-label text-on-surface-variant/70">
           Each square = {cellValue} students
         </span>
         <div className="flex flex-wrap gap-3 ml-auto">
@@ -78,11 +78,17 @@ export function WaffleChart({ programs, cellValue = 10 }: WaffleChartProps) {
       {/* Accessibility: hidden data table */}
       <table className="sr-only" aria-label="Student distribution by program">
         <thead>
-          <tr><th>Program</th><th>Students</th></tr>
+          <tr>
+            <th>Program</th>
+            <th>Students</th>
+          </tr>
         </thead>
         <tbody>
           {programs.map((p) => (
-            <tr key={p.name}><td>{p.name}</td><td>{p.count}</td></tr>
+            <tr key={p.name}>
+              <td>{p.name}</td>
+              <td>{p.count}</td>
+            </tr>
           ))}
         </tbody>
       </table>

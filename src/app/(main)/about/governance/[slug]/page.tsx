@@ -12,12 +12,12 @@ const membersRepo = new MembersRepository();
 function mapToTeamMember(row: any): TeamMember {
   return {
     id: row.id,
-    slug: row.slug || '',
+    slug: row.slug || "",
     category: row.type.toLowerCase(),
     name: `${row.first_name} ${row.last_name}`.trim(),
-    role: row.role || '',
-    description: row.bio || '',
-    image: row.avatar_url || '',
+    role: row.role || "",
+    description: row.bio || "",
+    image: row.avatar_url || "",
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     profile: row.profile as any,
   };

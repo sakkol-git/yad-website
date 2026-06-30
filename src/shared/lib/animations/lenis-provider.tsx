@@ -54,8 +54,8 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
         // duration: 1.4 replaces lerp: 0.08 — more predictable physics, slightly more responsive
         duration: 1.4,
         smoothWheel: true,
-        wheelMultiplier: 0.9,  // Slightly reduced — prevents over-scrolling sensation
-        syncTouch: false,      // Never smooth touch scrolling — keep mobile native-feeling
+        wheelMultiplier: 0.9, // Slightly reduced — prevents over-scrolling sensation
+        syncTouch: false, // Never smooth touch scrolling — keep mobile native-feeling
         easing: LENIS_EASE,
       }}
     >

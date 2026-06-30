@@ -1,6 +1,6 @@
-import * as Sentry from '@sentry/nextjs';
+import * as Sentry from "@sentry/nextjs";
 
-type LogLevel = 'info' | 'warn' | 'error' | 'debug';
+type LogLevel = "info" | "warn" | "error" | "debug";
 
 interface LogContext {
   [key: string]: unknown;
@@ -18,30 +18,30 @@ class Logger {
   }
 
   info(message: string, context?: LogContext) {
-    console.log(this.formatMessage('info', message, context));
+    console.log(this.formatMessage("info", message, context));
   }
 
   warn(message: string, context?: LogContext) {
-    console.warn(this.formatMessage('warn', message, context));
-    if (typeof window === 'undefined') {
-      Sentry.captureMessage(message, { level: 'warning', extra: context });
+    console.warn(this.formatMessage("warn", message, context));
+    if (typeof window === "undefined") {
+      Sentry.captureMessage(message, { level: "warning", extra: context });
     }
   }
 
   error(message: string, error?: Error | unknown, context?: LogContext) {
-    console.error(this.formatMessage('error', message, { ...context, error }));
-    if (typeof window === 'undefined') {
+    console.error(this.formatMessage("error", message, { ...context, error }));
+    if (typeof window === "undefined") {
       if (error instanceof Error) {
         Sentry.captureException(error, { extra: context });
       } else {
-        Sentry.captureMessage(message, { level: 'error', extra: { ...context, error } });
+        Sentry.captureMessage(message, { level: "error", extra: { ...context, error } });
       }
     }
   }
 
   debug(message: string, context?: LogContext) {
-    if (process.env.NODE_ENV === 'development') {
-      console.debug(this.formatMessage('debug', message, context));
+    if (process.env.NODE_ENV === "development") {
+      console.debug(this.formatMessage("debug", message, context));
     }
   }
 }

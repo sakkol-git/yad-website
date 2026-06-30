@@ -9,7 +9,7 @@ interface StaggerGroupProps {
   children: ReactNode;
   className?: string;
   y?: number;
-  scale?: number;   // optional scale-in, e.g. 0.95 → 1
+  scale?: number; // optional scale-in, e.g. 0.95 → 1
   stagger?: number;
 }
 
@@ -33,34 +33,38 @@ export function StaggerGroup({
         return;
       }
 
-      gsap.fromTo(items, {
-        opacity: 0,
-        y,
-        ...(scale ? { scale } : {}),
-      }, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: GSAP_PRESETS.STAGGER.duration,
-        ease: GSAP_PRESETS.STAGGER.ease,
-        stagger: {
-          amount: stagger,
-          from: GSAP_PRESETS.STAGGER.stagger.from,
-          ease: GSAP_PRESETS.STAGGER.stagger.ease,
+      gsap.fromTo(
+        items,
+        {
+          opacity: 0,
+          y,
+          ...(scale ? { scale } : {}),
         },
-        onComplete: () => {
-          items.forEach((item) => {
-            (item as HTMLElement).style.willChange = "auto";
-          });
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: GSAP_PRESETS.STAGGER.duration,
+          ease: GSAP_PRESETS.STAGGER.ease,
+          stagger: {
+            amount: stagger,
+            from: GSAP_PRESETS.STAGGER.stagger.from,
+            ease: GSAP_PRESETS.STAGGER.stagger.ease,
+          },
+          onComplete: () => {
+            items.forEach((item) => {
+              (item as HTMLElement).style.willChange = "auto";
+            });
+          },
+          scrollTrigger: {
+            trigger: ref.current,
+            start: TRIGGER_START,
+            toggleActions: "play none none reverse",
+          },
         },
-        scrollTrigger: {
-          trigger: ref.current,
-          start: TRIGGER_START,
-          toggleActions: "play none none reverse",
-        },
-      });
+      );
     },
-    { scope: ref, dependencies: [reduced, y, scale, stagger] }
+    { scope: ref, dependencies: [reduced, y, scale, stagger] },
   );
 
   const id = useId().replace(/:/g, "");
@@ -69,15 +73,21 @@ export function StaggerGroup({
   return (
     <>
       {!reduced && (
-        <style dangerouslySetInnerHTML={{ __html: `
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
           .${styleId} > * {
             opacity: 0;
-            transform: translateY(${y}px) ${scale ? `scale(${scale})` : ''};
+            transform: translateY(${y}px) ${scale ? `scale(${scale})` : ""};
             will-change: opacity, transform;
           }
-        `}} />
+        `,
+          }}
+        />
       )}
-      <div ref={ref} className={`${className || ''} ${styleId}`}>{children}</div>
+      <div ref={ref} className={`${className || ""} ${styleId}`}>
+        {children}
+      </div>
     </>
   );
 }

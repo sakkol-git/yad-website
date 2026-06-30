@@ -20,9 +20,9 @@ export default async function PartnerPage() {
   const partners: PartnerItem[] = dbPartners.map((row) => ({
     id: row.id,
     name: row.name,
-    icon: row.icon || 'public',
-    category: row.category || 'Local Organizations',
-    websiteUrl: row.website_url || '#',
+    icon: row.icon || "public",
+    category: row.category || "Local Organizations",
+    websiteUrl: row.website_url || "#",
     featured: row.featured || false,
     logoUrl: row.logo_url || null,
   }));

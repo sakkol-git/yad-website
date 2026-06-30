@@ -1,5 +1,5 @@
-import { PortalPageLayout } from '@/shared/components/portal/layout/PortalPageLayout';
-import { SkeletonCard } from '@/shared/components/ui/SkeletonCard';
+import { PortalPageLayout } from "@/shared/components/portal/layout/PortalPageLayout";
+import { SkeletonCard } from "@/shared/components/ui/SkeletonCard";
 
 export default function PortalLoading() {
   return (

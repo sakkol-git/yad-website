@@ -36,15 +36,11 @@ export function StripePaymentClient({ paymentDetails }: StripePaymentClientProps
 
           <div className="space-y-8">
             <p className="text-sm font-light text-on-surface-variant leading-relaxed">
-              Please enter your credit or debit card details below. All transaction information is securely encrypted and processed by Stripe.
+              Please enter your credit or debit card details below. All transaction information is
+              securely encrypted and processed by Stripe.
             </p>
 
-            <StripeEmbeddedCheckout
-              id={id}
-              type={type}
-              amount={amount}
-              email={email}
-            />
+            <StripeEmbeddedCheckout id={id} type={type} amount={amount} email={email} />
           </div>
         </div>
       </div>
@@ -84,9 +80,7 @@ export function StripePaymentClient({ paymentDetails }: StripePaymentClientProps
 
           <div className="space-y-4 relative z-10">
             <div className="flex items-start gap-4">
-              <span className="material-symbols-outlined text-[20px] text-primary">
-                verified_user
-              </span>
+              <span className="material-symbols-outlined text-xl text-primary">verified_user</span>
               <div>
                 <p className="uppercase tracking-widest text-[10px] font-bold text-on-surface mb-1">
                   Stripe Secure

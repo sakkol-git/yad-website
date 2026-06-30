@@ -5,8 +5,6 @@ import { createAdminClient } from "@/shared/lib/supabase/admin";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { reportsService } from "@/server/services/reports.service";
 
-
-
 /**
  * Uploads a new annual report PDF.
  * Auth: requires admin session.
@@ -31,7 +29,7 @@ export async function uploadReportAction(formData: FormData) {
     revalidatePath("/radical-transparency");
     revalidateTag("reports", "default");
     return { success: true };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     // Re-map Zod errors to user-friendly messages
     if (err?.errors) {
@@ -41,18 +39,13 @@ export async function uploadReportAction(formData: FormData) {
     console.error("[ReportAction] uploadReport error:", err);
     return { success: false, error: err.message ?? "An unexpected error occurred." };
   }
-
-
 }
 
 /**
  * Updates a report's title and year (metadata only — does not re-upload the file).
  * Auth: requires admin session.
  */
-export async function updateReportAction(
-  id: string,
-  formData: FormData
-) {
+export async function updateReportAction(id: string, formData: FormData) {
   const supabase = await createClient();
   const title = formData.get("title") as string;
   const yearStr = formData.get("year") as string;
@@ -65,7 +58,7 @@ export async function updateReportAction(
     revalidatePath("/radical-transparency");
     revalidateTag("reports", "default");
     return { success: true };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     if (err?.errors) {
       const first = err.errors[0];
@@ -91,7 +84,7 @@ export async function deleteReportAction(id: string) {
     revalidatePath("/radical-transparency");
     revalidateTag("reports", "default");
     return { success: true };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     console.error("[ReportAction] deleteReport error:", err);
     return { success: false, error: err.message ?? "Failed to delete report." };

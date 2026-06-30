@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #0F4C3A;
+  --color-primary: #0f4c3a;
   --color-on-primary: #ffffff;
-  --color-primary-container: #4D7B6B;
+  --color-primary-container: #4d7b6b;
   --color-on-primary-container: #062319;
-  --color-primary-fixed: #A9D1C0;
-  --color-primary-fixed-dim: #79A995;
-  --color-on-primary-fixed: #03130E;
+  --color-primary-fixed: #a9d1c0;
+  --color-primary-fixed-dim: #79a995;
+  --color-on-primary-fixed: #03130e;
   --color-on-primary-fixed-variant: #062319;
-  --color-inverse-primary: #79A995;
+  --color-inverse-primary: #79a995;
 
   --color-secondary: #e08c00;
   --color-on-secondary: #ffffff;
@@ -29,24 +29,24 @@
   --color-on-tertiary-fixed: #001e2d;
   --color-on-tertiary-fixed-variant: #06334a;
 
-  --color-background: #F9F9F8;
+  --color-background: #f9f9f8;
   --color-on-background: #111413;
-  --color-surface: #F9F9F8;
-  --color-surface-bright: #F9F9F8;
-  --color-surface-dim: #DCDDDA;
+  --color-surface: #f9f9f8;
+  --color-surface-bright: #f9f9f8;
+  --color-surface-dim: #dcddda;
   --color-on-surface: #111413;
-  --color-on-surface-variant: #3A4440;
-  --color-surface-variant: #E2E4E1;
-  --color-surface-tint: #0F4C3A;
+  --color-on-surface-variant: #3a4440;
+  --color-surface-variant: #e2e4e1;
+  --color-surface-tint: #0f4c3a;
 
   --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #F3F4F1;
-  --color-surface-container: #EDEFEA;
-  --color-surface-container-high: #E2E4E1;
-  --color-surface-container-highest: #D5D7D3;
+  --color-surface-container-low: #f3f4f1;
+  --color-surface-container: #edefea;
+  --color-surface-container-high: #e2e4e1;
+  --color-surface-container-highest: #d5d7d3;
 
-  --color-inverse-surface: #2E3230;
-  --color-inverse-on-surface: #F0F2EF;
+  --color-inverse-surface: #2e3230;
+  --color-inverse-on-surface: #f0f2ef;
 
   --color-outline: #5e8068;
   --color-outline-variant: #afc4b5;
@@ -139,7 +139,7 @@
   --text-title-lg--font-weight: 600;
 
   /* External brand colors */
-  --color-stripe-brand: #635BFF;
+  --color-stripe-brand: #635bff;
 }
 
 html {
@@ -186,7 +186,6 @@ html {
 }
 
 @keyframes float {
-
   0%,
   100% {
     transform: translateY(0px);
@@ -257,7 +256,6 @@ html {
 
 /* Mobile Touch Targets */
 @media (max-width: 768px) {
-
   a,
   button {
     min-height: 44px;
@@ -276,10 +274,19 @@ html {
 }
 
 .skeleton-shimmer {
-  background: linear-gradient(90deg,
-      var(--color-surface-container) 25%,
-      var(--color-surface-container-highest) 50%,
-      var(--color-surface-container) 75%);
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-container) 25%,
+    var(--color-surface-container-highest) 50%,
+    var(--color-surface-container) 75%
+  );
   background-size: 200% 100%;
   animation: shimmer 1.8s ease-in-out infinite;
+}
+
+@utility kicker-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
 }

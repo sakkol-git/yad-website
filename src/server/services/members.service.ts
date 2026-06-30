@@ -1,9 +1,9 @@
-import { SupabaseClient } from '@supabase/supabase-js';
-import { Database } from '@/shared/types/supabase';
-import { MembersRepository } from '../repositories/members';
-import { getMembersSchema, GetMembersInput } from '../validators/member.schema';
-import { requireAdmin } from '../permissions';
-import { cache } from 'react';
+import { SupabaseClient } from "@supabase/supabase-js";
+import { Database } from "@/shared/types/supabase";
+import { MembersRepository } from "../repositories/members";
+import { getMembersSchema, GetMembersInput } from "../validators/member.schema";
+import { requireAdmin } from "../permissions";
+import { cache } from "react";
 
 export class MembersService {
   private repository: MembersRepository;
@@ -12,12 +12,22 @@ export class MembersService {
     this.repository = new MembersRepository();
   }
 
-  async getMembers(supabase: SupabaseClient<Database>, input: GetMembersInput, isAdminRoute: boolean = false) {
+  async getMembers(
+    supabase: SupabaseClient<Database>,
+    input: GetMembersInput,
+    isAdminRoute: boolean = false,
+  ) {
     if (isAdminRoute) {
       await requireAdmin(supabase);
     }
     const validatedInput = getMembersSchema.parse(input);
-    return this.repository.getPaginated(supabase, validatedInput.page, validatedInput.limit, validatedInput.search, validatedInput.role);
+    return this.repository.getPaginated(
+      supabase,
+      validatedInput.page,
+      validatedInput.limit,
+      validatedInput.search,
+      validatedInput.role,
+    );
   }
 
   async getAllMembers(supabase: SupabaseClient<Database>) {
@@ -42,9 +52,11 @@ export class MembersService {
     return this.repository.delete(supabase, id);
   }
 
-  getPublicMembersByCategory = cache(async (supabase: SupabaseClient<Database>, category: string) => {
-    return this.repository.getPublicMembersByCategory(supabase, category);
-  });
+  getPublicMembersByCategory = cache(
+    async (supabase: SupabaseClient<Database>, category: string) => {
+      return this.repository.getPublicMembersByCategory(supabase, category);
+    },
+  );
 
   getPublicMemberBySlug = cache(async (supabase: SupabaseClient<Database>, slug: string) => {
     return this.repository.getPublicMemberBySlug(supabase, slug);

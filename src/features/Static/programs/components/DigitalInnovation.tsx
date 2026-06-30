@@ -22,9 +22,7 @@ export function DigitalInnovation() {
           {/* Floating feature card */}
           <div className="absolute top-1/2 -right-12 transform -translate-y-1/2 bg-surface/85 backdrop-blur-2xl border border-outline-variant/50 shadow-xl shadow-black/10 rounded-md z-20 w-48 hidden lg:block p-5">
             <div className="flex items-center gap-3 mb-3">
-              <span className="material-symbols-outlined text-tertiary text-[20px]">
-                code
-              </span>
+              <span className="material-symbols-outlined text-tertiary text-xl">code</span>
               <span className="font-label-bold text-label-bold text-on-surface uppercase tracking-widest text-[10px]">
                 Tech Skills
               </span>
@@ -34,27 +32,26 @@ export function DigitalInnovation() {
             </div>
           </div>
         </div>
-        
+
         <div className="lg:w-7/12 lg:pl-12">
           <RevealOnScroll>
             <span className="block text-tertiary uppercase tracking-[0.2em] font-label-bold text-xs mb-4">
               Digital Innovation
             </span>
           </RevealOnScroll>
-          
-          <TextReveal 
-            as="h2" 
-            text="Bridging the Digital Divide." 
-            className="font-headline-lg text-4xl lg:text-5xl text-primary mb-8 leading-tight tracking-tight" 
+
+          <TextReveal
+            as="h2"
+            text="Bridging the Digital Divide."
+            className="font-headline-lg text-4xl lg:text-5xl text-primary mb-8 leading-tight tracking-tight"
           />
-          
+
           <RevealOnScroll delay={0.1}>
             <div className="space-y-6 font-body-lg text-on-surface-variant leading-relaxed text-lg mb-8">
               <p>
-                Bridging the digital divide by providing access to modern
-                technology and vital digital literacy skills. Our fully equipped
-                IT labs serve as hubs for coding, digital marketing, and
-                essential computer skills training.
+                Bridging the digital divide by providing access to modern technology and vital
+                digital literacy skills. Our fully equipped IT labs serve as hubs for coding,
+                digital marketing, and essential computer skills training.
               </p>
             </div>
           </RevealOnScroll>
@@ -70,13 +67,14 @@ export function DigitalInnovation() {
                   <span className="material-symbols-outlined text-secondary mt-0.5">
                     check_circle
                   </span>
-                  <span className="font-body-md text-body-md text-on-surface">
-                    {item}
-                  </span>
+                  <span className="font-body-md text-body-md text-on-surface">{item}</span>
                 </li>
               ))}
             </ul>
-            <Button variant="primary" className="bg-tertiary-fixed text-on-tertiary-fixed hover:bg-tertiary-fixed-dim transition-[color,background-color,border-color,opacity,transform] duration-200 ease-in-out active:scale-[0.97] active:opacity-90">
+            <Button
+              variant="primary"
+              className="bg-tertiary-fixed text-on-tertiary-fixed hover:bg-tertiary-fixed-dim transition-[color,background-color,border-color,opacity,transform] duration-200 ease-in-out active:scale-[0.97] active:opacity-90"
+            >
               View Curriculum
             </Button>
           </RevealOnScroll>

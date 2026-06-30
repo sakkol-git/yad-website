@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { DataTable, ColumnDef } from '@/shared/components/ui/DataTable';
-import { FilterBar } from '@/shared/components/admin/data/FilterBar';
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { DataTable, ColumnDef } from "@/shared/components/ui/DataTable";
+import { FilterBar } from "@/shared/components/admin/data/FilterBar";
 
 export interface Donation {
   id: string;
@@ -31,20 +31,20 @@ export function DonationsTable({
   count,
   page,
   statusRaw,
-  methodRaw
+  methodRaw,
 }: DonationsTableProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const currentSearch = searchParams.get('search') || '';
+  const currentSearch = searchParams.get("search") || "";
   const [searchTerm, setSearchTerm] = useState(currentSearch);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (searchTerm !== currentSearch) {
         const params = new URLSearchParams(searchParams);
-        if (searchTerm) params.set('search', searchTerm);
-        else params.delete('search');
-        params.delete('page');
+        if (searchTerm) params.set("search", searchTerm);
+        else params.delete("search");
+        params.delete("page");
         router.push(`?${params.toString()}`);
       }
     }, 400);
@@ -53,17 +53,17 @@ export function DonationsTable({
 
   const handleStatusFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const params = new URLSearchParams(searchParams);
-    if (e.target.value) params.set('status', e.target.value);
-    else params.delete('status');
-    params.delete('page');
+    if (e.target.value) params.set("status", e.target.value);
+    else params.delete("status");
+    params.delete("page");
     router.push(`?${params.toString()}`);
   };
 
   const handleMethodFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const params = new URLSearchParams(searchParams);
-    if (e.target.value) params.set('method', e.target.value);
-    else params.delete('method');
-    params.delete('page');
+    if (e.target.value) params.set("method", e.target.value);
+    else params.delete("method");
+    params.delete("page");
     router.push(`?${params.toString()}`);
   };
 
@@ -73,7 +73,7 @@ export function DonationsTable({
       header: "Donor",
       cell: (row) => (
         <>
-          <p className="font-bold text-[14px] text-on-surface">{row.donor_name || 'Anonymous'}</p>
+          <p className="font-bold text-sm text-on-surface">{row.donor_name || "Anonymous"}</p>
           {row.donor_id && <p className="text-xs text-secondary font-medium">Registered User</p>}
         </>
       ),
@@ -82,8 +82,10 @@ export function DonationsTable({
       id: "amount",
       header: "Amount",
       cell: (row) => (
-        <span className="font-bold text-[16px] text-on-surface">
-          {new Intl.NumberFormat('en-US', { style: 'currency', currency: row.currency }).format(row.amount)}
+        <span className="font-bold text-base text-on-surface">
+          {new Intl.NumberFormat("en-US", { style: "currency", currency: row.currency }).format(
+            row.amount,
+          )}
         </span>
       ),
     },
@@ -92,8 +94,12 @@ export function DonationsTable({
       header: "Method",
       cell: (row) => (
         <span className="inline-flex items-center gap-1 text-on-surface-variant text-sm">
-          <span className="material-symbols-outlined text-[16px]">
-            {row.method === 'Stripe' ? 'credit_card' : row.method === 'KHQR' ? 'qr_code_scanner' : 'payments'}
+          <span className="material-symbols-outlined text-base">
+            {row.method === "Stripe"
+              ? "credit_card"
+              : row.method === "KHQR"
+                ? "qr_code_scanner"
+                : "payments"}
           </span>
           {row.method}
         </span>
@@ -103,14 +109,20 @@ export function DonationsTable({
       id: "status",
       header: "Status",
       cell: (row) => {
-        let colorClass = 'bg-surface-variant text-on-surface-variant';
-        if (row.status === 'Completed') colorClass = 'bg-primary-container text-on-primary-container';
-        else if (row.status === 'Pending Payment' || row.status === 'Draft') colorClass = 'bg-tertiary-container text-on-tertiary-container';
-        else if (row.status === 'Processing') colorClass = 'bg-secondary-container text-on-secondary-container';
-        else if (row.status === 'Failed' || row.status === 'Refunded') colorClass = 'bg-error-container text-error';
+        let colorClass = "bg-surface-variant text-on-surface-variant";
+        if (row.status === "Completed")
+          colorClass = "bg-primary-container text-on-primary-container";
+        else if (row.status === "Pending Payment" || row.status === "Draft")
+          colorClass = "bg-tertiary-container text-on-tertiary-container";
+        else if (row.status === "Processing")
+          colorClass = "bg-secondary-container text-on-secondary-container";
+        else if (row.status === "Failed" || row.status === "Refunded")
+          colorClass = "bg-error-container text-error";
 
         return (
-          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${colorClass}`}>
+          <span
+            className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${colorClass}`}
+          >
             {row.status}
           </span>
         );
@@ -121,7 +133,11 @@ export function DonationsTable({
       header: "Date",
       cell: (row) => (
         <span className="text-on-surface-variant text-sm">
-          {new Date(row.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+          {new Date(row.created_at).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
         </span>
       ),
     },
@@ -132,12 +148,21 @@ export function DonationsTable({
       cell: (row) => (
         <div className="flex justify-end items-center gap-2">
           {row.receipt_url && (
-            <a href={row.receipt_url} target="_blank" rel="noreferrer" className="p-2 text-secondary hover:text-primary transition-colors flex items-center justify-center rounded-full hover:bg-primary/10" title="View Receipt">
-              <span className="material-symbols-outlined text-[18px]">receipt_long</span>
+            <a
+              href={row.receipt_url}
+              target="_blank"
+              rel="noreferrer"
+              className="p-2 text-secondary hover:text-primary transition-colors flex items-center justify-center rounded-full hover:bg-primary/10"
+              title="View Receipt"
+            >
+              <span className="material-symbols-outlined text-lg">receipt_long</span>
             </a>
           )}
-          <button className="p-2 text-on-surface-variant hover:text-secondary transition-colors flex items-center justify-center rounded-full hover:bg-secondary/10" title="More options">
-            <span className="material-symbols-outlined text-[18px]">more_vert</span>
+          <button
+            className="p-2 text-on-surface-variant hover:text-secondary transition-colors flex items-center justify-center rounded-full hover:bg-secondary/10"
+            title="More options"
+          >
+            <span className="material-symbols-outlined text-lg">more_vert</span>
           </button>
         </div>
       ),
@@ -146,9 +171,9 @@ export function DonationsTable({
 
   const additionalFilters = (
     <div className="flex gap-3">
-      <select 
-        className="py-2.5 pl-3 pr-8 bg-surface-container rounded-md border border-outline-variant/30 focus:ring-2 focus:ring-primary text-[14px] text-on-surface-variant cursor-pointer appearance-none shadow-sm"
-        value={methodRaw || ''}
+      <select
+        className="py-2.5 pl-3 pr-8 bg-surface-container rounded-md border border-outline-variant/30 focus:ring-2 focus:ring-primary text-sm text-on-surface-variant cursor-pointer appearance-none shadow-sm"
+        value={methodRaw || ""}
         onChange={handleMethodFilterChange}
       >
         <option value="">All Methods</option>
@@ -157,9 +182,9 @@ export function DonationsTable({
         <option value="cash">Cash</option>
         <option value="other">Other</option>
       </select>
-      <select 
-        className="py-2.5 pl-3 pr-8 bg-surface-container rounded-md border border-outline-variant/30 focus:ring-2 focus:ring-primary text-[14px] text-on-surface-variant cursor-pointer appearance-none shadow-sm"
-        value={statusRaw || ''}
+      <select
+        className="py-2.5 pl-3 pr-8 bg-surface-container rounded-md border border-outline-variant/30 focus:ring-2 focus:ring-primary text-sm text-on-surface-variant cursor-pointer appearance-none shadow-sm"
+        value={statusRaw || ""}
         onChange={handleStatusFilterChange}
       >
         <option value="">All Statuses</option>
@@ -175,18 +200,18 @@ export function DonationsTable({
 
   return (
     <div className="space-y-4">
-      <FilterBar 
-        searchValue={searchTerm} 
-        onSearchChange={setSearchTerm} 
+      <FilterBar
+        searchValue={searchTerm}
+        onSearchChange={setSearchTerm}
         searchPlaceholder="Search donors..."
       >
         {additionalFilters}
       </FilterBar>
 
-      <DataTable 
-        columns={columns} 
-        data={donations} 
-        keyExtractor={(row) => row.id} 
+      <DataTable
+        columns={columns}
+        data={donations}
+        keyExtractor={(row) => row.id}
         count={count}
         page={page}
         emptyMessage="No donations found."

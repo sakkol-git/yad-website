@@ -6,7 +6,7 @@ import { TextReveal } from "@/shared/components/animations/TextReveal";
 export function EventCTA() {
   return (
     <section className="py-24 bg-surface border-t border-outline-variant/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-container-max">
         <div className="bg-primary p-12 md:p-24 text-center rounded-md relative overflow-hidden shadow-2xl">
           {/* Decorative Glows */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-bl-full -z-0 blur-3xl pointer-events-none" />
@@ -19,18 +19,17 @@ export function EventCTA() {
             </span>
             <div className="w-12 h-[1px] bg-white/30" />
           </div>
-          
-          <TextReveal 
-            as="h2" 
-            text="Ready to make an Impact?" 
-            className="text-[3rem] md:text-[4rem] text-on-primary tracking-tighter leading-[1.0] mb-8 relative z-10" 
+
+          <TextReveal
+            as="h2"
+            text="Ready to make an Impact?"
+            className="text-[3rem] md:text-[4rem] text-on-primary tracking-tighter leading-[1.0] mb-8 relative z-10"
           />
-          
+
           <RevealOnScroll delay={0.2} className="relative z-10">
             <p className="text-lg md:text-xl text-on-primary/80 font-light leading-relaxed max-w-2xl mx-auto mb-12">
-              Whether you want to volunteer on the ground, lend your skills, or
-              support our initiatives financially, there&apos;s a place for you in
-              our movement.
+              Whether you want to volunteer on the ground, lend your skills, or support our
+              initiatives financially, there&apos;s a place for you in our movement.
             </p>
             <div className="flex flex-wrap justify-center gap-6">
               <Button

@@ -12,12 +12,8 @@ export function TeamMemberCard({
   extra,
   href,
 }: TeamMemberCardProps) {
-
   const content = (
-    <div className={cn(
-      "relative w-full group",
-      extra
-    )}>
+    <div className={cn("relative w-full group", extra)}>
       {/* Image Block */}
       <div className="relative w-full aspect-[4/5] overflow-hidden mb-5">
         <ImageRevealMask className="w-full h-full">
@@ -33,9 +29,7 @@ export function TeamMemberCard({
 
       {/* Text Content */}
       <div className="flex flex-col items-start text-left">
-        <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant/70 mb-2">
-          {role}
-        </span>
+        <span className="kicker-label text-on-surface-variant/70 mb-2">{role}</span>
         <h3 className="text-2xl font-light text-on-surface tracking-tight mb-3 transition-colors group-hover:text-primary">
           {name}
         </h3>
@@ -56,9 +50,5 @@ export function TeamMemberCard({
     );
   }
 
-  return (
-    <div className="group h-full w-full">
-      {content}
-    </div>
-  );
+  return <div className="group h-full w-full">{content}</div>;
 }

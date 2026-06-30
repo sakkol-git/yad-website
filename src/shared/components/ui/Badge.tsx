@@ -8,27 +8,19 @@ interface BadgeProps {
 }
 
 const variantClasses: Record<string, string> = {
-  secondary:
-    "bg-secondary-container text-on-secondary-container",
-  primary:
-    "bg-primary-container text-on-primary-container",
-  tertiary:
-    "bg-tertiary-container text-on-tertiary-container",
-  error:
-    "bg-error-container text-on-error-container",
+  secondary: "bg-secondary-container text-on-secondary-container",
+  primary: "bg-primary-container text-on-primary-container",
+  tertiary: "bg-tertiary-container text-on-tertiary-container",
+  error: "bg-error-container text-on-error-container",
 };
 
-export function Badge({
-  children,
-  variant = "secondary",
-  className,
-}: BadgeProps) {
+export function Badge({ children, variant = "secondary", className }: BadgeProps) {
   return (
     <span
       className={cn(
         "inline-block px-4 py-1 rounded-sm font-label-bold text-label-bold text-xs tracking-wide",
         variantClasses[variant],
-        className
+        className,
       )}
     >
       {children}

@@ -31,7 +31,7 @@ export interface ActionContext {
  */
 export function createSafeAction<T extends z.ZodType<any, any, any>, R>(
   config: SafeActionConfig<T>,
-  handler: (parsedInput: z.infer<T>, ctx: ActionContext) => Promise<R>
+  handler: (parsedInput: z.infer<T>, ctx: ActionContext) => Promise<R>,
 ) {
   // We return a function that matches standard Action signatures.
   // It handles both standard React useActionState (prevState, formData) and direct invocations (input).
@@ -45,7 +45,7 @@ export function createSafeAction<T extends z.ZodType<any, any, any>, R>(
       }
 
       let parsedInput: z.infer<T> = input;
-      
+
       // 1. Validate Schema
       if (config.schema) {
         if (input instanceof FormData) {
@@ -69,7 +69,7 @@ export function createSafeAction<T extends z.ZodType<any, any, any>, R>(
       // 2. Auth & Context
       const sessionClient = await createClient();
       let user: User | null = null;
-      
+
       if (config.role && config.role !== "public") {
         if (config.role === "admin") {
           user = await requireAdmin(sessionClient);
@@ -89,7 +89,6 @@ export function createSafeAction<T extends z.ZodType<any, any, any>, R>(
       // 3. Execute Handler
       const data = await handler(parsedInput, ctx);
       return { success: true, data };
-
     } catch (error: any) {
       console.error("[SafeAction] Error:", error);
       return { success: false, error: error.message || "An unexpected error occurred" };

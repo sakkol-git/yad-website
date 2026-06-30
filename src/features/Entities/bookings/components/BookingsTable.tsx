@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { DataTable, ColumnDef } from '@/shared/components/ui/DataTable';
-import { FilterBar } from '@/shared/components/admin/data/FilterBar';
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { DataTable, ColumnDef } from "@/shared/components/ui/DataTable";
+import { FilterBar } from "@/shared/components/admin/data/FilterBar";
 
 export interface Booking {
   id: string;
@@ -34,16 +34,16 @@ export function BookingsTable({
 }: BookingsTableProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const currentSearch = searchParams.get('search') || '';
+  const currentSearch = searchParams.get("search") || "";
   const [searchTerm, setSearchTerm] = useState(currentSearch);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (searchTerm !== currentSearch) {
         const params = new URLSearchParams(searchParams);
-        if (searchTerm) params.set('search', searchTerm);
-        else params.delete('search');
-        params.delete('page');
+        if (searchTerm) params.set("search", searchTerm);
+        else params.delete("search");
+        params.delete("page");
         router.push(`?${params.toString()}`);
       }
     }, 400);
@@ -52,17 +52,17 @@ export function BookingsTable({
 
   const handleStatusFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const params = new URLSearchParams(searchParams);
-    if (e.target.value) params.set('status', e.target.value);
-    else params.delete('status');
-    params.delete('page');
+    if (e.target.value) params.set("status", e.target.value);
+    else params.delete("status");
+    params.delete("page");
     router.push(`?${params.toString()}`);
   };
 
   const handlePaymentFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const params = new URLSearchParams(searchParams);
-    if (e.target.value) params.set('paymentStatus', e.target.value);
-    else params.delete('paymentStatus');
-    params.delete('page');
+    if (e.target.value) params.set("paymentStatus", e.target.value);
+    else params.delete("paymentStatus");
+    params.delete("page");
     router.push(`?${params.toString()}`);
   };
 
@@ -70,19 +70,22 @@ export function BookingsTable({
     {
       id: "guest",
       header: "Guest",
-      cell: (row) => <p className="font-bold text-[14px] text-on-surface">{row.guest_name}</p>,
+      cell: (row) => <p className="font-bold text-sm text-on-surface">{row.guest_name}</p>,
     },
     {
       id: "room",
       header: "Room",
-      cell: (row) => <span className="text-on-surface-variant text-sm">{row.rooms?.name || 'N/A'}</span>,
+      cell: (row) => (
+        <span className="text-on-surface-variant text-sm">{row.rooms?.name || "N/A"}</span>
+      ),
     },
     {
       id: "dates",
       header: "Dates",
       cell: (row) => (
         <span className="text-on-surface-variant text-sm">
-          {new Date(row.check_in).toLocaleDateString()} - {new Date(row.check_out).toLocaleDateString()}
+          {new Date(row.check_in).toLocaleDateString()} -{" "}
+          {new Date(row.check_out).toLocaleDateString()}
         </span>
       ),
     },
@@ -92,9 +95,11 @@ export function BookingsTable({
       cell: (row) => (
         <div>
           <div className="font-bold text-on-surface">${row.amount}</div>
-          <span className={`text-xs font-bold ${
-            row.payment_status === 'Paid' ? 'text-secondary' : 'text-error'
-          }`}>
+          <span
+            className={`text-xs font-bold ${
+              row.payment_status === "Paid" ? "text-secondary" : "text-error"
+            }`}
+          >
             {row.payment_status}
           </span>
         </div>
@@ -104,14 +109,20 @@ export function BookingsTable({
       id: "status",
       header: "Status",
       cell: (row) => {
-        let colorClass = 'bg-surface-variant text-on-surface-variant';
-        if (row.status === 'Checked In' || row.status === 'Checked Out') colorClass = 'bg-primary-container text-on-primary-container';
-        else if (row.status === 'Confirmed') colorClass = 'bg-secondary-container text-on-secondary-container';
-        else if (row.status === 'Inquiry' || row.status === 'Availability Review') colorClass = 'bg-tertiary-container text-on-tertiary-container';
-        else if (row.status === 'Cancelled' || row.status === 'No Show') colorClass = 'bg-error-container text-error';
+        let colorClass = "bg-surface-variant text-on-surface-variant";
+        if (row.status === "Checked In" || row.status === "Checked Out")
+          colorClass = "bg-primary-container text-on-primary-container";
+        else if (row.status === "Confirmed")
+          colorClass = "bg-secondary-container text-on-secondary-container";
+        else if (row.status === "Inquiry" || row.status === "Availability Review")
+          colorClass = "bg-tertiary-container text-on-tertiary-container";
+        else if (row.status === "Cancelled" || row.status === "No Show")
+          colorClass = "bg-error-container text-error";
 
         return (
-          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${colorClass}`}>
+          <span
+            className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold ${colorClass}`}
+          >
             {row.status}
           </span>
         );
@@ -123,8 +134,11 @@ export function BookingsTable({
       enableHiding: false,
       cell: (row) => (
         <div className="flex justify-end items-center gap-2">
-          <button className="p-2 text-on-surface-variant hover:text-secondary transition-colors flex items-center justify-center rounded-full hover:bg-secondary/10" title="More options">
-            <span className="material-symbols-outlined text-[18px]">more_vert</span>
+          <button
+            className="p-2 text-on-surface-variant hover:text-secondary transition-colors flex items-center justify-center rounded-full hover:bg-secondary/10"
+            title="More options"
+          >
+            <span className="material-symbols-outlined text-lg">more_vert</span>
           </button>
         </div>
       ),
@@ -133,9 +147,9 @@ export function BookingsTable({
 
   const additionalFilters = (
     <div className="flex gap-3">
-      <select 
-        className="py-2.5 pl-3 pr-8 bg-surface-container rounded-md border border-outline-variant/30 focus:ring-2 focus:ring-primary text-[14px] text-on-surface-variant cursor-pointer appearance-none shadow-sm"
-        value={statusRaw || ''}
+      <select
+        className="py-2.5 pl-3 pr-8 bg-surface-container rounded-md border border-outline-variant/30 focus:ring-2 focus:ring-primary text-sm text-on-surface-variant cursor-pointer appearance-none shadow-sm"
+        value={statusRaw || ""}
         onChange={handleStatusFilterChange}
       >
         <option value="">All Statuses</option>
@@ -149,9 +163,9 @@ export function BookingsTable({
         <option value="Cancelled">Cancelled</option>
         <option value="No Show">No Show</option>
       </select>
-      <select 
-        className="py-2.5 pl-3 pr-8 bg-surface-container rounded-md border border-outline-variant/30 focus:ring-2 focus:ring-primary text-[14px] text-on-surface-variant cursor-pointer appearance-none shadow-sm"
-        value={paymentStatusRaw || ''}
+      <select
+        className="py-2.5 pl-3 pr-8 bg-surface-container rounded-md border border-outline-variant/30 focus:ring-2 focus:ring-primary text-sm text-on-surface-variant cursor-pointer appearance-none shadow-sm"
+        value={paymentStatusRaw || ""}
         onChange={handlePaymentFilterChange}
       >
         <option value="">Payment Status</option>
@@ -165,18 +179,18 @@ export function BookingsTable({
 
   return (
     <div className="space-y-4">
-      <FilterBar 
-        searchValue={searchTerm} 
-        onSearchChange={setSearchTerm} 
+      <FilterBar
+        searchValue={searchTerm}
+        onSearchChange={setSearchTerm}
         searchPlaceholder="Search guest names..."
       >
         {additionalFilters}
       </FilterBar>
 
-      <DataTable 
-        columns={columns} 
-        data={bookings} 
-        keyExtractor={(row) => row.id} 
+      <DataTable
+        columns={columns}
+        data={bookings}
+        keyExtractor={(row) => row.id}
         count={count}
         page={page}
         emptyMessage="No bookings found."

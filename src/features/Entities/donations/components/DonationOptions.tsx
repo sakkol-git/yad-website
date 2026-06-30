@@ -9,29 +9,28 @@ export function DonationPortal() {
   return (
     <section id="options" className="py-24 md:py-32 px-6 md:px-12 lg:px-16 bg-surface">
       <div className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-        
         {/* Left: Manifesto & Trust */}
         <div className="lg:col-span-5 lg:sticky lg:top-32">
           <RevealOnScroll>
             <div className="inline-flex items-center gap-4 mb-4">
               <div className="w-6 h-[1px] bg-primary" />
-              <span className="uppercase tracking-[0.2em] text-[10px] font-bold text-primary">
-                Direct Impact
-              </span>
+              <span className="kicker-label text-primary">Direct Impact</span>
             </div>
           </RevealOnScroll>
-          <TextReveal 
-            as="h2" 
-            text="Fund the Framework." 
-            className="text-[3.5rem] md:text-[4.5rem] text-primary tracking-tighter leading-[1.0] mb-8" 
+          <TextReveal
+            as="h2"
+            text="Fund the Framework."
+            className="text-[3.5rem] md:text-[4.5rem] text-primary tracking-tighter leading-[1.0] mb-8"
           />
           <RevealOnScroll delay={0.1}>
             <div className="space-y-6 text-base md:text-lg text-on-surface-variant font-light leading-relaxed mb-12">
               <p>
-                We don't deal in generic charity. We deal in highly targeted, structural interventions.
+                We don't deal in generic charity. We deal in highly targeted, structural
+                interventions.
               </p>
               <p>
-                When you donate to YAD, you aren't just giving money; you are activating specific, measurable resources that dismantle barriers to education.
+                When you donate to YAD, you aren't just giving money; you are activating specific,
+                measurable resources that dismantle barriers to education.
               </p>
             </div>
 
@@ -50,11 +49,11 @@ export function DonationPortal() {
 
         {/* Right: Tangible Impact Tiers */}
         <div className="lg:col-span-6 lg:col-start-7 flex flex-col gap-6">
-          <h3 className="uppercase tracking-[0.2em] text-[10px] font-bold text-on-surface-variant mb-4">Choose Your Impact Level</h3>
-          
+          <h3 className="kicker-label text-on-surface-variant mb-4">Choose Your Impact Level</h3>
+
           {IMPACT_TIERS.map((tier, index) => (
-            <RevealOnScroll 
-              key={tier.amount} 
+            <RevealOnScroll
+              key={tier.amount}
               delay={index * 0.15}
               className="group relative bg-surface p-8 md:p-10 border border-outline-variant/30 hover:border-primary transition-colors cursor-pointer rounded-md"
             >
@@ -63,16 +62,18 @@ export function DonationPortal() {
                   {tier.amount}
                 </div>
                 <div>
-                  <h4 className="text-xl font-light text-on-surface tracking-tight mb-3">{tier.title}</h4>
+                  <h4 className="text-xl font-light text-on-surface tracking-tight mb-3">
+                    {tier.title}
+                  </h4>
                   <p className="text-sm font-light text-on-surface-variant leading-relaxed mb-6">
                     {tier.description}
                   </p>
                   <Link
-                    href={`/donate/flow?amount=${tier.amount.replace('$', '')}`}
+                    href={`/donate/flow?amount=${tier.amount.replace("$", "")}`}
                     className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-bold uppercase tracking-widest text-xs transition-colors"
                   >
                     Fund this tier
-                    <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">
+                    <span className="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">
                       arrow_right_alt
                     </span>
                   </Link>
@@ -83,15 +84,14 @@ export function DonationPortal() {
 
           {/* Custom Amount */}
           <RevealOnScroll delay={0.5} className="mt-6">
-            <Link 
-              href="/donate/flow" 
+            <Link
+              href="/donate/flow"
               className="block w-full text-center py-8 bg-surface border border-outline-variant/30 hover:bg-surface-container-low transition-colors font-bold text-xs uppercase tracking-[0.2em] text-on-surface rounded-md"
             >
               Enter a Custom Amount
             </Link>
           </RevealOnScroll>
         </div>
-
       </div>
     </section>
   );

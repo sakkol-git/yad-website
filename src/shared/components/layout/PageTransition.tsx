@@ -35,13 +35,9 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
         duration: 0.7,
         ease: "power3.out",
         clearProps: "opacity,transform",
-      }
+      },
     );
   }, [pathname, reduced]);
 
-  return (
-    <div ref={containerRef}>
-      {children}
-    </div>
-  );
+  return <div ref={containerRef}>{children}</div>;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface PortalPageHeaderProps {
   title: string;
@@ -23,11 +23,7 @@ export function PortalPageHeader({ title, description, actions }: PortalPageHead
           </p>
         )}
       </div>
-      {actions && (
-        <div className="flex shrink-0 w-full sm:w-auto">
-          {actions}
-        </div>
-      )}
+      {actions && <div className="flex shrink-0 w-full sm:w-auto">{actions}</div>}
     </div>
   );
 }

@@ -15,9 +15,7 @@ export interface NewsletterWelcomeEmailProps {
   email: string;
 }
 
-export const NewsletterWelcomeEmail = ({
-  email,
-}: NewsletterWelcomeEmailProps) => {
+export const NewsletterWelcomeEmail = ({ email }: NewsletterWelcomeEmailProps) => {
   return (
     <Html>
       <Head />
@@ -25,26 +23,32 @@ export const NewsletterWelcomeEmail = ({
       <Body style={main}>
         <Container style={container}>
           <Heading style={h1}>You're on the list!</Heading>
-          
+
           <Text style={text}>Hello,</Text>
           <Text style={text}>
-            Thank you for subscribing to the Youth Advancement for Development (YAD) Cambodia newsletter.
+            Thank you for subscribing to the Youth Advancement for Development (YAD) Cambodia
+            newsletter.
           </Text>
 
           <Text style={text}>
-            Expect updates on our programs, events, and the direct impact we are making in communities across Cambodia. We're excited to share our journey with you!
+            Expect updates on our programs, events, and the direct impact we are making in
+            communities across Cambodia. We're excited to share our journey with you!
           </Text>
 
           <Text style={text}>
-            If you have any questions or want to get involved right away, feel free to reply directly to this email or visit our website.
+            If you have any questions or want to get involved right away, feel free to reply
+            directly to this email or visit our website.
           </Text>
 
           <Hr style={hr} />
 
           <Text style={footer}>
             This email was sent to {email}.<br />
-            Youth Advancement for Development Cambodia<br />
-            <Link href="https://yadcambodia.org" style={link}>yadcambodia.org</Link>
+            Youth Advancement for Development Cambodia
+            <br />
+            <Link href="https://yadcambodia.org" style={link}>
+              yadcambodia.org
+            </Link>
           </Text>
         </Container>
       </Body>

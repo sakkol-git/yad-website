@@ -1,18 +1,13 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from '@/shared/components/ui/Button';
-import { createEvent, updateEvent } from '@/server/actions/event.actions';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/shared/components/ui/Dialog';
-import { FormField } from '@/shared/components/admin/forms/FormField';
-import { FormInput } from '@/shared/components/ui/FormInput';
-import { FormSelect } from '@/shared/components/ui/FormSelect';
-import { FormTextarea } from '@/shared/components/ui/FormTextarea';
+import { useState } from "react";
+import { Button } from "@/shared/components/ui/Button";
+import { createEvent, updateEvent } from "@/server/actions/event.actions";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/shared/components/ui/Dialog";
+import { FormField } from "@/shared/components/admin/forms/FormField";
+import { FormInput } from "@/shared/components/ui/FormInput";
+import { FormSelect } from "@/shared/components/ui/FormSelect";
+import { FormTextarea } from "@/shared/components/ui/FormTextarea";
 
 interface Event {
   id: string;
@@ -26,7 +21,7 @@ interface Event {
 interface EventFormModalProps {
   isOpen: boolean;
   onClose: () => void;
-  mode: 'create' | 'edit';
+  mode: "create" | "edit";
   initialData?: Event | null;
 }
 
@@ -37,21 +32,23 @@ export function EventFormModal({ isOpen, onClose, mode, initialData }: EventForm
   async function handleSubmit(formData: FormData) {
     setIsLoading(true);
     setError(null);
-    
+
     try {
       const dataObj = Object.fromEntries(formData.entries());
-      if (mode === 'create') {
+      if (mode === "create") {
         const result = await createEvent(dataObj);
-        if (!result.success || result.error) throw new Error(result.error || "Failed to create event");
-      } else if (mode === 'edit' && initialData) {
+        if (!result.success || result.error)
+          throw new Error(result.error || "Failed to create event");
+      } else if (mode === "edit" && initialData) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const result = await updateEvent({ id: initialData.id, data: dataObj as any });
-        if (!result.success || result.error) throw new Error(result.error || "Failed to update event");
+        if (!result.success || result.error)
+          throw new Error(result.error || "Failed to update event");
       }
       onClose();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
-      setError(err.message || 'Something went wrong');
+      setError(err.message || "Something went wrong");
     } finally {
       setIsLoading(false);
     }
@@ -62,14 +59,14 @@ export function EventFormModal({ isOpen, onClose, mode, initialData }: EventForm
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-hidden flex flex-col p-0">
         <DialogHeader className="px-6 py-4 border-b border-surface-variant/30 sticky top-0 bg-surface z-10">
           <DialogTitle className="text-xl font-headline-md font-bold text-on-surface">
-            {mode === 'create' ? 'Create New Event' : 'Edit Event'}
+            {mode === "create" ? "Create New Event" : "Edit Event"}
           </DialogTitle>
         </DialogHeader>
-        
+
         <form action={handleSubmit} className="p-6 flex flex-col gap-5 overflow-y-auto">
           {error && (
             <div className="bg-error-container/20 text-error p-3 rounded-md text-sm font-medium border border-error-container flex items-center gap-2">
-              <span className="material-symbols-outlined text-[18px]">error</span>
+              <span className="material-symbols-outlined text-lg">error</span>
               {error}
             </div>
           )}
@@ -77,11 +74,11 @@ export function EventFormModal({ isOpen, onClose, mode, initialData }: EventForm
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="md:col-span-2">
               <FormField label="Name" required>
-                <FormInput 
-                  name="name" 
-                  type="text" 
+                <FormInput
+                  name="name"
+                  type="text"
                   required
-                  defaultValue={initialData?.name || ''}
+                  defaultValue={initialData?.name || ""}
                   placeholder="Event name"
                   icon="event"
                 />
@@ -90,10 +87,10 @@ export function EventFormModal({ isOpen, onClose, mode, initialData }: EventForm
 
             <div className="md:col-span-2">
               <FormField label="Description">
-                <FormTextarea 
-                  name="description" 
+                <FormTextarea
+                  name="description"
                   rows={3}
-                  defaultValue={initialData?.description || ''}
+                  defaultValue={initialData?.description || ""}
                   placeholder="Detailed description of the event"
                 />
               </FormField>
@@ -101,10 +98,10 @@ export function EventFormModal({ isOpen, onClose, mode, initialData }: EventForm
 
             <div className="md:col-span-2">
               <FormField label="Venue">
-                <FormInput 
-                  name="venue" 
-                  type="text" 
-                  defaultValue={initialData?.venue || ''}
+                <FormInput
+                  name="venue"
+                  type="text"
+                  defaultValue={initialData?.venue || ""}
                   placeholder="Event location"
                   icon="location_on"
                 />
@@ -113,11 +110,7 @@ export function EventFormModal({ isOpen, onClose, mode, initialData }: EventForm
 
             <div>
               <FormField label="Status" required>
-                <FormSelect 
-                  name="status" 
-                  required 
-                  defaultValue={initialData?.status || 'Upcoming'}
-                >
+                <FormSelect name="status" required defaultValue={initialData?.status || "Upcoming"}>
                   <option value="Upcoming">Upcoming</option>
                   <option value="Ongoing">Ongoing</option>
                   <option value="Completed">Completed</option>
@@ -128,11 +121,11 @@ export function EventFormModal({ isOpen, onClose, mode, initialData }: EventForm
 
             <div>
               <FormField label="Capacity">
-                <FormInput 
-                  name="capacity" 
-                  type="number" 
+                <FormInput
+                  name="capacity"
+                  type="number"
                   min="1"
-                  defaultValue={initialData?.capacity || ''}
+                  defaultValue={initialData?.capacity || ""}
                   placeholder="Number of attendees"
                   icon="groups"
                 />
@@ -145,7 +138,7 @@ export function EventFormModal({ isOpen, onClose, mode, initialData }: EventForm
               Cancel
             </Button>
             <Button type="submit" variant="default" disabled={isLoading} className=" min-w-[120px]">
-              {isLoading ? 'Saving...' : mode === 'create' ? 'Create Event' : 'Save Changes'}
+              {isLoading ? "Saving..." : mode === "create" ? "Create Event" : "Save Changes"}
             </Button>
           </div>
         </form>

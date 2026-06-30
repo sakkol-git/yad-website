@@ -1,39 +1,39 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import { createClient } from '@/shared/lib/supabase/client';
-import { logout } from '@/server/actions/auth.actions';
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { createClient } from "@/shared/lib/supabase/client";
+import { logout } from "@/server/actions/auth.actions";
 
 // Grouped items to improve scannability and structure
 const navGroups = [
   {
-    label: 'Core',
+    label: "Core",
     items: [
-      { name: 'Dashboard', href: '/admin/dashboard', icon: 'dashboard' },
-      { name: 'Events', href: '/admin/events', icon: 'event' },
-      { name: 'Programs', href: '/admin/programs', icon: 'school' },
-      { name: 'Applications', href: '/admin/applications', icon: 'assignment' },
-      { name: 'Reports', href: '/admin/reports', icon: 'description' },
+      { name: "Dashboard", href: "/admin/dashboard", icon: "dashboard" },
+      { name: "Events", href: "/admin/events", icon: "event" },
+      { name: "Programs", href: "/admin/programs", icon: "school" },
+      { name: "Applications", href: "/admin/applications", icon: "assignment" },
+      { name: "Reports", href: "/admin/reports", icon: "description" },
     ],
   },
   {
-    label: 'People & Relations',
+    label: "People & Relations",
     items: [
-      { name: 'Donors', href: '/admin/donors', icon: 'groups' },
-      { name: 'Members', href: '/admin/members', icon: 'card_membership' },
-      { name: 'Partners', href: '/admin/partners', icon: 'handshake' },
-      { name: 'Volunteers', href: '/admin/volunteers', icon: 'assignment_ind' },
-      { name: 'Inquiries', href: '/admin/inquiries', icon: 'inbox' },
-      { name: 'Users', href: '/admin/users', icon: 'manage_accounts' },
+      { name: "Donors", href: "/admin/donors", icon: "groups" },
+      { name: "Members", href: "/admin/members", icon: "card_membership" },
+      { name: "Partners", href: "/admin/partners", icon: "handshake" },
+      { name: "Volunteers", href: "/admin/volunteers", icon: "assignment_ind" },
+      { name: "Inquiries", href: "/admin/inquiries", icon: "inbox" },
+      { name: "Users", href: "/admin/users", icon: "manage_accounts" },
     ],
   },
   {
-    label: 'Operations',
+    label: "Operations",
     items: [
-      { name: 'Donations', href: '/admin/donations', icon: 'volunteer_activism' },
-      { name: 'Bookings', href: '/admin/bookings', icon: 'book_online' },
-      { name: 'Homestays', href: '/admin/homestays', icon: 'home' },
+      { name: "Donations", href: "/admin/donations", icon: "volunteer_activism" },
+      { name: "Bookings", href: "/admin/bookings", icon: "book_online" },
+      { name: "Homestays", href: "/admin/homestays", icon: "home" },
     ],
   },
 ];
@@ -59,8 +59,9 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
       )}
 
       <aside
-        className={`fixed inset-y-0 left-0 w-72 bg-surface-container-lowest border-r border-outline-variant/30 flex flex-col shadow-sm z-30 transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
-          }`}
+        className={`fixed inset-y-0 left-0 w-72 bg-surface-container-lowest border-r border-outline-variant/30 flex flex-col shadow-sm z-30 transition-transform duration-300 ease-in-out ${
+          isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+        }`}
       >
         {/* Header / Brand */}
         <div className="px-6 h-16 flex items-center justify-between border-b border-outline-variant/30 shrink-0">
@@ -69,7 +70,9 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
             className="font-bold text-xl text-primary flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md px-1 -mx-1"
             onClick={onClose}
           >
-            <span className="material-symbols-outlined text-[28px] icon-fill text-primary">spa</span>
+            <span className="material-symbols-outlined text-[28px] icon-fill text-primary">
+              spa
+            </span>
             YAD Admin
           </Link>
 
@@ -79,7 +82,7 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
             onClick={onClose}
             aria-label="Close menu"
           >
-            <span className="material-symbols-outlined text-[20px]">close</span>
+            <span className="material-symbols-outlined text-xl">close</span>
           </button>
         </div>
 
@@ -98,15 +101,17 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
                       <Link
                         href={item.href}
                         onClick={onClose}
-                        aria-current={isActive ? 'page' : undefined}
-                        className={`group flex items-center gap-3 px-3 py-2.5 rounded-md transition-colors duration-200 ease-in-out font-medium text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${isActive
-                          ? 'bg-secondary-container text-on-secondary-container shadow-sm'
-                          : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'
-                          }`}
+                        aria-current={isActive ? "page" : undefined}
+                        className={`group flex items-center gap-3 px-3 py-2.5 rounded-md transition-colors duration-200 ease-in-out font-medium text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                          isActive
+                            ? "bg-secondary-container text-on-secondary-container shadow-sm"
+                            : "text-on-surface-variant hover:bg-surface-container hover:text-on-surface"
+                        }`}
                       >
                         <span
-                          className={`material-symbols-outlined text-[22px] transition-transform duration-200 ${isActive ? 'icon-fill scale-110' : 'group-hover:scale-110'
-                            }`}
+                          className={`material-symbols-outlined text-[22px] transition-transform duration-200 ${
+                            isActive ? "icon-fill scale-110" : "group-hover:scale-110"
+                          }`}
                         >
                           {item.icon}
                         </span>
@@ -128,8 +133,12 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
                 AD
               </div>
               <div className="flex flex-col">
-                <p className="text-sm font-bold text-on-surface group-hover:text-primary transition-colors">Administrator</p>
-                <p className="text-xs text-outline group-hover:text-on-surface-variant transition-colors">System Access</p>
+                <p className="text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
+                  Administrator
+                </p>
+                <p className="text-xs text-outline group-hover:text-on-surface-variant transition-colors">
+                  System Access
+                </p>
               </div>
             </div>
 
@@ -140,7 +149,7 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
                 aria-label="Log out"
                 title="Log out"
               >
-                <span className="material-symbols-outlined text-[18px]">logout</span>
+                <span className="material-symbols-outlined text-lg">logout</span>
               </button>
             </form>
           </div>

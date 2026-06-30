@@ -8,9 +8,7 @@ export function DormitoryProgram() {
   return (
     <section className="py-24 md:py-32 bg-surface-container-lowest">
       <div className="max-w-container-max mx-auto px-6 md:px-12 lg:px-16">
-        
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
           {/* Left/Top: Immersive Media */}
           <div className="lg:col-span-7 flex flex-col gap-12 lg:order-last">
             <RevealOnScroll delay={0.2}>
@@ -33,14 +31,24 @@ export function DormitoryProgram() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-outline-variant/30 pt-12">
               <RevealOnScroll delay={0.3}>
                 <div className="font-display-md text-5xl text-primary mb-2 tabular-nums">120</div>
-                <h4 className="font-label-bold text-xs uppercase tracking-widest text-on-surface mb-2">Current Residents</h4>
-                <p className="text-sm text-on-surface-variant leading-relaxed">Promising students from remote provinces provided with safe, full-time accommodation.</p>
+                <h4 className="font-label-bold text-xs uppercase tracking-widest text-on-surface mb-2">
+                  Current Residents
+                </h4>
+                <p className="text-sm text-on-surface-variant leading-relaxed">
+                  Promising students from remote provinces provided with safe, full-time
+                  accommodation.
+                </p>
               </RevealOnScroll>
-              
+
               <RevealOnScroll delay={0.4}>
                 <div className="font-display-md text-5xl text-primary mb-2 tabular-nums">45+</div>
-                <h4 className="font-label-bold text-xs uppercase tracking-widest text-on-surface mb-2">Training Modules</h4>
-                <p className="text-sm text-on-surface-variant leading-relaxed">Comprehensive curriculum covering leadership, digital literacy, and civic engagement.</p>
+                <h4 className="font-label-bold text-xs uppercase tracking-widest text-on-surface mb-2">
+                  Training Modules
+                </h4>
+                <p className="text-sm text-on-surface-variant leading-relaxed">
+                  Comprehensive curriculum covering leadership, digital literacy, and civic
+                  engagement.
+                </p>
               </RevealOnScroll>
             </div>
           </div>
@@ -52,19 +60,24 @@ export function DormitoryProgram() {
                 Infrastructure for Leaders
               </span>
             </RevealOnScroll>
-            <TextReveal 
-              as="h2" 
-              text="More Than Just Housing." 
-              className="font-headline-lg text-4xl lg:text-5xl text-primary mb-8 leading-tight tracking-tight" 
+            <TextReveal
+              as="h2"
+              text="More Than Just Housing."
+              className="font-headline-lg text-4xl lg:text-5xl text-primary mb-8 leading-tight tracking-tight"
             />
-            
+
             <RevealOnScroll delay={0.1}>
               <div className="space-y-6 font-body-lg text-on-surface-variant leading-relaxed text-lg">
                 <p>
-                  For promising students from remote, underserved provinces, the barrier to higher education isn't just tuition—it's the severe lack of safe, affordable accommodation in the capital.
+                  For promising students from remote, underserved provinces, the barrier to higher
+                  education isn't just tuition—it's the severe lack of safe, affordable
+                  accommodation in the capital.
                 </p>
                 <p>
-                  Our Dormitory and Youth Training Center solves this infrastructure gap. But we don't stop at housing. We pair this stable living environment with an intensive leadership curriculum, ensuring these students graduate not just with degrees, but with the capacity to lead.
+                  Our Dormitory and Youth Training Center solves this infrastructure gap. But we
+                  don't stop at housing. We pair this stable living environment with an intensive
+                  leadership curriculum, ensuring these students graduate not just with degrees, but
+                  with the capacity to lead.
                 </p>
               </div>
 
@@ -81,9 +94,7 @@ export function DormitoryProgram() {
               </div>
             </RevealOnScroll>
           </div>
-
         </div>
-
       </div>
     </section>
   );

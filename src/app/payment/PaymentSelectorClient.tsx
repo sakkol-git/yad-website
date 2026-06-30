@@ -47,21 +47,44 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
               }`}
             >
               <div className="flex items-center gap-3 mb-3">
-                <span className={`material-symbols-outlined text-[24px] ${selectedMethod === "card" ? "text-white" : "text-primary"}`}>
+                <span
+                  className={`material-symbols-outlined text-2xl ${selectedMethod === "card" ? "text-white" : "text-primary"}`}
+                >
                   credit_card
                 </span>
-                <span className={`uppercase tracking-widest text-[10px] font-bold ${selectedMethod === "card" ? "text-white" : "text-on-surface"}`}>
+                <span
+                  className={`uppercase tracking-widest text-[10px] font-bold ${selectedMethod === "card" ? "text-white" : "text-on-surface"}`}
+                >
                   International Card
                 </span>
               </div>
-              <p className={`text-sm font-light mb-4 flex-grow ${selectedMethod === "card" ? "text-white/80" : "text-on-surface-variant"}`}>
-                Pay securely using Credit/Debit card (Visa, Mastercard, etc.), Google Pay, or Apple Pay.
+              <p
+                className={`text-sm font-light mb-4 flex-grow ${selectedMethod === "card" ? "text-white/80" : "text-on-surface-variant"}`}
+              >
+                Pay securely using Credit/Debit card (Visa, Mastercard, etc.), Google Pay, or Apple
+                Pay.
               </p>
               <div className="flex gap-2 mt-auto">
-                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md border ${selectedMethod === "card" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>VISA</span>
-                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md border ${selectedMethod === "card" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>MC</span>
-                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md border ${selectedMethod === "card" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>G-Pay</span>
-                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md border ${selectedMethod === "card" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>Apple</span>
+                <span
+                  className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md border ${selectedMethod === "card" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}
+                >
+                  VISA
+                </span>
+                <span
+                  className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md border ${selectedMethod === "card" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}
+                >
+                  MC
+                </span>
+                <span
+                  className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md border ${selectedMethod === "card" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}
+                >
+                  G-Pay
+                </span>
+                <span
+                  className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md border ${selectedMethod === "card" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}
+                >
+                  Apple
+                </span>
               </div>
             </button>
 
@@ -75,20 +98,39 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
               }`}
             >
               <div className="flex items-center gap-3 mb-3">
-                <span className={`material-symbols-outlined text-[24px] ${selectedMethod === "local" ? "text-white" : "text-primary"}`}>
+                <span
+                  className={`material-symbols-outlined text-2xl ${selectedMethod === "local" ? "text-white" : "text-primary"}`}
+                >
                   qr_code_scanner
                 </span>
-                <span className={`uppercase tracking-widest text-[10px] font-bold ${selectedMethod === "local" ? "text-white" : "text-on-surface"}`}>
+                <span
+                  className={`uppercase tracking-widest text-[10px] font-bold ${selectedMethod === "local" ? "text-white" : "text-on-surface"}`}
+                >
                   Bakong KHQR & Local Bank
                 </span>
               </div>
-              <p className={`text-sm font-light mb-4 flex-grow ${selectedMethod === "local" ? "text-white/80" : "text-on-surface-variant"}`}>
-                Pay via Cambodian banks (ABA, Wing, ACLEDA, etc.) by scanning the KHQR code or performing a bank transfer.
+              <p
+                className={`text-sm font-light mb-4 flex-grow ${selectedMethod === "local" ? "text-white/80" : "text-on-surface-variant"}`}
+              >
+                Pay via Cambodian banks (ABA, Wing, ACLEDA, etc.) by scanning the KHQR code or
+                performing a bank transfer.
               </p>
               <div className="flex gap-2 mt-auto">
-                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md border ${selectedMethod === "local" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>KHQR</span>
-                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md border ${selectedMethod === "local" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>ABA</span>
-                <span className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md border ${selectedMethod === "local" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}>Bakong</span>
+                <span
+                  className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md border ${selectedMethod === "local" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}
+                >
+                  KHQR
+                </span>
+                <span
+                  className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md border ${selectedMethod === "local" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}
+                >
+                  ABA
+                </span>
+                <span
+                  className={`text-[9px] uppercase tracking-widest font-bold px-2 py-1 rounded-md border ${selectedMethod === "local" ? "border-white/30 text-white" : "border-outline-variant/50 text-on-surface-variant"}`}
+                >
+                  Bakong
+                </span>
               </div>
             </button>
           </div>
@@ -96,14 +138,15 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
           {/* Action description panels */}
           {selectedMethod === "card" ? (
             <div className="space-y-6 p-8 bg-surface border border-outline-variant/30 rounded-md text-center animate-fade-in mt-8">
-              <span className="material-symbols-outlined text-[32px] text-primary mb-2">
+              <span className="material-symbols-outlined text-4xl text-primary mb-2">
                 credit_card
               </span>
               <h3 className="text-xl font-light text-on-surface tracking-tight">
                 Proceed to Secure Card Payment
               </h3>
               <p className="text-sm font-light text-on-surface-variant max-w-md mx-auto leading-relaxed">
-                You will be redirected to our dedicated card checkout page where you can pay securely using Visa, Mastercard, Google Pay, or Apple Pay.
+                You will be redirected to our dedicated card checkout page where you can pay
+                securely using Visa, Mastercard, Google Pay, or Apple Pay.
               </p>
               <div className="pt-4">
                 <Button
@@ -113,20 +156,22 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
                   className="rounded-md bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold px-8 flex items-center gap-2 transition-colors duration-150 mx-auto"
                 >
                   Continue to Card Payment
-                  <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                  <span className="material-symbols-outlined text-base">arrow_forward</span>
                 </Button>
               </div>
             </div>
           ) : (
             <div className="space-y-6 p-8 bg-surface border border-outline-variant/30 rounded-md text-center animate-fade-in mt-8">
-              <span className="material-symbols-outlined text-[32px] text-primary mb-2">
+              <span className="material-symbols-outlined text-4xl text-primary mb-2">
                 account_balance
               </span>
               <h3 className="text-xl font-light text-on-surface tracking-tight">
                 Proceed to Cambodian Local Payment
               </h3>
               <p className="text-sm font-light text-on-surface-variant max-w-md mx-auto leading-relaxed">
-                You will be presented with our official Bakong KHQR code and ABA bank account details, and be able to input your bank transfer reference ID to verify your payment.
+                You will be presented with our official Bakong KHQR code and ABA bank account
+                details, and be able to input your bank transfer reference ID to verify your
+                payment.
               </p>
               <div className="pt-4">
                 <Button
@@ -136,7 +181,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
                   className="rounded-md bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold px-8 flex items-center gap-2 transition-colors duration-150 mx-auto"
                 >
                   Continue to Local Payment
-                  <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                  <span className="material-symbols-outlined text-base">arrow_forward</span>
                 </Button>
               </div>
             </div>
@@ -150,7 +195,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
           <h3 className="text-2xl font-light text-on-surface tracking-tight mb-6 relative z-10 border-b border-outline-variant/30 pb-4">
             Payment Summary
           </h3>
-          
+
           <div className="space-y-4 mb-8 relative z-10 text-sm font-light text-on-surface-variant leading-relaxed">
             <div className="flex justify-between items-center">
               <span className="uppercase tracking-widest text-[10px] font-bold">Description</span>
@@ -179,9 +224,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
 
           <div className="space-y-4 relative z-10">
             <div className="flex items-start gap-4">
-              <span className="material-symbols-outlined text-[20px] text-primary">
-                verified_user
-              </span>
+              <span className="material-symbols-outlined text-xl text-primary">verified_user</span>
               <div>
                 <p className="uppercase tracking-widest text-[10px] font-bold text-on-surface mb-1">
                   Secure & Trusted

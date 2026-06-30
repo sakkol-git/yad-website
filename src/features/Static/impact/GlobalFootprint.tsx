@@ -12,10 +12,14 @@ export async function GlobalFootprint() {
   return (
     <section className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-section-gap">
       <RevealOnScroll className="mb-16">
-        <TextReveal as="h2" text="Our Global Footprint" className="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4" />
+        <TextReveal
+          as="h2"
+          text="Our Global Footprint"
+          className="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4"
+        />
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
-          Tracking our collective journey towards a more sustainable and
-          equitable future. Data updated quarterly.
+          Tracking our collective journey towards a more sustainable and equitable future. Data
+          updated quarterly.
         </p>
       </RevealOnScroll>
       <StaggerGroup stagger={0.08} y={12} className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -24,9 +28,7 @@ export async function GlobalFootprint() {
           <CardContent className="flex flex-col justify-between h-full p-8">
             <div className="flex justify-between items-start mb-8">
               <div className="w-16 h-16 rounded-md bg-secondary-container flex items-center justify-center text-on-secondary-container group-hover:scale-110 transition-transform duration-300">
-                <span className="material-symbols-outlined text-3xl">
-                  nature_people
-                </span>
+                <span className="material-symbols-outlined text-3xl">nature_people</span>
               </div>
               <span className="px-3 py-1 rounded-sm bg-surface border border-outline-variant/30 text-primary font-label-bold text-xs uppercase tracking-widest">
                 Communities Reached
@@ -89,7 +91,11 @@ export async function GlobalFootprint() {
               <h3 className="font-headline-md text-headline-md text-primary">
                 Youth Engagement Growth
               </h3>
-              <Button variant="ghost" size="icon" className="text-secondary hover:text-primary transition-colors">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-secondary hover:text-primary transition-colors"
+              >
                 <span className="material-symbols-outlined">more_horiz</span>
               </Button>
             </div>

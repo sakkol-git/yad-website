@@ -16,9 +16,7 @@ export function ProvinceStatsPanel({ nodes, activeNodeId, onSelectNode }: Provin
     <div className="flex flex-col h-full">
       {/* Panel Header */}
       <div className="mb-4 pb-4 border-b border-outline-variant/30">
-        <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant/70 block mb-1">
-          Total Reach
-        </span>
+        <span className="kicker-label text-on-surface-variant/70 block mb-1">Total Reach</span>
         <div className="text-3xl font-light text-primary tracking-tighter">
           <AnimatedCounter value={totalStudents} suffix="+" />
         </div>
@@ -44,10 +42,14 @@ export function ProvinceStatsPanel({ nodes, activeNodeId, onSelectNode }: Provin
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <h4 className={`text-sm font-bold tracking-tight ${isActive ? "text-primary" : "text-on-surface"}`}>
+                  <h4
+                    className={`text-sm font-bold tracking-tight ${isActive ? "text-primary" : "text-on-surface"}`}
+                  >
                     {node.name}
                   </h4>
-                  <span className={`text-lg font-light tabular-nums tracking-tighter ${isActive ? "text-primary" : "text-on-surface-variant"}`}>
+                  <span
+                    className={`text-lg font-light tabular-nums tracking-tighter ${isActive ? "text-primary" : "text-on-surface-variant"}`}
+                  >
                     {node.studentsReached}
                   </span>
                 </div>

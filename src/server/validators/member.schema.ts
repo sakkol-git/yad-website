@@ -16,7 +16,7 @@ export const memberDataSchema = z.object({
   bio: z.string().optional().or(z.literal("")),
   avatar_url: z.string().url("Must be a valid URL").optional().or(z.literal("")),
   role: z.string().optional().or(z.literal("")),
-  
+
   // Profile nested fields that we extract from raw data
   biography: z.string().optional(),
   khmer_biography: z.string().optional(),

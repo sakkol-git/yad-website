@@ -14,7 +14,6 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
 
   return (
     <div ref={ref} className="relative w-full py-10 flex flex-col items-center overflow-hidden">
-
       {/* Tier 1: Founder */}
       {founder && (
         <div className="flex flex-col items-center w-full relative z-10">
@@ -22,7 +21,7 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
             className="w-full max-w-[340px] transition-all duration-700 ease-out"
             style={{
               opacity: isInView ? 1 : 0,
-              transform: isInView ? "translateY(0)" : "translateY(40px)"
+              transform: isInView ? "translateY(0)" : "translateY(40px)",
             }}
           >
             <TeamMemberCard {...founder} href={`/about/governance/${founder.slug}`} />
@@ -34,7 +33,7 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
               className="w-[2px] h-10 md:h-16 bg-primary origin-top transition-transform duration-500 ease-out"
               style={{
                 transform: isInView ? "scaleY(1)" : "scaleY(0)",
-                transitionDelay: "0.3s"
+                transitionDelay: "0.3s",
               }}
             />
           )}
@@ -46,28 +45,29 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
         <div className="w-full flex justify-center overflow-visible">
           {/* inline-flex automatically hugs the width of all cards + any gap the user sets! */}
           <div className="relative inline-flex flex-row flex-wrap justify-center gap-8 md:gap-20 lg:gap-80">
-
             {/* The Single Continuous Horizontal Line */}
             {coFounders.length > 1 && (
               <div
                 className="absolute top-0 h-[2px] bg-primary transition-transform duration-700 ease-out origin-center left-[130px] right-[130px] md:left-[140px] md:right-[140px]"
                 style={{
                   transform: isInView ? "scaleX(1)" : "scaleX(0)",
-                  transitionDelay: "0.8s"
+                  transitionDelay: "0.8s",
                 }}
               />
             )}
 
             {/* The Cards */}
             {coFounders.map((member, i) => (
-              <div key={member.id} className="relative flex flex-col items-center w-[260px] md:w-[280px]">
-
+              <div
+                key={member.id}
+                className="relative flex flex-col items-center w-[260px] md:w-[280px]"
+              >
                 {/* Vertical Branch Down to this Card */}
                 <div
                   className="w-[2px] h-10 md:h-16 bg-primary origin-top transition-transform duration-500 ease-out"
                   style={{
                     transform: isInView ? "scaleY(1)" : "scaleY(0)",
-                    transitionDelay: `${1.1 + i * 0.15}s`
+                    transitionDelay: `${1.1 + i * 0.15}s`,
                   }}
                 />
 
@@ -77,7 +77,7 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
                   style={{
                     opacity: isInView ? 1 : 0,
                     transform: isInView ? "translateY(0)" : "translateY(40px)",
-                    transitionDelay: `${1.4 + i * 0.15}s`
+                    transitionDelay: `${1.4 + i * 0.15}s`,
                   }}
                 >
                   <TeamMemberCard {...member} href={`/about/governance/${member.slug}`} />
@@ -94,17 +94,18 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
         style={{
           opacity: isInView ? 1 : 0,
           transform: isInView ? "translateY(0)" : "translateY(20px)",
-          transitionDelay: "1.8s"
+          transitionDelay: "1.8s",
         }}
       >
-        <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant/70 block mb-3">
+        <span className="kicker-label text-on-surface-variant/70 block mb-3">
           Organizational Accountability
         </span>
         <p className="text-sm text-on-surface-variant font-light leading-relaxed">
-          The Board of Directors provides independent oversight and strategic governance, ensuring that all YAD initiatives align with our core mission and maintain the highest standards of financial integrity.
+          The Board of Directors provides independent oversight and strategic governance, ensuring
+          that all YAD initiatives align with our core mission and maintain the highest standards of
+          financial integrity.
         </p>
       </div>
-
     </div>
   );
 }

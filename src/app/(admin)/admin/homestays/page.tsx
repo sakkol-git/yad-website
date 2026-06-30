@@ -1,6 +1,6 @@
-import { createClient } from '@/shared/lib/supabase/server';
-import { RoomsRepository } from '@/server/repositories/rooms';
-import { HomestaysTable, Room } from '@/features/Entities/homestays/components/HomestaysTable';
+import { createClient } from "@/shared/lib/supabase/server";
+import { RoomsRepository } from "@/server/repositories/rooms";
+import { HomestaysTable, Room } from "@/features/Entities/homestays/components/HomestaysTable";
 
 export default async function HomestaysPage({
   searchParams,
@@ -11,10 +11,10 @@ export default async function HomestaysPage({
   const repo = new RoomsRepository();
 
   const params = await searchParams;
-  const page = typeof params.page === 'string' ? parseInt(params.page) : 1;
-  const search = typeof params.search === 'string' ? params.search : undefined;
+  const page = typeof params.page === "string" ? parseInt(params.page) : 1;
+  const search = typeof params.search === "string" ? params.search : undefined;
 
-  const statusRaw = typeof params.status === 'string' ? params.status : undefined;
+  const statusRaw = typeof params.status === "string" ? params.status : undefined;
   const status = statusRaw ? statusRaw.charAt(0).toUpperCase() + statusRaw.slice(1) : undefined;
 
   const { data: rooms, count } = await repo.getPaginated(supabase, page, 10, search, status);
@@ -26,11 +26,11 @@ export default async function HomestaysPage({
           <h1 className="text-[36px] md:text-[48px] font-bold leading-tight tracking-tight text-on-background mb-2">
             Homestay Management
           </h1>
-          <p className="text-[16px] text-on-surface-variant">
+          <p className="text-base text-on-surface-variant">
             Manage rooms, occupancy, and check-ins.
           </p>
         </div>
-        <button className="py-3 px-6 bg-secondary text-on-secondary rounded-full font-bold text-[14px] shadow-sm hover:scale-[1.02] hover:bg-secondary/90 transition-colors duration-200 ease-in-out cursor-pointer active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap">
+        <button className="py-3 px-6 bg-secondary text-on-secondary rounded-full font-bold text-sm shadow-sm hover:scale-[1.02] hover:bg-secondary/90 transition-colors duration-200 ease-in-out cursor-pointer active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap">
           <span className="material-symbols-outlined">add</span>
           Add Room
         </button>

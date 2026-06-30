@@ -10,10 +10,10 @@ export function useNetworkStatus() {
     // Only access navigator when running on the client
     if (typeof navigator !== "undefined") {
       setIsOnline(navigator.onLine);
-      
+
       const goOnline = () => setIsOnline(true);
       const goOffline = () => setIsOnline(false);
-      
+
       window.addEventListener("online", goOnline);
       window.addEventListener("offline", goOffline);
 
@@ -23,9 +23,9 @@ export function useNetworkStatus() {
       const checkSpeed = () => {
         if (connection) {
           setIsSlowConnection(
-            connection.effectiveType === "2g" || 
-            connection.effectiveType === "slow-2g" ||
-            connection.downlink < 1.5
+            connection.effectiveType === "2g" ||
+              connection.effectiveType === "slow-2g" ||
+              connection.downlink < 1.5,
           );
         }
       };
@@ -34,7 +34,7 @@ export function useNetworkStatus() {
         checkSpeed();
         connection.addEventListener("change", checkSpeed);
       }
-      
+
       return () => {
         window.removeEventListener("online", goOnline);
         window.removeEventListener("offline", goOffline);

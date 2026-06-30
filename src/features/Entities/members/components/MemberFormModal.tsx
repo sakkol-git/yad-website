@@ -1,14 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Button } from '@/shared/components/ui/Button';
-import { createMember, updateMember } from '@/server/actions/member.actions';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/shared/components/ui/Dialog';
+import { useState } from "react";
+import { Button } from "@/shared/components/ui/Button";
+import { createMember, updateMember } from "@/server/actions/member.actions";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/shared/components/ui/Dialog";
 
 interface Member {
   id: string;
@@ -27,7 +22,7 @@ interface Member {
 interface MemberFormModalProps {
   isOpen: boolean;
   onClose: () => void;
-  mode: 'create' | 'edit';
+  mode: "create" | "edit";
   initialData?: Member | null;
 }
 
@@ -41,39 +36,41 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
 
     try {
       const dataObj = Object.fromEntries(formData.entries());
-      if (mode === 'create') {
+      if (mode === "create") {
         const result = await createMember(dataObj);
-        if (!result.success || result.error) throw new Error(result.error || "Failed to create member");
-      } else if (mode === 'edit' && initialData) {
+        if (!result.success || result.error)
+          throw new Error(result.error || "Failed to create member");
+      } else if (mode === "edit" && initialData) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const result = await updateMember({ id: initialData.id, data: dataObj as any });
-        if (!result.success || result.error) throw new Error(result.error || "Failed to update member");
+        if (!result.success || result.error)
+          throw new Error(result.error || "Failed to update member");
       }
       onClose();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
-      setError(err.message || 'Something went wrong');
+      setError(err.message || "Something went wrong");
     } finally {
       setIsLoading(false);
     }
   }
 
   // Helper to extract array to comma separated string
-  const arrayToCsv = (arr?: string[]) => arr?.join(', ') || '';
+  const arrayToCsv = (arr?: string[]) => arr?.join(", ") || "";
 
   return (
     <Dialog open={isOpen} onOpenChange={(open: boolean) => !open && onClose()}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden flex flex-col p-0">
         <DialogHeader className="px-6 py-4 border-b border-surface-variant/30 sticky top-0 bg-surface z-10">
           <DialogTitle className="text-xl font-headline-md font-bold text-on-surface">
-            {mode === 'create' ? 'Create New Member' : 'Edit Member'}
+            {mode === "create" ? "Create New Member" : "Edit Member"}
           </DialogTitle>
         </DialogHeader>
 
         <form action={handleSubmit} className="p-6 flex flex-col gap-5 overflow-y-auto">
           {error && (
             <div className="bg-error-container/20 text-error p-3 rounded-md text-sm font-medium border border-error-container flex items-center gap-2">
-              <span className="material-symbols-outlined text-[18px]">error</span>
+              <span className="material-symbols-outlined text-lg">error</span>
               {error}
             </div>
           )}
@@ -81,26 +78,32 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
           <div className="space-y-8">
             {/* Basic Info Section */}
             <div>
-              <h3 className="text-lg font-bold text-on-surface mb-4 border-b border-surface-variant/30 pb-2">Basic Information</h3>
+              <h3 className="text-lg font-bold text-on-surface mb-4 border-b border-surface-variant/30 pb-2">
+                Basic Information
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-sm font-label-bold text-on-surface-variant">First Name</label>
+                  <label className="text-sm font-label-bold text-on-surface-variant">
+                    First Name
+                  </label>
                   <input
                     name="first_name"
                     type="text"
                     required
-                    defaultValue={initialData?.first_name || ''}
+                    defaultValue={initialData?.first_name || ""}
                     className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-sm font-label-bold text-on-surface-variant">Last Name</label>
+                  <label className="text-sm font-label-bold text-on-surface-variant">
+                    Last Name
+                  </label>
                   <input
                     name="last_name"
                     type="text"
                     required
-                    defaultValue={initialData?.last_name || ''}
+                    defaultValue={initialData?.last_name || ""}
                     className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
@@ -111,69 +114,81 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                     name="email"
                     type="email"
                     required
-                    defaultValue={initialData?.email || ''}
+                    defaultValue={initialData?.email || ""}
                     className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
 
                 <div className="flex flex-col gap-1.5 md:col-span-2">
-                  <label className="text-sm font-label-bold text-on-surface-variant">Short Bio / Description</label>
+                  <label className="text-sm font-label-bold text-on-surface-variant">
+                    Short Bio / Description
+                  </label>
                   <textarea
                     name="bio"
                     rows={2}
-                    defaultValue={initialData?.bio || ''}
+                    defaultValue={initialData?.bio || ""}
                     className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] resize-y"
                   ></textarea>
                 </div>
 
                 <div className="flex flex-col gap-1.5 md:col-span-2">
-                  <label className="text-sm font-label-bold text-on-surface-variant">My Story (English)</label>
+                  <label className="text-sm font-label-bold text-on-surface-variant">
+                    My Story (English)
+                  </label>
                   <textarea
                     name="biography"
                     rows={3}
-                    defaultValue={initialData?.profile?.biography || ''}
+                    defaultValue={initialData?.profile?.biography || ""}
                     className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] resize-y"
                   ></textarea>
                 </div>
 
                 <div className="flex flex-col gap-1.5 md:col-span-2">
-                  <label className="text-sm font-label-bold text-on-surface-variant">Khmer Story (Optional)</label>
+                  <label className="text-sm font-label-bold text-on-surface-variant">
+                    Khmer Story (Optional)
+                  </label>
                   <textarea
                     name="khmer_biography"
                     rows={3}
-                    defaultValue={initialData?.profile?.khmerBiography || ''}
+                    defaultValue={initialData?.profile?.khmerBiography || ""}
                     className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] resize-y"
                   ></textarea>
                 </div>
 
                 <div className="flex flex-col gap-1.5 md:col-span-2">
-                  <label className="text-sm font-label-bold text-on-surface-variant">Avatar URL</label>
+                  <label className="text-sm font-label-bold text-on-surface-variant">
+                    Avatar URL
+                  </label>
                   <input
                     name="avatar_url"
                     type="url"
                     placeholder="https://example.com/avatar.jpg"
-                    defaultValue={initialData?.avatar_url || ''}
+                    defaultValue={initialData?.avatar_url || ""}
                     className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
 
                 <div className="flex flex-col gap-1.5 md:col-span-2">
-                  <label className="text-sm font-label-bold text-on-surface-variant">Role (Displayed on Card)</label>
+                  <label className="text-sm font-label-bold text-on-surface-variant">
+                    Role (Displayed on Card)
+                  </label>
                   <input
                     name="role"
                     type="text"
                     placeholder="e.g., Software Engineer, Board Member"
-                    defaultValue={initialData?.role || ''}
+                    defaultValue={initialData?.role || ""}
                     className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-sm font-label-bold text-on-surface-variant">Member Type</label>
+                  <label className="text-sm font-label-bold text-on-surface-variant">
+                    Member Type
+                  </label>
                   <select
                     name="type"
                     required
-                    defaultValue={initialData?.type || 'Resident'}
+                    defaultValue={initialData?.type || "Resident"}
                     className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] appearance-none cursor-pointer"
                   >
                     <option value="Founder">Founder</option>
@@ -187,7 +202,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                   <select
                     name="status"
                     required
-                    defaultValue={initialData?.status || 'Pending'}
+                    defaultValue={initialData?.status || "Pending"}
                     className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] appearance-none cursor-pointer"
                   >
                     <option value="Active">Active</option>
@@ -201,30 +216,38 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
 
             {/* Extended Profile Data Section */}
             <div>
-              <h3 className="text-lg font-bold text-on-surface mb-4 border-b border-surface-variant/30 pb-2">Extended Profile Data</h3>
+              <h3 className="text-lg font-bold text-on-surface mb-4 border-b border-surface-variant/30 pb-2">
+                Extended Profile Data
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="flex flex-col gap-1.5 md:col-span-2">
-                  <label className="text-sm font-label-bold text-on-surface-variant">Personal Quote</label>
+                  <label className="text-sm font-label-bold text-on-surface-variant">
+                    Personal Quote
+                  </label>
                   <input
                     name="quote"
                     type="text"
-                    defaultValue={initialData?.profile?.quote || ''}
+                    defaultValue={initialData?.profile?.quote || ""}
                     className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
 
                 <div className="flex flex-col gap-1.5 md:col-span-2">
-                  <label className="text-sm font-label-bold text-on-surface-variant">Vision Statement</label>
+                  <label className="text-sm font-label-bold text-on-surface-variant">
+                    Vision Statement
+                  </label>
                   <textarea
                     name="vision"
                     rows={2}
-                    defaultValue={initialData?.profile?.vision || ''}
+                    defaultValue={initialData?.profile?.vision || ""}
                     className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform] resize-y"
                   ></textarea>
                 </div>
 
                 <div className="flex flex-col gap-1.5 md:col-span-2">
-                  <label className="text-sm font-label-bold text-on-surface-variant">Education (Comma separated)</label>
+                  <label className="text-sm font-label-bold text-on-surface-variant">
+                    Education (Comma separated)
+                  </label>
                   <input
                     name="education"
                     type="text"
@@ -235,7 +258,9 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                 </div>
 
                 <div className="flex flex-col gap-1.5 md:col-span-2">
-                  <label className="text-sm font-label-bold text-on-surface-variant">Experience (Comma separated)</label>
+                  <label className="text-sm font-label-bold text-on-surface-variant">
+                    Experience (Comma separated)
+                  </label>
                   <input
                     name="experience"
                     type="text"
@@ -246,7 +271,9 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
                 </div>
 
                 <div className="flex flex-col gap-1.5 md:col-span-2">
-                  <label className="text-sm font-label-bold text-on-surface-variant">Achievements (Comma separated)</label>
+                  <label className="text-sm font-label-bold text-on-surface-variant">
+                    Achievements (Comma separated)
+                  </label>
                   <input
                     name="achievements"
                     type="text"
@@ -260,44 +287,54 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
 
             {/* Social Links Section */}
             <div>
-              <h3 className="text-lg font-bold text-on-surface mb-4 border-b border-surface-variant/30 pb-2">Social Links</h3>
+              <h3 className="text-lg font-bold text-on-surface mb-4 border-b border-surface-variant/30 pb-2">
+                Social Links
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-sm font-label-bold text-on-surface-variant">LinkedIn URL</label>
+                  <label className="text-sm font-label-bold text-on-surface-variant">
+                    LinkedIn URL
+                  </label>
                   <input
                     name="linkedin"
                     type="url"
-                    defaultValue={initialData?.profile?.socialLinks?.linkedin || ''}
+                    defaultValue={initialData?.profile?.socialLinks?.linkedin || ""}
                     className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-sm font-label-bold text-on-surface-variant">Twitter / X URL</label>
+                  <label className="text-sm font-label-bold text-on-surface-variant">
+                    Twitter / X URL
+                  </label>
                   <input
                     name="twitter"
                     type="url"
-                    defaultValue={initialData?.profile?.socialLinks?.twitter || ''}
+                    defaultValue={initialData?.profile?.socialLinks?.twitter || ""}
                     className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-sm font-label-bold text-on-surface-variant">Facebook URL</label>
+                  <label className="text-sm font-label-bold text-on-surface-variant">
+                    Facebook URL
+                  </label>
                   <input
                     name="facebook"
                     type="url"
-                    defaultValue={initialData?.profile?.socialLinks?.facebook || ''}
+                    defaultValue={initialData?.profile?.socialLinks?.facebook || ""}
                     className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-sm font-label-bold text-on-surface-variant">GitHub URL</label>
+                  <label className="text-sm font-label-bold text-on-surface-variant">
+                    GitHub URL
+                  </label>
                   <input
                     name="github"
                     type="url"
-                    defaultValue={initialData?.profile?.socialLinks?.github || ''}
+                    defaultValue={initialData?.profile?.socialLinks?.github || ""}
                     className="w-full px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-[opacity,transform]"
                   />
                 </div>
@@ -310,7 +347,7 @@ export function MemberFormModal({ isOpen, onClose, mode, initialData }: MemberFo
               Cancel
             </Button>
             <Button type="submit" variant="default" disabled={isLoading} className=" min-w-[120px]">
-              {isLoading ? 'Saving...' : mode === 'create' ? 'Create Member' : 'Save Changes'}
+              {isLoading ? "Saving..." : mode === "create" ? "Create Member" : "Save Changes"}
             </Button>
           </div>
         </form>

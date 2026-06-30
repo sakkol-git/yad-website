@@ -7,7 +7,7 @@ export interface Donor {
   description?: string;
   country?: string | null;
   is_public: boolean;
-  status: 'Active' | 'Archived';
+  status: "Active" | "Archived";
   created_at: string;
   updated_at: string;
 }

@@ -5,11 +5,11 @@ export async function notifyIndexNow(urls: string[]) {
   }
 
   try {
-    const response = await fetch('https://api.indexnow.org/indexnow', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const response = await fetch("https://api.indexnow.org/indexnow", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        host: 'yadkh.org',
+        host: "yadkh.org",
         key: process.env.INDEXNOW_KEY,
         keyLocation: `https://yadkh.org/${process.env.INDEXNOW_KEY}.txt`,
         urlList: urls,

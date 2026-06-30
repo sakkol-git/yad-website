@@ -6,7 +6,8 @@ import { DonorCalculator } from "@/features/Static/impact/DonorCalculator";
 
 export const metadata: Metadata = {
   title: "Donate",
-  description: "Invest in Cambodia's future leaders. Your contribution funds safe housing, digital literacy, and community education.",
+  description:
+    "Invest in Cambodia's future leaders. Your contribution funds safe housing, digital literacy, and community education.",
 };
 
 export default function DonatePage() {

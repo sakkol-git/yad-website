@@ -5,13 +5,14 @@ import { OurStory } from "@/features/Static/about/OurStory";
 import { CorePurpose } from "@/features/Static/about/CorePurpose";
 import { TheoryOfChange } from "@/features/Static/about/TheoryOfChange";
 
-
 export const metadata: Metadata = {
   title: "About Our Mission",
-  description: "Learn about Youth Advancement for Development (YAD) and our mission to empower Cambodian youth through education, technology, and community support.",
+  description:
+    "Learn about Youth Advancement for Development (YAD) and our mission to empower Cambodian youth through education, technology, and community support.",
   openGraph: {
     title: "About Our Mission | YAD Cambodia",
-    description: "Learn about Youth Advancement for Development (YAD) and our mission to empower Cambodian youth through education, technology, and community support.",
+    description:
+      "Learn about Youth Advancement for Development (YAD) and our mission to empower Cambodian youth through education, technology, and community support.",
     url: "https://yadkh.org/about",
   },
 };

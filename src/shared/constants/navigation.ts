@@ -11,7 +11,7 @@ export const NAV_LINKS: NavLink[] = [
       { href: "/about/team/resident", label: "Residents" },
       { href: "/about/team/alumni", label: "Alumni" },
       { href: "/about/financials", label: "Financial Transparency " },
-    ]
+    ],
   },
   {
     href: "/partner",
@@ -19,7 +19,7 @@ export const NAV_LINKS: NavLink[] = [
     subLinks: [
       { href: "/partner", label: "Partners" },
       { href: "/donors", label: "Donors" },
-    ]
+    ],
   },
 
   {
@@ -28,8 +28,8 @@ export const NAV_LINKS: NavLink[] = [
     subLinks: [
       { href: "/programs", label: "Core Programs" },
       { href: "/services", label: "Services" },
-      { href: "/event", label: "Events" }
-    ]
+      { href: "/event", label: "Events" },
+    ],
   },
   {
     href: "/impact",
@@ -38,7 +38,7 @@ export const NAV_LINKS: NavLink[] = [
       { href: "/impact", label: "Our Impact" },
       { href: "/news", label: "News & Updates" },
       { href: "/report", label: "Transparency Reports" },
-    ]
+    ],
   },
   {
     href: "/get-involved",
@@ -48,7 +48,7 @@ export const NAV_LINKS: NavLink[] = [
       { href: "/donate/flow", label: "Donate" },
       { href: "/partner", label: "Partner With Us" },
       { href: "/contact", label: "Contact Us" },
-    ]
+    ],
   },
 ];
 
@@ -66,4 +66,3 @@ export const DONATE_NAV_LINKS: NavLink[] = [
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
-

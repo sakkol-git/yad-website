@@ -4,11 +4,7 @@ import { LenisProvider } from "@/shared/lib/animations/lenis-provider";
 import { ScrollTriggerRefresh } from "@/shared/lib/animations/scroll-trigger-refresh";
 import { PageTransition } from "@/shared/components/layout/PageTransition";
 
-export default function MainLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function MainLayout({ children }: { children: React.ReactNode }) {
   return (
     <LenisProvider>
       <div className="flex flex-col min-h-screen">

@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Playfair_Display, Kantumruy_Pro } from "next/font/google";
-import { getLocale } from 'next-intl/server';
+import { getLocale } from "next-intl/server";
 import { AuthProvider } from "@/providers/AuthProvider";
 import { CookieConsent } from "@/shared/components/ui/CookieConsent";
 import { Toaster } from "sonner";
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     "YAD Cambodia",
     "Youth Empowerment",
     "Cambodia Community Programs",
-    "Nonprofit Organization Cambodia"
+    "Nonprofit Organization Cambodia",
   ],
   authors: [{ name: "YAD Cambodia", url: "https://yadkh.org" }],
   creator: "YAD Cambodia",
@@ -78,7 +78,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "YAD — Youth Advancement for Development Cambodia",
-    description: "YAD is a Cambodian NGO empowering youth to lead tomorrow through education, digital innovation, and community development.",
+    description:
+      "YAD is a Cambodian NGO empowering youth to lead tomorrow through education, digital innovation, and community development.",
     url: "/",
     siteName: "YAD Cambodia",
     locale: "en_US",
@@ -87,7 +88,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "YAD — Youth Advancement for Development Cambodia",
-    description: "YAD is a Cambodian NGO empowering youth to lead tomorrow through education, digital innovation, and community development.",
+    description:
+      "YAD is a Cambodian NGO empowering youth to lead tomorrow through education, digital innovation, and community development.",
     creator: "@YADCambodia",
     site: "@YADCambodia",
   },
@@ -113,7 +115,8 @@ export const metadata: Metadata = {
     capable: true,
   },
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "google-site-verification-code-here",
+    google:
+      process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "google-site-verification-code-here",
   },
 };
 
@@ -127,11 +130,7 @@ export default async function RootLayout({
     <html lang={locale} className="light" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin=""
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="preload"
@@ -151,10 +150,11 @@ export default async function RootLayout({
               name: "Youth Action for Development (YAD)",
               url: "https://yadkh.org",
               logo: "https://yadkh.org/assets/images/yad_logo.png",
-              description: "Empowering Cambodian youth through education and community development.",
-              address: { "@type": "PostalAddress", "addressCountry": "KH" },
-              sameAs: []
-            })
+              description:
+                "Empowering Cambodian youth through education and community development.",
+              address: { "@type": "PostalAddress", addressCountry: "KH" },
+              sameAs: [],
+            }),
           }}
         />
         <script
@@ -163,8 +163,8 @@ export default async function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "DonateAction",
-              agent: { "@type": "Organization", name: "Youth Action for Development (YAD)" }
-            })
+              agent: { "@type": "Organization", name: "Youth Action for Development (YAD)" },
+            }),
           }}
         />
       </head>

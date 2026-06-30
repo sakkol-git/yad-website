@@ -1,10 +1,10 @@
-import { SupabaseClient } from '@supabase/supabase-js';
-import { Database } from '@/shared/types/supabase';
-import { BaseRepository } from './base';
+import { SupabaseClient } from "@supabase/supabase-js";
+import { Database } from "@/shared/types/supabase";
+import { BaseRepository } from "./base";
 
-export class DonationsRepository extends BaseRepository<'donations'> {
+export class DonationsRepository extends BaseRepository<"donations"> {
   constructor() {
-    super('donations');
+    super("donations");
   }
 
   async getPaginated(
@@ -13,31 +13,29 @@ export class DonationsRepository extends BaseRepository<'donations'> {
     limit: number = 10,
     search?: string,
     status?: string,
-    method?: string
+    method?: string,
   ) {
-    let query = supabase
-      .from('donations')
-      .select('*', { count: 'exact' });
+    let query = supabase.from("donations").select("*", { count: "exact" });
 
     if (search) {
-      query = query.ilike('donor_name', `%${search}%`);
+      query = query.ilike("donor_name", `%${search}%`);
     }
 
-    if (status && status !== 'All Statuses') {
+    if (status && status !== "All Statuses") {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      query = query.eq('status', status as any);
+      query = query.eq("status", status as any);
     }
 
-    if (method && method !== 'All Methods') {
+    if (method && method !== "All Methods") {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      query = query.eq('method', method as any);
+      query = query.eq("method", method as any);
     }
 
     const from = (page - 1) * limit;
     const to = from + limit - 1;
 
     const { data, count, error } = await query
-      .order('created_at', { ascending: false })
+      .order("created_at", { ascending: false })
       .range(from, to);
 
     if (error) throw error;
@@ -47,13 +45,13 @@ export class DonationsRepository extends BaseRepository<'donations'> {
 
   async createDraft(
     supabase: SupabaseClient<Database>,
-    data: Database['public']['Tables']['donations']['Insert']
+    data: Database["public"]["Tables"]["donations"]["Insert"],
   ) {
     const { data: donation, error } = await supabase
-      .from('donations')
+      .from("donations")
       .insert({
         ...data,
-        status: 'Draft'
+        status: "Draft",
       })
       .select()
       .single();
@@ -65,17 +63,17 @@ export class DonationsRepository extends BaseRepository<'donations'> {
   async updateDonationStatus(
     supabase: SupabaseClient<Database>,
     id: string,
-    status: Database['public']['Tables']['donations']['Row']['status'],
-    expectedCurrentStatus?: Database['public']['Tables']['donations']['Row']['status'],
-    additionalData?: Partial<Database['public']['Tables']['donations']['Update']>
+    status: Database["public"]["Tables"]["donations"]["Row"]["status"],
+    expectedCurrentStatus?: Database["public"]["Tables"]["donations"]["Row"]["status"],
+    additionalData?: Partial<Database["public"]["Tables"]["donations"]["Update"]>,
   ) {
     let query = supabase
-      .from('donations')
+      .from("donations")
       .update({ status, ...additionalData })
-      .eq('id', id);
+      .eq("id", id);
 
     if (expectedCurrentStatus) {
-      query = query.eq('status', expectedCurrentStatus);
+      query = query.eq("status", expectedCurrentStatus);
     }
 
     const { data, error } = await query.select().single();

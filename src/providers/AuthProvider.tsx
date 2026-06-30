@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { createContext, useContext, useEffect, useState } from 'react';
-import { User } from '@supabase/supabase-js';
-import { createClient } from '@/shared/lib/supabase/client';
-import { Role } from '@/shared/types/roles';
+import { createContext, useContext, useEffect, useState } from "react";
+import { User } from "@supabase/supabase-js";
+import { createClient } from "@/shared/lib/supabase/client";
+import { Role } from "@/shared/types/roles";
 
 interface AuthContextType {
   user: User | null;
@@ -26,20 +26,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const fetchSession = async () => {
       try {
-        const { data: { session }, error } = await supabase.auth.getSession();
+        const {
+          data: { session },
+          error,
+        } = await supabase.auth.getSession();
         if (error) throw error;
 
         setUser(session?.user ?? null);
-        
+
         if (session?.user) {
           // Fetch role from user_roles table
           const { data, error: roleError } = await supabase
-            .from('user_roles')
-            .select('role')
-            .eq('user_id', session.user.id)
+            .from("user_roles")
+            .select("role")
+            .eq("user_id", session.user.id)
             .single();
-            
-          if (roleError && roleError.code !== 'PGRST116') {
+
+          if (roleError && roleError.code !== "PGRST116") {
             // PGRST116 is the "no rows returned" error, which we can ignore
             console.error("Error fetching user role:", roleError);
           } else if (data) {
@@ -57,18 +60,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     fetchSession();
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event: any, session: any) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (_event: any, session: any) => {
       try {
         setUser(session?.user ?? null);
         if (session?.user) {
           const { data, error: roleError } = await supabase
-            .from('user_roles')
-            .select('role')
-            .eq('user_id', session.user.id)
+            .from("user_roles")
+            .select("role")
+            .eq("user_id", session.user.id)
             .single();
-            
-          if (roleError && roleError.code !== 'PGRST116') {
-             console.error("Error fetching user role on state change:", roleError);
+
+          if (roleError && roleError.code !== "PGRST116") {
+            console.error("Error fetching user role on state change:", roleError);
           } else if (data) {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             setRole((data as any).role as Role);
@@ -77,7 +82,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setRole(null);
         }
       } catch (error) {
-         console.error("Failed to handle auth state change in AuthProvider:", error);
+        console.error("Failed to handle auth state change in AuthProvider:", error);
       } finally {
         setIsLoading(false);
       }
@@ -86,11 +91,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return () => subscription.unsubscribe();
   }, [supabase]);
 
-  return (
-    <AuthContext.Provider value={{ user, role, isLoading }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ user, role, isLoading }}>{children}</AuthContext.Provider>;
 }
 
 export const useAuth = () => useContext(AuthContext);

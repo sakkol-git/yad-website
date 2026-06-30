@@ -14,7 +14,7 @@ import { ImpactTicker } from "@/shared/components/ui/ImpactTicker";
 
 type NavLink = { href: string; label: string; subLinks?: { href: string; label: string }[] };
 
-function MobileNavAccordion({ link, pathname }: { link: NavLink, pathname: string }) {
+function MobileNavAccordion({ link, pathname }: { link: NavLink; pathname: string }) {
   const isActive = pathname === link.href;
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -22,18 +22,23 @@ function MobileNavAccordion({ link, pathname }: { link: NavLink, pathname: strin
     <div className="flex flex-col">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className={`py-3 px-4 rounded-md transition-colors flex justify-between items-center border border-transparent ${isActive || isExpanded ? "bg-surface-container border-outline-variant/30 text-primary font-bold text-[10px] uppercase tracking-widest" : "text-on-surface font-light text-sm uppercase tracking-widest hover:bg-surface-container hover:border-outline-variant/30"
-          }`}
+        className={`py-3 px-4 rounded-md transition-colors flex justify-between items-center border border-transparent ${
+          isActive || isExpanded
+            ? "bg-surface-container border-outline-variant/30 text-primary font-bold text-[10px] uppercase tracking-widest"
+            : "text-on-surface font-light text-sm uppercase tracking-widest hover:bg-surface-container hover:border-outline-variant/30"
+        }`}
         aria-expanded={isExpanded}
-        aria-controls={`submenu-${link.label.replace(/\s+/g, '-').toLowerCase()}`}
+        aria-controls={`submenu-${link.label.replace(/\s+/g, "-").toLowerCase()}`}
       >
         {link.label}
-        <span className={`material-symbols-outlined transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}>
+        <span
+          className={`material-symbols-outlined transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
+        >
           expand_more
         </span>
       </button>
       <div
-        id={`submenu-${link.label.replace(/\s+/g, '-').toLowerCase()}`}
+        id={`submenu-${link.label.replace(/\s+/g, "-").toLowerCase()}`}
         className={`grid transition-[background-color,border-color,backdrop-filter] duration-300 ease-in-out ${isExpanded ? "grid-rows-[1fr] opacity-100 mt-2 mb-2" : "grid-rows-[0fr] opacity-0"}`}
       >
         <div className="overflow-hidden">
@@ -45,10 +50,11 @@ function MobileNavAccordion({ link, pathname }: { link: NavLink, pathname: strin
                 <Link
                   key={sub.href}
                   href={sub.href}
-                  className={`py-2.5 px-4 rounded-md transition-colors ${isSubActive
-                    ? "text-primary font-bold bg-surface-container/50 text-[10px] uppercase tracking-widest"
-                    : "text-on-surface-variant font-light text-[10px] uppercase tracking-widest hover:text-primary hover:bg-surface-container/50"
-                    }`}
+                  className={`py-2.5 px-4 rounded-md transition-colors ${
+                    isSubActive
+                      ? "text-primary font-bold bg-surface-container/50 text-[10px] uppercase tracking-widest"
+                      : "text-on-surface-variant font-light text-[10px] uppercase tracking-widest hover:text-primary hover:bg-surface-container/50"
+                  }`}
                 >
                   {sub.label}
                 </Link>
@@ -67,9 +73,11 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
   const { user, role, isLoading } = useAuth();
-  const { ref: ctaRef, handleMouseMove: ctaMouseMove, handleMouseLeave: ctaMouseLeave } = useMagneticHover(0.25);
-
-
+  const {
+    ref: ctaRef,
+    handleMouseMove: ctaMouseMove,
+    handleMouseLeave: ctaMouseLeave,
+  } = useMagneticHover(0.25);
 
   const navRef = useRef<HTMLElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -84,7 +92,8 @@ export default function Navbar() {
 
     const timer = setTimeout(() => {
       if (ctaRef.current) {
-        gsap.timeline()
+        gsap
+          .timeline()
           .to(ctaRef.current, { scale: 1.05, duration: 0.2, ease: "power2.out" })
           .to(ctaRef.current, { scale: 1, duration: 0.4, ease: "elastic.out(1, 0.5)" });
         sessionStorage.setItem("cta-pulsed", "true");
@@ -160,13 +169,13 @@ export default function Navbar() {
     if (!isMenuOpen || !drawerRef.current) return;
 
     const focusableElements = drawerRef.current.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
     );
     const firstElement = focusableElements[0] as HTMLElement;
     const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
 
     const handleTabKey = (e: KeyboardEvent) => {
-      if (e.key !== 'Tab') return;
+      if (e.key !== "Tab") return;
 
       if (e.shiftKey) {
         if (document.activeElement === firstElement) {
@@ -181,31 +190,32 @@ export default function Navbar() {
       }
     };
 
-    document.addEventListener('keydown', handleTabKey);
+    document.addEventListener("keydown", handleTabKey);
     // Focus first element on open
     if (firstElement) {
       firstElement.focus();
     }
 
     return () => {
-      document.removeEventListener('keydown', handleTabKey);
+      document.removeEventListener("keydown", handleTabKey);
     };
   }, [isMenuOpen]);
 
   const handleLogout = async () => {
     const supabase = createClient();
     await supabase.auth.signOut();
-    router.push('/');
+    router.push("/");
     router.refresh();
   };
 
   return (
     <nav
       ref={navRef}
-      className={`fixed top-0 w-full z-50 transition-[background-color,border-color,backdrop-filter] duration-300 ease-in-out ${isScrolled
-        ? "bg-surface/60 backdrop-blur-xl border-b border-outline-variant/30 shadow-ambient"
-        : "bg-transparent border-transparent"
-        } ${isHidden ? "-translate-y-full" : "translate-y-0"}`}
+      className={`fixed top-0 w-full z-50 transition-[background-color,border-color,backdrop-filter] duration-300 ease-in-out ${
+        isScrolled
+          ? "bg-surface/60 backdrop-blur-xl border-b border-outline-variant/30 shadow-ambient"
+          : "bg-transparent border-transparent"
+      } ${isHidden ? "-translate-y-full" : "translate-y-0"}`}
       aria-label="Main navigation"
     >
       <ImpactTicker />
@@ -223,34 +233,39 @@ export default function Navbar() {
             className={`w-10 h-10 md:w-11 md:h-11 object-contain transition-[background-color,border-color,backdrop-filter] duration-300 hover:scale-105`}
             priority
           />
-          <span className="text-xl md:text-2xl font-bold tracking-widest uppercase">
-            YAD
-          </span>
+          <span className="text-xl md:text-2xl font-bold tracking-widest uppercase">YAD</span>
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-8 font-medium">
           {NAV_LINKS.map((link) => {
-            const isActive = pathname === link.href || link.subLinks?.some((sub) => pathname === sub.href);
+            const isActive =
+              pathname === link.href || link.subLinks?.some((sub) => pathname === sub.href);
             return (
               <div key={link.href} className="relative group">
                 <Link
                   href={link.href}
-                  className={`flex items-center gap-1 py-2 text-sm transition-colors duration-200 ${isActive
-                    ? "text-primary font-bold"
-                    : "text-on-surface-variant hover:text-primary"
-                    }`}
+                  className={`flex items-center gap-1 py-2 text-sm transition-colors duration-200 ${
+                    isActive
+                      ? "text-primary font-bold"
+                      : "text-on-surface-variant hover:text-primary"
+                  }`}
                 >
                   {link.label}
                   {link.subLinks && (
-                    <span className="material-symbols-outlined text-[18px] transition-transform duration-200 group-hover:rotate-180" aria-hidden="true">
+                    <span
+                      className="material-symbols-outlined text-lg transition-transform duration-200 group-hover:rotate-180"
+                      aria-hidden="true"
+                    >
                       expand_more
                     </span>
                   )}
                 </Link>
 
                 {link.subLinks && (
-                  <div className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 transition-[background-color,border-color,backdrop-filter] duration-200 z-50 ${isNavigating ? 'opacity-0 invisible' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible'}`}>
+                  <div
+                    className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 transition-[background-color,border-color,backdrop-filter] duration-200 z-50 ${isNavigating ? "opacity-0 invisible" : "opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible"}`}
+                  >
                     <div className="w-56 bg-surface/85 backdrop-blur-2xl shadow-xl shadow-black/10 rounded-md border border-outline-variant/50 overflow-hidden flex flex-col py-2">
                       {link.subLinks.map((subLink) => {
                         const isSubActive = pathname === subLink.href;
@@ -263,10 +278,11 @@ export default function Navbar() {
                                 document.activeElement.blur();
                               }
                             }}
-                            className={`px-4 py-3 text-sm text-center transition-colors ${isSubActive
-                              ? "text-primary font-bold bg-surface-container-high uppercase tracking-widest text-[10px]"
-                              : "text-on-surface font-light hover:text-primary hover:bg-surface-container-high"
-                              }`}
+                            className={`px-4 py-3 text-sm text-center transition-colors ${
+                              isSubActive
+                                ? "text-primary font-bold bg-surface-container-high uppercase tracking-widest text-[10px]"
+                                : "text-on-surface font-light hover:text-primary hover:bg-surface-container-high"
+                            }`}
                           >
                             {subLink.label}
                           </Link>
@@ -290,18 +306,27 @@ export default function Navbar() {
                 className={`flex items-center gap-2 px-4 py-2 rounded-md border transition-[background-color,border-color,backdrop-filter] focus:outline-none focus:border-primary text-[10px] font-bold tracking-widest uppercase border-outline-variant/30 bg-surface hover:bg-surface-container text-on-surface`}
                 aria-haspopup="true"
               >
-                <span className="material-symbols-outlined text-[16px]" aria-hidden="true">account_circle</span>
+                <span className="material-symbols-outlined text-base" aria-hidden="true">
+                  account_circle
+                </span>
                 <span className="max-w-[100px] truncate">My Account</span>
-                <span className="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:rotate-180 transition-transform" aria-hidden="true">
+                <span
+                  className="material-symbols-outlined text-base text-on-surface-variant group-hover:rotate-180 transition-transform"
+                  aria-hidden="true"
+                >
                   expand_more
                 </span>
               </button>
 
-              <div className={`absolute right-0 top-full pt-2 w-64 transition-[background-color,border-color,backdrop-filter] duration-200 z-50 ${isNavigating ? 'opacity-0 invisible' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible'}`}>
+              <div
+                className={`absolute right-0 top-full pt-2 w-64 transition-[background-color,border-color,backdrop-filter] duration-200 z-50 ${isNavigating ? "opacity-0 invisible" : "opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible"}`}
+              >
                 <div className="bg-surface/85 backdrop-blur-2xl border border-outline-variant/50 dark:border-white/20 shadow-xl shadow-black/10 rounded-md flex flex-col overflow-hidden">
                   <div className="px-4 py-3 bg-surface-container-high/50 border-b border-surface-variant/50">
                     <p className="text-sm font-semibold text-on-surface truncate">{user.email}</p>
-                    <p className="text-xs text-on-surface-variant capitalize mt-0.5">{role} Access</p>
+                    <p className="text-xs text-on-surface-variant capitalize mt-0.5">
+                      {role} Access
+                    </p>
                   </div>
                   <div className="py-2">
                     <Link
@@ -313,7 +338,7 @@ export default function Navbar() {
                       }}
                       className="px-4 py-2.5 text-sm text-on-surface hover:bg-surface-container-high hover:text-primary transition-colors flex items-center gap-3"
                     >
-                      <span className="material-symbols-outlined text-[18px]">dashboard</span> Dashboard
+                      <span className="material-symbols-outlined text-lg">dashboard</span> Dashboard
                     </Link>
                     <button
                       onClick={(e) => {
@@ -324,7 +349,7 @@ export default function Navbar() {
                       }}
                       className="w-full text-left px-4 py-2.5 text-sm text-on-surface hover:bg-error/10 hover:text-error transition-colors flex items-center gap-3"
                     >
-                      <span className="material-symbols-outlined text-[18px]">logout</span> Sign Out
+                      <span className="material-symbols-outlined text-lg">logout</span> Sign Out
                     </button>
                   </div>
                 </div>
@@ -357,7 +382,9 @@ export default function Navbar() {
           aria-expanded={isMenuOpen}
           aria-label="Toggle navigation menu"
         >
-          <span className="material-symbols-outlined text-3xl">{isMenuOpen ? "close" : "menu"}</span>
+          <span className="material-symbols-outlined text-3xl">
+            {isMenuOpen ? "close" : "menu"}
+          </span>
         </button>
       </div>
 
@@ -375,8 +402,9 @@ export default function Navbar() {
         ref={drawerRef}
         aria-modal="true"
         role="dialog"
-        className={`lg:hidden fixed inset-y-0 right-0 w-full max-w-sm bg-surface border-l border-outline-variant/30 z-50 flex flex-col h-[100svh] overflow-hidden transition-transform duration-300 ease-in-out ${isMenuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+        className={`lg:hidden fixed inset-y-0 right-0 w-full max-w-sm bg-surface border-l border-outline-variant/30 z-50 flex flex-col h-[100svh] overflow-hidden transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
         {/* Drawer Header */}
         <div className="flex justify-between items-center px-6 py-4 border-b border-outline-variant/30">
@@ -402,8 +430,11 @@ export default function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`py-3 px-4 rounded-md transition-colors flex justify-between items-center border border-transparent ${isActive ? "bg-surface-container border-outline-variant/30 text-primary font-bold text-[10px] uppercase tracking-widest" : "text-on-surface font-light text-sm uppercase tracking-widest hover:bg-surface-container hover:border-outline-variant/30"
-                      }`}
+                    className={`py-3 px-4 rounded-md transition-colors flex justify-between items-center border border-transparent ${
+                      isActive
+                        ? "bg-surface-container border-outline-variant/30 text-primary font-bold text-[10px] uppercase tracking-widest"
+                        : "text-on-surface font-light text-sm uppercase tracking-widest hover:bg-surface-container hover:border-outline-variant/30"
+                    }`}
                   >
                     {link.label}
                   </Link>
@@ -420,19 +451,21 @@ export default function Navbar() {
               <div className="w-full h-12 bg-surface-variant/50 animate-pulse rounded-md" />
             ) : user ? (
               <div className="bg-surface border border-outline-variant/30 rounded-md p-4">
-                <p className="text-sm font-semibold text-on-surface mb-3 truncate">Hi, {user.email}</p>
+                <p className="text-sm font-semibold text-on-surface mb-3 truncate">
+                  Hi, {user.email}
+                </p>
                 <div className="flex flex-col gap-2">
                   <Link
                     href={role === "admin" ? "/admin/dashboard" : "/portal/dashboard"}
                     className="flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-md text-[10px] font-bold uppercase tracking-widest text-on-surface hover:bg-surface-container transition-colors"
                   >
-                    <span className="material-symbols-outlined text-[16px]">dashboard</span> Portal
+                    <span className="material-symbols-outlined text-base">dashboard</span> Portal
                   </Link>
                   <button
                     onClick={handleLogout}
                     className="w-full flex items-center justify-center gap-2 py-2.5 bg-surface border border-surface-variant rounded-md text-[10px] font-bold uppercase tracking-widest text-error hover:bg-error/10 transition-colors"
                   >
-                    <span className="material-symbols-outlined text-[16px]">logout</span> Sign Out
+                    <span className="material-symbols-outlined text-base">logout</span> Sign Out
                   </button>
                 </div>
               </div>
@@ -453,7 +486,11 @@ export default function Navbar() {
               </div>
             )}
 
-            <Button variant="primary" asChild className="w-full h-[48px] text-[10px] font-bold uppercase tracking-widest rounded-md mt-2">
+            <Button
+              variant="primary"
+              asChild
+              className="w-full h-[48px] text-[10px] font-bold uppercase tracking-widest rounded-md mt-2"
+            >
               <Link href="/donate">Fund a Future</Link>
             </Button>
           </div>

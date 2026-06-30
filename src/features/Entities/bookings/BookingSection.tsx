@@ -21,15 +21,15 @@ export function BookingSection() {
       className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto"
     >
       <div className="mb-16">
-        <TextReveal 
-          as="h2" 
-          text="Reserve your Experience." 
-          className="text-[2.5rem] md:text-[3.5rem] text-on-surface tracking-tighter leading-[1.0] mb-4" 
+        <TextReveal
+          as="h2"
+          text="Reserve your Experience."
+          className="text-[2.5rem] md:text-[3.5rem] text-on-surface tracking-tighter leading-[1.0] mb-4"
         />
         <RevealOnScroll delay={0.1}>
           <p className="text-base text-on-surface-variant font-light max-w-xl">
-            Complete your booking details below. All proceeds support YAD
-            educational initiatives in the local community.
+            Complete your booking details below. All proceeds support YAD educational initiatives in
+            the local community.
           </p>
         </RevealOnScroll>
       </div>
@@ -49,11 +49,19 @@ export function BookingSection() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <FormLabel>Check-in Date</FormLabel>
-                  <FormInput type="date" required className="rounded-md border-outline-variant/30" />
+                  <FormInput
+                    type="date"
+                    required
+                    className="rounded-md border-outline-variant/30"
+                  />
                 </div>
                 <div>
                   <FormLabel>Check-out Date</FormLabel>
-                  <FormInput type="date" required className="rounded-md border-outline-variant/30" />
+                  <FormInput
+                    type="date"
+                    required
+                    className="rounded-md border-outline-variant/30"
+                  />
                 </div>
                 <div>
                   <FormLabel>Number of Guests</FormLabel>
@@ -88,19 +96,38 @@ export function BookingSection() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <FormLabel>First Name</FormLabel>
-                  <FormInput type="text" required placeholder="Jane" className="rounded-md border-outline-variant/30" />
+                  <FormInput
+                    type="text"
+                    required
+                    placeholder="Jane"
+                    className="rounded-md border-outline-variant/30"
+                  />
                 </div>
                 <div>
                   <FormLabel>Last Name</FormLabel>
-                  <FormInput type="text" required placeholder="Doe" className="rounded-md border-outline-variant/30" />
+                  <FormInput
+                    type="text"
+                    required
+                    placeholder="Doe"
+                    className="rounded-md border-outline-variant/30"
+                  />
                 </div>
                 <div className="md:col-span-2">
                   <FormLabel>Email Address</FormLabel>
-                  <FormInput type="email" required placeholder="jane@example.com" className="rounded-md border-outline-variant/30" />
+                  <FormInput
+                    type="email"
+                    required
+                    placeholder="jane@example.com"
+                    className="rounded-md border-outline-variant/30"
+                  />
                 </div>
                 <div className="md:col-span-2">
                   <FormLabel>Special Requests / Notes</FormLabel>
-                  <FormTextarea rows={3} placeholder="Any specific needs or questions?" className="rounded-md border-outline-variant/30" />
+                  <FormTextarea
+                    rows={3}
+                    placeholder="Any specific needs or questions?"
+                    className="rounded-md border-outline-variant/30"
+                  />
                 </div>
               </div>
             </div>
@@ -125,9 +152,7 @@ export function BookingSection() {
                       : "border-outline-variant/30 text-on-surface-variant hover:border-on-surface hover:text-on-surface"
                   }`}
                 >
-                  <span className="material-symbols-outlined text-3xl">
-                    credit_card
-                  </span>
+                  <span className="material-symbols-outlined text-3xl">credit_card</span>
                   <span className="uppercase tracking-[0.1em] text-[10px] font-bold">
                     Credit Card
                   </span>
@@ -141,12 +166,8 @@ export function BookingSection() {
                       : "border-outline-variant/30 text-on-surface-variant hover:border-on-surface hover:text-on-surface"
                   }`}
                 >
-                  <span className="material-symbols-outlined text-3xl">
-                    qr_code_scanner
-                  </span>
-                  <span className="uppercase tracking-[0.1em] text-[10px] font-bold">
-                    KHQR
-                  </span>
+                  <span className="material-symbols-outlined text-3xl">qr_code_scanner</span>
+                  <span className="uppercase tracking-[0.1em] text-[10px] font-bold">KHQR</span>
                 </button>
               </div>
 
@@ -155,16 +176,29 @@ export function BookingSection() {
                 <div className="space-y-8">
                   <div>
                     <FormLabel>Card Number</FormLabel>
-                    <FormInput type="text" placeholder="0000 0000 0000 0000" icon="credit_card" className="rounded-md border-outline-variant/30" />
+                    <FormInput
+                      type="text"
+                      placeholder="0000 0000 0000 0000"
+                      icon="credit_card"
+                      className="rounded-md border-outline-variant/30"
+                    />
                   </div>
                   <div className="grid grid-cols-2 gap-8">
                     <div>
                       <FormLabel>Expiry Date</FormLabel>
-                      <FormInput type="text" placeholder="MM/YY" className="rounded-md border-outline-variant/30" />
+                      <FormInput
+                        type="text"
+                        placeholder="MM/YY"
+                        className="rounded-md border-outline-variant/30"
+                      />
                     </div>
                     <div>
                       <FormLabel>CVC</FormLabel>
-                      <FormInput type="text" placeholder="123" className="rounded-md border-outline-variant/30" />
+                      <FormInput
+                        type="text"
+                        placeholder="123"
+                        className="rounded-md border-outline-variant/30"
+                      />
                     </div>
                   </div>
                 </div>
@@ -204,9 +238,7 @@ export function BookingSection() {
         {/* Booking Summary */}
         <div className="lg:col-span-4">
           <div className="bg-on-surface text-surface p-8 md:p-12 sticky top-32">
-            <h4 className="text-2xl font-light tracking-tight mb-8">
-              Booking Summary
-            </h4>
+            <h4 className="text-2xl font-light tracking-tight mb-8">Booking Summary</h4>
             <div className="flex gap-6 mb-10 pb-10 border-b border-surface/20">
               <div className="w-24 h-24 overflow-hidden shrink-0 relative">
                 <Image
@@ -218,13 +250,9 @@ export function BookingSection() {
                 />
               </div>
               <div className="flex flex-col justify-center">
-                <h5 className="font-bold text-sm tracking-widest uppercase mb-2">
-                  YAD Homestay
-                </h5>
+                <h5 className="font-bold text-sm tracking-widest uppercase mb-2">YAD Homestay</h5>
                 <p className="text-surface/70 text-xs flex items-center gap-2">
-                  <span className="material-symbols-outlined text-sm">
-                    location_on
-                  </span>
+                  <span className="material-symbols-outlined text-sm">location_on</span>
                   Siem Reap
                 </p>
               </div>
@@ -257,9 +285,7 @@ export function BookingSection() {
               <span className="uppercase tracking-widest text-[10px] font-bold text-surface/70">
                 Total (USD)
               </span>
-              <span className="text-4xl font-light tracking-tighter">
-                $45.00
-              </span>
+              <span className="text-4xl font-light tracking-tighter">$45.00</span>
             </div>
           </div>
         </div>

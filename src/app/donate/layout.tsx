@@ -1,11 +1,7 @@
 import Navbar from "@/shared/components/layout/Navbar";
 import Footer from "@/shared/components/layout/Footer";
 
-export default function DonateLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function DonateLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />

@@ -6,15 +6,14 @@ import { FormInput } from "@/shared/components/ui/FormInput";
 import { FormSelect } from "@/shared/components/ui/FormSelect";
 import { FormTextarea } from "@/shared/components/ui/FormTextarea";
 import { FormField } from "@/shared/components/admin/forms/FormField";
-import { createProgramAction, updateProgramAction, ProgramFormData } from "@/server/actions/program.actions";
+import {
+  createProgramAction,
+  updateProgramAction,
+  ProgramFormData,
+} from "@/server/actions/program.actions";
 import { z } from "zod";
 import { toast } from "sonner";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/shared/components/ui/Dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/shared/components/ui/Dialog";
 
 const programSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -30,7 +29,7 @@ const programSchema = z.object({
 export function ProgramFormModal({
   initialData,
   onClose,
-  onSuccess
+  onSuccess,
 }: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   initialData: any;
@@ -70,13 +69,18 @@ export function ProgramFormModal({
 
       let result;
       if (initialData?.id) {
-        result = await updateProgramAction({ id: initialData.id, data: dataToSubmit as ProgramFormData });
+        result = await updateProgramAction({
+          id: initialData.id,
+          data: dataToSubmit as ProgramFormData,
+        });
       } else {
         result = await createProgramAction(dataToSubmit as ProgramFormData);
       }
 
       if (result.success) {
-        toast.success(initialData?.id ? "Program updated successfully" : "Program created successfully");
+        toast.success(
+          initialData?.id ? "Program updated successfully" : "Program created successfully",
+        );
         onSuccess();
       } else {
         toast.error(result.error || "Failed to save program");
@@ -84,7 +88,7 @@ export function ProgramFormModal({
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErrors: Record<string, string> = {};
-        error.errors.forEach(err => {
+        error.errors.forEach((err) => {
           if (err.path[0]) fieldErrors[err.path[0] as string] = err.message;
         });
         setErrors(fieldErrors);
@@ -109,7 +113,7 @@ export function ProgramFormModal({
           <FormField label="Title" required error={errors.title}>
             <FormInput
               value={formData.title}
-              onChange={e => setFormData({...formData, title: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               placeholder="Program Title"
               icon="title"
             />
@@ -118,7 +122,7 @@ export function ProgramFormModal({
           <FormField label="Description" required error={errors.description}>
             <FormTextarea
               value={formData.description}
-              onChange={e => setFormData({...formData, description: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               placeholder="Program Description"
               rows={4}
             />
@@ -128,7 +132,7 @@ export function ProgramFormModal({
             <FormField label="Category" required error={errors.category}>
               <FormInput
                 value={formData.category}
-                onChange={e => setFormData({...formData, category: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                 placeholder="e.g. Education, Health"
                 icon="category"
               />
@@ -138,7 +142,7 @@ export function ProgramFormModal({
               <FormSelect
                 value={formData.status}
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                onChange={e => setFormData({...formData, status: e.target.value as any})}
+                onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
               >
                 <option value="upcoming">Upcoming</option>
                 <option value="active">Active</option>
@@ -152,7 +156,7 @@ export function ProgramFormModal({
               <FormInput
                 type="date"
                 value={formData.start_date}
-                onChange={e => setFormData({...formData, start_date: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, start_date: e.target.value })}
               />
             </FormField>
 
@@ -160,7 +164,7 @@ export function ProgramFormModal({
               <FormInput
                 type="date"
                 value={formData.end_date || ""}
-                onChange={e => setFormData({...formData, end_date: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, end_date: e.target.value })}
               />
             </FormField>
           </div>
@@ -171,7 +175,9 @@ export function ProgramFormModal({
                 type="number"
                 min="0"
                 value={formData.beneficiaries_count}
-                onChange={e => setFormData({...formData, beneficiaries_count: parseInt(e.target.value) || 0})}
+                onChange={(e) =>
+                  setFormData({ ...formData, beneficiaries_count: parseInt(e.target.value) || 0 })
+                }
                 icon="groups"
               />
             </FormField>
@@ -180,7 +186,7 @@ export function ProgramFormModal({
               <FormInput
                 type="url"
                 value={formData.image_url || ""}
-                onChange={e => setFormData({...formData, image_url: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
                 placeholder="https://..."
                 icon="link"
               />

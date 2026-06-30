@@ -16,8 +16,7 @@ export default async function AdminReportsPage(props: {
   const search = searchParams.search ?? undefined;
   const pageSize = 10;
 
-  let reports: Awaited<ReturnType<typeof reportsService.getReports>>["data"] =
-    [];
+  let reports: Awaited<ReturnType<typeof reportsService.getReports>>["data"] = [];
   let totalPages = 1;
 
   try {
@@ -36,20 +35,14 @@ export default async function AdminReportsPage(props: {
   return (
     <div className="p-6">
       <div className="mb-6">
-        <h1 className="font-headline-md text-headline-md text-primary">
-          Annual Reports
-        </h1>
+        <h1 className="font-headline-md text-headline-md text-primary">Annual Reports</h1>
         <p className="text-on-surface-variant mt-1">
           Manage public financial reports and impact documents.
         </p>
       </div>
 
       <div className="bg-surface-container-lowest border border-surface-variant/30 rounded-md shadow-sm">
-        <ReportsTable
-          initialReports={reports}
-          currentPage={page}
-          totalPages={totalPages}
-        />
+        <ReportsTable initialReports={reports} currentPage={page} totalPages={totalPages} />
       </div>
     </div>
   );

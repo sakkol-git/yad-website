@@ -1,11 +1,13 @@
-import { getMembers } from '@/server/actions/member.actions';
-import { MembersTable } from '@/features/Entities/members/components/MembersTable';
+import { getMembers } from "@/server/actions/member.actions";
+import { MembersTable } from "@/features/Entities/members/components/MembersTable";
 
 export const metadata = {
-  title: 'Members Management - YAD Admin',
+  title: "Members Management - YAD Admin",
 };
 
-export default async function MembersPage(props: { searchParams: Promise<{ page?: string; search?: string }> }) {
+export default async function MembersPage(props: {
+  searchParams: Promise<{ page?: string; search?: string }>;
+}) {
   const searchParams = await props.searchParams;
   const page = parseInt(searchParams.page || "1", 10);
   const search = searchParams.search;

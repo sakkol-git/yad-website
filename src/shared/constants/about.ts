@@ -13,5 +13,5 @@ export const PURPOSES = [
     icon: "diversity_3",
     title: "Community Leadership",
     desc: "Fostering a sense of civic duty by involving youth directly in local development and ecological projects.",
-  }
+  },
 ];

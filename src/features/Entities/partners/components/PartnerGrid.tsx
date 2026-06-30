@@ -19,7 +19,7 @@ export function PartnerGrid({ partners }: PartnerGridProps) {
   const filteredPartners = partners.filter((partner) => {
     if (activeCategory === "All Partners") {
       // Exclude "Founding Partner" from typical category filters?
-      // Actually, Founding Partner can just show up in "All Partners" 
+      // Actually, Founding Partner can just show up in "All Partners"
       return true;
     }
     return partner.category === activeCategory;
@@ -27,19 +27,18 @@ export function PartnerGrid({ partners }: PartnerGridProps) {
 
   return (
     <section className="bg-surface py-20 border-t border-outline-variant/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-container-max">
         <div className="mb-16">
           <div className="max-w-3xl">
-            <TextReveal 
-              as="h2" 
-              text="Global Network, Local Impact." 
-              className="text-3xl md:text-4xl text-on-surface tracking-tight mb-4" 
+            <TextReveal
+              as="h2"
+              text="Global Network, Local Impact."
+              className="text-3xl md:text-4xl text-on-surface tracking-tight mb-4"
             />
             <RevealOnScroll delay={0.1}>
               <p className="text-base font-light text-on-surface-variant max-w-xl">
-                Our network spans international NGOs, local grassroots
-                organizations, and corporate partners committed to youth
-                advancement.
+                Our network spans international NGOs, local grassroots organizations, and corporate
+                partners committed to youth advancement.
               </p>
             </RevealOnScroll>
           </div>
@@ -63,7 +62,10 @@ export function PartnerGrid({ partners }: PartnerGridProps) {
         </div>
 
         {/* Logo Grid */}
-        <StaggerGroup y={28} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 border-t border-l border-outline-variant/30">
+        <StaggerGroup
+          y={28}
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 border-t border-l border-outline-variant/30"
+        >
           {filteredPartners.map((partner) => (
             <Link
               key={partner.id}

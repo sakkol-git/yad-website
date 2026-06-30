@@ -1,5 +1,5 @@
-import { useAuth } from '@/providers/AuthProvider';
-import { Role } from '@/shared/types/roles';
+import { useAuth } from "@/providers/AuthProvider";
+import { Role } from "@/shared/types/roles";
 
 // Simple RBAC rules based on the implementation plan
 const permissions = {
@@ -11,11 +11,11 @@ const permissions = {
   donations: { read: [Role.ADMIN, Role.MANAGER], write: [Role.ADMIN] },
   partners: { read: [Role.ADMIN, Role.MANAGER], write: [Role.ADMIN, Role.MANAGER] },
   analytics: { read: [Role.ADMIN, Role.MANAGER], write: [Role.ADMIN] },
-  settings: { read: [Role.ADMIN], write: [Role.ADMIN] }
+  settings: { read: [Role.ADMIN], write: [Role.ADMIN] },
 };
 
 type Resource = keyof typeof permissions;
-type Action = 'read' | 'write';
+type Action = "read" | "write";
 
 export function usePermissions() {
   const { role, isLoading } = useAuth();

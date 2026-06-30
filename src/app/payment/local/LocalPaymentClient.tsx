@@ -40,13 +40,18 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
     setError(null);
 
     try {
-      const res = await submitGenericLocalPaymentAction(id, type, referenceId.trim(), paymentMethod);
+      const res = await submitGenericLocalPaymentAction(
+        id,
+        type,
+        referenceId.trim(),
+        paymentMethod,
+      );
       if (res.success) {
         router.push(`/payment/success?id=${id}&type=${type}`);
       } else {
         throw new Error(res.error || "Failed to submit verification");
       }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       console.error(err);
       setError(err.message || "Something went wrong. Please check details and try again.");
@@ -143,13 +148,16 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                       <rect x="75" y="75" width="10" height="10" fill="currentColor" />
 
                       {/* Random Mock QR Pixels */}
-                      <path d="M 35 10 h 5 v 5 h -5 z M 45 5 h 5 v 5 h -5 z M 55 10 h 10 v 5 h -10 z M 40 20 h 10 v 10 h -10 z M 5 35 h 10 v 5 h -10 z M 20 40 h 5 v 5 h -5 z M 30 35 h 5 v 15 h -5 z M 40 45 h 15 v 5 h -15 z M 65 35 h 10 v 5 h -10 z M 85 35 h 10 v 5 h -10 z M 55 45 h 5 v 15 h -5 z M 10 50 h 10 v 5 h -10 z M 25 55 h 5 v 10 h -5 z M 35 60 h 15 v 5 h -15 z M 65 55 h 10 v 10 h -10 z M 80 50 h 15 v 5 h -15 z M 85 65 h 10 v 10 h -10 z M 45 75 h 5 v 10 h -5 z M 55 75 h 10 v 5 h -10 z M 35 85 h 15 v 5 h -15 z" fill="currentColor" />
-                      
+                      <path
+                        d="M 35 10 h 5 v 5 h -5 z M 45 5 h 5 v 5 h -5 z M 55 10 h 10 v 5 h -10 z M 40 20 h 10 v 10 h -10 z M 5 35 h 10 v 5 h -10 z M 20 40 h 5 v 5 h -5 z M 30 35 h 5 v 15 h -5 z M 40 45 h 15 v 5 h -15 z M 65 35 h 10 v 5 h -10 z M 85 35 h 10 v 5 h -10 z M 55 45 h 5 v 15 h -5 z M 10 50 h 10 v 5 h -10 z M 25 55 h 5 v 10 h -5 z M 35 60 h 15 v 5 h -15 z M 65 55 h 10 v 10 h -10 z M 80 50 h 15 v 5 h -15 z M 85 65 h 10 v 10 h -10 z M 45 75 h 5 v 10 h -5 z M 55 75 h 10 v 5 h -10 z M 35 85 h 15 v 5 h -15 z"
+                        fill="currentColor"
+                      />
+
                       {/* Bakong stylization center logo */}
                       <rect x="42" y="42" width="16" height="16" rx="3" fill="#E11D48" />
                       <circle cx="50" cy="50" r="5" fill="white" />
                     </svg>
-                    
+
                     {/* Amount Banner */}
                     <div className="mt-3 w-full bg-surface-container-low border border-outline-variant/30 py-1.5 rounded-md text-center">
                       <span className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider block">
@@ -163,22 +171,26 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
 
                   {/* KHQR Footer Label */}
                   <div className="mt-3 text-center">
-                    <p className="text-[12px] font-bold text-white tracking-wide">
+                    <p className="text-xs font-bold text-white tracking-wide">
                       YAD CAMBODIA ASSOCIATION
                     </p>
-                    <p className="text-[9px] opacity-80 mt-0.5">
-                      Scan with any banking app
-                    </p>
+                    <p className="text-[9px] opacity-80 mt-0.5">Scan with any banking app</p>
                   </div>
                 </div>
               ) : (
                 /* Bank Account Details Card */
                 <div className="w-full bg-transparent border border-outline-variant/50 rounded-md p-6">
                   <div className="flex items-center gap-3 mb-6">
-                    <span className="material-symbols-outlined text-[32px] text-primary">account_balance</span>
+                    <span className="material-symbols-outlined text-4xl text-primary">
+                      account_balance
+                    </span>
                     <div>
-                      <h4 className="font-bold text-[12px] uppercase tracking-widest text-on-surface mb-1">ABA Bank Transfer</h4>
-                      <p className="text-xs font-light text-on-surface-variant">Perform a direct local bank transfer</p>
+                      <h4 className="font-bold text-xs uppercase tracking-widest text-on-surface mb-1">
+                        ABA Bank Transfer
+                      </h4>
+                      <p className="text-xs font-light text-on-surface-variant">
+                        Perform a direct local bank transfer
+                      </p>
                     </div>
                   </div>
 
@@ -186,7 +198,9 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                     {/* Bank Name */}
                     <div className="p-4 bg-transparent rounded-md border border-outline-variant/30 flex justify-between items-center">
                       <div>
-                        <span className="text-[10px] text-on-surface-variant block uppercase tracking-widest font-bold mb-1">Bank Name</span>
+                        <span className="text-[10px] text-on-surface-variant block uppercase tracking-widest font-bold mb-1">
+                          Bank Name
+                        </span>
                         <span className="text-sm font-light text-on-surface">ABA Bank</span>
                       </div>
                       <button
@@ -194,7 +208,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                         className="text-primary hover:text-primary/80 p-1 flex items-center transition-colors cursor-pointer"
                         title="Copy Bank Name"
                       >
-                        <span className="material-symbols-outlined text-[20px]">
+                        <span className="material-symbols-outlined text-xl">
                           {copiedField === "bank" ? "check" : "content_copy"}
                         </span>
                       </button>
@@ -203,15 +217,19 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                     {/* Account Name */}
                     <div className="p-4 bg-transparent rounded-md border border-outline-variant/30 flex justify-between items-center">
                       <div>
-                        <span className="text-[10px] text-on-surface-variant block uppercase tracking-widest font-bold mb-1">Account Name</span>
-                        <span className="text-sm font-light text-on-surface">YAD CAMBODIA ASSOCIATION</span>
+                        <span className="text-[10px] text-on-surface-variant block uppercase tracking-widest font-bold mb-1">
+                          Account Name
+                        </span>
+                        <span className="text-sm font-light text-on-surface">
+                          YAD CAMBODIA ASSOCIATION
+                        </span>
                       </div>
                       <button
                         onClick={() => copyToClipboard("YAD CAMBODIA ASSOCIATION", "name")}
                         className="text-primary hover:text-primary/80 p-1 flex items-center transition-colors cursor-pointer"
                         title="Copy Account Name"
                       >
-                        <span className="material-symbols-outlined text-[20px]">
+                        <span className="material-symbols-outlined text-xl">
                           {copiedField === "name" ? "check" : "content_copy"}
                         </span>
                       </button>
@@ -220,15 +238,19 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                     {/* Account Number */}
                     <div className="p-4 bg-transparent rounded-md border border-outline-variant/30 flex justify-between items-center">
                       <div>
-                        <span className="text-[10px] text-on-surface-variant block uppercase tracking-widest font-bold mb-1">Account Number</span>
-                        <span className="text-lg font-mono font-light text-on-surface tracking-widest">000 123 456</span>
+                        <span className="text-[10px] text-on-surface-variant block uppercase tracking-widest font-bold mb-1">
+                          Account Number
+                        </span>
+                        <span className="text-lg font-mono font-light text-on-surface tracking-widest">
+                          000 123 456
+                        </span>
                       </div>
                       <button
                         onClick={() => copyToClipboard("000123456", "number")}
                         className="text-primary hover:text-primary/80 p-1 flex items-center transition-colors cursor-pointer"
                         title="Copy Account Number"
                       >
-                        <span className="material-symbols-outlined text-[20px]">
+                        <span className="material-symbols-outlined text-xl">
                           {copiedField === "number" ? "check" : "content_copy"}
                         </span>
                       </button>
@@ -243,21 +265,24 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                 Verify Your Payment
               </h3>
               <p className="text-sm font-light text-on-surface-variant mb-8 leading-relaxed">
-                Please perform the transfer first. To complete your verification, copy the transaction reference details and paste your bank transaction ID below:
+                Please perform the transfer first. To complete your verification, copy the
+                transaction reference details and paste your bank transaction ID below:
               </p>
 
               <div className="space-y-4 mb-8">
                 {/* Reference Code to include in transfer */}
                 <div className="p-4 bg-primary text-white border border-outline-variant/30 rounded-md flex justify-between items-center">
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest block opacity-80 mb-1">Required Transfer Description / Memo</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest block opacity-80 mb-1">
+                      Required Transfer Description / Memo
+                    </span>
                     <span className="text-lg font-mono font-light tracking-widest">{memoCode}</span>
                   </div>
                   <button
                     onClick={() => copyToClipboard(memoCode, "memo")}
                     className="bg-white text-primary text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-md hover:bg-white/90 transition-colors duration-150 flex items-center gap-2 cursor-pointer"
                   >
-                    <span className="material-symbols-outlined text-[14px]">
+                    <span className="material-symbols-outlined text-sm">
                       {copiedField === "memo" ? "check" : "content_copy"}
                     </span>
                     {copiedField === "memo" ? "Copied" : "Copy Description"}
@@ -267,7 +292,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
 
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div>
-                  <label className="block uppercase tracking-[0.2em] text-[10px] font-bold text-on-surface mb-2">
+                  <label className="block kicker-label text-on-surface mb-2">
                     Bank Transaction ID / Reference Number <span className="text-primary">*</span>
                   </label>
                   <input
@@ -298,7 +323,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                   ) : (
                     <>
                       Confirm & Submit Payment
-                      <span className="material-symbols-outlined text-[16px]">verified</span>
+                      <span className="material-symbols-outlined text-base">verified</span>
                     </>
                   )}
                 </Button>
@@ -314,7 +339,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
           <h3 className="text-2xl font-light text-on-surface tracking-tight mb-6 relative z-10 border-b border-outline-variant/30 pb-4">
             Payment Summary
           </h3>
-          
+
           <div className="space-y-4 mb-8 relative z-10 text-sm font-light text-on-surface-variant leading-relaxed">
             <div className="flex justify-between items-center">
               <span className="uppercase tracking-widest text-[10px] font-bold">Description</span>
@@ -343,15 +368,15 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
 
           <div className="space-y-4 relative z-10">
             <div className="flex items-start gap-4">
-              <span className="material-symbols-outlined text-[20px] text-primary">
-                info
-              </span>
+              <span className="material-symbols-outlined text-xl text-primary">info</span>
               <div>
                 <p className="uppercase tracking-widest text-[10px] font-bold text-on-surface mb-1">
                   What Happens Next?
                 </p>
                 <p className="text-xs font-light text-on-surface-variant leading-relaxed mt-0.5">
-                  After submitting your Transaction ID, our financial team will verify it. This process typically takes under 2 hours. You will receive an official confirmation email once confirmed.
+                  After submitting your Transaction ID, our financial team will verify it. This
+                  process typically takes under 2 hours. You will receive an official confirmation
+                  email once confirmed.
                 </p>
               </div>
             </div>

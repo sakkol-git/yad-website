@@ -1,19 +1,23 @@
-'use server';
+"use server";
 
-import { createClient } from '@/shared/lib/supabase/server';
-import { revalidatePath } from 'next/cache';
-import { partnersService } from '../services/partners.service';
+import { createClient } from "@/shared/lib/supabase/server";
+import { revalidatePath } from "next/cache";
+import { partnersService } from "../services/partners.service";
 
 export async function getPartners(page: number = 1, limit: number = 10, search?: string) {
   const supabase = await createClient();
   try {
-    const { data, count } = await partnersService.getPartners(supabase, { page, limit, search }, true);
+    const { data, count } = await partnersService.getPartners(
+      supabase,
+      { page, limit, search },
+      true,
+    );
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return { data: data as any[], count };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
-    console.error('Error fetching partners:', error);
-    throw new Error('Failed to fetch partners');
+    console.error("Error fetching partners:", error);
+    throw new Error("Failed to fetch partners");
   }
 }
 
@@ -30,14 +34,14 @@ export async function createPartner(prevState: any, formData: FormData) {
       phone: (rawData.phone as string) || null,
       partnership_type: (rawData.partnership_type as string) || null,
       notes: (rawData.notes as string) || null,
-      logo_url: (rawData.logo_url as string) || null
+      logo_url: (rawData.logo_url as string) || null,
     });
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return { error: error.message };
   }
 
-  revalidatePath('/admin/partners');
+  revalidatePath("/admin/partners");
   return { success: true };
 }
 
@@ -54,14 +58,14 @@ export async function updatePartner(id: string, prevState: any, formData: FormDa
       phone: (rawData.phone as string) || null,
       partnership_type: (rawData.partnership_type as string) || null,
       notes: (rawData.notes as string) || null,
-      logo_url: (rawData.logo_url as string) || null
+      logo_url: (rawData.logo_url as string) || null,
     });
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return { error: error.message };
   }
 
-  revalidatePath('/admin/partners');
+  revalidatePath("/admin/partners");
   return { success: true };
 }
 
@@ -70,11 +74,11 @@ export async function deletePartner(id: string) {
 
   try {
     await partnersService.delete(supabase, id);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return { error: error.message };
   }
 
-  revalidatePath('/admin/partners');
+  revalidatePath("/admin/partners");
   return { success: true };
 }

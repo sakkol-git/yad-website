@@ -15,8 +15,7 @@ export function useMagneticHover(strength: number = 0.3) {
 
   useEffect(() => {
     isTouch.current =
-      typeof window !== "undefined" &&
-      window.matchMedia("(pointer: coarse)").matches;
+      typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches;
   }, []);
 
   const handleMouseMove = useCallback(
@@ -41,7 +40,7 @@ export function useMagneticHover(strength: number = 0.3) {
         overwrite: "auto",
       });
     },
-    [strength, reduced]
+    [strength, reduced],
   );
 
   const handleMouseLeave = useCallback(() => {

@@ -6,7 +6,9 @@ export const metadata: Metadata = {
   title: "Admin - Student Applications | YAD Cambodia",
 };
 
-export default async function AdminApplicationsPage(props: { searchParams: Promise<{ page?: string }> }) {
+export default async function AdminApplicationsPage(props: {
+  searchParams: Promise<{ page?: string }>;
+}) {
   const supabase = await createClient();
   const searchParams = await props.searchParams;
   const page = parseInt(searchParams.page || "1", 10);
@@ -26,7 +28,9 @@ export default async function AdminApplicationsPage(props: { searchParams: Promi
     <div className="p-6">
       <div className="mb-6">
         <h1 className="font-headline-md text-headline-md text-primary">Student Applications</h1>
-        <p className="text-on-surface-variant mt-1">Review and manage dormitory and scholarship applications.</p>
+        <p className="text-on-surface-variant mt-1">
+          Review and manage dormitory and scholarship applications.
+        </p>
       </div>
 
       <div className="bg-surface-container-lowest border border-surface-variant/30 rounded-md shadow-sm">

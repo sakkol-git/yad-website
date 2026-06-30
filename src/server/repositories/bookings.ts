@@ -1,10 +1,10 @@
-import { SupabaseClient } from '@supabase/supabase-js';
-import { Database } from '@/shared/types/supabase';
-import { BaseRepository } from './base';
+import { SupabaseClient } from "@supabase/supabase-js";
+import { Database } from "@/shared/types/supabase";
+import { BaseRepository } from "./base";
 
-export class BookingsRepository extends BaseRepository<'bookings'> {
+export class BookingsRepository extends BaseRepository<"bookings"> {
   constructor() {
-    super('bookings');
+    super("bookings");
   }
 
   async getPaginated(
@@ -13,31 +13,29 @@ export class BookingsRepository extends BaseRepository<'bookings'> {
     limit: number = 10,
     search?: string,
     status?: string,
-    paymentStatus?: string
+    paymentStatus?: string,
   ) {
-    let query = supabase
-      .from('bookings')
-      .select('*, rooms(name)', { count: 'exact' });
+    let query = supabase.from("bookings").select("*, rooms(name)", { count: "exact" });
 
     if (search) {
-      query = query.ilike('guest_name', `%${search}%`);
+      query = query.ilike("guest_name", `%${search}%`);
     }
 
-    if (status && status !== 'All Statuses') {
+    if (status && status !== "All Statuses") {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      query = query.eq('status', status as any);
+      query = query.eq("status", status as any);
     }
 
-    if (paymentStatus && paymentStatus !== 'All Payment Statuses') {
+    if (paymentStatus && paymentStatus !== "All Payment Statuses") {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      query = query.eq('payment_status', paymentStatus as any);
+      query = query.eq("payment_status", paymentStatus as any);
     }
 
     const from = (page - 1) * limit;
     const to = from + limit - 1;
 
     const { data, count, error } = await query
-      .order('check_in', { ascending: false })
+      .order("check_in", { ascending: false })
       .range(from, to);
 
     if (error) throw error;
@@ -47,14 +45,14 @@ export class BookingsRepository extends BaseRepository<'bookings'> {
 
   async createInquiry(
     supabase: SupabaseClient<Database>,
-    data: Database['public']['Tables']['bookings']['Insert']
+    data: Database["public"]["Tables"]["bookings"]["Insert"],
   ) {
     const { data: booking, error } = await supabase
-      .from('bookings')
+      .from("bookings")
       .insert({
         ...data,
-        status: 'Inquiry',
-        payment_status: 'Pending'
+        status: "Inquiry",
+        payment_status: "Pending",
       })
       .select()
       .single();
@@ -66,17 +64,17 @@ export class BookingsRepository extends BaseRepository<'bookings'> {
   async updateBookingStatus(
     supabase: SupabaseClient<Database>,
     id: string,
-    status: Database['public']['Tables']['bookings']['Row']['status'],
-    expectedCurrentStatus?: Database['public']['Tables']['bookings']['Row']['status'],
-    additionalData?: Partial<Database['public']['Tables']['bookings']['Update']>
+    status: Database["public"]["Tables"]["bookings"]["Row"]["status"],
+    expectedCurrentStatus?: Database["public"]["Tables"]["bookings"]["Row"]["status"],
+    additionalData?: Partial<Database["public"]["Tables"]["bookings"]["Update"]>,
   ) {
     let query = supabase
-      .from('bookings')
+      .from("bookings")
       .update({ status, ...additionalData })
-      .eq('id', id);
+      .eq("id", id);
 
     if (expectedCurrentStatus) {
-      query = query.eq('status', expectedCurrentStatus);
+      query = query.eq("status", expectedCurrentStatus);
     }
 
     const { data, error } = await query.select().single();

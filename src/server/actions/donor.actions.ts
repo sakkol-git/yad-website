@@ -3,15 +3,26 @@
 import { createSafeAction } from "@/shared/lib/safe-action";
 import { revalidatePath } from "next/cache";
 import { donorsService } from "../services/donors.service";
-import { getDonorsSchema, donorDataSchema, updateDonorSchema, deleteDonorSchema } from "../validators/donor.schema";
+import {
+  getDonorsSchema,
+  donorDataSchema,
+  updateDonorSchema,
+  deleteDonorSchema,
+} from "../validators/donor.schema";
 
 export const getDonors = createSafeAction(
   { schema: getDonorsSchema, role: "admin" },
   async ({ page, limit, search }, { sessionClient }) => {
-    const { data, count } = await donorsService.getDonors(sessionClient, page, limit, search, false);
+    const { data, count } = await donorsService.getDonors(
+      sessionClient,
+      page,
+      limit,
+      search,
+      false,
+    );
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return { data: data as any[], count };
-  }
+  },
 );
 
 export const createDonor = createSafeAction(
@@ -26,13 +37,13 @@ export const createDonor = createSafeAction(
       avatar_url: parsedData.avatar_url || null,
       country: parsedData.country || null,
       is_public: parsedData.is_public,
-      status: parsedData.status
+      status: parsedData.status,
     };
 
     await donorsService.create(sessionClient, dataToSubmit);
     revalidatePath("/admin/donors");
     return true;
-  }
+  },
 );
 
 export const updateDonor = createSafeAction(
@@ -47,13 +58,13 @@ export const updateDonor = createSafeAction(
       avatar_url: parsedData.avatar_url || null,
       country: parsedData.country || null,
       is_public: parsedData.is_public,
-      status: parsedData.status
+      status: parsedData.status,
     };
 
     await donorsService.update(sessionClient, id, dataToSubmit);
     revalidatePath("/admin/donors");
     return true;
-  }
+  },
 );
 
 export const deleteDonor = createSafeAction(
@@ -62,5 +73,5 @@ export const deleteDonor = createSafeAction(
     await donorsService.delete(sessionClient, id);
     revalidatePath("/admin/donors");
     return true;
-  }
+  },
 );

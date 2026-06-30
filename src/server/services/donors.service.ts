@@ -1,8 +1,8 @@
-import { SupabaseClient } from '@supabase/supabase-js';
-import { Database } from '@/shared/types/supabase';
-import { DonorsRepository } from '../repositories/donors';
-import { requireAdmin } from '../permissions';
-import { createAdminClient } from '@/shared/lib/supabase/server';
+import { SupabaseClient } from "@supabase/supabase-js";
+import { Database } from "@/shared/types/supabase";
+import { DonorsRepository } from "../repositories/donors";
+import { requireAdmin } from "../permissions";
+import { createAdminClient } from "@/shared/lib/supabase/server";
 
 export class DonorsService {
   private repository: DonorsRepository;
@@ -11,7 +11,13 @@ export class DonorsService {
     this.repository = new DonorsRepository();
   }
 
-  async getDonors(supabase: SupabaseClient<Database>, page: number = 1, limit: number = 10, search?: string, isAdminRoute: boolean = false) {
+  async getDonors(
+    supabase: SupabaseClient<Database>,
+    page: number = 1,
+    limit: number = 10,
+    search?: string,
+    isAdminRoute: boolean = false,
+  ) {
     if (isAdminRoute) {
       await requireAdmin(supabase);
     }
@@ -25,16 +31,16 @@ export class DonorsService {
 
   async getPublicDonors(supabase: SupabaseClient<Database>, limit: number = 100) {
     const { data, error } = await supabase
-      .from('donors')
-      .select('*')
-      .eq('status', 'Active')
-      .eq('is_public', true)
-      .order('amount', { ascending: false, nullsFirst: false })
-      .order('donation_date', { ascending: false })
+      .from("donors")
+      .select("*")
+      .eq("status", "Active")
+      .eq("is_public", true)
+      .order("amount", { ascending: false, nullsFirst: false })
+      .order("donation_date", { ascending: false })
       .limit(limit);
 
     if (error) {
-      console.error('Failed to fetch public donors:', error);
+      console.error("Failed to fetch public donors:", error);
       return [];
     }
     return data;

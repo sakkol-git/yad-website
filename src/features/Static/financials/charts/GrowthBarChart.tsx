@@ -104,11 +104,19 @@ export function GrowthBarChart() {
       {/* Accessibility: hidden data table */}
       <table className="sr-only" aria-label="Year-over-year growth data">
         <thead>
-          <tr><th>Year</th><th>Students Served</th><th>Graduates</th></tr>
+          <tr>
+            <th>Year</th>
+            <th>Students Served</th>
+            <th>Graduates</th>
+          </tr>
         </thead>
         <tbody>
           {GROWTH_DATA.map((d) => (
-            <tr key={d.year}><td>{d.year}</td><td>{d.studentsServed}</td><td>{d.graduates}</td></tr>
+            <tr key={d.year}>
+              <td>{d.year}</td>
+              <td>{d.studentsServed}</td>
+              <td>{d.graduates}</td>
+            </tr>
           ))}
         </tbody>
       </table>

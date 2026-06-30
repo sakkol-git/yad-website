@@ -5,7 +5,8 @@ import { QuickFormSection } from "@/features/Static/getInvole/QuickFormSection";
 
 export const metadata: Metadata = {
   title: "Get Involved",
-  description: "Join YAD in empowering youth for sustainable development. Fund, mentor, or partner with us to create waves of positive change.",
+  description:
+    "Join YAD in empowering youth for sustainable development. Fund, mentor, or partner with us to create waves of positive change.",
 };
 
 export default function GetInvolvedPage() {

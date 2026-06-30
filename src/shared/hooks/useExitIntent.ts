@@ -12,7 +12,7 @@ export function useExitIntent() {
     }
 
     let hasBeenOnPageLongEnough = false;
-    
+
     // Gate: Must be on page for at least 30 seconds
     const timer = setTimeout(() => {
       hasBeenOnPageLongEnough = true;
@@ -23,7 +23,7 @@ export function useExitIntent() {
       if (e.clientY <= 0 && hasBeenOnPageLongEnough) {
         setShowExitToast(true);
         sessionStorage.setItem("exit-intent-shown", "true");
-        
+
         // Auto-dismiss after 8 seconds
         setTimeout(() => {
           setShowExitToast(false);

@@ -1,6 +1,6 @@
-import React from 'react';
-import { FormLabel } from '@/shared/components/ui/FormLabel';
-import { cn } from '@/shared/lib/utils';
+import React from "react";
+import { FormLabel } from "@/shared/components/ui/FormLabel";
+import { cn } from "@/shared/lib/utils";
 
 interface FormFieldProps {
   label: string;
@@ -22,8 +22,11 @@ export function FormField({
   className,
 }: FormFieldProps) {
   return (
-    <div className={cn('flex flex-col gap-1.5', className)}>
-      <FormLabel htmlFor={htmlFor} className={cn('mb-0', error ? 'text-error' : 'text-on-surface-variant')}>
+    <div className={cn("flex flex-col gap-1.5", className)}>
+      <FormLabel
+        htmlFor={htmlFor}
+        className={cn("mb-0", error ? "text-error" : "text-on-surface-variant")}
+      >
         {label}
         {required && <span className="text-error ml-1">*</span>}
       </FormLabel>
@@ -33,7 +36,7 @@ export function FormField({
       {children}
       {error && (
         <p className="text-[13px] font-medium text-error flex items-center gap-1 mt-0.5 animate-in fade-in slide-in-from-top-1">
-          <span className="material-symbols-outlined text-[14px]">error</span>
+          <span className="material-symbols-outlined text-sm">error</span>
           {error}
         </p>
       )}

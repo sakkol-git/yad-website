@@ -42,34 +42,44 @@ export const DonationReceiptEmail = ({
       <Body style={main}>
         <Container style={container}>
           <Heading style={h1}>Thank you for your generosity!</Heading>
-          
+
           <Text style={text}>Dear {donorName},</Text>
           <Text style={text}>
-            We have received your donation to <strong>{projectName}</strong>. Your generosity directly funds youth empowerment programs in Cambodia.
+            We have received your donation to <strong>{projectName}</strong>. Your generosity
+            directly funds youth empowerment programs in Cambodia.
           </Text>
 
           <Container style={receiptBox}>
             <Text style={receiptHeading}>Donation Receipt</Text>
             <Hr style={hr} />
-            <Text style={receiptText}><strong>Amount:</strong> {formattedAmount}</Text>
-            <Text style={receiptText}><strong>Date:</strong> {date}</Text>
-            <Text style={receiptText}><strong>Transaction ID:</strong> {donationId}</Text>
+            <Text style={receiptText}>
+              <strong>Amount:</strong> {formattedAmount}
+            </Text>
+            <Text style={receiptText}>
+              <strong>Date:</strong> {date}
+            </Text>
+            <Text style={receiptText}>
+              <strong>Transaction ID:</strong> {donationId}
+            </Text>
           </Container>
 
-          <Text style={text}>
-            This email serves as your official donation receipt. 
-          </Text>
+          <Text style={text}>This email serves as your official donation receipt.</Text>
 
           <Text style={disclaimer}>
-            Tax deductibility varies by country — please consult your tax advisor. {orgName} does not issue tax receipts for international jurisdictions.
+            Tax deductibility varies by country — please consult your tax advisor. {orgName} does
+            not issue tax receipts for international jurisdictions.
           </Text>
 
           <Hr style={hr} />
 
           <Text style={footer}>
-            {orgName}<br />
-            Registration Number: [INSERT REGISTRATION NUMBER]<br />
-            <Link href="https://yadcambodia.org" style={link}>yadcambodia.org</Link>
+            {orgName}
+            <br />
+            Registration Number: [INSERT REGISTRATION NUMBER]
+            <br />
+            <Link href="https://yadcambodia.org" style={link}>
+              yadcambodia.org
+            </Link>
           </Text>
         </Container>
       </Body>

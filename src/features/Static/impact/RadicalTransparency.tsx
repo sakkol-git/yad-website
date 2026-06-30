@@ -19,7 +19,6 @@ export function RadicalTransparency({ reports }: RadicalTransparencyProps) {
   return (
     <section className="py-24 md:py-32 px-6 md:px-12 lg:px-16 bg-surface-container-lowest">
       <div className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-start">
-
         {/* Left: Editorial Manifesto */}
         <div className="lg:col-span-5 lg:sticky lg:top-32">
           <RevealOnScroll>
@@ -35,13 +34,13 @@ export function RadicalTransparency({ reports }: RadicalTransparencyProps) {
           <RevealOnScroll delay={0.1}>
             <div className="space-y-6 font-body-lg text-on-surface-variant leading-relaxed">
               <p>
-                Trust is the currency of systemic change. We are committed to an
-                open-book policy, ensuring that our partners, donors, and the
-                communities we serve have full visibility into our operations.
+                Trust is the currency of systemic change. We are committed to an open-book policy,
+                ensuring that our partners, donors, and the communities we serve have full
+                visibility into our operations.
               </p>
               <p>
-                Every year, we publish comprehensive breakdowns of our program
-                expenditures alongside independent third-party audits.
+                Every year, we publish comprehensive breakdowns of our program expenditures
+                alongside independent third-party audits.
               </p>
             </div>
           </RevealOnScroll>
@@ -95,17 +94,13 @@ export function RadicalTransparency({ reports }: RadicalTransparencyProps) {
             ))
           )}
 
-          <RevealOnScroll
-            delay={0.4}
-            className="mt-8 pt-8 border-t border-outline-variant/30"
-          >
+          <RevealOnScroll delay={0.4} className="mt-8 pt-8 border-t border-outline-variant/30">
             <p className="text-sm font-label-bold text-on-surface-variant/60 uppercase tracking-widest flex items-center gap-2">
-              <span className="material-symbols-outlined text-[16px]">info</span>
+              <span className="material-symbols-outlined text-base">info</span>
               Audits are conducted annually by independent third parties
             </p>
           </RevealOnScroll>
         </div>
-
       </div>
     </section>
   );

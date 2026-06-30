@@ -11,7 +11,8 @@ const ENHANCED_METRICS = [
     value: 500,
     suffix: "+",
     label: "Children Reached Weekly",
-    description: "Through nutrition and community education programs across urban slum communities.",
+    description:
+      "Through nutrition and community education programs across urban slum communities.",
     sparklineData: [120, 180, 220, 300, 350, 420, 500],
     yoyDelta: 34,
     storyHook: "Meet Sreymom, one of 500+ children we reach every week →",
@@ -46,19 +47,19 @@ export function MeasurableImpactSection() {
   return (
     <section className="py-24 border-b border-outline-variant/30 bg-surface">
       <div className="max-w-container-max mx-auto px-6 md:px-12 lg:px-16">
-        
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-start">
-          
           {/* Left: Editorial Header */}
           <div className="lg:col-span-4 lg:sticky lg:top-32">
-            <TextReveal 
-              as="h2" 
-              text="Scale of Impact" 
-              className="text-4xl lg:text-5xl font-light text-primary mb-6 tracking-tighter leading-[1.0]" 
+            <TextReveal
+              as="h2"
+              text="Scale of Impact"
+              className="text-4xl lg:text-5xl font-light text-primary mb-6 tracking-tighter leading-[1.0]"
             />
             <RevealOnScroll delay={0.1}>
               <p className="text-base font-light text-on-surface-variant leading-relaxed max-w-md mb-10">
-                When you engage with YAD, you are directly investing in a sustainable cycle of youth empowerment and profound societal transformation. The numbers reflect individual lives forever changed.
+                When you engage with YAD, you are directly investing in a sustainable cycle of youth
+                empowerment and profound societal transformation. The numbers reflect individual
+                lives forever changed.
               </p>
             </RevealOnScroll>
 
@@ -66,16 +67,12 @@ export function MeasurableImpactSection() {
             <RevealOnScroll delay={0.3}>
               <div className="hidden lg:block">
                 <div className="flex items-center gap-4 mb-4">
-                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant/70">
+                  <span className="kicker-label text-on-surface-variant/70">
                     Student Distribution
                   </span>
                   <div className="flex-1 h-[1px] bg-outline-variant/30" />
                 </div>
-                <WaffleChart
-                  total={1200}
-                  programs={WAFFLE_PROGRAMS}
-                  cellValue={10}
-                />
+                <WaffleChart total={1200} programs={WAFFLE_PROGRAMS} cellValue={10} />
               </div>
             </RevealOnScroll>
           </div>
@@ -103,19 +100,14 @@ export function MeasurableImpactSection() {
           <div className="lg:hidden col-span-1">
             <RevealOnScroll>
               <div className="flex items-center gap-4 mb-4">
-                <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant/70">
+                <span className="kicker-label text-on-surface-variant/70">
                   Student Distribution
                 </span>
                 <div className="flex-1 h-[1px] bg-outline-variant/30" />
               </div>
-              <WaffleChart
-                total={1200}
-                programs={WAFFLE_PROGRAMS}
-                cellValue={10}
-              />
+              <WaffleChart total={1200} programs={WAFFLE_PROGRAMS} cellValue={10} />
             </RevealOnScroll>
           </div>
-          
         </div>
       </div>
     </section>

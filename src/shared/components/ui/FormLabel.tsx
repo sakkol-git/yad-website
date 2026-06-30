@@ -10,11 +10,11 @@ export const FormLabel = forwardRef<HTMLLabelElement, FormLabelProps>(
         ref={ref}
         className={cn(
           "text-sm font-label-bold text-on-surface leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 mb-2 block",
-          className
+          className,
         )}
         {...props}
       />
     );
-  }
+  },
 );
 FormLabel.displayName = "FormLabel";

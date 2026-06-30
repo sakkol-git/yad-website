@@ -3,15 +3,24 @@
 import { createSafeAction } from "@/shared/lib/safe-action";
 import { revalidatePath } from "next/cache";
 import { eventsService } from "../services/events.service";
-import { getEventsSchema, eventDataSchema, updateEventSchema, deleteEventSchema } from "../validators/event.schema";
+import {
+  getEventsSchema,
+  eventDataSchema,
+  updateEventSchema,
+  deleteEventSchema,
+} from "../validators/event.schema";
 
 export const getEvents = createSafeAction(
   { schema: getEventsSchema, role: "admin" },
   async ({ page, limit, search }, { sessionClient }) => {
-    const { data, count } = await eventsService.getEvents(sessionClient, { page, limit, search }, false);
+    const { data, count } = await eventsService.getEvents(
+      sessionClient,
+      { page, limit, search },
+      false,
+    );
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return { data: data as any[], count };
-  }
+  },
 );
 
 export const createEvent = createSafeAction(
@@ -22,13 +31,13 @@ export const createEvent = createSafeAction(
       description: parsedData.description || null,
       venue: parsedData.venue || null,
       capacity: parsedData.capacity || null,
-      status: parsedData.status
+      status: parsedData.status,
     };
 
     await eventsService.create(sessionClient, dataToSubmit);
     revalidatePath("/admin/events");
     return true;
-  }
+  },
 );
 
 export const updateEvent = createSafeAction(
@@ -39,13 +48,13 @@ export const updateEvent = createSafeAction(
       description: parsedData.description || null,
       venue: parsedData.venue || null,
       capacity: parsedData.capacity || null,
-      status: parsedData.status
+      status: parsedData.status,
     };
 
     await eventsService.update(sessionClient, id, dataToSubmit);
     revalidatePath("/admin/events");
     return true;
-  }
+  },
 );
 
 export const deleteEvent = createSafeAction(
@@ -54,5 +63,5 @@ export const deleteEvent = createSafeAction(
     await eventsService.delete(sessionClient, id);
     revalidatePath("/admin/events");
     return true;
-  }
+  },
 );

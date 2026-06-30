@@ -1,10 +1,10 @@
-import { logout } from '@/server/actions/auth.actions';
-import { PortalHeader } from './components/PortalHeader';
-import { Metadata } from 'next';
+import { logout } from "@/server/actions/auth.actions";
+import { PortalHeader } from "./components/PortalHeader";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'User Portal | YAD',
-  robots: 'noindex, nofollow',
+  title: "User Portal | YAD",
+  robots: "noindex, nofollow",
 };
 
 export default function PortalLayout({ children }: { children: React.ReactNode }) {

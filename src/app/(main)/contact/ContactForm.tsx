@@ -40,7 +40,7 @@ export function ContactForm() {
           toast.error(response.error || "Failed to send message.");
           return;
         }
-        
+
         toast.success("Message sent successfully! We'll be in touch soon.");
         reset();
       } catch (error) {
@@ -53,49 +53,71 @@ export function ContactForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="flex flex-col gap-2">
-          <label htmlFor="firstName" className="uppercase tracking-widest text-[10px] font-bold text-on-surface">First Name <span className="text-primary">*</span></label>
-          <FormInput 
-            id="firstName" 
+          <label
+            htmlFor="firstName"
+            className="uppercase tracking-widest text-[10px] font-bold text-on-surface"
+          >
+            First Name <span className="text-primary">*</span>
+          </label>
+          <FormInput
+            id="firstName"
             {...register("firstName")}
-            required 
-            aria-required="true" 
-            placeholder="John" 
-            className="border-outline-variant/50 focus:border-primary focus:ring-1 focus:ring-primary h-12" 
+            required
+            aria-required="true"
+            placeholder="John"
+            className="border-outline-variant/50 focus:border-primary focus:ring-1 focus:ring-primary h-12"
           />
-          {errors.firstName && <span className="text-error text-xs">{errors.firstName.message}</span>}
+          {errors.firstName && (
+            <span className="text-error text-xs">{errors.firstName.message}</span>
+          )}
         </div>
         <div className="flex flex-col gap-2">
-          <label htmlFor="lastName" className="uppercase tracking-widest text-[10px] font-bold text-on-surface">Last Name <span className="text-primary">*</span></label>
-          <FormInput 
-            id="lastName" 
+          <label
+            htmlFor="lastName"
+            className="uppercase tracking-widest text-[10px] font-bold text-on-surface"
+          >
+            Last Name <span className="text-primary">*</span>
+          </label>
+          <FormInput
+            id="lastName"
             {...register("lastName")}
-            required 
-            aria-required="true" 
-            placeholder="Doe" 
-            className="border-outline-variant/50 focus:border-primary focus:ring-1 focus:ring-primary h-12" 
+            required
+            aria-required="true"
+            placeholder="Doe"
+            className="border-outline-variant/50 focus:border-primary focus:ring-1 focus:ring-primary h-12"
           />
           {errors.lastName && <span className="text-error text-xs">{errors.lastName.message}</span>}
         </div>
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="email" className="uppercase tracking-widest text-[10px] font-bold text-on-surface">Email Address <span className="text-primary">*</span></label>
-        <FormInput 
-          type="email" 
-          id="email" 
+        <label
+          htmlFor="email"
+          className="uppercase tracking-widest text-[10px] font-bold text-on-surface"
+        >
+          Email Address <span className="text-primary">*</span>
+        </label>
+        <FormInput
+          type="email"
+          id="email"
           {...register("email")}
-          required 
-          aria-required="true" 
-          placeholder="john@example.com" 
-          className="border-outline-variant/50 focus:border-primary focus:ring-1 focus:ring-primary h-12" 
+          required
+          aria-required="true"
+          placeholder="john@example.com"
+          className="border-outline-variant/50 focus:border-primary focus:ring-1 focus:ring-primary h-12"
         />
         {errors.email && <span className="text-error text-xs">{errors.email.message}</span>}
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="subject" className="uppercase tracking-widest text-[10px] font-bold text-on-surface">Subject <span className="text-primary">*</span></label>
-        <select 
-          id="subject" 
+        <label
+          htmlFor="subject"
+          className="uppercase tracking-widest text-[10px] font-bold text-on-surface"
+        >
+          Subject <span className="text-primary">*</span>
+        </label>
+        <select
+          id="subject"
           {...register("interest")}
           required
           aria-required="true"
@@ -112,11 +134,16 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="message" className="uppercase tracking-widest text-[10px] font-bold text-on-surface">Message <span className="text-primary">*</span></label>
-        <textarea 
-          id="message" 
+        <label
+          htmlFor="message"
+          className="uppercase tracking-widest text-[10px] font-bold text-on-surface"
+        >
+          Message <span className="text-primary">*</span>
+        </label>
+        <textarea
+          id="message"
           {...register("message")}
-          rows={5} 
+          rows={5}
           required
           aria-required="true"
           placeholder="How can we help you?"
@@ -125,7 +152,13 @@ export function ContactForm() {
         {errors.message && <span className="text-error text-xs">{errors.message.message}</span>}
       </div>
 
-      <Button type="submit" disabled={isPending} variant="default" size="lg" className="mt-4 bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-xs font-bold transition-colors duration-150 disabled:opacity-50">
+      <Button
+        type="submit"
+        disabled={isPending}
+        variant="default"
+        size="lg"
+        className="mt-4 bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-xs font-bold transition-colors duration-150 disabled:opacity-50"
+      >
         {isPending ? "Sending..." : "Send Message"}
       </Button>
     </form>

@@ -1,15 +1,16 @@
-import { SupabaseClient } from '@supabase/supabase-js';
-import { Database } from '@/shared/types/supabase';
-import { donorsService } from '@/server/services/donors.service';
-import { Button } from '@/shared/components/ui/Button';
-import Link from 'next/link';
+import { SupabaseClient } from "@supabase/supabase-js";
+import { Database } from "@/shared/types/supabase";
+import { donorsService } from "@/server/services/donors.service";
+import { Button } from "@/shared/components/ui/Button";
+import Link from "next/link";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 import { StaggerGroup } from "@/shared/components/animations/StaggerGroup";
 import { TextReveal } from "@/shared/components/animations/TextReveal";
 
 export const metadata = {
-  title: 'Our Donors - YAD Cambodia',
-  description: 'Recognizing the generous individuals and organizations that make our mission possible.',
+  title: "Our Donors - YAD Cambodia",
+  description:
+    "Recognizing the generous individuals and organizations that make our mission possible.",
 };
 
 export const revalidate = 3600; // Revalidate every hour
@@ -17,7 +18,7 @@ export const revalidate = 3600; // Revalidate every hour
 export default async function DonorsShowcasePage() {
   const supabase = new SupabaseClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
   );
 
   // Fetch active, public donors via service layer with a hard limit of 100
@@ -28,9 +29,8 @@ export default async function DonorsShowcasePage() {
     <main className="min-h-screen bg-surface-container-lowest pb-24">
       {/* Editorial Hero Section */}
       <section className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-10 overflow-hidden border-b border-outline-variant/30">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-container-max">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-            
             {/* Left Column: Typographic Focus */}
             <div className="lg:col-span-5 flex flex-col z-10">
               <RevealOnScroll delay={0.1}>
@@ -42,19 +42,25 @@ export default async function DonorsShowcasePage() {
                 </div>
               </RevealOnScroll>
 
-              <TextReveal 
-                as="h1" 
-                text="Empowering change, together." 
-                className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6" 
-                delay={0.2} 
+              <TextReveal
+                as="h1"
+                text="Empowering change, together."
+                className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6"
+                delay={0.2}
               />
 
               <RevealOnScroll delay={0.3}>
                 <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed max-w-sm mb-10">
-                  We extend our deepest gratitude to the generous individuals, families, and organizations who believe in our mission and make our work in Cambodia possible.
+                  We extend our deepest gratitude to the generous individuals, families, and
+                  organizations who believe in our mission and make our work in Cambodia possible.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <Button variant="default" size="lg" className="rounded-md bg-primary text-white h-12 px-6 hover:bg-primary/90 uppercase text-xs tracking-wider font-bold transition-colors duration-150" asChild>
+                  <Button
+                    variant="default"
+                    size="lg"
+                    className="rounded-md bg-primary text-white h-12 px-6 hover:bg-primary/90 uppercase text-xs tracking-wider font-bold transition-colors duration-150"
+                    asChild
+                  >
                     <Link href="/donate">Become a Donor</Link>
                   </Button>
                 </div>
@@ -76,13 +82,22 @@ export default async function DonorsShowcasePage() {
       </section>
 
       {/* Donors Grid */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px] py-20 relative z-20">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-container-max py-20 relative z-20">
         {validDonors.length > 0 ? (
-          <StaggerGroup y={28} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-outline-variant/30">
+          <StaggerGroup
+            y={28}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-outline-variant/30"
+          >
             {validDonors.map((donor, index) => (
-              <Link href={`/donors/${donor.id}`} key={donor.id} className="group block h-[400px] relative border-b border-r border-outline-variant/30 overflow-hidden cursor-pointer bg-surface">
+              <Link
+                href={`/donors/${donor.id}`}
+                key={donor.id}
+                className="group block h-[400px] relative border-b border-r border-outline-variant/30 overflow-hidden cursor-pointer bg-surface"
+              >
                 <div className="absolute inset-0 bg-surface-variant/30 flex items-center justify-center">
-                  <span className="material-symbols-outlined text-[64px] text-on-surface-variant/30">volunteer_activism</span>
+                  <span className="material-symbols-outlined text-[64px] text-on-surface-variant/30">
+                    volunteer_activism
+                  </span>
                 </div>
                 {donor.avatar_url && (
                   <img
@@ -96,8 +111,8 @@ export default async function DonorsShowcasePage() {
 
                 {/* Text Content */}
                 <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col items-start text-left">
-                  <span className="uppercase tracking-[0.2em] text-[10px] font-bold text-on-surface mb-2 border border-on-surface px-2 py-1">
-                    {donor.country || 'Global'}
+                  <span className="kicker-label text-on-surface mb-2 border border-on-surface px-2 py-1">
+                    {donor.country || "Global"}
                   </span>
                   <h3 className="text-on-surface font-light tracking-tight text-2xl mb-2">
                     {donor.name}
@@ -114,38 +129,62 @@ export default async function DonorsShowcasePage() {
         ) : (
           <div className="bg-surface p-12 text-center border border-outline-variant/30">
             <div className="w-24 h-24 border border-outline-variant/30 mx-auto flex items-center justify-center mb-6 bg-surface-container-lowest">
-              <span className="material-symbols-outlined text-[40px] text-primary">volunteer_activism</span>
+              <span className="material-symbols-outlined text-[40px] text-primary">
+                volunteer_activism
+              </span>
             </div>
-            <h3 className="text-xl md:text-2xl font-light text-on-surface tracking-tight mb-2 group-hover:text-primary transition-colors">Be the First!</h3>
+            <h3 className="text-xl md:text-2xl font-light text-on-surface tracking-tight mb-2 group-hover:text-primary transition-colors">
+              Be the First!
+            </h3>
             <p className="text-on-surface-variant font-light max-w-md mx-auto">
-              Our public donor showcase is currently empty. Your generous contribution can help kickstart our mission and inspire others to give.
+              Our public donor showcase is currently empty. Your generous contribution can help
+              kickstart our mission and inspire others to give.
             </p>
           </div>
         )}
       </section>
 
       {/* Trust Section */}
-      <RevealOnScroll className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px] py-20 text-center border-t border-outline-variant/30">
-        <TextReveal 
-          as="h2" 
-          text="Transparency & Trust." 
-          className="text-3xl font-light tracking-tight text-on-surface mb-16" 
+      <RevealOnScroll className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-container-max py-20 text-center border-t border-outline-variant/30">
+        <TextReveal
+          as="h2"
+          text="Transparency & Trust."
+          className="text-3xl font-light tracking-tight text-on-surface mb-16"
         />
         <StaggerGroup y={28} className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
           <div className="flex flex-col items-center">
-            <span className="material-symbols-outlined text-[32px] text-on-surface-variant mb-6">security</span>
-            <h4 className="font-bold text-on-surface uppercase tracking-widest text-xs mb-4">Secure Donations</h4>
-            <p className="text-sm text-on-surface-variant font-light max-w-xs">All transactions are fully encrypted and securely processed.</p>
+            <span className="material-symbols-outlined text-4xl text-on-surface-variant mb-6">
+              security
+            </span>
+            <h4 className="font-bold text-on-surface uppercase tracking-widest text-xs mb-4">
+              Secure Donations
+            </h4>
+            <p className="text-sm text-on-surface-variant font-light max-w-xs">
+              All transactions are fully encrypted and securely processed.
+            </p>
           </div>
           <div className="flex flex-col items-center">
-            <span className="material-symbols-outlined text-[32px] text-on-surface-variant mb-6">pie_chart</span>
-            <h4 className="font-bold text-on-surface uppercase tracking-widest text-xs mb-4">Direct Impact</h4>
-            <p className="text-sm text-on-surface-variant font-light max-w-xs">100% of public donations go directly to funding our community projects.</p>
+            <span className="material-symbols-outlined text-4xl text-on-surface-variant mb-6">
+              pie_chart
+            </span>
+            <h4 className="font-bold text-on-surface uppercase tracking-widest text-xs mb-4">
+              Direct Impact
+            </h4>
+            <p className="text-sm text-on-surface-variant font-light max-w-xs">
+              100% of public donations go directly to funding our community projects.
+            </p>
           </div>
           <div className="flex flex-col items-center">
-            <span className="material-symbols-outlined text-[32px] text-on-surface-variant mb-6">lock_person</span>
-            <h4 className="font-bold text-on-surface uppercase tracking-widest text-xs mb-4">Privacy Respected</h4>
-            <p className="text-sm text-on-surface-variant font-light max-w-xs">You have full control over whether your donation is displayed publicly or kept anonymous.</p>
+            <span className="material-symbols-outlined text-4xl text-on-surface-variant mb-6">
+              lock_person
+            </span>
+            <h4 className="font-bold text-on-surface uppercase tracking-widest text-xs mb-4">
+              Privacy Respected
+            </h4>
+            <p className="text-sm text-on-surface-variant font-light max-w-xs">
+              You have full control over whether your donation is displayed publicly or kept
+              anonymous.
+            </p>
           </div>
         </StaggerGroup>
       </RevealOnScroll>

@@ -1,7 +1,7 @@
 export enum Role {
-  ADMIN = 'admin',
-  MANAGER = 'manager',
-  USER = 'user',
+  ADMIN = "admin",
+  MANAGER = "manager",
+  USER = "user",
 }
 
 export interface PermissionMatrix {

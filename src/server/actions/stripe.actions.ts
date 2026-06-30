@@ -12,7 +12,6 @@ interface CreateCheckoutSessionInput {
   customerEmail?: string | null;
 }
 
-
 export async function createStripeEmbeddedSession({
   type,
   referenceId,
@@ -23,7 +22,8 @@ export async function createStripeEmbeddedSession({
 }: CreateCheckoutSessionInput) {
   try {
     const headersList = await headers();
-    const origin = headersList.get("origin") || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    const origin =
+      headersList.get("origin") || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
     if (type === "donation" && referenceId) {
       const { createAdminClient } = await import("@/shared/lib/supabase/server");
@@ -33,7 +33,7 @@ export async function createStripeEmbeddedSession({
         .select("amount")
         .eq("id", referenceId)
         .single();
-        
+
       if (!donation || donation.amount !== amount) {
         throw new Error("Payment amount mismatch. Please try again.");
       }
@@ -71,10 +71,9 @@ export async function createStripeEmbeddedSession({
     const session = await stripe.checkout.sessions.create(sessionData);
 
     return { clientSecret: session.client_secret };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error("Error creating Stripe embedded session:", error);
     return { error: error.message || "Something went wrong" };
   }
 }
-

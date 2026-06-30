@@ -14,7 +14,7 @@ const newsletterSchema = z.object({
 // Initialize Supabase with the Service Role Key to bypass RLS
 const supabaseAdmin = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
 );
 
 export async function POST(req: Request) {
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
     if (!rateLimitOk) {
       return NextResponse.json(
         { error: "Too many requests. Please try again later." },
-        { status: 429 }
+        { status: 429 },
       );
     }
 
@@ -35,10 +35,7 @@ export async function POST(req: Request) {
     const parsed = newsletterSchema.safeParse(body);
 
     if (!parsed.success) {
-      return NextResponse.json(
-        { error: "Valid email address is required." },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Valid email address is required." }, { status: 400 });
     }
 
     const { email } = parsed.data;
@@ -50,9 +47,13 @@ export async function POST(req: Request) {
       .insert({ email });
 
     if (error) {
-      if (error.code === '23505') { // Unique violation
+      if (error.code === "23505") {
+        // Unique violation
         // Graceful handling for duplicate emails
-        return NextResponse.json({ success: true, message: "You're already subscribed!" }, { status: 200 });
+        return NextResponse.json(
+          { success: true, message: "You're already subscribed!" },
+          { status: 200 },
+        );
       }
       throw error;
     }
@@ -70,10 +71,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
     console.error("[Newsletter API Error]", error);
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
-

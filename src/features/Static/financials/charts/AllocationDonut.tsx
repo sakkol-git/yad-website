@@ -60,9 +60,7 @@ export function AllocationDonut() {
           <span className="text-4xl font-light text-primary tracking-tighter font-display-lg">
             100%
           </span>
-          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant mt-1">
-            of your donation
-          </span>
+          <span className="kicker-label text-on-surface-variant mt-1">of your donation</span>
         </div>
       </div>
 
@@ -84,11 +82,19 @@ export function AllocationDonut() {
       {/* Accessibility: hidden data table */}
       <table className="sr-only" aria-label="Donation allocation breakdown">
         <thead>
-          <tr><th>Category</th><th>Percentage</th><th>Description</th></tr>
+          <tr>
+            <th>Category</th>
+            <th>Percentage</th>
+            <th>Description</th>
+          </tr>
         </thead>
         <tbody>
           {ALLOCATION_DATA.map((d) => (
-            <tr key={d.name}><td>{d.name}</td><td>{d.percentage}%</td><td>{d.description}</td></tr>
+            <tr key={d.name}>
+              <td>{d.name}</td>
+              <td>{d.percentage}%</td>
+              <td>{d.description}</td>
+            </tr>
           ))}
         </tbody>
       </table>

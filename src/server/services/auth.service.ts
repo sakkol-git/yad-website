@@ -1,6 +1,6 @@
-import { SupabaseClient } from '@supabase/supabase-js';
-import { Database } from '@/shared/types/supabase';
-import { AuthRepository } from '../repositories/auth';
+import { SupabaseClient } from "@supabase/supabase-js";
+import { Database } from "@/shared/types/supabase";
+import { AuthRepository } from "../repositories/auth";
 
 export class AuthService {
   private repository: AuthRepository;
@@ -19,7 +19,7 @@ export class AuthService {
       throw error;
     }
 
-    let role = 'user';
+    let role = "user";
     if (authData.user) {
       const roleData = await this.repository.getUserRole(supabase, authData.user.id);
       if (roleData) {
@@ -30,7 +30,13 @@ export class AuthService {
     return { user: authData.user, role };
   }
 
-  async register(supabase: SupabaseClient<Database>, email: string, password: string, firstName: string, lastName: string) {
+  async register(
+    supabase: SupabaseClient<Database>,
+    email: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+  ) {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
@@ -58,7 +64,7 @@ export class AuthService {
 
   async signInWithGoogle(supabase: SupabaseClient<Database>, redirectTo: string) {
     const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
+      provider: "google",
       options: {
         redirectTo,
       },

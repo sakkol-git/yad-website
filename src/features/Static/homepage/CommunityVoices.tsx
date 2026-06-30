@@ -16,23 +16,29 @@ function QuoteIcon({ colorClass }: { colorClass: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const reduced = useReducedMotion();
 
-  useGSAP(() => {
-    if (!ref.current || reduced) return;
-    gsap.from(ref.current, {
-      scale: 0,
-      opacity: 0,
-      duration: 0.4,
-      ease: EASE.snappy,
-      scrollTrigger: {
-        trigger: ref.current,
-        start: "top 85%",
-        toggleActions: "play none none reverse",
-      }
-    });
-  }, { scope: ref, dependencies: [reduced] });
+  useGSAP(
+    () => {
+      if (!ref.current || reduced) return;
+      gsap.from(ref.current, {
+        scale: 0,
+        opacity: 0,
+        duration: 0.4,
+        ease: EASE.snappy,
+        scrollTrigger: {
+          trigger: ref.current,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    },
+    { scope: ref, dependencies: [reduced] },
+  );
 
   return (
-    <span ref={ref} className={`material-symbols-outlined absolute top-8 right-8 text-4xl ${colorClass}`}>
+    <span
+      ref={ref}
+      className={`material-symbols-outlined absolute top-8 right-8 text-4xl ${colorClass}`}
+    >
       format_quote
     </span>
   );
@@ -40,7 +46,7 @@ function QuoteIcon({ colorClass }: { colorClass: string }) {
 
 import { VOICES_DATA } from "@/shared/constants/homepage";
 
-function VoiceCard({ voice }: { voice: typeof VOICES_DATA[number] }) {
+function VoiceCard({ voice }: { voice: (typeof VOICES_DATA)[number] }) {
   const { cardRef, glowRef, handleMouseMove, handleMouseLeave } = useGlowFollow();
 
   return (
@@ -51,13 +57,15 @@ function VoiceCard({ voice }: { voice: typeof VOICES_DATA[number] }) {
       className="relative group shrink-0 w-[85vw] md:w-[600px] rounded-md overflow-hidden"
     >
       {/* Card background */}
-      <div className="
+      <div
+        className="
         absolute inset-0 z-0
         bg-surface-container-low
         border border-outline-variant/30
         transition-[transform,border-color] duration-300 ease-out 
         group-hover:-translate-y-1 group-hover:border-outline-variant/60
-      " />
+      "
+      />
 
       {/* Cursor-following ambient glow */}
       <div
@@ -71,13 +79,15 @@ function VoiceCard({ voice }: { voice: typeof VOICES_DATA[number] }) {
       />
 
       {/* Static tint on hover */}
-      <div className="
+      <div
+        className="
         absolute inset-0 z-0
         bg-primary/[0.04]
         opacity-0 group-hover:opacity-100
         transition-opacity duration-300 ease-out
         pointer-events-none
-      " />
+      "
+      />
 
       <div className="p-10 md:p-12 relative z-10 flex flex-col h-full justify-between gap-10">
         <QuoteIcon colorClass="text-outline-variant/30" />
@@ -89,9 +99,7 @@ function VoiceCard({ voice }: { voice: typeof VOICES_DATA[number] }) {
             <span className="text-primary font-light text-lg ">{voice.initial}</span>
           </div>
           <div>
-            <div className="font-medium text-base text-on-surface">
-              {voice.name}
-            </div>
+            <div className="font-medium text-base text-on-surface">{voice.name}</div>
             <div className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant font-bold mt-1">
               {voice.role}
             </div>
@@ -105,13 +113,11 @@ function VoiceCard({ voice }: { voice: typeof VOICES_DATA[number] }) {
 export function CommunityVoices() {
   return (
     <section className="py-24 md:py-32 bg-surface relative overflow-hidden border-t border-outline-variant/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-container-max">
         <div className="mb-20 md:mb-32 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="max-w-2xl">
             <RevealOnScroll>
-              <span className="block text-primary uppercase tracking-[0.2em] text-[10px] font-bold mb-4">
-                Community Voices
-              </span>
+              <span className="block text-primary kicker-label mb-4">Community Voices</span>
             </RevealOnScroll>
             <TextReveal
               as="h2"
@@ -121,19 +127,20 @@ export function CommunityVoices() {
           </div>
           <RevealOnScroll delay={0.1}>
             <p className="text-base text-on-surface-variant font-light max-w-md leading-relaxed">
-              Real stories from the students and alumni whose lives have been transformed through our strategic interventions.
+              Real stories from the students and alumni whose lives have been transformed through
+              our strategic interventions.
             </p>
           </RevealOnScroll>
         </div>
       </div>
 
-      <HorizontalScrollSection className="pl-4 sm:pl-6 lg:pl-8 max-w-[1400px] mx-auto py-8">
+      <HorizontalScrollSection className="pl-4 sm:pl-6 lg:pl-8 max-w-container-max mx-auto py-8">
         {VOICES_DATA.map((voice, idx) => (
           <VoiceCard key={idx} voice={voice} />
         ))}
       </HorizontalScrollSection>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-container-max">
         <RevealOnScroll y={20} className="mt-20">
           <Link
             className="inline-flex items-center gap-3 text-primary uppercase tracking-[0.1em] text-[10px] font-bold hover:text-secondary transition-colors group w-fit"

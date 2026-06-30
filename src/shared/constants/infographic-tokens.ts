@@ -74,22 +74,37 @@ export const ANIMATION_TOKENS = {
 /* ── Map Tokens ── */
 
 export const MAP_TOKENS = {
-  cambodiaFill: "#E2E4E1",         // surfaceVariant
-  cambodiaFillActive: "#fff0c2",   // secondaryContainer
-  cambodiaStroke: "#afc4b5",       // outlineVariant
-  impactNodeColor: "#0F4C3A",      // primary
-  impactNodePulse: "#4D7B6B",      // primaryContainer
-  tooltipBg: "#F9F9F8",            // surface
-  tooltipBorder: "#afc4b5",        // outlineVariant
-  tooltipText: "#111413",          // onSurface
+  cambodiaFill: "#E2E4E1", // surfaceVariant
+  cambodiaFillActive: "#fff0c2", // secondaryContainer
+  cambodiaStroke: "#afc4b5", // outlineVariant
+  impactNodeColor: "#0F4C3A", // primary
+  impactNodePulse: "#4D7B6B", // primaryContainer
+  tooltipBg: "#F9F9F8", // surface
+  tooltipBorder: "#afc4b5", // outlineVariant
+  tooltipText: "#111413", // onSurface
 } as const;
 
 /* ── Allocation Data (Financials page) ── */
 // TODO: Replace with real YAD financial data
 export const ALLOCATION_DATA = [
-  { name: "Student Programs", percentage: 80, description: "Direct scholarship, dormitory, mentorship costs", colorKey: "primary" as const },
-  { name: "Operations", percentage: 15, description: "Staff, facilities, administration", colorKey: "secondary" as const },
-  { name: "Fundraising", percentage: 5, description: "Communications and donor relations", colorKey: "tertiary" as const },
+  {
+    name: "Student Programs",
+    percentage: 80,
+    description: "Direct scholarship, dormitory, mentorship costs",
+    colorKey: "primary" as const,
+  },
+  {
+    name: "Operations",
+    percentage: 15,
+    description: "Staff, facilities, administration",
+    colorKey: "secondary" as const,
+  },
+  {
+    name: "Fundraising",
+    percentage: 5,
+    description: "Communications and donor relations",
+    colorKey: "tertiary" as const,
+  },
 ];
 
 /* ── Growth Data (Year-over-year) ── */
@@ -125,10 +140,42 @@ export interface ImpactNode {
 }
 
 export const IMPACT_NODES: ImpactNode[] = [
-  { id: "phnom-penh", name: "Phnom Penh", geoName: "Phnom Penh", coordinates: [104.928, 11.556], studentsReached: 480, programTypes: ["Dormitory", "Scholarship", "Leadership"], keyMetric: "94% university placement" },
-  { id: "siem-reap", name: "Siem Reap", geoName: "Siemréab", coordinates: [103.860, 13.367], studentsReached: 120, programTypes: ["Community Schools"], keyMetric: "340 children in English programs" },
-  { id: "battambang", name: "Battambang", geoName: "Batdâmbâng", coordinates: [102.990, 13.096], studentsReached: 85, programTypes: ["Porridge for Hope"], keyMetric: "500+ meals served monthly" },
-  { id: "kampong-cham", name: "Kampong Cham", geoName: "Kâmpóng Cham", coordinates: [105.462, 11.994], studentsReached: 58, programTypes: ["Community Schools"], keyMetric: "3 active community schools" },
+  {
+    id: "phnom-penh",
+    name: "Phnom Penh",
+    geoName: "Phnom Penh",
+    coordinates: [104.928, 11.556],
+    studentsReached: 480,
+    programTypes: ["Dormitory", "Scholarship", "Leadership"],
+    keyMetric: "94% university placement",
+  },
+  {
+    id: "siem-reap",
+    name: "Siem Reap",
+    geoName: "Siemréab",
+    coordinates: [103.86, 13.367],
+    studentsReached: 120,
+    programTypes: ["Community Schools"],
+    keyMetric: "340 children in English programs",
+  },
+  {
+    id: "battambang",
+    name: "Battambang",
+    geoName: "Batdâmbâng",
+    coordinates: [102.99, 13.096],
+    studentsReached: 85,
+    programTypes: ["Porridge for Hope"],
+    keyMetric: "500+ meals served monthly",
+  },
+  {
+    id: "kampong-cham",
+    name: "Kampong Cham",
+    geoName: "Kâmpóng Cham",
+    coordinates: [105.462, 11.994],
+    studentsReached: 58,
+    programTypes: ["Community Schools"],
+    keyMetric: "3 active community schools",
+  },
 ];
 
 /* ── Student Journey Stages ── */
@@ -144,10 +191,64 @@ export interface JourneyStage {
 }
 
 export const JOURNEY_STAGES: JourneyStage[] = [
-  { id: "discovery", icon: "search", title: "Discovery", description: "YAD scouts identify promising youth in remote provinces and urban slum communities.", statNumber: "25", statLabel: "provinces reached", pathPosition: 0.0 },
-  { id: "selection", icon: "assignment_turned_in", title: "Selection", description: "Rigorous interview process ensuring youth with highest potential and need are chosen.", statNumber: "200+", statLabel: "applicants annually", pathPosition: 0.2 },
-  { id: "dormitory", icon: "home", title: "Safe Housing", description: "Students receive safe dormitory housing with meals, utilities, and a supportive community.", statNumber: "$42", statLabel: "per month per student", pathPosition: 0.4, donorImpact: "Your $42/month funds this stage" },
-  { id: "scholarship", icon: "school", title: "Full Scholarship", description: "Complete tuition coverage at partnered universities, removing all financial barriers.", statNumber: "$847", statLabel: "per year per student", pathPosition: 0.6, donorImpact: "Your $847 funds a full year" },
-  { id: "mentorship", icon: "groups", title: "Mentorship", description: "1-on-1 pairing with working professionals for career guidance and life skills.", statNumber: "1:1", statLabel: "mentor ratio", pathPosition: 0.8 },
-  { id: "graduation", icon: "emoji_events", title: "Graduation & Career", description: "University completion with career placement support and alumni network access.", statNumber: "94%", statLabel: "career placement rate", pathPosition: 1.0 },
+  {
+    id: "discovery",
+    icon: "search",
+    title: "Discovery",
+    description:
+      "YAD scouts identify promising youth in remote provinces and urban slum communities.",
+    statNumber: "25",
+    statLabel: "provinces reached",
+    pathPosition: 0.0,
+  },
+  {
+    id: "selection",
+    icon: "assignment_turned_in",
+    title: "Selection",
+    description:
+      "Rigorous interview process ensuring youth with highest potential and need are chosen.",
+    statNumber: "200+",
+    statLabel: "applicants annually",
+    pathPosition: 0.2,
+  },
+  {
+    id: "dormitory",
+    icon: "home",
+    title: "Safe Housing",
+    description:
+      "Students receive safe dormitory housing with meals, utilities, and a supportive community.",
+    statNumber: "$42",
+    statLabel: "per month per student",
+    pathPosition: 0.4,
+    donorImpact: "Your $42/month funds this stage",
+  },
+  {
+    id: "scholarship",
+    icon: "school",
+    title: "Full Scholarship",
+    description:
+      "Complete tuition coverage at partnered universities, removing all financial barriers.",
+    statNumber: "$847",
+    statLabel: "per year per student",
+    pathPosition: 0.6,
+    donorImpact: "Your $847 funds a full year",
+  },
+  {
+    id: "mentorship",
+    icon: "groups",
+    title: "Mentorship",
+    description: "1-on-1 pairing with working professionals for career guidance and life skills.",
+    statNumber: "1:1",
+    statLabel: "mentor ratio",
+    pathPosition: 0.8,
+  },
+  {
+    id: "graduation",
+    icon: "emoji_events",
+    title: "Graduation & Career",
+    description: "University completion with career placement support and alumni network access.",
+    statNumber: "94%",
+    statLabel: "career placement rate",
+    pathPosition: 1.0,
+  },
 ];

@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useTransition, useEffect } from "react";
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/shared/components/ui/Button";
 import { DataTable, ColumnDef } from "@/shared/components/ui/DataTable";
 import { updateInquiryStatusAction } from "@/server/actions/inquiry.actions";
 import { toast } from "sonner";
-import { FilterBar } from '@/shared/components/admin/data/FilterBar';
+import { FilterBar } from "@/shared/components/admin/data/FilterBar";
 
 interface Inquiry {
   id: string;
@@ -19,19 +19,27 @@ interface Inquiry {
   created_at: string;
 }
 
-export function InquiriesTable({ initialData, count, page }: { initialData: Inquiry[]; count?: number | null; page?: number }) {
+export function InquiriesTable({
+  initialData,
+  count,
+  page,
+}: {
+  initialData: Inquiry[];
+  count?: number | null;
+  page?: number;
+}) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const currentSearch = searchParams.get('search') || '';
+  const currentSearch = searchParams.get("search") || "";
   const [searchTerm, setSearchTerm] = useState(currentSearch);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (searchTerm !== currentSearch) {
         const params = new URLSearchParams(searchParams);
-        if (searchTerm) params.set('search', searchTerm);
-        else params.delete('search');
-        params.delete('page');
+        if (searchTerm) params.set("search", searchTerm);
+        else params.delete("search");
+        params.delete("page");
         router.push(`?${params.toString()}`);
       }
     }, 400);
@@ -47,7 +55,7 @@ export function InquiriesTable({ initialData, count, page }: { initialData: Inqu
       if (!result.success || result.error) {
         toast.error(result.error || "Failed to update");
       } else {
-        setData(prev => prev.map(v => v.id === id ? { ...v, status: newStatus } : v));
+        setData((prev) => prev.map((v) => (v.id === id ? { ...v, status: newStatus } : v)));
         toast.success(`Inquiry marked as ${newStatus}`);
       }
     });
@@ -102,7 +110,9 @@ export function InquiriesTable({ initialData, count, page }: { initialData: Inqu
           actioned: "bg-primary-container text-on-primary-container",
         };
         return (
-          <span className={`px-2 py-1 text-xs font-bold rounded-full ${colors[row.status] || "bg-surface-variant text-on-surface-variant"}`}>
+          <span
+            className={`px-2 py-1 text-xs font-bold rounded-full ${colors[row.status] || "bg-surface-variant text-on-surface-variant"}`}
+          >
             {row.status.toUpperCase()}
           </span>
         );
@@ -142,12 +152,19 @@ export function InquiriesTable({ initialData, count, page }: { initialData: Inqu
 
   return (
     <div className="space-y-4">
-      <FilterBar 
-        searchValue={searchTerm} 
-        onSearchChange={setSearchTerm} 
+      <FilterBar
+        searchValue={searchTerm}
+        onSearchChange={setSearchTerm}
         searchPlaceholder="Search inquiries..."
       />
-      <DataTable columns={columns} data={data} keyExtractor={(row) => row.id} count={count} page={page} emptyMessage="No inquiries found." />
+      <DataTable
+        columns={columns}
+        data={data}
+        keyExtractor={(row) => row.id}
+        count={count}
+        page={page}
+        emptyMessage="No inquiries found."
+      />
     </div>
   );
 }

@@ -9,24 +9,22 @@ export function ProgramCards() {
   return (
     <section className="py-24 md:py-32 bg-surface">
       <div className="max-w-container-max mx-auto px-6 md:px-12 lg:px-16">
-
         {/* Section Header */}
         <div className="mb-20 md:mb-32 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div className="max-w-2xl">
             <RevealOnScroll>
-              <span className="block text-primary uppercase tracking-[0.2em] text-[10px] font-bold mb-4">
-                Strategic Interventions
-              </span>
+              <span className="block text-primary kicker-label mb-4">Strategic Interventions</span>
             </RevealOnScroll>
-            <TextReveal 
-              as="h2" 
-              text="Three Pillars of Lasting Change." 
-              className="text-4xl lg:text-5xl font-light text-primary tracking-tighter leading-[1.0]" 
+            <TextReveal
+              as="h2"
+              text="Three Pillars of Lasting Change."
+              className="text-4xl lg:text-5xl font-light text-primary tracking-tighter leading-[1.0]"
             />
           </div>
           <RevealOnScroll delay={0.1}>
             <p className="text-base text-on-surface-variant font-light max-w-md leading-relaxed">
-              Each program is meticulously designed to dismantle a specific systemic barrier preventing Cambodia&apos;s youth from reaching their absolute potential.
+              Each program is meticulously designed to dismantle a specific systemic barrier
+              preventing Cambodia&apos;s youth from reaching their absolute potential.
             </p>
           </RevealOnScroll>
         </div>
@@ -38,10 +36,10 @@ export function ProgramCards() {
             return (
               <div
                 key={program.id}
-                className={`grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center ${isEven ? "lg:flex-row-reverse" : ""
-                  }`}
+                className={`grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center ${
+                  isEven ? "lg:flex-row-reverse" : ""
+                }`}
               >
-
                 {/* Image Area */}
                 <div className={`lg:col-span-7 ${isEven ? "lg:order-last" : ""}`}>
                   <RevealOnScroll>
@@ -88,12 +86,10 @@ export function ProgramCards() {
                     </Link>
                   </RevealOnScroll>
                 </div>
-
               </div>
             );
           })}
         </div>
-
       </div>
     </section>
   );

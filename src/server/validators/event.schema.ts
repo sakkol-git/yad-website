@@ -26,13 +26,13 @@ export const deleteEventSchema = z.object({
 export type GetEventsInput = z.infer<typeof getEventsSchema>;
 
 const validEventStatuses = ["Upcoming", "Ongoing", "Completed", "Cancelled"] as const;
-export type EventStatusType = typeof validEventStatuses[number];
+export type EventStatusType = (typeof validEventStatuses)[number];
 
 export const ValidEventTransitions: Record<EventStatusType, EventStatusType[]> = {
-  "Upcoming": ["Ongoing", "Cancelled", "Completed"],
-  "Ongoing": ["Completed", "Cancelled"],
-  "Completed": [],
-  "Cancelled": []
+  Upcoming: ["Ongoing", "Cancelled", "Completed"],
+  Ongoing: ["Completed", "Cancelled"],
+  Completed: [],
+  Cancelled: [],
 };
 
 export const updateEventStatusSchema = z.object({

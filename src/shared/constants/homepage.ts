@@ -5,7 +5,7 @@ import heroImg3 from "../../../public/assets/images/yad-7.png";
 export const HERO_IMAGES = [
   { src: heroImg1, alt: "Young Cambodian student looking thoughtfully into the distance" },
   { src: heroImg2, alt: "Cambodian youth engaging in educational activities" },
-  { src: heroImg3, alt: "Students participating in community programs" }
+  { src: heroImg3, alt: "Students participating in community programs" },
 ];
 
 export const METRICS = [
@@ -32,17 +32,19 @@ export const METRICS = [
 
 export const VOICES_DATA = [
   {
-    quote: "The digital literacy program completely changed my trajectory. I now have the skills to build websites and help local businesses transition online.",
+    quote:
+      "The digital literacy program completely changed my trajectory. I now have the skills to build websites and help local businesses transition online.",
     initial: "S",
     name: "Sokhem",
-    role: "Alumni, 2023 Cohort"
+    role: "Alumni, 2023 Cohort",
   },
   {
-    quote: "Living in the YAD dormitory provided me the safe space and community I needed to focus entirely on my university studies.",
+    quote:
+      "Living in the YAD dormitory provided me the safe space and community I needed to focus entirely on my university studies.",
     initial: "C",
     name: "Charya",
-    role: "Current Resident"
-  }
+    role: "Current Resident",
+  },
 ];
 
 export const PROGRAMS = [
@@ -82,5 +84,8 @@ export const PROGRAMS = [
 ];
 
 export const PARTNERS = [
-  { name: "Partner 3", logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6dWwRsNkyCewldHfYtCH2Ttlf6oSKn_kK5zLC25SfnnPH6R4qOtUlhUFb9rANJqJlMxVtQDqULeL6RPb-zYiblbo7ndiCgCPeuoRLKd4&s=10" },
+  {
+    name: "Partner 3",
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6dWwRsNkyCewldHfYtCH2Ttlf6oSKn_kK5zLC25SfnnPH6R4qOtUlhUFb9rANJqJlMxVtQDqULeL6RPb-zYiblbo7ndiCgCPeuoRLKd4&s=10",
+  },
 ];

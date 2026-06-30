@@ -19,7 +19,7 @@ interface UseInViewAnimationOptions {
  * Respects prefers-reduced-motion by immediately returning true.
  */
 export function useInViewAnimation<T extends HTMLElement = HTMLDivElement>(
-  options: UseInViewAnimationOptions = {}
+  options: UseInViewAnimationOptions = {},
 ): [React.RefObject<T | null>, boolean] {
   const { threshold = 0.4, triggerOnce = true, rootMargin = "0px" } = options;
   const ref = useRef<T | null>(null);
@@ -34,7 +34,7 @@ export function useInViewAnimation<T extends HTMLElement = HTMLDivElement>(
         setIsInView(false);
       }
     },
-    [triggerOnce]
+    [triggerOnce],
   );
 
   useEffect(() => {

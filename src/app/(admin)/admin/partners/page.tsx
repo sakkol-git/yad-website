@@ -1,11 +1,13 @@
-import { getPartners } from '@/server/actions/partner.actions';
-import { PartnersTable } from '@/features/Entities/partners/components/PartnersTable';
+import { getPartners } from "@/server/actions/partner.actions";
+import { PartnersTable } from "@/features/Entities/partners/components/PartnersTable";
 
 export const metadata = {
-  title: 'Partners Management - YAD Admin',
+  title: "Partners Management - YAD Admin",
 };
 
-export default async function PartnersPage(props: { searchParams: Promise<{ page?: string; search?: string }> }) {
+export default async function PartnersPage(props: {
+  searchParams: Promise<{ page?: string; search?: string }>;
+}) {
   const searchParams = await props.searchParams;
   const page = parseInt(searchParams.page || "1", 10);
   const search = searchParams.search;

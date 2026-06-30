@@ -29,16 +29,21 @@ function MiniSparkline({ data }: { data: number[] }) {
   const h = 40;
   const padding = 4;
 
-  const points = data.map((val, i) => {
-    const x = padding + (i / (data.length - 1)) * (w - padding * 2);
-    const y = h - padding - ((val - minVal) / range) * (h - padding * 2);
-    return `${x},${y}`;
-  }).join(" ");
+  const points = data
+    .map((val, i) => {
+      const x = padding + (i / (data.length - 1)) * (w - padding * 2);
+      const y = h - padding - ((val - minVal) / range) * (h - padding * 2);
+      return `${x},${y}`;
+    })
+    .join(" ");
 
   // Area fill path
   const firstX = padding;
   const lastX = padding + ((data.length - 1) / (data.length - 1)) * (w - padding * 2);
-  const areaPath = `M ${firstX},${h} L ${points.split(" ").map((p) => p).join(" L ")} L ${lastX},${h} Z`;
+  const areaPath = `M ${firstX},${h} L ${points
+    .split(" ")
+    .map((p) => p)
+    .join(" L ")} L ${lastX},${h} Z`;
 
   // Last data point coordinates
   const lastPoint = points.split(" ").pop()!;
@@ -83,19 +88,17 @@ export function EnhancedStatCard({
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         {/* Left: label + description */}
         <div className="max-w-xs">
-          <h3 className="text-xl font-light text-on-surface mb-3 tracking-tight">
-            {label}
-          </h3>
-          <p className="text-sm font-light text-on-surface-variant/80">
-            {description}
-          </p>
+          <h3 className="text-xl font-light text-on-surface mb-3 tracking-tight">{label}</h3>
+          <p className="text-sm font-light text-on-surface-variant/80">{description}</p>
         </div>
 
         {/* Right: sparkline + counter + delta */}
         <div className="flex flex-col items-end gap-2">
           {/* Sparkline */}
           {sparklineData && sparklineData.length > 1 && (
-            <div className={`transition-opacity duration-700 ${isInView ? "opacity-100" : "opacity-0"}`}>
+            <div
+              className={`transition-opacity duration-700 ${isInView ? "opacity-100" : "opacity-0"}`}
+            >
               <MiniSparkline data={sparklineData} />
             </div>
           )}
@@ -116,7 +119,7 @@ export function EnhancedStatCard({
               }`}
             >
               <span
-                className={`material-symbols-outlined text-[14px] ${
+                className={`material-symbols-outlined text-sm ${
                   yoyDelta >= 0 ? "text-primary" : "text-error"
                 }`}
               >
@@ -140,7 +143,7 @@ export function EnhancedStatCard({
         >
           <span className="text-xs text-secondary hover:text-primary transition-colors cursor-pointer font-bold flex items-center gap-1">
             {storyHook}
-            <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+            <span className="material-symbols-outlined text-sm">arrow_forward</span>
           </span>
         </div>
       )}

@@ -16,15 +16,13 @@ export function ImpactPaths() {
           <RevealOnScroll y={20}>
             <div className="inline-flex items-center gap-4 mb-4">
               <div className="w-6 h-[1px] bg-primary" />
-              <span className="uppercase tracking-[0.2em] text-[10px] font-bold text-primary">
-                Take Action
-              </span>
+              <span className="kicker-label text-primary">Take Action</span>
             </div>
           </RevealOnScroll>
-          <TextReveal 
-            as="h2" 
-            text="Choose Your Impact Path." 
-            className="text-[3.5rem] md:text-[4.5rem] text-primary tracking-tighter leading-[1.0] mb-6" 
+          <TextReveal
+            as="h2"
+            text="Choose Your Impact Path."
+            className="text-[3.5rem] md:text-[4.5rem] text-primary tracking-tighter leading-[1.0] mb-6"
           />
         </div>
         <StaggerGroup y={28} className="grid grid-cols-1 md:grid-cols-3 gap-8">

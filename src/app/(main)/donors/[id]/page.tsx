@@ -1,8 +1,8 @@
-import { createClient } from '@/shared/lib/supabase/server';
-import { notFound } from 'next/navigation';
-import Link from 'next/link';
-import { Button } from '@/shared/components/ui/Button';
-import { Metadata } from 'next';
+import { createClient } from "@/shared/lib/supabase/server";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { Button } from "@/shared/components/ui/Button";
+import { Metadata } from "next";
 import Image from "next/image";
 import { TextReveal } from "@/shared/components/animations/TextReveal";
 
@@ -14,16 +14,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const resolvedParams = await params;
   const supabase = await createClient();
   const { data: donor } = await supabase
-    .from('donors')
-    .select('name, description')
-    .eq('id', resolvedParams.id)
-    .eq('is_public', true)
-    .eq('status', 'Active')
+    .from("donors")
+    .select("name, description")
+    .eq("id", resolvedParams.id)
+    .eq("is_public", true)
+    .eq("status", "Active")
     .single();
 
   if (!donor) {
     return {
-      title: 'Donor Not Found',
+      title: "Donor Not Found",
     };
   }
 
@@ -36,13 +36,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function DonorDetailPage({ params }: PageProps) {
   const resolvedParams = await params;
   const supabase = await createClient();
-  
+
   const { data: donor, error } = await supabase
-    .from('donors')
-    .select('*')
-    .eq('id', resolvedParams.id)
-    .eq('is_public', true)
-    .eq('status', 'Active')
+    .from("donors")
+    .select("*")
+    .eq("id", resolvedParams.id)
+    .eq("is_public", true)
+    .eq("status", "Active")
     .single();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -55,11 +55,14 @@ export default async function DonorDetailPage({ params }: PageProps) {
   return (
     <main className="min-h-screen bg-background pb-24 pt-24 lg:pt-32">
       <div className="container max-w-5xl mx-auto px-6">
-        <Link href="/donors" className="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary font-bold text-[10px] uppercase tracking-widest mb-12 transition-colors">
-          <span className="material-symbols-outlined text-[16px]">arrow_back</span>
+        <Link
+          href="/donors"
+          className="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary font-bold text-[10px] uppercase tracking-widest mb-12 transition-colors"
+        >
+          <span className="material-symbols-outlined text-base">arrow_back</span>
           Back to All Donors
         </Link>
-        
+
         <div className="bg-surface rounded-md p-8 md:p-16 border border-outline-variant/30 relative overflow-hidden">
           {/* Subtle Background Decoration */}
           <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
@@ -71,13 +74,17 @@ export default async function DonorDetailPage({ params }: PageProps) {
             <div className="flex-shrink-0 mx-auto md:mx-0">
               <div className="w-48 h-48 md:w-64 md:h-64 rounded-md overflow-hidden relative bg-transparent flex items-center justify-center border border-outline-variant/30">
                 {typedDonor.avatar_url ? (
-                  <Image 
-                    src={typedDonor.avatar_url} 
-                    alt={`Portrait of ${typedDonor.name}`} 
+                  <Image
+                    src={typedDonor.avatar_url}
+                    alt={`Portrait of ${typedDonor.name}`}
                     className="absolute inset-0 w-full h-full object-cover text-transparent"
-                  width={800} height={600} />
+                    width={800}
+                    height={600}
+                  />
                 ) : (
-                  <span className="material-symbols-outlined text-[80px] text-on-surface-variant/30">person</span>
+                  <span className="material-symbols-outlined text-[80px] text-on-surface-variant/30">
+                    person
+                  </span>
                 )}
               </div>
             </div>
@@ -85,18 +92,18 @@ export default async function DonorDetailPage({ params }: PageProps) {
             {/* Content Column */}
             <div className="flex-grow text-center md:text-left">
               <div className="inline-flex items-center gap-2 px-4 py-2 border border-outline-variant/50 text-primary font-bold text-[10px] uppercase tracking-widest mb-6">
-                <span className="material-symbols-outlined text-[14px]">verified</span>
+                <span className="material-symbols-outlined text-sm">verified</span>
                 Verified Supporter
               </div>
-              
-              <TextReveal 
-                as="h1" 
-                text={typedDonor.name} 
-                className="text-4xl md:text-6xl font-light tracking-tighter text-on-surface mb-4 leading-none" 
+
+              <TextReveal
+                as="h1"
+                text={typedDonor.name}
+                className="text-4xl md:text-6xl font-light tracking-tighter text-on-surface mb-4 leading-none"
               />
-              
+
               <p className="text-sm font-light uppercase tracking-widest text-primary mb-8">
-                {typedDonor.country || 'Global Supporter'}
+                {typedDonor.country || "Global Supporter"}
               </p>
 
               {typedDonor.description && (
@@ -109,17 +116,27 @@ export default async function DonorDetailPage({ params }: PageProps) {
 
               <div className="grid grid-cols-2 gap-8 pt-8 border-t border-outline-variant/30 text-left">
                 <div>
-                  <h4 className="text-[10px] font-bold text-on-surface-variant mb-2 uppercase tracking-widest">Donation Date</h4>
+                  <h4 className="text-[10px] font-bold text-on-surface-variant mb-2 uppercase tracking-widest">
+                    Donation Date
+                  </h4>
                   <p className="text-lg font-light text-on-surface">
-                    {typedDonor.donation_date ? new Date(typedDonor.donation_date).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }) : 'Ongoing Support'}
+                    {typedDonor.donation_date
+                      ? new Date(typedDonor.donation_date).toLocaleDateString(undefined, {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })
+                      : "Ongoing Support"}
                   </p>
                 </div>
                 {typedDonor.amount && (
                   <div>
-                    <h4 className="text-[10px] font-bold text-on-surface-variant mb-2 uppercase tracking-widest">Contribution</h4>
+                    <h4 className="text-[10px] font-bold text-on-surface-variant mb-2 uppercase tracking-widest">
+                      Contribution
+                    </h4>
                     <p className="text-2xl font-light text-primary flex items-center justify-start gap-2">
-                      <span className="material-symbols-outlined text-[20px]">favorite</span>
-                      ${typedDonor.amount.toLocaleString()}
+                      <span className="material-symbols-outlined text-xl">favorite</span>$
+                      {typedDonor.amount.toLocaleString()}
                     </p>
                   </div>
                 )}
@@ -130,12 +147,19 @@ export default async function DonorDetailPage({ params }: PageProps) {
 
         {/* CTA Section */}
         <div className="mt-20 text-center bg-surface border border-outline-variant/30 rounded-md p-8 md:p-16">
-          <h3 className="text-3xl font-light text-on-surface tracking-tight mb-4">Join {typedDonor.name} in Making a Difference</h3>
+          <h3 className="text-3xl font-light text-on-surface tracking-tight mb-4">
+            Join {typedDonor.name} in Making a Difference
+          </h3>
           <p className="text-sm font-light text-on-surface-variant max-w-2xl mx-auto mb-10 leading-relaxed">
-            Your support helps us continue our mission of empowering Cambodian youth through education and community development.
+            Your support helps us continue our mission of empowering Cambodian youth through
+            education and community development.
           </p>
           <Link href="/donate">
-            <Button size="lg" variant="default" className="rounded-md uppercase tracking-widest text-[10px] font-bold px-10 h-14 bg-primary text-white hover:bg-primary/90 transition-colors duration-150">
+            <Button
+              size="lg"
+              variant="default"
+              className="rounded-md uppercase tracking-widest text-[10px] font-bold px-10 h-14 bg-primary text-white hover:bg-primary/90 transition-colors duration-150"
+            >
               Become a Donor Today
             </Button>
           </Link>

@@ -1,7 +1,7 @@
-import { SupabaseClient } from '@supabase/supabase-js';
-import { Database } from '@/shared/types/supabase';
+import { SupabaseClient } from "@supabase/supabase-js";
+import { Database } from "@/shared/types/supabase";
 
-type TableName = keyof Database['public']['Tables'] | string;
+type TableName = keyof Database["public"]["Tables"] | string;
 
 export class BaseRepository<T extends TableName> {
   protected table: T;
@@ -13,7 +13,7 @@ export class BaseRepository<T extends TableName> {
   async getAll(supabase: SupabaseClient<Database>) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sb = supabase as any;
-    const { data, error } = await sb.from(this.table).select('*');
+    const { data, error } = await sb.from(this.table).select("*");
     if (error) throw error;
     return data;
   }
@@ -21,7 +21,7 @@ export class BaseRepository<T extends TableName> {
   async getById(supabase: SupabaseClient<Database>, id: string) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sb = supabase as any;
-    const { data, error } = await sb.from(this.table).select('*').eq('id', id).single();
+    const { data, error } = await sb.from(this.table).select("*").eq("id", id).single();
     if (error) throw error;
     return data;
   }
@@ -42,7 +42,7 @@ export class BaseRepository<T extends TableName> {
     const { data, error } = await sb
       .from(this.table)
       .update(payload)
-      .eq('id', id)
+      .eq("id", id)
       .select()
       .single();
     if (error) throw error;
@@ -52,7 +52,7 @@ export class BaseRepository<T extends TableName> {
   async delete(supabase: SupabaseClient<Database>, id: string) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sb = supabase as any;
-    const { error } = await sb.from(this.table).delete().eq('id', id);
+    const { error } = await sb.from(this.table).delete().eq("id", id);
     if (error) throw error;
     return true;
   }

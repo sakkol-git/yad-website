@@ -32,7 +32,7 @@ export function StudentJourneySection() {
             // Determine which stage is active based on scroll progress
             const idx = Math.min(
               Math.floor(progress * JOURNEY_STAGES.length),
-              JOURNEY_STAGES.length - 1
+              JOURNEY_STAGES.length - 1,
             );
             setActiveIndex(idx);
           },
@@ -40,11 +40,7 @@ export function StudentJourneySection() {
       });
 
       // Animate the vertical progress line
-      tl.fromTo(
-        progressRef.current,
-        { scaleY: 0 },
-        { scaleY: 1, ease: "none" }
-      );
+      tl.fromTo(progressRef.current, { scaleY: 0 }, { scaleY: 1, ease: "none" });
 
       return () => {
         ScrollTrigger.getAll().forEach((t) => {
@@ -52,7 +48,7 @@ export function StudentJourneySection() {
         });
       };
     },
-    { scope: sectionRef, dependencies: [reduced] }
+    { scope: sectionRef, dependencies: [reduced] },
   );
 
   // Reduced motion: show all stages immediately
@@ -79,8 +75,8 @@ export function StudentJourneySection() {
           className="text-[2.5rem] md:text-[3.5rem] lg:text-[4.5rem] text-primary tracking-tighter leading-[1.0] mb-4"
         />
         <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed max-w-2xl">
-          From rural discovery to career placement — every stage of the YAD pipeline is designed
-          to maximize each student&apos;s potential. Scroll to follow the journey.
+          From rural discovery to career placement — every stage of the YAD pipeline is designed to
+          maximize each student&apos;s potential. Scroll to follow the journey.
         </p>
       </RevealOnScroll>
 
@@ -124,11 +120,23 @@ export function StudentJourneySection() {
       {/* Accessibility: hidden data table */}
       <table className="sr-only" aria-label="Student journey stages">
         <thead>
-          <tr><th>Stage</th><th>Title</th><th>Description</th><th>Key Stat</th></tr>
+          <tr>
+            <th>Stage</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Key Stat</th>
+          </tr>
         </thead>
         <tbody>
           {JOURNEY_STAGES.map((s, i) => (
-            <tr key={s.id}><td>{i + 1}</td><td>{s.title}</td><td>{s.description}</td><td>{s.statNumber} {s.statLabel}</td></tr>
+            <tr key={s.id}>
+              <td>{i + 1}</td>
+              <td>{s.title}</td>
+              <td>{s.description}</td>
+              <td>
+                {s.statNumber} {s.statLabel}
+              </td>
+            </tr>
           ))}
         </tbody>
       </table>

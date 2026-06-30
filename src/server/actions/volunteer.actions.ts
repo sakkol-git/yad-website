@@ -21,9 +21,14 @@ export const getVolunteerRequestsAction = createSafeAction(
     const to = from + limit - 1;
 
     // 1. Fetch volunteers with their associated event
-    const { data: volunteers, count, error } = await supabaseAdmin
+    const {
+      data: volunteers,
+      count,
+      error,
+    } = await supabaseAdmin
       .from("event_volunteers")
-      .select(`
+      .select(
+        `
         id,
         user_id,
         status,
@@ -32,7 +37,9 @@ export const getVolunteerRequestsAction = createSafeAction(
         events (
           name
         )
-      `, { count: "exact" })
+      `,
+        { count: "exact" },
+      )
       .order("created_at", { ascending: false })
       .range(from, to);
 
@@ -56,7 +63,7 @@ export const getVolunteerRequestsAction = createSafeAction(
         if (users.length >= MAX_USERS_FETCH - 100) {
           console.warn(
             `[VolunteerAction] WARNING: ${users.length} users fetched, approaching limit of ${MAX_USERS_FETCH}. ` +
-            `Migrate to public.profiles JOIN immediately (see Phase 7.2).`
+              `Migrate to public.profiles JOIN immediately (see Phase 7.2).`,
           );
         }
       }
@@ -67,7 +74,7 @@ export const getVolunteerRequestsAction = createSafeAction(
     // 3. Map the data
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mappedData = (volunteers || []).map((v: any) => {
-      const user = users.find(u => u.id === v.user_id);
+      const user = users.find((u) => u.id === v.user_id);
       return {
         id: v.id,
         userId: v.user_id,
@@ -80,7 +87,7 @@ export const getVolunteerRequestsAction = createSafeAction(
     });
 
     return { data: mappedData, count };
-  }
+  },
 );
 
 export const updateVolunteerStatusAction = createSafeAction(
@@ -101,5 +108,5 @@ export const updateVolunteerStatusAction = createSafeAction(
 
     revalidatePath("/admin/volunteers");
     return true;
-  }
+  },
 );

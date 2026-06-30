@@ -8,12 +8,48 @@ import { CHART_HEX } from "@/shared/constants/infographic-tokens";
 
 // TODO: Replace with real YAD program costs
 const IMPACT_TIERS = [
-  { threshold: 23, label: "One mentorship package for a student", icon: "groups", description: "Pairing a student with a working professional for career guidance and life skills coaching." },
-  { threshold: 42, label: "One month of safe dormitory housing", icon: "home", description: "Safe shelter, meals, utilities, and a supportive community for one student for an entire month." },
-  { threshold: 120, label: "One semester of academic mentorship", icon: "school", description: "A full semester of guided academic support, tutoring, and professional development." },
-  { threshold: 250, label: "Half a year of full scholarship", icon: "auto_stories", description: "Six months of tuition, housing, and mentorship — a transformative investment in one student's future." },
-  { threshold: 500, label: "Career placement support for 3 graduates", icon: "work", description: "Complete career preparation including resume workshops, interview training, and employer connections." },
-  { threshold: 847, label: "A full scholarship year for one student", icon: "emoji_events", description: "The complete YAD experience: housing, tuition, mentorship, and career placement for an entire year." },
+  {
+    threshold: 23,
+    label: "One mentorship package for a student",
+    icon: "groups",
+    description:
+      "Pairing a student with a working professional for career guidance and life skills coaching.",
+  },
+  {
+    threshold: 42,
+    label: "One month of safe dormitory housing",
+    icon: "home",
+    description:
+      "Safe shelter, meals, utilities, and a supportive community for one student for an entire month.",
+  },
+  {
+    threshold: 120,
+    label: "One semester of academic mentorship",
+    icon: "school",
+    description:
+      "A full semester of guided academic support, tutoring, and professional development.",
+  },
+  {
+    threshold: 250,
+    label: "Half a year of full scholarship",
+    icon: "auto_stories",
+    description:
+      "Six months of tuition, housing, and mentorship — a transformative investment in one student's future.",
+  },
+  {
+    threshold: 500,
+    label: "Career placement support for 3 graduates",
+    icon: "work",
+    description:
+      "Complete career preparation including resume workshops, interview training, and employer connections.",
+  },
+  {
+    threshold: 847,
+    label: "A full scholarship year for one student",
+    icon: "emoji_events",
+    description:
+      "The complete YAD experience: housing, tuition, mentorship, and career placement for an entire year.",
+  },
 ];
 
 export function DonorCalculator() {
@@ -32,7 +68,10 @@ export function DonorCalculator() {
   const currentTierIdx = IMPACT_TIERS.indexOf(activeTier);
   const nextTier = IMPACT_TIERS[currentTierIdx + 1];
   const progressToNext = nextTier
-    ? Math.min(((amount - activeTier.threshold) / (nextTier.threshold - activeTier.threshold)) * 100, 100)
+    ? Math.min(
+        ((amount - activeTier.threshold) / (nextTier.threshold - activeTier.threshold)) * 100,
+        100,
+      )
     : 100;
 
   return (
@@ -89,15 +128,11 @@ export function DonorCalculator() {
                 className="w-12 h-12 rounded-sm flex items-center justify-center shrink-0"
                 style={{ backgroundColor: CHART_HEX.primary, color: "#ffffff" }}
               >
-                <span className="material-symbols-outlined text-[24px]">{activeTier.icon}</span>
+                <span className="material-symbols-outlined text-2xl">{activeTier.icon}</span>
               </div>
               <div>
-                <p className="text-base font-bold text-on-surface mb-1">
-                  Your ${amount} covers:
-                </p>
-                <p className="text-lg font-light text-primary tracking-tight">
-                  {activeTier.label}
-                </p>
+                <p className="text-base font-bold text-on-surface mb-1">Your ${amount} covers:</p>
+                <p className="text-lg font-light text-primary tracking-tight">{activeTier.label}</p>
                 <p className="text-sm text-on-surface-variant font-light mt-2 leading-relaxed">
                   {activeTier.description}
                 </p>
@@ -108,9 +143,7 @@ export function DonorCalculator() {
             {nextTier && (
               <div className="mt-4 pt-4 border-t border-outline-variant/20">
                 <div className="flex justify-between text-xs text-on-surface-variant mb-1.5">
-                  <span className="font-light">
-                    ${nextTier.threshold - amount} more unlocks:
-                  </span>
+                  <span className="font-light">${nextTier.threshold - amount} more unlocks:</span>
                   <span className="font-bold">{nextTier.label}</span>
                 </div>
                 <div className="w-full h-1.5 bg-surface-variant/50 rounded-none overflow-hidden">
@@ -128,9 +161,7 @@ export function DonorCalculator() {
 
           {/* CTA */}
           <Button asChild className="w-full" size="lg">
-            <Link href={`/donate?amount=${amount}`}>
-              Donate ${amount} Now
-            </Link>
+            <Link href={`/donate?amount=${amount}`}>Donate ${amount} Now</Link>
           </Button>
         </div>
       </RevealOnScroll>

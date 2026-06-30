@@ -52,7 +52,7 @@ export function AnimatedCounter({
         },
       });
     },
-    { scope: ref, dependencies: [reduced, value, duration, prefix, suffix, decimals] }
+    { scope: ref, dependencies: [reduced, value, duration, prefix, suffix, decimals] },
   );
 
   return (

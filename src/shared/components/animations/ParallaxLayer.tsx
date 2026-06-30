@@ -18,11 +18,11 @@ export function ParallaxLayer({ children, className, speed = 0.25 }: ParallaxLay
   useGSAP(
     () => {
       if (!ref.current || reduced) return;
-      
+
       // Reduce speed for mobile devices
       const isMobile = window.innerWidth < 768;
       const actualSpeed = isMobile ? speed * 0.5 : speed;
-      
+
       gsap.to(ref.current, {
         yPercent: actualSpeed * 100,
         ease: "none",
@@ -34,8 +34,12 @@ export function ParallaxLayer({ children, className, speed = 0.25 }: ParallaxLay
         },
       });
     },
-    { scope: ref, dependencies: [reduced, speed] }
+    { scope: ref, dependencies: [reduced, speed] },
   );
 
-  return <div ref={ref} className={className}>{children}</div>;
+  return (
+    <div ref={ref} className={className}>
+      {children}
+    </div>
+  );
 }

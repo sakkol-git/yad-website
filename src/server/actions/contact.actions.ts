@@ -21,16 +21,14 @@ export const submitQuickFormAction = createSafeAction(
       throw new Error("Too many submissions. Please try again in a few minutes.");
     }
 
-    const { error } = await supabaseAdmin
-      .from("inquiries")
-      .insert({
-        first_name: firstName,
-        last_name: lastName,
-        email: email,
-        interest: interest,
-        message: message || "",
-        status: "pending"
-      });
+    const { error } = await supabaseAdmin.from("inquiries").insert({
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      interest: interest,
+      message: message || "",
+      status: "pending",
+    });
 
     if (error) {
       console.error("[QuickForm] Insert error:", error);
@@ -43,10 +41,14 @@ export const submitQuickFormAction = createSafeAction(
       template: VolunteerConfirmationEmail,
       props: {
         volunteerName: firstName,
-        submittedAt: new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
+        submittedAt: new Date().toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }),
       },
     });
 
     return true;
-  }
+  },
 );

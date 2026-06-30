@@ -1,13 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef } from "react";
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  Marker,
-  ZoomableGroup,
-} from "react-simple-maps";
+import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from "react-simple-maps";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { useInViewAnimation } from "@/shared/hooks/useInViewAnimation";
@@ -68,8 +62,8 @@ export function CambodiaImpactMap() {
           className="text-[2.5rem] md:text-[3.5rem] lg:text-[4.5rem] text-primary tracking-tighter leading-[1.0] mb-4"
         />
         <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed max-w-2xl">
-          From the capital to remote provinces, YAD builds pathways to education and opportunity
-          for Cambodia&apos;s most vulnerable youth.
+          From the capital to remote provinces, YAD builds pathways to education and opportunity for
+          Cambodia&apos;s most vulnerable youth.
         </p>
       </RevealOnScroll>
 
@@ -103,7 +97,11 @@ export function CambodiaImpactMap() {
                         <Geography
                           key={geo.rsmKey}
                           geography={geo}
-                          fill={isActiveProvince ? MAP_TOKENS.cambodiaFillActive : MAP_TOKENS.cambodiaFill}
+                          fill={
+                            isActiveProvince
+                              ? MAP_TOKENS.cambodiaFillActive
+                              : MAP_TOKENS.cambodiaFill
+                          }
                           stroke={MAP_TOKENS.cambodiaStroke}
                           strokeWidth={0.8}
                           style={{
@@ -139,9 +137,7 @@ export function CambodiaImpactMap() {
           )}
 
           {/* Tooltip overlay */}
-          {hoveredNode && (
-            <ProvinceTooltip node={hoveredNode} x={tooltipPos.x} y={tooltipPos.y} />
-          )}
+          {hoveredNode && <ProvinceTooltip node={hoveredNode} x={tooltipPos.x} y={tooltipPos.y} />}
 
           {/* Accessibility: hidden data table */}
           <table className="sr-only" aria-label="YAD Cambodia impact locations">

@@ -1,6 +1,6 @@
-'use server';
+"use server";
 
-'use server';
+"use server";
 
 import { createSafeAction } from "@/shared/lib/safe-action";
 import { usersService } from "../services/users.service";
@@ -18,7 +18,10 @@ export const getDashboardMetrics = createSafeAction(
       supabase.from("user_roles").select("*", { count: "exact", head: true }),
       supabase.from("programs").select("*", { count: "exact", head: true }).eq("status", "Active"),
       supabase.from("donations").select("amount, created_at").eq("status", "Completed"),
-      supabase.from("bookings").select("*", { count: "exact", head: true }).in("status", ["Inquiry", "Pending Confirmation"]),
+      supabase
+        .from("bookings")
+        .select("*", { count: "exact", head: true })
+        .in("status", ["Inquiry", "Pending Confirmation"]),
     ]);
 
     // calculate monthly donations
@@ -27,7 +30,7 @@ export const getDashboardMetrics = createSafeAction(
     let monthlyDonations = 0;
 
     if (donations) {
-      donations.forEach(d => {
+      donations.forEach((d) => {
         const dDate = new Date(d.created_at);
         if (dDate.getMonth() === currentMonth && dDate.getFullYear() === currentYear) {
           monthlyDonations += Number(d.amount);
@@ -54,8 +57,8 @@ export const getDashboardMetrics = createSafeAction(
       },
       recentActivities: {
         users: recentUsers || [],
-        donations: recentDonations || []
-      }
+        donations: recentDonations || [],
+      },
     };
-  }
+  },
 );

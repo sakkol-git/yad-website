@@ -118,7 +118,7 @@ export function TheoryOfChange() {
       ref={ref}
       className="bg-surface-container-lowest border-t border-outline-variant/30 py-20 lg:py-28"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1200px]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Section Header */}
         <RevealOnScroll className="mb-16">
           <div className="flex items-center gap-4 mb-6">
@@ -199,7 +199,10 @@ export function TheoryOfChange() {
                   <div className="flex lg:hidden items-center justify-center w-12 py-1">
                     <svg width="24" height="36" viewBox="0 0 24 36">
                       <line
-                        x1="12" y1="0" x2="12" y2="28"
+                        x1="12"
+                        y1="0"
+                        x2="12"
+                        y2="28"
                         stroke={colors.arrow}
                         strokeWidth="1.5"
                         strokeLinecap="round"
@@ -233,20 +236,27 @@ export function TheoryOfChange() {
         {/* Bottom attribution */}
         <RevealOnScroll className="mt-10 pt-6 border-t border-outline-variant/30 flex items-center justify-between">
           <p className="text-xs text-on-surface-variant/60 font-light">
-            Based on the Logical Framework Approach (LFA) — the international standard for NGO impact reporting.
+            Based on the Logical Framework Approach (LFA) — the international standard for NGO
+            impact reporting.
           </p>
           <a
             href="/about/financials"
             className="text-xs font-bold uppercase tracking-widest text-primary hover:underline flex items-center gap-1"
           >
             View Full Financials
-            <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+            <span className="material-symbols-outlined text-sm">arrow_forward</span>
           </a>
         </RevealOnScroll>
 
         {/* Accessibility: hidden data table */}
         <table className="sr-only" aria-label="YAD Theory of Change framework">
-          <thead><tr><th>Stage</th><th>Name</th><th>Outputs</th></tr></thead>
+          <thead>
+            <tr>
+              <th>Stage</th>
+              <th>Name</th>
+              <th>Outputs</th>
+            </tr>
+          </thead>
           <tbody>
             {COLUMNS.map((col) => (
               <tr key={col.id}>

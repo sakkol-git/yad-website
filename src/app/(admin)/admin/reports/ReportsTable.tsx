@@ -53,10 +53,8 @@ function UploadForm({ onSuccess }: { onSuccess: () => void }) {
     if (!year || year < 2000 || year > new Date().getFullYear() + 1)
       errs.year = "Enter a valid year (2000–present).";
     if (!file) errs.file = "A PDF file is required.";
-    else if (!file.name.toLowerCase().endsWith(".pdf"))
-      errs.file = "Only PDF files are accepted.";
-    else if (file.size > 20 * 1024 * 1024)
-      errs.file = "File must be under 20 MB.";
+    else if (!file.name.toLowerCase().endsWith(".pdf")) errs.file = "Only PDF files are accepted.";
+    else if (file.size > 20 * 1024 * 1024) errs.file = "File must be under 20 MB.";
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -99,9 +97,7 @@ function UploadForm({ onSuccess }: { onSuccess: () => void }) {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        {errors.title && (
-          <p className="text-error text-xs mt-1">{errors.title}</p>
-        )}
+        {errors.title && <p className="text-error text-xs mt-1">{errors.title}</p>}
       </div>
 
       {/* Year */}
@@ -112,13 +108,9 @@ function UploadForm({ onSuccess }: { onSuccess: () => void }) {
           className="stripe-input"
           placeholder={String(new Date().getFullYear())}
           value={year}
-          onChange={(e) =>
-            setYear(parseInt(e.target.value) || new Date().getFullYear())
-          }
+          onChange={(e) => setYear(parseInt(e.target.value) || new Date().getFullYear())}
         />
-        {errors.year && (
-          <p className="text-error text-xs mt-1">{errors.year}</p>
-        )}
+        {errors.year && <p className="text-error text-xs mt-1">{errors.year}</p>}
       </div>
 
       {/* File */}
@@ -130,9 +122,7 @@ function UploadForm({ onSuccess }: { onSuccess: () => void }) {
           className="block w-full text-sm text-on-surface-variant file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary-container file:text-primary hover:file:bg-primary-container/80 cursor-pointer"
           onChange={(e) => setFile(e.target.files?.[0] ?? null)}
         />
-        {errors.file && (
-          <p className="text-error text-xs mt-1">{errors.file}</p>
-        )}
+        {errors.file && <p className="text-error text-xs mt-1">{errors.file}</p>}
       </div>
 
       <div className="flex justify-end mt-2">
@@ -203,17 +193,13 @@ function EditModal({
               type="number"
               className="stripe-input"
               value={year}
-              onChange={(e) =>
-                setYear(parseInt(e.target.value) || new Date().getFullYear())
-              }
+              onChange={(e) => setYear(parseInt(e.target.value) || new Date().getFullYear())}
               required
             />
           </div>
 
           {error && (
-            <p className="text-error text-sm bg-error-container/30 px-3 py-2 rounded-md">
-              {error}
-            </p>
+            <p className="text-error text-sm bg-error-container/30 px-3 py-2 rounded-md">{error}</p>
           )}
 
           <div className="flex justify-end gap-3 mt-2">
@@ -262,8 +248,8 @@ function DeleteModal({
         <h3 className="font-bold text-on-surface text-lg mb-2">Delete Report</h3>
         <p className="text-on-surface-variant text-sm mb-6">
           Are you sure you want to delete{" "}
-          <span className="font-semibold text-on-surface">{report.title}</span>?
-          This will permanently remove the record and its PDF from storage.
+          <span className="font-semibold text-on-surface">{report.title}</span>? This will
+          permanently remove the record and its PDF from storage.
         </p>
         <div className="flex justify-end gap-3">
           <Button variant="outline" onClick={onClose}>
@@ -350,12 +336,8 @@ export function ReportsTable({
           <TableBody>
             {reports.map((report) => (
               <TableRow key={report.id}>
-                <TableCell className="font-medium tabular-nums">
-                  {report.year}
-                </TableCell>
-                <TableCell className="max-w-xs truncate">
-                  {report.title}
-                </TableCell>
+                <TableCell className="font-medium tabular-nums">{report.year}</TableCell>
+                <TableCell className="max-w-xs truncate">{report.title}</TableCell>
                 <TableCell className="text-on-surface-variant text-sm">
                   {formatFileSize(report.file_size_bytes)}
                 </TableCell>
@@ -364,20 +346,12 @@ export function ReportsTable({
                 </TableCell>
                 <TableCell>
                   <div className="flex justify-end gap-2">
-                    <a
-                      href={report.file_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <a href={report.file_url} target="_blank" rel="noopener noreferrer">
                       <Button variant="outline" size="sm">
                         View PDF
                       </Button>
                     </a>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setEditingReport(report)}
-                    >
+                    <Button variant="outline" size="sm" onClick={() => setEditingReport(report)}>
                       Edit
                     </Button>
                     <Button
@@ -403,15 +377,9 @@ export function ReportsTable({
             <PaginationContent>
               <PaginationItem>
                 <PaginationPrevious
-                  href={
-                    currentPage > 1
-                      ? `/admin/reports?page=${currentPage - 1}`
-                      : "#"
-                  }
+                  href={currentPage > 1 ? `/admin/reports?page=${currentPage - 1}` : "#"}
                   aria-disabled={currentPage <= 1}
-                  className={
-                    currentPage <= 1 ? "pointer-events-none opacity-50" : ""
-                  }
+                  className={currentPage <= 1 ? "pointer-events-none opacity-50" : ""}
                 />
               </PaginationItem>
               <PaginationItem>
@@ -420,23 +388,13 @@ export function ReportsTable({
                 </PaginationLink>
               </PaginationItem>
               <PaginationItem>
-                <span className="text-sm text-on-surface-variant px-4">
-                  of {totalPages}
-                </span>
+                <span className="text-sm text-on-surface-variant px-4">of {totalPages}</span>
               </PaginationItem>
               <PaginationItem>
                 <PaginationNext
-                  href={
-                    currentPage < totalPages
-                      ? `/admin/reports?page=${currentPage + 1}`
-                      : "#"
-                  }
+                  href={currentPage < totalPages ? `/admin/reports?page=${currentPage + 1}` : "#"}
                   aria-disabled={currentPage >= totalPages}
-                  className={
-                    currentPage >= totalPages
-                      ? "pointer-events-none opacity-50"
-                      : ""
-                  }
+                  className={currentPage >= totalPages ? "pointer-events-none opacity-50" : ""}
                 />
               </PaginationItem>
             </PaginationContent>

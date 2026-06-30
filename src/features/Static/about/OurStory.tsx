@@ -115,7 +115,7 @@ export function OurStory() {
 
       return () => ScrollTrigger.getAll().forEach((t) => t.kill());
     },
-    { scope: sectionRef, dependencies: [reduced] }
+    { scope: sectionRef, dependencies: [reduced] },
   );
 
   return (
@@ -124,7 +124,7 @@ export function OurStory() {
       id="our-history"
       className="bg-surface py-20 lg:py-32 scroll-mt-32 border-t border-outline-variant/30"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1200px]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Section Header */}
         <RevealOnScroll className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-outline-variant/30 pb-8">
           <TextReveal
@@ -133,19 +133,25 @@ export function OurStory() {
             className="text-[2.5rem] md:text-[3.5rem] text-on-surface tracking-tighter leading-[1.0] max-w-md"
           />
           <p className="text-base text-on-surface-variant font-light max-w-sm leading-relaxed">
-            From grassroots community education to a comprehensive empowerment network — our journey defined by a singular commitment.
+            From grassroots community education to a comprehensive empowerment network — our journey
+            defined by a singular commitment.
           </p>
         </RevealOnScroll>
 
         {/* Timeline Grid */}
         <div className="relative">
-
           {/* SVG vertical spine — desktop only */}
-          <div className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 hidden md:block pointer-events-none" style={{ width: 2 }}>
+          <div
+            className="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 hidden md:block pointer-events-none"
+            style={{ width: 2 }}
+          >
             <svg width="2" height="100%" className="overflow-visible">
               <line
                 ref={lineRef}
-                x1="1" y1="0" x2="1" y2="100%"
+                x1="1"
+                y1="0"
+                x2="1"
+                y2="100%"
                 stroke={CHART_HEX.primary}
                 strokeWidth="2"
                 strokeLinecap="round"
@@ -164,15 +170,17 @@ export function OurStory() {
               const isRight = i % 2 === 0; // Desktop: alternates left/right
               return (
                 <div key={era.abbr} className="relative">
-
                   {/* Desktop layout: alternating sides */}
-                  <div className={`hidden md:grid grid-cols-2 gap-16 items-center ${isRight ? "" : ""}`}>
-                    
+                  <div
+                    className={`hidden md:grid grid-cols-2 gap-16 items-center ${isRight ? "" : ""}`}
+                  >
                     {/* Left content (or spacer) */}
                     <div className={isRight ? "text-right" : "col-start-2 row-start-1"}>
                       {isRight && (
                         <div
-                          ref={(el) => { cardRefs.current[i] = el; }}
+                          ref={(el) => {
+                            cardRefs.current[i] = el;
+                          }}
                           className="inline-block text-right"
                         >
                           <EraCard era={era} align="right" />
@@ -181,24 +189,36 @@ export function OurStory() {
                     </div>
 
                     {/* Center node */}
-                    <div className={`${isRight ? "col-start-2" : "col-start-1"} absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2`}>
+                    <div
+                      className={`${isRight ? "col-start-2" : "col-start-1"} absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2`}
+                    >
                       <svg width="48" height="48" viewBox="0 0 48 48" className="overflow-visible">
                         {/* Pulse ring */}
-                        <circle cx="24" cy="24" r="18" fill={CHART_HEX.primaryContainer} opacity="0.25"
+                        <circle
+                          cx="24"
+                          cy="24"
+                          r="18"
+                          fill={CHART_HEX.primaryContainer}
+                          opacity="0.25"
                           className="impact-node-pulse"
                           style={{ transformOrigin: "24px 24px" }}
                         />
                         {/* Solid node */}
                         <circle
-                          ref={(el) => { nodeRefs.current[i] = el; }}
-                          cx="24" cy="24" r="10"
+                          ref={(el) => {
+                            nodeRefs.current[i] = el;
+                          }}
+                          cx="24"
+                          cy="24"
+                          r="10"
                           fill={CHART_HEX.primary}
                           stroke={CHART_HEX.primaryContainer}
                           strokeWidth="3"
                         />
                         {/* Year label */}
                         <text
-                          x="24" y="-8"
+                          x="24"
+                          y="-8"
                           textAnchor="middle"
                           fontSize="11"
                           fontWeight="700"
@@ -213,7 +233,11 @@ export function OurStory() {
 
                     {/* Right content (or spacer) */}
                     <div className={isRight ? "hidden" : "col-start-2"}>
-                      <div ref={(el) => { cardRefs.current[i] = el; }}>
+                      <div
+                        ref={(el) => {
+                          cardRefs.current[i] = el;
+                        }}
+                      >
                         <EraCard era={era} align="left" />
                       </div>
                     </div>
@@ -225,15 +249,23 @@ export function OurStory() {
                     <div className="absolute left-8 top-1 -translate-x-1/2">
                       <svg width="24" height="24" viewBox="0 0 24 24">
                         <circle
-                          ref={(el) => { if (!nodeRefs.current[i]) nodeRefs.current[i] = el; }}
-                          cx="12" cy="12" r="7"
+                          ref={(el) => {
+                            if (!nodeRefs.current[i]) nodeRefs.current[i] = el;
+                          }}
+                          cx="12"
+                          cy="12"
+                          r="7"
                           fill={CHART_HEX.primary}
                           stroke={CHART_HEX.primaryContainer}
                           strokeWidth="2.5"
                         />
                       </svg>
                     </div>
-                    <div ref={(el) => { if (!cardRefs.current[i]) cardRefs.current[i] = el; }}>
+                    <div
+                      ref={(el) => {
+                        if (!cardRefs.current[i]) cardRefs.current[i] = el;
+                      }}
+                    >
                       <EraCard era={era} align="left" />
                     </div>
                   </div>
@@ -248,22 +280,18 @@ export function OurStory() {
 }
 
 // ── Era Content Card ──────────────────────────────────────────────────────────
-function EraCard({
-  era,
-  align,
-}: {
-  era: (typeof ERAS)[number];
-  align: "left" | "right";
-}) {
+function EraCard({ era, align }: { era: (typeof ERAS)[number]; align: "left" | "right" }) {
   return (
     <div className={`max-w-[480px] ${align === "right" ? "ml-auto" : ""}`}>
       {/* Label + Period */}
-      <div className={`flex items-center gap-3 mb-3 ${align === "right" ? "flex-row-reverse" : ""}`}>
-        <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary">
-          {era.label}
-        </span>
+      <div
+        className={`flex items-center gap-3 mb-3 ${align === "right" ? "flex-row-reverse" : ""}`}
+      >
+        <span className="kicker-label text-primary">{era.label}</span>
         <div className="flex-1 h-[1px] bg-outline-variant/30" />
-        <span className="text-xs tabular-nums font-light text-on-surface-variant">{era.period}</span>
+        <span className="text-xs tabular-nums font-light text-on-surface-variant">
+          {era.period}
+        </span>
       </div>
 
       {/* ABbr Badge */}
@@ -272,18 +300,24 @@ function EraCard({
       </span>
 
       {/* Title */}
-      <h3 className={`text-2xl md:text-3xl text-on-surface tracking-tight leading-tight mb-3 ${align === "right" ? "text-right" : ""}`}>
+      <h3
+        className={`text-2xl md:text-3xl text-on-surface tracking-tight leading-tight mb-3 ${align === "right" ? "text-right" : ""}`}
+      >
         {era.title}
       </h3>
 
       {/* Description */}
-      <p className={`text-sm text-on-surface-variant font-light leading-relaxed mb-5 ${align === "right" ? "text-right" : ""}`}>
+      <p
+        className={`text-sm text-on-surface-variant font-light leading-relaxed mb-5 ${align === "right" ? "text-right" : ""}`}
+      >
         {era.description}
       </p>
 
       {/* Stat badge */}
       <div className={`flex items-center gap-4 mb-5 ${align === "right" ? "justify-end" : ""}`}>
-        <span className="text-3xl font-light tabular-nums text-primary tracking-tighter">{era.stat}</span>
+        <span className="text-3xl font-light tabular-nums text-primary tracking-tighter">
+          {era.stat}
+        </span>
         <span className="text-xs text-on-surface-variant font-light">{era.statLabel}</span>
       </div>
 

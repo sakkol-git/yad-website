@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { loginSchema, LoginInput } from '@/server/validators/auth.schema';
-import { login, loginWithGoogle } from '@/server/actions/auth.actions';
-import { toast } from 'sonner';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useState, useTransition } from 'react';
+import Link from "next/link";
+import Image from "next/image";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema, LoginInput } from "@/server/validators/auth.schema";
+import { login, loginWithGoogle } from "@/server/actions/auth.actions";
+import { toast } from "sonner";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState, useTransition } from "react";
 
 export function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirectedFrom = searchParams.get('redirectedFrom');
-  
+  const redirectedFrom = searchParams.get("redirectedFrom");
+
   const [serverError, setServerError] = useState<string | null>(null);
   const [isPendingGoogle, startTransitionGoogle] = useTransition();
   const [isPendingRouter, startTransitionRouter] = useTransition();
@@ -32,12 +32,12 @@ export function LoginForm() {
   const onSubmit = async (data: LoginInput) => {
     setServerError(null);
     const result = await login(data);
-    
+
     if (!result?.success) {
-      setServerError(result?.error || 'An unexpected error occurred.');
-      toast.error(result?.error || 'Login failed');
+      setServerError(result?.error || "An unexpected error occurred.");
+      toast.error(result?.error || "Login failed");
     } else {
-      toast.success('Logged in successfully!');
+      toast.success("Logged in successfully!");
       const target = redirectedFrom || result.targetUrl;
       if (target) {
         startTransitionRouter(() => {
@@ -53,8 +53,8 @@ export function LoginForm() {
       setServerError(null);
       const result = await loginWithGoogle(redirectedFrom || undefined);
       if (!result?.success) {
-        setServerError(result?.error || 'Failed to login with Google.');
-        toast.error(result?.error || 'Failed to login with Google.');
+        setServerError(result?.error || "Failed to login with Google.");
+        toast.error(result?.error || "Failed to login with Google.");
       } else if (result.targetUrl) {
         window.location.href = result.targetUrl;
       }
@@ -66,14 +66,25 @@ export function LoginForm() {
       {/* Left Side - Branding/Image (Desktop Only) */}
       <div className="hidden lg:flex lg:w-1/2 bg-primary items-center justify-center p-12 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" className="w-full h-full object-cover">
-            <path fill="#fff" d="M37.5,-73.2C48.6,-64.8,57.7,-53.4,66.6,-41.5C75.5,-29.6,84.2,-17.1,86.5,-3.8C88.7,9.6,84.4,23.8,76.5,36.1C68.6,48.4,57.1,58.8,44.1,65.8C31.1,72.8,16.6,76.4,2.5,72.2C-11.6,68,-25.3,56.1,-37.2,46.6C-49.1,37.1,-59.2,30,-67.2,19.9C-75.2,9.8,-81.1,-3.3,-78.9,-15.5C-76.7,-27.7,-66.4,-39,-54.6,-47.9C-42.8,-56.8,-29.5,-63.3,-16.1,-67.5C-2.7,-71.7,10.8,-73.6,24.1,-75.7C37.4,-77.8,26.4,-81.6,37.5,-73.2Z" transform="translate(200 200) scale(1.1)" />
+          <svg
+            viewBox="0 0 400 400"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full h-full object-cover"
+          >
+            <path
+              fill="#fff"
+              d="M37.5,-73.2C48.6,-64.8,57.7,-53.4,66.6,-41.5C75.5,-29.6,84.2,-17.1,86.5,-3.8C88.7,9.6,84.4,23.8,76.5,36.1C68.6,48.4,57.1,58.8,44.1,65.8C31.1,72.8,16.6,76.4,2.5,72.2C-11.6,68,-25.3,56.1,-37.2,46.6C-49.1,37.1,-59.2,30,-67.2,19.9C-75.2,9.8,-81.1,-3.3,-78.9,-15.5C-76.7,-27.7,-66.4,-39,-54.6,-47.9C-42.8,-56.8,-29.5,-63.3,-16.1,-67.5C-2.7,-71.7,10.8,-73.6,24.1,-75.7C37.4,-77.8,26.4,-81.6,37.5,-73.2Z"
+              transform="translate(200 200) scale(1.1)"
+            />
           </svg>
         </div>
         <div className="relative z-10 text-on-primary max-w-lg">
-          <h1 className="text-4xl md:text-5xl font-light mb-6 tracking-tighter leading-[1.0]">Welcome to YAD Cambodia</h1>
+          <h1 className="text-4xl md:text-5xl font-light mb-6 tracking-tighter leading-[1.0]">
+            Welcome to YAD Cambodia
+          </h1>
           <p className="text-lg opacity-90 leading-relaxed">
-            Join our community to empower youth, volunteer for meaningful projects, and manage your homestays. Together, we can make a difference.
+            Join our community to empower youth, volunteer for meaningful projects, and manage your
+            homestays. Together, we can make a difference.
           </p>
         </div>
       </div>
@@ -84,19 +95,28 @@ export function LoginForm() {
           {/* Simple Logo above Welcome Back */}
           <div className="flex flex-col items-center mb-8">
             <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4 text-primary">
-              <span className="material-symbols-outlined text-[32px]">login</span>
+              <span className="material-symbols-outlined text-4xl">login</span>
             </div>
-            <h1 className="text-3xl font-light text-on-surface mb-2 text-center tracking-tight">Welcome Back</h1>
-            <p className="text-on-surface-variant font-light text-sm text-center">Sign in to your YAD account</p>
+            <h1 className="text-3xl font-light text-on-surface mb-2 text-center tracking-tight">
+              Welcome Back
+            </h1>
+            <p className="text-on-surface-variant font-light text-sm text-center">
+              Sign in to your YAD account
+            </p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
-              <label className="block text-[10px] font-bold uppercase tracking-widest text-on-surface mb-1" htmlFor="email">
+              <label
+                className="block text-[10px] font-bold uppercase tracking-widest text-on-surface mb-1"
+                htmlFor="email"
+              >
                 Email Address
               </label>
               <div className="relative">
-                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">mail</span>
+                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">
+                  mail
+                </span>
                 <input
                   id="email"
                   type="email"
@@ -104,7 +124,7 @@ export function LoginForm() {
                   aria-required="true"
                   aria-describedby="login-email-error"
                   aria-invalid={!!errors.email}
-                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-md border ${errors.email ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
+                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-md border ${errors.email ? "border-error focus:ring-error focus:border-error" : "border-outline-variant/50 focus:border-primary focus:ring-primary"} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
                   {...register("email")}
                 />
               </div>
@@ -121,11 +141,16 @@ export function LoginForm() {
             </div>
 
             <div>
-              <label className="block text-[10px] font-bold uppercase tracking-widest text-on-surface mb-1" htmlFor="password">
+              <label
+                className="block text-[10px] font-bold uppercase tracking-widest text-on-surface mb-1"
+                htmlFor="password"
+              >
                 Password
               </label>
               <div className="relative">
-                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">lock</span>
+                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">
+                  lock
+                </span>
                 <input
                   id="password"
                   type="password"
@@ -133,7 +158,7 @@ export function LoginForm() {
                   aria-required="true"
                   aria-describedby="login-password-error"
                   aria-invalid={!!errors.password}
-                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-md border ${errors.password ? 'border-error focus:ring-error focus:border-error' : 'border-outline-variant/50 focus:border-primary focus:ring-primary'} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
+                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-md border ${errors.password ? "border-error focus:ring-error focus:border-error" : "border-outline-variant/50 focus:border-primary focus:ring-primary"} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
                   {...register("password")}
                 />
               </div>
@@ -147,9 +172,14 @@ export function LoginForm() {
               >
                 {errors.password?.message || "Placeholder error"}
               </p>
-              
+
               <div className="text-right mt-2">
-                <a href="#" className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors">Forgot password?</a>
+                <a
+                  href="#"
+                  className="text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+                >
+                  Forgot password?
+                </a>
               </div>
             </div>
 
@@ -160,7 +190,7 @@ export function LoginForm() {
                 serverError ? "text-error opacity-100" : "opacity-0 pointer-events-none h-0 m-0"
               }`}
             >
-              <span className="material-symbols-outlined text-[18px]">error</span>
+              <span className="material-symbols-outlined text-lg">error</span>
               <p>{serverError || "Placeholder error"}</p>
             </div>
 
@@ -171,11 +201,16 @@ export function LoginForm() {
               aria-disabled={isWorking}
               className="w-full h-12 relative bg-primary text-white rounded-md font-bold text-xs uppercase tracking-widest hover:bg-primary/90 transition-colors duration-200 ease-in-out mt-6 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              <span className={`absolute inset-0 flex items-center justify-center gap-2 transition-opacity duration-150 ${isWorking ? "opacity-0" : "opacity-100"}`}>
+              <span
+                className={`absolute inset-0 flex items-center justify-center gap-2 transition-opacity duration-150 ${isWorking ? "opacity-0" : "opacity-100"}`}
+              >
                 Sign In
-                <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+                <span className="material-symbols-outlined text-xl">arrow_forward</span>
               </span>
-              <span className={`absolute inset-0 flex items-center justify-center gap-2 transition-opacity duration-150 ${isWorking ? "opacity-100" : "opacity-0"}`} aria-hidden="true">
+              <span
+                className={`absolute inset-0 flex items-center justify-center gap-2 transition-opacity duration-150 ${isWorking ? "opacity-100" : "opacity-0"}`}
+                aria-hidden="true"
+              >
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
               </span>
             </button>
@@ -195,7 +230,9 @@ export function LoginForm() {
             disabled={isPendingGoogle}
             className="w-full h-12 relative bg-transparent border border-outline-variant/50 rounded-md font-bold text-xs uppercase tracking-widest text-on-surface hover:border-primary transition-colors duration-200 ease-in-out disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            <span className={`absolute inset-0 flex items-center justify-center gap-3 transition-opacity duration-150 ${isPendingGoogle ? "opacity-0" : "opacity-100"}`}>
+            <span
+              className={`absolute inset-0 flex items-center justify-center gap-3 transition-opacity duration-150 ${isPendingGoogle ? "opacity-0" : "opacity-100"}`}
+            >
               <Image
                 src="/assets/icons/google-icon-logo-svgrepo-com.svg"
                 alt="Google logo"
@@ -205,15 +242,21 @@ export function LoginForm() {
               />
               Google
             </span>
-            <span className={`absolute inset-0 flex items-center justify-center transition-opacity duration-150 ${isPendingGoogle ? "opacity-100" : "opacity-0"}`} aria-hidden="true">
+            <span
+              className={`absolute inset-0 flex items-center justify-center transition-opacity duration-150 ${isPendingGoogle ? "opacity-100" : "opacity-0"}`}
+              aria-hidden="true"
+            >
               <div className="w-5 h-5 border-2 border-on-surface border-t-transparent rounded-full animate-spin" />
             </span>
           </button>
 
           <div className="mt-8 text-center">
             <p className="text-sm text-on-surface-variant">
-              Don't have an account?{' '}
-              <Link href="/auth/register" className="font-semibold text-primary hover:text-primary/80 transition-colors">
+              Don't have an account?{" "}
+              <Link
+                href="/auth/register"
+                className="font-semibold text-primary hover:text-primary/80 transition-colors"
+              >
                 Register
               </Link>
             </p>

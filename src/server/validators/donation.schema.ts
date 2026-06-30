@@ -13,7 +13,7 @@ export type GetDonationsInput = z.infer<typeof getDonationsSchema>;
 // Stage 1: Create Draft (Donation Intent)
 export const createDonationDraftSchema = z.object({
   donor_name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email").optional().or(z.literal('')),
+  email: z.string().email("Invalid email").optional().or(z.literal("")),
   phone: z.string().optional(),
   country: z.string().optional(),
   amount: z.number().min(1, "Amount must be at least 1"),
@@ -41,7 +41,9 @@ export type VerifyPaymentInput = z.infer<typeof verifyPaymentSchema>;
 
 export const updateDonationStatusSchema = z.object({
   id: z.string().uuid(),
-  status: z.enum(['Draft', 'Pending Payment', 'Processing', 'Completed', 'Failed', 'Refunded']),
-  expectedCurrentStatus: z.enum(['Draft', 'Pending Payment', 'Processing', 'Completed', 'Failed', 'Refunded']).optional(),
+  status: z.enum(["Draft", "Pending Payment", "Processing", "Completed", "Failed", "Refunded"]),
+  expectedCurrentStatus: z
+    .enum(["Draft", "Pending Payment", "Processing", "Completed", "Failed", "Refunded"])
+    .optional(),
 });
 export type UpdateDonationStatusInput = z.infer<typeof updateDonationStatusSchema>;

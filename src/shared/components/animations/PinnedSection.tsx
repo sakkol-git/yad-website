@@ -18,10 +18,10 @@ export function PinnedSection({ children, className, pinDuration = "+=100%" }: P
   useGSAP(
     () => {
       if (!ref.current || reduced) return;
-      
+
       // Do not pin on mobile
       if (window.innerWidth < 768) return;
-      
+
       const trigger = ScrollTrigger.create({
         trigger: ref.current,
         start: "top top",
@@ -31,7 +31,7 @@ export function PinnedSection({ children, className, pinDuration = "+=100%" }: P
       });
       return () => trigger.kill();
     },
-    { scope: ref, dependencies: [reduced, pinDuration] }
+    { scope: ref, dependencies: [reduced, pinDuration] },
   );
 
   return (

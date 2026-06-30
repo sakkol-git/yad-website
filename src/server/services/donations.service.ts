@@ -1,14 +1,19 @@
-import { SupabaseClient } from '@supabase/supabase-js';
-import { Database } from '@/shared/types/supabase';
-import { DonationsRepository } from '../repositories/donations';
-import { 
-  getDonationsSchema, GetDonationsInput,
-  createDonationDraftSchema, CreateDonationDraftInput,
-  initiatePaymentSchema, InitiatePaymentInput,
-  verifyPaymentSchema, VerifyPaymentInput,
-  updateDonationStatusSchema, UpdateDonationStatusInput
-} from '../validators/donation.schema';
-import { requireAdmin } from '../permissions';
+import { SupabaseClient } from "@supabase/supabase-js";
+import { Database } from "@/shared/types/supabase";
+import { DonationsRepository } from "../repositories/donations";
+import {
+  getDonationsSchema,
+  GetDonationsInput,
+  createDonationDraftSchema,
+  CreateDonationDraftInput,
+  initiatePaymentSchema,
+  InitiatePaymentInput,
+  verifyPaymentSchema,
+  VerifyPaymentInput,
+  updateDonationStatusSchema,
+  UpdateDonationStatusInput,
+} from "../validators/donation.schema";
+import { requireAdmin } from "../permissions";
 
 export class DonationsService {
   private repository: DonationsRepository;
@@ -31,13 +36,13 @@ export class DonationsService {
       validatedInput.limit,
       validatedInput.search,
       validatedInput.status,
-      validatedInput.method
+      validatedInput.method,
     );
   }
 
   async createDonationIntent(supabase: SupabaseClient<Database>, input: CreateDonationDraftInput) {
     const validatedInput = createDonationDraftSchema.parse(input);
-    
+
     // Create Draft
     return this.repository.createDraft(supabase, {
       donor_name: validatedInput.donor_name,
@@ -53,40 +58,40 @@ export class DonationsService {
 
   async initiatePayment(supabase: SupabaseClient<Database>, input: InitiatePaymentInput) {
     const validatedInput = initiatePaymentSchema.parse(input);
-    
+
     // Transition from Draft to Pending Payment
     return this.repository.updateDonationStatus(
       supabase,
       validatedInput.donation_id,
-      'Pending Payment',
-      'Draft',
-      { method: validatedInput.method }
+      "Pending Payment",
+      "Draft",
+      { method: validatedInput.method },
     );
   }
 
   async verifyPayment(supabase: SupabaseClient<Database>, input: VerifyPaymentInput) {
     const validatedInput = verifyPaymentSchema.parse(input);
-    
+
     // Transition from Pending Payment/Processing to Completed
     // In a real system, we'd verify with Stripe/Bank APIs here
     return this.repository.updateDonationStatus(
       supabase,
       validatedInput.donation_id,
-      'Completed',
+      "Completed",
       undefined, // Could be from Pending Payment or Processing
-      { reference_id: validatedInput.reference_id || null }
+      { reference_id: validatedInput.reference_id || null },
     );
   }
 
   async updateStatus(supabase: SupabaseClient<Database>, input: UpdateDonationStatusInput) {
     await requireAdmin(supabase);
     const validatedInput = updateDonationStatusSchema.parse(input);
-    
+
     return this.repository.updateDonationStatus(
       supabase,
       validatedInput.id,
       validatedInput.status,
-      validatedInput.expectedCurrentStatus
+      validatedInput.expectedCurrentStatus,
     );
   }
 }

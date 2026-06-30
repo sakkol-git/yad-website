@@ -1,5 +1,5 @@
-import { createServerClient } from '@supabase/ssr';
-import { NextResponse, type NextRequest } from 'next/server';
+import { createServerClient } from "@supabase/ssr";
+import { NextResponse, type NextRequest } from "next/server";
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -24,15 +24,15 @@ export async function updateSession(request: NextRequest) {
           cookiesToSet.forEach(({ name, value, options }) => {
             const secureOptions = {
               ...options,
-              secure: process.env.NODE_ENV === 'production',
-              sameSite: 'lax' as const,
+              secure: process.env.NODE_ENV === "production",
+              sameSite: "lax" as const,
               httpOnly: true,
             };
             supabaseResponse.cookies.set(name, value, secureOptions);
           });
         },
       },
-    }
+    },
   );
 
   // refreshing the auth token
@@ -41,33 +41,36 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   // Route protection configurations
-  const isAdminRoute = request.nextUrl.pathname.startsWith('/admin');
-  const isPortalRoute = request.nextUrl.pathname.startsWith('/portal');
-  const isAuthRoute = request.nextUrl.pathname.startsWith('/auth/');
-  const isProtectedApiRoute = request.nextUrl.pathname.startsWith('/api/admin') || request.nextUrl.pathname.startsWith('/api/portal');
+  const isAdminRoute = request.nextUrl.pathname.startsWith("/admin");
+  const isPortalRoute = request.nextUrl.pathname.startsWith("/portal");
+  const isAuthRoute = request.nextUrl.pathname.startsWith("/auth/");
+  const isProtectedApiRoute =
+    request.nextUrl.pathname.startsWith("/api/admin") ||
+    request.nextUrl.pathname.startsWith("/api/portal");
 
   // Handle API unauthorized access without redirecting to login page
   if (isProtectedApiRoute && !user) {
-    return NextResponse.json({ error: 'Unauthorized access' }, { status: 401 });
+    return NextResponse.json({ error: "Unauthorized access" }, { status: 401 });
   }
 
   // Handle protected UI routes
   if ((isAdminRoute || isPortalRoute) && !user) {
     const loginUrl = request.nextUrl.clone();
-    loginUrl.pathname = '/auth/login';
-    loginUrl.searchParams.set('redirectedFrom', request.nextUrl.pathname);
+    loginUrl.pathname = "/auth/login";
+    loginUrl.searchParams.set("redirectedFrom", request.nextUrl.pathname);
     return NextResponse.redirect(loginUrl);
   }
 
   // Handle authenticated users visiting auth pages (e.g. /auth/login, /auth/register)
   // Just redirect them to the generic router, which fetches their role and redirects securely
-  const isAuthPage = isAuthRoute 
-    && !request.nextUrl.pathname.startsWith('/auth/redirect') 
-    && !request.nextUrl.pathname.startsWith('/auth/callback');
+  const isAuthPage =
+    isAuthRoute &&
+    !request.nextUrl.pathname.startsWith("/auth/redirect") &&
+    !request.nextUrl.pathname.startsWith("/auth/callback");
 
   if (isAuthPage && user) {
     const redirectUrl = request.nextUrl.clone();
-    redirectUrl.pathname = '/auth/redirect';
+    redirectUrl.pathname = "/auth/redirect";
     return NextResponse.redirect(redirectUrl);
   }
 

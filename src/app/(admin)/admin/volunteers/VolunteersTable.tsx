@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useTransition, useEffect } from "react";
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/shared/components/ui/Button";
 import { DataTable, ColumnDef } from "@/shared/components/ui/DataTable";
 import { updateVolunteerStatusAction } from "@/server/actions/volunteer.actions";
 import { toast } from "sonner";
-import { FilterBar } from '@/shared/components/admin/data/FilterBar';
+import { FilterBar } from "@/shared/components/admin/data/FilterBar";
 
 interface Volunteer {
   id: string;
@@ -18,19 +18,27 @@ interface Volunteer {
   createdAt: string;
 }
 
-export function VolunteersTable({ initialData, count, page }: { initialData: Volunteer[]; count?: number | null; page?: number }) {
+export function VolunteersTable({
+  initialData,
+  count,
+  page,
+}: {
+  initialData: Volunteer[];
+  count?: number | null;
+  page?: number;
+}) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const currentSearch = searchParams.get('search') || '';
+  const currentSearch = searchParams.get("search") || "";
   const [searchTerm, setSearchTerm] = useState(currentSearch);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (searchTerm !== currentSearch) {
         const params = new URLSearchParams(searchParams);
-        if (searchTerm) params.set('search', searchTerm);
-        else params.delete('search');
-        params.delete('page');
+        if (searchTerm) params.set("search", searchTerm);
+        else params.delete("search");
+        params.delete("page");
         router.push(`?${params.toString()}`);
       }
     }, 400);
@@ -46,7 +54,7 @@ export function VolunteersTable({ initialData, count, page }: { initialData: Vol
       if (!result.success || result.error) {
         toast.error(result.error || "Failed to update");
       } else {
-        setData(prev => prev.map(v => v.id === id ? { ...v, status: newStatus } : v));
+        setData((prev) => prev.map((v) => (v.id === id ? { ...v, status: newStatus } : v)));
         toast.success(`Volunteer status updated to ${newStatus}`);
       }
     });
@@ -132,18 +140,18 @@ export function VolunteersTable({ initialData, count, page }: { initialData: Vol
 
   return (
     <div className="space-y-4">
-      <FilterBar 
-        searchValue={searchTerm} 
-        onSearchChange={setSearchTerm} 
+      <FilterBar
+        searchValue={searchTerm}
+        onSearchChange={setSearchTerm}
         searchPlaceholder="Search volunteers..."
       />
 
-      <DataTable 
-        columns={columns} 
-        data={data} 
-        keyExtractor={(row) => row.id} 
-        count={count} 
-        page={page} 
+      <DataTable
+        columns={columns}
+        data={data}
+        keyExtractor={(row) => row.id}
+        count={count}
+        page={page}
         emptyMessage="No volunteers found."
       />
     </div>

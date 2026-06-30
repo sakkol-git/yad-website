@@ -25,7 +25,7 @@ export const getInquiriesAction = createSafeAction(
     }
 
     return { data, count };
-  }
+  },
 );
 
 export const updateInquiryStatusAction = createSafeAction(
@@ -44,5 +44,5 @@ export const updateInquiryStatusAction = createSafeAction(
 
     revalidatePath("/admin/inquiries");
     return true;
-  }
+  },
 );

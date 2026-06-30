@@ -57,6 +57,7 @@ Every module must include exactly how to verify that the improvement is working.
 ## Immutable constraints
 
 These must never be changed, "improved," or flagged as issues:
+
 - [IMMUTABLE_1 — e.g. CSS color system: `--color-primary: #1a7a4a` as defined in `globals.css`]
 - [IMMUTABLE_2 — e.g. Button border-radius: `rounded-lg` (8px) on all interactive elements]
 - [IMMUTABLE_N — add as needed]
@@ -83,10 +84,12 @@ Language: [e.g. Khmer primary, English secondary]
 # PHASE 1 — RAPID TRIAGE (complete in under 10% of total output)
 
 Scan the codebase across 8 dimensions. For each, produce only:
+
 - A score (0–100) with one sentence of justification
 - A ranked list of the top 3 issues, each on one line
 
 Dimensions:
+
 1. Security — auth, secrets, RLS, headers, payment integrity
 2. Performance — bundle size, Core Web Vitals risks, image handling, rendering strategy
 3. NGO credibility — mission clarity, trust signals, donation friction, impact storytelling
@@ -130,6 +133,7 @@ Risk if skipped: [specific consequence, not vague]
 Produce the complete, production-ready `next.config.js` (or `vercel.json` if Vercel headers are preferred) with all required headers for this stack. Do not show a partial headers object — show the complete file.
 
 Required headers for Next.js + Supabase + Stripe:
+
 - `Content-Security-Policy` — must explicitly allow Supabase domain, Stripe JS (`js.stripe.com`), and Google Fonts if used. Must not use `unsafe-inline` for scripts.
 - `Strict-Transport-Security: max-age=63072000; includeSubDomains; preload`
 - `X-Frame-Options: DENY`
@@ -139,6 +143,7 @@ Required headers for Next.js + Supabase + Stripe:
 
 **S-2 — Middleware auth protection**
 Produce the complete `/middleware.ts` that:
+
 - Protects all `/admin/*`, `/dashboard/*`, and `/api/admin/*` routes
 - Uses Supabase SSR session (not client-side auth check)
 - Returns 401 for unauthenticated API requests and redirects for page requests
@@ -146,10 +151,12 @@ Produce the complete `/middleware.ts` that:
 
 **S-3 — Supabase RLS policies**
 For every table name visible in the codebase or schema:
+
 - State current RLS status (enabled/disabled — infer from code if schema not provided)
 - Produce the exact SQL `CREATE POLICY` statements required
 
 Minimum required policies for an NGO donation platform:
+
 ```sql
 -- Donors table: users can only read their own records
 -- Donations table: users can only read their own donations; insert requires auth
@@ -162,6 +169,7 @@ Produce complete SQL for this specific schema.
 **S-4 — Stripe webhook signature verification**
 Show the complete route handler at `/app/api/webhooks/stripe/route.ts`.
 Must include:
+
 - `stripe.webhooks.constructEvent()` with `STRIPE_WEBHOOK_SECRET`
 - Raw body parsing (not JSON — Stripe requires the raw buffer)
 - Event type handling for at minimum: `payment_intent.succeeded`, `payment_intent.payment_failed`
@@ -170,6 +178,7 @@ Must include:
 **S-5 — Donation amount server-side validation**
 Show the complete server action or API route that creates the Stripe PaymentIntent.
 Must include:
+
 - Amount validation against an allowlist of permitted values or a min/max range
 - Currency validation
 - Rejection of amounts sent directly from the client without server-side re-validation
@@ -182,6 +191,7 @@ Produce the complete `.env.example` with descriptions.
 
 **S-7 — Rate limiting**
 Produce the complete implementation for rate limiting on:
+
 - `/api/webhooks/stripe` — 100 req/min
 - `/api/donate` or equivalent donation endpoint — 10 req/min per IP
 - Auth endpoints — 5 req/min per IP
@@ -191,6 +201,7 @@ Use Vercel's built-in rate limiting via `@upstash/ratelimit` and `@upstash/redis
 ### Security module verification
 
 After all security improvements, provide:
+
 ```
 VERIFY SECURITY MODULE:
 1. Run: curl -I https://[DOMAIN_URL] — confirm all 6 security headers present
@@ -209,13 +220,13 @@ Work through every performance issue in sequenced order.
 **P-1 — Rendering strategy per page**
 For each page in the codebase, declare the correct rendering strategy and implement it:
 
-| Page | Current | Correct | Reason |
-|------|---------|---------|--------|
-| `/` (homepage) | | | |
-| `/about` | | | |
-| `/donate` | | | |
-| `/programs/*` | | | |
-| `/admin/*` | | | |
+| Page           | Current | Correct | Reason |
+| -------------- | ------- | ------- | ------ |
+| `/` (homepage) |         |         |        |
+| `/about`       |         |         |        |
+| `/donate`      |         |         |        |
+| `/programs/*`  |         |         |        |
+| `/admin/*`     |         |         |        |
 
 For every page where the current strategy is wrong, produce the complete corrected page file.
 
@@ -226,17 +237,20 @@ For each one: show the original file header (to identify it), then the complete 
 
 **P-3 — Image optimization**
 For every `<img>` tag found in the codebase:
+
 - Replace with `next/image` — show complete corrected component
 - Add explicit `width`, `height`, and `alt` props
 - Add `priority` prop to the likely LCP element (hero image)
 
 For every `next/image` usage already present, verify:
+
 - `width` and `height` are explicit (not `fill` without a sized container)
 - `priority` is set only for above-fold images
 - `loading="lazy"` is not set alongside `priority` (contradiction)
 
 **P-4 — Bundle optimization**
 From `package.json`:
+
 - List every dependency with a lighter alternative. Show the replacement import.
 - Identify barrel file imports and produce corrected named imports.
 - For any component over 50KB, wrap in `dynamic()` with a loading skeleton.
@@ -245,12 +259,14 @@ Show the complete corrected import for each case.
 
 **P-5 — Font loading**
 Produce the complete corrected font configuration in `app/layout.tsx` or equivalent:
+
 - `next/font/google` with correct `subsets`, `display: 'swap'`, `preload: true`
 - Variable font usage where available
 - Fallback font stack that matches the visual weight
 
 **P-6 — Data fetching optimization**
 For every `async` Server Component or server action that makes multiple sequential `await` calls:
+
 - Show the original pattern
 - Show the corrected `Promise.all()` pattern
 
@@ -274,6 +290,7 @@ This phase produces actual written content, not code. Every piece of copy must b
 
 **C-1 — Homepage hero rewrite**
 Produce a complete hero section with:
+
 - Headline: specific, impact-first, under 12 words
 - Subheadline: who you serve + what changes for them, under 25 words
 - Primary CTA button copy: action verb + outcome (not just "Donate")
@@ -281,12 +298,14 @@ Produce a complete hero section with:
 - Social proof line: one specific number (people served, years active, etc.)
 
 Write three alternatives. Label them by psychological approach:
+
 - Version A: Urgency-led
 - Version B: Community-led
 - Version C: Impact-led
 
 **C-2 — Donation page copy rewrite**
 Produce complete copy for:
+
 - Page headline
 - Amount selector labels (make each amount tangible: "$25 = X")
 - Impact description for each donation tier
@@ -296,6 +315,7 @@ Produce complete copy for:
 
 **C-3 — Mission statement for metadata**
 Produce:
+
 - Title tag (50–60 chars): `[NGO_NAME] | [Mission in 5 words]`
 - Meta description (150–160 chars): who you help + what you do + call to action
 - OG description (same length)
@@ -303,11 +323,13 @@ Produce:
 
 **C-4 — Trust signals implementation**
 List every trust signal that should be on the homepage and donate page. For each:
+
 - Write the copy
 - Specify the exact component location where it should appear
 - Provide the JSX for the trust signal component
 
 Minimum required trust signals for an NGO:
+
 - Registration number with label ("Registered NGO #XXXXX")
 - Year founded
 - People / communities served (specific number)
@@ -325,6 +347,7 @@ If the real numbers are unknown, provide a template:
 
 **C-6 — Volunteer value proposition**
 Produce complete copy for the volunteer page or section:
+
 - What volunteers actually do (specific activities, not "make a difference")
 - What volunteers gain (skills, network, certificate, experience)
 - Time commitment (hours per week, duration)
@@ -351,21 +374,21 @@ Produce the complete `generateMetadata()` function for every page in the App Rou
 // /app/[page]/page.tsx
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: '[SPECIFIC TITLE | NGO_NAME]',
-    description: '[150-160 char description]',
+    title: "[SPECIFIC TITLE | NGO_NAME]",
+    description: "[150-160 char description]",
     openGraph: {
-      title: '[OG title]',
-      description: '[OG description]',
-      images: [{ url: '/og/[page].png', width: 1200, height: 630 }],
-      type: 'website',
+      title: "[OG title]",
+      description: "[OG description]",
+      images: [{ url: "/og/[page].png", width: 1200, height: 630 }],
+      type: "website",
     },
     twitter: {
-      card: 'summary_large_image',
-      title: '[Twitter title]',
-      description: '[Twitter description under 200 chars]',
-      images: ['/og/[page].png'],
+      card: "summary_large_image",
+      title: "[Twitter title]",
+      description: "[Twitter description under 200 chars]",
+      images: ["/og/[page].png"],
     },
-  }
+  };
 }
 ```
 
@@ -376,33 +399,33 @@ Produce the complete JSON-LD for `app/layout.tsx`:
 
 ```typescript
 const structuredData = {
-  '@context': 'https://schema.org',
-  '@graph': [
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      '@type': 'NGO',
-      '@id': '[DOMAIN_URL]/#organization',
-      name: '[NGO_NAME]',
-      url: '[DOMAIN_URL]',
-      logo: '[DOMAIN_URL]/logo.png',
-      description: '[MISSION_STATEMENT]',
-      foundingDate: '[YEAR]',
-      address: { '@type': 'PostalAddress', addressCountry: '[COUNTRY_CODE]' },
-      sameAs: ['[FACEBOOK]', '[LINKEDIN]', '[TWITTER]'],
+      "@type": "NGO",
+      "@id": "[DOMAIN_URL]/#organization",
+      name: "[NGO_NAME]",
+      url: "[DOMAIN_URL]",
+      logo: "[DOMAIN_URL]/logo.png",
+      description: "[MISSION_STATEMENT]",
+      foundingDate: "[YEAR]",
+      address: { "@type": "PostalAddress", addressCountry: "[COUNTRY_CODE]" },
+      sameAs: ["[FACEBOOK]", "[LINKEDIN]", "[TWITTER]"],
     },
     {
-      '@type': 'WebSite',
-      '@id': '[DOMAIN_URL]/#website',
-      url: '[DOMAIN_URL]',
-      name: '[NGO_NAME]',
-      publisher: { '@id': '[DOMAIN_URL]/#organization' },
+      "@type": "WebSite",
+      "@id": "[DOMAIN_URL]/#website",
+      url: "[DOMAIN_URL]",
+      name: "[NGO_NAME]",
+      publisher: { "@id": "[DOMAIN_URL]/#organization" },
     },
     {
-      '@type': 'DonateAction',
-      agent: { '@id': '[DOMAIN_URL]/#organization' },
-      url: '[DOMAIN_URL]/donate',
-    }
-  ]
-}
+      "@type": "DonateAction",
+      agent: { "@id": "[DOMAIN_URL]/#organization" },
+      url: "[DOMAIN_URL]/donate",
+    },
+  ],
+};
 ```
 
 Show the complete implementation in `layout.tsx` using `<script type="application/ld+json">`.
@@ -411,12 +434,12 @@ Show the complete implementation in `layout.tsx` using `<script type="applicatio
 Produce the complete `/app/sitemap.ts` file using the Next.js Metadata API:
 
 ```typescript
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     // All routes with correct changeFrequency and priority
-  ]
+  ];
 }
 ```
 
@@ -424,13 +447,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 Produce the complete `/app/robots.ts`:
 
 ```typescript
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: { userAgent: '*', allow: '/', disallow: ['/admin/', '/api/'] },
-    sitemap: '[DOMAIN_URL]/sitemap.xml',
-  }
+    rules: { userAgent: "*", allow: "/", disallow: ["/admin/", "/api/"] },
+    sitemap: "[DOMAIN_URL]/sitemap.xml",
+  };
 }
 ```
 
@@ -438,6 +461,7 @@ export default function robots(): MetadataRoute.Robots {
 For every accessibility violation found in the codebase, produce the complete corrected component.
 
 Required checks — produce fixes for any that fail:
+
 - All `<img>` without `alt` → add descriptive alt text
 - All `<button>` without accessible name → add `aria-label`
 - All form `<input>` without associated `<label>` → add label
@@ -475,6 +499,7 @@ VERIFY SEO & ACCESSIBILITY MODULE:
 Produce the complete `.github/workflows/ci.yml`:
 
 Must include:
+
 - Type check: `tsc --noEmit`
 - Lint: `eslint . --max-warnings 0`
 - Build: `next build`
@@ -485,6 +510,7 @@ Must include:
 Produce the complete `vercel.json`:
 
 Must include:
+
 - Region: `sin1` (Singapore — closest to Cambodia)
 - All security headers (referencing Phase 2 S-1)
 - Caching rules for `/public/*` assets (1 year)
@@ -493,6 +519,7 @@ Must include:
 
 **D-3 — Error monitoring**
 Produce the complete Sentry integration:
+
 - `/app/sentry.client.config.ts`
 - `/app/sentry.server.config.ts`
 - `/app/sentry.edge.config.ts`
@@ -514,6 +541,7 @@ Produce a `/lib/logger.ts` utility:
 
 **D-5 — Supabase backup and recovery**
 Produce the complete checklist and any automatable configuration:
+
 - Point-in-Time Recovery: enabled? (configuration note if not)
 - Daily export cron (Supabase Edge Function or GitHub Action)
 - Recovery runbook (step-by-step, not theoretical)
@@ -549,8 +577,10 @@ VERIFY DEVOPS MODULE:
 Produce a single copy-paste checklist in markdown that a developer can use to track completion of every improvement in this package.
 
 Format:
+
 ```markdown
 ## Security hardening
+
 - [ ] S-1: Security headers deployed and verified
 - [ ] S-2: Middleware protecting admin routes
 - [ ] S-3: RLS enabled and policies applied on all tables
@@ -560,17 +590,21 @@ Format:
 - [ ] S-7: Rate limiting on auth and payment endpoints
 
 ## Performance
+
 - [ ] P-1: Rendering strategy correct for all pages
-...
+      ...
 
 ## NGO credibility & copy
+
 - [ ] C-1: Homepage hero — chosen variant deployed
-...
+      ...
 
 ## SEO & accessibility
+
 ...
 
 ## DevOps & monitoring
+
 ...
 ```
 
@@ -579,6 +613,7 @@ Format:
 # OUTPUT CONTRACT
 
 Every code block in this output must satisfy:
+
 - Complete: can be saved to disk and run without modification
 - Contextual: references actual files and components from the provided codebase
 - Verified: has an explicit verification step

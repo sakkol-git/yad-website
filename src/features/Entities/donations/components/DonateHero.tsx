@@ -18,51 +18,61 @@ export function DonateHero() {
   const imageColRef = useRef<HTMLDivElement>(null);
 
   // Parallax depth — 3 layers at different rates for perceived 3D depth
-  useGSAP(() => {
-    if (reduced) return;
-    if (!sectionRef.current || !headlineRef.current || !subheadlineRef.current || !imageColRef.current) return;
+  useGSAP(
+    () => {
+      if (reduced) return;
+      if (
+        !sectionRef.current ||
+        !headlineRef.current ||
+        !subheadlineRef.current ||
+        !imageColRef.current
+      )
+        return;
 
-    gsap.to(headlineRef.current, {
-      yPercent: -30,
-      ease: "none",
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: 1.5,
-      },
-    });
+      gsap.to(headlineRef.current, {
+        yPercent: -30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.5,
+        },
+      });
 
-    gsap.to(subheadlineRef.current, {
-      yPercent: -50,
-      ease: "none",
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: 2,
-      },
-    });
+      gsap.to(subheadlineRef.current, {
+        yPercent: -50,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 2,
+        },
+      });
 
-    gsap.to(imageColRef.current, {
-      yPercent: -20,
-      ease: "none",
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: 3,
-      },
-    });
-  }, { scope: sectionRef, dependencies: [reduced] });
+      gsap.to(imageColRef.current, {
+        yPercent: -20,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 3,
+        },
+      });
+    },
+    { scope: sectionRef, dependencies: [reduced] },
+  );
 
   return (
-    <section ref={sectionRef} className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-10 overflow-hidden border-b border-outline-variant/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1400px]">
-        
+    <section
+      ref={sectionRef}
+      className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-10 overflow-hidden border-b border-outline-variant/30"
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-container-max">
         {/* Editorial Split Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          
           {/* Left Column: Typographic Focus */}
           <div className="lg:col-span-5 flex flex-col z-10">
             <RevealOnScroll delay={0.1}>
@@ -76,11 +86,11 @@ export function DonateHero() {
 
             {/* Massive, Tension-filled Headline */}
             <div ref={headlineRef}>
-              <TextReveal 
-                as="h1" 
-                text="Their Potential. Your Catalyst." 
-                className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6" 
-                delay={0.2} 
+              <TextReveal
+                as="h1"
+                text="Their Potential. Your Catalyst."
+                className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] text-primary tracking-tighter leading-[1.0] mb-6"
+                delay={0.2}
               />
             </div>
 
@@ -90,13 +100,18 @@ export function DonateHero() {
                 ref={subheadlineRef}
                 className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed max-w-sm mb-10"
               >
-                Transforming communities isn&apos;t just about charity; it&apos;s about structural investment. By funding education, secure housing, and digital literacy, you are directly engineering Cambodia&apos;s future leaders.
+                Transforming communities isn&apos;t just about charity; it&apos;s about structural
+                investment. By funding education, secure housing, and digital literacy, you are
+                directly engineering Cambodia&apos;s future leaders.
               </p>
             </RevealOnScroll>
           </div>
 
           {/* Right Column: Cinematic Image */}
-          <div ref={imageColRef} className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0">
+          <div
+            ref={imageColRef}
+            className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0"
+          >
             <RevealOnScroll delay={0.3} className="w-full h-full relative">
               <Image
                 src={heroImg}
@@ -110,7 +125,6 @@ export function DonateHero() {
             </RevealOnScroll>
           </div>
         </div>
-
       </div>
     </section>
   );

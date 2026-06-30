@@ -88,7 +88,6 @@ export const GSAP_PRESETS = {
 } as const;
 
 // Lenis easing curve (expo-out) — used by lenis-provider
-export const LENIS_EASE = (t: number) =>
-  Math.min(1, 1.001 - Math.pow(2, -10 * t));
+export const LENIS_EASE = (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t));
 
 export { gsap, ScrollTrigger };

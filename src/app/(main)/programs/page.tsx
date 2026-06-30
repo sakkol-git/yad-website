@@ -7,10 +7,12 @@ import { SlumEducation } from "@/features/Static/programs/components/SlumEducati
 
 export const metadata: Metadata = {
   title: "Our Programs",
-  description: "Explore YAD's core NGO programs in Cambodia: Dormitory & Youth Training, Digital Innovation, and Slum Community Education.",
+  description:
+    "Explore YAD's core NGO programs in Cambodia: Dormitory & Youth Training, Digital Innovation, and Slum Community Education.",
   openGraph: {
     title: "Our Programs | YAD Cambodia",
-    description: "Explore YAD's core NGO programs in Cambodia: Dormitory & Youth Training, Digital Innovation, and Slum Community Education.",
+    description:
+      "Explore YAD's core NGO programs in Cambodia: Dormitory & Youth Training, Digital Innovation, and Slum Community Education.",
     url: "https://yadkh.org/programs",
   },
 };

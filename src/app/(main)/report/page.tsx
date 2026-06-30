@@ -20,7 +20,6 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600; // 1 hour ISR cache
 
-
 export default async function RadicalTransparencyPage() {
   const breadcrumbs = [
     { name: "Home", url: "https://yadkh.org" },

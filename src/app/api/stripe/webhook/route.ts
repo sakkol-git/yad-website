@@ -23,7 +23,7 @@ import DonationReceiptEmail from "@/lib/email/templates/DonationReceiptEmail";
 // Initialize Supabase with the Service Role Key to bypass RLS for server-to-server operations
 const supabaseAdmin = createClient<Database>(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
 );
 
 /** Shape of the metadata we set when creating Checkout Sessions */
@@ -44,12 +44,8 @@ export async function POST(req: Request) {
     if (!signature || !process.env.STRIPE_WEBHOOK_SECRET) {
       throw new Error("Missing signature or webhook secret");
     }
-    event = stripe.webhooks.constructEvent(
-      body,
-      signature,
-      process.env.STRIPE_WEBHOOK_SECRET
-    );
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    event = stripe.webhooks.constructEvent(body, signature, process.env.STRIPE_WEBHOOK_SECRET);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     const message = err instanceof Error ? err.message : "Unknown verification error";
     console.error(`Webhook signature verification failed: ${message}`);
@@ -105,7 +101,7 @@ async function handleDonationCompleted(referenceId: string, session: Stripe.Chec
       .update({
         status: "Completed",
         method: "Stripe",
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any)
       .eq("id", referenceId);
 
@@ -121,7 +117,7 @@ async function handleDonationCompleted(referenceId: string, session: Stripe.Chec
     const amount = session.amount_total ? session.amount_total / 100 : 0;
     const metadata = (session.metadata || {}) as CheckoutMetadata;
     const projectName = metadata.projectName || "YAD Cambodia General Fund";
-    
+
     if (customerEmail) {
       await sendEmail({
         to: customerEmail,
@@ -132,7 +128,11 @@ async function handleDonationCompleted(referenceId: string, session: Stripe.Chec
           amount,
           currency: session.currency || "usd",
           donationId: referenceId,
-          date: new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
+          date: new Date().toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          }),
           projectName,
           orgName: "Youth Advancement for Development (YAD) Cambodia",
         },

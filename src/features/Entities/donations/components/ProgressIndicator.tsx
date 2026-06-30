@@ -25,8 +25,8 @@ export function ProgressIndicator({ currentStep }: ProgressIndicatorProps) {
                     isCompleted
                       ? "bg-secondary text-on-secondary shadow-md"
                       : isActive
-                      ? "bg-primary text-on-primary ring-4 ring-primary/20 shadow-lg scale-110"
-                      : "bg-surface-variant text-on-surface-variant"
+                        ? "bg-primary text-on-primary ring-4 ring-primary/20 shadow-lg scale-110"
+                        : "bg-surface-variant text-on-surface-variant"
                   }`}
                 >
                   {isCompleted ? (
@@ -37,7 +37,11 @@ export function ProgressIndicator({ currentStep }: ProgressIndicatorProps) {
                 </div>
                 <span
                   className={`font-label-bold text-sm md:text-base hidden sm:inline transition-colors duration-300 ${
-                    isActive ? "text-primary" : isCompleted ? "text-secondary" : "text-on-surface-variant"
+                    isActive
+                      ? "text-primary"
+                      : isCompleted
+                        ? "text-secondary"
+                        : "text-on-surface-variant"
                   }`}
                 >
                   {step.label}

@@ -27,6 +27,6 @@ export const getImpactStatsAction = unstable_cache(
       return { communitiesReached: 245, youthHoused: 10, provincesReached: 5 };
     }
   },
-  ['impact-stats'],
-  { revalidate: 3600, tags: ['impact'] }
+  ["impact-stats"],
+  { revalidate: 3600, tags: ["impact"] },
 );

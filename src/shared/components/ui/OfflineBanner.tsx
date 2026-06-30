@@ -4,9 +4,9 @@ import { useNetworkStatus } from "@/shared/hooks/useNetworkStatus";
 
 export function OfflineBanner() {
   const { isOnline } = useNetworkStatus();
-  
+
   return (
-    <div 
+    <div
       className={`
         fixed bottom-4 left-1/2 -translate-x-1/2 z-[9999]
         bg-surface/80 backdrop-blur-xl border border-outline-variant/30

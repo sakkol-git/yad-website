@@ -1,16 +1,17 @@
-import { getUserDashboardSummary } from '@/server/actions/portal.actions';
-import { UserDashboard } from '@/features/Static/dashboard/components/UserDashboard';
+import { getUserDashboardSummary } from "@/server/actions/portal.actions";
+import { UserDashboard } from "@/features/Static/dashboard/components/UserDashboard";
 
 export default async function PortalDashboardPage() {
-  const { user, upcomingBooking, recentDonation, recentVolunteer } = await getUserDashboardSummary();
+  const { user, upcomingBooking, recentDonation, recentVolunteer } =
+    await getUserDashboardSummary();
 
   if (!user) return null;
 
   const getGreeting = () => {
     const hour = new Date().getHours();
-    if (hour < 12) return 'Good morning';
-    if (hour < 18) return 'Good afternoon';
-    return 'Good evening';
+    if (hour < 12) return "Good morning";
+    if (hour < 18) return "Good afternoon";
+    return "Good evening";
   };
 
   return (

@@ -28,14 +28,7 @@ export function ResponsiveGrid({
   };
 
   return (
-    <div
-      className={cn(
-        "grid w-full",
-        colClasses[columns],
-        gapClasses[gap],
-        className
-      )}
-    >
+    <div className={cn("grid w-full", colClasses[columns], gapClasses[gap], className)}>
       {children}
     </div>
   );
