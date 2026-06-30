@@ -207,3 +207,19 @@
 **Next candidates:**
 1. `src/server/actions/contact.actions.ts` - Lint/cleanliness (Tier 8). Contains a duplicated `"use server";` directive on lines 1 and 3.
 2. `src/app/(admin)/admin/events/page.tsx` - Data Fetching (Tier 1). Inline `supabase.from` query used inside a server component instead of utilizing an extracted data service or action.
+
+## Run 14 — 2026-06-30
+**Target:** Admin/Portal Logout Redirect Bug — UX Friction (Tier 6). Logout actions within Server Components throw a redirect that is caught and overridden by layout route protection due to caching quirks, resulting in users being sent to `/auth/login` instead of the public `/` homepage.
+**Change:** Converted `AdminHeader.tsx`, `AdminSidebar.tsx`, and `PortalHeader.tsx` to handle logout client-side (`supabase.auth.signOut()` + `router.push("/")`) matching `Navbar.tsx`, and removed the `logoutAction` prop from `PortalLayout.tsx`.
+**Proof:** 
+- Bug fix: Logging out now properly circumvents `revalidatePath` catching `!user` in the `AdminLayout`/`PortalLayout` middleware logic. Next.js router successfully directs the user to `/` rather than trapping them in a `/auth/login` redirect loop during the POST transition.
+**Verification:**
+- [x] `next build` succeeds, zero new TypeScript errors.
+- [x] No new lint errors.
+- [x] No new console errors/warnings in the changed flow.
+- [x] Changed flow manually traced.
+- [x] Grep for usages: valid.
+- [x] Keyboard-only pass: Flow continues to function identically.
+**Next candidates:**
+1. `src/server/actions/contact.actions.ts` - Lint/cleanliness (Tier 8). Contains a duplicated `"use server";` directive on lines 1 and 3.
+2. `src/app/(admin)/admin/events/page.tsx` - Data Fetching (Tier 1). Inline `supabase.from` query used inside a server component instead of utilizing an extracted data service or action.

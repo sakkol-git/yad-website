@@ -1,11 +1,12 @@
 "use client";
 
-import { logout } from "@/server/actions/auth.actions";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { createClient } from "@/shared/lib/supabase/client";
 
 export function AdminHeader({ onOpenSidebar }: { onOpenSidebar?: () => void }) {
   const pathname = usePathname();
+  const router = useRouter();
 
   // Extract the page name from the pathname (e.g., /admin/donations -> Donations)
   const pathParts = pathname?.split("/").filter(Boolean) || [];
@@ -13,6 +14,13 @@ export function AdminHeader({ onOpenSidebar }: { onOpenSidebar?: () => void }) {
     pathParts.length > 1
       ? pathParts[1].charAt(0).toUpperCase() + pathParts[1].slice(1)
       : "Dashboard";
+
+  const handleLogout = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.push("/");
+    router.refresh();
+  };
 
   return (
     <header className="h-16 bg-surface-container-lowest border-b border-outline-variant/30 flex items-center justify-between px-4 lg:px-6 shadow-sm sticky top-0 z-10">
@@ -42,16 +50,14 @@ export function AdminHeader({ onOpenSidebar }: { onOpenSidebar?: () => void }) {
           <span className="hidden sm:inline">View Website</span>
         </Link>
         <div className="h-6 w-[1px] bg-outline-variant/30 hidden sm:block"></div>
-        <form action={logout}>
-          <button
-            type="submit"
-            className="text-sm font-bold text-error hover:bg-error-container hover:text-on-error-container px-2 sm:px-3 py-2 rounded-md transition-colors flex items-center gap-1.5 cursor-pointer"
-            aria-label="Sign out"
-          >
-            <span className="material-symbols-outlined text-lg">logout</span>
-            <span className="hidden sm:inline">Sign out</span>
-          </button>
-        </form>
+        <button
+          onClick={handleLogout}
+          className="text-sm font-bold text-error hover:bg-error-container hover:text-on-error-container px-2 sm:px-3 py-2 rounded-md transition-colors flex items-center gap-1.5 cursor-pointer"
+          aria-label="Sign out"
+        >
+          <span className="material-symbols-outlined text-lg">logout</span>
+          <span className="hidden sm:inline">Sign out</span>
+        </button>
       </div>
     </header>
   );

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/shared/lib/supabase/client";
-import { logout } from "@/server/actions/auth.actions";
 
 // Grouped items to improve scannability and structure
 const navGroups = [
@@ -46,6 +45,13 @@ interface AdminSidebarProps {
 export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
+
+  const handleLogout = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.push("/");
+    router.refresh();
+  };
 
   return (
     <>
@@ -142,16 +148,14 @@ export function AdminSidebar({ isOpen = false, onClose }: AdminSidebarProps) {
               </div>
             </div>
 
-            <form action={logout}>
-              <button
-                type="submit"
-                className="opacity-0 group-hover:opacity-100 text-on-surface-variant hover:text-error transition-colors duration-200 ease-in-out p-1.5 rounded-full hover:bg-error/10 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-error"
-                aria-label="Log out"
-                title="Log out"
-              >
-                <span className="material-symbols-outlined text-lg">logout</span>
-              </button>
-            </form>
+            <button
+              onClick={handleLogout}
+              className="opacity-0 group-hover:opacity-100 text-on-surface-variant hover:text-error transition-colors duration-200 ease-in-out p-1.5 rounded-full hover:bg-error/10 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-error"
+              aria-label="Log out"
+              title="Log out"
+            >
+              <span className="material-symbols-outlined text-lg">logout</span>
+            </button>
           </div>
         </div>
       </aside>
