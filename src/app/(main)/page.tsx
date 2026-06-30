@@ -9,6 +9,7 @@ import { CommunityVoices } from "@/features/Static/homepage/CommunityVoices";
 import { HomeCTA } from "@/features/Static/homepage/HomeCTA";
 import { VisionSection } from "@/features/Static/homepage/VisionSection";
 import { MeasurableImpactSection } from "@/features/Static/homepage/MeasurableImpactSection";
+import { CambodiaImpactMap } from "@/features/Static/impact/CambodiaImpactMap/CambodiaImpactMap";
 
 export const metadata: Metadata = {
   title: "YAD | Youth Advancement for Development — NGO in Cambodia",
@@ -79,6 +80,7 @@ export default function Home() {
       <HomeHero />
       <PartnerLogos />
       <VisionSection />
+      <CambodiaImpactMap />
       <ProgramCards />
       <MeasurableImpactSection />
       <ImpactPreview />

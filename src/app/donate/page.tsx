@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DonateHero } from "@/features/Entities/donations/components/DonateHero";
 import { DonationPortal } from "@/features/Entities/donations/components/DonationOptions";
 import { DonationImpact } from "@/features/Entities/donations/components/DonationImpact";
+import { DonorCalculator } from "@/features/Static/impact/DonorCalculator";
 
 export const metadata: Metadata = {
   title: "Donate",
@@ -13,6 +14,7 @@ export default function DonatePage() {
     <>
       <DonateHero />
       <DonationPortal />
+      <DonorCalculator />
       <DonationImpact />
     </>
   );

@@ -38,7 +38,7 @@ export function ImpactTicker() {
       <style jsx>{`
         @keyframes ticker {
           from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
+          to { transform: translateX(-30%); }
         }
       `}</style>
     </div>
