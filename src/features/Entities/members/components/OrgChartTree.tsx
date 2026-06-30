@@ -43,37 +43,25 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
 
       {/* Tier 2: Co-Founders / Board */}
       {coFounders.length > 0 && (
-        <div className="flex flex-row flex-wrap justify-center w-full">
-          {coFounders.map((member, i) => {
-            const isFirst = i === 0;
-            const isLast = i === coFounders.length - 1;
-            const isOnly = coFounders.length === 1;
+        <div className="w-full flex justify-center overflow-visible">
+          {/* inline-flex automatically hugs the width of all cards + any gap the user sets! */}
+          <div className="relative inline-flex flex-row flex-wrap justify-center gap-8 md:gap-20 lg:gap-80">
+            
+            {/* The Single Continuous Horizontal Line */}
+            {coFounders.length > 1 && (
+              <div 
+                className="absolute top-0 h-[2px] bg-primary transition-transform duration-700 ease-out origin-center left-[130px] right-[130px] md:left-[140px] md:right-[140px]"
+                style={{
+                  transform: isInView ? "scaleX(1)" : "scaleX(0)",
+                  transitionDelay: "0.8s"
+                }}
+              />
+            )}
 
-            return (
-              <div key={member.id} className="relative flex flex-col items-center px-4 md:px-40">
-
-                {/* Horizontal Distribution Line */}
-                {!isOnly && (
-                  <div className="absolute top-0 left-0 right-0 h-[2px] flex">
-                    {/* Left side goes towards the previous card (origin-right so it draws from center out) */}
-                    <div
-                      className={`h-full w-1/2 origin-right transition-transform duration-500 ease-out ${!isFirst ? "bg-primary" : ""}`}
-                      style={{
-                        transform: isInView ? "scaleX(1)" : "scaleX(0)",
-                        transitionDelay: "0.8s"
-                      }}
-                    />
-                    {/* Right side goes towards the next card (origin-left so it draws from center out) */}
-                    <div
-                      className={`h-full w-1/2 origin-left transition-transform duration-500 ease-out ${!isLast ? "bg-primary" : ""}`}
-                      style={{
-                        transform: isInView ? "scaleX(1)" : "scaleX(0)",
-                        transitionDelay: "0.8s"
-                      }}
-                    />
-                  </div>
-                )}
-
+            {/* The Cards */}
+            {coFounders.map((member, i) => (
+              <div key={member.id} className="relative flex flex-col items-center w-[260px] md:w-[280px]">
+                
                 {/* Vertical Branch Down to this Card */}
                 <div
                   className="w-[2px] h-10 md:h-16 bg-primary origin-top transition-transform duration-500 ease-out"
@@ -85,7 +73,7 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
 
                 {/* Card Container */}
                 <div
-                  className="w-[260px] md:w-[280px] transition-all duration-700 ease-out"
+                  className="w-full transition-all duration-700 ease-out"
                   style={{
                     opacity: isInView ? 1 : 0,
                     transform: isInView ? "translateY(0)" : "translateY(40px)",
@@ -95,8 +83,8 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
                   <TeamMemberCard {...member} href={`/about/governance/${member.slug}`} />
                 </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       )}
 
