@@ -11,6 +11,9 @@ import { createClient } from "@/shared/lib/supabase/client";
 import { useMagneticHover } from "@/shared/hooks/useMagneticHover";
 import { gsap } from "@/shared/lib/animations/gsap-config";
 import { ImpactTicker } from "@/shared/components/ui/ImpactTicker";
+import { useScrollHide } from "@/shared/hooks/useScrollHide";
+import { useFocusTrap } from "@/shared/hooks/useFocusTrap";
+import { useLockBodyScroll } from "@/shared/hooks/useLockBodyScroll";
 
 type NavLink = { href: string; label: string; subLinks?: { href: string; label: string }[] };
 
@@ -81,9 +84,10 @@ export default function Navbar() {
 
   const navRef = useRef<HTMLElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
-  const lastScrollY = useRef(0);
+  
+  const { isScrolled, isHidden } = useScrollHide(isMenuOpen);
+  useLockBodyScroll(isMenuOpen);
+  useFocusTrap(drawerRef, isMenuOpen);
 
   // Pulse animation for "Fund a Future" CTA
   useEffect(() => {
@@ -103,39 +107,7 @@ export default function Navbar() {
     return () => clearTimeout(timer);
   }, [ctaRef]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
 
-      // Background effect
-      if (currentScrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-
-      // Hide/Show effect
-      if (currentScrollY > 120) {
-        const scrollDifference = currentScrollY - lastScrollY.current;
-        // Require at least a 5px scroll to change state (prevents trackpad bounce glitch)
-        if (Math.abs(scrollDifference) > 5) {
-          if (scrollDifference > 0 && !isMenuOpen) {
-            setIsHidden(true); // scrolling down
-          } else {
-            setIsHidden(false); // scrolling up
-          }
-        }
-      } else {
-        setIsHidden(false);
-      }
-
-      lastScrollY.current = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Check initial scroll position
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isMenuOpen]);
 
   // Automatically close mobile menu and desktop dropdowns when navigating to a new route
   useEffect(() => {
@@ -152,54 +124,7 @@ export default function Navbar() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
-  // Prevent background scrolling when mobile menu is open
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isMenuOpen]);
 
-  // Focus trap for mobile drawer
-  useEffect(() => {
-    if (!isMenuOpen || !drawerRef.current) return;
-
-    const focusableElements = drawerRef.current.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-    );
-    const firstElement = focusableElements[0] as HTMLElement;
-    const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
-
-    const handleTabKey = (e: KeyboardEvent) => {
-      if (e.key !== "Tab") return;
-
-      if (e.shiftKey) {
-        if (document.activeElement === firstElement) {
-          lastElement.focus();
-          e.preventDefault();
-        }
-      } else {
-        if (document.activeElement === lastElement) {
-          firstElement.focus();
-          e.preventDefault();
-        }
-      }
-    };
-
-    document.addEventListener("keydown", handleTabKey);
-    // Focus first element on open
-    if (firstElement) {
-      firstElement.focus();
-    }
-
-    return () => {
-      document.removeEventListener("keydown", handleTabKey);
-    };
-  }, [isMenuOpen]);
 
   const handleLogout = async () => {
     const supabase = createClient();

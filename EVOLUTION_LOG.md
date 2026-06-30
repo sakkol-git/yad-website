@@ -14,3 +14,20 @@
 1. `src/shared/components/layout/Navbar.tsx` - Component architecture. The 500-line file handles scrolling, focus trapping, and rendering. Needs hook extraction (e.g. `useScrollHide`, `useFocusTrap`). (Tier 5)
 2. `src/app/(admin)/admin/reports/ReportsTable.tsx` - Component architecture. Contains 4 separate complex components (UploadForm, EditModal, DeleteModal, ReportsTable) in one file. (Tier 5)
 3. `src/shared/components/layout/Navbar.tsx` - Inconsistent UX. Hardcoded `text-[10px]` typography instead of semantic `.kicker-label`. (Tier 7)
+
+## Run 2 — 2026-06-30
+**Target:** src/shared/components/layout/Navbar.tsx — Component architecture. The 500-line file handles scrolling, focus trapping, and rendering. Needs hook extraction. Ranked Tier 5 (Architecture/maintainability debt).
+**Change:** src/shared/components/layout/Navbar.tsx. Extracted 80 lines of inline `useEffect` logic into three highly reusable hooks: `src/shared/hooks/useScrollHide.ts`, `src/shared/hooks/useFocusTrap.ts`, and `src/shared/hooks/useLockBodyScroll.ts`.
+**Proof:** 
+- Architecture: 1 file consolidated into 3 reusable hooks. Removed ~80 lines of procedural `useEffect` blocks from `Navbar.tsx` and replaced them with declarative hook calls (`const { isScrolled, isHidden } = useScrollHide(isMenuOpen);`, `useLockBodyScroll(isMenuOpen);`, `useFocusTrap(drawerRef, isMenuOpen);`).
+**Verification:**
+- [x] `next build` succeeds, zero new TypeScript errors.
+- [x] No new lint errors.
+- [x] No new console errors/warnings in the changed flow.
+- [x] Changed flow manually traced (Hooks act identically to original inline logic).
+- [x] Grep for usages: valid.
+- [x] Keyboard-only pass: focus trap remains intact.
+**Next candidates:**
+1. `src/app/(admin)/admin/reports/ReportsTable.tsx` - Component architecture. Contains 4 separate complex components (UploadForm, EditModal, DeleteModal, ReportsTable) in one file. (Tier 5)
+2. `src/shared/components/layout/Navbar.tsx` - Inconsistent UX. Hardcoded `text-[10px]` typography instead of semantic `.kicker-label`. (Tier 7)
+3. `src/app/payment/local/LocalPaymentClient.tsx` - Component architecture. Over 380 lines mixing UI with complex payment processing logic. (Tier 5)
