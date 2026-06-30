@@ -3,6 +3,7 @@ import { BreadcrumbSchema } from "@/shared/components/seo/BreadcrumbSchema";
 import { AboutHero } from "@/features/Static/about/AboutHero";
 import { OurStory } from "@/features/Static/about/OurStory";
 import { CorePurpose } from "@/features/Static/about/CorePurpose";
+import { TheoryOfChange } from "@/features/Static/about/TheoryOfChange";
 
 
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ export default function AboutPage() {
       <AboutHero />
       <OurStory />
       <CorePurpose />
+      <TheoryOfChange />
     </main>
   );
 }
