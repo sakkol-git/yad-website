@@ -87,10 +87,10 @@ export function CambodiaImpactMap() {
               projection="geoMercator"
               projectionConfig={{
                 center: [104.9, 12.6],
-                scale: 3200,
+                scale: 4800,
               }}
-              width={700}
-              height={520}
+              width={800}
+              height={600}
               style={{ width: "100%", height: "auto" }}
             >
               <ZoomableGroup center={[104.9, 12.6]} zoom={1} minZoom={1} maxZoom={1}>
