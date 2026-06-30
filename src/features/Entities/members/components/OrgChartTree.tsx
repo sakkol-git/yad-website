@@ -46,10 +46,10 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
         <div className="w-full flex justify-center overflow-visible">
           {/* inline-flex automatically hugs the width of all cards + any gap the user sets! */}
           <div className="relative inline-flex flex-row flex-wrap justify-center gap-8 md:gap-20 lg:gap-80">
-            
+
             {/* The Single Continuous Horizontal Line */}
             {coFounders.length > 1 && (
-              <div 
+              <div
                 className="absolute top-0 h-[2px] bg-primary transition-transform duration-700 ease-out origin-center left-[130px] right-[130px] md:left-[140px] md:right-[140px]"
                 style={{
                   transform: isInView ? "scaleX(1)" : "scaleX(0)",
@@ -61,7 +61,7 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
             {/* The Cards */}
             {coFounders.map((member, i) => (
               <div key={member.id} className="relative flex flex-col items-center w-[260px] md:w-[280px]">
-                
+
                 {/* Vertical Branch Down to this Card */}
                 <div
                   className="w-[2px] h-10 md:h-16 bg-primary origin-top transition-transform duration-500 ease-out"
