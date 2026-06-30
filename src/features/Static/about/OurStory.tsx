@@ -326,7 +326,7 @@ function EraCard({ era, align }: { era: (typeof ERAS)[number]; align: "left" | "
         {era.programs.map((p) => (
           <span
             key={p}
-            className="text-[10px] uppercase tracking-widest font-bold px-2.5 py-1 bg-primary-container/20 text-on-primary-container rounded-sm"
+            className="kicker-label px-2.5 py-1 bg-primary-container/20 text-on-primary-container rounded-sm"
           >
             {p}
           </span>

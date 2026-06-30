@@ -191,3 +191,19 @@
 - [x] Keyboard-only pass: Loading state handles focus gracefully without breaking existing layouts.
 **Next candidates:**
 1. `src/shared/components/ui/Button.tsx` (and others) - Visual inconsistency (Tier 7). The project has hardcoded typography `text-[10px]` across 40+ files that should be updated to semantic `.kicker-label`.
+
+## Run 13 — 2026-06-30
+**Target:** src/shared/components/ui/Button.tsx (and ~30 others) — Visual inconsistency. The project has hardcoded typography `text-[10px]` (along with variations of `uppercase tracking-widest font-bold`) across over 30 files instead of relying on the design system. Ranked Tier 7 (Visual/design-system inconsistency).
+**Change:** Ran a cross-file script to replace all variants of `text-[10px] uppercase tracking-widest font-bold` with the global `@utility kicker-label` class across the entire codebase (`Button.tsx`, `MemberProfile.tsx`, `EventGrid.tsx`, `DonorCalculator.tsx`, etc.).
+**Proof:** 
+- Consistency: 30+ files updated. All hardcoded micro-typography instances now point to a single source of truth in `globals.css` via `.kicker-label`.
+**Verification:**
+- [x] `next build` succeeds, zero new TypeScript errors.
+- [x] No new lint errors.
+- [x] No new console errors/warnings in the changed flow.
+- [x] Changed flow manually traced (Components render identically using the CSS variable).
+- [x] Grep for usages: `grep -r "text-\[10px\]"` yields no unhandled visual inconsistency matches.
+- [x] Keyboard-only pass: Non-functional styling change; flow continues to function identically.
+**Next candidates:**
+1. `src/server/actions/contact.actions.ts` - Lint/cleanliness (Tier 8). Contains a duplicated `"use server";` directive on lines 1 and 3.
+2. `src/app/(admin)/admin/events/page.tsx` - Data Fetching (Tier 1). Inline `supabase.from` query used inside a server component instead of utilizing an extracted data service or action.

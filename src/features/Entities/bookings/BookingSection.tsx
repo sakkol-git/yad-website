@@ -41,7 +41,7 @@ export function BookingSection() {
             {/* Step 1: Stay Details */}
             <div className="bg-surface border border-outline-variant/30 p-8 md:p-12">
               <h3 className="text-2xl text-on-surface font-light tracking-tight mb-8 flex items-center gap-4">
-                <span className="w-8 h-8 border border-on-surface flex items-center justify-center text-[10px] font-bold">
+                <span className="w-8 h-8 border border-on-surface flex items-center justify-center kicker-label">
                   1
                 </span>
                 Stay Details
@@ -88,7 +88,7 @@ export function BookingSection() {
             {/* Step 2: Guest Information */}
             <div className="bg-surface border border-outline-variant/30 p-8 md:p-12">
               <h3 className="text-2xl text-on-surface font-light tracking-tight mb-8 flex items-center gap-4">
-                <span className="w-8 h-8 border border-on-surface flex items-center justify-center text-[10px] font-bold">
+                <span className="w-8 h-8 border border-on-surface flex items-center justify-center kicker-label">
                   2
                 </span>
                 Guest Information
@@ -135,7 +135,7 @@ export function BookingSection() {
             {/* Step 3: Payment */}
             <div className="bg-surface border border-outline-variant/30 p-8 md:p-12">
               <h3 className="text-2xl text-on-surface font-light tracking-tight mb-8 flex items-center gap-4">
-                <span className="w-8 h-8 border border-on-surface flex items-center justify-center text-[10px] font-bold">
+                <span className="w-8 h-8 border border-on-surface flex items-center justify-center kicker-label">
                   3
                 </span>
                 Payment
@@ -153,7 +153,7 @@ export function BookingSection() {
                   }`}
                 >
                   <span className="material-symbols-outlined text-3xl">credit_card</span>
-                  <span className="uppercase tracking-[0.1em] text-[10px] font-bold">
+                  <span className="kicker-label">
                     Credit Card
                   </span>
                 </button>
@@ -167,7 +167,7 @@ export function BookingSection() {
                   }`}
                 >
                   <span className="material-symbols-outlined text-3xl">qr_code_scanner</span>
-                  <span className="uppercase tracking-[0.1em] text-[10px] font-bold">KHQR</span>
+                  <span className="kicker-label">KHQR</span>
                 </button>
               </div>
 
@@ -282,7 +282,7 @@ export function BookingSection() {
               </div>
             </div>
             <div className="flex justify-between items-center pt-8 border-t border-surface/30">
-              <span className="uppercase tracking-widest text-[10px] font-bold text-surface/70">
+              <span className="kicker-label text-surface/70">
                 Total (USD)
               </span>
               <span className="text-4xl font-light tracking-tighter">$45.00</span>

@@ -44,7 +44,7 @@ export function GrowthBarChart() {
           <button
             key={key}
             onClick={() => setActiveMetric(key)}
-            className={`pb-3 font-bold text-[10px] uppercase tracking-widest border-b-2 transition-colors duration-150 cursor-pointer ${
+            className={`pb-3 kicker-label border-b-2 transition-colors duration-150 cursor-pointer ${
               activeMetric === key
                 ? "border-primary text-primary"
                 : "border-transparent text-on-surface-variant hover:text-on-surface"

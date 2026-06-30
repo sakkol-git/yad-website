@@ -53,7 +53,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
                   credit_card
                 </span>
                 <span
-                  className={`uppercase tracking-widest text-[10px] font-bold ${selectedMethod === "card" ? "text-white" : "text-on-surface"}`}
+                  className={`kicker-label ${selectedMethod === "card" ? "text-white" : "text-on-surface"}`}
                 >
                   International Card
                 </span>
@@ -104,7 +104,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
                   qr_code_scanner
                 </span>
                 <span
-                  className={`uppercase tracking-widest text-[10px] font-bold ${selectedMethod === "local" ? "text-white" : "text-on-surface"}`}
+                  className={`kicker-label ${selectedMethod === "local" ? "text-white" : "text-on-surface"}`}
                 >
                   Bakong KHQR & Local Bank
                 </span>
@@ -153,7 +153,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
                   onClick={handleProceedStripe}
                   variant="default"
                   size="lg"
-                  className="rounded-md bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold px-8 flex items-center gap-2 transition-colors duration-150 mx-auto"
+                  className="rounded-md bg-primary text-white hover:bg-primary/90 h-12 kicker-label px-8 flex items-center gap-2 transition-colors duration-150 mx-auto"
                 >
                   Continue to Card Payment
                   <span className="material-symbols-outlined text-base">arrow_forward</span>
@@ -178,7 +178,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
                   onClick={handleProceedLocal}
                   variant="default"
                   size="lg"
-                  className="rounded-md bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold px-8 flex items-center gap-2 transition-colors duration-150 mx-auto"
+                  className="rounded-md bg-primary text-white hover:bg-primary/90 h-12 kicker-label px-8 flex items-center gap-2 transition-colors duration-150 mx-auto"
                 >
                   Continue to Local Payment
                   <span className="material-symbols-outlined text-base">arrow_forward</span>
@@ -198,23 +198,23 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
 
           <div className="space-y-4 mb-8 relative z-10 text-sm font-light text-on-surface-variant leading-relaxed">
             <div className="flex justify-between items-center">
-              <span className="uppercase tracking-widest text-[10px] font-bold">Description</span>
+              <span className="kicker-label">Description</span>
               <span className="font-light text-on-surface text-right">{description}</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="uppercase tracking-widest text-[10px] font-bold">Name</span>
+              <span className="kicker-label">Name</span>
               <span className="font-light text-on-surface text-right">{name}</span>
             </div>
             {email && (
               <div className="flex justify-between items-center">
-                <span className="uppercase tracking-widest text-[10px] font-bold">Email</span>
+                <span className="kicker-label">Email</span>
                 <span className="font-light text-on-surface text-right break-all">{email}</span>
               </div>
             )}
           </div>
 
           <div className="flex justify-between items-end mb-8 relative z-10 pt-6 border-t border-outline-variant/30">
-            <span className="uppercase tracking-widest text-[10px] font-bold text-on-surface-variant mb-2">
+            <span className="kicker-label text-on-surface-variant mb-2">
               Total Amount
             </span>
             <span className="text-[3.5rem] font-light text-primary tracking-tighter leading-none">
@@ -226,7 +226,7 @@ export function PaymentSelectorClient({ paymentDetails }: PaymentSelectorClientP
             <div className="flex items-start gap-4">
               <span className="material-symbols-outlined text-xl text-primary">verified_user</span>
               <div>
-                <p className="uppercase tracking-widest text-[10px] font-bold text-on-surface mb-1">
+                <p className="kicker-label text-on-surface mb-1">
                   Secure & Trusted
                 </p>
                 <p className="text-xs font-light text-on-surface-variant leading-relaxed">

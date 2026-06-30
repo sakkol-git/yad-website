@@ -57,7 +57,7 @@ export default async function DonorDetailPage({ params }: PageProps) {
       <div className="container max-w-5xl mx-auto px-6">
         <Link
           href="/donors"
-          className="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary font-bold text-[10px] uppercase tracking-widest mb-12 transition-colors"
+          className="inline-flex items-center gap-2 text-on-surface-variant hover:text-primary kicker-label mb-12 transition-colors"
         >
           <span className="material-symbols-outlined text-base">arrow_back</span>
           Back to All Donors
@@ -91,7 +91,7 @@ export default async function DonorDetailPage({ params }: PageProps) {
 
             {/* Content Column */}
             <div className="flex-grow text-center md:text-left">
-              <div className="inline-flex items-center gap-2 px-4 py-2 border border-outline-variant/50 text-primary font-bold text-[10px] uppercase tracking-widest mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 border border-outline-variant/50 text-primary kicker-label mb-6">
                 <span className="material-symbols-outlined text-sm">verified</span>
                 Verified Supporter
               </div>
@@ -116,7 +116,7 @@ export default async function DonorDetailPage({ params }: PageProps) {
 
               <div className="grid grid-cols-2 gap-8 pt-8 border-t border-outline-variant/30 text-left">
                 <div>
-                  <h4 className="text-[10px] font-bold text-on-surface-variant mb-2 uppercase tracking-widest">
+                  <h4 className="kicker-label text-on-surface-variant mb-2">
                     Donation Date
                   </h4>
                   <p className="text-lg font-light text-on-surface">
@@ -131,7 +131,7 @@ export default async function DonorDetailPage({ params }: PageProps) {
                 </div>
                 {typedDonor.amount && (
                   <div>
-                    <h4 className="text-[10px] font-bold text-on-surface-variant mb-2 uppercase tracking-widest">
+                    <h4 className="kicker-label text-on-surface-variant mb-2">
                       Contribution
                     </h4>
                     <p className="text-2xl font-light text-primary flex items-center justify-start gap-2">
@@ -158,7 +158,7 @@ export default async function DonorDetailPage({ params }: PageProps) {
             <Button
               size="lg"
               variant="default"
-              className="rounded-md uppercase tracking-widest text-[10px] font-bold px-10 h-14 bg-primary text-white hover:bg-primary/90 transition-colors duration-150"
+              className="rounded-md kicker-label px-10 h-14 bg-primary text-white hover:bg-primary/90 transition-colors duration-150"
             >
               Become a Donor Today
             </Button>

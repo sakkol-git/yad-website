@@ -8,7 +8,7 @@ export function KHQR({ amount }: KHQRProps) {
       {/* bg-red-600/border-red-700: Intentional KHQR national payment standard brand colors — not a design-token violation */}
       {/* KHQR Header Banner */}
       <div className="w-full flex items-center justify-between mb-3 px-1">
-        <span className="text-[10px] font-bold tracking-widest bg-on-primary text-primary px-1.5 py-0.5 rounded-sm">
+        <span className="kicker-label bg-on-primary text-primary px-1.5 py-0.5 rounded-sm">
           KHQR
         </span>
         <span className="text-[9px] font-semibold opacity-95 text-right">

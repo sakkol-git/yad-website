@@ -83,7 +83,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
           </div>
 
           {error && (
-            <div className="mb-6 p-4 bg-error/10 text-error rounded-md border border-error/30 text-[10px] uppercase tracking-widest font-bold">
+            <div className="mb-6 p-4 bg-error/10 text-error rounded-md border border-error/30 kicker-label">
               {error}
             </div>
           )}
@@ -92,7 +92,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
           <div className="flex border-b border-outline-variant/30 mb-8 gap-6">
             <button
               onClick={() => setPaymentMethod("khqr")}
-              className={`pb-3 font-bold text-[10px] uppercase tracking-widest border-b-2 transition-colors duration-150 cursor-pointer ${
+              className={`pb-3 kicker-label border-b-2 transition-colors duration-150 cursor-pointer ${
                 paymentMethod === "khqr"
                   ? "border-primary text-primary"
                   : "border-transparent text-on-surface-variant hover:text-on-surface"
@@ -102,7 +102,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
             </button>
             <button
               onClick={() => setPaymentMethod("bank_transfer")}
-              className={`pb-3 font-bold text-[10px] uppercase tracking-widest border-b-2 transition-colors duration-150 cursor-pointer ${
+              className={`pb-3 kicker-label border-b-2 transition-colors duration-150 cursor-pointer ${
                 paymentMethod === "bank_transfer"
                   ? "border-primary text-primary"
                   : "border-transparent text-on-surface-variant hover:text-on-surface"
@@ -135,14 +135,14 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                 {/* Reference Code to include in transfer */}
                 <div className="p-4 bg-primary text-white border border-outline-variant/30 rounded-md flex justify-between items-center">
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest block opacity-80 mb-1">
+                    <span className="kicker-label block opacity-80 mb-1">
                       Required Transfer Description / Memo
                     </span>
                     <span className="text-lg font-mono font-light tracking-widest">{memoCode}</span>
                   </div>
                   <button
                     onClick={() => copyToClipboard(memoCode, "memo")}
-                    className="bg-white text-primary text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-md hover:bg-white/90 transition-colors duration-150 flex items-center gap-2 cursor-pointer"
+                    className="bg-white text-primary kicker-label px-4 py-2 rounded-md hover:bg-white/90 transition-colors duration-150 flex items-center gap-2 cursor-pointer"
                   >
                     <span className="material-symbols-outlined text-sm">
                       {copiedField === "memo" ? "check" : "content_copy"}
@@ -165,7 +165,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                     value={referenceId}
                     onChange={(e) => setReferenceId(e.target.value)}
                   />
-                  <span className="text-[10px] font-light text-on-surface-variant mt-2 block tracking-wide">
+                  <span className="text-xs font-light text-on-surface-variant mt-2 block tracking-wide">
                     Copy this code from your bank app receipt screen after completing the transfer.
                   </span>
                 </div>
@@ -174,7 +174,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
                   type="submit"
                   variant="default"
                   size="lg"
-                  className="w-full rounded-md bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold transition-colors duration-150 flex items-center gap-2 justify-center"
+                  className="w-full rounded-md bg-primary text-white hover:bg-primary/90 h-12 kicker-label transition-colors duration-150 flex items-center gap-2 justify-center"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
@@ -200,7 +200,7 @@ export function LocalPaymentClient({ paymentDetails }: LocalPaymentClientProps) 
         <div className="flex items-start gap-4">
           <span className="material-symbols-outlined text-xl text-primary">info</span>
           <div>
-            <p className="uppercase tracking-widest text-[10px] font-bold text-on-surface mb-1">
+            <p className="kicker-label text-on-surface mb-1">
               What Happens Next?
             </p>
             <p className="text-xs font-light text-on-surface-variant leading-relaxed mt-0.5">

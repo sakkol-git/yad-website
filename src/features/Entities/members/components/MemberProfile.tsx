@@ -22,7 +22,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
       <section className="w-full flex justify-center">
         <div className="max-w-4xl flex flex-col items-center text-center">
           <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
-            <span className="inline-block border border-outline-variant/50 text-primary px-4 py-2 rounded-md font-bold text-[10px] tracking-widest uppercase bg-transparent">
+            <span className="inline-block border border-outline-variant/50 text-primary px-4 py-2 rounded-md kicker-label bg-transparent">
               {member.role}
             </span>
 
@@ -104,7 +104,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
               <div className="bg-surface border border-outline-variant/30 rounded-md p-8 md:p-12 text-on-surface w-full flex flex-col justify-center">
                 {profile.vision && (
                   <div className="mb-12">
-                    <h2 className="text-[10px] font-bold uppercase tracking-widest text-primary mb-4">
+                    <h2 className="kicker-label text-primary mb-4">
                       Vision
                     </h2>
                     <p className="text-lg font-light leading-relaxed">{profile.vision}</p>
@@ -113,7 +113,7 @@ export function MemberProfile({ member }: MemberProfileProps) {
 
                 {profile.experience && profile.experience.length > 0 && (
                   <div>
-                    <h2 className="text-[10px] font-bold uppercase tracking-widest text-primary mb-6">
+                    <h2 className="kicker-label text-primary mb-6">
                       Experience
                     </h2>
                     <ul className="space-y-6">

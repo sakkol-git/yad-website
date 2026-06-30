@@ -30,7 +30,7 @@ export function ExitIntentToast() {
         <Link
           href="/donate"
           onClick={dismissExitToast}
-          className="inline-flex items-center justify-center h-10 px-6 uppercase tracking-widest text-[10px] font-bold bg-primary text-white hover:bg-primary/90 transition-colors w-fit"
+          className="inline-flex items-center justify-center h-10 px-6 kicker-label bg-primary text-white hover:bg-primary/90 transition-colors w-fit"
         >
           Fund a Future
         </Link>

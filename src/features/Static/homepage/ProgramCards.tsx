@@ -77,7 +77,7 @@ export function ProgramCards() {
 
                     <Link
                       href={program.href}
-                      className="inline-flex items-center gap-3 text-primary uppercase tracking-[0.1em] text-[10px] font-bold hover:text-secondary transition-colors group w-fit"
+                      className="inline-flex items-center gap-3 text-primary kicker-label hover:text-secondary transition-colors group w-fit"
                     >
                       Read Full Overview
                       <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">

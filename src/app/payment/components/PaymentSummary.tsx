@@ -18,23 +18,23 @@ export function PaymentSummary({ paymentDetails, children }: PaymentSummaryProps
 
         <div className="space-y-4 mb-8 relative z-10 text-sm font-light text-on-surface-variant leading-relaxed">
           <div className="flex justify-between items-center">
-            <span className="uppercase tracking-widest text-[10px] font-bold">Description</span>
+            <span className="kicker-label">Description</span>
             <span className="font-light text-on-surface text-right">{description}</span>
           </div>
           <div className="flex justify-between items-center">
-            <span className="uppercase tracking-widest text-[10px] font-bold">Name</span>
+            <span className="kicker-label">Name</span>
             <span className="font-light text-on-surface text-right">{name}</span>
           </div>
           {email && (
             <div className="flex justify-between items-center">
-              <span className="uppercase tracking-widest text-[10px] font-bold">Email</span>
+              <span className="kicker-label">Email</span>
               <span className="font-light text-on-surface text-right break-all">{email}</span>
             </div>
           )}
         </div>
 
         <div className="flex justify-between items-end mb-8 relative z-10 pt-6 border-t border-outline-variant/30">
-          <span className="uppercase tracking-widest text-[10px] font-bold text-on-surface-variant mb-2">
+          <span className="kicker-label text-on-surface-variant mb-2">
             Total Amount
           </span>
           <span className="text-[3.5rem] font-light text-primary tracking-tighter leading-none">

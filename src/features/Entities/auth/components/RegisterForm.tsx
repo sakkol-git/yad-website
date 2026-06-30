@@ -31,7 +31,7 @@ function RegisterField({
   return (
     <div>
       <label
-        className="block text-[10px] font-bold uppercase tracking-widest text-on-surface mb-1"
+        className="block kicker-label text-on-surface mb-1"
         htmlFor={id}
       >
         {label}

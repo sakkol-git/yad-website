@@ -39,7 +39,7 @@ export default function Error({
             onClick={() => reset()}
             variant="default"
             size="lg"
-            className="w-full bg-error text-white rounded-md uppercase tracking-widest text-[10px] font-bold h-14 hover:bg-error/90 transition-colors duration-150"
+            className="w-full bg-error text-white rounded-md kicker-label h-14 hover:bg-error/90 transition-colors duration-150"
           >
             <span className="material-symbols-outlined text-base mr-2" aria-hidden="true">
               refresh

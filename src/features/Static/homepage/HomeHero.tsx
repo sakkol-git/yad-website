@@ -205,21 +205,21 @@ export function HomeHero() {
           {/* REDUCED: Pulled this up closer to the hero content (mt-16 instead of mt-24) */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 lg:mt-16 pt-8 border-t border-outline-variant/30">
             <div className="flex flex-col">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/70 font-bold mb-1.5">
+              <span className="kicker-label text-on-surface-variant/70 font-bold mb-1.5">
                 Established
               </span>
               <span className="text-base md:text-lg font-medium text-on-surface">2024</span>
             </div>
 
             <div className="flex flex-col">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/70 font-bold mb-1.5">
+              <span className="kicker-label text-on-surface-variant/70 font-bold mb-1.5">
                 Impact Radius
               </span>
               <span className="text-base md:text-lg font-medium text-on-surface">500+ Weekly</span>
             </div>
 
             <div className="flex flex-col">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/70 font-bold mb-1.5">
+              <span className="kicker-label text-on-surface-variant/70 font-bold mb-1.5">
                 Location
               </span>
               <span className="text-base md:text-lg font-medium text-on-surface">
@@ -228,7 +228,7 @@ export function HomeHero() {
             </div>
 
             <div className="flex flex-col">
-              <span className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/70 font-bold mb-1.5">
+              <span className="kicker-label text-on-surface-variant/70 font-bold mb-1.5">
                 Status
               </span>
               <span className="flex items-center gap-2 text-base md:text-lg font-medium text-on-surface">

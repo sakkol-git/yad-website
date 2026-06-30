@@ -25,7 +25,7 @@ export function ProvinceTooltip({ node, x, y }: ProvinceTooltipProps) {
         {/* Header */}
         <div className="flex items-center justify-between mb-3 pb-2 border-b border-outline-variant/30">
           <h4 className="text-sm font-bold text-on-surface tracking-tight">{node.name}</h4>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-primary">
+          <span className="kicker-label text-primary">
             {node.studentsReached} students
           </span>
         </div>

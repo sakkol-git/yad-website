@@ -33,9 +33,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     };
 
     const sizeClasses = {
-      default: "h-12 px-8 uppercase tracking-widest text-[10px] font-bold rounded-sm",
-      sm: "h-10 px-6 uppercase tracking-widest text-[10px] font-bold rounded-sm",
-      lg: "h-14 px-10 uppercase tracking-widest text-[10px] font-bold rounded-sm",
+      default: "h-12 px-8 kicker-label rounded-sm",
+      sm: "h-10 px-6 kicker-label rounded-sm",
+      lg: "h-14 px-10 kicker-label rounded-sm",
       icon: "h-12 w-12 rounded-sm flex items-center justify-center",
     };
 

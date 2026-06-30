@@ -175,7 +175,7 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
           <Button
             variant="outline"
             size="lg"
-            className="rounded-md border-primary text-primary hover:bg-primary hover:text-white uppercase tracking-widest text-[10px] font-bold h-12 transition-colors px-8"
+            className="rounded-md border-primary text-primary hover:bg-primary hover:text-white kicker-label h-12 transition-colors px-8"
             asChild
           >
             <Link href="/">Back to Homepage</Link>
@@ -184,7 +184,7 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
             <Button
               variant="default"
               size="lg"
-              className="rounded-md bg-primary text-white hover:bg-primary/90 h-12 uppercase tracking-widest text-[10px] font-bold transition-colors duration-150 px-8"
+              className="rounded-md bg-primary text-white hover:bg-primary/90 h-12 kicker-label transition-colors duration-150 px-8"
               asChild
             >
               <Link href="/portal/bookings">Go to Bookings Dashboard</Link>
@@ -195,7 +195,7 @@ export default async function PaymentSuccessPage({ searchParams }: SuccessPagePr
         {/* Social Share for Donations only */}
         {type === "donation" && (
           <div className="pt-8 border-t border-outline-variant/30 animate-fade-up delay-400">
-            <p className="uppercase tracking-widest text-[10px] font-bold text-on-surface-variant mb-4">
+            <p className="kicker-label text-on-surface-variant mb-4">
               Share Your Impact
             </p>
             <div className="flex justify-center gap-4">

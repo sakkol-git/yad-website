@@ -23,7 +23,7 @@ export function DigitalInnovation() {
           <div className="absolute top-1/2 -right-12 transform -translate-y-1/2 bg-surface/85 backdrop-blur-2xl border border-outline-variant/50 shadow-xl shadow-black/10 rounded-md z-20 w-48 hidden lg:block p-5">
             <div className="flex items-center gap-3 mb-3">
               <span className="material-symbols-outlined text-tertiary text-xl">code</span>
-              <span className="font-label-bold text-label-bold text-on-surface uppercase tracking-widest text-[10px]">
+              <span className="font-label-bold text-label-bold text-on-surface kicker-label">
                 Tech Skills
               </span>
             </div>

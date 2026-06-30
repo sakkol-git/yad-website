@@ -51,7 +51,7 @@ export function StripePaymentClient({ paymentDetails }: StripePaymentClientProps
         <div className="flex items-start gap-4">
           <span className="material-symbols-outlined text-xl text-primary">verified_user</span>
           <div>
-            <p className="uppercase tracking-widest text-[10px] font-bold text-on-surface mb-1">
+            <p className="kicker-label text-on-surface mb-1">
               Stripe Secure
             </p>
             <p className="text-xs font-light text-on-surface-variant leading-relaxed mt-0.5">

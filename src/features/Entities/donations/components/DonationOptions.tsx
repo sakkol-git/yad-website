@@ -7,7 +7,7 @@ import { IMPACT_TIERS } from "@/shared/constants/donations";
 
 export function DonationPortal() {
   return (
-    <section id="options" className="py-24 md:py-32 px-6 md:px-12 lg:px-16 bg-surface">
+    <section id="options" className="py-24 md:py-32 px-6 md:px-12 lg:px-16 bg-surface mb-20">
       <div className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
         {/* Left: Manifesto & Trust */}
         <div className="lg:col-span-5 lg:sticky lg:top-32">

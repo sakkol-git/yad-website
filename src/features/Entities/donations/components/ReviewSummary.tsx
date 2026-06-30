@@ -42,7 +42,7 @@ export function ReviewSummary() {
               </div>
               <div>
                 <span className="block kicker-label text-on-surface mb-2">Frequency</span>
-                <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1 rounded-md border border-primary/20 uppercase tracking-widest text-[10px] font-bold">
+                <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1 rounded-md border border-primary/20 kicker-label">
                   <span className="material-symbols-outlined text-sm">calendar_month</span>
                   Monthly
                 </span>
@@ -53,7 +53,7 @@ export function ReviewSummary() {
               <div>
                 <span className="block kicker-label text-on-surface mb-2">Payment Method</span>
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-8 border border-outline-variant/50 bg-transparent rounded-md flex items-center justify-center text-on-surface font-bold text-[10px] tracking-widest uppercase">
+                  <div className="w-12 h-8 border border-outline-variant/50 bg-transparent rounded-md flex items-center justify-center text-on-surface kicker-label">
                     VISA
                   </div>
                   <span className="text-lg font-light text-on-surface">•••• 4242</span>
@@ -92,7 +92,7 @@ export function ReviewSummary() {
           <Button
             variant="outline"
             size="lg"
-            className="w-full md:w-auto px-8 rounded-md border-primary text-primary hover:bg-primary hover:text-white uppercase tracking-widest text-[10px] font-bold h-12 transition-colors"
+            className="w-full md:w-auto px-8 rounded-md border-primary text-primary hover:bg-primary hover:text-white kicker-label h-12 transition-colors"
             asChild
           >
             <Link href="/donate/payment">Back</Link>
@@ -100,7 +100,7 @@ export function ReviewSummary() {
           <Button
             variant="default"
             size="lg"
-            className="w-full md:w-auto px-10 gap-2 hover:-translate-y-1 bg-primary hover:bg-primary/90 text-white rounded-md uppercase tracking-widest text-[10px] font-bold h-12 transition-colors duration-150"
+            className="w-full md:w-auto px-10 gap-2 hover:-translate-y-1 bg-primary hover:bg-primary/90 text-white rounded-md kicker-label h-12 transition-colors duration-150"
             asChild
           >
             <Link href="/donate/success">
@@ -128,7 +128,7 @@ export function ReviewSummary() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent" />
             <div className="absolute bottom-4 left-6 right-6">
-              <span className="inline-block bg-white text-primary font-bold text-[10px] uppercase tracking-widest px-3 py-1 rounded-md mb-2">
+              <span className="inline-block bg-white text-primary kicker-label px-3 py-1 rounded-md mb-2">
                 Impact Summary
               </span>
             </div>

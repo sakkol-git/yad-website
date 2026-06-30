@@ -42,7 +42,7 @@ function EventCard({ event, featured = false }: { event: EventItem; featured?: b
       >
         <div>
           <div
-            className={`flex items-center gap-4 text-on-surface-variant mb-4 text-[10px] uppercase tracking-[0.1em] font-bold`}
+            className={`flex items-center gap-4 text-on-surface-variant mb-4 kicker-label`}
           >
             <span className="flex items-center gap-2">
               <span className="material-symbols-outlined text-sm">schedule</span> {event.date}
@@ -121,7 +121,7 @@ function EventCard({ event, featured = false }: { event: EventItem; featured?: b
               <Button
                 variant="ghost"
                 size="sm"
-                className="rounded-md text-on-surface-variant hover:text-on-surface uppercase text-[10px] tracking-wider font-bold"
+                className="rounded-md text-on-surface-variant hover:text-on-surface kicker-label"
                 asChild
               >
                 <Link href={event.donationUrl}>Donate</Link>

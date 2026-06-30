@@ -71,7 +71,7 @@ export function ImpactPathCard({
           {description}
         </p>
         <Link
-          className={`text-primary font-bold text-[10px] uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-[gap] duration-500 ease-out`}
+          className={`text-primary kicker-label flex items-center gap-2 group-hover:gap-4 transition-[gap] duration-500 ease-out`}
           href={linkHref}
         >
           {linkLabel} <span className="material-symbols-outlined text-base">arrow_right_alt</span>

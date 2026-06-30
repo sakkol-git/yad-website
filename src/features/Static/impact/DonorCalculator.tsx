@@ -115,7 +115,7 @@ export function DonorCalculator() {
               aria-label="Donation amount slider"
             />
 
-            <div className="flex justify-between text-[10px] text-on-surface-variant/50 font-bold uppercase tracking-widest mt-2">
+            <div className="flex justify-between kicker-label text-on-surface-variant/50 mt-2">
               <span>$5</span>
               <span>$1,000</span>
             </div>

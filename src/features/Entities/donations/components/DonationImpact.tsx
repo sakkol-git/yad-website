@@ -18,7 +18,7 @@ export function DonationImpact() {
             </p>
           </div>
           <div className="bg-surface p-8 rounded-md border-2 border-primary relative hover:bg-primary/5 transition-colors duration-300">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-md text-[10px] uppercase tracking-widest font-bold">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-md kicker-label">
               Most Common
             </div>
             <div className="text-primary text-[3rem] font-light tracking-tighter mb-4">$50</div>

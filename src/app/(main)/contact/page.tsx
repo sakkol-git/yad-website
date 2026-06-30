@@ -59,7 +59,7 @@ export default function ContactPage() {
                     location_on
                   </span>
                   <div>
-                    <h3 className="uppercase tracking-widest text-[10px] font-bold text-on-surface mb-2">
+                    <h3 className="kicker-label text-on-surface mb-2">
                       Headquarters
                     </h3>
                     <p className="text-sm font-light text-on-surface-variant leading-relaxed">
@@ -74,7 +74,7 @@ export default function ContactPage() {
                 <div className="flex items-start gap-4">
                   <span className="material-symbols-outlined text-primary mt-1 text-xl">mail</span>
                   <div>
-                    <h3 className="uppercase tracking-widest text-[10px] font-bold text-on-surface mb-2">
+                    <h3 className="kicker-label text-on-surface mb-2">
                       Email
                     </h3>
                     <a
@@ -89,7 +89,7 @@ export default function ContactPage() {
                 <div className="flex items-start gap-4">
                   <span className="material-symbols-outlined text-primary mt-1 text-xl">phone</span>
                   <div>
-                    <h3 className="uppercase tracking-widest text-[10px] font-bold text-on-surface mb-2">
+                    <h3 className="kicker-label text-on-surface mb-2">
                       Phone
                     </h3>
                     <a

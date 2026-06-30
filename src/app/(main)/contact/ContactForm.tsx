@@ -55,7 +55,7 @@ export function ContactForm() {
         <div className="flex flex-col gap-2">
           <label
             htmlFor="firstName"
-            className="uppercase tracking-widest text-[10px] font-bold text-on-surface"
+            className="kicker-label text-on-surface"
           >
             First Name <span className="text-primary">*</span>
           </label>
@@ -74,7 +74,7 @@ export function ContactForm() {
         <div className="flex flex-col gap-2">
           <label
             htmlFor="lastName"
-            className="uppercase tracking-widest text-[10px] font-bold text-on-surface"
+            className="kicker-label text-on-surface"
           >
             Last Name <span className="text-primary">*</span>
           </label>
@@ -93,7 +93,7 @@ export function ContactForm() {
       <div className="flex flex-col gap-2">
         <label
           htmlFor="email"
-          className="uppercase tracking-widest text-[10px] font-bold text-on-surface"
+          className="kicker-label text-on-surface"
         >
           Email Address <span className="text-primary">*</span>
         </label>
@@ -112,7 +112,7 @@ export function ContactForm() {
       <div className="flex flex-col gap-2">
         <label
           htmlFor="subject"
-          className="uppercase tracking-widest text-[10px] font-bold text-on-surface"
+          className="kicker-label text-on-surface"
         >
           Subject <span className="text-primary">*</span>
         </label>
@@ -136,7 +136,7 @@ export function ContactForm() {
       <div className="flex flex-col gap-2">
         <label
           htmlFor="message"
-          className="uppercase tracking-widest text-[10px] font-bold text-on-surface"
+          className="kicker-label text-on-surface"
         >
           Message <span className="text-primary">*</span>
         </label>

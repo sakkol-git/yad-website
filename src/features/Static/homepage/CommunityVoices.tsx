@@ -100,7 +100,7 @@ function VoiceCard({ voice }: { voice: (typeof VOICES_DATA)[number] }) {
           </div>
           <div>
             <div className="font-medium text-base text-on-surface">{voice.name}</div>
-            <div className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant font-bold mt-1">
+            <div className="kicker-label text-on-surface-variant font-bold mt-1">
               {voice.role}
             </div>
           </div>
@@ -143,7 +143,7 @@ export function CommunityVoices() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-container-max">
         <RevealOnScroll y={20} className="mt-20">
           <Link
-            className="inline-flex items-center gap-3 text-primary uppercase tracking-[0.1em] text-[10px] font-bold hover:text-secondary transition-colors group w-fit"
+            className="inline-flex items-center gap-3 text-primary kicker-label hover:text-secondary transition-colors group w-fit"
             href="/about"
           >
             Read more student stories

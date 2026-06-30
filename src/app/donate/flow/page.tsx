@@ -166,7 +166,7 @@ export default function DonateFlowPage() {
               <div>
                 <label
                   htmlFor="firstName"
-                  className="block uppercase tracking-widest text-[10px] font-bold text-on-surface mb-2"
+                  className="block kicker-label text-on-surface mb-2"
                 >
                   First Name <span className="text-primary">*</span>
                 </label>
@@ -183,7 +183,7 @@ export default function DonateFlowPage() {
               <div>
                 <label
                   htmlFor="lastName"
-                  className="block uppercase tracking-widest text-[10px] font-bold text-on-surface mb-2"
+                  className="block kicker-label text-on-surface mb-2"
                 >
                   Last Name <span className="text-primary">*</span>
                 </label>
@@ -200,7 +200,7 @@ export default function DonateFlowPage() {
               <div className="md:col-span-2">
                 <label
                   htmlFor="email"
-                  className="block uppercase tracking-widest text-[10px] font-bold text-on-surface mb-2"
+                  className="block kicker-label text-on-surface mb-2"
                 >
                   Email Address <span className="text-primary">*</span>
                 </label>
@@ -281,7 +281,7 @@ export default function DonateFlowPage() {
             </div>
           </div>
           <div className="mt-10 pt-6 border-t border-outline-variant/30 flex items-center justify-center gap-2 text-on-surface-variant opacity-70 relative z-10">
-            <span className="uppercase tracking-widest text-[10px] font-bold">Powered by</span>
+            <span className="kicker-label">Powered by</span>
             <span className="font-bold text-lg tracking-tighter text-stripe-brand">stripe</span>
           </div>
         </div>

@@ -48,10 +48,10 @@ export function AdminDashboard({ initialData }: { initialData?: any }) {
           </p>
         </div>
         <div className="flex gap-3">
-          <button className="bg-surface-container border border-outline-variant/30 text-on-surface px-5 py-2.5 rounded-md font-bold text-[10px] tracking-widest uppercase hover:bg-surface-container-high transition-colors flex items-center gap-2 cursor-not-allowed opacity-70">
+          <button className="bg-surface-container border border-outline-variant/30 text-on-surface px-5 py-2.5 rounded-md kicker-label hover:bg-surface-container-high transition-colors flex items-center gap-2 cursor-not-allowed opacity-70">
             <span className="material-symbols-outlined text-lg">calendar_today</span> Last 30 Days
           </button>
-          <button className="bg-primary text-white px-5 py-2.5 rounded-md font-bold text-[10px] tracking-widest uppercase hover:bg-primary/90 transition-colors flex items-center gap-2 cursor-not-allowed opacity-70">
+          <button className="bg-primary text-white px-5 py-2.5 rounded-md kicker-label hover:bg-primary/90 transition-colors flex items-center gap-2 cursor-not-allowed opacity-70">
             <span className="material-symbols-outlined text-lg">download</span> Export Report
           </button>
         </div>

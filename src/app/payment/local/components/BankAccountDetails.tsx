@@ -24,7 +24,7 @@ export function BankAccountDetails({ copiedField, copyToClipboard }: BankAccount
         {/* Bank Name */}
         <div className="p-4 bg-transparent rounded-md border border-outline-variant/30 flex justify-between items-center">
           <div>
-            <span className="text-[10px] text-on-surface-variant block uppercase tracking-widest font-bold mb-1">
+            <span className="kicker-label block text-on-surface-variant mb-1">
               Bank Name
             </span>
             <span className="text-sm font-light text-on-surface">ABA Bank</span>
@@ -43,7 +43,7 @@ export function BankAccountDetails({ copiedField, copyToClipboard }: BankAccount
         {/* Account Name */}
         <div className="p-4 bg-transparent rounded-md border border-outline-variant/30 flex justify-between items-center">
           <div>
-            <span className="text-[10px] text-on-surface-variant block uppercase tracking-widest font-bold mb-1">
+            <span className="kicker-label block text-on-surface-variant mb-1">
               Account Name
             </span>
             <span className="text-sm font-light text-on-surface">
@@ -64,7 +64,7 @@ export function BankAccountDetails({ copiedField, copyToClipboard }: BankAccount
         {/* Account Number */}
         <div className="p-4 bg-transparent rounded-md border border-outline-variant/30 flex justify-between items-center">
           <div>
-            <span className="text-[10px] text-on-surface-variant block uppercase tracking-widest font-bold mb-1">
+            <span className="kicker-label block text-on-surface-variant mb-1">
               Account Number
             </span>
             <span className="text-lg font-mono font-light text-on-surface tracking-widest">

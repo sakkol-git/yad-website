@@ -135,13 +135,13 @@ export function CambodiaImpactMap() {
       {/* Bottom Summary Strip */}
       <RevealOnScroll className="mt-8 pt-6 border-t border-outline-variant/30 grid grid-cols-3 gap-6">
         <div className="flex flex-col">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/70 font-bold mb-1">
+          <span className="kicker-label text-on-surface-variant/70 font-bold mb-1">
             Locations
           </span>
           <span className="text-lg font-medium text-on-surface">{IMPACT_NODES.length} Active</span>
         </div>
         <div className="flex flex-col">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/70 font-bold mb-1">
+          <span className="kicker-label text-on-surface-variant/70 font-bold mb-1">
             Total Students
           </span>
           <span className="text-lg font-medium text-on-surface">
@@ -149,7 +149,7 @@ export function CambodiaImpactMap() {
           </span>
         </div>
         <div className="flex flex-col">
-          <span className="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant/70 font-bold mb-1">
+          <span className="kicker-label text-on-surface-variant/70 font-bold mb-1">
             Programs Active
           </span>
           <span className="text-lg font-medium text-on-surface">
