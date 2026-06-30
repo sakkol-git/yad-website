@@ -50,7 +50,7 @@ export function OrgChartTree({ founder, coFounders }: OrgChartTreeProps) {
             const isOnly = coFounders.length === 1;
 
             return (
-              <div key={member.id} className="relative flex flex-col items-center px-8 md:px-16 lg:px-[160px]">
+              <div key={member.id} className="relative flex flex-col items-center px-4 md:px-40">
 
                 {/* Horizontal Distribution Line */}
                 {!isOnly && (
