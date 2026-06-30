@@ -17,8 +17,8 @@ import { ProvinceTooltip } from "./ProvinceTooltip";
 import { ProvinceStatsPanel } from "./ProvinceStatsPanel";
 import "./cambodia-impact-map.css";
 
-// Highcharts TopoJSON for Cambodia (works better with react-simple-maps than Git LFS pointers)
-const GEO_URL = "https://code.highcharts.com/mapdata/countries/kh/kh-all.topo.json";
+// Local TopoJSON for Cambodia (avoids CORS issues from external APIs)
+const GEO_URL = "/assets/data/cambodia.topo.json";
 
 export function CambodiaImpactMap() {
   const [activeNode, setActiveNode] = useState<ImpactNode | null>(null);
