@@ -160,3 +160,19 @@
 - [x] Keyboard-only pass: Flow continues to function identically.
 **Next candidates:**
 1. `src/features/Static/impact/CambodiaImpactMap/CambodiaImpactMap.tsx` - Performance (Tier 4). The component statically imports `react-simple-maps`, a heavy mapping dependency, directly blocking initial page load on the Homepage and Impact page. Needs `next/dynamic`.
+
+## Run 11 — 2026-06-30
+**Target:** src/features/Static/impact/CambodiaImpactMap/CambodiaImpactMap.tsx — Performance bottleneck. The component statically imported `react-simple-maps` (which pulls in heavy d3 libraries), directly blocking the initial JS load on both the Homepage and the Impact page. Ranked Tier 4 (Performance bottleneck).
+**Change:** Extracted the core `ComposableMap` tree into a new `CambodiaMapClient.tsx` component and dynamically imported it using `next/dynamic` with `ssr: false` inside `CambodiaImpactMap.tsx`.
+**Proof:** 
+- Performance: Instead of unconditionally loading `react-simple-maps` in the main bundle during SSR/initial hydration, it is now explicitly split into its own chunk (`const CambodiaMapClient = dynamic(() => import("./CambodiaMapClient"), { ssr: false })`). This defers parsing and executing the heavy d3 and vector logic until the client begins rendering, saving over ~100KB in the initial page payload for `/` and `/impact`.
+**Verification:**
+- [x] `next build` succeeds, zero new TypeScript errors.
+- [x] No new lint errors.
+- [x] No new console errors/warnings in the changed flow.
+- [x] Changed flow manually traced (UI components render identically and lazy load).
+- [x] Grep for usages: valid.
+- [x] Keyboard-only pass: Interactive map markers function properly after loading.
+**Next candidates:**
+1. `src/app/(admin)/admin/loading.tsx` - UX friction (Tier 6). Missing global loading state for admin routes.
+2. `src/shared/components/ui/Button.tsx` (and others) - Visual inconsistency (Tier 7). The project has hardcoded typography `text-[10px]` across 40+ files that should be updated to semantic `.kicker-label`.

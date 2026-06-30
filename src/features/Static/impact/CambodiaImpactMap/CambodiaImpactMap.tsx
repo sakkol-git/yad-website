@@ -1,18 +1,26 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState, useCallback, useRef } from "react";
-import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from "react-simple-maps";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
 import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { useInViewAnimation } from "@/shared/hooks/useInViewAnimation";
-import { MAP_TOKENS, IMPACT_NODES, type ImpactNode } from "@/shared/constants/infographic-tokens";
-import { ImpactNodeMarker } from "./ImpactNode";
+import { IMPACT_NODES, type ImpactNode } from "@/shared/constants/infographic-tokens";
 import { ProvinceTooltip } from "./ProvinceTooltip";
 import { ProvinceStatsPanel } from "./ProvinceStatsPanel";
 import "./cambodia-impact-map.css";
 
-// Local TopoJSON for Cambodia (avoids CORS issues from external APIs)
-const GEO_URL = "/assets/data/cambodia.topo.json";
+const CambodiaMapClient = dynamic(() => import("./CambodiaMapClient"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[600px] flex items-center justify-center bg-surface-container-lowest">
+      <div className="flex flex-col items-center gap-3">
+        <span className="material-symbols-outlined text-primary animate-spin">refresh</span>
+        <span className="text-sm font-label-bold uppercase tracking-widest text-on-surface-variant">Loading Map</span>
+      </div>
+    </div>
+  ),
+});
 
 export function CambodiaImpactMap() {
   const [activeNode, setActiveNode] = useState<ImpactNode | null>(null);
@@ -77,63 +85,15 @@ export function CambodiaImpactMap() {
           style={{ minHeight: 400 }}
         >
           {isInView && (
-            <ComposableMap
-              projection="geoMercator"
-              projectionConfig={{
-                center: [104.9, 12.6],
-                scale: 7000,
-              }}
-              width={800}
-              height={600}
-              style={{ width: "100%", height: "auto" }}
-            >
-              <ZoomableGroup center={[104.9, 12.6]} zoom={1} minZoom={1} maxZoom={1}>
-                <Geographies geography={GEO_URL}>
-                  {({ geographies }) =>
-                    geographies.map((geo) => {
-                      const provinceName = geo.properties.name;
-                      const isActiveProvince = activeProvinceNames.has(provinceName);
-                      return (
-                        <Geography
-                          key={geo.rsmKey}
-                          geography={geo}
-                          fill={
-                            isActiveProvince
-                              ? MAP_TOKENS.cambodiaFillActive
-                              : MAP_TOKENS.cambodiaFill
-                          }
-                          stroke={MAP_TOKENS.cambodiaStroke}
-                          strokeWidth={0.8}
-                          style={{
-                            default: { outline: "none" },
-                            hover: {
-                              fill: isActiveProvince ? MAP_TOKENS.cambodiaFillActive : "#D5D7D3",
-                              outline: "none",
-                              cursor: "pointer",
-                            },
-                            pressed: { outline: "none" },
-                          }}
-                        />
-                      );
-                    })
-                  }
-                </Geographies>
-
-                {/* Impact Nodes */}
-                {IMPACT_NODES.map((node, i) => (
-                  <Marker key={node.id} coordinates={node.coordinates}>
-                    <ImpactNodeMarker
-                      node={node}
-                      index={i}
-                      isActive={activeNode?.id === node.id || hoveredNode?.id === node.id}
-                      onHover={handleNodeHover}
-                      onClick={handleNodeClick}
-                      maxStudents={maxStudents}
-                    />
-                  </Marker>
-                ))}
-              </ZoomableGroup>
-            </ComposableMap>
+            <CambodiaMapClient
+              nodes={IMPACT_NODES}
+              activeProvinceNames={activeProvinceNames}
+              activeNode={activeNode}
+              hoveredNode={hoveredNode}
+              maxStudents={maxStudents}
+              onHoverNode={handleNodeHover}
+              onClickNode={handleNodeClick}
+            />
           )}
 
           {/* Tooltip overlay */}
