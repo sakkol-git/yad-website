@@ -1,0 +1,21 @@
+/* Cambodia Impact Map — Pulse animation */
+@keyframes pulse-node {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.impact-node-pulse {
+  animation: pulse-node 2s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+/* Stagger pulse for multiple nodes */
+.impact-node-pulse[data-delay="1"] { animation-delay: 0.4s; }
+.impact-node-pulse[data-delay="2"] { animation-delay: 0.8s; }
+.impact-node-pulse[data-delay="3"] { animation-delay: 1.2s; }

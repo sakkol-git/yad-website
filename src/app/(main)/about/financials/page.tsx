@@ -5,6 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/sha
 import { Button } from '@/shared/components/ui/Button';
 import { TextReveal } from "@/shared/components/animations/TextReveal";
 import { RevealOnScroll } from "@/shared/components/animations/RevealOnScroll";
+import { AllocationDonut } from "@/features/Static/financials/charts/AllocationDonut";
+import { GrowthBarChart } from "@/features/Static/financials/charts/GrowthBarChart";
+import { EfficiencyBars } from "@/features/Static/financials/charts/EfficiencyBars";
 
 export const metadata: Metadata = {
   title: 'Financial Transparency | YAD Cambodia',
@@ -119,7 +122,7 @@ export default function FinancialsPage() {
 
         {/* Content Section */}
         <div className="max-w-4xl mx-auto">
-          {/* Fund Allocation Section */}
+          {/* Fund Allocation Section — Interactive Donut */}
           <RevealOnScroll className="mb-24">
             <div className="flex items-center gap-4 mb-8">
               <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant/70">
@@ -132,37 +135,39 @@ export default function FinancialsPage() {
               We maximize our impact by keeping overhead low. For every dollar donated, 80 cents goes directly into our programs and directly benefits the communities we serve.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card className="bg-secondary-container border-none shadow-none rounded-none hover:shadow-md transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-on-secondary-container text-5xl font-light tracking-tighter">80%</CardTitle>
-                  <CardDescription className="text-on-secondary-container/80 uppercase tracking-widest text-xs font-bold mt-2">Programs & Impact</CardDescription>
-                </CardHeader>
-                <CardContent className="text-on-secondary-container/80 font-light leading-relaxed">
-                  Direct funding for youth development, scholarships, and community projects.
-                </CardContent>
-              </Card>
+            <AllocationDonut />
+          </RevealOnScroll>
 
-              <Card className="bg-primary-container border-none shadow-none rounded-none hover:shadow-md transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-on-primary-container text-5xl font-light tracking-tighter">15%</CardTitle>
-                  <CardDescription className="text-on-primary-container/80 uppercase tracking-widest text-xs font-bold mt-2">Operations</CardDescription>
-                </CardHeader>
-                <CardContent className="text-on-primary-container/80 font-light leading-relaxed">
-                  Essential staff, rent, utilities, and running our facilities smoothly.
-                </CardContent>
-              </Card>
-
-              <Card className="bg-tertiary-container border-none shadow-none rounded-none hover:shadow-md transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-on-tertiary-container text-5xl font-light tracking-tighter">5%</CardTitle>
-                  <CardDescription className="text-on-tertiary-container/80 uppercase tracking-widest text-xs font-bold mt-2">Fundraising</CardDescription>
-                </CardHeader>
-                <CardContent className="text-on-tertiary-container/80 font-light leading-relaxed">
-                  Marketing, outreach, and donor relations to ensure long-term sustainability.
-                </CardContent>
-              </Card>
+          {/* Year-over-Year Growth — Interactive Bar Chart */}
+          <RevealOnScroll className="mb-24">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant/70">
+                Year-over-Year Growth
+              </span>
+              <div className="flex-1 h-[1px] bg-outline-variant/30" />
             </div>
+
+            <p className="text-2xl md:text-3xl text-on-surface font-light leading-relaxed tracking-tight mb-12">
+              Our reach has grown consistently every year, reflecting deepening trust from our communities and donors.
+            </p>
+
+            <GrowthBarChart />
+          </RevealOnScroll>
+
+          {/* Cost-per-Outcome — Efficiency Bars */}
+          <RevealOnScroll className="mb-24">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant/70">
+                Cost Per Outcome
+              </span>
+              <div className="flex-1 h-[1px] bg-outline-variant/30" />
+            </div>
+
+            <p className="text-2xl md:text-3xl text-on-surface font-light leading-relaxed tracking-tight mb-12">
+              Radical transparency means showing exactly what your donation delivers. Every dollar is accounted for.
+            </p>
+
+            <EfficiencyBars />
           </RevealOnScroll>
 
           {/* Historical Data Section */}
