@@ -163,7 +163,7 @@ export function HomeHero() {
           {/* REDUCED: Height changed from 80vh to 60vh with a hard max-height */}
           <div
             ref={imageColRef}
-            className="lg:col-span-7 relative h-[60vh] lg:h-[70vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0 overflow-hidden"
+            className="lg:col-span-7 relative h-[60vh] lg:h-[70vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0 overflow-hidden rounded-2xl shadow-ambient border border-outline-variant/20"
           >
             <RevealOnScroll delay={0.3} className="w-full h-full relative">
               {HERO_IMAGES.map((img, idx) => {

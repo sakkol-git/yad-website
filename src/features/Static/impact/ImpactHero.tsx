@@ -42,13 +42,13 @@ export function ImpactHero() {
 
           {/* Right Column: Cinematic Image */}
           <div className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0">
-            <RevealOnScroll delay={0.3} className="w-full h-full relative">
+            <RevealOnScroll delay={0.3} className="w-full h-full relative rounded-2xl overflow-hidden shadow-ambient border border-outline-variant/20">
               <Image
                 src={heroImg}
                 alt="Students learning and building their future"
                 fill
                 placeholder="blur"
-                className="object-cover object-center"
+                className="object-cover object-center hover:scale-105 transition-transform duration-700 ease-out"
                 priority
                 sizes="(max-width: 1024px) 100vw, 60vw"
               />

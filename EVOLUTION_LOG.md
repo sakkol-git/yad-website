@@ -297,3 +297,21 @@
 **Next candidates:**
 1. Look for any remaining hardcoded strings in alert roles (like the one fixed in QuickFormSection) across other forms.
 2. General performance tuning for server-rendered page payloads.
+
+## Run 19 — 2026-06-30
+**Target:** Hero Image Layout Consistency & Polish — Visual Design (Tier 6). Expanding on Runs 17 & 18, the user noted the hero sections needed better layout consistency. While vertical spacing was fixed, the image presentation varied wildly across the application. Some components had soft edges and shadows, while others had hard corners and flat renders.
+**Change:** 
+- Unified all `*Hero.tsx` components to use our modern `glassmorphism` aesthetic standards.
+- Replaced flat `<RevealOnScroll>` wrappers with a consistent premium wrapper: `rounded-2xl overflow-hidden shadow-ambient border border-outline-variant/20`.
+- Standardized all `Image` components across 9 hero files to include `hover:scale-105 transition-transform duration-700 ease-out`.
+- Addressed legacy layout inconsistencies in `PartnerHero`, `EventHero`, and `HomeHero` to conform to the new visual baseline.
+**Proof:** 
+- Consistency: All 9 hero components now render their main visual element (the right-side split column) as a polished, interactive card with identical rounding, shadows, and hover dynamics, reinforcing the premium brand feel.
+**Verification:**
+- [x] `next build` succeeds, zero new TypeScript errors.
+- [x] No new lint errors.
+- [x] Changed flow manually traced via file inspection.
+- [x] Keyboard-only pass: Flow continues to function identically.
+**Next candidates:**
+1. Look for any remaining hardcoded strings in alert roles (like the one fixed in QuickFormSection) across other forms.
+2. General performance tuning for server-rendered page payloads.

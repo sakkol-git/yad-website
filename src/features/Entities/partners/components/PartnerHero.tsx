@@ -46,7 +46,7 @@ export function PartnerHero() {
           <div className="lg:col-span-7 relative h-[50vh] lg:h-[60vh] max-h-[600px] min-h-[400px] w-full mt-10 lg:mt-0">
             <RevealOnScroll
               delay={0.3}
-              className="w-full h-full relative rounded-md overflow-hidden shadow-2xl border border-outline-variant/20"
+              className="w-full h-full relative rounded-2xl overflow-hidden shadow-ambient border border-outline-variant/20"
             >
               <Image
                 src={heroImg}
