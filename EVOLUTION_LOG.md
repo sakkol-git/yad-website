@@ -130,3 +130,18 @@
 - [x] Keyboard-only pass: Flow continues to function identically.
 **Next candidates:**
 1. `src/features/Entities/members/components/CommunityStructureGovernance.tsx` - Check for responsiveness or architecture issues since the user had it open during the run. (Tier 5)
+
+## Run 9 — 2026-06-30
+**Target:** src/features/Static/getInvole/QuickFormSection.tsx — Accessibility blocker: invisible focus state on custom radio buttons. Ranked Tier 2.
+**Change:** Added `peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-surface` to the adjacent `div` of the `sr-only` custom radio buttons in the QuickFormSection.
+**Proof:** 
+- Violation found: WCAG 2.4.7 Focus Visible. Custom radio buttons hid the native focus indicator via `sr-only` but did not provide a custom focus indicator via `peer-focus-visible` on the stylized wrapper, making keyboard navigation invisible. Fix applied: map the `sr-only` input's focus state to the visible container.
+**Verification:**
+- [x] `next build` succeeds, zero new TypeScript errors.
+- [x] No new lint errors.
+- [x] No new console errors/warnings in the changed flow.
+- [x] Changed flow manually traced.
+- [x] Grep for usages: valid.
+- [x] Keyboard-only pass: Focus state is now visible via standard focus ring.
+**Next candidates:**
+1. `src/features/Static/getInvole/QuickFormSection.tsx` - Error handling (Tier 4). The `QuickFormSection.tsx` form state `error` renders a `<div role="alert">` that says "Placeholder" if no error message is provided.

@@ -142,7 +142,7 @@ export function QuickFormSection() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <label className="cursor-pointer">
                 <input className="peer sr-only" name="interest" type="radio" value="fund" />
-                <div className="text-center px-4 py-4 border border-outline-variant/30 text-on-surface-variant font-label-bold text-sm uppercase tracking-widest peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition-colors">
+                <div className="text-center px-4 py-4 border border-outline-variant/30 text-on-surface-variant font-label-bold text-sm uppercase tracking-widest peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-surface transition-colors">
                   Fund Projects
                 </div>
               </label>
@@ -154,13 +154,13 @@ export function QuickFormSection() {
                   value="mentor"
                   defaultChecked
                 />
-                <div className="text-center px-4 py-4 border border-outline-variant/30 text-on-surface-variant font-label-bold text-sm uppercase tracking-widest peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition-colors">
+                <div className="text-center px-4 py-4 border border-outline-variant/30 text-on-surface-variant font-label-bold text-sm uppercase tracking-widest peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-surface transition-colors">
                   Field Volunteer
                 </div>
               </label>
               <label className="cursor-pointer">
                 <input className="peer sr-only" name="interest" type="radio" value="partner" />
-                <div className="text-center px-4 py-4 border border-outline-variant/30 text-on-surface-variant font-label-bold text-sm uppercase tracking-widest peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition-colors">
+                <div className="text-center px-4 py-4 border border-outline-variant/30 text-on-surface-variant font-label-bold text-sm uppercase tracking-widest peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-surface transition-colors">
                   Partnership
                 </div>
               </label>
