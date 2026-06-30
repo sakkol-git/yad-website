@@ -82,3 +82,20 @@
 1. `src/app/payment/stripe/StripePaymentClient.tsx` - Check for similar architecture debt as LocalPaymentClient, likely needs component extraction for Checkout/Payment elements. (Tier 5)
 2. `src/features/Entities/auth/components/LoginForm.tsx` - Check if LoginForm has the same repeated form boilerplate as RegisterForm and needs the same `LoginField` extraction. (Tier 5)
 3. `src/shared/components/layout/Navbar.tsx` - Inconsistent UX. Hardcoded `text-[10px]` typography instead of semantic `.kicker-label`. (Tier 7)
+
+## Run 6 — 2026-06-30
+**Target:** src/features/Entities/auth/components/LoginForm.tsx — Component architecture. The form repeats boilerplate for input fields (`<label>`, `<input>`, optional icon, and validation `<p>`) similarly to what was found in RegisterForm. Ranked Tier 5 (Architecture/maintainability debt).
+**Change:** Extracted `LoginField` helper component inside `LoginForm.tsx` (allowing for an optional `children` prop for elements like the "Forgot password?" link) to abstract the markup. 
+**Proof:** 
+- Architecture: Abstracted ~70 lines of repetitive JSX for Email and Password fields into 2 clean `<LoginField />` invocations. File size shrank from ~270 lines to ~220 lines.
+**Verification:**
+- [x] `next build` succeeds, zero new TypeScript errors.
+- [x] No new lint errors.
+- [x] No new console errors/warnings in the changed flow.
+- [x] Changed flow manually traced (UI components receive props and render identically).
+- [x] Grep for usages: valid.
+- [x] Keyboard-only pass: Forms focus and aria-attributes map exactly as before.
+**Next candidates:**
+1. `src/app/payment/stripe/StripePaymentClient.tsx` - Check for similar architecture debt as LocalPaymentClient, likely needs component extraction for Checkout/Payment elements. (Tier 5)
+2. `src/shared/components/layout/Navbar.tsx` - Inconsistent UX. Hardcoded `text-[10px]` typography instead of semantic `.kicker-label`. (Tier 7)
+3. `src/features/Entities/members/components/CommunityStructureGovernace.tsx` - Check for responsiveness or architecture issues since the user had it open during the run. (Tier 5)

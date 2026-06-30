@@ -9,6 +9,70 @@ import { login, loginWithGoogle } from "@/server/actions/auth.actions";
 import { toast } from "sonner";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
+import { UseFormRegister } from "react-hook-form";
+
+function LoginField({
+  id,
+  label,
+  type = "text",
+  placeholder,
+  icon,
+  error,
+  register,
+  children,
+}: {
+  id: keyof LoginInput;
+  label: string;
+  type?: string;
+  placeholder?: string;
+  icon?: string;
+  error?: string;
+  register: UseFormRegister<LoginInput>;
+  children?: React.ReactNode;
+}) {
+  return (
+    <div>
+      <label
+        className="block text-[10px] font-bold uppercase tracking-widest text-on-surface mb-1"
+        htmlFor={id}
+      >
+        {label}
+      </label>
+      <div className="relative">
+        {icon && (
+          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">
+            {icon}
+          </span>
+        )}
+        <input
+          id={id}
+          type={type}
+          placeholder={placeholder}
+          aria-required="true"
+          aria-describedby={`login-${id}-error`}
+          aria-invalid={!!error}
+          className={`w-full ${icon ? "pl-10" : "px-4"} pr-4 h-12 bg-transparent rounded-md border ${
+            error
+              ? "border-error focus:ring-error focus:border-error"
+              : "border-outline-variant/50 focus:border-primary focus:ring-primary"
+          } focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
+          {...register(id)}
+        />
+      </div>
+      <p
+        id={`login-${id}-error`}
+        role="alert"
+        aria-live="polite"
+        className={`text-sm mt-1 transition-opacity duration-200 ${
+          error ? "text-error opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        {error || "Placeholder error"}
+      </p>
+      {children}
+    </div>
+  );
+}
 
 export function LoginForm() {
   const router = useRouter();
@@ -106,73 +170,25 @@ export function LoginForm() {
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div>
-              <label
-                className="block text-[10px] font-bold uppercase tracking-widest text-on-surface mb-1"
-                htmlFor="email"
-              >
-                Email Address
-              </label>
-              <div className="relative">
-                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">
-                  mail
-                </span>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="user@example.com"
-                  aria-required="true"
-                  aria-describedby="login-email-error"
-                  aria-invalid={!!errors.email}
-                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-md border ${errors.email ? "border-error focus:ring-error focus:border-error" : "border-outline-variant/50 focus:border-primary focus:ring-primary"} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
-                  {...register("email")}
-                />
-              </div>
-              <p
-                id="login-email-error"
-                role="alert"
-                aria-live="polite"
-                className={`text-sm mt-1 transition-opacity duration-200 ${
-                  errors.email ? "text-error opacity-100" : "opacity-0 pointer-events-none"
-                }`}
-              >
-                {errors.email?.message || "Placeholder error"}
-              </p>
-            </div>
+            <LoginField
+              id="email"
+              label="Email Address"
+              type="email"
+              placeholder="user@example.com"
+              icon="mail"
+              error={errors.email?.message}
+              register={register}
+            />
 
-            <div>
-              <label
-                className="block text-[10px] font-bold uppercase tracking-widest text-on-surface mb-1"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <div className="relative">
-                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">
-                  lock
-                </span>
-                <input
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
-                  aria-required="true"
-                  aria-describedby="login-password-error"
-                  aria-invalid={!!errors.password}
-                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-md border ${errors.password ? "border-error focus:ring-error focus:border-error" : "border-outline-variant/50 focus:border-primary focus:ring-primary"} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
-                  {...register("password")}
-                />
-              </div>
-              <p
-                id="login-password-error"
-                role="alert"
-                aria-live="polite"
-                className={`text-sm mt-1 transition-opacity duration-200 ${
-                  errors.password ? "text-error opacity-100" : "opacity-0 pointer-events-none"
-                }`}
-              >
-                {errors.password?.message || "Placeholder error"}
-              </p>
-
+            <LoginField
+              id="password"
+              label="Password"
+              type="password"
+              placeholder="••••••••"
+              icon="lock"
+              error={errors.password?.message}
+              register={register}
+            >
               <div className="text-right mt-2">
                 <a
                   href="#"
@@ -181,7 +197,7 @@ export function LoginForm() {
                   Forgot password?
                 </a>
               </div>
-            </div>
+            </LoginField>
 
             <div
               role="alert"
