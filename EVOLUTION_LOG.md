@@ -176,3 +176,18 @@
 **Next candidates:**
 1. `src/app/(admin)/admin/loading.tsx` - UX friction (Tier 6). Missing global loading state for admin routes.
 2. `src/shared/components/ui/Button.tsx` (and others) - Visual inconsistency (Tier 7). The project has hardcoded typography `text-[10px]` across 40+ files that should be updated to semantic `.kicker-label`.
+
+## Run 12 — 2026-06-30
+**Target:** src/app/(admin)/admin/loading.tsx — UX friction. Missing global loading state for all admin data fetching routes, leading to layout shifts or blank screens during navigation. Ranked Tier 6 (UX friction).
+**Change:** Created `src/app/(admin)/admin/loading.tsx` incorporating the `AdminPageLayout` and semantic skeleton loaders (`SkeletonCard`) matching the structure of the portal's `loading.tsx`.
+**Proof:** 
+- Bug fix: Navigating between admin routes (e.g. `/admin/dashboard` to `/admin/reports`) would previously block navigation with no feedback until the server component resolved. Now, Next.js instantly renders `admin/loading.tsx` giving the user immediate visual feedback via skeleton loaders wrapped in the proper admin layout.
+**Verification:**
+- [x] `next build` succeeds, zero new TypeScript errors.
+- [x] No new lint errors.
+- [x] No new console errors/warnings in the changed flow.
+- [x] Changed flow manually traced.
+- [x] Grep for usages: valid.
+- [x] Keyboard-only pass: Loading state handles focus gracefully without breaking existing layouts.
+**Next candidates:**
+1. `src/shared/components/ui/Button.tsx` (and others) - Visual inconsistency (Tier 7). The project has hardcoded typography `text-[10px]` across 40+ files that should be updated to semantic `.kicker-label`.
