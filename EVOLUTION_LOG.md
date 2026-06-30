@@ -48,3 +48,20 @@
 1. `src/app/payment/local/LocalPaymentClient.tsx` - Component architecture. Over 380 lines mixing UI with complex payment processing logic. (Tier 5)
 2. `src/features/Entities/auth/components/RegisterForm.tsx` - Component architecture. Large >360 lines file with repeated form input logic that should be abstracted. (Tier 5)
 3. `src/shared/components/layout/Navbar.tsx` - Inconsistent UX. Hardcoded `text-[10px]` typography instead of semantic `.kicker-label`. (Tier 7)
+
+## Run 4 — 2026-06-30
+**Target:** src/app/payment/local/LocalPaymentClient.tsx — Component architecture. The file was ~390 lines long, mixing complex payment processing state and logic with massive inline UI code (KHQR and Bank Details). Ranked Tier 5 (Architecture/maintainability debt).
+**Change:** Extracted `KHQR`, `BankAccountDetails`, and `PaymentSummary` into separate components inside `src/app/payment/local/components/`.
+**Proof:** 
+- Architecture: Extracted ~190 lines of inline UI code into three separate components: `KHQR.tsx`, `BankAccountDetails.tsx`, `PaymentSummary.tsx`. The main `LocalPaymentClient.tsx` file is now ~150 lines and cleanly focuses on state management and layout.
+**Verification:**
+- [x] `next build` succeeds, zero new TypeScript errors.
+- [x] No new lint errors.
+- [x] No new console errors/warnings in the changed flow.
+- [x] Changed flow manually traced (UI components receive props and render identically).
+- [x] Grep for usages: valid.
+- [x] Keyboard-only pass: Form functions correctly.
+**Next candidates:**
+1. `src/features/Entities/auth/components/RegisterForm.tsx` - Component architecture. Large >360 lines file with repeated form input logic that should be abstracted. (Tier 5)
+2. `src/shared/components/layout/Navbar.tsx` - Inconsistent UX. Hardcoded `text-[10px]` typography instead of semantic `.kicker-label`. (Tier 7)
+3. `src/app/payment/stripe/StripePaymentClient.tsx` - Check for similar architecture debt as LocalPaymentClient, likely needs component extraction for Checkout/Payment elements. (Tier 5)
