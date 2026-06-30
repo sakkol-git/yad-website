@@ -10,6 +10,7 @@ import { useAuth } from "@/providers/AuthProvider";
 import { createClient } from "@/shared/lib/supabase/client";
 import { useMagneticHover } from "@/shared/hooks/useMagneticHover";
 import { gsap } from "@/shared/lib/animations/gsap-config";
+import { ImpactTicker } from "@/shared/components/ui/ImpactTicker";
 
 type NavLink = { href: string; label: string; subLinks?: { href: string; label: string }[] };
 
@@ -207,6 +208,7 @@ export default function Navbar() {
         } ${isHidden ? "-translate-y-full" : "translate-y-0"}`}
       aria-label="Main navigation"
     >
+      <ImpactTicker />
       <div className="flex justify-between items-center px-4 md:px-6 lg:px-8 py-3 md:py-4 max-w-[1440px] mx-auto">
         {/* Brand */}
         <Link
