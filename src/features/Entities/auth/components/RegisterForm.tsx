@@ -9,6 +9,67 @@ import { register as registerAction, loginWithGoogle } from "@/server/actions/au
 import { toast } from "sonner";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
+import { UseFormRegister } from "react-hook-form";
+
+function RegisterField({
+  id,
+  label,
+  type = "text",
+  placeholder,
+  icon,
+  error,
+  register,
+}: {
+  id: keyof RegisterInput;
+  label: string;
+  type?: string;
+  placeholder?: string;
+  icon?: string;
+  error?: string;
+  register: UseFormRegister<RegisterInput>;
+}) {
+  return (
+    <div>
+      <label
+        className="block text-[10px] font-bold uppercase tracking-widest text-on-surface mb-1"
+        htmlFor={id}
+      >
+        {label}
+      </label>
+      <div className="relative">
+        {icon && (
+          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">
+            {icon}
+          </span>
+        )}
+        <input
+          id={id}
+          type={type}
+          placeholder={placeholder}
+          aria-required="true"
+          aria-describedby={`register-${id}-error`}
+          aria-invalid={!!error}
+          className={`w-full ${icon ? "pl-10" : "px-4"} pr-4 h-12 bg-transparent rounded-md border ${
+            error
+              ? "border-error focus:ring-error focus:border-error"
+              : "border-outline-variant/50 focus:border-primary focus:ring-primary"
+          } focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
+          {...register(id)}
+        />
+      </div>
+      <p
+        id={`register-${id}-error`}
+        role="alert"
+        aria-live="polite"
+        className={`text-xs mt-1 transition-opacity duration-200 ${
+          error ? "text-error opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        {error || "Placeholder"}
+      </p>
+    </div>
+  );
+}
 
 export function RegisterForm() {
   const router = useRouter();
@@ -116,167 +177,51 @@ export function RegisterForm() {
               </div>
             )}
             <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label
-                  className="block text-[10px] font-bold uppercase tracking-widest text-on-surface mb-1"
-                  htmlFor="first_name"
-                >
-                  First Name
-                </label>
-                <input
-                  id="first_name"
-                  type="text"
-                  placeholder="Sokha"
-                  aria-required="true"
-                  aria-describedby="register-first-name-error"
-                  aria-invalid={!!errors.first_name}
-                  className={`w-full px-4 h-12 bg-transparent rounded-md border ${errors.first_name ? "border-error focus:ring-error focus:border-error" : "border-outline-variant/50 focus:border-primary focus:ring-primary"} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
-                  {...register("first_name")}
-                />
-                <p
-                  id="register-first-name-error"
-                  role="alert"
-                  aria-live="polite"
-                  className={`text-xs mt-1 transition-opacity duration-200 ${
-                    errors.first_name ? "text-error opacity-100" : "opacity-0 pointer-events-none"
-                  }`}
-                >
-                  {errors.first_name?.message || "Placeholder"}
-                </p>
-              </div>
-              <div>
-                <label
-                  className="block text-[10px] font-bold uppercase tracking-widest text-on-surface mb-1"
-                  htmlFor="last_name"
-                >
-                  Last Name
-                </label>
-                <input
-                  id="last_name"
-                  type="text"
-                  placeholder="Chen"
-                  aria-required="true"
-                  aria-describedby="register-last-name-error"
-                  aria-invalid={!!errors.last_name}
-                  className={`w-full px-4 h-12 bg-transparent rounded-md border ${errors.last_name ? "border-error focus:ring-error focus:border-error" : "border-outline-variant/50 focus:border-primary focus:ring-primary"} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
-                  {...register("last_name")}
-                />
-                <p
-                  id="register-last-name-error"
-                  role="alert"
-                  aria-live="polite"
-                  className={`text-xs mt-1 transition-opacity duration-200 ${
-                    errors.last_name ? "text-error opacity-100" : "opacity-0 pointer-events-none"
-                  }`}
-                >
-                  {errors.last_name?.message || "Placeholder"}
-                </p>
-              </div>
+              <RegisterField
+                id="first_name"
+                label="First Name"
+                placeholder="Sokha"
+                error={errors.first_name?.message}
+                register={register}
+              />
+              <RegisterField
+                id="last_name"
+                label="Last Name"
+                placeholder="Chen"
+                error={errors.last_name?.message}
+                register={register}
+              />
             </div>
 
-            <div>
-              <label
-                className="block text-[10px] font-bold uppercase tracking-widest text-on-surface mb-1"
-                htmlFor="email"
-              >
-                Email Address
-              </label>
-              <div className="relative">
-                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">
-                  mail
-                </span>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="user@example.com"
-                  aria-required="true"
-                  aria-describedby="register-email-error"
-                  aria-invalid={!!errors.email}
-                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-md border ${errors.email ? "border-error focus:ring-error focus:border-error" : "border-outline-variant/50 focus:border-primary focus:ring-primary"} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
-                  {...register("email")}
-                />
-              </div>
-              <p
-                id="register-email-error"
-                role="alert"
-                aria-live="polite"
-                className={`text-sm mt-1 transition-opacity duration-200 ${
-                  errors.email ? "text-error opacity-100" : "opacity-0 pointer-events-none"
-                }`}
-              >
-                {errors.email?.message || "Placeholder"}
-              </p>
-            </div>
+            <RegisterField
+              id="email"
+              label="Email Address"
+              type="email"
+              placeholder="user@example.com"
+              icon="mail"
+              error={errors.email?.message}
+              register={register}
+            />
 
-            <div>
-              <label
-                className="block text-[10px] font-bold uppercase tracking-widest text-on-surface mb-1"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <div className="relative">
-                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">
-                  lock
-                </span>
-                <input
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
-                  aria-required="true"
-                  aria-describedby="register-password-error"
-                  aria-invalid={!!errors.password}
-                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-md border ${errors.password ? "border-error focus:ring-error focus:border-error" : "border-outline-variant/50 focus:border-primary focus:ring-primary"} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
-                  {...register("password")}
-                />
-              </div>
-              <p
-                id="register-password-error"
-                role="alert"
-                aria-live="polite"
-                className={`text-sm mt-1 transition-opacity duration-200 ${
-                  errors.password ? "text-error opacity-100" : "opacity-0 pointer-events-none"
-                }`}
-              >
-                {errors.password?.message || "Placeholder"}
-              </p>
-            </div>
+            <RegisterField
+              id="password"
+              label="Password"
+              type="password"
+              placeholder="••••••••"
+              icon="lock"
+              error={errors.password?.message}
+              register={register}
+            />
 
-            <div>
-              <label
-                className="block text-[10px] font-bold uppercase tracking-widest text-on-surface mb-1"
-                htmlFor="confirmPassword"
-              >
-                Confirm Password
-              </label>
-              <div className="relative">
-                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">
-                  lock
-                </span>
-                <input
-                  id="confirmPassword"
-                  type="password"
-                  placeholder="••••••••"
-                  aria-required="true"
-                  aria-describedby="register-confirm-password-error"
-                  aria-invalid={!!errors.confirmPassword}
-                  className={`w-full pl-10 pr-4 h-12 bg-transparent rounded-md border ${errors.confirmPassword ? "border-error focus:ring-error focus:border-error" : "border-outline-variant/50 focus:border-primary focus:ring-primary"} focus:ring-1 text-on-surface text-sm font-light transition-colors duration-200 ease-in-out outline-none`}
-                  {...register("confirmPassword")}
-                />
-              </div>
-              <p
-                id="register-confirm-password-error"
-                role="alert"
-                aria-live="polite"
-                className={`text-sm mt-1 transition-opacity duration-200 ${
-                  errors.confirmPassword
-                    ? "text-error opacity-100"
-                    : "opacity-0 pointer-events-none"
-                }`}
-              >
-                {errors.confirmPassword?.message || "Placeholder"}
-              </p>
-            </div>
+            <RegisterField
+              id="confirmPassword"
+              label="Confirm Password"
+              type="password"
+              placeholder="••••••••"
+              icon="lock"
+              error={errors.confirmPassword?.message}
+              register={register}
+            />
 
             <div
               role="alert"

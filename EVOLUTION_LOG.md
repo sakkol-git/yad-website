@@ -65,3 +65,20 @@
 1. `src/features/Entities/auth/components/RegisterForm.tsx` - Component architecture. Large >360 lines file with repeated form input logic that should be abstracted. (Tier 5)
 2. `src/shared/components/layout/Navbar.tsx` - Inconsistent UX. Hardcoded `text-[10px]` typography instead of semantic `.kicker-label`. (Tier 7)
 3. `src/app/payment/stripe/StripePaymentClient.tsx` - Check for similar architecture debt as LocalPaymentClient, likely needs component extraction for Checkout/Payment elements. (Tier 5)
+
+## Run 5 — 2026-06-30
+**Target:** src/features/Entities/auth/components/RegisterForm.tsx — Component architecture. Large >360 lines file with massively repeated form input logic. Ranked Tier 5 (Architecture/maintainability debt).
+**Change:** Extracted `RegisterField` helper component inside `RegisterForm.tsx` to abstract the `<label>`, `<input>`, icon, and error `<p>` markup into a single reusable block.
+**Proof:** 
+- Architecture: Abstracted ~160 lines of highly repetitive JSX for First Name, Last Name, Email, Password, and Confirm Password fields into 5 clean `<RegisterField />` invocations. The file size shrank from ~360 lines down to ~220 lines.
+**Verification:**
+- [x] `next build` succeeds, zero new TypeScript errors.
+- [x] No new lint errors.
+- [x] No new console errors/warnings in the changed flow.
+- [x] Changed flow manually traced (UI components receive props and render identically).
+- [x] Grep for usages: valid.
+- [x] Keyboard-only pass: Forms focus and aria-attributes map exactly as before.
+**Next candidates:**
+1. `src/app/payment/stripe/StripePaymentClient.tsx` - Check for similar architecture debt as LocalPaymentClient, likely needs component extraction for Checkout/Payment elements. (Tier 5)
+2. `src/features/Entities/auth/components/LoginForm.tsx` - Check if LoginForm has the same repeated form boilerplate as RegisterForm and needs the same `LoginField` extraction. (Tier 5)
+3. `src/shared/components/layout/Navbar.tsx` - Inconsistent UX. Hardcoded `text-[10px]` typography instead of semantic `.kicker-label`. (Tier 7)
