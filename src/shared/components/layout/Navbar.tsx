@@ -281,12 +281,9 @@ export default function Navbar() {
               </div>
             </div>
           ) : (
-            <Link
-              href="/auth/login"
-              className={`text-sm font-medium transition-colors px-2 text-on-surface-variant hover:text-primary`}
-            >
-              Log In
-            </Link>
+            <Button variant="outline" asChild>
+              <Link href="/auth/login">Log In</Link>
+            </Button>
           )}
 
           <Button
@@ -398,7 +395,7 @@ export default function Navbar() {
               <div className="grid grid-cols-2 gap-3">
                 <Link
                   href="/auth/login"
-                  className="py-3 text-center border border-outline-variant/30 text-on-surface hover:bg-surface-container rounded-md transition-colors kicker-label"
+                  className="py-3 text-center border border-primary text-primary hover:bg-primary hover:text-on-primary rounded-md transition-colors kicker-label"
                 >
                   Log In
                 </Link>

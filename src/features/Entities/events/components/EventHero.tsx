@@ -5,7 +5,7 @@ import heroImg from "../../../../../public/assets/images/yad-7.png";
 
 export function EventHero() {
   return (
-    <section className="relative w-full bg-surface pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
+    <section className="relative w-full bg-surface pt-26 pb-16 lg:pb-20 overflow-hidden">
       {/* Subtle Background Glows */}
       <div className="absolute top-20 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none -z-10" />
       <div className="absolute bottom-0 left-1/4 w-[30rem] h-[30rem] bg-secondary/5 rounded-full blur-[150px] pointer-events-none translate-y-1/2 -z-10" />
