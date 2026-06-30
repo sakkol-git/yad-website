@@ -102,6 +102,11 @@ export class EventsService {
   getPublicEvents = cache(async (supabase: SupabaseClient<Database>) => {
     return this.repository.getAllPublic(supabase);
   });
+
+  async getEventStats(supabase: SupabaseClient<Database>) {
+    await requireAdmin(supabase);
+    return this.repository.getEventStats(supabase);
+  }
 }
 
 export const eventsService = new EventsService();

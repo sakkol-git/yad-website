@@ -46,4 +46,18 @@ export class EventsRepository extends BaseRepository<"events"> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return data as any[];
   }
+
+  async getEventStats(supabase: SupabaseClient<Database>) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const sb = supabase as any;
+    const { data, error } = await sb.from("events").select("date, capacity");
+    if (error) throw error;
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const upcomingCount = data.filter((e: any) => new Date(e.date) >= new Date()).length || 0;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const totalCapacity = data.reduce((acc: number, e: any) => acc + (e.capacity || 0), 0) || 0;
+
+    return { upcomingCount, totalCapacity };
+  }
 }

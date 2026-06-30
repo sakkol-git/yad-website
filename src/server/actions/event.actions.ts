@@ -3,12 +3,20 @@
 import { createSafeAction } from "@/shared/lib/safe-action";
 import { revalidatePath } from "next/cache";
 import { eventsService } from "../services/events.service";
+import { z } from "zod";
 import {
   getEventsSchema,
   eventDataSchema,
   updateEventSchema,
   deleteEventSchema,
 } from "../validators/event.schema";
+
+export const getEventStats = createSafeAction(
+  { schema: z.object({}), role: "admin" },
+  async (_, { sessionClient }) => {
+    return await eventsService.getEventStats(sessionClient);
+  },
+);
 
 export const getEvents = createSafeAction(
   { schema: getEventsSchema, role: "admin" },

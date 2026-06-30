@@ -1,7 +1,5 @@
 "use server";
 
-"use server";
-
 import { headers } from "next/headers";
 import { quickFormSchema } from "../validations/contact.schema";
 import { rateLimitByIP } from "@/lib/rateLimit";

@@ -1,7 +1,6 @@
-import { getEvents } from "@/server/actions/event.actions";
+import { getEvents, getEventStats } from "@/server/actions/event.actions";
 import { EventsTable } from "@/features/Entities/events/components/EventsTable";
 import { Suspense } from "react";
-import { createClient } from "@/shared/lib/supabase/server";
 import { AdminPageLayout } from "@/shared/components/admin/layout/AdminPageLayout";
 import { AdminPageHeader } from "@/shared/components/admin/layout/AdminPageHeader";
 import { StatCard } from "@/shared/components/admin/data/StatCard";
@@ -23,13 +22,9 @@ export default async function EventsPage(props: {
   const events = result.success && result.data ? result.data.data : [];
   const count = result.success && result.data ? result.data.count : 0;
 
-  const supabase = await createClient();
-  const { data: allEvents } = await supabase.from("events").select("date, capacity");
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const upcomingCount = allEvents?.filter((e: any) => new Date(e.date) >= new Date()).length || 0;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const totalCapacity = allEvents?.reduce((acc: number, e: any) => acc + (e.capacity || 0), 0) || 0;
+  const statsResult = await getEventStats({});
+  const upcomingCount = statsResult.success && statsResult.data ? statsResult.data.upcomingCount : 0;
+  const totalCapacity = statsResult.success && statsResult.data ? statsResult.data.totalCapacity : 0;
 
   const headerActions = (
     <Button variant="outline" className="flex items-center gap-2 shadow-sm">

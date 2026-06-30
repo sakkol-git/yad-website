@@ -223,3 +223,24 @@
 **Next candidates:**
 1. `src/server/actions/contact.actions.ts` - Lint/cleanliness (Tier 8). Contains a duplicated `"use server";` directive on lines 1 and 3.
 2. `src/app/(admin)/admin/events/page.tsx` - Data Fetching (Tier 1). Inline `supabase.from` query used inside a server component instead of utilizing an extracted data service or action.
+
+## Run 15 — 2026-06-30
+**Target 1:** `src/app/(admin)/admin/events/page.tsx` — Data Fetching Architecture (Tier 1). Inline `supabase.from` query was being used directly inside a Server Component instead of utilizing an extracted data service or action.
+**Target 2:** `src/server/actions/contact.actions.ts` — Lint/cleanliness (Tier 8). Contained a duplicated `"use server";` directive.
+**Change:** 
+- Created a new `getEventStats` method in `EventsRepository` and `EventsService` to efficiently compute `upcomingCount` and `totalCapacity` using database queries instead of loading everything via `select("*")` on the client or layout.
+- Wrapped this in a typed `getEventStats` safe action inside `event.actions.ts`.
+- Refactored `admin/events/page.tsx` to call `getEventStats` rather than interacting with the database layer directly.
+- Removed the redundant `"use server";` directive from `contact.actions.ts`.
+**Proof:** 
+- Architecture: `admin/events/page.tsx` is now purely concerned with presentation, accurately reflecting standard 3-tier architecture. Repositories handle Supabase, Services enforce RBAC, Actions provide schema-typed RPC.
+**Verification:**
+- [x] `next build` succeeds, zero new TypeScript errors.
+- [x] No new lint errors.
+- [x] No new console errors/warnings in the changed flow.
+- [x] Changed flow manually traced.
+- [x] Grep for usages: valid.
+- [x] Keyboard-only pass: Unchanged.
+**Next candidates:**
+1. Future UI graphic design upgrades (TheoryOfChange glassmorphism, CambodiaImpactMap refinement).
+2. Any remaining inline `supabase.from` calls scattered across other Server Components (requires thorough sweep via grep).
