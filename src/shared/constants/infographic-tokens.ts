@@ -117,6 +117,7 @@ export const EFFICIENCY_DATA = [
 export interface ImpactNode {
   id: string;
   name: string;
+  geoName: string;
   coordinates: [number, number]; // [longitude, latitude]
   studentsReached: number;
   programTypes: string[];
@@ -124,10 +125,10 @@ export interface ImpactNode {
 }
 
 export const IMPACT_NODES: ImpactNode[] = [
-  { id: "phnom-penh", name: "Phnom Penh", coordinates: [104.928, 11.556], studentsReached: 480, programTypes: ["Dormitory", "Scholarship", "Leadership"], keyMetric: "94% university placement" },
-  { id: "siem-reap", name: "Siem Reap", coordinates: [103.860, 13.367], studentsReached: 120, programTypes: ["Community Schools"], keyMetric: "340 children in English programs" },
-  { id: "battambang", name: "Battambang", coordinates: [102.990, 13.096], studentsReached: 85, programTypes: ["Porridge for Hope"], keyMetric: "500+ meals served monthly" },
-  { id: "kampong-cham", name: "Kampong Cham", coordinates: [105.462, 11.994], studentsReached: 58, programTypes: ["Community Schools"], keyMetric: "3 active community schools" },
+  { id: "phnom-penh", name: "Phnom Penh", geoName: "Phnom Penh", coordinates: [104.928, 11.556], studentsReached: 480, programTypes: ["Dormitory", "Scholarship", "Leadership"], keyMetric: "94% university placement" },
+  { id: "siem-reap", name: "Siem Reap", geoName: "Siemréab", coordinates: [103.860, 13.367], studentsReached: 120, programTypes: ["Community Schools"], keyMetric: "340 children in English programs" },
+  { id: "battambang", name: "Battambang", geoName: "Batdâmbâng", coordinates: [102.990, 13.096], studentsReached: 85, programTypes: ["Porridge for Hope"], keyMetric: "500+ meals served monthly" },
+  { id: "kampong-cham", name: "Kampong Cham", geoName: "Kâmpóng Cham", coordinates: [105.462, 11.994], studentsReached: 58, programTypes: ["Community Schools"], keyMetric: "3 active community schools" },
 ];
 
 /* ── Student Journey Stages ── */

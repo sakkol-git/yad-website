@@ -17,8 +17,8 @@ import { ProvinceTooltip } from "./ProvinceTooltip";
 import { ProvinceStatsPanel } from "./ProvinceStatsPanel";
 import "./cambodia-impact-map.css";
 
-// Official Cambodia ADM1 GeoJSON (simplified for performance)
-const GEO_URL = "https://raw.githubusercontent.com/wmgeolab/geoBoundaries/main/releaseData/gbOpen/KHM/ADM1/geoBoundaries-KHM-ADM1.geojson";
+// Highcharts TopoJSON for Cambodia (works better with react-simple-maps than Git LFS pointers)
+const GEO_URL = "https://code.highcharts.com/mapdata/countries/kh/kh-all.topo.json";
 
 export function CambodiaImpactMap() {
   const [activeNode, setActiveNode] = useState<ImpactNode | null>(null);
@@ -47,7 +47,7 @@ export function CambodiaImpactMap() {
   }, []);
 
   // Active provinces — provinces where YAD operates
-  const activeProvinceNames = new Set(IMPACT_NODES.map((n) => n.name));
+  const activeProvinceNames = new Set(IMPACT_NODES.map((n) => n.geoName));
 
   return (
     <section
@@ -97,7 +97,7 @@ export function CambodiaImpactMap() {
                 <Geographies geography={GEO_URL}>
                   {({ geographies }) =>
                     geographies.map((geo) => {
-                      const provinceName = geo.properties.shapeName;
+                      const provinceName = geo.properties.name;
                       const isActiveProvince = activeProvinceNames.has(provinceName);
                       return (
                         <Geography
