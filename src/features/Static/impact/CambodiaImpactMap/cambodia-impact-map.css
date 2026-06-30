@@ -13,6 +13,7 @@
 .impact-node-pulse {
   animation: pulse-node 2s ease-in-out infinite;
   transform-origin: center center;
+  transform-box: fill-box;
 }
 
 /* Stagger pulse for multiple nodes */
