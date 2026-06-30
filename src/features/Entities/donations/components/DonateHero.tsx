@@ -68,7 +68,7 @@ export function DonateHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full bg-surface pt-24 pb-10 lg:pt-32 lg:pb-10 overflow-hidden border-b border-outline-variant/30"
+      className="relative w-full bg-surface pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden border-b border-outline-variant/30"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-container-max">
         {/* Editorial Split Grid */}

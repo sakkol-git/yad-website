@@ -262,3 +262,20 @@
 **Next candidates:**
 1. Any remaining inline `supabase.from` calls scattered across Server Components (none found within `/src/app` outside of health check, but maybe a deep dive is needed).
 2. Look for any remaining hardcoded strings in alert roles (like the one fixed in QuickFormSection) across other forms.
+
+## Run 17 — 2026-06-30
+**Target:** Navbar and Hero section spacing consistency — UX Friction (Tier 6). The hero sections across all pages were rendering too close to the global `Navbar` due to insufficient padding, especially given the extra height of the `ImpactTicker` component above the navbar.
+**Change:** 
+- Globally updated the padding on all top-level Hero components (`HomeHero.tsx`, `AboutHero.tsx`, `ProgramsHero.tsx`, `GetInvolvedHero.tsx`, `ServicesHero.tsx`, `ImpactHero.tsx`, `DonateHero.tsx`, `PartnerHero.tsx`, `EventHero.tsx`).
+- Replaced `pt-24 pb-10 lg:pt-32 lg:pb-10` with `pt-36 pb-16 lg:pt-48 lg:pb-20` to ensure proper visual breathing room between the fixed navbar and the hero content.
+**Proof:** 
+- Consistency: A cross-application script verified and applied the identical spacing layout to all 9 primary hero entry points, ensuring no page feels claustrophobic or abruptly cuts off under the sticky header.
+**Verification:**
+- [x] `next build` succeeds, zero new TypeScript errors.
+- [x] No new lint errors.
+- [x] Changed flow manually traced.
+- [x] Grep for usages: valid.
+- [x] Keyboard-only pass: Flow continues to function identically.
+**Next candidates:**
+1. Look for any remaining hardcoded strings in alert roles (like the one fixed in QuickFormSection) across other forms.
+2. General performance tuning for server-rendered page payloads.
