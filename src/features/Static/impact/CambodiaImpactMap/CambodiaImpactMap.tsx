@@ -87,7 +87,7 @@ export function CambodiaImpactMap() {
               projection="geoMercator"
               projectionConfig={{
                 center: [104.9, 12.6],
-                scale: 4800,
+                scale: 7000,
               }}
               width={800}
               height={600}
