@@ -2,6 +2,8 @@ import { AdminDashboard } from "@/features/Static/dashboard/components/AdminDash
 import { getDashboardMetrics } from "@/server/actions/dashboard.actions";
 import { AdminPageLayout } from "@/shared/components/admin/layout/AdminPageLayout";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminDashboardOverview() {
   const result = await getDashboardMetrics({});
 
